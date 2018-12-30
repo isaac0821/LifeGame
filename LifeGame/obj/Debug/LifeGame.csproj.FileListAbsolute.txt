@@ -1,0 +1,14 @@
+D:\tool\iTrack\LifeGame\bin\Debug\iTrack.exe.config
+D:\tool\iTrack\LifeGame\obj\Debug\iTrack.exe
+D:\tool\iTrack\LifeGame\obj\Debug\iTrack.pdb
+D:\tool\iTrack\LifeGame\bin\Debug\iTrack.exe
+D:\tool\iTrack\LifeGame\bin\Debug\iTrack.pdb
+D:\tool\iTrack\LifeGame\obj\Debug\LifeGame.csprojResolveAssemblyReference.cache
+D:\tool\iTrack\LifeGame\obj\Debug\iTrack.frmMain.resources
+D:\tool\iTrack\LifeGame\obj\Debug\iTrack.Properties.Resources.resources
+D:\tool\iTrack\LifeGame\obj\Debug\LifeGame.csproj.GenerateResource.Cache
+D:\tool\iTrack\LifeGame\obj\Debug\iTrack.frmTask.resources
+D:\tool\iTrack\LifeGame\obj\Debug\iTrack.frmAccount.resources
+D:\tool\iTrack\LifeGame\obj\Debug\iTrack.frmAchievement.resources
+D:\tool\iTrack\LifeGame\obj\Debug\iTrack.frmDaily.resources
+D:\tool\iTrack\LifeGame\obj\Debug\iTrack.frmStat.resources

@@ -1,0 +1,9 @@
+D:\tool\iTrack\iTrack\bin\Debug\iTrack.exe.config
+D:\tool\iTrack\iTrack\bin\Debug\iTrack.exe
+D:\tool\iTrack\iTrack\bin\Debug\iTrack.pdb
+D:\tool\iTrack\iTrack\obj\Debug\iTrack.csprojResolveAssemblyReference.cache
+D:\tool\iTrack\iTrack\obj\Debug\iTrack.frmMain.resources
+D:\tool\iTrack\iTrack\obj\Debug\iTrack.Properties.Resources.resources
+D:\tool\iTrack\iTrack\obj\Debug\iTrack.csproj.GenerateResource.Cache
+D:\tool\iTrack\iTrack\obj\Debug\iTrack.exe
+D:\tool\iTrack\iTrack\obj\Debug\iTrack.pdb
