@@ -7,8 +7,8 @@
     <ProjectGuid>{1746C003-CA2E-4144-80C4-090E9487EB7F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>iTrack</RootNamespace>
-    <AssemblyName>iTrack</AssemblyName>
+    <RootNamespace>LifeGame</RootNamespace>
+    <AssemblyName>LifeGame</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -57,6 +57,18 @@
     <Compile Include="frmAchievement.Designer.cs">
       <DependentUpon>frmAchievement.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddLog.Designer.cs">
+      <DependentUpon>frmAddLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddSchedule.Designer.cs">
+      <DependentUpon>frmAddSchedule.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDaily.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +93,7 @@
     <Compile Include="frmTask.Designer.cs">
       <DependentUpon>frmTask.cs</DependentUpon>
     </Compile>
+    <Compile Include="Glb.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAccount.resx">
@@ -88,6 +101,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAchievement.resx">
       <DependentUpon>frmAchievement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddLog.resx">
+      <DependentUpon>frmAddLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddSchedule.resx">
+      <DependentUpon>frmAddSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDaily.resx">
       <DependentUpon>frmDaily.cs</DependentUpon>
@@ -109,6 +128,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace iTrack
+namespace LifeGame
 {
     public partial class frmMain : Form
     {
@@ -27,6 +27,18 @@ namespace iTrack
         {
             frmAccount frmAccount = new frmAccount();
             frmAccount.Show();
+        }
+
+        private void addScheduleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddSchedule frmAddSchedule = new frmAddSchedule();
+            frmAddSchedule.Show();
+        }
+
+        private void addLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddLog frmAddLog = new frmAddLog();
+            frmAddLog.Show();
         }
     }
 }

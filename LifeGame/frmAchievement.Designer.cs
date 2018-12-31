@@ -1,4 +1,4 @@
-﻿namespace iTrack
+﻿namespace LifeGame
 {
     partial class frmAchievement
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace iTrack
+namespace LifeGame
 {
     /// <summary>
     /// 前置逻辑关系
@@ -22,7 +22,6 @@ namespace iTrack
     public class CAchievement
     {
         public string AchievementName;
-        public int ProgressPoint;
         public int TotalProgressPoint;
         public bool IsAchieved;
         public bool IsTerminated;
@@ -39,14 +38,20 @@ namespace iTrack
         public EPreReq PreReqLogic;
     }
 
+    public enum ECheckState : int
+    {
+        Waiting,
+        Succeed,
+        Failed
+    }
+
     /// <summary>
     /// 外部不可控项
     /// </summary>
     public class CCheck
     {
         public string CheckName;
-        public bool IsSucceed;
-        public bool IsFailed;
+        public ECheckState CheckState;
         public string ContributionToAchievement;
         public int ContributionPoint;
     }
@@ -58,7 +63,6 @@ namespace iTrack
     {
         public string TaskName;
         public DateTime DeadLine;
-        public int ProgressPercentage;
         public bool IsAbort;
         public bool IsBottom;
         public bool IsInfinite;
@@ -86,6 +90,7 @@ namespace iTrack
         public DateTime EndTime;
         public string ContributionToTask;
         public int ProgressPercentageToTask;
+        public string Color;
     }
 
     /// <summary>
@@ -100,6 +105,7 @@ namespace iTrack
         public double Amount;
         public string DebitCurrency;
         public string CreditCurrency;
+        public string RelateToTask;
     }
 
     public enum EAccountType: int

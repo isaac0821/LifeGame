@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LifeGame
 {
-    public partial class frmStat : Form
+    public partial class frmAddLog : Form
     {
-        public frmStat()
+        public frmAddLog()
         {
             InitializeComponent();
         }

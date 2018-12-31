@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace iTrack
+namespace LifeGame
 {
     public partial class frmTask : Form
     {
