@@ -132,7 +132,7 @@
             // 
             this.stsAccount.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.stsAccount.Location = new System.Drawing.Point(0, 846);
+            this.stsAccount.Location = new System.Drawing.Point(0, 579);
             this.stsAccount.Name = "stsAccount";
             this.stsAccount.Size = new System.Drawing.Size(1184, 22);
             this.stsAccount.TabIndex = 0;
@@ -173,7 +173,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.splitContainer1.Size = new System.Drawing.Size(1184, 822);
+            this.splitContainer1.Size = new System.Drawing.Size(1184, 555);
             this.splitContainer1.SplitterDistance = 245;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -187,7 +187,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(245, 822);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(245, 555);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox1
@@ -197,7 +197,7 @@
             this.groupBox1.Location = new System.Drawing.Point(5, 5);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(235, 812);
+            this.groupBox1.Size = new System.Drawing.Size(235, 545);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Account Tree";
@@ -209,7 +209,7 @@
             this.trvAccount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvAccount.Location = new System.Drawing.Point(3, 16);
             this.trvAccount.Name = "trvAccount";
-            this.trvAccount.Size = new System.Drawing.Size(229, 793);
+            this.trvAccount.Size = new System.Drawing.Size(229, 526);
             this.trvAccount.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -226,7 +226,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 133F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 202F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(935, 822);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(935, 555);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -342,7 +342,7 @@
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel11.Size = new System.Drawing.Size(502, 26);
             this.tableLayoutPanel11.TabIndex = 9;
             // 
@@ -813,7 +813,7 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(935, 487);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(935, 220);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
             // groupBox7
@@ -823,7 +823,7 @@
             this.groupBox7.Location = new System.Drawing.Point(6, 6);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(923, 475);
+            this.groupBox7.Size = new System.Drawing.Size(923, 208);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Details";
@@ -851,7 +851,7 @@
             this.dgvDetail.Location = new System.Drawing.Point(3, 16);
             this.dgvDetail.Name = "dgvDetail";
             this.dgvDetail.RowTemplate.Height = 23;
-            this.dgvDetail.Size = new System.Drawing.Size(917, 456);
+            this.dgvDetail.Size = new System.Drawing.Size(917, 189);
             this.dgvDetail.TabIndex = 0;
             // 
             // colYear
@@ -924,7 +924,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 868);
+            this.ClientSize = new System.Drawing.Size(1184, 601);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.stsAccount);
             this.Controls.Add(this.mnsAccount);

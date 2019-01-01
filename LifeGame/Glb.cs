@@ -24,5 +24,8 @@ namespace LifeGame
         public List<CMoneyDetail> lstMoneyDetail = new List<CMoneyDetail>();
         public List<CAccount> lstAccount = new List<CAccount>();
         public List<RSubAccount> lstSubAccount = new List<RSubAccount>();
+        public List<CHealth> lstHealth = new List<CHealth>();
+        public List<CWorkOut> lstWorkOut = new List<CWorkOut>();
+        public List<CMedicine> lstMedicine = new List<CMedicine>();
     }
 }

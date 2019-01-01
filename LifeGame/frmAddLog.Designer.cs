@@ -32,10 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.dtpTimeStart = new System.Windows.Forms.DateTimePicker();
-            this.dtpTimeEnd = new System.Windows.Forms.DateTimePicker();
-            this.chkPlusOneDay = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.cbxColor = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,11 +39,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtPercent = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.dtpTimeStart = new System.Windows.Forms.DateTimePicker();
+            this.dtpTimeEnd = new System.Windows.Forms.DateTimePicker();
+            this.chkPlusOneDay = new System.Windows.Forms.CheckBox();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.cbxTask = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -105,58 +105,6 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Task";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 6;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tableLayoutPanel3.Controls.Add(this.dtpTimeStart, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.dtpTimeEnd, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.chkPlusOneDay, 5, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(67, 29);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(340, 20);
-            this.tableLayoutPanel3.TabIndex = 7;
-            // 
-            // dtpTimeStart
-            // 
-            this.dtpTimeStart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtpTimeStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpTimeStart.Location = new System.Drawing.Point(43, 0);
-            this.dtpTimeStart.Margin = new System.Windows.Forms.Padding(0);
-            this.dtpTimeStart.Name = "dtpTimeStart";
-            this.dtpTimeStart.Size = new System.Drawing.Size(101, 20);
-            this.dtpTimeStart.TabIndex = 0;
-            // 
-            // dtpTimeEnd
-            // 
-            this.dtpTimeEnd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtpTimeEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpTimeEnd.Location = new System.Drawing.Point(164, 0);
-            this.dtpTimeEnd.Margin = new System.Windows.Forms.Padding(0);
-            this.dtpTimeEnd.Name = "dtpTimeEnd";
-            this.dtpTimeEnd.Size = new System.Drawing.Size(101, 20);
-            this.dtpTimeEnd.TabIndex = 1;
-            // 
-            // chkPlusOneDay
-            // 
-            this.chkPlusOneDay.AutoSize = true;
-            this.chkPlusOneDay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkPlusOneDay.Location = new System.Drawing.Point(275, 0);
-            this.chkPlusOneDay.Margin = new System.Windows.Forms.Padding(0);
-            this.chkPlusOneDay.Name = "chkPlusOneDay";
-            this.chkPlusOneDay.Size = new System.Drawing.Size(65, 20);
-            this.chkPlusOneDay.TabIndex = 2;
-            this.chkPlusOneDay.Text = "+1 day";
-            this.chkPlusOneDay.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel5
             // 
@@ -255,6 +203,58 @@
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 6;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel3.Controls.Add(this.dtpTimeStart, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dtpTimeEnd, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.chkPlusOneDay, 5, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(67, 29);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(340, 20);
+            this.tableLayoutPanel3.TabIndex = 7;
+            // 
+            // dtpTimeStart
+            // 
+            this.dtpTimeStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtpTimeStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpTimeStart.Location = new System.Drawing.Point(43, 0);
+            this.dtpTimeStart.Margin = new System.Windows.Forms.Padding(0);
+            this.dtpTimeStart.Name = "dtpTimeStart";
+            this.dtpTimeStart.Size = new System.Drawing.Size(101, 20);
+            this.dtpTimeStart.TabIndex = 0;
+            // 
+            // dtpTimeEnd
+            // 
+            this.dtpTimeEnd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtpTimeEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpTimeEnd.Location = new System.Drawing.Point(164, 0);
+            this.dtpTimeEnd.Margin = new System.Windows.Forms.Padding(0);
+            this.dtpTimeEnd.Name = "dtpTimeEnd";
+            this.dtpTimeEnd.Size = new System.Drawing.Size(101, 20);
+            this.dtpTimeEnd.TabIndex = 1;
+            // 
+            // chkPlusOneDay
+            // 
+            this.chkPlusOneDay.AutoSize = true;
+            this.chkPlusOneDay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkPlusOneDay.Location = new System.Drawing.Point(275, 0);
+            this.chkPlusOneDay.Margin = new System.Windows.Forms.Padding(0);
+            this.chkPlusOneDay.Name = "chkPlusOneDay";
+            this.chkPlusOneDay.Size = new System.Drawing.Size(65, 20);
+            this.chkPlusOneDay.TabIndex = 2;
+            this.chkPlusOneDay.Text = "+1 day";
+            this.chkPlusOneDay.UseVisualStyleBackColor = true;
+            // 
             // txtLog
             // 
             this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -283,10 +283,10 @@
             this.Text = "Add Log";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }

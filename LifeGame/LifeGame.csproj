@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CLogs.cs" />
+    <Compile Include="Draw.cs" />
     <Compile Include="frmAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +69,12 @@
     </Compile>
     <Compile Include="frmAddSchedule.Designer.cs">
       <DependentUpon>frmAddSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddVoucher.Designer.cs">
+      <DependentUpon>frmAddVoucher.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDaily.cs">
       <SubType>Form</SubType>
@@ -107,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddSchedule.resx">
       <DependentUpon>frmAddSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddVoucher.resx">
+      <DependentUpon>frmAddVoucher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDaily.resx">
       <DependentUpon>frmDaily.cs</DependentUpon>

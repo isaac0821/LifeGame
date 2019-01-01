@@ -104,7 +104,7 @@
             // 
             this.stsTask.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.stsTask.Location = new System.Drawing.Point(0, 846);
+            this.stsTask.Location = new System.Drawing.Point(0, 579);
             this.stsTask.Name = "stsTask";
             this.stsTask.Size = new System.Drawing.Size(1184, 22);
             this.stsTask.TabIndex = 1;
@@ -145,7 +145,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel7);
-            this.splitContainer1.Size = new System.Drawing.Size(1184, 822);
+            this.splitContainer1.Size = new System.Drawing.Size(1184, 555);
             this.splitContainer1.SplitterDistance = 281;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -159,7 +159,7 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(281, 822);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(281, 555);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // groupBox1
@@ -169,7 +169,7 @@
             this.groupBox1.Location = new System.Drawing.Point(5, 5);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(271, 812);
+            this.groupBox1.Size = new System.Drawing.Size(271, 545);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Task Tree";
@@ -182,7 +182,7 @@
             this.trvTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvTask.Location = new System.Drawing.Point(3, 16);
             this.trvTask.Name = "trvTask";
-            this.trvTask.Size = new System.Drawing.Size(265, 793);
+            this.trvTask.Size = new System.Drawing.Size(265, 526);
             this.trvTask.TabIndex = 0;
             // 
             // cmsTask
@@ -255,7 +255,7 @@
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(899, 822);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(899, 555);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // groupBox2
@@ -265,7 +265,7 @@
             this.groupBox2.Location = new System.Drawing.Point(5, 5);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(889, 812);
+            this.groupBox2.Size = new System.Drawing.Size(889, 545);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Task Details";
@@ -291,7 +291,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(883, 793);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(883, 526);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // dgvLog
@@ -313,7 +313,7 @@
             this.dgvLog.Location = new System.Drawing.Point(3, 111);
             this.dgvLog.Name = "dgvLog";
             this.dgvLog.RowTemplate.Height = 23;
-            this.dgvLog.Size = new System.Drawing.Size(877, 318);
+            this.dgvLog.Size = new System.Drawing.Size(877, 185);
             this.dgvLog.TabIndex = 0;
             // 
             // colYear
@@ -360,10 +360,10 @@
             this.colIsFinished,
             this.colIsAborted});
             this.dgvSubTask.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvSubTask.Location = new System.Drawing.Point(3, 435);
+            this.dgvSubTask.Location = new System.Drawing.Point(3, 302);
             this.dgvSubTask.Name = "dgvSubTask";
             this.dgvSubTask.RowTemplate.Height = 23;
-            this.dgvSubTask.Size = new System.Drawing.Size(877, 318);
+            this.dgvSubTask.Size = new System.Drawing.Size(877, 185);
             this.dgvSubTask.TabIndex = 1;
             // 
             // colSubTask
@@ -566,11 +566,11 @@
             this.tableLayoutPanel5.Controls.Add(this.btnSaveTask, 3, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnDeleteTask, 4, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 759);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 493);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(877, 31);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(877, 30);
             this.tableLayoutPanel5.TabIndex = 5;
             // 
             // btnAddTask
@@ -578,7 +578,7 @@
             this.btnAddTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddTask.Location = new System.Drawing.Point(560, 3);
             this.btnAddTask.Name = "btnAddTask";
-            this.btnAddTask.Size = new System.Drawing.Size(74, 25);
+            this.btnAddTask.Size = new System.Drawing.Size(74, 24);
             this.btnAddTask.TabIndex = 0;
             this.btnAddTask.Text = "Add";
             this.btnAddTask.UseVisualStyleBackColor = true;
@@ -588,7 +588,7 @@
             this.btnEditTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEditTask.Location = new System.Drawing.Point(640, 3);
             this.btnEditTask.Name = "btnEditTask";
-            this.btnEditTask.Size = new System.Drawing.Size(74, 25);
+            this.btnEditTask.Size = new System.Drawing.Size(74, 24);
             this.btnEditTask.TabIndex = 1;
             this.btnEditTask.Text = "Edit";
             this.btnEditTask.UseVisualStyleBackColor = true;
@@ -598,7 +598,7 @@
             this.btnSaveTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSaveTask.Location = new System.Drawing.Point(720, 3);
             this.btnSaveTask.Name = "btnSaveTask";
-            this.btnSaveTask.Size = new System.Drawing.Size(74, 25);
+            this.btnSaveTask.Size = new System.Drawing.Size(74, 24);
             this.btnSaveTask.TabIndex = 2;
             this.btnSaveTask.Text = "Save";
             this.btnSaveTask.UseVisualStyleBackColor = true;
@@ -608,7 +608,7 @@
             this.btnDeleteTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDeleteTask.Location = new System.Drawing.Point(800, 3);
             this.btnDeleteTask.Name = "btnDeleteTask";
-            this.btnDeleteTask.Size = new System.Drawing.Size(74, 25);
+            this.btnDeleteTask.Size = new System.Drawing.Size(74, 24);
             this.btnDeleteTask.TabIndex = 3;
             this.btnDeleteTask.Text = "Delete";
             this.btnDeleteTask.UseVisualStyleBackColor = true;
@@ -617,7 +617,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 868);
+            this.ClientSize = new System.Drawing.Size(1184, 601);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.stsTask);
             this.Controls.Add(this.mnsTask);

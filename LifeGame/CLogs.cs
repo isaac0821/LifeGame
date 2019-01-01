@@ -134,4 +134,39 @@ namespace LifeGame
         public string Account;
         public string SubAccount;
     }
+
+    /// <summary>
+    /// 起居记录
+    /// </summary>
+    public class CHealth
+    {
+        public DateTime Date;
+        public DateTime GetUpTime;
+        public DateTime GoToBedTime;
+        public bool IsGoToBedBeforeMidNight;
+        public double Weight;
+    }
+
+    /// <summary>
+    /// 锻炼记录
+    /// </summary>
+    public class CWorkOut
+    {
+        public DateTime Date;
+        public string WorkOutType;
+        public double WorkOutQty;
+        public string WorkOutUnit;
+    }
+
+    /// <summary>
+    /// 药物记录
+    /// </summary>
+    public class CMedicine
+    {
+        public DateTime Date;
+        public string MedicineName;
+        public DateTime TakenTime;
+        public double MedicineQty;
+        public string MedicineUnit;
+    }
 }

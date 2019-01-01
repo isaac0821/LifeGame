@@ -32,9 +32,9 @@
             // 
             // frmStat
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 801);
+            this.ClientSize = new System.Drawing.Size(1184, 601);
             this.Name = "frmStat";
             this.Text = "frmStat";
             this.ResumeLayout(false);

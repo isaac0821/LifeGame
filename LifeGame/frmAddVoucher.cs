@@ -10,12 +10,10 @@ using System.Windows.Forms;
 
 namespace LifeGame
 {
-    public partial class frmAddLog : Form
+    public partial class frmAddVoucher : Form
     {
-        private DateTime curDate;
-        public frmAddLog(DateTime date)
+        public frmAddVoucher()
         {
-            curDate = date;
             InitializeComponent();
         }
     }

@@ -12,12 +12,19 @@ namespace LifeGame
 {
     public partial class frmDaily : Form
     {
-        public frmDaily()
+        private DateTime curDate;
+        public frmDaily(DateTime date)
         {
+            curDate = date;
             InitializeComponent();
         }
 
-        private void tableLayoutPanel16_Paint(object sender, PaintEventArgs e)
+        private void frmDaily_Load(object sender, EventArgs e)
+        {
+            dtpToday.Value = curDate;
+        }
+
+        private void LoadDaily(DateTime date)
         {
 
         }

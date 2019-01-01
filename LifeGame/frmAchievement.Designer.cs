@@ -42,7 +42,7 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 779);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 579);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1184, 22);
             this.statusStrip1.TabIndex = 2;
@@ -54,7 +54,7 @@
             this.fileFToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1184, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1184, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -64,19 +64,19 @@
             this.addAchievementToolStripMenuItem,
             this.saveAchievementMapToolStripMenuItem});
             this.fileFToolStripMenuItem.Name = "fileFToolStripMenuItem";
-            this.fileFToolStripMenuItem.Size = new System.Drawing.Size(53, 21);
+            this.fileFToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.fileFToolStripMenuItem.Text = "File(&F)";
             // 
             // addAchievementToolStripMenuItem
             // 
             this.addAchievementToolStripMenuItem.Name = "addAchievementToolStripMenuItem";
-            this.addAchievementToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.addAchievementToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.addAchievementToolStripMenuItem.Text = "Add Achievement";
             // 
             // saveAchievementMapToolStripMenuItem
             // 
             this.saveAchievementMapToolStripMenuItem.Name = "saveAchievementMapToolStripMenuItem";
-            this.saveAchievementMapToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.saveAchievementMapToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.saveAchievementMapToolStripMenuItem.Text = "Save Achievement Map";
             // 
             // panel1
@@ -84,9 +84,9 @@
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.picAchievement);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1184, 754);
+            this.panel1.Size = new System.Drawing.Size(1184, 555);
             this.panel1.TabIndex = 4;
             // 
             // picAchievement
@@ -95,15 +95,15 @@
             this.picAchievement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picAchievement.Location = new System.Drawing.Point(0, 0);
             this.picAchievement.Name = "picAchievement";
-            this.picAchievement.Size = new System.Drawing.Size(1184, 754);
+            this.picAchievement.Size = new System.Drawing.Size(1184, 555);
             this.picAchievement.TabIndex = 0;
             this.picAchievement.TabStop = false;
             // 
             // frmAchievement
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 801);
+            this.ClientSize = new System.Drawing.Size(1184, 601);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
