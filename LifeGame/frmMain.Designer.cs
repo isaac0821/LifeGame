@@ -42,9 +42,6 @@
             this.stsMain = new System.Windows.Forms.StatusStrip();
             this.tslVersionNumber = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblMonday = new System.Windows.Forms.Label();
             this.lblTuesday = new System.Windows.Forms.Label();
@@ -54,26 +51,22 @@
             this.lblSaturday = new System.Windows.Forms.Label();
             this.lblSunday = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.picLeftMon = new System.Windows.Forms.PictureBox();
-            this.picRightMon = new System.Windows.Forms.PictureBox();
+            this.picMon = new System.Windows.Forms.PictureBox();
+            this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmAddSchedule = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddLog = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.picLeftTue = new System.Windows.Forms.PictureBox();
-            this.picRightTue = new System.Windows.Forms.PictureBox();
+            this.picTue = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.picLeftWed = new System.Windows.Forms.PictureBox();
-            this.picRightWed = new System.Windows.Forms.PictureBox();
+            this.picWed = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.picLeftThu = new System.Windows.Forms.PictureBox();
-            this.picRightThu = new System.Windows.Forms.PictureBox();
+            this.picThu = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.picLeftFri = new System.Windows.Forms.PictureBox();
-            this.picRightFri = new System.Windows.Forms.PictureBox();
+            this.picFri = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.picLeftSat = new System.Windows.Forms.PictureBox();
-            this.picRightSat = new System.Windows.Forms.PictureBox();
+            this.picSat = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.picLeftSun = new System.Windows.Forms.PictureBox();
-            this.picRightSun = new System.Windows.Forms.PictureBox();
+            this.picSun = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.btnPreDate = new System.Windows.Forms.Button();
@@ -83,29 +76,22 @@
             this.mnsMain.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.cmsMain.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftMon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightMon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMon)).BeginInit();
+            this.cmsMain.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftTue)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightTue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picTue)).BeginInit();
             this.tableLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftWed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightWed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWed)).BeginInit();
             this.tableLayoutPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftThu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightThu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picThu)).BeginInit();
             this.tableLayoutPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftFri)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightFri)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFri)).BeginInit();
             this.tableLayoutPanel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftSat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightSat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSat)).BeginInit();
             this.tableLayoutPanel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftSun)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightSun)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSun)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -205,39 +191,16 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ContextMenuStrip = this.cmsMain;
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1367, 822);
             this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // cmsMain
-            // 
-            this.cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addScheduleToolStripMenuItem,
-            this.addLogToolStripMenuItem});
-            this.cmsMain.Name = "cmsMain";
-            this.cmsMain.Size = new System.Drawing.Size(148, 48);
-            // 
-            // addScheduleToolStripMenuItem
-            // 
-            this.addScheduleToolStripMenuItem.Name = "addScheduleToolStripMenuItem";
-            this.addScheduleToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.addScheduleToolStripMenuItem.Text = "Add Schedule";
-            this.addScheduleToolStripMenuItem.Click += new System.EventHandler(this.addScheduleToolStripMenuItem_Click);
-            // 
-            // addLogToolStripMenuItem
-            // 
-            this.addLogToolStripMenuItem.Name = "addLogToolStripMenuItem";
-            this.addLogToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.addLogToolStripMenuItem.Text = "Add Log";
-            this.addLogToolStripMenuItem.Click += new System.EventHandler(this.addLogToolStripMenuItem_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -264,12 +227,12 @@
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel9, 5, 1);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel10, 6, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 39);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 35);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1361, 780);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1361, 784);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // lblMonday
@@ -358,276 +321,214 @@
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.picLeftMon, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.picRightMon, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.picMon, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 39);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(188, 738);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(188, 742);
             this.tableLayoutPanel4.TabIndex = 21;
             // 
-            // picLeftMon
+            // picMon
             // 
-            this.picLeftMon.BackColor = System.Drawing.Color.White;
-            this.picLeftMon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picLeftMon.Location = new System.Drawing.Point(0, 0);
-            this.picLeftMon.Margin = new System.Windows.Forms.Padding(0);
-            this.picLeftMon.Name = "picLeftMon";
-            this.picLeftMon.Size = new System.Drawing.Size(94, 738);
-            this.picLeftMon.TabIndex = 0;
-            this.picLeftMon.TabStop = false;
-            this.picLeftMon.Click += new System.EventHandler(this.picLeftMon_Click);
+            this.picMon.BackColor = System.Drawing.Color.White;
+            this.picMon.ContextMenuStrip = this.cmsMain;
+            this.picMon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picMon.Location = new System.Drawing.Point(0, 0);
+            this.picMon.Margin = new System.Windows.Forms.Padding(0);
+            this.picMon.Name = "picMon";
+            this.picMon.Size = new System.Drawing.Size(188, 742);
+            this.picMon.TabIndex = 0;
+            this.picMon.TabStop = false;
+            this.picMon.Click += new System.EventHandler(this.picMon_Click);
+            this.picMon.DoubleClick += new System.EventHandler(this.picMon_DoubleClick);
             // 
-            // picRightMon
+            // cmsMain
             // 
-            this.picRightMon.BackColor = System.Drawing.Color.White;
-            this.picRightMon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picRightMon.Location = new System.Drawing.Point(94, 0);
-            this.picRightMon.Margin = new System.Windows.Forms.Padding(0);
-            this.picRightMon.Name = "picRightMon";
-            this.picRightMon.Size = new System.Drawing.Size(94, 738);
-            this.picRightMon.TabIndex = 1;
-            this.picRightMon.TabStop = false;
-            this.picRightMon.Click += new System.EventHandler(this.picRightMon_Click);
+            this.cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmAddSchedule,
+            this.tsmAddLog});
+            this.cmsMain.Name = "cmsMain";
+            this.cmsMain.Size = new System.Drawing.Size(148, 48);
+            // 
+            // tsmAddSchedule
+            // 
+            this.tsmAddSchedule.Name = "tsmAddSchedule";
+            this.tsmAddSchedule.Size = new System.Drawing.Size(147, 22);
+            this.tsmAddSchedule.Text = "Add Schedule";
+            this.tsmAddSchedule.Click += new System.EventHandler(this.tsmAddSchedule_Click);
+            // 
+            // tsmAddLog
+            // 
+            this.tsmAddLog.Name = "tsmAddLog";
+            this.tsmAddLog.Size = new System.Drawing.Size(147, 22);
+            this.tsmAddLog.Text = "Add Log";
+            this.tsmAddLog.Click += new System.EventHandler(this.tsmAddLog_Click);
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.picLeftTue, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.picRightTue, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.picTue, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(197, 39);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(188, 738);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(188, 742);
             this.tableLayoutPanel5.TabIndex = 22;
             // 
-            // picLeftTue
+            // picTue
             // 
-            this.picLeftTue.BackColor = System.Drawing.Color.White;
-            this.picLeftTue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picLeftTue.Location = new System.Drawing.Point(0, 0);
-            this.picLeftTue.Margin = new System.Windows.Forms.Padding(0);
-            this.picLeftTue.Name = "picLeftTue";
-            this.picLeftTue.Size = new System.Drawing.Size(94, 738);
-            this.picLeftTue.TabIndex = 0;
-            this.picLeftTue.TabStop = false;
-            this.picLeftTue.Click += new System.EventHandler(this.picLeftTue_Click);
-            // 
-            // picRightTue
-            // 
-            this.picRightTue.BackColor = System.Drawing.Color.White;
-            this.picRightTue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picRightTue.Location = new System.Drawing.Point(94, 0);
-            this.picRightTue.Margin = new System.Windows.Forms.Padding(0);
-            this.picRightTue.Name = "picRightTue";
-            this.picRightTue.Size = new System.Drawing.Size(94, 738);
-            this.picRightTue.TabIndex = 1;
-            this.picRightTue.TabStop = false;
-            this.picRightTue.Click += new System.EventHandler(this.picRightTue_Click);
+            this.picTue.BackColor = System.Drawing.Color.White;
+            this.picTue.ContextMenuStrip = this.cmsMain;
+            this.picTue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picTue.Location = new System.Drawing.Point(0, 0);
+            this.picTue.Margin = new System.Windows.Forms.Padding(0);
+            this.picTue.Name = "picTue";
+            this.picTue.Size = new System.Drawing.Size(188, 742);
+            this.picTue.TabIndex = 0;
+            this.picTue.TabStop = false;
+            this.picTue.Click += new System.EventHandler(this.picTue_Click);
+            this.picTue.DoubleClick += new System.EventHandler(this.picTue_DoubleClick);
             // 
             // tableLayoutPanel6
             // 
-            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.picLeftWed, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.picRightWed, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.picWed, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(391, 39);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(188, 738);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(188, 742);
             this.tableLayoutPanel6.TabIndex = 23;
             // 
-            // picLeftWed
+            // picWed
             // 
-            this.picLeftWed.BackColor = System.Drawing.Color.White;
-            this.picLeftWed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picLeftWed.Location = new System.Drawing.Point(0, 0);
-            this.picLeftWed.Margin = new System.Windows.Forms.Padding(0);
-            this.picLeftWed.Name = "picLeftWed";
-            this.picLeftWed.Size = new System.Drawing.Size(94, 738);
-            this.picLeftWed.TabIndex = 0;
-            this.picLeftWed.TabStop = false;
-            this.picLeftWed.Click += new System.EventHandler(this.picLeftWed_Click);
-            // 
-            // picRightWed
-            // 
-            this.picRightWed.BackColor = System.Drawing.Color.White;
-            this.picRightWed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picRightWed.Location = new System.Drawing.Point(94, 0);
-            this.picRightWed.Margin = new System.Windows.Forms.Padding(0);
-            this.picRightWed.Name = "picRightWed";
-            this.picRightWed.Size = new System.Drawing.Size(94, 738);
-            this.picRightWed.TabIndex = 1;
-            this.picRightWed.TabStop = false;
-            this.picRightWed.Click += new System.EventHandler(this.picRightWed_Click);
+            this.picWed.BackColor = System.Drawing.Color.White;
+            this.picWed.ContextMenuStrip = this.cmsMain;
+            this.picWed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picWed.Location = new System.Drawing.Point(0, 0);
+            this.picWed.Margin = new System.Windows.Forms.Padding(0);
+            this.picWed.Name = "picWed";
+            this.picWed.Size = new System.Drawing.Size(188, 742);
+            this.picWed.TabIndex = 0;
+            this.picWed.TabStop = false;
+            this.picWed.Click += new System.EventHandler(this.picWed_Click);
+            this.picWed.DoubleClick += new System.EventHandler(this.picWed_DoubleClick);
             // 
             // tableLayoutPanel7
             // 
-            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnCount = 1;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Controls.Add(this.picLeftThu, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.picRightThu, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.picThu, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(585, 39);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(188, 738);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(188, 742);
             this.tableLayoutPanel7.TabIndex = 24;
             // 
-            // picLeftThu
+            // picThu
             // 
-            this.picLeftThu.BackColor = System.Drawing.Color.White;
-            this.picLeftThu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picLeftThu.Location = new System.Drawing.Point(0, 0);
-            this.picLeftThu.Margin = new System.Windows.Forms.Padding(0);
-            this.picLeftThu.Name = "picLeftThu";
-            this.picLeftThu.Size = new System.Drawing.Size(94, 738);
-            this.picLeftThu.TabIndex = 0;
-            this.picLeftThu.TabStop = false;
-            this.picLeftThu.Click += new System.EventHandler(this.picLeftThu_Click);
-            // 
-            // picRightThu
-            // 
-            this.picRightThu.BackColor = System.Drawing.Color.White;
-            this.picRightThu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picRightThu.Location = new System.Drawing.Point(94, 0);
-            this.picRightThu.Margin = new System.Windows.Forms.Padding(0);
-            this.picRightThu.Name = "picRightThu";
-            this.picRightThu.Size = new System.Drawing.Size(94, 738);
-            this.picRightThu.TabIndex = 1;
-            this.picRightThu.TabStop = false;
-            this.picRightThu.Click += new System.EventHandler(this.picRightThu_Click);
+            this.picThu.BackColor = System.Drawing.Color.White;
+            this.picThu.ContextMenuStrip = this.cmsMain;
+            this.picThu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picThu.Location = new System.Drawing.Point(0, 0);
+            this.picThu.Margin = new System.Windows.Forms.Padding(0);
+            this.picThu.Name = "picThu";
+            this.picThu.Size = new System.Drawing.Size(188, 742);
+            this.picThu.TabIndex = 0;
+            this.picThu.TabStop = false;
+            this.picThu.Click += new System.EventHandler(this.picThu_Click);
+            this.picThu.DoubleClick += new System.EventHandler(this.picThu_DoubleClick);
             // 
             // tableLayoutPanel8
             // 
-            this.tableLayoutPanel8.ColumnCount = 2;
+            this.tableLayoutPanel8.ColumnCount = 1;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.picLeftFri, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.picRightFri, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.picFri, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(779, 39);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(188, 738);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(188, 742);
             this.tableLayoutPanel8.TabIndex = 25;
             // 
-            // picLeftFri
+            // picFri
             // 
-            this.picLeftFri.BackColor = System.Drawing.Color.White;
-            this.picLeftFri.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picLeftFri.Location = new System.Drawing.Point(0, 0);
-            this.picLeftFri.Margin = new System.Windows.Forms.Padding(0);
-            this.picLeftFri.Name = "picLeftFri";
-            this.picLeftFri.Size = new System.Drawing.Size(94, 738);
-            this.picLeftFri.TabIndex = 0;
-            this.picLeftFri.TabStop = false;
-            this.picLeftFri.Click += new System.EventHandler(this.picLeftFri_Click);
-            // 
-            // picRightFri
-            // 
-            this.picRightFri.BackColor = System.Drawing.Color.White;
-            this.picRightFri.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picRightFri.Location = new System.Drawing.Point(94, 0);
-            this.picRightFri.Margin = new System.Windows.Forms.Padding(0);
-            this.picRightFri.Name = "picRightFri";
-            this.picRightFri.Size = new System.Drawing.Size(94, 738);
-            this.picRightFri.TabIndex = 1;
-            this.picRightFri.TabStop = false;
-            this.picRightFri.Click += new System.EventHandler(this.picRightFri_Click);
+            this.picFri.BackColor = System.Drawing.Color.White;
+            this.picFri.ContextMenuStrip = this.cmsMain;
+            this.picFri.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picFri.Location = new System.Drawing.Point(0, 0);
+            this.picFri.Margin = new System.Windows.Forms.Padding(0);
+            this.picFri.Name = "picFri";
+            this.picFri.Size = new System.Drawing.Size(188, 742);
+            this.picFri.TabIndex = 0;
+            this.picFri.TabStop = false;
+            this.picFri.Click += new System.EventHandler(this.picFri_Click);
+            this.picFri.DoubleClick += new System.EventHandler(this.picFri_DoubleClick);
             // 
             // tableLayoutPanel9
             // 
-            this.tableLayoutPanel9.ColumnCount = 2;
+            this.tableLayoutPanel9.ColumnCount = 1;
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Controls.Add(this.picLeftSat, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.picRightSat, 1, 0);
+            this.tableLayoutPanel9.Controls.Add(this.picSat, 0, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(973, 39);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(188, 738);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(188, 742);
             this.tableLayoutPanel9.TabIndex = 26;
             // 
-            // picLeftSat
+            // picSat
             // 
-            this.picLeftSat.BackColor = System.Drawing.Color.White;
-            this.picLeftSat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picLeftSat.Location = new System.Drawing.Point(0, 0);
-            this.picLeftSat.Margin = new System.Windows.Forms.Padding(0);
-            this.picLeftSat.Name = "picLeftSat";
-            this.picLeftSat.Size = new System.Drawing.Size(94, 738);
-            this.picLeftSat.TabIndex = 0;
-            this.picLeftSat.TabStop = false;
-            this.picLeftSat.Click += new System.EventHandler(this.picLeftSat_Click);
-            // 
-            // picRightSat
-            // 
-            this.picRightSat.BackColor = System.Drawing.Color.White;
-            this.picRightSat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picRightSat.Location = new System.Drawing.Point(94, 0);
-            this.picRightSat.Margin = new System.Windows.Forms.Padding(0);
-            this.picRightSat.Name = "picRightSat";
-            this.picRightSat.Size = new System.Drawing.Size(94, 738);
-            this.picRightSat.TabIndex = 1;
-            this.picRightSat.TabStop = false;
-            this.picRightSat.Click += new System.EventHandler(this.picRightSat_Click);
+            this.picSat.BackColor = System.Drawing.Color.White;
+            this.picSat.ContextMenuStrip = this.cmsMain;
+            this.picSat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picSat.Location = new System.Drawing.Point(0, 0);
+            this.picSat.Margin = new System.Windows.Forms.Padding(0);
+            this.picSat.Name = "picSat";
+            this.picSat.Size = new System.Drawing.Size(188, 742);
+            this.picSat.TabIndex = 0;
+            this.picSat.TabStop = false;
+            this.picSat.Click += new System.EventHandler(this.picSat_Click);
+            this.picSat.DoubleClick += new System.EventHandler(this.picSat_DoubleClick);
             // 
             // tableLayoutPanel10
             // 
-            this.tableLayoutPanel10.ColumnCount = 2;
+            this.tableLayoutPanel10.ColumnCount = 1;
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Controls.Add(this.picLeftSun, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.picRightSun, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.picSun, 0, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(1167, 39);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(191, 738);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(191, 742);
             this.tableLayoutPanel10.TabIndex = 27;
             // 
-            // picLeftSun
+            // picSun
             // 
-            this.picLeftSun.BackColor = System.Drawing.Color.White;
-            this.picLeftSun.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picLeftSun.Location = new System.Drawing.Point(0, 0);
-            this.picLeftSun.Margin = new System.Windows.Forms.Padding(0);
-            this.picLeftSun.Name = "picLeftSun";
-            this.picLeftSun.Size = new System.Drawing.Size(95, 738);
-            this.picLeftSun.TabIndex = 0;
-            this.picLeftSun.TabStop = false;
-            this.picLeftSun.Click += new System.EventHandler(this.picLeftSun_Click);
-            // 
-            // picRightSun
-            // 
-            this.picRightSun.BackColor = System.Drawing.Color.White;
-            this.picRightSun.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picRightSun.Location = new System.Drawing.Point(95, 0);
-            this.picRightSun.Margin = new System.Windows.Forms.Padding(0);
-            this.picRightSun.Name = "picRightSun";
-            this.picRightSun.Size = new System.Drawing.Size(96, 738);
-            this.picRightSun.TabIndex = 1;
-            this.picRightSun.TabStop = false;
-            this.picRightSun.Click += new System.EventHandler(this.picRightSun_Click);
+            this.picSun.BackColor = System.Drawing.Color.White;
+            this.picSun.ContextMenuStrip = this.cmsMain;
+            this.picSun.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picSun.Location = new System.Drawing.Point(0, 0);
+            this.picSun.Margin = new System.Windows.Forms.Padding(0);
+            this.picSun.Name = "picSun";
+            this.picSun.Size = new System.Drawing.Size(191, 742);
+            this.picSun.TabIndex = 0;
+            this.picSun.TabStop = false;
+            this.picSun.Click += new System.EventHandler(this.picSun_Click);
+            this.picSun.DoubleClick += new System.EventHandler(this.picSun_DoubleClick);
             // 
             // tableLayoutPanel3
             // 
@@ -648,7 +549,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1361, 30);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1361, 26);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // dtpDate
@@ -665,7 +566,7 @@
             // 
             this.btnPreDate.Location = new System.Drawing.Point(1223, 3);
             this.btnPreDate.Name = "btnPreDate";
-            this.btnPreDate.Size = new System.Drawing.Size(14, 23);
+            this.btnPreDate.Size = new System.Drawing.Size(14, 20);
             this.btnPreDate.TabIndex = 1;
             this.btnPreDate.Text = "<";
             this.btnPreDate.UseVisualStyleBackColor = true;
@@ -675,7 +576,7 @@
             // 
             this.btnNextDate.Location = new System.Drawing.Point(1344, 3);
             this.btnNextDate.Name = "btnNextDate";
-            this.btnNextDate.Size = new System.Drawing.Size(14, 23);
+            this.btnNextDate.Size = new System.Drawing.Size(14, 20);
             this.btnNextDate.TabIndex = 2;
             this.btnNextDate.Text = ">";
             this.btnNextDate.UseVisualStyleBackColor = true;
@@ -684,24 +585,30 @@
             // chkShowSchedule
             // 
             this.chkShowSchedule.AutoSize = true;
+            this.chkShowSchedule.Checked = true;
+            this.chkShowSchedule.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkShowSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkShowSchedule.Location = new System.Drawing.Point(3, 3);
             this.chkShowSchedule.Name = "chkShowSchedule";
-            this.chkShowSchedule.Size = new System.Drawing.Size(107, 24);
+            this.chkShowSchedule.Size = new System.Drawing.Size(107, 20);
             this.chkShowSchedule.TabIndex = 3;
             this.chkShowSchedule.Text = "Show Schedule";
             this.chkShowSchedule.UseVisualStyleBackColor = true;
+            this.chkShowSchedule.CheckedChanged += new System.EventHandler(this.chkShowSchedule_CheckedChanged);
             // 
             // chkShowLog
             // 
             this.chkShowLog.AutoSize = true;
+            this.chkShowLog.Checked = true;
+            this.chkShowLog.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkShowLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkShowLog.Location = new System.Drawing.Point(116, 3);
             this.chkShowLog.Name = "chkShowLog";
-            this.chkShowLog.Size = new System.Drawing.Size(81, 24);
+            this.chkShowLog.Size = new System.Drawing.Size(81, 20);
             this.chkShowLog.TabIndex = 4;
             this.chkShowLog.Text = "Show Log";
             this.chkShowLog.UseVisualStyleBackColor = true;
+            this.chkShowLog.CheckedChanged += new System.EventHandler(this.chkShowLog_CheckedChanged);
             // 
             // frmMain
             // 
@@ -720,30 +627,23 @@
             this.stsMain.ResumeLayout(false);
             this.stsMain.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.cmsMain.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftMon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightMon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMon)).EndInit();
+            this.cmsMain.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftTue)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightTue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picTue)).EndInit();
             this.tableLayoutPanel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftWed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightWed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWed)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftThu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightThu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picThu)).EndInit();
             this.tableLayoutPanel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftFri)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightFri)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFri)).EndInit();
             this.tableLayoutPanel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftSat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightSat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSat)).EndInit();
             this.tableLayoutPanel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLeftSun)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRightSun)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSun)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
@@ -780,30 +680,23 @@
         private System.Windows.Forms.CheckBox chkShowSchedule;
         private System.Windows.Forms.CheckBox chkShowLog;
         private System.Windows.Forms.ToolStripMenuItem loadLToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip cmsMain;
-        private System.Windows.Forms.ToolStripMenuItem addScheduleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addLogToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.PictureBox picLeftMon;
-        private System.Windows.Forms.PictureBox picRightMon;
+        private System.Windows.Forms.PictureBox picMon;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.PictureBox picLeftTue;
-        private System.Windows.Forms.PictureBox picRightTue;
+        private System.Windows.Forms.PictureBox picTue;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.PictureBox picLeftWed;
-        private System.Windows.Forms.PictureBox picRightWed;
+        private System.Windows.Forms.PictureBox picWed;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
-        private System.Windows.Forms.PictureBox picLeftThu;
-        private System.Windows.Forms.PictureBox picRightThu;
+        private System.Windows.Forms.PictureBox picThu;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.PictureBox picLeftFri;
-        private System.Windows.Forms.PictureBox picRightFri;
+        private System.Windows.Forms.PictureBox picFri;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        private System.Windows.Forms.PictureBox picLeftSat;
-        private System.Windows.Forms.PictureBox picRightSat;
+        private System.Windows.Forms.PictureBox picSat;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        private System.Windows.Forms.PictureBox picLeftSun;
-        private System.Windows.Forms.PictureBox picRightSun;
+        private System.Windows.Forms.PictureBox picSun;
+        private System.Windows.Forms.ContextMenuStrip cmsMain;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddSchedule;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddLog;
     }
 }
 

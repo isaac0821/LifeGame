@@ -90,6 +90,8 @@ namespace LifeGame
         public DateTime EndTime;
         public string ContributionToTask;
         public int ProgressPercentageToTask;
+        public string Location;
+        public string WithWho;
         public string Color;
     }
 
