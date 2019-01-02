@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace LifeGame
 {
@@ -21,6 +23,22 @@ namespace LifeGame
         private DateTime SelectedSaturday;
         private DateTime SelectedSunday;
 
+        private void SerializeNow()
+        {
+            FileStream f = new FileStream("data.dat", FileMode.Create);
+            BinaryFormatter b = new BinaryFormatter();
+            b.Serialize(f, G.glb);
+            f.Close();
+        }
+        private void Deserialize()
+        {
+            FileStream f = new FileStream("data.dat", FileMode.Open, FileAccess.Read, FileShare.Read);
+            BinaryFormatter b = new BinaryFormatter();
+            G.glb.lstTask.Clear();
+            G.glb = b.Deserialize(f) as Mem;
+            f.Close();
+        }
+
         public frmMain()
         {
             InitializeComponent();
@@ -28,8 +46,36 @@ namespace LifeGame
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            Deserialize();
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
+            DrawLog();
+        }
+        
+        private void frmMain_Resize(object sender, EventArgs e)
+        {
+            DrawLog();
+        }
+
+        private void frmMain_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Wanna save?", "Saving", MessageBoxButtons.YesNoCancel);
+            switch (result)
+            {
+                case DialogResult.Yes:
+                    SerializeNow();
+                    e.Cancel = false;
+                    break;
+                case DialogResult.No:
+                    e.Cancel = false;
+                    break;
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+                default:
+                    e.Cancel = true;
+                    break;
+            }
         }
 
         private void taskTToolStripMenuItem_Click(object sender, EventArgs e)
@@ -220,8 +266,8 @@ namespace LifeGame
                     chkShowSchedule.Checked = true;
                 }
             }
+            DrawLog();
         }
-
         private void chkShowLog_CheckedChanged(object sender, EventArgs e)
         {
             if (chkShowSchedule.Checked == false)
@@ -231,6 +277,7 @@ namespace LifeGame
                     chkShowLog.Checked = true;
                 }
             }
+            DrawLog();
         }
 
         private void tsmAddSchedule_Click(object sender, EventArgs e)

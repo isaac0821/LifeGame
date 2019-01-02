@@ -104,7 +104,7 @@
             this.helpHToolStripMenuItem});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
-            this.mnsMain.Size = new System.Drawing.Size(1367, 24);
+            this.mnsMain.Size = new System.Drawing.Size(1541, 24);
             this.mnsMain.TabIndex = 0;
             this.mnsMain.Text = "menuStrip1";
             // 
@@ -177,7 +177,7 @@
             this.tslVersionNumber});
             this.stsMain.Location = new System.Drawing.Point(0, 846);
             this.stsMain.Name = "stsMain";
-            this.stsMain.Size = new System.Drawing.Size(1367, 22);
+            this.stsMain.Size = new System.Drawing.Size(1541, 22);
             this.stsMain.TabIndex = 1;
             this.stsMain.Text = "statusStrip1";
             // 
@@ -199,7 +199,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1367, 822);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1541, 822);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // tableLayoutPanel2
@@ -232,7 +232,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1361, 784);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1535, 784);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // lblMonday
@@ -242,7 +242,7 @@
             this.lblMonday.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMonday.Location = new System.Drawing.Point(3, 0);
             this.lblMonday.Name = "lblMonday";
-            this.lblMonday.Size = new System.Drawing.Size(188, 36);
+            this.lblMonday.Size = new System.Drawing.Size(213, 36);
             this.lblMonday.TabIndex = 14;
             this.lblMonday.Text = "Day 1";
             this.lblMonday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -252,9 +252,9 @@
             this.lblTuesday.AutoSize = true;
             this.lblTuesday.BackColor = System.Drawing.Color.Silver;
             this.lblTuesday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTuesday.Location = new System.Drawing.Point(197, 0);
+            this.lblTuesday.Location = new System.Drawing.Point(222, 0);
             this.lblTuesday.Name = "lblTuesday";
-            this.lblTuesday.Size = new System.Drawing.Size(188, 36);
+            this.lblTuesday.Size = new System.Drawing.Size(213, 36);
             this.lblTuesday.TabIndex = 15;
             this.lblTuesday.Text = "Day 2";
             this.lblTuesday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -264,9 +264,9 @@
             this.lblWednesday.AutoSize = true;
             this.lblWednesday.BackColor = System.Drawing.Color.Silver;
             this.lblWednesday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWednesday.Location = new System.Drawing.Point(391, 0);
+            this.lblWednesday.Location = new System.Drawing.Point(441, 0);
             this.lblWednesday.Name = "lblWednesday";
-            this.lblWednesday.Size = new System.Drawing.Size(188, 36);
+            this.lblWednesday.Size = new System.Drawing.Size(213, 36);
             this.lblWednesday.TabIndex = 16;
             this.lblWednesday.Text = "Day 3";
             this.lblWednesday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -276,9 +276,9 @@
             this.lblThursday.AutoSize = true;
             this.lblThursday.BackColor = System.Drawing.Color.Silver;
             this.lblThursday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblThursday.Location = new System.Drawing.Point(585, 0);
+            this.lblThursday.Location = new System.Drawing.Point(660, 0);
             this.lblThursday.Name = "lblThursday";
-            this.lblThursday.Size = new System.Drawing.Size(188, 36);
+            this.lblThursday.Size = new System.Drawing.Size(213, 36);
             this.lblThursday.TabIndex = 17;
             this.lblThursday.Text = "Day 4";
             this.lblThursday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -288,9 +288,9 @@
             this.lblFriday.AutoSize = true;
             this.lblFriday.BackColor = System.Drawing.Color.Silver;
             this.lblFriday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFriday.Location = new System.Drawing.Point(779, 0);
+            this.lblFriday.Location = new System.Drawing.Point(879, 0);
             this.lblFriday.Name = "lblFriday";
-            this.lblFriday.Size = new System.Drawing.Size(188, 36);
+            this.lblFriday.Size = new System.Drawing.Size(213, 36);
             this.lblFriday.TabIndex = 18;
             this.lblFriday.Text = "Day 5";
             this.lblFriday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -300,9 +300,9 @@
             this.lblSaturday.AutoSize = true;
             this.lblSaturday.BackColor = System.Drawing.Color.Silver;
             this.lblSaturday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSaturday.Location = new System.Drawing.Point(973, 0);
+            this.lblSaturday.Location = new System.Drawing.Point(1098, 0);
             this.lblSaturday.Name = "lblSaturday";
-            this.lblSaturday.Size = new System.Drawing.Size(188, 36);
+            this.lblSaturday.Size = new System.Drawing.Size(213, 36);
             this.lblSaturday.TabIndex = 19;
             this.lblSaturday.Text = "Day 6";
             this.lblSaturday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -312,9 +312,9 @@
             this.lblSunday.AutoSize = true;
             this.lblSunday.BackColor = System.Drawing.Color.Silver;
             this.lblSunday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSunday.Location = new System.Drawing.Point(1167, 0);
+            this.lblSunday.Location = new System.Drawing.Point(1317, 0);
             this.lblSunday.Name = "lblSunday";
-            this.lblSunday.Size = new System.Drawing.Size(191, 36);
+            this.lblSunday.Size = new System.Drawing.Size(215, 36);
             this.lblSunday.TabIndex = 20;
             this.lblSunday.Text = "Day 7";
             this.lblSunday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -329,7 +329,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(188, 742);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(213, 742);
             this.tableLayoutPanel4.TabIndex = 21;
             // 
             // picMon
@@ -340,7 +340,7 @@
             this.picMon.Location = new System.Drawing.Point(0, 0);
             this.picMon.Margin = new System.Windows.Forms.Padding(0);
             this.picMon.Name = "picMon";
-            this.picMon.Size = new System.Drawing.Size(188, 742);
+            this.picMon.Size = new System.Drawing.Size(213, 742);
             this.picMon.TabIndex = 0;
             this.picMon.TabStop = false;
             this.picMon.Click += new System.EventHandler(this.picMon_Click);
@@ -374,11 +374,11 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.Controls.Add(this.picTue, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(197, 39);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(222, 39);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(188, 742);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(213, 742);
             this.tableLayoutPanel5.TabIndex = 22;
             // 
             // picTue
@@ -389,7 +389,7 @@
             this.picTue.Location = new System.Drawing.Point(0, 0);
             this.picTue.Margin = new System.Windows.Forms.Padding(0);
             this.picTue.Name = "picTue";
-            this.picTue.Size = new System.Drawing.Size(188, 742);
+            this.picTue.Size = new System.Drawing.Size(213, 742);
             this.picTue.TabIndex = 0;
             this.picTue.TabStop = false;
             this.picTue.Click += new System.EventHandler(this.picTue_Click);
@@ -401,11 +401,11 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.Controls.Add(this.picWed, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(391, 39);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(441, 39);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(188, 742);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(213, 742);
             this.tableLayoutPanel6.TabIndex = 23;
             // 
             // picWed
@@ -416,7 +416,7 @@
             this.picWed.Location = new System.Drawing.Point(0, 0);
             this.picWed.Margin = new System.Windows.Forms.Padding(0);
             this.picWed.Name = "picWed";
-            this.picWed.Size = new System.Drawing.Size(188, 742);
+            this.picWed.Size = new System.Drawing.Size(213, 742);
             this.picWed.TabIndex = 0;
             this.picWed.TabStop = false;
             this.picWed.Click += new System.EventHandler(this.picWed_Click);
@@ -428,11 +428,11 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.Controls.Add(this.picThu, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(585, 39);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(660, 39);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(188, 742);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(213, 742);
             this.tableLayoutPanel7.TabIndex = 24;
             // 
             // picThu
@@ -443,7 +443,7 @@
             this.picThu.Location = new System.Drawing.Point(0, 0);
             this.picThu.Margin = new System.Windows.Forms.Padding(0);
             this.picThu.Name = "picThu";
-            this.picThu.Size = new System.Drawing.Size(188, 742);
+            this.picThu.Size = new System.Drawing.Size(213, 742);
             this.picThu.TabIndex = 0;
             this.picThu.TabStop = false;
             this.picThu.Click += new System.EventHandler(this.picThu_Click);
@@ -455,11 +455,11 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.Controls.Add(this.picFri, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(779, 39);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(879, 39);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(188, 742);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(213, 742);
             this.tableLayoutPanel8.TabIndex = 25;
             // 
             // picFri
@@ -470,7 +470,7 @@
             this.picFri.Location = new System.Drawing.Point(0, 0);
             this.picFri.Margin = new System.Windows.Forms.Padding(0);
             this.picFri.Name = "picFri";
-            this.picFri.Size = new System.Drawing.Size(188, 742);
+            this.picFri.Size = new System.Drawing.Size(213, 742);
             this.picFri.TabIndex = 0;
             this.picFri.TabStop = false;
             this.picFri.Click += new System.EventHandler(this.picFri_Click);
@@ -482,11 +482,11 @@
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.Controls.Add(this.picSat, 0, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(973, 39);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(1098, 39);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(188, 742);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(213, 742);
             this.tableLayoutPanel9.TabIndex = 26;
             // 
             // picSat
@@ -497,7 +497,7 @@
             this.picSat.Location = new System.Drawing.Point(0, 0);
             this.picSat.Margin = new System.Windows.Forms.Padding(0);
             this.picSat.Name = "picSat";
-            this.picSat.Size = new System.Drawing.Size(188, 742);
+            this.picSat.Size = new System.Drawing.Size(213, 742);
             this.picSat.TabIndex = 0;
             this.picSat.TabStop = false;
             this.picSat.Click += new System.EventHandler(this.picSat_Click);
@@ -509,11 +509,11 @@
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel10.Controls.Add(this.picSun, 0, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(1167, 39);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(1317, 39);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(191, 742);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(215, 742);
             this.tableLayoutPanel10.TabIndex = 27;
             // 
             // picSun
@@ -524,7 +524,7 @@
             this.picSun.Location = new System.Drawing.Point(0, 0);
             this.picSun.Margin = new System.Windows.Forms.Padding(0);
             this.picSun.Name = "picSun";
-            this.picSun.Size = new System.Drawing.Size(191, 742);
+            this.picSun.Size = new System.Drawing.Size(215, 742);
             this.picSun.TabIndex = 0;
             this.picSun.TabStop = false;
             this.picSun.Click += new System.EventHandler(this.picSun_Click);
@@ -549,14 +549,14 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1361, 26);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1535, 26);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // dtpDate
             // 
             this.dtpDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(1243, 3);
+            this.dtpDate.Location = new System.Drawing.Point(1417, 3);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(95, 20);
             this.dtpDate.TabIndex = 0;
@@ -564,7 +564,7 @@
             // 
             // btnPreDate
             // 
-            this.btnPreDate.Location = new System.Drawing.Point(1223, 3);
+            this.btnPreDate.Location = new System.Drawing.Point(1397, 3);
             this.btnPreDate.Name = "btnPreDate";
             this.btnPreDate.Size = new System.Drawing.Size(14, 20);
             this.btnPreDate.TabIndex = 1;
@@ -574,7 +574,7 @@
             // 
             // btnNextDate
             // 
-            this.btnNextDate.Location = new System.Drawing.Point(1344, 3);
+            this.btnNextDate.Location = new System.Drawing.Point(1518, 3);
             this.btnNextDate.Name = "btnNextDate";
             this.btnNextDate.Size = new System.Drawing.Size(14, 20);
             this.btnNextDate.TabIndex = 2;
@@ -614,14 +614,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1367, 868);
+            this.ClientSize = new System.Drawing.Size(1541, 868);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.stsMain);
             this.Controls.Add(this.mnsMain);
             this.MainMenuStrip = this.mnsMain;
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LifeGame";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.mnsMain.ResumeLayout(false);
             this.mnsMain.PerformLayout();
             this.stsMain.ResumeLayout(false);

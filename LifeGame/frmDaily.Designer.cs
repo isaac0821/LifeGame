@@ -45,19 +45,7 @@
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.dgvSchedule = new System.Windows.Forms.DataGridView();
-            this.colScheduleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colScheduleStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colScheduleEndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSchedulePlusOneDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colScheduleTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSchedulePercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvLog = new System.Windows.Forms.DataGridView();
-            this.colLogName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLogStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLogEndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLogPlusOneDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLogTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLogPercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
@@ -86,12 +74,12 @@
             this.btnNextDay = new System.Windows.Forms.Button();
             this.cmsSchedule = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsLog = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.convertToLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmConvertToLog = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddSchedule = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmDeleteSchedule = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmDeleteLog = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsWorkOut = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsMedicine = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,6 +99,33 @@
             this.cmsFinancial = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtTotalSleep = new System.Windows.Forms.TextBox();
+            this.colLogName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLogLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLogWithWho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLogMinusOneDay = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colLogStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLogEndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLogPlusOneDay = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colLogTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLogPercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colScheduleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colScheduleLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colScheduleWith = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colScheduleMinusOneDay = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colScheduleStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colScheduleEndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSchedulePlusOneDay = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colScheduleTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSchedulePercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkScheduleSleepMinusOneDay = new System.Windows.Forms.CheckBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.mnsDaily.SuspendLayout();
             this.stsDaily.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -144,7 +159,7 @@
             this.filesFToolStripMenuItem});
             this.mnsDaily.Location = new System.Drawing.Point(0, 0);
             this.mnsDaily.Name = "mnsDaily";
-            this.mnsDaily.Size = new System.Drawing.Size(486, 24);
+            this.mnsDaily.Size = new System.Drawing.Size(838, 24);
             this.mnsDaily.TabIndex = 0;
             this.mnsDaily.Text = "menuStrip1";
             // 
@@ -158,9 +173,9 @@
             // 
             this.stsDaily.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.stsDaily.Location = new System.Drawing.Point(0, 837);
+            this.stsDaily.Location = new System.Drawing.Point(0, 688);
             this.stsDaily.Name = "stsDaily";
-            this.stsDaily.Size = new System.Drawing.Size(486, 22);
+            this.stsDaily.Size = new System.Drawing.Size(838, 22);
             this.stsDaily.TabIndex = 1;
             this.stsDaily.Text = "statusStrip1";
             // 
@@ -186,7 +201,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(486, 813);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(838, 664);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // groupBox1
@@ -195,7 +210,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 34);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(480, 385);
+            this.groupBox1.Size = new System.Drawing.Size(832, 310);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Schedule and Log";
@@ -205,7 +220,7 @@
             this.tableLayoutPanel5.ColumnCount = 3;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 341F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 689F));
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel4, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel9, 2, 0);
@@ -213,8 +228,8 @@
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(474, 366);
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(826, 291);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // tableLayoutPanel4
@@ -224,12 +239,12 @@
             this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.picLog, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(69, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(71, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(60, 360);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(62, 285);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // label2
@@ -238,7 +253,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 26);
+            this.label2.Size = new System.Drawing.Size(56, 26);
             this.label2.TabIndex = 0;
             this.label2.Text = "Log";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -249,7 +264,7 @@
             this.picLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picLog.Location = new System.Drawing.Point(3, 29);
             this.picLog.Name = "picLog";
-            this.picLog.Size = new System.Drawing.Size(54, 328);
+            this.picLog.Size = new System.Drawing.Size(56, 253);
             this.picLog.TabIndex = 1;
             this.picLog.TabStop = false;
             // 
@@ -265,7 +280,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(60, 360);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(62, 285);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // label1
@@ -274,7 +289,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 26);
+            this.label1.Size = new System.Drawing.Size(56, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Schedule";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -285,7 +300,7 @@
             this.picSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picSchedule.Location = new System.Drawing.Point(3, 29);
             this.picSchedule.Name = "picSchedule";
-            this.picSchedule.Size = new System.Drawing.Size(54, 328);
+            this.picSchedule.Size = new System.Drawing.Size(56, 253);
             this.picSchedule.TabIndex = 1;
             this.picSchedule.TabStop = false;
             // 
@@ -298,13 +313,13 @@
             this.tableLayoutPanel9.Controls.Add(this.dgvSchedule, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.dgvLog, 0, 2);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(135, 3);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(139, 3);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 3;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(336, 360);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(684, 285);
             this.tableLayoutPanel9.TabIndex = 2;
             // 
             // label3
@@ -312,9 +327,9 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 171);
+            this.label3.Location = new System.Drawing.Point(3, 133);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(330, 18);
+            this.label3.Size = new System.Drawing.Size(678, 18);
             this.label3.TabIndex = 2;
             this.label3.Text = "↓";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -328,6 +343,9 @@
             this.dgvSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colScheduleName,
+            this.colScheduleLocation,
+            this.colScheduleWith,
+            this.colScheduleMinusOneDay,
             this.colScheduleStartTime,
             this.colScheduleEndTime,
             this.colSchedulePlusOneDay,
@@ -338,44 +356,8 @@
             this.dgvSchedule.Location = new System.Drawing.Point(3, 3);
             this.dgvSchedule.Name = "dgvSchedule";
             this.dgvSchedule.ReadOnly = true;
-            this.dgvSchedule.Size = new System.Drawing.Size(330, 165);
+            this.dgvSchedule.Size = new System.Drawing.Size(678, 127);
             this.dgvSchedule.TabIndex = 3;
-            // 
-            // colScheduleName
-            // 
-            this.colScheduleName.HeaderText = "Schedule";
-            this.colScheduleName.Name = "colScheduleName";
-            this.colScheduleName.ReadOnly = true;
-            // 
-            // colScheduleStartTime
-            // 
-            this.colScheduleStartTime.HeaderText = "Start Time";
-            this.colScheduleStartTime.Name = "colScheduleStartTime";
-            this.colScheduleStartTime.ReadOnly = true;
-            // 
-            // colScheduleEndTime
-            // 
-            this.colScheduleEndTime.HeaderText = "EndTime";
-            this.colScheduleEndTime.Name = "colScheduleEndTime";
-            this.colScheduleEndTime.ReadOnly = true;
-            // 
-            // colSchedulePlusOneDay
-            // 
-            this.colSchedulePlusOneDay.HeaderText = "+1d";
-            this.colSchedulePlusOneDay.Name = "colSchedulePlusOneDay";
-            this.colSchedulePlusOneDay.ReadOnly = true;
-            // 
-            // colScheduleTask
-            // 
-            this.colScheduleTask.HeaderText = "Task";
-            this.colScheduleTask.Name = "colScheduleTask";
-            this.colScheduleTask.ReadOnly = true;
-            // 
-            // colSchedulePercent
-            // 
-            this.colSchedulePercent.HeaderText = "%";
-            this.colSchedulePercent.Name = "colSchedulePercent";
-            this.colSchedulePercent.ReadOnly = true;
             // 
             // dgvLog
             // 
@@ -386,6 +368,9 @@
             this.dgvLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLog.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colLogName,
+            this.colLogLocation,
+            this.colLogWithWho,
+            this.colLogMinusOneDay,
             this.colLogStartTime,
             this.colLogEndTime,
             this.colLogPlusOneDay,
@@ -393,48 +378,19 @@
             this.colLogPercent});
             this.dgvLog.ContextMenuStrip = this.cmsLog;
             this.dgvLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvLog.Location = new System.Drawing.Point(3, 192);
+            this.dgvLog.Location = new System.Drawing.Point(3, 154);
             this.dgvLog.Name = "dgvLog";
-            this.dgvLog.Size = new System.Drawing.Size(330, 165);
+            this.dgvLog.ReadOnly = true;
+            this.dgvLog.Size = new System.Drawing.Size(678, 128);
             this.dgvLog.TabIndex = 4;
-            // 
-            // colLogName
-            // 
-            this.colLogName.HeaderText = "Log";
-            this.colLogName.Name = "colLogName";
-            // 
-            // colLogStartTime
-            // 
-            this.colLogStartTime.HeaderText = "Start Time";
-            this.colLogStartTime.Name = "colLogStartTime";
-            // 
-            // colLogEndTime
-            // 
-            this.colLogEndTime.HeaderText = "End Time";
-            this.colLogEndTime.Name = "colLogEndTime";
-            // 
-            // colLogPlusOneDay
-            // 
-            this.colLogPlusOneDay.HeaderText = "+1d";
-            this.colLogPlusOneDay.Name = "colLogPlusOneDay";
-            // 
-            // colLogTask
-            // 
-            this.colLogTask.HeaderText = "Task";
-            this.colLogTask.Name = "colLogTask";
-            // 
-            // colLogPercent
-            // 
-            this.colLogPercent.HeaderText = "%";
-            this.colLogPercent.Name = "colLogPercent";
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dataGridView1);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 659);
+            this.groupBox3.Location = new System.Drawing.Point(3, 539);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(480, 151);
+            this.groupBox3.Size = new System.Drawing.Size(832, 122);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Financial";
@@ -443,9 +399,9 @@
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel8);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 425);
+            this.groupBox2.Location = new System.Drawing.Point(3, 350);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(480, 228);
+            this.groupBox2.Size = new System.Drawing.Size(832, 183);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Health";
@@ -471,7 +427,7 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(474, 209);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(826, 164);
             this.tableLayoutPanel8.TabIndex = 0;
             // 
             // label13
@@ -502,7 +458,7 @@
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label15.Location = new System.Drawing.Point(3, 52);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(59, 78);
+            this.label15.Size = new System.Drawing.Size(59, 56);
             this.label15.TabIndex = 2;
             this.label15.Text = "Work Out";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -511,9 +467,9 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label16.Location = new System.Drawing.Point(3, 130);
+            this.label16.Location = new System.Drawing.Point(3, 108);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(59, 79);
+            this.label16.Size = new System.Drawing.Size(59, 56);
             this.label16.TabIndex = 3;
             this.label16.Text = "Medicine";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -532,9 +488,9 @@
             this.colMedicineUnit});
             this.dgvMedicine.ContextMenuStrip = this.cmsMedicine;
             this.dgvMedicine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMedicine.Location = new System.Drawing.Point(68, 133);
+            this.dgvMedicine.Location = new System.Drawing.Point(68, 111);
             this.dgvMedicine.Name = "dgvMedicine";
-            this.dgvMedicine.Size = new System.Drawing.Size(403, 73);
+            this.dgvMedicine.Size = new System.Drawing.Size(755, 50);
             this.dgvMedicine.TabIndex = 4;
             // 
             // colMedicineName
@@ -573,7 +529,7 @@
             this.dgvWorkOut.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvWorkOut.Location = new System.Drawing.Point(68, 55);
             this.dgvWorkOut.Name = "dgvWorkOut";
-            this.dgvWorkOut.Size = new System.Drawing.Size(403, 72);
+            this.dgvWorkOut.Size = new System.Drawing.Size(755, 50);
             this.dgvWorkOut.TabIndex = 5;
             // 
             // colWorkOutType
@@ -593,30 +549,48 @@
             // 
             // tableLayoutPanel17
             // 
-            this.tableLayoutPanel17.ColumnCount = 5;
+            this.tableLayoutPanel17.ColumnCount = 14;
             this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
             this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
             this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
-            this.tableLayoutPanel17.Controls.Add(this.chkMinusOneDay, 1, 0);
-            this.tableLayoutPanel17.Controls.Add(this.dtpGotoBedTime, 2, 0);
-            this.tableLayoutPanel17.Controls.Add(this.dtpWeakUpTime, 4, 0);
-            this.tableLayoutPanel17.Controls.Add(this.label20, 3, 0);
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel17.Controls.Add(this.chkMinusOneDay, 8, 0);
+            this.tableLayoutPanel17.Controls.Add(this.dtpGotoBedTime, 9, 0);
+            this.tableLayoutPanel17.Controls.Add(this.dtpWeakUpTime, 11, 0);
+            this.tableLayoutPanel17.Controls.Add(this.label20, 10, 0);
+            this.tableLayoutPanel17.Controls.Add(this.label4, 12, 0);
+            this.tableLayoutPanel17.Controls.Add(this.txtTotalSleep, 13, 0);
+            this.tableLayoutPanel17.Controls.Add(this.chkScheduleSleepMinusOneDay, 1, 0);
+            this.tableLayoutPanel17.Controls.Add(this.dateTimePicker1, 2, 0);
+            this.tableLayoutPanel17.Controls.Add(this.dateTimePicker2, 4, 0);
+            this.tableLayoutPanel17.Controls.Add(this.label5, 3, 0);
+            this.tableLayoutPanel17.Controls.Add(this.label6, 5, 0);
+            this.tableLayoutPanel17.Controls.Add(this.label7, 7, 0);
+            this.tableLayoutPanel17.Controls.Add(this.textBox1, 6, 0);
             this.tableLayoutPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel17.Location = new System.Drawing.Point(65, 0);
             this.tableLayoutPanel17.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel17.Name = "tableLayoutPanel17";
             this.tableLayoutPanel17.RowCount = 1;
             this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel17.Size = new System.Drawing.Size(409, 26);
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(761, 26);
             this.tableLayoutPanel17.TabIndex = 6;
             // 
             // chkMinusOneDay
             // 
             this.chkMinusOneDay.AutoSize = true;
             this.chkMinusOneDay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkMinusOneDay.Location = new System.Drawing.Point(129, 3);
+            this.chkMinusOneDay.Location = new System.Drawing.Point(401, 3);
             this.chkMinusOneDay.Name = "chkMinusOneDay";
             this.chkMinusOneDay.Size = new System.Drawing.Size(55, 20);
             this.chkMinusOneDay.TabIndex = 0;
@@ -626,7 +600,7 @@
             // dtpGotoBedTime
             // 
             this.dtpGotoBedTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpGotoBedTime.Location = new System.Drawing.Point(190, 3);
+            this.dtpGotoBedTime.Location = new System.Drawing.Point(462, 3);
             this.dtpGotoBedTime.Name = "dtpGotoBedTime";
             this.dtpGotoBedTime.Size = new System.Drawing.Size(95, 20);
             this.dtpGotoBedTime.TabIndex = 1;
@@ -634,7 +608,7 @@
             // dtpWeakUpTime
             // 
             this.dtpWeakUpTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpWeakUpTime.Location = new System.Drawing.Point(311, 3);
+            this.dtpWeakUpTime.Location = new System.Drawing.Point(583, 3);
             this.dtpWeakUpTime.Name = "dtpWeakUpTime";
             this.dtpWeakUpTime.Size = new System.Drawing.Size(95, 20);
             this.dtpWeakUpTime.TabIndex = 2;
@@ -643,7 +617,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label20.Location = new System.Drawing.Point(291, 0);
+            this.label20.Location = new System.Drawing.Point(563, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(14, 26);
             this.label20.TabIndex = 3;
@@ -655,7 +629,7 @@
             this.txtWeight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtWeight.Location = new System.Drawing.Point(68, 29);
             this.txtWeight.Name = "txtWeight";
-            this.txtWeight.Size = new System.Drawing.Size(403, 20);
+            this.txtWeight.Size = new System.Drawing.Size(755, 20);
             this.txtWeight.TabIndex = 7;
             // 
             // tableLayoutPanel7
@@ -673,21 +647,21 @@
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(480, 25);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(832, 25);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
             // dtpToday
             // 
             this.dtpToday.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpToday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpToday.Location = new System.Drawing.Point(362, 3);
+            this.dtpToday.Location = new System.Drawing.Point(714, 3);
             this.dtpToday.Name = "dtpToday";
             this.dtpToday.Size = new System.Drawing.Size(95, 20);
             this.dtpToday.TabIndex = 0;
             // 
             // btnPreDay
             // 
-            this.btnPreDay.Location = new System.Drawing.Point(342, 3);
+            this.btnPreDay.Location = new System.Drawing.Point(694, 3);
             this.btnPreDay.Name = "btnPreDay";
             this.btnPreDay.Size = new System.Drawing.Size(14, 19);
             this.btnPreDay.TabIndex = 1;
@@ -696,7 +670,7 @@
             // 
             // btnNextDay
             // 
-            this.btnNextDay.Location = new System.Drawing.Point(463, 3);
+            this.btnNextDay.Location = new System.Drawing.Point(815, 3);
             this.btnNextDay.Name = "btnNextDay";
             this.btnNextDay.Size = new System.Drawing.Size(14, 19);
             this.btnNextDay.TabIndex = 2;
@@ -706,55 +680,55 @@
             // cmsSchedule
             // 
             this.cmsSchedule.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.convertToLogToolStripMenuItem,
+            this.tsmConvertToLog,
             this.toolStripSeparator1,
-            this.addToolStripMenuItem,
-            this.deleteToolStripMenuItem});
+            this.tsmAddSchedule,
+            this.tsmDeleteSchedule});
             this.cmsSchedule.Name = "cmsSchedule";
             this.cmsSchedule.Size = new System.Drawing.Size(150, 76);
             // 
             // cmsLog
             // 
             this.cmsLog.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem1,
-            this.deleteToolStripMenuItem1});
+            this.tsmAddLog,
+            this.tsmDeleteLog});
             this.cmsLog.Name = "cmsLog";
             this.cmsLog.Size = new System.Drawing.Size(108, 48);
             // 
-            // convertToLogToolStripMenuItem
+            // tsmConvertToLog
             // 
-            this.convertToLogToolStripMenuItem.Name = "convertToLogToolStripMenuItem";
-            this.convertToLogToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.convertToLogToolStripMenuItem.Text = "ConvertToLog";
+            this.tsmConvertToLog.Name = "tsmConvertToLog";
+            this.tsmConvertToLog.Size = new System.Drawing.Size(149, 22);
+            this.tsmConvertToLog.Text = "ConvertToLog";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(146, 6);
             // 
-            // addToolStripMenuItem
+            // tsmAddSchedule
             // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.addToolStripMenuItem.Text = "Add";
+            this.tsmAddSchedule.Name = "tsmAddSchedule";
+            this.tsmAddSchedule.Size = new System.Drawing.Size(149, 22);
+            this.tsmAddSchedule.Text = "Add";
             // 
-            // deleteToolStripMenuItem
+            // tsmDeleteSchedule
             // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
+            this.tsmDeleteSchedule.Name = "tsmDeleteSchedule";
+            this.tsmDeleteSchedule.Size = new System.Drawing.Size(149, 22);
+            this.tsmDeleteSchedule.Text = "Delete";
             // 
-            // addToolStripMenuItem1
+            // tsmAddLog
             // 
-            this.addToolStripMenuItem1.Name = "addToolStripMenuItem1";
-            this.addToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
-            this.addToolStripMenuItem1.Text = "Add";
+            this.tsmAddLog.Name = "tsmAddLog";
+            this.tsmAddLog.Size = new System.Drawing.Size(107, 22);
+            this.tsmAddLog.Text = "Add";
             // 
-            // deleteToolStripMenuItem1
+            // tsmDeleteLog
             // 
-            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
-            this.deleteToolStripMenuItem1.Text = "Delete";
+            this.tsmDeleteLog.Name = "tsmDeleteLog";
+            this.tsmDeleteLog.Size = new System.Drawing.Size(107, 22);
+            this.tsmDeleteLog.Text = "Delete";
             // 
             // cmsWorkOut
             // 
@@ -817,7 +791,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 16);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(474, 132);
+            this.dataGridView1.Size = new System.Drawing.Size(826, 103);
             this.dataGridView1.TabIndex = 0;
             // 
             // colVoucherSummary
@@ -885,11 +859,215 @@
             this.deleteToolStripMenuItem4.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem4.Text = "Delete";
             // 
+            // label4
+            // 
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(684, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 26);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "total";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtTotalSleep
+            // 
+            this.txtTotalSleep.Location = new System.Drawing.Point(719, 3);
+            this.txtTotalSleep.Name = "txtTotalSleep";
+            this.txtTotalSleep.Size = new System.Drawing.Size(39, 20);
+            this.txtTotalSleep.TabIndex = 5;
+            // 
+            // colLogName
+            // 
+            this.colLogName.HeaderText = "Log";
+            this.colLogName.Name = "colLogName";
+            this.colLogName.ReadOnly = true;
+            // 
+            // colLogLocation
+            // 
+            this.colLogLocation.HeaderText = "Location";
+            this.colLogLocation.Name = "colLogLocation";
+            this.colLogLocation.ReadOnly = true;
+            // 
+            // colLogWithWho
+            // 
+            this.colLogWithWho.HeaderText = "With";
+            this.colLogWithWho.Name = "colLogWithWho";
+            this.colLogWithWho.ReadOnly = true;
+            // 
+            // colLogMinusOneDay
+            // 
+            this.colLogMinusOneDay.HeaderText = "-1d";
+            this.colLogMinusOneDay.Name = "colLogMinusOneDay";
+            this.colLogMinusOneDay.ReadOnly = true;
+            this.colLogMinusOneDay.Width = 40;
+            // 
+            // colLogStartTime
+            // 
+            this.colLogStartTime.HeaderText = "Start Time";
+            this.colLogStartTime.Name = "colLogStartTime";
+            this.colLogStartTime.ReadOnly = true;
+            // 
+            // colLogEndTime
+            // 
+            this.colLogEndTime.HeaderText = "End Time";
+            this.colLogEndTime.Name = "colLogEndTime";
+            this.colLogEndTime.ReadOnly = true;
+            // 
+            // colLogPlusOneDay
+            // 
+            this.colLogPlusOneDay.HeaderText = "+1d";
+            this.colLogPlusOneDay.Name = "colLogPlusOneDay";
+            this.colLogPlusOneDay.ReadOnly = true;
+            this.colLogPlusOneDay.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colLogPlusOneDay.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colLogPlusOneDay.Width = 40;
+            // 
+            // colLogTask
+            // 
+            this.colLogTask.HeaderText = "Task";
+            this.colLogTask.Name = "colLogTask";
+            this.colLogTask.ReadOnly = true;
+            // 
+            // colLogPercent
+            // 
+            this.colLogPercent.HeaderText = "%";
+            this.colLogPercent.Name = "colLogPercent";
+            this.colLogPercent.ReadOnly = true;
+            // 
+            // colScheduleName
+            // 
+            this.colScheduleName.HeaderText = "Schedule";
+            this.colScheduleName.Name = "colScheduleName";
+            this.colScheduleName.ReadOnly = true;
+            // 
+            // colScheduleLocation
+            // 
+            this.colScheduleLocation.HeaderText = "Location";
+            this.colScheduleLocation.Name = "colScheduleLocation";
+            this.colScheduleLocation.ReadOnly = true;
+            // 
+            // colScheduleWith
+            // 
+            this.colScheduleWith.HeaderText = "With";
+            this.colScheduleWith.Name = "colScheduleWith";
+            this.colScheduleWith.ReadOnly = true;
+            // 
+            // colScheduleMinusOneDay
+            // 
+            this.colScheduleMinusOneDay.HeaderText = "-1d";
+            this.colScheduleMinusOneDay.Name = "colScheduleMinusOneDay";
+            this.colScheduleMinusOneDay.ReadOnly = true;
+            this.colScheduleMinusOneDay.Width = 40;
+            // 
+            // colScheduleStartTime
+            // 
+            this.colScheduleStartTime.HeaderText = "Start Time";
+            this.colScheduleStartTime.Name = "colScheduleStartTime";
+            this.colScheduleStartTime.ReadOnly = true;
+            // 
+            // colScheduleEndTime
+            // 
+            this.colScheduleEndTime.HeaderText = "EndTime";
+            this.colScheduleEndTime.Name = "colScheduleEndTime";
+            this.colScheduleEndTime.ReadOnly = true;
+            // 
+            // colSchedulePlusOneDay
+            // 
+            this.colSchedulePlusOneDay.HeaderText = "+1d";
+            this.colSchedulePlusOneDay.Name = "colSchedulePlusOneDay";
+            this.colSchedulePlusOneDay.ReadOnly = true;
+            this.colSchedulePlusOneDay.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colSchedulePlusOneDay.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colSchedulePlusOneDay.Width = 40;
+            // 
+            // colScheduleTask
+            // 
+            this.colScheduleTask.HeaderText = "Task";
+            this.colScheduleTask.Name = "colScheduleTask";
+            this.colScheduleTask.ReadOnly = true;
+            // 
+            // colSchedulePercent
+            // 
+            this.colSchedulePercent.HeaderText = "%";
+            this.colSchedulePercent.Name = "colSchedulePercent";
+            this.colSchedulePercent.ReadOnly = true;
+            // 
+            // chkScheduleSleepMinusOneDay
+            // 
+            this.chkScheduleSleepMinusOneDay.AutoSize = true;
+            this.chkScheduleSleepMinusOneDay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkScheduleSleepMinusOneDay.Location = new System.Drawing.Point(18, 3);
+            this.chkScheduleSleepMinusOneDay.Name = "chkScheduleSleepMinusOneDay";
+            this.chkScheduleSleepMinusOneDay.Size = new System.Drawing.Size(55, 20);
+            this.chkScheduleSleepMinusOneDay.TabIndex = 6;
+            this.chkScheduleSleepMinusOneDay.Text = "-1 day";
+            this.chkScheduleSleepMinusOneDay.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePicker1.Location = new System.Drawing.Point(79, 3);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(95, 20);
+            this.dateTimePicker1.TabIndex = 7;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePicker2.Location = new System.Drawing.Point(200, 3);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(95, 20);
+            this.dateTimePicker2.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(180, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(14, 26);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "-";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Location = new System.Drawing.Point(301, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 26);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "total";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(381, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(14, 26);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "→";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(336, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(39, 20);
+            this.textBox1.TabIndex = 12;
+            // 
             // frmDaily
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(486, 859);
+            this.ClientSize = new System.Drawing.Size(838, 710);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.stsDaily);
             this.Controls.Add(this.mnsDaily);
@@ -897,6 +1075,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDaily";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDaily";
             this.Load += new System.EventHandler(this.frmDaily_Load);
             this.mnsDaily.ResumeLayout(false);
@@ -959,18 +1138,6 @@
         private System.Windows.Forms.DataGridView dgvSchedule;
         private System.Windows.Forms.DataGridView dgvLog;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colScheduleName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colScheduleStartTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colScheduleEndTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSchedulePlusOneDay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colScheduleTask;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSchedulePercent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colLogName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colLogStartTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colLogEndTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colLogPlusOneDay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colLogTask;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colLogPercent;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
@@ -994,13 +1161,13 @@
         private System.Windows.Forms.Button btnPreDay;
         private System.Windows.Forms.Button btnNextDay;
         private System.Windows.Forms.ContextMenuStrip cmsSchedule;
-        private System.Windows.Forms.ToolStripMenuItem convertToLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmConvertToLog;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddSchedule;
+        private System.Windows.Forms.ToolStripMenuItem tsmDeleteSchedule;
         private System.Windows.Forms.ContextMenuStrip cmsLog;
-        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddLog;
+        private System.Windows.Forms.ToolStripMenuItem tsmDeleteLog;
         private System.Windows.Forms.ContextMenuStrip cmsWorkOut;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem2;
@@ -1020,5 +1187,32 @@
         private System.Windows.Forms.ContextMenuStrip cmsFinancial;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtTotalSleep;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colScheduleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colScheduleLocation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colScheduleWith;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colScheduleMinusOneDay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colScheduleStartTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colScheduleEndTime;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colSchedulePlusOneDay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colScheduleTask;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSchedulePercent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLogName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLogLocation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLogWithWho;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colLogMinusOneDay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLogStartTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLogEndTime;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colLogPlusOneDay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLogTask;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLogPercent;
+        private System.Windows.Forms.CheckBox chkScheduleSleepMinusOneDay;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

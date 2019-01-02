@@ -26,6 +26,15 @@ namespace LifeGame
 
         private void LoadDaily(DateTime date)
         {
+            Draw Draw = new Draw();
+            Draw.DrawScheduleAndLog(picSchedule, curDate, G.glb.lstSchedule, G.glb.lstHealth, false, "all");
+        }
+
+        private void LoadSchedule(DateTime date, List<CLog> log)
+        {
+            List<CLog> todayLogs = log.FindAll(o => o.StartTime.Date == date).ToList();
+            List<CLog> yesterdayLogs = log.FindAll(o => o.StartTime.Date == date.AddDays(-1) && o.EndTime.Date == date).ToList();
+
 
         }
     }

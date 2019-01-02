@@ -130,8 +130,20 @@ namespace LifeGame
                 rct.FillRectangle(new SolidBrush(GetColor(log.Color)), left, (int)start, width, (int)(end - start));
                 if (IsLabelShown)
                 {
-                    string LogName = log.LogName.Length > 10 ? log.LogName.Substring(10) : log.LogName;
-                    rct.DrawString(LogName, new Font("Microsoft Sans Serif", 8), new SolidBrush(Color.Black), left, (int)start);
+                    string TimePeriod = log.StartTime.ToShortTimeString() + "(-1d)" + " - " + log.EndTime.ToShortTimeString();
+                    string LogName = log.LogName.Length > (width / 5.8) ? log.LogName.Substring(0, (int)((width / 5.8) - 3)) + "..." : log.LogName;
+                    string Location = log.Location;
+                    string WithWho = log.WithWho;
+                    rct.DrawString(TimePeriod, new Font("Microsoft Sans Serif", 8), new SolidBrush(Color.Black), left, (int)start);
+                    rct.DrawString(LogName, new Font("Microsoft Sans Serif", 8), new SolidBrush(Color.Black), left, (int)start + 12);
+                    if (Location != "")
+                    {
+                        rct.DrawString("@:"+ Location, new Font("Microsoft Sans Serif", 8), new SolidBrush(Color.Black), left, (int)start + 24);
+                    }
+                    if (WithWho!="")
+                    {
+                        rct.DrawString("w'\':"+WithWho, new Font("Microsoft Sans Serif", 8), new SolidBrush(Color.Black), left, (int)start + 36);
+                    }
                 }
             }
 
@@ -150,8 +162,12 @@ namespace LifeGame
                 rct.FillRectangle(new SolidBrush(GetColor(log.Color)), left, (int)start, width, (int)(end - start));
                 if (IsLabelShown)
                 {
-                    string LogName = log.LogName.Length > 10 ? log.LogName.Substring(10) : log.LogName;
-                    rct.DrawString(LogName, new Font("Microsoft Sans Serif", 8), new SolidBrush(Color.Black), left, (int)start);
+                    string TimePeriod = log.StartTime.ToShortTimeString() + " - " + log.EndTime.ToShortTimeString() + (log.EndTime.Date == date ? "" : "(+1d)");
+                    string LogName = log.LogName.Length > (width / 5.8) ? log.LogName.Substring(0, (int)((width / 5.8) - 3)) + "..." : log.LogName;
+                    string Location = log.Location;
+                    string WithWho = log.WithWho;
+                    rct.DrawString(TimePeriod, new Font("Microsoft Sans Serif", 8), new SolidBrush(Color.Black), left, (int)start);
+                    rct.DrawString(LogName, new Font("Microsoft Sans Serif", 8), new SolidBrush(Color.Black), left, (int)start + 12);
                 }
             }
         }

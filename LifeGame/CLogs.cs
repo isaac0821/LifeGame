@@ -19,6 +19,7 @@ namespace LifeGame
     /// <summary>
     /// 成就
     /// </summary>
+    [Serializable]
     public class CAchievement
     {
         public string AchievementName;
@@ -31,6 +32,7 @@ namespace LifeGame
     /// <summary>
     /// 成就与前置成就关系
     /// </summary>
+    [Serializable]
     public class RPreReqAchievement
     {
         public string Achievement;
@@ -48,6 +50,7 @@ namespace LifeGame
     /// <summary>
     /// 外部不可控项
     /// </summary>
+    [Serializable]
     public class CCheck
     {
         public string CheckName;
@@ -59,6 +62,7 @@ namespace LifeGame
     /// <summary>
     /// 任务
     /// </summary>
+    [Serializable]
     public class CTask
     {
         public string TaskName;
@@ -74,15 +78,18 @@ namespace LifeGame
     /// <summary>
     /// 任务与子任务关系
     /// </summary>
+    [Serializable]
     public class RSubTask
     {
         public string Task;
         public string SubTask;
+        public int index;
     }
 
     /// <summary>
     /// 日志
     /// </summary>
+    [Serializable]
     public class CLog
     {
         public string LogName;
@@ -98,6 +105,7 @@ namespace LifeGame
     /// <summary>
     /// 开支，目前只支持一借一贷的形式
     /// </summary>
+    [Serializable]
     public class CMoneyDetail
     {
         public string Summary;
@@ -120,6 +128,7 @@ namespace LifeGame
     /// <summary>
     /// 记账科目
     /// </summary>
+    [Serializable]
     public class CAccount
     {
         public string AccountName;
@@ -131,15 +140,18 @@ namespace LifeGame
     /// <summary>
     /// 科目上下级关系
     /// </summary>
+    [Serializable]
     public class RSubAccount
     {
         public string Account;
         public string SubAccount;
+        public int index;
     }
 
     /// <summary>
     /// 起居记录
     /// </summary>
+    [Serializable]
     public class CHealth
     {
         public DateTime Date;
@@ -152,6 +164,7 @@ namespace LifeGame
     /// <summary>
     /// 锻炼记录
     /// </summary>
+    [Serializable]
     public class CWorkOut
     {
         public DateTime Date;
@@ -163,6 +176,7 @@ namespace LifeGame
     /// <summary>
     /// 药物记录
     /// </summary>
+    [Serializable]
     public class CMedicine
     {
         public DateTime Date;
