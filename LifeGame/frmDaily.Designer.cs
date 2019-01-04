@@ -34,10 +34,35 @@
             this.stsDaily = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.dtpToday = new System.Windows.Forms.DateTimePicker();
+            this.btnPreDay = new System.Windows.Forms.Button();
+            this.btnNextDay = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.dgvMedicine = new System.Windows.Forms.DataGridView();
+            this.colMedicineName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMedicineTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMedicineQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMedicineUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmsMedicine = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmAddMedicine = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmDeleteMedicine = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.colVoucherSummary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVoucherTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVoucherDebit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVoucherDebitAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVoucherDebitCurrency = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVoucherCredit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVoucherCreditAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVoucherCreditCurrency = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmsFinancial = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmAddFinancial = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmDeleteFinancial = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.picLog = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.dgvSchedule = new System.Windows.Forms.DataGridView();
@@ -66,10 +91,6 @@
             this.cmsLog = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAddLog = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDeleteLog = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.dtpToday = new System.Windows.Forms.DateTimePicker();
-            this.btnPreDay = new System.Windows.Forms.Button();
-            this.btnNextDay = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.txtTotalSleep = new System.Windows.Forms.TextBox();
@@ -88,20 +109,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnSaveSleepSchedule = new System.Windows.Forms.Button();
             this.btnSaveSleepActual = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.dgvMedicine = new System.Windows.Forms.DataGridView();
-            this.colMedicineName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMedicineTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMedicineQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMedicineUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmsMedicine = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmAddMedicine = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmDeleteMedicine = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cmsFinancial = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmAddFinancial = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmDeleteFinancial = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvWorkOutSchedule = new System.Windows.Forms.DataGridView();
@@ -123,51 +130,52 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
-            this.picSchedule = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.colVoucherSummary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVoucherTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVoucherDebit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVoucherDebitAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVoucherDebitCurrency = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVoucherCredit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVoucherCreditAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVoucherCreditCurrency = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.picSchedule = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.picLog = new System.Windows.Forms.PictureBox();
+            this.dgvEvent = new System.Windows.Forms.DataGridView();
+            this.colEventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEventIsSucceed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.mnsDaily.SuspendLayout();
             this.stsDaily.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLog)).BeginInit();
-            this.tableLayoutPanel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSchedule)).BeginInit();
-            this.cmsSchedule.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLog)).BeginInit();
-            this.cmsLog.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMedicine)).BeginInit();
             this.cmsMedicine.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.cmsFinancial.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSchedule)).BeginInit();
+            this.cmsSchedule.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLog)).BeginInit();
+            this.cmsLog.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkOutSchedule)).BeginInit();
             this.cmsWorkOutSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.cmsWorkOutLog.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
-            this.tableLayoutPanel10.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSchedule)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSchedule)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLog)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEvent)).BeginInit();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnsDaily
@@ -223,52 +231,279 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(931, 799);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 4;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.Controls.Add(this.dtpToday, 2, 0);
+            this.tableLayoutPanel7.Controls.Add(this.btnPreDay, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.btnNextDay, 3, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(925, 25);
+            this.tableLayoutPanel7.TabIndex = 1;
+            // 
+            // dtpToday
+            // 
+            this.dtpToday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtpToday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpToday.Location = new System.Drawing.Point(807, 3);
+            this.dtpToday.Name = "dtpToday";
+            this.dtpToday.Size = new System.Drawing.Size(95, 20);
+            this.dtpToday.TabIndex = 0;
+            // 
+            // btnPreDay
+            // 
+            this.btnPreDay.Location = new System.Drawing.Point(787, 3);
+            this.btnPreDay.Name = "btnPreDay";
+            this.btnPreDay.Size = new System.Drawing.Size(14, 18);
+            this.btnPreDay.TabIndex = 1;
+            this.btnPreDay.Text = "<";
+            this.btnPreDay.UseVisualStyleBackColor = true;
+            // 
+            // btnNextDay
+            // 
+            this.btnNextDay.Location = new System.Drawing.Point(908, 3);
+            this.btnNextDay.Name = "btnNextDay";
+            this.btnNextDay.Size = new System.Drawing.Size(14, 18);
+            this.btnNextDay.TabIndex = 2;
+            this.btnNextDay.Text = ">";
+            this.btnNextDay.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.dgvMedicine);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox5.Location = new System.Drawing.Point(2, 723);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox5.Size = new System.Drawing.Size(927, 74);
+            this.groupBox5.TabIndex = 4;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Medicine";
+            // 
+            // dgvMedicine
+            // 
+            this.dgvMedicine.AllowUserToAddRows = false;
+            this.dgvMedicine.AllowUserToDeleteRows = false;
+            this.dgvMedicine.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvMedicine.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvMedicine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMedicine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colMedicineName,
+            this.colMedicineTime,
+            this.colMedicineQty,
+            this.colMedicineUnit});
+            this.dgvMedicine.ContextMenuStrip = this.cmsMedicine;
+            this.dgvMedicine.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMedicine.Location = new System.Drawing.Point(2, 15);
+            this.dgvMedicine.Name = "dgvMedicine";
+            this.dgvMedicine.ReadOnly = true;
+            this.dgvMedicine.Size = new System.Drawing.Size(923, 57);
+            this.dgvMedicine.TabIndex = 4;
+            // 
+            // colMedicineName
+            // 
+            this.colMedicineName.HeaderText = "Medicine Name";
+            this.colMedicineName.Name = "colMedicineName";
+            this.colMedicineName.ReadOnly = true;
+            this.colMedicineName.Width = 200;
+            // 
+            // colMedicineTime
+            // 
+            this.colMedicineTime.HeaderText = "Taken Time";
+            this.colMedicineTime.Name = "colMedicineTime";
+            this.colMedicineTime.ReadOnly = true;
+            this.colMedicineTime.Width = 200;
+            // 
+            // colMedicineQty
+            // 
+            this.colMedicineQty.HeaderText = "Qty";
+            this.colMedicineQty.Name = "colMedicineQty";
+            this.colMedicineQty.ReadOnly = true;
+            // 
+            // colMedicineUnit
+            // 
+            this.colMedicineUnit.HeaderText = "Unit";
+            this.colMedicineUnit.Name = "colMedicineUnit";
+            this.colMedicineUnit.ReadOnly = true;
+            // 
+            // cmsMedicine
+            // 
+            this.cmsMedicine.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsMedicine.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmAddMedicine,
+            this.tsmDeleteMedicine});
+            this.cmsMedicine.Name = "cmsMedicine";
+            this.cmsMedicine.Size = new System.Drawing.Size(108, 48);
+            // 
+            // tsmAddMedicine
+            // 
+            this.tsmAddMedicine.Name = "tsmAddMedicine";
+            this.tsmAddMedicine.Size = new System.Drawing.Size(107, 22);
+            this.tsmAddMedicine.Text = "Add";
+            // 
+            // tsmDeleteMedicine
+            // 
+            this.tsmDeleteMedicine.Name = "tsmDeleteMedicine";
+            this.tsmDeleteMedicine.Size = new System.Drawing.Size(107, 22);
+            this.tsmDeleteMedicine.Text = "Delete";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(3, 571);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(925, 147);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Financial";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colVoucherSummary,
+            this.colVoucherTask,
+            this.colVoucherDebit,
+            this.colVoucherDebitAmount,
+            this.colVoucherDebitCurrency,
+            this.colVoucherCredit,
+            this.colVoucherCreditAmount,
+            this.colVoucherCreditCurrency});
+            this.dataGridView1.ContextMenuStrip = this.cmsFinancial;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(919, 128);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // colVoucherSummary
+            // 
+            this.colVoucherSummary.HeaderText = "Summary";
+            this.colVoucherSummary.Name = "colVoucherSummary";
+            this.colVoucherSummary.ReadOnly = true;
+            // 
+            // colVoucherTask
+            // 
+            this.colVoucherTask.HeaderText = "Task";
+            this.colVoucherTask.Name = "colVoucherTask";
+            this.colVoucherTask.ReadOnly = true;
+            // 
+            // colVoucherDebit
+            // 
+            this.colVoucherDebit.HeaderText = "Debit";
+            this.colVoucherDebit.Name = "colVoucherDebit";
+            this.colVoucherDebit.ReadOnly = true;
+            // 
+            // colVoucherDebitAmount
+            // 
+            this.colVoucherDebitAmount.HeaderText = "Amount";
+            this.colVoucherDebitAmount.Name = "colVoucherDebitAmount";
+            this.colVoucherDebitAmount.ReadOnly = true;
+            // 
+            // colVoucherDebitCurrency
+            // 
+            this.colVoucherDebitCurrency.HeaderText = "Currency";
+            this.colVoucherDebitCurrency.Name = "colVoucherDebitCurrency";
+            this.colVoucherDebitCurrency.ReadOnly = true;
+            // 
+            // colVoucherCredit
+            // 
+            this.colVoucherCredit.HeaderText = "Credit";
+            this.colVoucherCredit.Name = "colVoucherCredit";
+            this.colVoucherCredit.ReadOnly = true;
+            // 
+            // colVoucherCreditAmount
+            // 
+            this.colVoucherCreditAmount.HeaderText = "Amount";
+            this.colVoucherCreditAmount.Name = "colVoucherCreditAmount";
+            this.colVoucherCreditAmount.ReadOnly = true;
+            // 
+            // colVoucherCreditCurrency
+            // 
+            this.colVoucherCreditCurrency.HeaderText = "Currency";
+            this.colVoucherCreditCurrency.Name = "colVoucherCreditCurrency";
+            this.colVoucherCreditCurrency.ReadOnly = true;
+            // 
+            // cmsFinancial
+            // 
+            this.cmsFinancial.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsFinancial.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmAddFinancial,
+            this.tsmDeleteFinancial});
+            this.cmsFinancial.Name = "cmsFinancial";
+            this.cmsFinancial.Size = new System.Drawing.Size(108, 48);
+            // 
+            // tsmAddFinancial
+            // 
+            this.tsmAddFinancial.Name = "tsmAddFinancial";
+            this.tsmAddFinancial.Size = new System.Drawing.Size(107, 22);
+            this.tsmAddFinancial.Text = "Add";
+            // 
+            // tsmDeleteFinancial
+            // 
+            this.tsmDeleteFinancial.Name = "tsmDeleteFinancial";
+            this.tsmDeleteFinancial.Size = new System.Drawing.Size(107, 22);
+            this.tsmDeleteFinancial.Text = "Delete";
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 2;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.4578F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.54221F));
+            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel10, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel5, 0, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 31);
+            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 1;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(931, 537);
+            this.tableLayoutPanel8.TabIndex = 5;
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 1;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Controls.Add(this.groupBox1, 0, 1);
+            this.tableLayoutPanel10.Controls.Add(this.groupBox4, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.groupBox2, 0, 2);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(190, 0);
+            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 3;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(741, 537);
+            this.tableLayoutPanel10.TabIndex = 0;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel9);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 71);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(735, 329);
+            this.groupBox1.Size = new System.Drawing.Size(735, 287);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Schedule and Log";
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.picLog, 0, 1);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(95, 3);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(86, 525);
-            this.tableLayoutPanel4.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 26);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Log";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // picLog
-            // 
-            this.picLog.BackColor = System.Drawing.Color.White;
-            this.picLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picLog.Location = new System.Drawing.Point(3, 29);
-            this.picLog.Name = "picLog";
-            this.picLog.Size = new System.Drawing.Size(80, 493);
-            this.picLog.TabIndex = 1;
-            this.picLog.TabStop = false;
             // 
             // tableLayoutPanel9
             // 
@@ -285,7 +520,7 @@
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(729, 310);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(729, 268);
             this.tableLayoutPanel9.TabIndex = 2;
             // 
             // label3
@@ -293,7 +528,7 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 146);
+            this.label3.Location = new System.Drawing.Point(3, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(723, 18);
             this.label3.TabIndex = 2;
@@ -321,7 +556,7 @@
             this.dgvSchedule.Location = new System.Drawing.Point(3, 3);
             this.dgvSchedule.Name = "dgvSchedule";
             this.dgvSchedule.ReadOnly = true;
-            this.dgvSchedule.Size = new System.Drawing.Size(723, 140);
+            this.dgvSchedule.Size = new System.Drawing.Size(723, 119);
             this.dgvSchedule.TabIndex = 3;
             // 
             // colScheduleName
@@ -428,10 +663,10 @@
             this.colLogTask});
             this.dgvLog.ContextMenuStrip = this.cmsLog;
             this.dgvLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvLog.Location = new System.Drawing.Point(3, 167);
+            this.dgvLog.Location = new System.Drawing.Point(3, 146);
             this.dgvLog.Name = "dgvLog";
             this.dgvLog.ReadOnly = true;
-            this.dgvLog.Size = new System.Drawing.Size(723, 140);
+            this.dgvLog.Size = new System.Drawing.Size(723, 119);
             this.dgvLog.TabIndex = 4;
             // 
             // colLogName
@@ -509,59 +744,14 @@
             this.tsmDeleteLog.Text = "Delete";
             this.tsmDeleteLog.Click += new System.EventHandler(this.tsmDeleteLog_Click);
             // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.ColumnCount = 4;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel7.Controls.Add(this.dtpToday, 2, 0);
-            this.tableLayoutPanel7.Controls.Add(this.btnPreDay, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.btnNextDay, 3, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(925, 25);
-            this.tableLayoutPanel7.TabIndex = 1;
-            // 
-            // dtpToday
-            // 
-            this.dtpToday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtpToday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpToday.Location = new System.Drawing.Point(807, 3);
-            this.dtpToday.Name = "dtpToday";
-            this.dtpToday.Size = new System.Drawing.Size(95, 20);
-            this.dtpToday.TabIndex = 0;
-            // 
-            // btnPreDay
-            // 
-            this.btnPreDay.Location = new System.Drawing.Point(787, 3);
-            this.btnPreDay.Name = "btnPreDay";
-            this.btnPreDay.Size = new System.Drawing.Size(14, 18);
-            this.btnPreDay.TabIndex = 1;
-            this.btnPreDay.Text = "<";
-            this.btnPreDay.UseVisualStyleBackColor = true;
-            // 
-            // btnNextDay
-            // 
-            this.btnNextDay.Location = new System.Drawing.Point(908, 3);
-            this.btnNextDay.Name = "btnNextDay";
-            this.btnNextDay.Size = new System.Drawing.Size(14, 18);
-            this.btnNextDay.TabIndex = 2;
-            this.btnNextDay.Text = ">";
-            this.btnNextDay.UseVisualStyleBackColor = true;
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.tableLayoutPanel2);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(2, 2);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox4.Size = new System.Drawing.Size(737, 64);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
@@ -596,7 +786,7 @@
             this.tableLayoutPanel2.Controls.Add(this.btnSaveSleepActual, 7, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 15);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -749,7 +939,7 @@
             // 
             this.btnSaveSleepSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSaveSleepSchedule.Location = new System.Drawing.Point(663, 2);
-            this.btnSaveSleepSchedule.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSaveSleepSchedule.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveSleepSchedule.Name = "btnSaveSleepSchedule";
             this.btnSaveSleepSchedule.Size = new System.Drawing.Size(68, 19);
             this.btnSaveSleepSchedule.TabIndex = 15;
@@ -760,156 +950,20 @@
             // 
             this.btnSaveSleepActual.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSaveSleepActual.Location = new System.Drawing.Point(663, 25);
-            this.btnSaveSleepActual.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSaveSleepActual.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveSleepActual.Name = "btnSaveSleepActual";
             this.btnSaveSleepActual.Size = new System.Drawing.Size(68, 20);
             this.btnSaveSleepActual.TabIndex = 16;
             this.btnSaveSleepActual.Text = "Save";
             this.btnSaveSleepActual.UseVisualStyleBackColor = true;
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.dgvMedicine);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(2, 723);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox5.Size = new System.Drawing.Size(927, 74);
-            this.groupBox5.TabIndex = 4;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Medicine";
-            // 
-            // dgvMedicine
-            // 
-            this.dgvMedicine.AllowUserToAddRows = false;
-            this.dgvMedicine.AllowUserToDeleteRows = false;
-            this.dgvMedicine.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvMedicine.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvMedicine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMedicine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colMedicineName,
-            this.colMedicineTime,
-            this.colMedicineQty,
-            this.colMedicineUnit});
-            this.dgvMedicine.ContextMenuStrip = this.cmsMedicine;
-            this.dgvMedicine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMedicine.Location = new System.Drawing.Point(2, 15);
-            this.dgvMedicine.Name = "dgvMedicine";
-            this.dgvMedicine.ReadOnly = true;
-            this.dgvMedicine.Size = new System.Drawing.Size(923, 57);
-            this.dgvMedicine.TabIndex = 4;
-            // 
-            // colMedicineName
-            // 
-            this.colMedicineName.HeaderText = "Medicine Name";
-            this.colMedicineName.Name = "colMedicineName";
-            this.colMedicineName.ReadOnly = true;
-            this.colMedicineName.Width = 200;
-            // 
-            // colMedicineTime
-            // 
-            this.colMedicineTime.HeaderText = "Taken Time";
-            this.colMedicineTime.Name = "colMedicineTime";
-            this.colMedicineTime.ReadOnly = true;
-            this.colMedicineTime.Width = 200;
-            // 
-            // colMedicineQty
-            // 
-            this.colMedicineQty.HeaderText = "Qty";
-            this.colMedicineQty.Name = "colMedicineQty";
-            this.colMedicineQty.ReadOnly = true;
-            // 
-            // colMedicineUnit
-            // 
-            this.colMedicineUnit.HeaderText = "Unit";
-            this.colMedicineUnit.Name = "colMedicineUnit";
-            this.colMedicineUnit.ReadOnly = true;
-            // 
-            // cmsMedicine
-            // 
-            this.cmsMedicine.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsMedicine.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmAddMedicine,
-            this.tsmDeleteMedicine});
-            this.cmsMedicine.Name = "cmsMedicine";
-            this.cmsMedicine.Size = new System.Drawing.Size(108, 48);
-            // 
-            // tsmAddMedicine
-            // 
-            this.tsmAddMedicine.Name = "tsmAddMedicine";
-            this.tsmAddMedicine.Size = new System.Drawing.Size(107, 22);
-            this.tsmAddMedicine.Text = "Add";
-            // 
-            // tsmDeleteMedicine
-            // 
-            this.tsmDeleteMedicine.Name = "tsmDeleteMedicine";
-            this.tsmDeleteMedicine.Size = new System.Drawing.Size(107, 22);
-            this.tsmDeleteMedicine.Text = "Delete";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.dataGridView1);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 571);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(925, 147);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Financial";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colVoucherSummary,
-            this.colVoucherTask,
-            this.colVoucherDebit,
-            this.colVoucherDebitAmount,
-            this.colVoucherDebitCurrency,
-            this.colVoucherCredit,
-            this.colVoucherCreditAmount,
-            this.colVoucherCreditCurrency});
-            this.dataGridView1.ContextMenuStrip = this.cmsFinancial;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(919, 128);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // cmsFinancial
-            // 
-            this.cmsFinancial.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsFinancial.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmAddFinancial,
-            this.tsmDeleteFinancial});
-            this.cmsFinancial.Name = "cmsFinancial";
-            this.cmsFinancial.Size = new System.Drawing.Size(108, 48);
-            // 
-            // tsmAddFinancial
-            // 
-            this.tsmAddFinancial.Name = "tsmAddFinancial";
-            this.tsmAddFinancial.Size = new System.Drawing.Size(107, 22);
-            this.tsmAddFinancial.Text = "Add";
-            // 
-            // tsmDeleteFinancial
-            // 
-            this.tsmDeleteFinancial.Name = "tsmDeleteFinancial";
-            this.tsmDeleteFinancial.Size = new System.Drawing.Size(107, 22);
-            this.tsmDeleteFinancial.Text = "Delete";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel6);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 406);
+            this.groupBox2.Location = new System.Drawing.Point(3, 364);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(735, 128);
+            this.groupBox2.Size = new System.Drawing.Size(735, 170);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Work Out";
@@ -927,12 +981,12 @@
             this.tableLayoutPanel6.Controls.Add(this.label11, 1, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 16);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(729, 109);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(729, 151);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // dgvWorkOutSchedule
@@ -950,7 +1004,7 @@
             this.dgvWorkOutSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvWorkOutSchedule.Location = new System.Drawing.Point(3, 24);
             this.dgvWorkOutSchedule.Name = "dgvWorkOutSchedule";
-            this.dgvWorkOutSchedule.Size = new System.Drawing.Size(351, 82);
+            this.dgvWorkOutSchedule.Size = new System.Drawing.Size(351, 124);
             this.dgvWorkOutSchedule.TabIndex = 6;
             // 
             // colWorkOutType
@@ -1017,7 +1071,7 @@
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(375, 24);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(351, 82);
+            this.dataGridView2.Size = new System.Drawing.Size(351, 124);
             this.dataGridView2.TabIndex = 7;
             // 
             // dataGridViewTextBoxColumn1
@@ -1088,44 +1142,21 @@
             this.label11.Location = new System.Drawing.Point(359, 21);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(11, 88);
+            this.label11.Size = new System.Drawing.Size(11, 130);
             this.label11.TabIndex = 10;
             this.label11.Text = "→";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tableLayoutPanel8
+            // groupBox6
             // 
-            this.tableLayoutPanel8.ColumnCount = 2;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.4578F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.54221F));
-            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel10, 1, 0);
-            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel11, 0, 0);
-            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 31);
-            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 1;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(931, 537);
-            this.tableLayoutPanel8.TabIndex = 5;
-            // 
-            // tableLayoutPanel10
-            // 
-            this.tableLayoutPanel10.ColumnCount = 1;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Controls.Add(this.groupBox1, 0, 1);
-            this.tableLayoutPanel10.Controls.Add(this.groupBox4, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.groupBox2, 0, 2);
-            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(190, 0);
-            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 3;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.42857F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.57143F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(741, 537);
-            this.tableLayoutPanel10.TabIndex = 0;
+            this.groupBox6.Controls.Add(this.dgvEvent);
+            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox6.Location = new System.Drawing.Point(3, 420);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(184, 114);
+            this.groupBox6.TabIndex = 4;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Event";
             // 
             // tableLayoutPanel11
             // 
@@ -1139,29 +1170,8 @@
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(184, 531);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(184, 411);
             this.tableLayoutPanel11.TabIndex = 1;
-            // 
-            // picSchedule
-            // 
-            this.picSchedule.BackColor = System.Drawing.Color.White;
-            this.picSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picSchedule.Location = new System.Drawing.Point(3, 29);
-            this.picSchedule.Name = "picSchedule";
-            this.picSchedule.Size = new System.Drawing.Size(80, 493);
-            this.picSchedule.TabIndex = 1;
-            this.picSchedule.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Schedule";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel3
             // 
@@ -1175,56 +1185,110 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(86, 525);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(86, 405);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // colVoucherSummary
+            // label1
             // 
-            this.colVoucherSummary.HeaderText = "Summary";
-            this.colVoucherSummary.Name = "colVoucherSummary";
-            this.colVoucherSummary.ReadOnly = true;
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 26);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Schedule";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // colVoucherTask
+            // picSchedule
             // 
-            this.colVoucherTask.HeaderText = "Task";
-            this.colVoucherTask.Name = "colVoucherTask";
-            this.colVoucherTask.ReadOnly = true;
+            this.picSchedule.BackColor = System.Drawing.Color.White;
+            this.picSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picSchedule.Location = new System.Drawing.Point(3, 29);
+            this.picSchedule.Name = "picSchedule";
+            this.picSchedule.Size = new System.Drawing.Size(80, 373);
+            this.picSchedule.TabIndex = 1;
+            this.picSchedule.TabStop = false;
             // 
-            // colVoucherDebit
+            // tableLayoutPanel4
             // 
-            this.colVoucherDebit.HeaderText = "Debit";
-            this.colVoucherDebit.Name = "colVoucherDebit";
-            this.colVoucherDebit.ReadOnly = true;
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.picLog, 0, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(95, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(86, 405);
+            this.tableLayoutPanel4.TabIndex = 1;
             // 
-            // colVoucherDebitAmount
+            // label2
             // 
-            this.colVoucherDebitAmount.HeaderText = "Amount";
-            this.colVoucherDebitAmount.Name = "colVoucherDebitAmount";
-            this.colVoucherDebitAmount.ReadOnly = true;
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 26);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Log";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // colVoucherDebitCurrency
+            // picLog
             // 
-            this.colVoucherDebitCurrency.HeaderText = "Currency";
-            this.colVoucherDebitCurrency.Name = "colVoucherDebitCurrency";
-            this.colVoucherDebitCurrency.ReadOnly = true;
+            this.picLog.BackColor = System.Drawing.Color.White;
+            this.picLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picLog.Location = new System.Drawing.Point(3, 29);
+            this.picLog.Name = "picLog";
+            this.picLog.Size = new System.Drawing.Size(80, 373);
+            this.picLog.TabIndex = 1;
+            this.picLog.TabStop = false;
             // 
-            // colVoucherCredit
+            // dgvEvent
             // 
-            this.colVoucherCredit.HeaderText = "Credit";
-            this.colVoucherCredit.Name = "colVoucherCredit";
-            this.colVoucherCredit.ReadOnly = true;
+            this.dgvEvent.AllowUserToAddRows = false;
+            this.dgvEvent.AllowUserToDeleteRows = false;
+            this.dgvEvent.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvEvent.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvEvent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEvent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colEventName,
+            this.colEventIsSucceed});
+            this.dgvEvent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEvent.Location = new System.Drawing.Point(3, 16);
+            this.dgvEvent.Name = "dgvEvent";
+            this.dgvEvent.ReadOnly = true;
+            this.dgvEvent.Size = new System.Drawing.Size(178, 95);
+            this.dgvEvent.TabIndex = 0;
             // 
-            // colVoucherCreditAmount
+            // colEventName
             // 
-            this.colVoucherCreditAmount.HeaderText = "Amount";
-            this.colVoucherCreditAmount.Name = "colVoucherCreditAmount";
-            this.colVoucherCreditAmount.ReadOnly = true;
+            this.colEventName.HeaderText = "Event Name";
+            this.colEventName.Name = "colEventName";
+            this.colEventName.ReadOnly = true;
             // 
-            // colVoucherCreditCurrency
+            // colEventIsSucceed
             // 
-            this.colVoucherCreditCurrency.HeaderText = "Currency";
-            this.colVoucherCreditCurrency.Name = "colVoucherCreditCurrency";
-            this.colVoucherCreditCurrency.ReadOnly = true;
+            this.colEventIsSucceed.HeaderText = "√";
+            this.colEventIsSucceed.Name = "colEventIsSucceed";
+            this.colEventIsSucceed.ReadOnly = true;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.groupBox6, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel11, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.65363F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.34637F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(190, 537);
+            this.tableLayoutPanel5.TabIndex = 1;
             // 
             // frmDaily
             // 
@@ -1246,26 +1310,25 @@
             this.stsDaily.ResumeLayout(false);
             this.stsDaily.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLog)).EndInit();
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSchedule)).EndInit();
-            this.cmsSchedule.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLog)).EndInit();
-            this.cmsLog.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMedicine)).EndInit();
             this.cmsMedicine.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.cmsFinancial.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSchedule)).EndInit();
+            this.cmsSchedule.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLog)).EndInit();
+            this.cmsLog.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
@@ -1273,12 +1336,16 @@
             this.cmsWorkOutSchedule.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.cmsWorkOutLog.ResumeLayout(false);
-            this.tableLayoutPanel8.ResumeLayout(false);
-            this.tableLayoutPanel10.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picSchedule)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSchedule)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLog)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEvent)).EndInit();
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1394,5 +1461,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colVoucherCredit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colVoucherCreditAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colVoucherCreditCurrency;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.DataGridView dgvEvent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEventName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEventIsSucceed;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
     }
 }

@@ -14,8 +14,6 @@ namespace LifeGame
     [Serializable]
     public class Mem
     {
-        public List<CAchievement> lstAchievement = new List<CAchievement>();
-        public List<RPreReqAchievement> lstPreReqAchievement = new List<RPreReqAchievement>();
         public List<CEvent> lstEvent = new List<CEvent>();
         public List<CTask> lstTask = new List<CTask>();
         public List<RSubTask> lstSubTask = new List<RSubTask>();

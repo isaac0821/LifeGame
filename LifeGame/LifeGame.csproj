@@ -176,9 +176,6 @@
     <None Include="Resource\iconUnfinished.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resource\iconUnStarted.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resource\iconIn.png" />
   </ItemGroup>
   <ItemGroup>

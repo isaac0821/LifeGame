@@ -171,5 +171,10 @@ namespace LifeGame
                 }
             }
         }
+
+        public void DrawTimeSpent(PictureBox picMap, List<CLog> logs, List<CTask> tasks)
+        {
+
+        }
     }
 }

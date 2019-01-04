@@ -46,39 +46,10 @@ namespace LifeGame
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            Deserialize();
+            //Deserialize();
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
             DrawLog();
-
-            G.glb.lstSubTask.Add(new RSubTask());
-            G.glb.lstSubTask[0].Task = "(Root)";
-            G.glb.lstSubTask[0].SubTask = "R1";
-            G.glb.lstSubTask[0].index = 0;
-            G.glb.lstSubTask.Add(new RSubTask());
-            G.glb.lstSubTask[1].Task = "(Root)";
-            G.glb.lstSubTask[1].SubTask = "R2";
-            G.glb.lstSubTask[1].index = 1;
-            G.glb.lstSubTask.Add(new RSubTask());
-            G.glb.lstSubTask[2].Task = "(Root)";
-            G.glb.lstSubTask[2].SubTask = "R3";
-            G.glb.lstSubTask[2].index = 2;
-            G.glb.lstSubTask.Add(new RSubTask());
-            G.glb.lstSubTask[3].Task = "R1";
-            G.glb.lstSubTask[3].SubTask = "R11";
-            G.glb.lstSubTask[3].index = 0;
-            G.glb.lstSubTask.Add(new RSubTask());
-            G.glb.lstSubTask[4].Task = "R1";
-            G.glb.lstSubTask[4].SubTask = "R12";
-            G.glb.lstSubTask[4].index = 1;
-            G.glb.lstSubTask.Add(new RSubTask());
-            G.glb.lstSubTask[5].Task = "R12";
-            G.glb.lstSubTask[5].SubTask = "R121";
-            G.glb.lstSubTask[5].index = 0;
-            G.glb.lstSubTask.Add(new RSubTask());
-            G.glb.lstSubTask[6].Task = "R12";
-            G.glb.lstSubTask[6].SubTask = "R122";
-            G.glb.lstSubTask[6].index = 1;
         }
         
         private void frmMain_Resize(object sender, EventArgs e)

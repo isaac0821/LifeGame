@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace LifeGame
 {
     /// <summary>
-    /// 前置逻辑关系
+    /// 逻辑关系
     /// </summary>
-    public enum EPreReq : int
+    public enum ELogic : int
     {
         OR,
         AND,
@@ -23,6 +23,7 @@ namespace LifeGame
     public class CAchievement
     {
         public string AchievementName;
+        public string Description;
         public int TotalProgressPoint;
         public bool IsAchieved;
         public bool IsTerminated;
@@ -37,7 +38,7 @@ namespace LifeGame
     {
         public string Achievement;
         public string PreReqAchievement;
-        public EPreReq PreReqLogic;
+        public ELogic PreReqLogic;
     }
 
     public enum EEventState : int
@@ -55,8 +56,13 @@ namespace LifeGame
     {
         public string EventName;
         public EEventState EventState;
-        public string ContributionToAchievement;
-        public int ContributionPoint;
+    }
+
+    public enum ETaskState : int
+    {
+        UnFinished,
+        Finished,
+        Aborted
     }
 
     /// <summary>
@@ -67,21 +73,9 @@ namespace LifeGame
     {
         public string TaskName;
         public DateTime DeadLine;
-        public bool IsAbort;
+        public ETaskState TaskState;
         public bool IsBottom;
         public bool IsInfinite;
-        public bool IsFinished;
-    }
-
-    /// <summary>
-    /// 任务对成就的贡献度
-    /// </summary>
-    [Serializable]
-    public class RTaskContributionToAchievement
-    {
-        public string TaskName;
-        public string ContributionToAchievement;
-        public int ContributionPoint;
     }
 
     /// <summary>
