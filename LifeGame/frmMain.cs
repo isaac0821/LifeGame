@@ -50,6 +50,35 @@ namespace LifeGame
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
             DrawLog();
+
+            G.glb.lstSubTask.Add(new RSubTask());
+            G.glb.lstSubTask[0].Task = "(Root)";
+            G.glb.lstSubTask[0].SubTask = "R1";
+            G.glb.lstSubTask[0].index = 0;
+            G.glb.lstSubTask.Add(new RSubTask());
+            G.glb.lstSubTask[1].Task = "(Root)";
+            G.glb.lstSubTask[1].SubTask = "R2";
+            G.glb.lstSubTask[1].index = 1;
+            G.glb.lstSubTask.Add(new RSubTask());
+            G.glb.lstSubTask[2].Task = "(Root)";
+            G.glb.lstSubTask[2].SubTask = "R3";
+            G.glb.lstSubTask[2].index = 2;
+            G.glb.lstSubTask.Add(new RSubTask());
+            G.glb.lstSubTask[3].Task = "R1";
+            G.glb.lstSubTask[3].SubTask = "R11";
+            G.glb.lstSubTask[3].index = 0;
+            G.glb.lstSubTask.Add(new RSubTask());
+            G.glb.lstSubTask[4].Task = "R1";
+            G.glb.lstSubTask[4].SubTask = "R12";
+            G.glb.lstSubTask[4].index = 1;
+            G.glb.lstSubTask.Add(new RSubTask());
+            G.glb.lstSubTask[5].Task = "R12";
+            G.glb.lstSubTask[5].SubTask = "R121";
+            G.glb.lstSubTask[5].index = 0;
+            G.glb.lstSubTask.Add(new RSubTask());
+            G.glb.lstSubTask[6].Task = "R12";
+            G.glb.lstSubTask[6].SubTask = "R122";
+            G.glb.lstSubTask[6].index = 1;
         }
         
         private void frmMain_Resize(object sender, EventArgs e)
@@ -341,43 +370,41 @@ namespace LifeGame
             Draw Draw = new Draw();
             if (chkShowSchedule.Checked && chkShowLog.Checked)
             {
-                Draw.DrawScheduleAndLog(picMon, SelectedMonday, G.glb.lstSchedule, G.glb.lstHealth, true, "left");
-                Draw.DrawScheduleAndLog(picTue, SelectedTuesday, G.glb.lstSchedule, G.glb.lstHealth, true, "left");
-                Draw.DrawScheduleAndLog(picWed, SelectedWednesday, G.glb.lstSchedule, G.glb.lstHealth, true, "left");
-                Draw.DrawScheduleAndLog(picThu, SelectedThursday, G.glb.lstSchedule, G.glb.lstHealth, true, "left");
-                Draw.DrawScheduleAndLog(picFri, SelectedFriday, G.glb.lstSchedule, G.glb.lstHealth, true, "left");
-                Draw.DrawScheduleAndLog(picSat, SelectedSaturday, G.glb.lstSchedule, G.glb.lstHealth, true, "left");
-                Draw.DrawScheduleAndLog(picSun, SelectedSunday, G.glb.lstSchedule, G.glb.lstHealth, true, "left");
-                Draw.DrawScheduleAndLog(picMon, SelectedMonday, G.glb.lstLog, G.glb.lstHealth, true, "right");
-                Draw.DrawScheduleAndLog(picTue, SelectedTuesday, G.glb.lstLog, G.glb.lstHealth, true, "right");
-                Draw.DrawScheduleAndLog(picWed, SelectedWednesday, G.glb.lstLog, G.glb.lstHealth, true, "right");
-                Draw.DrawScheduleAndLog(picThu, SelectedThursday, G.glb.lstLog, G.glb.lstHealth, true, "right");
-                Draw.DrawScheduleAndLog(picFri, SelectedFriday, G.glb.lstLog, G.glb.lstHealth, true, "right");
-                Draw.DrawScheduleAndLog(picSat, SelectedSaturday, G.glb.lstLog, G.glb.lstHealth, true, "right");
-                Draw.DrawScheduleAndLog(picSun, SelectedSunday, G.glb.lstLog, G.glb.lstHealth, true, "right");
+                Draw.DrawScheduleAndLog(picMon, SelectedMonday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
+                Draw.DrawScheduleAndLog(picTue, SelectedTuesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
+                Draw.DrawScheduleAndLog(picWed, SelectedWednesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
+                Draw.DrawScheduleAndLog(picThu, SelectedThursday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
+                Draw.DrawScheduleAndLog(picFri, SelectedFriday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
+                Draw.DrawScheduleAndLog(picSat, SelectedSaturday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
+                Draw.DrawScheduleAndLog(picSun, SelectedSunday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
+                Draw.DrawScheduleAndLog(picMon, SelectedMonday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
+                Draw.DrawScheduleAndLog(picTue, SelectedTuesday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
+                Draw.DrawScheduleAndLog(picWed, SelectedWednesday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
+                Draw.DrawScheduleAndLog(picThu, SelectedThursday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
+                Draw.DrawScheduleAndLog(picFri, SelectedFriday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
+                Draw.DrawScheduleAndLog(picSat, SelectedSaturday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
+                Draw.DrawScheduleAndLog(picSun, SelectedSunday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
             }
             else if (chkShowSchedule.Checked && !chkShowLog.Checked)
             {
-                Draw.DrawScheduleAndLog(picMon, SelectedMonday, G.glb.lstSchedule, G.glb.lstHealth, true, "all");
-                Draw.DrawScheduleAndLog(picTue, SelectedTuesday, G.glb.lstSchedule, G.glb.lstHealth, true, "all");
-                Draw.DrawScheduleAndLog(picWed, SelectedWednesday, G.glb.lstSchedule, G.glb.lstHealth, true, "all");
-                Draw.DrawScheduleAndLog(picThu, SelectedThursday, G.glb.lstSchedule, G.glb.lstHealth, true, "all");
-                Draw.DrawScheduleAndLog(picFri, SelectedFriday, G.glb.lstSchedule, G.glb.lstHealth, true, "all");
-                Draw.DrawScheduleAndLog(picSat, SelectedSaturday, G.glb.lstSchedule, G.glb.lstHealth, true, "all");
-                Draw.DrawScheduleAndLog(picSun, SelectedSunday, G.glb.lstSchedule, G.glb.lstHealth, true, "all");
+                Draw.DrawScheduleAndLog(picMon, SelectedMonday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
+                Draw.DrawScheduleAndLog(picTue, SelectedTuesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
+                Draw.DrawScheduleAndLog(picWed, SelectedWednesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
+                Draw.DrawScheduleAndLog(picThu, SelectedThursday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
+                Draw.DrawScheduleAndLog(picFri, SelectedFriday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
+                Draw.DrawScheduleAndLog(picSat, SelectedSaturday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
+                Draw.DrawScheduleAndLog(picSun, SelectedSunday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
             }
             else if (!chkShowSchedule.Checked && chkShowLog.Checked)
             {
-                Draw.DrawScheduleAndLog(picMon, SelectedMonday, G.glb.lstLog, G.glb.lstHealth, true, "all");
-                Draw.DrawScheduleAndLog(picTue, SelectedTuesday, G.glb.lstLog, G.glb.lstHealth, true, "all");
-                Draw.DrawScheduleAndLog(picWed, SelectedWednesday, G.glb.lstLog, G.glb.lstHealth, true, "all");
-                Draw.DrawScheduleAndLog(picThu, SelectedThursday, G.glb.lstLog, G.glb.lstHealth, true, "all");
-                Draw.DrawScheduleAndLog(picFri, SelectedFriday, G.glb.lstLog, G.glb.lstHealth, true, "all");
-                Draw.DrawScheduleAndLog(picSat, SelectedSaturday, G.glb.lstLog, G.glb.lstHealth, true, "all");
-                Draw.DrawScheduleAndLog(picSun, SelectedSunday, G.glb.lstLog, G.glb.lstHealth, true, "all");
-            }
-                        
-
+                Draw.DrawScheduleAndLog(picMon, SelectedMonday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
+                Draw.DrawScheduleAndLog(picTue, SelectedTuesday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
+                Draw.DrawScheduleAndLog(picWed, SelectedWednesday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
+                Draw.DrawScheduleAndLog(picThu, SelectedThursday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
+                Draw.DrawScheduleAndLog(picFri, SelectedFriday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
+                Draw.DrawScheduleAndLog(picSat, SelectedSaturday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
+                Draw.DrawScheduleAndLog(picSun, SelectedSunday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
+            }         
         }
     }
 }

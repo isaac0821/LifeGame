@@ -40,7 +40,7 @@ namespace LifeGame
         public EPreReq PreReqLogic;
     }
 
-    public enum ECheckState : int
+    public enum EEventState : int
     {
         Waiting,
         Succeed,
@@ -48,13 +48,13 @@ namespace LifeGame
     }
 
     /// <summary>
-    /// 外部不可控项
+    /// 外部事件
     /// </summary>
     [Serializable]
-    public class CCheck
+    public class CEvent
     {
-        public string CheckName;
-        public ECheckState CheckState;
+        public string EventName;
+        public EEventState EventState;
         public string ContributionToAchievement;
         public int ContributionPoint;
     }
@@ -71,6 +71,15 @@ namespace LifeGame
         public bool IsBottom;
         public bool IsInfinite;
         public bool IsFinished;
+    }
+
+    /// <summary>
+    /// 任务对成就的贡献度
+    /// </summary>
+    [Serializable]
+    public class RTaskContributionToAchievement
+    {
+        public string TaskName;
         public string ContributionToAchievement;
         public int ContributionPoint;
     }
@@ -96,7 +105,6 @@ namespace LifeGame
         public DateTime StartTime;
         public DateTime EndTime;
         public string ContributionToTask;
-        public int ProgressPercentageToTask;
         public string Location;
         public string WithWho;
         public string Color;
@@ -112,10 +120,10 @@ namespace LifeGame
         public DateTime Date;
         public string DebitAccount;
         public string CreditAccount;
-        public double Amount;
+        public double DebitAmount;
+        public double CreditAmount;
         public string DebitCurrency;
         public string CreditCurrency;
-        public string RelateToTask;
     }
 
     public enum EAccountType: int
@@ -149,16 +157,15 @@ namespace LifeGame
     }
 
     /// <summary>
-    /// 起居记录
+    /// 睡眠记录
     /// </summary>
     [Serializable]
-    public class CHealth
+    public class CSleep
     {
         public DateTime Date;
         public DateTime GetUpTime;
         public DateTime GoToBedTime;
         public bool IsGoToBedBeforeMidNight;
-        public double Weight;
     }
 
     /// <summary>

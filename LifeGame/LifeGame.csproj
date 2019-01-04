@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CLogs.cs" />
     <Compile Include="Draw.cs" />
+    <Compile Include="CalAndFind.cs" />
     <Compile Include="frmAccount.cs">
       <SubType>Form</SubType>
     </Compile>

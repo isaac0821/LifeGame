@@ -11,7 +11,7 @@ namespace LifeGame
     public class Draw
     {
         /// <summary>
-        /// 返回Color格式的颜色
+        /// 返回Color格式的颜色 Done: 01/03/2019
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
@@ -55,7 +55,7 @@ namespace LifeGame
         }
 
         /// <summary>
-        /// 绘制计划图或日志图
+        /// 绘制计划图或日志图 Done: 01/03/2019
         /// </summary>
         /// <param name="picMap">画布</param>
         /// <param name="date">日期</param>
@@ -63,7 +63,7 @@ namespace LifeGame
         /// <param name="healths">健康日志</param>
         /// <param name="IsLabelShown">是否显示标签</param>
         /// <param name="LocationMode">位置模式："all" - 全部; "left" - 左侧; "right" - 右侧</param>
-        public void DrawScheduleAndLog(PictureBox picMap, DateTime date, List<CLog> logs, List<CHealth> healths, bool IsLabelShown, string LocationMode)
+        public void DrawScheduleAndLog(PictureBox picMap, DateTime date, List<CLog> logs, List<CSleep> healths, bool IsLabelShown, string LocationMode)
         {
             int left = 0;
             int width = picMap.Width;
@@ -87,8 +87,8 @@ namespace LifeGame
             rct.FillRectangle(new SolidBrush(Color.White), left, 0, width, height);
             List<CLog> todayLogs = logs.FindAll(o => o.StartTime.Date == date).ToList();
             List<CLog> yesterdayLogs = logs.FindAll(o => o.StartTime.Date == date.AddDays(-1) && o.EndTime.Date == date).ToList();
-            CHealth todaySleep = healths.Find(o => o.Date == date);
-            CHealth tomorrowSleep = healths.Find(o => o.Date == date.AddDays(1));
+            CSleep todaySleep = healths.Find(o => o.Date == date);
+            CSleep tomorrowSleep = healths.Find(o => o.Date == date.AddDays(1));
 
             if (healths.Exists(o => o.Date == date))
             {

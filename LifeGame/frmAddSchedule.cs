@@ -90,7 +90,6 @@ namespace LifeGame
                     newSchedule.Location = txtWhere.Text;
                     newSchedule.WithWho = txtWith.Text;
                     newSchedule.ContributionToTask = cbxTask.Text;
-                    newSchedule.ProgressPercentageToTask = txtPercent.Text == "" ? 0 : Convert.ToInt16(txtPercent.Text);
                     newSchedule.Color = cbxColor.Text;
                     G.glb.lstSchedule.Add(newSchedule);
                 }

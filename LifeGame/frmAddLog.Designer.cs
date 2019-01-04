@@ -34,10 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.cbxColor = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtPercent = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dtpTimeStart = new System.Windows.Forms.DateTimePicker();
@@ -122,21 +119,18 @@
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 8;
+            this.tableLayoutPanel5.ColumnCount = 5;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel5.Controls.Add(this.cbxColor, 5, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label4, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label5, 4, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label6, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.txtPercent, 2, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnAdd, 7, 0);
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tableLayoutPanel5.Controls.Add(this.cbxColor, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.label5, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnAdd, 4, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(60, 130);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
@@ -166,17 +160,6 @@
             this.cbxColor.Size = new System.Drawing.Size(61, 21);
             this.cbxColor.TabIndex = 0;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(44, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 26);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "percent";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -187,25 +170,6 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Color";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(143, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(16, 26);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "%";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtPercent
-            // 
-            this.txtPercent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPercent.Location = new System.Drawing.Point(108, 3);
-            this.txtPercent.Name = "txtPercent";
-            this.txtPercent.Size = new System.Drawing.Size(29, 20);
-            this.txtPercent.TabIndex = 4;
             // 
             // btnAdd
             // 
@@ -405,10 +369,6 @@
         private System.Windows.Forms.CheckBox chkPlusOneDay;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.ComboBox cbxColor;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtPercent;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.ComboBox cbxTask;
@@ -419,5 +379,6 @@
         private System.Windows.Forms.TextBox txtWith;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
     }
 }

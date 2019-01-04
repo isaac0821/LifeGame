@@ -38,7 +38,6 @@ namespace LifeGame
             newLog.Location = txtWhere.Text;
             newLog.WithWho = txtWith.Text;
             newLog.ContributionToTask = cbxTask.Text;
-            newLog.ProgressPercentageToTask = txtPercent.Text == "" ? 0 : Convert.ToInt16(txtPercent.Text);
             newLog.Color = cbxColor.Text;
             G.glb.lstLog.Add(newLog);
             DrawLog();

@@ -16,7 +16,7 @@ namespace LifeGame
     {
         public List<CAchievement> lstAchievement = new List<CAchievement>();
         public List<RPreReqAchievement> lstPreReqAchievement = new List<RPreReqAchievement>();
-        public List<CCheck> lstCheck = new List<CCheck>();
+        public List<CEvent> lstEvent = new List<CEvent>();
         public List<CTask> lstTask = new List<CTask>();
         public List<RSubTask> lstSubTask = new List<RSubTask>();
         public List<CLog> lstSchedule = new List<CLog>();
@@ -24,8 +24,10 @@ namespace LifeGame
         public List<CMoneyDetail> lstMoneyDetail = new List<CMoneyDetail>();
         public List<CAccount> lstAccount = new List<CAccount>();
         public List<RSubAccount> lstSubAccount = new List<RSubAccount>();
-        public List<CHealth> lstHealth = new List<CHealth>();
-        public List<CWorkOut> lstWorkOut = new List<CWorkOut>();
+        public List<CSleep> lstSleepSchedule = new List<CSleep>();
+        public List<CSleep> lstSleepLog = new List<CSleep>();
+        public List<CWorkOut> lstWorkOutSchedule = new List<CWorkOut>();
+        public List<CWorkOut> lstWorkOutLog = new List<CWorkOut>();
         public List<CMedicine> lstMedicine = new List<CMedicine>();
     }
 }
