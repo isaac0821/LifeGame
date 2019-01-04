@@ -33,3 +33,4 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.CoreCompileInputs.cache
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.exe
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.pdb
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddVoucher.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.icon.resources

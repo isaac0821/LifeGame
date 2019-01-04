@@ -123,16 +123,6 @@ namespace LifeGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap iconUnStarted {
-            get {
-                object obj = ResourceManager.GetObject("iconUnStarted", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap iconWW {
             get {
                 object obj = ResourceManager.GetObject("iconWW", resourceCulture);

@@ -102,6 +102,11 @@
       <DependentUpon>frmTask.cs</DependentUpon>
     </Compile>
     <Compile Include="Glb.cs" />
+    <Compile Include="icon.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>icon.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAccount.resx">
@@ -131,6 +136,10 @@
     <EmbeddedResource Include="frmTask.resx">
       <DependentUpon>frmTask.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="icon.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>icon.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -153,6 +162,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\iconWW.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\iconAbort.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\iconFinished.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\iconUnfinished.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\iconUnStarted.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\iconIn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\iconInAndOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\iconOut.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

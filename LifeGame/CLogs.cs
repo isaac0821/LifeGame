@@ -128,9 +128,26 @@ namespace LifeGame
 
     public enum EAccountType: int
     {
+        /// <summary>
+        /// 资产
+        /// </summary>
         Assets,
+        /// <summary>
+        /// 费用
+        /// </summary>
+        Expense,
+        /// <summary>
+        /// 负债
+        /// </summary>
         Liability,
-        Others
+        /// <summary>
+        /// 所有者权益
+        /// </summary>
+        Equity,
+        /// <summary>
+        /// 收入
+        /// </summary>
+        Income
     }
 
     /// <summary>
@@ -141,7 +158,6 @@ namespace LifeGame
     {
         public string AccountName;
         public EAccountType AccountType;
-        public string Note;
         public string Currency;
     }
 
