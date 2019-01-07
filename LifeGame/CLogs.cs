@@ -58,13 +58,6 @@ namespace LifeGame
         public EEventState EventState;
     }
 
-    public enum ETaskState : int
-    {
-        UnFinished,
-        Finished,
-        Aborted
-    }
-
     /// <summary>
     /// 任务
     /// </summary>
@@ -73,8 +66,9 @@ namespace LifeGame
     {
         public string TaskName;
         public DateTime DeadLine;
-        public ETaskState TaskState;
+        public bool IsFinished;
         public bool IsBottom;
+        public bool IsAbort;
         public bool IsInfinite;
     }
 

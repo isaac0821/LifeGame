@@ -46,10 +46,67 @@ namespace LifeGame
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            //Deserialize();
+            Deserialize();
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
             DrawLog();
+
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[0].Task = "(Root)";
+            //G.glb.lstSubTask[0].SubTask = "R1";
+            //G.glb.lstSubTask[0].index = 0;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[1].Task = "(Root)";
+            //G.glb.lstSubTask[1].SubTask = "R2";
+            //G.glb.lstSubTask[1].index = 1;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[2].Task = "(Root)";
+            //G.glb.lstSubTask[2].SubTask = "R3";
+            //G.glb.lstSubTask[2].index = 2;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[3].Task = "R2";
+            //G.glb.lstSubTask[3].SubTask = "R21";
+            //G.glb.lstSubTask[3].index = 0;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[4].Task = "R2";
+            //G.glb.lstSubTask[4].SubTask = "R22";
+            //G.glb.lstSubTask[4].index = 1;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[5].Task = "R2";
+            //G.glb.lstSubTask[5].SubTask = "R23";
+            //G.glb.lstSubTask[5].index = 2;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[6].Task = "R22";
+            //G.glb.lstSubTask[6].SubTask = "R221";
+            //G.glb.lstSubTask[6].index = 0;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[7].Task = "R22";
+            //G.glb.lstSubTask[7].SubTask = "R222";
+            //G.glb.lstSubTask[7].index = 1;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[8].Task = "R22";
+            //G.glb.lstSubTask[8].SubTask = "R223";
+            //G.glb.lstSubTask[8].index = 2;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[9].Task = "R23";
+            //G.glb.lstSubTask[9].SubTask = "R231";
+            //G.glb.lstSubTask[9].index = 0;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[10].Task = "R23";
+            //G.glb.lstSubTask[10].SubTask = "R232";
+            //G.glb.lstSubTask[10].index = 1;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[11].Task = "R23";
+            //G.glb.lstSubTask[11].SubTask = "R233";
+            //G.glb.lstSubTask[11].index = 2;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[12].Task = "R232";
+            //G.glb.lstSubTask[12].SubTask = "R2321";
+            //G.glb.lstSubTask[12].index = 0;
+            //G.glb.lstSubTask.Add(new RSubTask());
+            //G.glb.lstSubTask[13].Task = "R232";
+            //G.glb.lstSubTask[13].SubTask = "R2322";
+            //G.glb.lstSubTask[13].index = 1;
         }
         
         private void frmMain_Resize(object sender, EventArgs e)
@@ -299,37 +356,31 @@ namespace LifeGame
             SelectedDate = SelectedMonday;
             dtpDate.Value = SelectedDate;
         }
-
         private void picTue_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedTuesday;
             dtpDate.Value = SelectedDate;
         }
-
         private void picWed_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedWednesday;
             dtpDate.Value = SelectedDate;
         }
-
         private void picThu_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedThursday;
             dtpDate.Value = SelectedDate;
         }
-
         private void picFri_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedFriday;
             dtpDate.Value = SelectedDate;
         }
-
         private void picSat_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedSaturday;
             dtpDate.Value = SelectedDate;
         }
-
         private void picSun_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedSunday;

@@ -41,12 +41,20 @@ namespace LifeGame
             newLog.Color = cbxColor.Text;
             G.glb.lstLog.Add(newLog);
             DrawLog();
-            Close();
+            Dispose();
         }
 
         private void frmAddLog_Load(object sender, EventArgs e)
         {
             dtpDate.Value = curDate;
+            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.IsBottom && !o.IsFinished && !o.IsAbort).ToList();
+            List<string> choices = new List<string>();
+            foreach (CTask task in taskChoices)
+            {
+                choices.Add(task.TaskName);
+            }
+            cbxTask.DataSource = choices;
+            cbxColor.SelectedIndex = 0;
         }
 
         private void dtpDate_ValueChanged(object sender, EventArgs e)

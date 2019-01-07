@@ -11,6 +11,7 @@
     <AssemblyName>LifeGame</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,8 +32,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,6 +63,12 @@
     <Compile Include="frmAchievement.Designer.cs">
       <DependentUpon>frmAchievement.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddAccount.Designer.cs">
+      <DependentUpon>frmAddAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddLog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,11 +81,17 @@
     <Compile Include="frmAddSchedule.Designer.cs">
       <DependentUpon>frmAddSchedule.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAddVoucher.cs">
+    <Compile Include="frmAddTask.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddVoucher.Designer.cs">
-      <DependentUpon>frmAddVoucher.cs</DependentUpon>
+    <Compile Include="frmAddTask.Designer.cs">
+      <DependentUpon>frmAddTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddTransaction.Designer.cs">
+      <DependentUpon>frmAddTransaction.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDaily.cs">
       <SubType>Form</SubType>
@@ -88,12 +104,6 @@
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmStat.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmStat.Designer.cs">
-      <DependentUpon>frmStat.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTask.cs">
       <SubType>Form</SubType>
@@ -121,17 +131,17 @@
     <EmbeddedResource Include="frmAddSchedule.resx">
       <DependentUpon>frmAddSchedule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddVoucher.resx">
-      <DependentUpon>frmAddVoucher.cs</DependentUpon>
+    <EmbeddedResource Include="frmAddTask.resx">
+      <DependentUpon>frmAddTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddTransaction.resx">
+      <DependentUpon>frmAddTransaction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDaily.resx">
       <DependentUpon>frmDaily.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmStat.resx">
-      <DependentUpon>frmStat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTask.resx">
       <DependentUpon>frmTask.cs</DependentUpon>

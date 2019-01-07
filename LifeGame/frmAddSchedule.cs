@@ -97,5 +97,17 @@ namespace LifeGame
             DrawLog();
             Close();
         }
+
+        private void frmAddSchedule_Load(object sender, EventArgs e)
+        {
+            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.IsBottom && !o.IsFinished && !o.IsAbort).ToList();
+            List<string> choices = new List<string>();
+            foreach (CTask task in taskChoices)
+            {
+                choices.Add(task.TaskName);
+            }
+            cbxTask.DataSource = choices;
+            cbxColor.SelectedIndex = 0;
+        }
     }
 }

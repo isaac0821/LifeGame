@@ -115,7 +115,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 26);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Period";
+            this.label2.Text = "By Period";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtSchedule
@@ -486,6 +486,7 @@
             this.MinimizeBox = false;
             this.Name = "frmAddSchedule";
             this.Text = "Add Schedule";
+            this.Load += new System.EventHandler(this.frmAddSchedule_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

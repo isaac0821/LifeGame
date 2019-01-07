@@ -1,6 +1,6 @@
 ﻿namespace LifeGame
 {
-    partial class frmAddVoucher
+    partial class frmAddTransaction
     {
         /// <summary>
         /// Required designer variable.
@@ -83,7 +83,7 @@
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(346, 182);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(346, 183);
             this.tableLayoutPanel11.TabIndex = 2;
             // 
             // label4
@@ -199,7 +199,7 @@
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RowCount = 1;
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(289, 26);
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(289, 27);
             this.tableLayoutPanel15.TabIndex = 11;
             // 
             // btnSave
@@ -207,7 +207,7 @@
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.Location = new System.Drawing.Point(234, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(52, 20);
+            this.btnSave.Size = new System.Drawing.Size(52, 21);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -316,16 +316,16 @@
             this.dtpDate.Size = new System.Drawing.Size(95, 20);
             this.dtpDate.TabIndex = 0;
             // 
-            // frmAddVoucher
+            // frmAddTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(346, 182);
+            this.ClientSize = new System.Drawing.Size(346, 183);
             this.Controls.Add(this.tableLayoutPanel11);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmAddVoucher";
-            this.Text = "frmAddVoucher";
+            this.Name = "frmAddTransaction";
+            this.Text = "Transaction";
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel11.PerformLayout();
             this.tableLayoutPanel12.ResumeLayout(false);

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LifeGame
 {
-    public partial class frmAddVoucher : Form
+    public partial class frmAddTransaction : Form
     {
-        public frmAddVoucher()
+        public frmAddTransaction()
         {
             InitializeComponent();
         }

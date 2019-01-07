@@ -130,7 +130,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.dgvEvent = new System.Windows.Forms.DataGridView();
+            this.colEventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEventIsSucceed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -138,10 +142,6 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.picLog = new System.Windows.Forms.PictureBox();
-            this.dgvEvent = new System.Windows.Forms.DataGridView();
-            this.colEventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEventIsSucceed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.mnsDaily.SuspendLayout();
             this.stsDaily.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -168,14 +168,14 @@
             this.cmsWorkOutSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.cmsWorkOutLog.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEvent)).BeginInit();
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSchedule)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLog)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEvent)).BeginInit();
-            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnsDaily
@@ -1147,6 +1147,22 @@
             this.label11.Text = "→";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.groupBox6, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel11, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.65363F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.34637F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(190, 537);
+            this.tableLayoutPanel5.TabIndex = 1;
+            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.dgvEvent);
@@ -1157,6 +1173,35 @@
             this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Event";
+            // 
+            // dgvEvent
+            // 
+            this.dgvEvent.AllowUserToAddRows = false;
+            this.dgvEvent.AllowUserToDeleteRows = false;
+            this.dgvEvent.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvEvent.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvEvent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEvent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colEventName,
+            this.colEventIsSucceed});
+            this.dgvEvent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEvent.Location = new System.Drawing.Point(3, 16);
+            this.dgvEvent.Name = "dgvEvent";
+            this.dgvEvent.ReadOnly = true;
+            this.dgvEvent.Size = new System.Drawing.Size(178, 95);
+            this.dgvEvent.TabIndex = 0;
+            // 
+            // colEventName
+            // 
+            this.colEventName.HeaderText = "Event Name";
+            this.colEventName.Name = "colEventName";
+            this.colEventName.ReadOnly = true;
+            // 
+            // colEventIsSucceed
+            // 
+            this.colEventIsSucceed.HeaderText = "√";
+            this.colEventIsSucceed.Name = "colEventIsSucceed";
+            this.colEventIsSucceed.ReadOnly = true;
             // 
             // tableLayoutPanel11
             // 
@@ -1245,51 +1290,6 @@
             this.picLog.TabIndex = 1;
             this.picLog.TabStop = false;
             // 
-            // dgvEvent
-            // 
-            this.dgvEvent.AllowUserToAddRows = false;
-            this.dgvEvent.AllowUserToDeleteRows = false;
-            this.dgvEvent.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvEvent.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvEvent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEvent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colEventName,
-            this.colEventIsSucceed});
-            this.dgvEvent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvEvent.Location = new System.Drawing.Point(3, 16);
-            this.dgvEvent.Name = "dgvEvent";
-            this.dgvEvent.ReadOnly = true;
-            this.dgvEvent.Size = new System.Drawing.Size(178, 95);
-            this.dgvEvent.TabIndex = 0;
-            // 
-            // colEventName
-            // 
-            this.colEventName.HeaderText = "Event Name";
-            this.colEventName.Name = "colEventName";
-            this.colEventName.ReadOnly = true;
-            // 
-            // colEventIsSucceed
-            // 
-            this.colEventIsSucceed.HeaderText = "√";
-            this.colEventIsSucceed.Name = "colEventIsSucceed";
-            this.colEventIsSucceed.ReadOnly = true;
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.groupBox6, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel11, 0, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.65363F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.34637F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(190, 537);
-            this.tableLayoutPanel5.TabIndex = 1;
-            // 
             // frmDaily
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1303,7 +1303,6 @@
             this.MinimizeBox = false;
             this.Name = "frmDaily";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmDaily";
             this.Load += new System.EventHandler(this.frmDaily_Load);
             this.mnsDaily.ResumeLayout(false);
             this.mnsDaily.PerformLayout();
@@ -1336,7 +1335,9 @@
             this.cmsWorkOutSchedule.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.cmsWorkOutLog.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEvent)).EndInit();
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
@@ -1344,8 +1345,6 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLog)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEvent)).EndInit();
-            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

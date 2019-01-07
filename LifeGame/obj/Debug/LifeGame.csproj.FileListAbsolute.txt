@@ -25,12 +25,12 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddLog.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSchedule.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmDaily.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmMain.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmStat.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmTask.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.Properties.Resources.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.GenerateResource.cache
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.CoreCompileInputs.cache
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.exe
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.pdb
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddVoucher.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.icon.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddTask.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddTransaction.resources
