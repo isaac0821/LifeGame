@@ -43,6 +43,7 @@ namespace LifeGame
             TreeNode rootNode = new TreeNode("(Root)", 0, 0);
             rootNode.Name = "(Root)";
             LoadChildTaskNode(rootNode);
+            RefreshIcon(rootNode);
             trvTask.Nodes.Add(rootNode);
         }
 
@@ -55,30 +56,8 @@ namespace LifeGame
                 subTasks = subTasks.OrderBy(o => o.index).ToList();
                 foreach (RSubTask subTask in subTasks)
                 {
-                    int iconIndex;
-                    TreeNode childNode;
-                    if (G.glb.lstTask.Exists(o => o.TaskName == subTask.SubTask))
-                    {
-                        if (G.glb.lstTask.Find(o => o.TaskName == subTask.SubTask).IsAbort)
-                        {
-                            iconIndex = 3;
-                        }
-                        else if (G.glb.lstTask.Find(o => o.TaskName == subTask.SubTask).IsFinished)
-                        {
-                            iconIndex = 2;
-                        }
-                        else
-                        {
-                            iconIndex = 1;
-                        }
-                        childNode = new TreeNode(subTask.SubTask, iconIndex, iconIndex);
-                        childNode.Name = subTask.SubTask;
-                    }
-                    else
-                    {
-                        childNode = new TreeNode(subTask.SubTask, 0, 0);
-                        childNode.Name = subTask.SubTask;
-                    }
+                    TreeNode childNode = new TreeNode(subTask.SubTask);
+                    childNode.Name = subTask.SubTask;
                     LoadChildTaskNode(childNode);
                     treeNode.Nodes.Add(childNode);
                 }
@@ -88,6 +67,7 @@ namespace LifeGame
         private void LoadTask(string taskName)
         {
             chkBottom.Enabled = false;
+            chkFinished.Enabled = false;
             dtpDeadline.Enabled = false;
             chkInfinite.Enabled = false;
             dgvLog.Rows.Clear();
@@ -96,6 +76,7 @@ namespace LifeGame
                 CTask task = G.glb.lstTask.Find(o => o.TaskName == taskName);
                 lblTaskName.Text = task.TaskName;
                 chkBottom.Checked = task.IsBottom;
+                chkFinished.Checked = task.IsFinished;
                 CalAndFind C = new CalAndFind();
                 lblTaskTimeSpent.Text = C.CalTimeSpentInTask(task.TaskName, G.glb.lstSubTask, G.glb.lstLog).ToString();
                 DateTime? NextTimeMarker = C.FindNextTimeMarker(task.TaskName, G.glb.lstSubTask, G.glb.lstTask);
@@ -139,10 +120,41 @@ namespace LifeGame
             {
                 lblTaskName.Text = "(No Record)";
                 chkBottom.Checked = false;
+                chkFinished.Checked = false;
                 chkInfinite.Checked = false;
                 lblTaskTimeSpent.Text = "----";
                 dtpNextTimeMarker.Value = DateTime.Today;
                 dtpDeadline.Value = DateTime.Today;
+            }
+        }
+
+        private void RefreshIcon(TreeNode node)
+        {
+            int iconIndex;
+            if (G.glb.lstTask.Exists(o => o.TaskName == node.Text))
+            {
+                if (G.glb.lstTask.Find(o => o.TaskName == node.Text).IsAbort)
+                {
+                    iconIndex = 3;
+                }
+                else if (G.glb.lstTask.Find(o => o.TaskName == node.Text).IsFinished)
+                {
+                    iconIndex = 2;
+                }
+                else
+                {
+                    iconIndex = 1;
+                }
+            }
+            else
+            {
+                iconIndex = 0;
+            }
+            node.ImageIndex = iconIndex;
+            node.SelectedImageIndex = iconIndex;
+            foreach (TreeNode child in node.Nodes)
+            {
+                RefreshIcon(child);
             }
         }
 
@@ -189,7 +201,9 @@ namespace LifeGame
                 TreeNode newNode = new TreeNode(nodeName, 1, 1);
                 newNode.Name = nodeName;
                 node.Nodes.Add(newNode);
-
+                CalAndFind C = new CalAndFind();
+                C.RefreshFinishTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask);
+                RefreshIcon(trvTask.Nodes[0]);
             }
         }
 
@@ -210,7 +224,9 @@ namespace LifeGame
                     if (CanDeleteFlag)
                     {
                         trvTask.Nodes.Remove(trvTask.SelectedNode);
+                        C.RefreshFinishTask(UpperTask, G.glb.lstSubTask, G.glb.lstTask);
                         ReIndex(UpperTask);
+                        RefreshIcon(trvTask.Nodes[0]);
                     }
                 }
             }
@@ -295,6 +311,9 @@ namespace LifeGame
                     trvTask.SelectedNode = newNode;
                     ReIndex(parentNodeName);
                     ReIndex(preNodeName);
+                    CalAndFind C = new CalAndFind();
+                    C.RefreshFinishTask(preNodeName, G.glb.lstSubTask, G.glb.lstTask);
+                    RefreshIcon(trvTask.Nodes[0]);
                 }
             }
         }
@@ -322,6 +341,9 @@ namespace LifeGame
                     trvTask.SelectedNode = newNode;
                     ReIndex(grandparentNodeName);
                     ReIndex(parentNodeName);
+                    CalAndFind C = new CalAndFind();
+                    C.RefreshFinishTask(parentNodeName, G.glb.lstSubTask, G.glb.lstTask);
+                    RefreshIcon(trvTask.Nodes[0]);
                 }
             }
         }
@@ -336,8 +358,18 @@ namespace LifeGame
                 }
                 else if (G.glb.lstTask.Exists(o => o.TaskName == trvTask.SelectedNode.Text))
                 {
-                    G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).IsFinished 
-                        = !G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).IsFinished;
+                    if (!G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).IsFinished)
+                    {
+                        CalAndFind C = new CalAndFind();
+                        C.FinishTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask);
+                        RefreshIcon(trvTask.Nodes[0]);
+                    }
+                    else
+                    {
+                        CalAndFind C = new CalAndFind();
+                        C.UnfinishTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask);
+                        RefreshIcon(trvTask.Nodes[0]);
+                    }
                 }
             }
         }
@@ -353,9 +385,18 @@ namespace LifeGame
                 }
                 else if (G.glb.lstTask.Exists(o => o.TaskName == trvTask.SelectedNode.Text))
                 {
-                    CalAndFind C = new CalAndFind();
-                    C.AbortTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask);
-                    LoadTrvTask();
+                    if (!G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).IsAbort)
+                    {
+                        CalAndFind C = new CalAndFind();
+                        C.AbortTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask);
+                        RefreshIcon(trvTask.Nodes[0]);
+                    }
+                    else
+                    {
+                        CalAndFind C = new CalAndFind();
+                        C.ReAssignTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask);
+                        RefreshIcon(trvTask.Nodes[0]);
+                    }
                 }
             }
         }
@@ -392,13 +433,72 @@ namespace LifeGame
             if (trvTask.SelectedNode != null)
             {
                 LoadTask(trvTask.SelectedNode.Text);
-                if (!G.glb.lstTask.Exists(o=>o.TaskName == trvTask.SelectedNode.Text))
+                if (!G.glb.lstTask.Exists(o => o.TaskName == trvTask.SelectedNode.Text))
                 {
-                    
+                    tsmAdd.Enabled = true;
+                    tsmRename.Enabled = false;
+                    tsmRemove.Enabled = false;
+                    tsmUp.Enabled = false;
+                    tsmDown.Enabled = false;
+                    tsmBelongTo.Enabled = false;
+                    tsmIndependent.Enabled = false;
+                    tsmFinished.Enabled = false;
+                    tsmAbort.Enabled = false;
                 }
                 else
                 {
-                    
+                    tsmAdd.Enabled = true;
+                    tsmRename.Enabled = true;
+                    tsmRemove.Enabled = true;
+                    tsmUp.Enabled = true;
+                    tsmDown.Enabled = true;
+                    tsmBelongTo.Enabled = true;
+                    tsmIndependent.Enabled = true;
+                    tsmFinished.Enabled = true;
+                    tsmAbort.Enabled = true;
+                    if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).IsBottom)
+                    {
+                        tsmAdd.Enabled = false;
+                    }
+                    if (trvTask.SelectedNode.PrevNode != null)
+                    {
+                        if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.PrevNode.Text).IsBottom)
+                        {
+                            tsmBelongTo.Enabled = false;
+                        }
+                    }
+                    if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).IsAbort)
+                    {
+                        if (trvTask.SelectedNode.Parent != null)
+                        {
+                            if (trvTask.SelectedNode.Parent.Text != "(Root)")
+                            {
+                                if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Parent.Text).IsAbort)
+                                {
+                                    tsmAbort.Enabled = false;
+                                }
+                            }
+                        }
+                        tsmAbort.Text = "Reassign";
+                        tsmFinished.Enabled = false;
+                    }
+                    else
+                    {
+                        tsmAbort.Text = "Mark as Aborted";
+                    }
+                    if (G.glb.lstSubTask.Exists(o=>o.Task==trvTask.SelectedNode.Text))
+                    {
+                        tsmFinished.Enabled = false;
+                    }
+                    if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).IsFinished)
+                    {
+                        tsmFinished.Text = "Mark as Unfinished";
+                    }
+                    else
+                    {
+                        tsmFinished.Text = "Mark as Finished";
+                    }
+
                 }
             }
         }

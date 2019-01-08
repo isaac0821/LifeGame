@@ -135,11 +135,11 @@ namespace LifeGame
         /// <returns></returns>
         public DateTime FindNextTimeMarker(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks)
         {
-            DateTime ret = new DateTime(9999, 12, 31);
+            DateTime ret = new DateTime(9998, 12, 31);
             List<string> heirTasks = FindAllHeirTask(TaskName, rSubTasks);
             foreach (string heir in heirTasks)
             {
-                if (G.glb.lstTask.Find(o=>o.TaskName == heir).DeadLine < ret
+                if (G.glb.lstTask.Find(o => o.TaskName == heir).DeadLine < ret
                     && G.glb.lstTask.Find(o => o.TaskName == heir).IsAbort == false
                     && G.glb.lstTask.Find(o => o.TaskName == heir).IsFinished == false)
                 {
@@ -191,25 +191,96 @@ namespace LifeGame
         }
 
         /// <summary>
-        /// 将一个task放弃执行
+        /// 更新一个task的finish状态，通常由于上下级节点关系变化而调用
+        /// </summary>
+        /// <param name="TaskName"></param>
+        /// <param name="rSubTasks"></param>
+        /// <param name="tasks"></param>
+        public void RefreshFinishTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks)
+        {
+            if (TaskName != "(Root)")
+            {
+                string upperTask = rSubTasks.Find(o => o.SubTask == TaskName).Task;
+                bool IsTaskFinished = true;
+                List<RSubTask> children = rSubTasks.FindAll(o => o.Task == TaskName);
+                foreach (RSubTask task in children)
+                {
+                    if (tasks.Find(o => o.TaskName == task.SubTask).IsFinished == false)
+                    {
+                        IsTaskFinished = false;
+                        break;
+                    }
+                }
+                tasks.Find(o => o.TaskName == TaskName).IsFinished = IsTaskFinished;
+                RefreshFinishTask(upperTask, rSubTasks, tasks);
+            }
+        }
+
+        /// <summary>
+        /// 完成一个task
+        /// </summary>
+        /// <param name="TaskName"></param>
+        /// <param name="rSubTasks"></param>
+        /// <param name="tasks"></param>
+        public void FinishTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks)
+        {
+            string upperTask = rSubTasks.Find(o => o.SubTask == TaskName).Task;
+            tasks.Find(o => o.TaskName == TaskName).IsFinished = true;
+            if (upperTask != "(Root)")
+            {
+                bool IsUpperTaskFinished = true;
+                List<RSubTask> sameLevel = rSubTasks.FindAll(o => o.Task == upperTask);
+                foreach (RSubTask task in sameLevel)
+                {
+                    if (tasks.Find(o => o.TaskName == task.SubTask).IsFinished == false)
+                    {
+                        IsUpperTaskFinished = false;
+                        break;
+                    }
+                }
+                if (IsUpperTaskFinished)
+                {
+                    FinishTask(upperTask, rSubTasks, tasks);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 将原本标记为finished的任务改为unfinished
+        /// </summary>
+        /// <param name="TaskName"></param>
+        /// <param name="rSubTasks"></param>
+        /// <param name="tasks"></param>
+        public void UnfinishTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks)
+        {
+            string upperTask = rSubTasks.Find(o => o.SubTask == TaskName).Task;
+            tasks.Find(o => o.TaskName == TaskName).IsFinished = false;
+            if (upperTask != "(Root)")
+            {
+                UnfinishTask(upperTask, rSubTasks, tasks);
+            }
+        }
+
+        /// <summary>
+        /// 放弃执行一个task
         /// </summary>
         /// <param name="TaskName"></param>
         /// <param name="rSubTasks"></param>
         /// <param name="tasks"></param>
         public void AbortTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks)
         {
-            if (tasks.Exists(o=>o.TaskName==TaskName))
+            if (tasks.Exists(o => o.TaskName == TaskName))
             {
                 tasks.Find(o => o.TaskName == TaskName).IsAbort = true;
             }
-            if (rSubTasks.Exists(o=>o.Task==TaskName))
+            if (rSubTasks.Exists(o => o.Task == TaskName))
             {
                 List<RSubTask> subOfThisTask = rSubTasks.FindAll(o => o.Task == TaskName).ToList();
                 foreach (RSubTask sub in subOfThisTask)
                 {
-                    if (tasks.Exists(o=>o.TaskName==sub.SubTask))
+                    if (tasks.Exists(o => o.TaskName == sub.SubTask))
                     {
-                        tasks.Find(o => o.TaskName == sub.SubTask).IsAbort = true;
+                        AbortTask(sub.SubTask, rSubTasks, tasks);
                     }
                 }
             }
@@ -223,20 +294,9 @@ namespace LifeGame
         /// <param name="tasks"></param>
         public void ReAssignTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks)
         {
-            if (rSubTasks.Exists(o=>o.SubTask == TaskName))
+            if (tasks.Exists(o => o.TaskName == TaskName))
             {
-                string UpperTask = rSubTasks.Find(o => o.SubTask == TaskName).Task;
-                if (UpperTask == "(Root)")
-                {
-                    tasks.Find(o => o.TaskName == TaskName).IsAbort = false;
-                }
-                else if (tasks.Exists(o=>o.TaskName==UpperTask))
-                {
-                    if (tasks.Find(o=>o.TaskName==UpperTask).IsAbort==false)
-                    {
-                        tasks.Find(o => o.TaskName == TaskName).IsAbort = false;
-                    }
-                }
+                tasks.Find(o => o.TaskName == TaskName).IsAbort = false;
             }
             if (rSubTasks.Exists(o => o.Task == TaskName))
             {
@@ -245,7 +305,7 @@ namespace LifeGame
                 {
                     if (tasks.Exists(o => o.TaskName == sub.SubTask))
                     {
-                        tasks.Find(o => o.TaskName == sub.SubTask).IsAbort = false;
+                        ReAssignTask(sub.SubTask, rSubTasks, tasks);
                     }
                 }
             }

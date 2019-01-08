@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LifeGame
 {
-    public partial class frmAddSchedule : Form
+    public partial class frmAddSleepSchedule : Form
     {
-        public frmAddSchedule()
+        public frmAddSleepSchedule()
         {
             InitializeComponent();
         }
@@ -76,38 +76,31 @@ namespace LifeGame
                 }
                 if (IsAddSchedule)
                 {
-                    CLog newSchedule = new CLog();
-                    newSchedule.LogName = txtSchedule.Text;
-                    newSchedule.StartTime = new DateTime(day.Year, day.Month, day.Day, dtpTimeStart.Value.Hour, dtpTimeStart.Value.Minute, dtpTimeStart.Value.Second);
-                    if (chkPlusOneDay.Checked != true)
+                    CSleep newSleep = new CSleep();
+                    newSleep.Date = day.Date;
+                    newSleep.IsGoToBedBeforeMidNight = chkMinusOneDay.Checked;
+                    if (chkMinusOneDay.Checked)
                     {
-                        newSchedule.EndTime = new DateTime(day.Year, day.Month, day.Day, dtpTimeEnd.Value.Hour, dtpTimeEnd.Value.Minute, dtpTimeEnd.Value.Second);
+                        newSleep.GoToBedTime = new DateTime(day.AddDays(-1).Year, day.AddDays(-1).Month, day.AddDays(-1).Day, dtpTimeStart.Value.Hour, dtpTimeStart.Value.Minute, dtpTimeStart.Value.Second);
                     }
                     else
                     {
-                        newSchedule.EndTime = new DateTime(day.AddDays(1).Year, day.AddDays(1).Month, day.AddDays(1).Day, dtpTimeEnd.Value.Hour, dtpTimeEnd.Value.Minute, dtpTimeEnd.Value.Second);
+                        newSleep.GoToBedTime = new DateTime(day.Year, day.Month, day.Day, dtpTimeStart.Value.Hour, dtpTimeStart.Value.Minute, dtpTimeStart.Value.Second);
                     }
-                    newSchedule.Location = txtWhere.Text;
-                    newSchedule.WithWho = txtWith.Text;
-                    newSchedule.ContributionToTask = cbxTask.Text;
-                    newSchedule.Color = cbxColor.Text;
-                    G.glb.lstSchedule.Add(newSchedule);
+                    newSleep.GetUpTime = new DateTime(day.Year, day.Month, day.Day, dtpTimeEnd.Value.Hour, dtpTimeEnd.Value.Minute, dtpTimeEnd.Value.Second);
+                    if (G.glb.lstSleepSchedule.Exists(o => o.Date == day))
+                    {
+                        G.glb.lstSleepSchedule.RemoveAll(o => o.Date == day);
+                        G.glb.lstSleepSchedule.Add(newSleep);
+                    }
+                    else
+                    {
+                        G.glb.lstSleepSchedule.Add(newSleep);
+                    }
                 }
             }
             DrawLog();
             Dispose();
-        }
-
-        private void frmAddSchedule_Load(object sender, EventArgs e)
-        {
-            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.IsBottom && !o.IsFinished && !o.IsAbort).ToList();
-            List<string> choices = new List<string>();
-            foreach (CTask task in taskChoices)
-            {
-                choices.Add(task.TaskName);
-            }
-            cbxTask.DataSource = choices;
-            cbxColor.SelectedIndex = 0;
         }
     }
 }

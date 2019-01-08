@@ -34,3 +34,5 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.pdb
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.icon.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddTask.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddTransaction.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSleepSchedule.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSleepLog.resources

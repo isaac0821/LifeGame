@@ -81,6 +81,18 @@
     <Compile Include="frmAddSchedule.Designer.cs">
       <DependentUpon>frmAddSchedule.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddSleepSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddSleepSchedule.Designer.cs">
+      <DependentUpon>frmAddSleepSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddSleepLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddSleepLog.Designer.cs">
+      <DependentUpon>frmAddSleepLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddTask.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +142,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddSchedule.resx">
       <DependentUpon>frmAddSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddSleepSchedule.resx">
+      <DependentUpon>frmAddSleepSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddSleepLog.resx">
+      <DependentUpon>frmAddSleepLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddTask.resx">
       <DependentUpon>frmAddTask.cs</DependentUpon>

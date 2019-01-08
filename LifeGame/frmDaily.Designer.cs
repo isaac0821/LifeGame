@@ -93,22 +93,14 @@
             this.tsmDeleteLog = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtTotalSleep = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dtpWeakUpTime = new System.Windows.Forms.DateTimePicker();
-            this.dtpGotoBedTime = new System.Windows.Forms.DateTimePicker();
             this.label20 = new System.Windows.Forms.Label();
-            this.chkMinusOneDay = new System.Windows.Forms.CheckBox();
+            this.chkLogSleepMinusOneDay = new System.Windows.Forms.CheckBox();
             this.chkScheduleSleepMinusOneDay = new System.Windows.Forms.CheckBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnSaveSleepSchedule = new System.Windows.Forms.Button();
-            this.btnSaveSleepActual = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvWorkOutSchedule = new System.Windows.Forms.DataGridView();
@@ -133,15 +125,24 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.dgvEvent = new System.Windows.Forms.DataGridView();
-            this.colEventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEventIsSucceed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.picSchedule = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
+            this.picSchedule = new System.Windows.Forms.PictureBox();
             this.picLog = new System.Windows.Forms.PictureBox();
+            this.lblScheduleSleepTime = new System.Windows.Forms.Label();
+            this.lblLogSleepTime = new System.Windows.Forms.Label();
+            this.lblScheduleSleepGoToBedTime = new System.Windows.Forms.Label();
+            this.lblScheduleSleepGetUpTime = new System.Windows.Forms.Label();
+            this.lblLogSleepGoToBedTime = new System.Windows.Forms.Label();
+            this.lblLogSleepGetUpTime = new System.Windows.Forms.Label();
+            this.colEventIsSucceed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmsSleep = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmAddScheduleSleep = new System.Windows.Forms.ToolStripMenuItem();
+            this.addLogSleep = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsDaily.SuspendLayout();
             this.stsDaily.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -173,9 +174,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvent)).BeginInit();
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSchedule)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLog)).BeginInit();
+            this.cmsSleep.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnsDaily
@@ -185,7 +187,7 @@
             this.filesFToolStripMenuItem});
             this.mnsDaily.Location = new System.Drawing.Point(0, 0);
             this.mnsDaily.Name = "mnsDaily";
-            this.mnsDaily.Size = new System.Drawing.Size(931, 24);
+            this.mnsDaily.Size = new System.Drawing.Size(810, 24);
             this.mnsDaily.TabIndex = 0;
             this.mnsDaily.Text = "menuStrip1";
             // 
@@ -202,7 +204,7 @@
             this.toolStripStatusLabel1});
             this.stsDaily.Location = new System.Drawing.Point(0, 823);
             this.stsDaily.Name = "stsDaily";
-            this.stsDaily.Size = new System.Drawing.Size(931, 22);
+            this.stsDaily.Size = new System.Drawing.Size(810, 22);
             this.stsDaily.TabIndex = 1;
             this.stsDaily.Text = "statusStrip1";
             // 
@@ -228,7 +230,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(931, 799);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(810, 799);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // tableLayoutPanel7
@@ -246,21 +248,21 @@
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(925, 25);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(804, 25);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
             // dtpToday
             // 
             this.dtpToday.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpToday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpToday.Location = new System.Drawing.Point(807, 3);
+            this.dtpToday.Location = new System.Drawing.Point(686, 3);
             this.dtpToday.Name = "dtpToday";
             this.dtpToday.Size = new System.Drawing.Size(95, 20);
             this.dtpToday.TabIndex = 0;
             // 
             // btnPreDay
             // 
-            this.btnPreDay.Location = new System.Drawing.Point(787, 3);
+            this.btnPreDay.Location = new System.Drawing.Point(666, 3);
             this.btnPreDay.Name = "btnPreDay";
             this.btnPreDay.Size = new System.Drawing.Size(14, 18);
             this.btnPreDay.TabIndex = 1;
@@ -269,7 +271,7 @@
             // 
             // btnNextDay
             // 
-            this.btnNextDay.Location = new System.Drawing.Point(908, 3);
+            this.btnNextDay.Location = new System.Drawing.Point(787, 3);
             this.btnNextDay.Name = "btnNextDay";
             this.btnNextDay.Size = new System.Drawing.Size(14, 18);
             this.btnNextDay.TabIndex = 2;
@@ -284,7 +286,7 @@
             this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox5.Size = new System.Drawing.Size(927, 74);
+            this.groupBox5.Size = new System.Drawing.Size(806, 74);
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Medicine";
@@ -306,7 +308,7 @@
             this.dgvMedicine.Location = new System.Drawing.Point(2, 15);
             this.dgvMedicine.Name = "dgvMedicine";
             this.dgvMedicine.ReadOnly = true;
-            this.dgvMedicine.Size = new System.Drawing.Size(923, 57);
+            this.dgvMedicine.Size = new System.Drawing.Size(802, 57);
             this.dgvMedicine.TabIndex = 4;
             // 
             // colMedicineName
@@ -362,7 +364,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(3, 571);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(925, 147);
+            this.groupBox3.Size = new System.Drawing.Size(804, 147);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Financial";
@@ -388,7 +390,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(3, 16);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(919, 128);
+            this.dataGridView1.Size = new System.Drawing.Size(798, 128);
             this.dataGridView1.TabIndex = 0;
             // 
             // colVoucherSummary
@@ -473,7 +475,7 @@
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(931, 537);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(810, 537);
             this.tableLayoutPanel8.TabIndex = 5;
             // 
             // tableLayoutPanel10
@@ -484,14 +486,14 @@
             this.tableLayoutPanel10.Controls.Add(this.groupBox4, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.groupBox2, 0, 2);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(190, 0);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(165, 0);
             this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 3;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(741, 537);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(645, 537);
             this.tableLayoutPanel10.TabIndex = 0;
             // 
             // groupBox1
@@ -500,7 +502,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 71);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(735, 287);
+            this.groupBox1.Size = new System.Drawing.Size(639, 287);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Schedule and Log";
@@ -520,7 +522,7 @@
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(729, 268);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(633, 268);
             this.tableLayoutPanel9.TabIndex = 2;
             // 
             // label3
@@ -530,7 +532,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(3, 125);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(723, 18);
+            this.label3.Size = new System.Drawing.Size(627, 18);
             this.label3.TabIndex = 2;
             this.label3.Text = "↓";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -556,7 +558,7 @@
             this.dgvSchedule.Location = new System.Drawing.Point(3, 3);
             this.dgvSchedule.Name = "dgvSchedule";
             this.dgvSchedule.ReadOnly = true;
-            this.dgvSchedule.Size = new System.Drawing.Size(723, 119);
+            this.dgvSchedule.Size = new System.Drawing.Size(627, 119);
             this.dgvSchedule.TabIndex = 3;
             // 
             // colScheduleName
@@ -620,13 +622,14 @@
             this.tsmAddSchedule,
             this.tsmDeleteSchedule});
             this.cmsSchedule.Name = "cmsSchedule";
-            this.cmsSchedule.Size = new System.Drawing.Size(156, 76);
+            this.cmsSchedule.Size = new System.Drawing.Size(181, 98);
             // 
             // tsmConvertToLog
             // 
             this.tsmConvertToLog.Name = "tsmConvertToLog";
-            this.tsmConvertToLog.Size = new System.Drawing.Size(155, 22);
+            this.tsmConvertToLog.Size = new System.Drawing.Size(180, 22);
             this.tsmConvertToLog.Text = "Convert To Log";
+            this.tsmConvertToLog.Click += new System.EventHandler(this.tsmConvertToLog_Click);
             // 
             // toolStripSeparator1
             // 
@@ -636,14 +639,16 @@
             // tsmAddSchedule
             // 
             this.tsmAddSchedule.Name = "tsmAddSchedule";
-            this.tsmAddSchedule.Size = new System.Drawing.Size(155, 22);
+            this.tsmAddSchedule.Size = new System.Drawing.Size(180, 22);
             this.tsmAddSchedule.Text = "Add";
+            this.tsmAddSchedule.Click += new System.EventHandler(this.tsmAddSchedule_Click);
             // 
             // tsmDeleteSchedule
             // 
             this.tsmDeleteSchedule.Name = "tsmDeleteSchedule";
-            this.tsmDeleteSchedule.Size = new System.Drawing.Size(155, 22);
+            this.tsmDeleteSchedule.Size = new System.Drawing.Size(180, 22);
             this.tsmDeleteSchedule.Text = "Delete";
+            this.tsmDeleteSchedule.Click += new System.EventHandler(this.tsmDeleteSchedule_Click);
             // 
             // dgvLog
             // 
@@ -666,7 +671,7 @@
             this.dgvLog.Location = new System.Drawing.Point(3, 146);
             this.dgvLog.Name = "dgvLog";
             this.dgvLog.ReadOnly = true;
-            this.dgvLog.Size = new System.Drawing.Size(723, 119);
+            this.dgvLog.Size = new System.Drawing.Size(627, 119);
             this.dgvLog.TabIndex = 4;
             // 
             // colLogName
@@ -746,44 +751,42 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.ContextMenuStrip = this.cmsSleep;
             this.groupBox4.Controls.Add(this.tableLayoutPanel2);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(2, 2);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(737, 64);
+            this.groupBox4.Size = new System.Drawing.Size(641, 64);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Sleep";
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 8;
+            this.tableLayoutPanel2.ColumnCount = 7;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
-            this.tableLayoutPanel2.Controls.Add(this.txtTotalSleep, 6, 1);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel2.Controls.Add(this.label4, 5, 1);
-            this.tableLayoutPanel2.Controls.Add(this.dtpWeakUpTime, 4, 1);
-            this.tableLayoutPanel2.Controls.Add(this.dtpGotoBedTime, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.label20, 3, 1);
-            this.tableLayoutPanel2.Controls.Add(this.chkMinusOneDay, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.chkLogSleepMinusOneDay, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.chkScheduleSleepMinusOneDay, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dateTimePicker1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.label5, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dateTimePicker2, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.label6, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBox1, 6, 0);
             this.tableLayoutPanel2.Controls.Add(this.label7, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label8, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnSaveSleepSchedule, 7, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnSaveSleepActual, 7, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblScheduleSleepTime, 6, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblLogSleepTime, 6, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblScheduleSleepGoToBedTime, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblScheduleSleepGetUpTime, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblLogSleepGoToBedTime, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblLogSleepGetUpTime, 4, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 15);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
@@ -791,125 +794,75 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(733, 47);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(637, 47);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // txtTotalSleep
-            // 
-            this.txtTotalSleep.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTotalSleep.Location = new System.Drawing.Point(626, 26);
-            this.txtTotalSleep.Name = "txtTotalSleep";
-            this.txtTotalSleep.Size = new System.Drawing.Size(32, 20);
-            this.txtTotalSleep.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(593, 23);
+            this.label4.Location = new System.Drawing.Point(527, 23);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 24);
             this.label4.TabIndex = 4;
             this.label4.Text = "total";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dtpWeakUpTime
-            // 
-            this.dtpWeakUpTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtpWeakUpTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpWeakUpTime.Location = new System.Drawing.Point(485, 26);
-            this.dtpWeakUpTime.Name = "dtpWeakUpTime";
-            this.dtpWeakUpTime.Size = new System.Drawing.Size(102, 20);
-            this.dtpWeakUpTime.TabIndex = 2;
-            // 
-            // dtpGotoBedTime
-            // 
-            this.dtpGotoBedTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtpGotoBedTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpGotoBedTime.Location = new System.Drawing.Point(362, 26);
-            this.dtpGotoBedTime.Name = "dtpGotoBedTime";
-            this.dtpGotoBedTime.Size = new System.Drawing.Size(102, 20);
-            this.dtpGotoBedTime.TabIndex = 1;
-            // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label20.Location = new System.Drawing.Point(470, 23);
+            this.label20.Location = new System.Drawing.Point(404, 23);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(9, 24);
             this.label20.TabIndex = 3;
             this.label20.Text = "-";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // chkMinusOneDay
+            // chkLogSleepMinusOneDay
             // 
-            this.chkMinusOneDay.AutoSize = true;
-            this.chkMinusOneDay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkMinusOneDay.Location = new System.Drawing.Point(313, 26);
-            this.chkMinusOneDay.Name = "chkMinusOneDay";
-            this.chkMinusOneDay.Size = new System.Drawing.Size(43, 18);
-            this.chkMinusOneDay.TabIndex = 0;
-            this.chkMinusOneDay.Text = "-1d";
-            this.chkMinusOneDay.UseVisualStyleBackColor = true;
+            this.chkLogSleepMinusOneDay.AutoSize = true;
+            this.chkLogSleepMinusOneDay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkLogSleepMinusOneDay.Enabled = false;
+            this.chkLogSleepMinusOneDay.Location = new System.Drawing.Point(247, 26);
+            this.chkLogSleepMinusOneDay.Name = "chkLogSleepMinusOneDay";
+            this.chkLogSleepMinusOneDay.Size = new System.Drawing.Size(43, 18);
+            this.chkLogSleepMinusOneDay.TabIndex = 0;
+            this.chkLogSleepMinusOneDay.Text = "-1d";
+            this.chkLogSleepMinusOneDay.UseVisualStyleBackColor = true;
             // 
             // chkScheduleSleepMinusOneDay
             // 
             this.chkScheduleSleepMinusOneDay.AutoSize = true;
             this.chkScheduleSleepMinusOneDay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkScheduleSleepMinusOneDay.Location = new System.Drawing.Point(313, 3);
+            this.chkScheduleSleepMinusOneDay.Enabled = false;
+            this.chkScheduleSleepMinusOneDay.Location = new System.Drawing.Point(247, 3);
             this.chkScheduleSleepMinusOneDay.Name = "chkScheduleSleepMinusOneDay";
             this.chkScheduleSleepMinusOneDay.Size = new System.Drawing.Size(43, 17);
             this.chkScheduleSleepMinusOneDay.TabIndex = 6;
             this.chkScheduleSleepMinusOneDay.Text = "-1d";
             this.chkScheduleSleepMinusOneDay.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker1.Location = new System.Drawing.Point(362, 3);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(102, 20);
-            this.dateTimePicker1.TabIndex = 7;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(470, 0);
+            this.label5.Location = new System.Drawing.Point(404, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(9, 23);
             this.label5.TabIndex = 9;
             this.label5.Text = "-";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker2.Location = new System.Drawing.Point(485, 3);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(102, 20);
-            this.dateTimePicker2.TabIndex = 8;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(593, 0);
+            this.label6.Location = new System.Drawing.Point(527, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(27, 23);
             this.label6.TabIndex = 10;
             this.label6.Text = "total";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(626, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(32, 20);
-            this.textBox1.TabIndex = 12;
             // 
             // label7
             // 
@@ -918,7 +871,7 @@
             this.label7.Location = new System.Drawing.Point(2, 0);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(306, 23);
+            this.label7.Size = new System.Drawing.Size(240, 23);
             this.label7.TabIndex = 13;
             this.label7.Text = "Schedule";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -930,32 +883,10 @@
             this.label8.Location = new System.Drawing.Point(2, 23);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(306, 24);
+            this.label8.Size = new System.Drawing.Size(240, 24);
             this.label8.TabIndex = 14;
             this.label8.Text = "Log";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnSaveSleepSchedule
-            // 
-            this.btnSaveSleepSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSaveSleepSchedule.Location = new System.Drawing.Point(663, 2);
-            this.btnSaveSleepSchedule.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSaveSleepSchedule.Name = "btnSaveSleepSchedule";
-            this.btnSaveSleepSchedule.Size = new System.Drawing.Size(68, 19);
-            this.btnSaveSleepSchedule.TabIndex = 15;
-            this.btnSaveSleepSchedule.Text = "Save";
-            this.btnSaveSleepSchedule.UseVisualStyleBackColor = true;
-            // 
-            // btnSaveSleepActual
-            // 
-            this.btnSaveSleepActual.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSaveSleepActual.Location = new System.Drawing.Point(663, 25);
-            this.btnSaveSleepActual.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSaveSleepActual.Name = "btnSaveSleepActual";
-            this.btnSaveSleepActual.Size = new System.Drawing.Size(68, 20);
-            this.btnSaveSleepActual.TabIndex = 16;
-            this.btnSaveSleepActual.Text = "Save";
-            this.btnSaveSleepActual.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -963,7 +894,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 364);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(735, 170);
+            this.groupBox2.Size = new System.Drawing.Size(639, 170);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Work Out";
@@ -986,7 +917,7 @@
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(729, 151);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(633, 151);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // dgvWorkOutSchedule
@@ -1004,7 +935,7 @@
             this.dgvWorkOutSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvWorkOutSchedule.Location = new System.Drawing.Point(3, 24);
             this.dgvWorkOutSchedule.Name = "dgvWorkOutSchedule";
-            this.dgvWorkOutSchedule.Size = new System.Drawing.Size(351, 124);
+            this.dgvWorkOutSchedule.Size = new System.Drawing.Size(303, 124);
             this.dgvWorkOutSchedule.TabIndex = 6;
             // 
             // colWorkOutType
@@ -1069,9 +1000,9 @@
             this.dataGridViewTextBoxColumn3});
             this.dataGridView2.ContextMenuStrip = this.cmsWorkOutLog;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(375, 24);
+            this.dataGridView2.Location = new System.Drawing.Point(327, 24);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(351, 124);
+            this.dataGridView2.Size = new System.Drawing.Size(303, 124);
             this.dataGridView2.TabIndex = 7;
             // 
             // dataGridViewTextBoxColumn1
@@ -1117,7 +1048,7 @@
             this.label9.Location = new System.Drawing.Point(2, 0);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(353, 21);
+            this.label9.Size = new System.Drawing.Size(305, 21);
             this.label9.TabIndex = 8;
             this.label9.Text = "Schedule";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1126,10 +1057,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(374, 0);
+            this.label10.Location = new System.Drawing.Point(326, 0);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(353, 21);
+            this.label10.Size = new System.Drawing.Size(305, 21);
             this.label10.TabIndex = 9;
             this.label10.Text = "Log";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1139,7 +1070,7 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(359, 21);
+            this.label11.Location = new System.Drawing.Point(311, 21);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(11, 130);
@@ -1160,7 +1091,7 @@
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.65363F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.34637F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(190, 537);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(165, 537);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
             // groupBox6
@@ -1169,7 +1100,7 @@
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.Location = new System.Drawing.Point(3, 420);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(184, 114);
+            this.groupBox6.Size = new System.Drawing.Size(159, 114);
             this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Event";
@@ -1182,26 +1113,14 @@
             this.dgvEvent.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvEvent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEvent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colEventName,
-            this.colEventIsSucceed});
+            this.colEventIsSucceed,
+            this.colEventName});
             this.dgvEvent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEvent.Location = new System.Drawing.Point(3, 16);
             this.dgvEvent.Name = "dgvEvent";
             this.dgvEvent.ReadOnly = true;
-            this.dgvEvent.Size = new System.Drawing.Size(178, 95);
+            this.dgvEvent.Size = new System.Drawing.Size(153, 95);
             this.dgvEvent.TabIndex = 0;
-            // 
-            // colEventName
-            // 
-            this.colEventName.HeaderText = "Event Name";
-            this.colEventName.Name = "colEventName";
-            this.colEventName.ReadOnly = true;
-            // 
-            // colEventIsSucceed
-            // 
-            this.colEventIsSucceed.HeaderText = "√";
-            this.colEventIsSucceed.Name = "colEventIsSucceed";
-            this.colEventIsSucceed.ReadOnly = true;
             // 
             // tableLayoutPanel11
             // 
@@ -1215,7 +1134,7 @@
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(184, 411);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(159, 411);
             this.tableLayoutPanel11.TabIndex = 1;
             // 
             // tableLayoutPanel3
@@ -1230,7 +1149,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(86, 405);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(73, 405);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // label1
@@ -1239,20 +1158,10 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 26);
+            this.label1.Size = new System.Drawing.Size(67, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Schedule";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // picSchedule
-            // 
-            this.picSchedule.BackColor = System.Drawing.Color.White;
-            this.picSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picSchedule.Location = new System.Drawing.Point(3, 29);
-            this.picSchedule.Name = "picSchedule";
-            this.picSchedule.Size = new System.Drawing.Size(80, 373);
-            this.picSchedule.TabIndex = 1;
-            this.picSchedule.TabStop = false;
             // 
             // tableLayoutPanel4
             // 
@@ -1261,12 +1170,12 @@
             this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.picLog, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(95, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(82, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(86, 405);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(74, 405);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // label2
@@ -1275,10 +1184,20 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 26);
+            this.label2.Size = new System.Drawing.Size(68, 26);
             this.label2.TabIndex = 0;
             this.label2.Text = "Log";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // picSchedule
+            // 
+            this.picSchedule.BackColor = System.Drawing.Color.White;
+            this.picSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picSchedule.Location = new System.Drawing.Point(3, 29);
+            this.picSchedule.Name = "picSchedule";
+            this.picSchedule.Size = new System.Drawing.Size(67, 373);
+            this.picSchedule.TabIndex = 1;
+            this.picSchedule.TabStop = false;
             // 
             // picLog
             // 
@@ -1286,15 +1205,116 @@
             this.picLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picLog.Location = new System.Drawing.Point(3, 29);
             this.picLog.Name = "picLog";
-            this.picLog.Size = new System.Drawing.Size(80, 373);
+            this.picLog.Size = new System.Drawing.Size(68, 373);
             this.picLog.TabIndex = 1;
             this.picLog.TabStop = false;
+            // 
+            // lblScheduleSleepTime
+            // 
+            this.lblScheduleSleepTime.AutoSize = true;
+            this.lblScheduleSleepTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblScheduleSleepTime.Location = new System.Drawing.Point(560, 0);
+            this.lblScheduleSleepTime.Name = "lblScheduleSleepTime";
+            this.lblScheduleSleepTime.Size = new System.Drawing.Size(74, 23);
+            this.lblScheduleSleepTime.TabIndex = 15;
+            this.lblScheduleSleepTime.Text = "---";
+            this.lblScheduleSleepTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLogSleepTime
+            // 
+            this.lblLogSleepTime.AutoSize = true;
+            this.lblLogSleepTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLogSleepTime.Location = new System.Drawing.Point(560, 23);
+            this.lblLogSleepTime.Name = "lblLogSleepTime";
+            this.lblLogSleepTime.Size = new System.Drawing.Size(74, 24);
+            this.lblLogSleepTime.TabIndex = 16;
+            this.lblLogSleepTime.Text = "---";
+            this.lblLogSleepTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblScheduleSleepGoToBedTime
+            // 
+            this.lblScheduleSleepGoToBedTime.AutoSize = true;
+            this.lblScheduleSleepGoToBedTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblScheduleSleepGoToBedTime.Location = new System.Drawing.Point(296, 0);
+            this.lblScheduleSleepGoToBedTime.Name = "lblScheduleSleepGoToBedTime";
+            this.lblScheduleSleepGoToBedTime.Size = new System.Drawing.Size(102, 23);
+            this.lblScheduleSleepGoToBedTime.TabIndex = 17;
+            this.lblScheduleSleepGoToBedTime.Text = "---";
+            this.lblScheduleSleepGoToBedTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblScheduleSleepGetUpTime
+            // 
+            this.lblScheduleSleepGetUpTime.AutoSize = true;
+            this.lblScheduleSleepGetUpTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblScheduleSleepGetUpTime.Location = new System.Drawing.Point(419, 0);
+            this.lblScheduleSleepGetUpTime.Name = "lblScheduleSleepGetUpTime";
+            this.lblScheduleSleepGetUpTime.Size = new System.Drawing.Size(102, 23);
+            this.lblScheduleSleepGetUpTime.TabIndex = 18;
+            this.lblScheduleSleepGetUpTime.Text = "---";
+            this.lblScheduleSleepGetUpTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLogSleepGoToBedTime
+            // 
+            this.lblLogSleepGoToBedTime.AutoSize = true;
+            this.lblLogSleepGoToBedTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLogSleepGoToBedTime.Location = new System.Drawing.Point(296, 23);
+            this.lblLogSleepGoToBedTime.Name = "lblLogSleepGoToBedTime";
+            this.lblLogSleepGoToBedTime.Size = new System.Drawing.Size(102, 24);
+            this.lblLogSleepGoToBedTime.TabIndex = 19;
+            this.lblLogSleepGoToBedTime.Text = "---";
+            this.lblLogSleepGoToBedTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLogSleepGetUpTime
+            // 
+            this.lblLogSleepGetUpTime.AutoSize = true;
+            this.lblLogSleepGetUpTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLogSleepGetUpTime.Location = new System.Drawing.Point(419, 23);
+            this.lblLogSleepGetUpTime.Name = "lblLogSleepGetUpTime";
+            this.lblLogSleepGetUpTime.Size = new System.Drawing.Size(102, 24);
+            this.lblLogSleepGetUpTime.TabIndex = 20;
+            this.lblLogSleepGetUpTime.Text = "---";
+            this.lblLogSleepGetUpTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // colEventIsSucceed
+            // 
+            this.colEventIsSucceed.HeaderText = "√";
+            this.colEventIsSucceed.Name = "colEventIsSucceed";
+            this.colEventIsSucceed.ReadOnly = true;
+            this.colEventIsSucceed.Width = 40;
+            // 
+            // colEventName
+            // 
+            this.colEventName.HeaderText = "Event Name";
+            this.colEventName.Name = "colEventName";
+            this.colEventName.ReadOnly = true;
+            // 
+            // cmsSleep
+            // 
+            this.cmsSleep.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmAddScheduleSleep,
+            this.addLogSleep});
+            this.cmsSleep.Name = "cmsSleep";
+            this.cmsSleep.Size = new System.Drawing.Size(204, 48);
+            // 
+            // tsmAddScheduleSleep
+            // 
+            this.tsmAddScheduleSleep.Name = "tsmAddScheduleSleep";
+            this.tsmAddScheduleSleep.Size = new System.Drawing.Size(203, 22);
+            this.tsmAddScheduleSleep.Text = "Add/Edit Schedule Sleep";
+            this.tsmAddScheduleSleep.Click += new System.EventHandler(this.tsmAddScheduleSleep_Click);
+            // 
+            // addLogSleep
+            // 
+            this.addLogSleep.Name = "addLogSleep";
+            this.addLogSleep.Size = new System.Drawing.Size(203, 22);
+            this.addLogSleep.Text = "Add/Edit Log Sleep";
+            this.addLogSleep.Click += new System.EventHandler(this.addLogSleep_Click);
             // 
             // frmDaily
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 845);
+            this.ClientSize = new System.Drawing.Size(810, 845);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.stsDaily);
             this.Controls.Add(this.mnsDaily);
@@ -1341,10 +1361,11 @@
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSchedule)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSchedule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLog)).EndInit();
+            this.cmsSleep.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1369,9 +1390,7 @@
         private System.Windows.Forms.DataGridView dgvLog;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgvMedicine;
-        private System.Windows.Forms.CheckBox chkMinusOneDay;
-        private System.Windows.Forms.DateTimePicker dtpGotoBedTime;
-        private System.Windows.Forms.DateTimePicker dtpWeakUpTime;
+        private System.Windows.Forms.CheckBox chkLogSleepMinusOneDay;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.DateTimePicker dtpToday;
         private System.Windows.Forms.Button btnPreDay;
@@ -1395,13 +1414,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmAddFinancial;
         private System.Windows.Forms.ToolStripMenuItem tsmDeleteFinancial;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtTotalSleep;
         private System.Windows.Forms.CheckBox chkScheduleSleepMinusOneDay;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMedicineName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMedicineTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMedicineQty;
@@ -1415,8 +1430,6 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnSaveSleepSchedule;
-        private System.Windows.Forms.Button btnSaveSleepActual;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -1462,8 +1475,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colVoucherCreditCurrency;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.DataGridView dgvEvent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEventName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEventIsSucceed;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Label lblScheduleSleepTime;
+        private System.Windows.Forms.Label lblLogSleepTime;
+        private System.Windows.Forms.Label lblScheduleSleepGoToBedTime;
+        private System.Windows.Forms.Label lblScheduleSleepGetUpTime;
+        private System.Windows.Forms.Label lblLogSleepGoToBedTime;
+        private System.Windows.Forms.Label lblLogSleepGetUpTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEventIsSucceed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEventName;
+        private System.Windows.Forms.ContextMenuStrip cmsSleep;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddScheduleSleep;
+        private System.Windows.Forms.ToolStripMenuItem addLogSleep;
     }
 }
