@@ -64,6 +64,7 @@
             this.colLog = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTaskName = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.chkBottom = new System.Windows.Forms.CheckBox();
             this.chkInfinite = new System.Windows.Forms.CheckBox();
@@ -73,7 +74,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblTaskTimeSpent = new System.Windows.Forms.Label();
-            this.lblTaskName = new System.Windows.Forms.Label();
             this.chkFinished = new System.Windows.Forms.CheckBox();
             this.stsTask.SuspendLayout();
             this.mnsTask.SuspendLayout();
@@ -413,6 +413,17 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(735, 26);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
+            // lblTaskName
+            // 
+            this.lblTaskName.AutoSize = true;
+            this.lblTaskName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTaskName.Location = new System.Drawing.Point(3, 0);
+            this.lblTaskName.Name = "lblTaskName";
+            this.lblTaskName.Size = new System.Drawing.Size(729, 26);
+            this.lblTaskName.TabIndex = 0;
+            this.lblTaskName.Text = "---";
+            this.lblTaskName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 10;
@@ -532,17 +543,6 @@
             this.lblTaskTimeSpent.TabIndex = 7;
             this.lblTaskTimeSpent.Text = "999h";
             this.lblTaskTimeSpent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblTaskName
-            // 
-            this.lblTaskName.AutoSize = true;
-            this.lblTaskName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTaskName.Location = new System.Drawing.Point(3, 0);
-            this.lblTaskName.Name = "lblTaskName";
-            this.lblTaskName.Size = new System.Drawing.Size(729, 26);
-            this.lblTaskName.TabIndex = 0;
-            this.lblTaskName.Text = "---";
-            this.lblTaskName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // chkFinished
             // 

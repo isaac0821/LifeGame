@@ -423,6 +423,7 @@ namespace LifeGame
                         }
                         G.glb.lstSubTask.Find(o => o.SubTask == PreviousName).SubTask = NewName;
                         trvTask.SelectedNode.Text = NewName;
+                        trvTask.SelectedNode.Name = NewName;
                     }
                 }
             }

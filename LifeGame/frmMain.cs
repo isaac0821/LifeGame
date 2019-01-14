@@ -46,12 +46,12 @@ namespace LifeGame
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            // Deserialize();
+            Deserialize();
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
             DrawLog();
         }
-        
+
         private void frmMain_Resize(object sender, EventArgs e)
         {
             DrawLog();
@@ -221,65 +221,6 @@ namespace LifeGame
             dtpDate.Value = dtpDate.Value.AddDays(7);
         }
 
-        private void picMon_DoubleClick(object sender, EventArgs e)
-        {
-            frmDaily frmDaily = new frmDaily(SelectedMonday);
-            frmDaily.Show();
-        }
-        private void picTue_DoubleClick(object sender, EventArgs e)
-        {
-            frmDaily frmDaily = new frmDaily(SelectedTuesday);
-            frmDaily.Show();
-        }
-        private void picWed_DoubleClick(object sender, EventArgs e)
-        {
-            frmDaily frmDaily = new frmDaily(SelectedWednesday);
-            frmDaily.Show();
-        }
-        private void picThu_DoubleClick(object sender, EventArgs e)
-        {
-            frmDaily frmDaily = new frmDaily(SelectedThursday);
-            frmDaily.Show();
-        }
-        private void picFri_DoubleClick(object sender, EventArgs e)
-        {
-            frmDaily frmDaily = new frmDaily(SelectedFriday);
-            frmDaily.Show();
-        }
-        private void picSat_DoubleClick(object sender, EventArgs e)
-        {
-            frmDaily frmDaily = new frmDaily(SelectedSaturday);
-            frmDaily.Show();
-        }
-        private void picSun_DoubleClick(object sender, EventArgs e)
-        {
-            frmDaily frmDaily = new frmDaily(SelectedSunday);
-            frmDaily.Show();
-        }
-
-        private void chkShowSchedule_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkShowLog.Checked == false)
-            {
-                if (chkShowSchedule.Checked == false)
-                {
-                    chkShowSchedule.Checked = true;
-                }
-            }
-            DrawLog();
-        }
-        private void chkShowLog_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkShowSchedule.Checked == false)
-            {
-                if (chkShowLog.Checked == false)
-                {
-                    chkShowLog.Checked = true;
-                }
-            }
-            DrawLog();
-        }
-
         private void tsmAddSleepSchedule_Click(object sender, EventArgs e)
         {
             frmAddSleepSchedule frmAddScheduleSleep = new frmAddSleepSchedule();
@@ -344,66 +285,155 @@ namespace LifeGame
             dtpDate.Value = SelectedDate;
         }
 
-        private void LoadLsbDaily(ListBox listBox, DateTime date)
+        private void LoadLblDaily(Label lbl, DateTime date)
         {
-            listBox.Items.Clear();
+            lbl.Text = "";
+            string whole = "";
             List<CTask> taskDeadline = G.glb.lstTask.FindAll(o => o.DeadLine.Date == date.Date).ToList();
             foreach (CTask task in taskDeadline)
             {
-                listBox.Items.Add("Deadline:" + task.TaskName);
+                whole += "Deadline: " + task.TaskName + "\n";
             }
+            if (taskDeadline.Count > 0)
+            {
+                whole = whole.Substring(0, whole.Length - 1);
+            }
+            lbl.Text = whole;
         }
+
+
 
         private void DrawLog()
         {
             Draw Draw = new Draw();
-            LoadLsbDaily(lsbMon, SelectedMonday);
-            LoadLsbDaily(lsbTue, SelectedTuesday);
-            LoadLsbDaily(lsbWed, SelectedWednesday);
-            LoadLsbDaily(lsbThu, SelectedThursday);
-            LoadLsbDaily(lsbFri, SelectedFriday);
-            LoadLsbDaily(lsbSat, SelectedSaturday);
-            LoadLsbDaily(lsbSun, SelectedSunday);
+            LoadLblDaily(lblDDLMon, SelectedMonday);
+            LoadLblDaily(lblDDLTue, SelectedTuesday);
+            LoadLblDaily(lblDDLWed, SelectedWednesday);
+            LoadLblDaily(lblDDLThu, SelectedThursday);
+            LoadLblDaily(lblDDLFri, SelectedFriday);
+            LoadLblDaily(lblDDLSat, SelectedSaturday);
+            LoadLblDaily(lblDDLSun, SelectedSunday);
 
-            if (chkShowSchedule.Checked && chkShowLog.Checked)
+            picMon.Controls.Clear();
+            picTue.Controls.Clear();
+            picWed.Controls.Clear();
+            picThu.Controls.Clear();
+            picFri.Controls.Clear();
+            picSat.Controls.Clear();
+            picSun.Controls.Clear();
+
+            if (chkShowSchedule.Checked && chkShowLog.Checked & chkMoney.Checked)
             {
-                Draw.DrawScheduleAndLog(picMon, SelectedMonday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
-                Draw.DrawScheduleAndLog(picTue, SelectedTuesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
-                Draw.DrawScheduleAndLog(picWed, SelectedWednesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
-                Draw.DrawScheduleAndLog(picThu, SelectedThursday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
-                Draw.DrawScheduleAndLog(picFri, SelectedFriday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
-                Draw.DrawScheduleAndLog(picSat, SelectedSaturday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
-                Draw.DrawScheduleAndLog(picSun, SelectedSunday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "left");
-                Draw.DrawScheduleAndLog(picMon, SelectedMonday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
-                Draw.DrawScheduleAndLog(picTue, SelectedTuesday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
-                Draw.DrawScheduleAndLog(picWed, SelectedWednesday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
-                Draw.DrawScheduleAndLog(picThu, SelectedThursday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
-                Draw.DrawScheduleAndLog(picFri, SelectedFriday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
-                Draw.DrawScheduleAndLog(picSat, SelectedSaturday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
-                Draw.DrawScheduleAndLog(picSun, SelectedSunday, G.glb.lstLog, G.glb.lstSleepLog, true, "right");
+                DrawScheduleWithMode("leftWithSupp");
+                DrawLogWithMode("rightWithSupp");
             }
-            else if (chkShowSchedule.Checked && !chkShowLog.Checked)
+            else if (chkShowSchedule.Checked && chkShowLog.Checked & !chkMoney.Checked)
             {
-                Draw.DrawScheduleAndLog(picMon, SelectedMonday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
-                Draw.DrawScheduleAndLog(picTue, SelectedTuesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
-                Draw.DrawScheduleAndLog(picWed, SelectedWednesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
-                Draw.DrawScheduleAndLog(picThu, SelectedThursday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
-                Draw.DrawScheduleAndLog(picFri, SelectedFriday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
-                Draw.DrawScheduleAndLog(picSat, SelectedSaturday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
-                Draw.DrawScheduleAndLog(picSun, SelectedSunday, G.glb.lstSchedule, G.glb.lstSleepSchedule, true, "all");
+                DrawScheduleWithMode("left");
+                DrawLogWithMode("right");
             }
-            else if (!chkShowSchedule.Checked && chkShowLog.Checked)
+            else if (chkShowSchedule.Checked && !chkShowLog.Checked & chkMoney.Checked)
             {
-                Draw.DrawScheduleAndLog(picMon, SelectedMonday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
-                Draw.DrawScheduleAndLog(picTue, SelectedTuesday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
-                Draw.DrawScheduleAndLog(picWed, SelectedWednesday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
-                Draw.DrawScheduleAndLog(picThu, SelectedThursday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
-                Draw.DrawScheduleAndLog(picFri, SelectedFriday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
-                Draw.DrawScheduleAndLog(picSat, SelectedSaturday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
-                Draw.DrawScheduleAndLog(picSun, SelectedSunday, G.glb.lstLog, G.glb.lstSleepLog, true, "all");
-            }         
+                DrawScheduleWithMode("allWithSupp");
+            }
+            else if (chkShowSchedule.Checked && !chkShowLog.Checked & !chkMoney.Checked)
+            {
+                DrawScheduleWithMode("all");
+            }
+            else if (!chkShowSchedule.Checked && chkShowLog.Checked & chkMoney.Checked)
+            {
+                DrawLogWithMode("allWithSupp");
+            }
+            else if (!chkShowSchedule.Checked && chkShowLog.Checked & !chkMoney.Checked)
+            {
+                DrawLogWithMode("all");
+            }
+            else if (!chkShowSchedule.Checked && !chkShowLog.Checked & chkMoney.Checked)
+            {
+
+            }
+            else if (!chkShowSchedule.Checked && !chkShowLog.Checked & !chkMoney.Checked)
+            {
+
+            }
         }
 
+        private void DrawLogWithMode(string Mode)
+        {
+            Draw Draw = new Draw();
+            Draw.DrawScheduleAndLogController(picMon, SelectedMonday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
+            Draw.DrawScheduleAndLogController(picTue, SelectedTuesday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
+            Draw.DrawScheduleAndLogController(picWed, SelectedWednesday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
+            Draw.DrawScheduleAndLogController(picThu, SelectedThursday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
+            Draw.DrawScheduleAndLogController(picFri, SelectedFriday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
+            Draw.DrawScheduleAndLogController(picSat, SelectedSaturday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
+            Draw.DrawScheduleAndLogController(picSun, SelectedSunday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
+        }
 
+        private void DrawScheduleWithMode(string Mode)
+        {
+            Draw Draw = new Draw();
+            Draw.DrawScheduleAndLogController(picMon, SelectedMonday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picTue, SelectedTuesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picWed, SelectedWednesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picThu, SelectedThursday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picFri, SelectedFriday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picSat, SelectedSaturday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picSun, SelectedSunday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
+        }
+
+        private void cmsMain_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void lblDDLMon_Click(object sender, EventArgs e)
+        {
+            Draw D = new Draw();
+            D.CallDDLInfo(lblDDLMon.Text);
+        }
+        private void lblDDLTue_Click(object sender, EventArgs e)
+        {
+            Draw D = new Draw();
+            D.CallDDLInfo(lblDDLTue.Text);
+        }
+        private void lblDDLWed_Click(object sender, EventArgs e)
+        {
+            Draw D = new Draw();
+            D.CallDDLInfo(lblDDLWed.Text);
+        }
+        private void lblDDLThu_Click(object sender, EventArgs e)
+        {
+            Draw D = new Draw();
+            D.CallDDLInfo(lblDDLThu.Text);
+        }
+        private void lblDDLFri_Click(object sender, EventArgs e)
+        {
+            Draw D = new Draw();
+            D.CallDDLInfo(lblDDLFri.Text);
+        }
+        private void lblDDLSat_Click(object sender, EventArgs e)
+        {
+            Draw D = new Draw();
+            D.CallDDLInfo(lblDDLSat.Text);
+        }
+        private void lblDDLSun_Click(object sender, EventArgs e)
+        {
+            Draw D = new Draw();
+            D.CallDDLInfo(lblDDLSun.Text);
+        }
+
+        private void chkShowSchedule_CheckedChanged(object sender, EventArgs e)
+        {
+            DrawLog();
+        }
+        private void chkShowLog_CheckedChanged(object sender, EventArgs e)
+        {
+            DrawLog();
+        }
+        private void chkMoney_CheckedChanged(object sender, EventArgs e)
+        {
+            DrawLog();
+        }
     }
 }

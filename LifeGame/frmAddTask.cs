@@ -63,5 +63,19 @@ namespace LifeGame
                 Dispose();
             }
         }
+
+        private void chkInfinite_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkInfinite.Checked)
+            {
+                dtpDeadLine.Value = new DateTime(9998, 12, 31);
+                dtpDeadLine.Enabled = false;
+            }
+            else
+            {
+                dtpDeadLine.Value = DateTime.Today.Date;
+                dtpDeadLine.Enabled = true;
+            }
+        }
     }
 }

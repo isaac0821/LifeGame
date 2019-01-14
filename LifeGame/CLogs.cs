@@ -59,6 +59,32 @@ namespace LifeGame
     }
 
     /// <summary>
+    /// 锻炼记录
+    /// </summary>
+    [Serializable]
+    public class CWorkOut
+    {
+        public DateTime Date;
+        public string WorkOutType;
+        public DateTime WorkOutEndTime;
+        public double WorkOutQty;
+        public string WorkOutUnit;
+    }
+
+    /// <summary>
+    /// 药物记录
+    /// </summary>
+    [Serializable]
+    public class CMedicine
+    {
+        public DateTime Date;
+        public string MedicineName;
+        public DateTime TakenTime;
+        public double MedicineQty;
+        public string MedicineUnit;
+    }
+
+    /// <summary>
     /// 任务
     /// </summary>
     [Serializable]
@@ -172,28 +198,5 @@ namespace LifeGame
         public bool IsGoToBedBeforeMidNight;
     }
 
-    /// <summary>
-    /// 锻炼记录
-    /// </summary>
-    [Serializable]
-    public class CWorkOut
-    {
-        public DateTime Date;
-        public string WorkOutType;
-        public double WorkOutQty;
-        public string WorkOutUnit;
-    }
 
-    /// <summary>
-    /// 药物记录
-    /// </summary>
-    [Serializable]
-    public class CMedicine
-    {
-        public DateTime Date;
-        public string MedicineName;
-        public DateTime TakenTime;
-        public double MedicineQty;
-        public string MedicineUnit;
-    }
 }

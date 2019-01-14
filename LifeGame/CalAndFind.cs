@@ -203,6 +203,10 @@ namespace LifeGame
                 string upperTask = rSubTasks.Find(o => o.SubTask == TaskName).Task;
                 bool IsTaskFinished = true;
                 List<RSubTask> children = rSubTasks.FindAll(o => o.Task == TaskName);
+                if (children.Count == 0 && tasks.Find(o=>o.TaskName == TaskName).IsBottom != true)
+                {
+                    IsTaskFinished = false;
+                }
                 foreach (RSubTask task in children)
                 {
                     if (tasks.Find(o => o.TaskName == task.SubTask).IsFinished == false)

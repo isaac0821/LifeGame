@@ -30,16 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Asset");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Equity");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Expenses");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Income");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Liability");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("(Root)", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Openning_Balance");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Equity", new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Expenses");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Income");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Liability");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("(Root)", new System.Windows.Forms.TreeNode[] {
             treeNode1,
-            treeNode2,
             treeNode3,
             treeNode4,
-            treeNode5});
+            treeNode5,
+            treeNode6});
             this.stsAccount = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.mnsAccount = new System.Windows.Forms.MenuStrip();
@@ -227,18 +229,20 @@
             this.trvAccount.Name = "trvAccount";
             treeNode1.Name = "Asset";
             treeNode1.Text = "Asset";
-            treeNode2.Name = "Equity";
-            treeNode2.Text = "Equity";
-            treeNode3.Name = "Expenses";
-            treeNode3.Text = "Expenses";
-            treeNode4.Name = "Income";
-            treeNode4.Text = "Income";
-            treeNode5.Name = "Liability";
-            treeNode5.Text = "Liability";
-            treeNode6.Name = "(Root)";
-            treeNode6.Text = "(Root)";
+            treeNode2.Name = "Openning_Balance";
+            treeNode2.Text = "Openning_Balance";
+            treeNode3.Name = "Equity";
+            treeNode3.Text = "Equity";
+            treeNode4.Name = "Expenses";
+            treeNode4.Text = "Expenses";
+            treeNode5.Name = "Income";
+            treeNode5.Text = "Income";
+            treeNode6.Name = "Liability";
+            treeNode6.Text = "Liability";
+            treeNode7.Name = "(Root)";
+            treeNode7.Text = "(Root)";
             this.trvAccount.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            treeNode7});
             this.trvAccount.Size = new System.Drawing.Size(228, 328);
             this.trvAccount.TabIndex = 0;
             // 
