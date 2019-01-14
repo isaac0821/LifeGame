@@ -314,5 +314,34 @@ namespace LifeGame
                 }
             }
         }
+
+        public enum EMoneyFlowState: int
+        {
+            WithinSystem,
+            FlowIn,
+            FlowOut
+        }
+
+        /// <summary>
+        /// 判断“钱是花掉了还是赚了” （资金是用贷方流向借方）
+        /// 
+        /// </summary>
+        /// <param name="DebitAccountType">借方科目</param>
+        /// <param name="CreditAccountType">贷方科目</param>
+        /// <returns></returns>
+        public EMoneyFlowState MoneyInOrOut(EAccountType DebitAccountType, EAccountType CreditAccountType)
+        {
+            EMoneyFlowState ret = EMoneyFlowState.WithinSystem;
+            // 若资金从Income类科目流入至Asset类转化为资产，资金为流入
+            if (CreditAccountType == EAccountType.Income && DebitAccountType != EAccountType.Expense)
+            {
+                ret = EMoneyFlowState.FlowIn;
+            }
+            else if (CreditAccountType != EAccountType.Income && DebitAccountType == EAccountType.Expense)
+            {
+                ret = EMoneyFlowState.FlowOut;
+            }
+            return ret; 
+        }
     }
 }

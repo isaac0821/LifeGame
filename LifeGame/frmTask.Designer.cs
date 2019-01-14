@@ -64,7 +64,6 @@
             this.colLog = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblTaskName = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.chkBottom = new System.Windows.Forms.CheckBox();
             this.chkInfinite = new System.Windows.Forms.CheckBox();
@@ -75,6 +74,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblTaskTimeSpent = new System.Windows.Forms.Label();
             this.chkFinished = new System.Windows.Forms.CheckBox();
+            this.lblTaskTitle = new System.Windows.Forms.Label();
             this.stsTask.SuspendLayout();
             this.mnsTask.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -403,26 +403,14 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.lblTaskName, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblTaskTitle, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Enabled = false;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(735, 26);
             this.tableLayoutPanel2.TabIndex = 2;
-            // 
-            // lblTaskName
-            // 
-            this.lblTaskName.AutoSize = true;
-            this.lblTaskName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTaskName.Location = new System.Drawing.Point(3, 0);
-            this.lblTaskName.Name = "lblTaskName";
-            this.lblTaskName.Size = new System.Drawing.Size(729, 26);
-            this.lblTaskName.TabIndex = 0;
-            this.lblTaskName.Text = "---";
-            this.lblTaskName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel3
             // 
@@ -556,6 +544,17 @@
             this.chkFinished.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkFinished.UseVisualStyleBackColor = true;
             // 
+            // lblTaskTitle
+            // 
+            this.lblTaskTitle.AutoSize = true;
+            this.lblTaskTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTaskTitle.Location = new System.Drawing.Point(3, 0);
+            this.lblTaskTitle.Name = "lblTaskTitle";
+            this.lblTaskTitle.Size = new System.Drawing.Size(729, 26);
+            this.lblTaskTitle.TabIndex = 0;
+            this.lblTaskTitle.Text = "---";
+            this.lblTaskTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -638,7 +637,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colDuration;
         private System.Windows.Forms.ToolStripMenuItem addLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmRename;
-        private System.Windows.Forms.Label lblTaskName;
         private System.Windows.Forms.CheckBox chkFinished;
+        private System.Windows.Forms.Label lblTaskTitle;
     }
 }

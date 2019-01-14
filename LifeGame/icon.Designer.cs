@@ -153,9 +153,29 @@ namespace LifeGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap iconMoney {
+        internal static System.Drawing.Bitmap iconMoneyIn {
             get {
-                object obj = ResourceManager.GetObject("iconMoney", resourceCulture);
+                object obj = ResourceManager.GetObject("iconMoneyIn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconMoneyOut {
+            get {
+                object obj = ResourceManager.GetObject("iconMoneyOut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconMoneyWithin {
+            get {
+                object obj = ResourceManager.GetObject("iconMoneyWithin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

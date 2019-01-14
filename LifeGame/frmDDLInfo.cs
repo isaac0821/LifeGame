@@ -12,13 +12,17 @@ namespace LifeGame
 {
     public partial class frmDDLInfo : Form
     {
-        public frmDDLInfo(string DDLInfo)
+        public frmDDLInfo(string infos)
         {
             InitializeComponent();
-            lblDDLInfo.Text = DDLInfo;
+            string[] lstInfo = infos.Split('\n');
+            foreach (string info in lstInfo)
+            {
+                lsbInfo.Items.Add(info);
+            }
         }
 
-        private void lblDDLInfo_Click(object sender, EventArgs e)
+        private void txtDDLInfo_Click(object sender, EventArgs e)
         {
             Dispose();
         }

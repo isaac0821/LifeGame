@@ -37,3 +37,4 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSleepSchedule.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSleepLog.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmLogInfo.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmDDLInfo.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmLiterature.resources

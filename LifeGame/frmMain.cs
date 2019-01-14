@@ -50,6 +50,15 @@ namespace LifeGame
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
             DrawLog();
+
+            G.glb.lstEvent.Add(new CEvent());
+            G.glb.lstEvent[0].EventName = "";
+            G.glb.lstEvent[0].EventState = EEventState.Failed;
+            G.glb.lstEvent[0].TagTime = new DateTime(2019, 1, 13, 12, 12, 12);
+            G.glb.lstEvent.Add(new CEvent());
+            G.glb.lstEvent[1].EventName = "";
+            G.glb.lstEvent[1].EventState = EEventState.Succeed;
+            G.glb.lstEvent[1].TagTime = new DateTime(2019, 1, 12, 12, 12, 12);
         }
 
         private void frmMain_Resize(object sender, EventArgs e)
@@ -326,6 +335,7 @@ namespace LifeGame
             {
                 DrawScheduleWithMode("leftWithSupp");
                 DrawLogWithMode("rightWithSupp");
+                DrawEvent();
             }
             else if (chkShowSchedule.Checked && chkShowLog.Checked & !chkMoney.Checked)
             {
@@ -335,6 +345,7 @@ namespace LifeGame
             else if (chkShowSchedule.Checked && !chkShowLog.Checked & chkMoney.Checked)
             {
                 DrawScheduleWithMode("allWithSupp");
+                DrawEvent();
             }
             else if (chkShowSchedule.Checked && !chkShowLog.Checked & !chkMoney.Checked)
             {
@@ -343,6 +354,7 @@ namespace LifeGame
             else if (!chkShowSchedule.Checked && chkShowLog.Checked & chkMoney.Checked)
             {
                 DrawLogWithMode("allWithSupp");
+                DrawEvent();
             }
             else if (!chkShowSchedule.Checked && chkShowLog.Checked & !chkMoney.Checked)
             {
@@ -350,7 +362,7 @@ namespace LifeGame
             }
             else if (!chkShowSchedule.Checked && !chkShowLog.Checked & chkMoney.Checked)
             {
-
+                DrawEvent();
             }
             else if (!chkShowSchedule.Checked && !chkShowLog.Checked & !chkMoney.Checked)
             {
@@ -380,6 +392,18 @@ namespace LifeGame
             Draw.DrawScheduleAndLogController(picFri, SelectedFriday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
             Draw.DrawScheduleAndLogController(picSat, SelectedSaturday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
             Draw.DrawScheduleAndLogController(picSun, SelectedSunday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
+        }
+
+        private void DrawEvent()
+        {
+            Draw Draw = new Draw();
+            Draw.DrawEventController(picMon, SelectedMonday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction,G.glb.lstAccount);
+            Draw.DrawEventController(picTue, SelectedTuesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstAccount);
+            Draw.DrawEventController(picWed, SelectedWednesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstAccount);
+            Draw.DrawEventController(picThu, SelectedThursday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstAccount);
+            Draw.DrawEventController(picFri, SelectedFriday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstAccount);
+            Draw.DrawEventController(picSat, SelectedSaturday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstAccount);
+            Draw.DrawEventController(picSun, SelectedSunday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstAccount);
         }
 
         private void cmsMain_Opening(object sender, CancelEventArgs e)
@@ -434,6 +458,12 @@ namespace LifeGame
         private void chkMoney_CheckedChanged(object sender, EventArgs e)
         {
             DrawLog();
+        }
+
+        private void literatureLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLiterature frmLiterature = new frmLiterature();
+            frmLiterature.Show();
         }
     }
 }

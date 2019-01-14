@@ -9,12 +9,7 @@ using System.Drawing;
 namespace LifeGame
 {
     public class Draw
-    {
-        public enum EEventType: int
-        {
-
-        }
-
+    {   
         /// <summary>
         /// 返回Color格式的颜色 Done: 01/03/2019
         /// </summary>
@@ -189,15 +184,17 @@ namespace LifeGame
                 lstLblLog.Add(new Label());
                 double start = (todayLogs[i].StartTime.Hour + todayLogs[i].StartTime.Minute / 60d) / 24d * height;
                 double end;
+                string TimePeriod;
                 if (todayLogs[i].EndTime.Date == date)
                 {
                     end = (todayLogs[i].EndTime.Hour + todayLogs[i].EndTime.Minute / 60d) / 24d * height;
+                    TimePeriod = todayLogs[i].StartTime.ToShortTimeString() + " - " + todayLogs[i].EndTime.ToShortTimeString();
                 }
                 else
                 {
                     end = height;
-                }
-                string TimePeriod = todayLogs[i].StartTime.ToShortTimeString() + " - " + todayLogs[i].EndTime.ToShortTimeString();
+                    TimePeriod = todayLogs[i].StartTime.ToShortTimeString() + " - " + todayLogs[i].EndTime.ToShortTimeString() + "(+1d)";
+                }                
                 string LogName = todayLogs[i].LogName;
                 string Location = todayLogs[i].Location;
                 string WithWho = todayLogs[i].WithWho;
@@ -217,9 +214,107 @@ namespace LifeGame
             }
         }
 
-        public void DrawEventController(PictureBox picMap)
+        public void DrawEventController(
+            PictureBox picMap,
+            DateTime date,
+            List<CEvent> events,
+            List<CWorkOut> workOuts,
+            List<CLiteratureReadingLog> literatureReadingLogs, 
+            List<CMedicine> medicines, 
+            List<CTransaction> moneyDetails,
+            List<CAccount> accounts)
         {
-
+            int left = picMap.Width - 27 > 0 ? picMap.Width - 27 : 0;
+            List<PictureBox> lstPicEvent = new List<PictureBox>();
+            List<CEvent> lstEvent = events.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CWorkOut> lstWorkOut = workOuts.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CLiteratureReadingLog> lstLiteratureReadingLog = literatureReadingLogs.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CMedicine> lstMedicine = medicines.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CTransaction> lstMoneyDetails = moneyDetails.FindAll(o => o.TagTime.Date == date).ToList();
+            int acc = 0;
+            for (int i = 0; i<lstEvent.Count;i++)
+            {
+                lstPicEvent.Add(new PictureBox());
+                double middle = lstEvent[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
+                if (lstEvent[i].EventState == EEventState.Succeed)
+                {
+                    lstPicEvent[i].Image = icon.iconEvent;
+                }
+                else
+                {
+                    lstPicEvent[i].Image = icon.iconFailedEvent;
+                }
+                lstPicEvent[i].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                lstPicEvent[i].Left = left;
+                lstPicEvent[i].Width = 24;
+                lstPicEvent[i].Height = 24;
+                picMap.Controls.Add(lstPicEvent[i]);
+            }
+            acc = acc + lstEvent.Count;
+            for(int i = 0; i < lstWorkOut.Count; i++)
+            {
+                lstPicEvent.Add(new PictureBox());
+                double middle = lstWorkOut[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
+                lstPicEvent[i + acc].Image = icon.iconFitness;
+                lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                lstPicEvent[i + acc].Left = left;
+                lstPicEvent[i + acc].Width = 24;
+                lstPicEvent[i + acc].Height = 24;
+                picMap.Controls.Add(lstPicEvent[i + acc]);
+            }
+            acc = acc + lstWorkOut.Count;
+            for (int i = 0; i < lstLiteratureReadingLog.Count; i++)
+            {
+                lstPicEvent.Add(new PictureBox());
+                double middle = lstLiteratureReadingLog[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
+                lstPicEvent[i + acc].Image = icon.iconLiterature;
+                lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                lstPicEvent[i + acc].Left = left;
+                lstPicEvent[i + acc].Width = 24;
+                lstPicEvent[i + acc].Height = 24;
+                picMap.Controls.Add(lstPicEvent[i + acc]);
+            }
+            acc = acc + lstLiteratureReadingLog.Count;
+            for (int i = 0; i < lstMedicine.Count; i++)
+            {
+                lstPicEvent.Add(new PictureBox());
+                double middle = lstMedicine[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
+                lstPicEvent[i + acc].Image = icon.iconHealth;
+                lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                lstPicEvent[i + acc].Left = left;
+                lstPicEvent[i + acc].Width = 24;
+                lstPicEvent[i + acc].Height = 24;
+                picMap.Controls.Add(lstPicEvent[i + acc]);
+            }
+            acc = acc + lstMedicine.Count;
+            for (int i = 0; i < lstMoneyDetails.Count; i++)
+            {
+                lstPicEvent.Add(new PictureBox());
+                double middle = lstMoneyDetails[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
+                CalAndFind C = new CalAndFind();
+                EAccountType DebitAccountType = accounts.Find(o => o.AccountName == lstMoneyDetails[i].DebitAccount).AccountType;
+                EAccountType CreditAccountType = accounts.Find(o => o.AccountName == lstMoneyDetails[i].CreditAccount).AccountType;
+                CalAndFind.EMoneyFlowState MoneyFlowState = C.MoneyInOrOut(DebitAccountType, CreditAccountType);
+                switch (MoneyFlowState)
+                {
+                    case CalAndFind.EMoneyFlowState.WithinSystem:
+                        lstPicEvent[i + acc].Image = icon.iconMoneyWithin;
+                        break;
+                    case CalAndFind.EMoneyFlowState.FlowIn:
+                        lstPicEvent[i + acc].Image = icon.iconMoneyIn;
+                        break;
+                    case CalAndFind.EMoneyFlowState.FlowOut:
+                        lstPicEvent[i + acc].Image = icon.iconMoneyOut;
+                        break;
+                    default:
+                        break;
+                }                
+                lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                lstPicEvent[i + acc].Left = left;
+                lstPicEvent[i + acc].Width = 24;
+                lstPicEvent[i + acc].Height = 24;
+                picMap.Controls.Add(lstPicEvent[i + acc]);
+            }
         }
 
         public void CallLogInfo(string Timeperiod, string LogName, string Location, string WithWho, string TaskName, Color color)

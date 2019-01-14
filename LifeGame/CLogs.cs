@@ -9,11 +9,20 @@ namespace LifeGame
     /// <summary>
     /// 逻辑关系
     /// </summary>
+    [Serializable]
     public enum ELogic : int
     {
         OR,
         AND,
         NOT
+    }
+
+    public enum EAchievementState: int
+    {
+        NotStart,
+        InProcess,
+        Achieved,
+        Terminated
     }
 
     /// <summary>
@@ -25,8 +34,7 @@ namespace LifeGame
         public string AchievementName;
         public string Description;
         public int TotalProgressPoint;
-        public bool IsAchieved;
-        public bool IsTerminated;
+        public EAchievementState AchievementState;
         public string IconName;
     }
 
@@ -41,11 +49,99 @@ namespace LifeGame
         public ELogic PreReqLogic;
     }
 
+    [Serializable]
     public enum EEventState : int
     {
-        Waiting,
         Succeed,
         Failed
+    }
+
+    /// <summary>
+    /// 文献阅读
+    /// </summary>
+    [Serializable]
+    public class CLiteratureReadingLog
+    {
+        public DateTime TagTime;
+        public string LiteratureTitle;
+        public string LiteratureLog;
+    }
+
+    /// <summary>
+    /// 文献类
+    /// </summary>
+    [Serializable]
+    public class CLiterature
+    {
+        public string Title;
+        public int PublishYear;
+        public ELiteratureImportance Importance;
+        public ELiteratureReadingStatus ReadingStatus;
+        public string JournalOrConferenceName;
+        public string InOneSentence;
+        public string LocalPath;
+        public string CommentsInXML;
+    }
+
+    [Serializable]
+    public enum ELiteratureImportance: int
+    {
+        VeryImportant,
+        Important,
+        Medium,
+        Unimportant
+    }
+
+    [Serializable]
+    public enum ELiteratureReadingStatus : int
+    {
+        ModelRecur,
+        FormulaDerivation,
+        UnderstandModel,
+        GetIdeaAndStructure,
+        AbstractAndConclusion,
+        NotYetStarted,
+    }
+
+    /// <summary>
+    /// 自己引用的参考文献
+    /// </summary>
+    [Serializable]
+    public class RLiteratureCited
+    {
+        public string Title;
+        public string TitleOfMyArticle;
+    }
+
+    /// <summary>
+    /// 文献标签
+    /// </summary>
+    [Serializable]
+    public class RLiteratureTag
+    {
+        public string Title;
+        public string Tag;
+    }
+
+    /// <summary>
+    /// 文献作者
+    /// </summary>
+    [Serializable]
+    public class RLiteratureAuthor
+    {
+        public string Title;
+        public string Author;
+        public int Rank;
+    }
+
+    /// <summary>
+    /// 文献机构
+    /// </summary>
+    [Serializable]
+    public class RLiteratureInstitution
+    {
+        public string Title;
+        public string Institution;
     }
 
     /// <summary>
@@ -54,6 +150,7 @@ namespace LifeGame
     [Serializable]
     public class CEvent
     {
+        public DateTime TagTime;
         public string EventName;
         public EEventState EventState;
     }
@@ -64,9 +161,8 @@ namespace LifeGame
     [Serializable]
     public class CWorkOut
     {
-        public DateTime Date;
-        public string WorkOutType;
-        public DateTime WorkOutEndTime;
+        public DateTime TagTime;
+        public string WorkOutType;        
         public double WorkOutQty;
         public string WorkOutUnit;
     }
@@ -77,9 +173,8 @@ namespace LifeGame
     [Serializable]
     public class CMedicine
     {
-        public DateTime Date;
-        public string MedicineName;
-        public DateTime TakenTime;
+        public DateTime TagTime;
+        public string MedicineName;        
         public double MedicineQty;
         public string MedicineUnit;
     }
@@ -128,10 +223,10 @@ namespace LifeGame
     /// 开支，目前只支持一借一贷的形式
     /// </summary>
     [Serializable]
-    public class CMoneyDetail
+    public class CTransaction
     {
         public string Summary;
-        public DateTime Date;
+        public DateTime TagTime;
         public string DebitAccount;
         public string CreditAccount;
         public double DebitAmount;

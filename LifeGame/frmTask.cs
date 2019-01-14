@@ -74,7 +74,7 @@ namespace LifeGame
             if (G.glb.lstTask.Exists(o => o.TaskName == taskName))
             {
                 CTask task = G.glb.lstTask.Find(o => o.TaskName == taskName);
-                lblTaskName.Text = task.TaskName;
+                lblTaskTitle.Text = task.TaskName;
                 chkBottom.Checked = task.IsBottom;
                 chkFinished.Checked = task.IsFinished;
                 CalAndFind C = new CalAndFind();
@@ -118,7 +118,7 @@ namespace LifeGame
             }
             else
             {
-                lblTaskName.Text = "(No Record)";
+                lblTaskTitle.Text = "(No Record)";
                 chkBottom.Checked = false;
                 chkFinished.Checked = false;
                 chkInfinite.Checked = false;

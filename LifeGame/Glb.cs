@@ -14,18 +14,34 @@ namespace LifeGame
     [Serializable]
     public class Mem
     {
+        // Achievement
+        public List<CAchievement> lstAchievement = new List<CAchievement>();
+        public List<RPreReqAchievement> lstPreReqAchievement = new List<RPreReqAchievement>();
+
+        // Event
         public List<CEvent> lstEvent = new List<CEvent>();
+        public List<CSleep> lstSleepSchedule = new List<CSleep>();
+        public List<CSleep> lstSleepLog = new List<CSleep>();
+        public List<CWorkOut> lstWorkOut = new List<CWorkOut>();
+        public List<CMedicine> lstMedicine = new List<CMedicine>();
+ 
+        // Literature
+        public List<CLiterature> lstLiterature = new List<CLiterature>();
+        public List<CLiteratureReadingLog> lstLiteratureLog = new List<CLiteratureReadingLog>();
+        public List<RLiteratureAuthor> lstLiteratureAuthors = new List<RLiteratureAuthor>();
+        public List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
+        public List<RLiteratureCited> lstLiteratureCited = new List<RLiteratureCited>();
+        public List<RLiteratureInstitution> lstLiteratureInstitution = new List<RLiteratureInstitution>();
+
+        // Task and Log
         public List<CTask> lstTask = new List<CTask>();
         public List<RSubTask> lstSubTask = new List<RSubTask>();
         public List<CLog> lstSchedule = new List<CLog>();
         public List<CLog> lstLog = new List<CLog>();
-        public List<CMoneyDetail> lstMoneyDetail = new List<CMoneyDetail>();
+
+        // Money
+        public List<CTransaction> lstTransaction = new List<CTransaction>();
         public List<CAccount> lstAccount = new List<CAccount>();
         public List<RSubAccount> lstSubAccount = new List<RSubAccount>();
-        public List<CSleep> lstSleepSchedule = new List<CSleep>();
-        public List<CSleep> lstSleepLog = new List<CSleep>();
-        public List<CWorkOut> lstWorkOutSchedule = new List<CWorkOut>();
-        public List<CWorkOut> lstWorkOutLog = new List<CWorkOut>();
-        public List<CMedicine> lstMedicine = new List<CMedicine>();
-    }
+   }
 }

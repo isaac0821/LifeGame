@@ -30,7 +30,7 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblDDLInfo = new System.Windows.Forms.Label();
+            this.lsbInfo = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +56,7 @@
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.Gainsboro;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.lblDDLInfo, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lsbInfo, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(10, 10);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(10);
@@ -66,16 +66,16 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(560, 210);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // lblDDLInfo
+            // lsbInfo
             // 
-            this.lblDDLInfo.AutoSize = true;
-            this.lblDDLInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLInfo.Location = new System.Drawing.Point(3, 0);
-            this.lblDDLInfo.Name = "lblDDLInfo";
-            this.lblDDLInfo.Size = new System.Drawing.Size(554, 210);
-            this.lblDDLInfo.TabIndex = 0;
-            this.lblDDLInfo.Text = "label1";
-            this.lblDDLInfo.Click += new System.EventHandler(this.lblDDLInfo_Click);
+            this.lsbInfo.BackColor = System.Drawing.Color.Gainsboro;
+            this.lsbInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lsbInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsbInfo.FormattingEnabled = true;
+            this.lsbInfo.Location = new System.Drawing.Point(3, 3);
+            this.lsbInfo.Name = "lsbInfo";
+            this.lsbInfo.Size = new System.Drawing.Size(554, 204);
+            this.lsbInfo.TabIndex = 0;
             // 
             // frmDDLInfo
             // 
@@ -90,7 +90,6 @@
             this.Deactivate += new System.EventHandler(this.frmDDLInfo_Deactivate);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -99,6 +98,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label lblDDLInfo;
+        private System.Windows.Forms.ListBox lsbInfo;
     }
 }
