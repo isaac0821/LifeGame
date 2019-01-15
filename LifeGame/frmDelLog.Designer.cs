@@ -30,14 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lsbLogList = new System.Windows.Forms.ListBox();
+            this.cmsLog = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.cmsLog = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsLog.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.cmsLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // lsbLogList
@@ -45,10 +45,24 @@
             this.lsbLogList.ContextMenuStrip = this.cmsLog;
             this.lsbLogList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbLogList.FormattingEnabled = true;
-            this.lsbLogList.Location = new System.Drawing.Point(3, 34);
+            this.lsbLogList.Location = new System.Drawing.Point(3, 33);
             this.lsbLogList.Name = "lsbLogList";
-            this.lsbLogList.Size = new System.Drawing.Size(219, 267);
+            this.lsbLogList.Size = new System.Drawing.Size(219, 268);
             this.lsbLogList.TabIndex = 0;
+            // 
+            // cmsLog
+            // 
+            this.cmsLog.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.cmsLog.Name = "cmsLog";
+            this.cmsLog.Size = new System.Drawing.Size(108, 26);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -76,7 +90,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(219, 25);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(219, 24);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // dtpDate
@@ -87,21 +101,7 @@
             this.dtpDate.Size = new System.Drawing.Size(100, 20);
             this.dtpDate.TabIndex = 0;
             // 
-            // cmsLog
-            // 
-            this.cmsLog.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem});
-            this.cmsLog.Name = "cmsLog";
-            this.cmsLog.Size = new System.Drawing.Size(108, 26);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // frmEditLogList
+            // frmDelLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -110,13 +110,13 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmEditLogList";
+            this.Name = "frmDelLog";
             this.Text = "frmEditLogList";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditLogList_FormClosing);
             this.Load += new System.EventHandler(this.frmEditLogList_Load);
+            this.cmsLog.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.cmsLog.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -50,6 +50,8 @@ namespace LifeGame
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
             DrawLog();
+
+            G.glb.lstEvent.Clear();
         }
 
         private void frmMain_Resize(object sender, EventArgs e)

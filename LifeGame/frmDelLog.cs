@@ -59,6 +59,7 @@ namespace LifeGame
                 {
                     G.glb.lstSchedule.RemoveAll(o => o.StartTime.Date == curDate && o.LogName == lsbLogList.SelectedItem.ToString());
                 }
+                LoadLogs();
             }
         }
 
