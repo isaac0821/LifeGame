@@ -12,6 +12,8 @@ namespace LifeGame
 {
     public partial class frmLogInfo : Form
     {
+        Timer timer = new Timer();
+        
         public frmLogInfo(string TimePeriod, string LogName, string Location, string WithWho, string TaskName, Color color)
         {
             InitializeComponent();
@@ -28,6 +30,14 @@ namespace LifeGame
             lblLocation.ForeColor = contri;
             lblWithWho.ForeColor = contri;
             lblTask.ForeColor = contri;
+            timer.Interval = 10000;
+            timer.Start();
+            timer.Tick += Timer_Tick;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Dispose();
         }
 
         private void frmLogInfo_Click(object sender, EventArgs e)

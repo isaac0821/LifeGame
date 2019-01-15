@@ -64,6 +64,7 @@
             this.colLog = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTaskTitle = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.chkBottom = new System.Windows.Forms.CheckBox();
             this.chkInfinite = new System.Windows.Forms.CheckBox();
@@ -74,7 +75,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblTaskTimeSpent = new System.Windows.Forms.Label();
             this.chkFinished = new System.Windows.Forms.CheckBox();
-            this.lblTaskTitle = new System.Windows.Forms.Label();
             this.stsTask.SuspendLayout();
             this.mnsTask.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -412,6 +412,17 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(735, 26);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
+            // lblTaskTitle
+            // 
+            this.lblTaskTitle.AutoSize = true;
+            this.lblTaskTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTaskTitle.Location = new System.Drawing.Point(3, 0);
+            this.lblTaskTitle.Name = "lblTaskTitle";
+            this.lblTaskTitle.Size = new System.Drawing.Size(729, 26);
+            this.lblTaskTitle.TabIndex = 0;
+            this.lblTaskTitle.Text = "---";
+            this.lblTaskTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 10;
@@ -543,17 +554,6 @@
             this.chkFinished.Text = "Finished";
             this.chkFinished.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkFinished.UseVisualStyleBackColor = true;
-            // 
-            // lblTaskTitle
-            // 
-            this.lblTaskTitle.AutoSize = true;
-            this.lblTaskTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTaskTitle.Location = new System.Drawing.Point(3, 0);
-            this.lblTaskTitle.Name = "lblTaskTitle";
-            this.lblTaskTitle.Size = new System.Drawing.Size(729, 26);
-            this.lblTaskTitle.TabIndex = 0;
-            this.lblTaskTitle.Text = "---";
-            this.lblTaskTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmTask
             // 

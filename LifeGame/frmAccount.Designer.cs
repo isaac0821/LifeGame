@@ -80,9 +80,11 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.picDebit = new System.Windows.Forms.PictureBox();
             this.lsbDebit = new System.Windows.Forms.ListBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.picCredit = new System.Windows.Forms.PictureBox();
             this.lsbCredit = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -109,8 +111,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.belongToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.independentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.picDebit = new System.Windows.Forms.PictureBox();
-            this.picCredit = new System.Windows.Forms.PictureBox();
             this.stsAccount.SuspendLayout();
             this.mnsAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -132,14 +132,14 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picDebit)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCredit)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
             this.cmsAccount.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picDebit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCredit)).BeginInit();
             this.SuspendLayout();
             // 
             // stsAccount
@@ -646,6 +646,15 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(394, 251);
             this.tableLayoutPanel8.TabIndex = 0;
             // 
+            // picDebit
+            // 
+            this.picDebit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picDebit.Location = new System.Drawing.Point(3, 3);
+            this.picDebit.Name = "picDebit";
+            this.picDebit.Size = new System.Drawing.Size(245, 245);
+            this.picDebit.TabIndex = 0;
+            this.picDebit.TabStop = false;
+            // 
             // lsbDebit
             // 
             this.lsbDebit.BackColor = System.Drawing.SystemColors.Control;
@@ -683,6 +692,15 @@
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(394, 251);
             this.tableLayoutPanel9.TabIndex = 0;
+            // 
+            // picCredit
+            // 
+            this.picCredit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picCredit.Location = new System.Drawing.Point(3, 3);
+            this.picCredit.Name = "picCredit";
+            this.picCredit.Size = new System.Drawing.Size(245, 245);
+            this.picCredit.TabIndex = 0;
+            this.picCredit.TabStop = false;
             // 
             // lsbCredit
             // 
@@ -886,24 +904,6 @@
             this.independentToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.independentToolStripMenuItem.Text = "Independent";
             // 
-            // picDebit
-            // 
-            this.picDebit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picDebit.Location = new System.Drawing.Point(3, 3);
-            this.picDebit.Name = "picDebit";
-            this.picDebit.Size = new System.Drawing.Size(245, 245);
-            this.picDebit.TabIndex = 0;
-            this.picDebit.TabStop = false;
-            // 
-            // picCredit
-            // 
-            this.picCredit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picCredit.Location = new System.Drawing.Point(3, 3);
-            this.picCredit.Name = "picCredit";
-            this.picCredit.Size = new System.Drawing.Size(245, 245);
-            this.picCredit.TabIndex = 0;
-            this.picCredit.TabStop = false;
-            // 
             // frmAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -945,14 +945,14 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picDebit)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picCredit)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).EndInit();
             this.cmsAccount.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picDebit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCredit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

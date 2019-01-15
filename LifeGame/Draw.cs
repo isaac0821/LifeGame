@@ -9,7 +9,7 @@ using System.Drawing;
 namespace LifeGame
 {
     public class Draw
-    {   
+    {
         /// <summary>
         /// 返回Color格式的颜色 Done: 01/03/2019
         /// </summary>
@@ -79,7 +79,7 @@ namespace LifeGame
                 left = picMap.Width / 2;
                 width = picMap.Width / 2;
             }
-            else if(LocationMode == "allWithSupp")
+            else if (LocationMode == "allWithSupp")
             {
                 left = 0;
                 width = (picMap.Width = 30) > 0 ? picMap.Width - 30 : 0;
@@ -125,7 +125,7 @@ namespace LifeGame
                 picMap.Controls.Add(picSleep);
                 lblSleep.Text = SleepTime + "\n" + "Sleep";
                 lblSleep.Dock = DockStyle.Fill;
-                lblSleep.Click += (e, a) => CallLogInfo(SleepTime, "Sleep", "", "","", picSleep.BackColor);
+                lblSleep.Click += (e, a) => CallLogInfo(SleepTime, "Sleep", "", "", "", picSleep.BackColor);
                 picSleep.Controls.Add(lblSleep);
             }
 
@@ -146,7 +146,7 @@ namespace LifeGame
                     picMap.Controls.Add(picSleepYesterday);
                     lblSleepYesterday.Text = SleepTime + "\n" + "Sleep";
                     lblSleepYesterday.Dock = DockStyle.Fill;
-                    lblSleepYesterday.Click += (e, a) => CallLogInfo("", "Sleep", "", "","", picSleepYesterday.BackColor);
+                    lblSleepYesterday.Click += (e, a) => CallLogInfo("", "Sleep", "", "", "", picSleepYesterday.BackColor);
                     picSleepYesterday.Controls.Add(lblSleepYesterday);
                 }
             }
@@ -194,7 +194,7 @@ namespace LifeGame
                 {
                     end = height;
                     TimePeriod = todayLogs[i].StartTime.ToShortTimeString() + " - " + todayLogs[i].EndTime.ToShortTimeString() + "(+1d)";
-                }                
+                }
                 string LogName = todayLogs[i].LogName;
                 string Location = todayLogs[i].Location;
                 string WithWho = todayLogs[i].WithWho;
@@ -214,15 +214,7 @@ namespace LifeGame
             }
         }
 
-        public void DrawEventController(
-            PictureBox picMap,
-            DateTime date,
-            List<CEvent> events,
-            List<CWorkOut> workOuts,
-            List<CLiteratureReadingLog> literatureReadingLogs, 
-            List<CMedicine> medicines, 
-            List<CTransaction> moneyDetails,
-            List<CAccount> accounts)
+        public void DrawEventController(PictureBox picMap, DateTime date, List<CEvent> events, List<CWorkOut> workOuts, List<CLiteratureReadingLog> literatureReadingLogs, List<CMedicine> medicines, List<CTransaction> moneyDetails, List<CAccount> accounts)
         {
             int left = picMap.Width - 27 > 0 ? picMap.Width - 27 : 0;
             List<PictureBox> lstPicEvent = new List<PictureBox>();
@@ -232,7 +224,7 @@ namespace LifeGame
             List<CMedicine> lstMedicine = medicines.FindAll(o => o.TagTime.Date == date).ToList();
             List<CTransaction> lstMoneyDetails = moneyDetails.FindAll(o => o.TagTime.Date == date).ToList();
             int acc = 0;
-            for (int i = 0; i<lstEvent.Count;i++)
+            for (int i = 0; i < lstEvent.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
                 double middle = lstEvent[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
@@ -251,7 +243,7 @@ namespace LifeGame
                 picMap.Controls.Add(lstPicEvent[i]);
             }
             acc = acc + lstEvent.Count;
-            for(int i = 0; i < lstWorkOut.Count; i++)
+            for (int i = 0; i < lstWorkOut.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
                 double middle = lstWorkOut[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
@@ -308,7 +300,7 @@ namespace LifeGame
                         break;
                     default:
                         break;
-                }                
+                }
                 lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
                 lstPicEvent[i + acc].Left = left;
                 lstPicEvent[i + acc].Width = 24;
@@ -327,6 +319,21 @@ namespace LifeGame
         {
             frmDDLInfo frmDDLInfo = new frmDDLInfo(DDLInfo);
             frmDDLInfo.Show();
+        }
+
+        public void CancelLog(List<CLog> logList, DateTime date, string LogName)
+        {
+            DialogResult result = MessageBox.Show("Delete This Log?", "Deleting", MessageBoxButtons.YesNo);
+            switch (result)
+            {
+                case DialogResult.Yes:
+                    logList.RemoveAll(o => o.StartTime.Date == date && o.LogName == LogName);
+                    break;
+                case DialogResult.No:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

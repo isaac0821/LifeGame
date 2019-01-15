@@ -111,6 +111,12 @@
     <Compile Include="frmDDLInfo.Designer.cs">
       <DependentUpon>frmDDLInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDelLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDelLog.Designer.cs">
+      <DependentUpon>frmDelLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLiterature.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDDLInfo.resx">
       <DependentUpon>frmDDLInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDelLog.resx">
+      <DependentUpon>frmDelLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLiterature.resx">
       <DependentUpon>frmLiterature.cs</DependentUpon>
