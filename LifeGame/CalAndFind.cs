@@ -315,13 +315,6 @@ namespace LifeGame
             }
         }
 
-        public enum EMoneyFlowState: int
-        {
-            WithinSystem,
-            FlowIn,
-            FlowOut
-        }
-
         /// <summary>
         /// 判断“钱是花掉了还是赚了” （资金是用贷方流向借方）
         /// 

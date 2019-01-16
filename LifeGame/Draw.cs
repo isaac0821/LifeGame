@@ -214,7 +214,16 @@ namespace LifeGame
             }
         }
 
-        public void DrawEventController(PictureBox picMap, DateTime date, List<CEvent> events, List<CWorkOut> workOuts, List<CLiteratureReadingLog> literatureReadingLogs, List<CMedicine> medicines, List<CTransaction> moneyDetails, List<CAccount> accounts)
+        public void DrawEventController(
+            PictureBox picMap, 
+            DateTime date,
+            List<CEvent> events,
+            List<CWorkOut> workOuts,
+            List<CLiteratureReadingLog> literatureReadingLogs,
+            List<CMedicine> medicines,
+            List<CTransaction> transactions,
+            List<CTransactionDue> transactionDues,
+            List<CMeeting> meetings)
         {
             int left = picMap.Width - 27 > 0 ? picMap.Width - 27 : 0;
             List<PictureBox> lstPicEvent = new List<PictureBox>();
@@ -222,7 +231,9 @@ namespace LifeGame
             List<CWorkOut> lstWorkOut = workOuts.FindAll(o => o.TagTime.Date == date).ToList();
             List<CLiteratureReadingLog> lstLiteratureReadingLog = literatureReadingLogs.FindAll(o => o.TagTime.Date == date).ToList();
             List<CMedicine> lstMedicine = medicines.FindAll(o => o.TagTime.Date == date).ToList();
-            List<CTransaction> lstMoneyDetails = moneyDetails.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CTransaction> lstTransaction = transactions.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CTransactionDue> lstTransactionDue = transactionDues.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CMeeting> lstMeeting = meetings.FindAll(o => o.TagTime.Date == date).ToList();
             int acc = 0;
             for (int i = 0; i < lstEvent.Count; i++)
             {
@@ -279,28 +290,49 @@ namespace LifeGame
                 picMap.Controls.Add(lstPicEvent[i + acc]);
             }
             acc = acc + lstMedicine.Count;
-            for (int i = 0; i < lstMoneyDetails.Count; i++)
+            for (int i = 0; i < lstTransaction.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
-                double middle = lstMoneyDetails[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
-                CalAndFind C = new CalAndFind();
-                EAccountType DebitAccountType = accounts.Find(o => o.AccountName == lstMoneyDetails[i].DebitAccount).AccountType;
-                EAccountType CreditAccountType = accounts.Find(o => o.AccountName == lstMoneyDetails[i].CreditAccount).AccountType;
-                CalAndFind.EMoneyFlowState MoneyFlowState = C.MoneyInOrOut(DebitAccountType, CreditAccountType);
+                double middle = lstTransaction[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
+                EMoneyFlowState MoneyFlowState = lstTransaction[i].IconType;
                 switch (MoneyFlowState)
                 {
-                    case CalAndFind.EMoneyFlowState.WithinSystem:
+                    case EMoneyFlowState.WithinSystem:
                         lstPicEvent[i + acc].Image = icon.iconMoneyWithin;
                         break;
-                    case CalAndFind.EMoneyFlowState.FlowIn:
+                    case EMoneyFlowState.FlowIn:
                         lstPicEvent[i + acc].Image = icon.iconMoneyIn;
                         break;
-                    case CalAndFind.EMoneyFlowState.FlowOut:
+                    case EMoneyFlowState.FlowOut:
                         lstPicEvent[i + acc].Image = icon.iconMoneyOut;
                         break;
                     default:
                         break;
                 }
+                lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                lstPicEvent[i + acc].Left = left;
+                lstPicEvent[i + acc].Width = 24;
+                lstPicEvent[i + acc].Height = 24;
+                picMap.Controls.Add(lstPicEvent[i + acc]);
+            }
+            acc = acc + lstTransaction.Count;
+            for (int i = 0; i < lstTransactionDue.Count; i++)
+            {
+                lstPicEvent.Add(new PictureBox());
+                double middle = lstTransactionDue[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
+                lstPicEvent[i + acc].Image = icon.iconTransactionDue;
+                lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                lstPicEvent[i + acc].Left = left;
+                lstPicEvent[i + acc].Width = 24;
+                lstPicEvent[i + acc].Height = 24;
+                picMap.Controls.Add(lstPicEvent[i + acc]);
+            }
+            acc = acc + lstTransactionDue.Count;
+            for (int i = 0; i < lstMeeting.Count; i++)
+            {
+                lstPicEvent.Add(new PictureBox());
+                double middle = lstMeeting[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
+                lstPicEvent[i + acc].Image = icon.iconMeeting;
                 lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
                 lstPicEvent[i + acc].Left = left;
                 lstPicEvent[i + acc].Width = 24;

@@ -32,6 +32,7 @@ namespace LifeGame
 
         private void LoadLogs()
         {
+            lsbLogList.Items.Clear();
             List<CLog> logs = new List<CLog>();
             if (LogOrSchedule)
             {

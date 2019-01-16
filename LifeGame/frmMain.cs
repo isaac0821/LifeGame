@@ -516,13 +516,13 @@ namespace LifeGame
         private void DrawEvent()
         {
             Draw Draw = new Draw();
-            Draw.DrawEventController(picMon, SelectedMonday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction,G.glb.lstAccount);
-            Draw.DrawEventController(picTue, SelectedTuesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstAccount);
-            Draw.DrawEventController(picWed, SelectedWednesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstAccount);
-            Draw.DrawEventController(picThu, SelectedThursday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstAccount);
-            Draw.DrawEventController(picFri, SelectedFriday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstAccount);
-            Draw.DrawEventController(picSat, SelectedSaturday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstAccount);
-            Draw.DrawEventController(picSun, SelectedSunday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstAccount);
+            Draw.DrawEventController(picMon, SelectedMonday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
+            Draw.DrawEventController(picTue, SelectedTuesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
+            Draw.DrawEventController(picWed, SelectedWednesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
+            Draw.DrawEventController(picThu, SelectedThursday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
+            Draw.DrawEventController(picFri, SelectedFriday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
+            Draw.DrawEventController(picSat, SelectedSaturday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
+            Draw.DrawEventController(picSun, SelectedSunday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
         }
 
         private void lblDDLMon_Click(object sender, EventArgs e)

@@ -24,6 +24,8 @@ namespace LifeGame
         public List<CSleep> lstSleepLog = new List<CSleep>();
         public List<CWorkOut> lstWorkOut = new List<CWorkOut>();
         public List<CMedicine> lstMedicine = new List<CMedicine>();
+        public List<CMeeting> lstMeeting = new List<CMeeting>();
+        public List<RMeetingLog> lstMeetingLog = new List<RMeetingLog>();
  
         // Literature
         public List<CLiterature> lstLiterature = new List<CLiterature>();
@@ -41,6 +43,7 @@ namespace LifeGame
 
         // Money
         public List<CTransaction> lstTransaction = new List<CTransaction>();
+        public List<CTransactionDue> lstTransactionDue = new List<CTransactionDue>();
         public List<CAccount> lstAccount = new List<CAccount>();
         public List<RSubAccount> lstSubAccount = new List<RSubAccount>();
    }

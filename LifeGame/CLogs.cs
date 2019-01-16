@@ -145,6 +145,32 @@ namespace LifeGame
     }
 
     /// <summary>
+    /// Meeting
+    /// </summary>
+    [Serializable]
+    public class CMeeting
+    {
+        public DateTime TagTime;
+        public string Topic;
+        public string Location;
+        public string WithWho;
+    }
+
+    /// <summary>
+    /// 谈话记录
+    /// </summary>
+    [Serializable]
+    public class RMeetingLog
+    {
+        public string Topic;
+        public DateTime TagTime;
+        public string Log;
+        public string SubLog;
+        public int Index;
+        public string Description;
+    }
+
+    /// <summary>
     /// 外部事件
     /// </summary>
     [Serializable]
@@ -233,6 +259,28 @@ namespace LifeGame
         public double CreditAmount;
         public string DebitCurrency;
         public string CreditCurrency;
+        public EMoneyFlowState IconType;
+    }
+
+    /// <summary>
+    /// 预计收入支出
+    /// </summary>
+    [Serializable]
+    public class CTransactionDue
+    {
+        public string Summary;
+        public DateTime TagTime;
+        public string Account;
+        public string Amount;
+        public string Currency;
+        public bool DebitOrCredit;
+    }
+
+    public enum EMoneyFlowState : int
+    {
+        WithinSystem,
+        FlowIn,
+        FlowOut
     }
 
     public enum EAccountType: int
