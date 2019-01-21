@@ -50,7 +50,7 @@ namespace LifeGame
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (lsbLogList.SelectedItems!=null)
+            if (lsbLogList.SelectedItem!=null)
             {
                 if (LogOrSchedule)
                 {

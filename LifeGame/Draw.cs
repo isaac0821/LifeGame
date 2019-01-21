@@ -44,6 +44,9 @@ namespace LifeGame
                 case "Brown":
                     ret = Color.Brown;
                     break;
+                case "Gray":
+                    ret = Color.LightGray;
+                    break;
                 default:
                     ret = Color.Black;
                     break;
@@ -125,7 +128,7 @@ namespace LifeGame
                 picMap.Controls.Add(picSleep);
                 lblSleep.Text = SleepTime + "\n" + "Sleep";
                 lblSleep.Dock = DockStyle.Fill;
-                lblSleep.Click += (e, a) => CallLogInfo(SleepTime, "Sleep", "", "", "", picSleep.BackColor);
+                lblSleep.Click += (e, a) => CallInfoLog(SleepTime, "Sleep", "", "", "", picSleep.BackColor);
                 picSleep.Controls.Add(lblSleep);
             }
 
@@ -146,7 +149,7 @@ namespace LifeGame
                     picMap.Controls.Add(picSleepYesterday);
                     lblSleepYesterday.Text = SleepTime + "\n" + "Sleep";
                     lblSleepYesterday.Dock = DockStyle.Fill;
-                    lblSleepYesterday.Click += (e, a) => CallLogInfo("", "Sleep", "", "", "", picSleepYesterday.BackColor);
+                    lblSleepYesterday.Click += (e, a) => CallInfoLog("", "Sleep", "", "", "", picSleepYesterday.BackColor);
                     picSleepYesterday.Controls.Add(lblSleepYesterday);
                 }
             }
@@ -174,7 +177,7 @@ namespace LifeGame
                 lstLblLog[i].Text = TimePeriod + "\n" + LogName + "\n" + Location + "\n" + WithWho;
                 lstLblLog[i].Dock = DockStyle.Fill;
                 lstLblLog[i].ForeColor = Color.FromArgb(255 - backColor.R, 255 - backColor.G, 255 - backColor.B);
-                lstLblLog[i].Click += (e, a) => CallLogInfo(TimePeriod, LogName, Location, WithWho, TaskName, backColor);
+                lstLblLog[i].Click += (e, a) => CallInfoLog(TimePeriod, LogName, Location, WithWho, TaskName, backColor);
                 lstPicLog[i].Controls.Add(lstLblLog[i]);
             }
 
@@ -209,90 +212,87 @@ namespace LifeGame
                 lstLblLog[i + yesterdayLogs.Count].Text = TimePeriod + "\n" + LogName + "\n" + Location + "\n" + WithWho;
                 lstLblLog[i + yesterdayLogs.Count].Dock = DockStyle.Fill;
                 lstLblLog[i + yesterdayLogs.Count].ForeColor = Color.FromArgb(255 - backColor.R, 255 - backColor.G, 255 - backColor.B);
-                lstLblLog[i + yesterdayLogs.Count].Click += (e, a) => CallLogInfo(TimePeriod, LogName, Location, WithWho, TaskName, backColor);
+                lstLblLog[i + yesterdayLogs.Count].Click += (e, a) => CallInfoLog(TimePeriod, LogName, Location, WithWho, TaskName, backColor);
                 lstPicLog[i + yesterdayLogs.Count].Controls.Add(lstLblLog[i + yesterdayLogs.Count]);
             }
         }
 
         public void DrawEventController(
-            PictureBox picMap, 
+            PictureBox picMap,
             DateTime date,
             List<CEvent> events,
             List<CWorkOut> workOuts,
-            List<CLiteratureReadingLog> literatureReadingLogs,
             List<CMedicine> medicines,
             List<CTransaction> transactions,
             List<CTransactionDue> transactionDues,
-            List<CMeeting> meetings)
+            List<CNote> notes)
         {
             int left = picMap.Width - 27 > 0 ? picMap.Width - 27 : 0;
             List<PictureBox> lstPicEvent = new List<PictureBox>();
             List<CEvent> lstEvent = events.FindAll(o => o.TagTime.Date == date).ToList();
             List<CWorkOut> lstWorkOut = workOuts.FindAll(o => o.TagTime.Date == date).ToList();
-            List<CLiteratureReadingLog> lstLiteratureReadingLog = literatureReadingLogs.FindAll(o => o.TagTime.Date == date).ToList();
             List<CMedicine> lstMedicine = medicines.FindAll(o => o.TagTime.Date == date).ToList();
             List<CTransaction> lstTransaction = transactions.FindAll(o => o.TagTime.Date == date).ToList();
             List<CTransactionDue> lstTransactionDue = transactionDues.FindAll(o => o.TagTime.Date == date).ToList();
-            List<CMeeting> lstMeeting = meetings.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CNote> lstNote = notes.FindAll(o => o.TagTime.Date == date).ToList();
             int acc = 0;
             for (int i = 0; i < lstEvent.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
+                CEvent eve = lstEvent[i];
                 double middle = lstEvent[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
-                if (lstEvent[i].EventState == EEventState.Succeed)
+                if (lstEvent[i].EventState == EEventState.LogEvent)
                 {
                     lstPicEvent[i].Image = icon.iconEvent;
+                }
+                else if (lstEvent[i].EventState == EEventState.Succeed)
+                {
+                    lstPicEvent[i].Image = icon.iconSucceedEvent;
                 }
                 else
                 {
                     lstPicEvent[i].Image = icon.iconFailedEvent;
                 }
-                lstPicEvent[i].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                lstPicEvent[i].Top = i * 30 + 3;
                 lstPicEvent[i].Left = left;
                 lstPicEvent[i].Width = 24;
                 lstPicEvent[i].Height = 24;
+                lstPicEvent[i].Click += (e, a) => CallInfoEvent(eve);
                 picMap.Controls.Add(lstPicEvent[i]);
             }
             acc = acc + lstEvent.Count;
             for (int i = 0; i < lstWorkOut.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
+                CWorkOut workOut = lstWorkOut[i];
                 double middle = lstWorkOut[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
                 lstPicEvent[i + acc].Image = icon.iconFitness;
-                lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;
                 lstPicEvent[i + acc].Width = 24;
                 lstPicEvent[i + acc].Height = 24;
+                lstPicEvent[i + acc].Click += (e, a) => CallInfoWorkOut(workOut);
                 picMap.Controls.Add(lstPicEvent[i + acc]);
             }
             acc = acc + lstWorkOut.Count;
-            for (int i = 0; i < lstLiteratureReadingLog.Count; i++)
-            {
-                lstPicEvent.Add(new PictureBox());
-                double middle = lstLiteratureReadingLog[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
-                lstPicEvent[i + acc].Image = icon.iconLiterature;
-                lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
-                lstPicEvent[i + acc].Left = left;
-                lstPicEvent[i + acc].Width = 24;
-                lstPicEvent[i + acc].Height = 24;
-                picMap.Controls.Add(lstPicEvent[i + acc]);
-            }
-            acc = acc + lstLiteratureReadingLog.Count;
             for (int i = 0; i < lstMedicine.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
+                CMedicine medicine = lstMedicine[i];
                 double middle = lstMedicine[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
                 lstPicEvent[i + acc].Image = icon.iconHealth;
-                lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;
                 lstPicEvent[i + acc].Width = 24;
                 lstPicEvent[i + acc].Height = 24;
+                lstPicEvent[i + acc].Click += (e, a) => CallInfoMedicine(medicine);
                 picMap.Controls.Add(lstPicEvent[i + acc]);
             }
             acc = acc + lstMedicine.Count;
             for (int i = 0; i < lstTransaction.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
+                CTransaction transaction = lstTransaction[i];
                 double middle = lstTransaction[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
                 EMoneyFlowState MoneyFlowState = lstTransaction[i].IconType;
                 switch (MoneyFlowState)
@@ -309,63 +309,104 @@ namespace LifeGame
                     default:
                         break;
                 }
-                lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;
                 lstPicEvent[i + acc].Width = 24;
                 lstPicEvent[i + acc].Height = 24;
+                lstPicEvent[i + acc].Click += (e, a) => CallInfoTransaction(transaction);
                 picMap.Controls.Add(lstPicEvent[i + acc]);
             }
             acc = acc + lstTransaction.Count;
             for (int i = 0; i < lstTransactionDue.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
+                CTransactionDue transactionDue = lstTransactionDue[i];
                 double middle = lstTransactionDue[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
                 lstPicEvent[i + acc].Image = icon.iconTransactionDue;
-                lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;
                 lstPicEvent[i + acc].Width = 24;
                 lstPicEvent[i + acc].Height = 24;
+                lstPicEvent[i + acc].Click += (e, a) => CallInfoTransactionDue(transactionDue);
                 picMap.Controls.Add(lstPicEvent[i + acc]);
             }
             acc = acc + lstTransactionDue.Count;
-            for (int i = 0; i < lstMeeting.Count; i++)
+            for (int i = 0; i < lstNote.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
-                double middle = lstMeeting[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
-                lstPicEvent[i + acc].Image = icon.iconMeeting;
-                lstPicEvent[i + acc].Top = (int)middle > 15 ? (int)middle - 12 : 3;
+                CNote note = lstNote[i];
+                double middle = lstNote[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
+                if (lstNote[i].FinishedNote)
+                {
+                    if (lstNote[i].LiteratureTitle != "")
+                    {
+                        lstPicEvent[i + acc].Image = icon.iconLiterature;
+                    }
+                    else
+                    {
+                        lstPicEvent[i + acc].Image = icon.iconNote;
+                    }
+                }
+                else
+                {
+                    lstPicEvent[i + acc].Image = icon.iconUnfinishedNote;
+                }
+                lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;
                 lstPicEvent[i + acc].Width = 24;
                 lstPicEvent[i + acc].Height = 24;
+                lstPicEvent[i + acc].Click += (e, a) => CallInfoNote(note);
                 picMap.Controls.Add(lstPicEvent[i + acc]);
             }
+            acc = acc + lstNote.Count;
         }
 
-        public void CallLogInfo(string Timeperiod, string LogName, string Location, string WithWho, string TaskName, Color color)
+        public void CallInfoLog(string Timeperiod, string LogName, string Location, string WithWho, string TaskName, Color color)
         {
-            frmLogInfo frmLogInfo = new frmLogInfo(Timeperiod, LogName, Location, WithWho, TaskName, color);
-            frmLogInfo.Show();
+            frmInfoLog frmInfoLog = new frmInfoLog(Timeperiod, LogName, Location, WithWho, TaskName, color);
+            frmInfoLog.Show();
         }
 
-        public void CallDDLInfo(string DDLInfo)
+        public void CallInfoDDL(string InfoDDL)
         {
-            frmDDLInfo frmDDLInfo = new frmDDLInfo(DDLInfo);
-            frmDDLInfo.Show();
+            frmInfoDDL frmInfoDDL = new frmInfoDDL(InfoDDL);
+            frmInfoDDL.Show();
         }
 
-        public void CancelLog(List<CLog> logList, DateTime date, string LogName)
+        public void CallInfoEvent(CEvent info)
         {
-            DialogResult result = MessageBox.Show("Delete This Log?", "Deleting", MessageBoxButtons.YesNo);
-            switch (result)
-            {
-                case DialogResult.Yes:
-                    logList.RemoveAll(o => o.StartTime.Date == date && o.LogName == LogName);
-                    break;
-                case DialogResult.No:
-                    break;
-                default:
-                    break;
-            }
+            frmInfoEvent frmInfoEvent = new frmInfoEvent(info);
+            frmInfoEvent.Show();
+        }
+
+        public void CallInfoMedicine(CMedicine info)
+        {
+            frmInfoMedicine frmInfoMedicine = new frmInfoMedicine(info);
+            frmInfoMedicine.Show();
+        }
+
+        public void CallInfoNote(CNote info)
+        {  
+            frmInfoNote frmInfoNote = new frmInfoNote(info);
+            frmInfoNote.Show();
+        }
+
+        public void CallInfoTransaction(CTransaction info)
+        {
+            frmInfoTransaction frmInfoTransaction = new frmInfoTransaction(info);
+            frmInfoTransaction.Show();
+        }
+
+        public void CallInfoTransactionDue (CTransactionDue info)
+        {
+            frmInfoTransactionDues frmInfoTransactionDues = new frmInfoTransactionDues(info);
+            frmInfoTransactionDues.Show();
+        }
+
+        public void CallInfoWorkOut(CWorkOut info)
+        {
+            frmInfoWorkOut frmInfoWorkOut = new frmInfoWorkOut(info);
+            frmInfoWorkOut.Show();
         }
     }
 }

@@ -145,9 +145,6 @@
   <data name="iconLiterature" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\iconLiterature.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconMeeting" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\iconMeeting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="iconMoneyIn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\iconMoneyIn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -157,14 +154,62 @@
   <data name="iconMoneyWithin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\iconMoneyWithin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="iconNote" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNote.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconNoteLogo9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNoteLogo9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="iconOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resource\iconOut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconSucceedEvent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconSucceedEvent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconTransactionDue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\iconTransactionDue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconUnFinished" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resource\iconUnFinished.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconUnfinishedNote" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconNote1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconWW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resource\iconWW.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

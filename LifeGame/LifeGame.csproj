@@ -51,83 +51,149 @@
     <Compile Include="CLogs.cs" />
     <Compile Include="Draw.cs" />
     <Compile Include="CalAndFind.cs" />
-    <Compile Include="frmAccount.cs">
+    <Compile Include="frmAdd\frmAddEvent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAccount.Designer.cs">
+    <Compile Include="frmAdd\frmAddEvent.Designer.cs">
+      <DependentUpon>frmAddEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdd\frmAddMedicine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd\frmAddMedicine.Designer.cs">
+      <DependentUpon>frmAddMedicine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdd\frmAddTransactionDue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd\frmAddTransactionDue.Designer.cs">
+      <DependentUpon>frmAddTransactionDue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdd\frmAddWorkOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd\frmAddWorkOut.Designer.cs">
+      <DependentUpon>frmAddWorkOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatalog\frmAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatalog\frmAccount.Designer.cs">
       <DependentUpon>frmAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAchievement.cs">
+    <Compile Include="frmCatalog\frmAchievement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAchievement.Designer.cs">
+    <Compile Include="frmCatalog\frmAchievement.Designer.cs">
       <DependentUpon>frmAchievement.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAddAccount.cs">
+    <Compile Include="frmAdd\frmAddAccount.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddAccount.Designer.cs">
+    <Compile Include="frmAdd\frmAddAccount.Designer.cs">
       <DependentUpon>frmAddAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAddLog.cs">
+    <Compile Include="frmAdd\frmAddLog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddLog.Designer.cs">
+    <Compile Include="frmAdd\frmAddLog.Designer.cs">
       <DependentUpon>frmAddLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAddSchedule.cs">
+    <Compile Include="frmAdd\frmAddSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddSchedule.Designer.cs">
+    <Compile Include="frmAdd\frmAddSchedule.Designer.cs">
       <DependentUpon>frmAddSchedule.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAddSleepSchedule.cs">
+    <Compile Include="frmAdd\frmAddSleepSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddSleepSchedule.Designer.cs">
+    <Compile Include="frmAdd\frmAddSleepSchedule.Designer.cs">
       <DependentUpon>frmAddSleepSchedule.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAddSleepLog.cs">
+    <Compile Include="frmAdd\frmAddSleepLog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddSleepLog.Designer.cs">
+    <Compile Include="frmAdd\frmAddSleepLog.Designer.cs">
       <DependentUpon>frmAddSleepLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAddTask.cs">
+    <Compile Include="frmAdd\frmAddTask.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddTask.Designer.cs">
+    <Compile Include="frmAdd\frmAddTask.Designer.cs">
       <DependentUpon>frmAddTask.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAddTransaction.cs">
+    <Compile Include="frmAdd\frmAddTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddTransaction.Designer.cs">
+    <Compile Include="frmAdd\frmAddTransaction.Designer.cs">
       <DependentUpon>frmAddTransaction.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDDLInfo.cs">
+    <Compile Include="frmCatalog\frmCurrencyRate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDDLInfo.Designer.cs">
-      <DependentUpon>frmDDLInfo.cs</DependentUpon>
+    <Compile Include="frmCatalog\frmCurrencyRate.Designer.cs">
+      <DependentUpon>frmCurrencyRate.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDelLog.cs">
+    <Compile Include="frmInfo\frmDelNoteMine.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDelLog.Designer.cs">
+    <Compile Include="frmInfo\frmDelNoteMine.Designer.cs">
+      <DependentUpon>frmDelNoteMine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInfoMine\frmInfoEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfoMine\frmInfoEvent.Designer.cs">
+      <DependentUpon>frmInfoEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInfoMine\frmInfoWorkOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfoMine\frmInfoWorkOut.Designer.cs">
+      <DependentUpon>frmInfoWorkOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInfo\frmDelInfoMine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfo\frmDelInfoMine.Designer.cs">
+      <DependentUpon>frmDelInfoMine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInfo\frmInfoDDL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfo\frmInfoDDL.Designer.cs">
+      <DependentUpon>frmInfoDDL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInfo\frmDelLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfo\frmDelLog.Designer.cs">
       <DependentUpon>frmDelLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLiterature.cs">
+    <Compile Include="frmNoteMine\frmInfoLiterature.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLiterature.Designer.cs">
+    <Compile Include="frmNoteMine\frmInfoLiterature.Designer.cs">
+      <DependentUpon>frmInfoLiterature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNoteMine\frmInfoNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoteMine\frmInfoNote.Designer.cs">
+      <DependentUpon>frmInfoNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatalog\frmLiterature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatalog\frmLiterature.Designer.cs">
       <DependentUpon>frmLiterature.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLogInfo.cs">
+    <Compile Include="frmInfo\frmInfoLog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogInfo.Designer.cs">
-      <DependentUpon>frmLogInfo.cs</DependentUpon>
+    <Compile Include="frmInfo\frmInfoLog.Designer.cs">
+      <DependentUpon>frmInfoLog.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -135,11 +201,29 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTask.cs">
+    <Compile Include="frmInfoMine\frmInfoMedicine.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTask.Designer.cs">
+    <Compile Include="frmInfoMine\frmInfoMedicine.Designer.cs">
+      <DependentUpon>frmInfoMedicine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatalog\frmTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatalog\frmTask.Designer.cs">
       <DependentUpon>frmTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInfoMine\frmInfoTransactionDues.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfoMine\frmInfoTransactionDues.Designer.cs">
+      <DependentUpon>frmInfoTransactionDues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInfoMine\frmInfoTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfoMine\frmInfoTransaction.Designer.cs">
+      <DependentUpon>frmInfoTransaction.cs</DependentUpon>
     </Compile>
     <Compile Include="Glb.cs" />
     <Compile Include="icon.Designer.cs">
@@ -149,46 +233,91 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmAccount.resx">
+    <EmbeddedResource Include="frmAdd\frmAddEvent.resx">
+      <DependentUpon>frmAddEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdd\frmAddMedicine.resx">
+      <DependentUpon>frmAddMedicine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdd\frmAddTransactionDue.resx">
+      <DependentUpon>frmAddTransactionDue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdd\frmAddWorkOut.resx">
+      <DependentUpon>frmAddWorkOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatalog\frmAccount.resx">
       <DependentUpon>frmAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAchievement.resx">
+    <EmbeddedResource Include="frmCatalog\frmAchievement.resx">
       <DependentUpon>frmAchievement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddLog.resx">
+    <EmbeddedResource Include="frmAdd\frmAddAccount.resx">
+      <DependentUpon>frmAddAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdd\frmAddLog.resx">
       <DependentUpon>frmAddLog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddSchedule.resx">
+    <EmbeddedResource Include="frmAdd\frmAddSchedule.resx">
       <DependentUpon>frmAddSchedule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddSleepSchedule.resx">
+    <EmbeddedResource Include="frmAdd\frmAddSleepSchedule.resx">
       <DependentUpon>frmAddSleepSchedule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddSleepLog.resx">
+    <EmbeddedResource Include="frmAdd\frmAddSleepLog.resx">
       <DependentUpon>frmAddSleepLog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddTask.resx">
+    <EmbeddedResource Include="frmAdd\frmAddTask.resx">
       <DependentUpon>frmAddTask.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddTransaction.resx">
+    <EmbeddedResource Include="frmAdd\frmAddTransaction.resx">
       <DependentUpon>frmAddTransaction.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDDLInfo.resx">
-      <DependentUpon>frmDDLInfo.cs</DependentUpon>
+    <EmbeddedResource Include="frmCatalog\frmCurrencyRate.resx">
+      <DependentUpon>frmCurrencyRate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDelLog.resx">
+    <EmbeddedResource Include="frmInfoMine\frmInfoEvent.resx">
+      <DependentUpon>frmInfoEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfo\frmDelInfoMine.resx">
+      <DependentUpon>frmDelInfoMine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfo\frmDelNoteMine.resx">
+      <DependentUpon>frmDelNoteMine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfoMine\frmInfoMedicine.resx">
+      <DependentUpon>frmInfoMedicine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfoMine\frmInfoTransaction.resx">
+      <DependentUpon>frmInfoTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfoMine\frmInfoTransactionDues.resx">
+      <DependentUpon>frmInfoTransactionDues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfoMine\frmInfoWorkOut.resx">
+      <DependentUpon>frmInfoWorkOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfo\frmInfoDDL.resx">
+      <DependentUpon>frmInfoDDL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfo\frmDelLog.resx">
       <DependentUpon>frmDelLog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLiterature.resx">
+    <EmbeddedResource Include="frmNoteMine\frmInfoLiterature.resx">
+      <DependentUpon>frmInfoLiterature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoteMine\frmInfoNote.resx">
+      <DependentUpon>frmInfoNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatalog\frmLiterature.resx">
       <DependentUpon>frmLiterature.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLogInfo.resx">
-      <DependentUpon>frmLogInfo.cs</DependentUpon>
+    <EmbeddedResource Include="frmInfo\frmInfoLog.resx">
+      <DependentUpon>frmInfoLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTask.resx">
+    <EmbeddedResource Include="frmCatalog\frmTask.resx">
       <DependentUpon>frmTask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="icon.resx">
@@ -267,16 +396,55 @@
     <None Include="Resources\iconMoneyWithin.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\iconArrowRightDown.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconArrowDownRight.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconMeeting.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\iconTransactionDue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNoteLogo0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconNote1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconSucceedEvent.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

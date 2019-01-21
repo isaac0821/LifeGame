@@ -17,6 +17,7 @@ namespace LifeGame
         NOT
     }
 
+    [Serializable]
     public enum EAchievementState: int
     {
         NotStart,
@@ -52,19 +53,9 @@ namespace LifeGame
     [Serializable]
     public enum EEventState : int
     {
+        LogEvent,
         Succeed,
         Failed
-    }
-
-    /// <summary>
-    /// 文献阅读
-    /// </summary>
-    [Serializable]
-    public class CLiteratureReadingLog
-    {
-        public DateTime TagTime;
-        public string LiteratureTitle;
-        public string LiteratureLog;
     }
 
     /// <summary>
@@ -79,8 +70,6 @@ namespace LifeGame
         public ELiteratureReadingStatus ReadingStatus;
         public string JournalOrConferenceName;
         public string InOneSentence;
-        public string LocalPath;
-        public string CommentsInXML;
     }
 
     [Serializable]
@@ -107,7 +96,7 @@ namespace LifeGame
     /// 自己引用的参考文献
     /// </summary>
     [Serializable]
-    public class RLiteratureCited
+    public class RLiteratureInCiting
     {
         public string Title;
         public string TitleOfMyArticle;
@@ -145,29 +134,40 @@ namespace LifeGame
     }
 
     /// <summary>
-    /// Meeting
+    /// 笔记
     /// </summary>
     [Serializable]
-    public class CMeeting
+    public class CNote
     {
         public DateTime TagTime;
         public string Topic;
-        public string Location;
-        public string WithWho;
+        public string LiteratureTitle;
+        public bool FinishedNote;
     }
 
     /// <summary>
-    /// 谈话记录
+    /// 笔记的外部链接路径
     /// </summary>
     [Serializable]
-    public class RMeetingLog
+    public class RNoteOutsource
+    {
+        public DateTime TagTime;
+        public string Topic;
+        public string Outsourcepath;
+    }
+
+    /// <summary>
+    /// 笔记记录
+    /// </summary>
+    [Serializable]
+    public class RNoteLog
     {
         public string Topic;
         public DateTime TagTime;
         public string Log;
         public string SubLog;
         public int Index;
-        public string Description;
+        public int LogoIndex;
     }
 
     /// <summary>
@@ -191,6 +191,7 @@ namespace LifeGame
         public string WorkOutType;        
         public double WorkOutQty;
         public string WorkOutUnit;
+        public string Location;
     }
 
     /// <summary>
@@ -200,9 +201,23 @@ namespace LifeGame
     public class CMedicine
     {
         public DateTime TagTime;
+        public EMedicineTiming MedicineTime;
         public string MedicineName;        
         public double MedicineQty;
         public string MedicineUnit;
+    }
+
+    [Serializable]
+    public enum EMedicineTiming: int
+    {
+        BeforeBreakfast,
+        AfterBreakfast,
+        BeforeLunch,
+        AfterLunch,
+        BeforeDinner,
+        AfterDinner,
+        BeforeSleep,
+        WhenNeeded
     }
 
     /// <summary>
@@ -271,11 +286,31 @@ namespace LifeGame
         public string Summary;
         public DateTime TagTime;
         public string Account;
+        public ETransactionDueType TransactionDueType;
+        public double FixedAmount;
+        public DateTime BalanceDate;
         public string Amount;
         public string Currency;
         public bool DebitOrCredit;
     }
 
+    [Serializable]
+    public enum ETransactionDueType: int
+    {
+        Fixed,
+        RemainingBalanceAtSomeDate,
+        RemainingBalance
+    }
+
+    [Serializable]
+    public class RCurrencyRate
+    {
+        public string CurrencyA;
+        public string CurrencyB;
+        public double Rate;
+    }
+
+    [Serializable]
     public enum EMoneyFlowState : int
     {
         WithinSystem,
@@ -283,6 +318,7 @@ namespace LifeGame
         FlowOut
     }
 
+    [Serializable]
     public enum EAccountType: int
     {
         /// <summary>
@@ -316,6 +352,7 @@ namespace LifeGame
         public string AccountName;
         public EAccountType AccountType;
         public string Currency;
+        public bool ProtectedAccount;
     }
 
     /// <summary>

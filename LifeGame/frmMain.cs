@@ -34,7 +34,6 @@ namespace LifeGame
         {
             FileStream f = new FileStream("data.dat", FileMode.Open, FileAccess.Read, FileShare.Read);
             BinaryFormatter b = new BinaryFormatter();
-            G.glb.lstTask.Clear();
             G.glb = b.Deserialize(f) as Mem;
             f.Close();
         }
@@ -47,11 +46,14 @@ namespace LifeGame
         private void frmMain_Load(object sender, EventArgs e)
         {
             Deserialize();
+            //G.glb.lstLiterature = new List<CLiterature>();
+            //G.glb.lstLiteratureTag = new List<RLiteratureTag>();
+            //G.glb.lstLiteratureAuthor = new List<RLiteratureAuthor>();
+            //G.glb.lstLiteratureCiting = new List<RLiteratureInCiting>();
+            //G.glb.lstLiteratureInstitution = new List<RLiteratureInstitution>();
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
-            DrawLog();
-
-            G.glb.lstEvent.Clear();
+            DrawLog();            
         }
 
         private void frmMain_Resize(object sender, EventArgs e)
@@ -59,7 +61,7 @@ namespace LifeGame
             DrawLog();
         }
 
-        private void frmMain_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show("Wanna save?", "Saving", MessageBoxButtons.YesNoCancel);
             switch (result)
@@ -90,6 +92,12 @@ namespace LifeGame
         {
             frmAccount frmAccount = new frmAccount();
             frmAccount.Show();
+        }
+
+        private void literatureLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLiterature frmLiterature = new frmLiterature();
+            frmLiterature.Show();
         }
 
         private void dtpDate_ValueChanged(object sender, EventArgs e)
@@ -227,7 +235,6 @@ namespace LifeGame
         private void cmsMain_Opening(object sender, CancelEventArgs e)
         {
             SelectedPicName = (sender as ContextMenuStrip).SourceControl.Name;
-            // MessageBox.Show(SelectedPicName);
         }
         private void tsmAddSleepSchedule_Click(object sender, EventArgs e)
         {
@@ -235,7 +242,6 @@ namespace LifeGame
             frmAddScheduleSleep.DrawLog += new frmAddSleepSchedule.DrawLogHandler(DrawLog);
             frmAddScheduleSleep.Show();
         }
-
         private void tsmAddSleepLog_Click(object sender, EventArgs e)
         {
             DateTime sendToFrm = SelectedDate;
@@ -250,7 +256,7 @@ namespace LifeGame
                 case "picWed":
                     sendToFrm = SelectedWednesday;
                     break;
-                case "picThr":
+                case "picThu":
                     sendToFrm = SelectedThursday;
                     break;
                 case "picFri":
@@ -269,14 +275,12 @@ namespace LifeGame
             frmAddLogSleep.DrawLog += new frmAddSleepLog.DrawLogHandler(DrawLog);
             frmAddLogSleep.Show();
         }
-
         private void tsmAddSchedule_Click(object sender, EventArgs e)
         {
             frmAddSchedule frmAddSchedule = new frmAddSchedule();
             frmAddSchedule.DrawLog += new frmAddSchedule.DrawLogHandler(DrawLog);
             frmAddSchedule.Show();
         }
-
         private void tsmAddLog_Click(object sender, EventArgs e)
         {
             DateTime sendToFrm = SelectedDate;
@@ -291,7 +295,7 @@ namespace LifeGame
                 case "picWed":
                     sendToFrm = SelectedWednesday;
                     break;
-                case "picThr":
+                case "picThu":
                     sendToFrm = SelectedThursday;
                     break;
                 case "picFri":
@@ -310,7 +314,6 @@ namespace LifeGame
             frmAddLog.DrawLog += new frmAddLog.DrawLogHandler(DrawLog);
             frmAddLog.Show();
         }
-
         private void tsmDeleteSchedule_Click(object sender, EventArgs e)
         {
             DateTime sendToFrm = SelectedDate;
@@ -325,7 +328,7 @@ namespace LifeGame
                 case "picWed":
                     sendToFrm = SelectedWednesday;
                     break;
-                case "picThr":
+                case "picThu":
                     sendToFrm = SelectedThursday;
                     break;
                 case "picFri":
@@ -344,7 +347,6 @@ namespace LifeGame
             frmDelLog.DrawLog += new frmDelLog.DrawLogHandler(DrawLog);
             frmDelLog.Show();
         }
-
         private void tsmDeleteLog_Click(object sender, EventArgs e)
         {
             DateTime sendToFrm = SelectedDate;
@@ -359,7 +361,7 @@ namespace LifeGame
                 case "picWed":
                     sendToFrm = SelectedWednesday;
                     break;
-                case "picThr":
+                case "picThu":
                     sendToFrm = SelectedThursday;
                     break;
                 case "picFri":
@@ -377,6 +379,249 @@ namespace LifeGame
             frmDelLog frmDelLog = new frmDelLog(sendToFrm, true);
             frmDelLog.DrawLog += new frmDelLog.DrawLogHandler(DrawLog);
             frmDelLog.Show();
+        }
+
+        private void tsmDeleteInfoMine_Click(object sender, EventArgs e)
+        {
+            DateTime sendToFrm = SelectedDate;
+            switch (SelectedPicName)
+            {
+                case "picMon":
+                    sendToFrm = SelectedMonday;
+                    break;
+                case "picTue":
+                    sendToFrm = SelectedTuesday;
+                    break;
+                case "picWed":
+                    sendToFrm = SelectedWednesday;
+                    break;
+                case "picThu":
+                    sendToFrm = SelectedThursday;
+                    break;
+                case "picFri":
+                    sendToFrm = SelectedFriday;
+                    break;
+                case "picSat":
+                    sendToFrm = SelectedSaturday;
+                    break;
+                case "picSun":
+                    sendToFrm = SelectedSunday;
+                    break;
+                default:
+                    break;
+            }
+            frmDelInfoMine frmDelInfoMine = new frmDelInfoMine(sendToFrm);
+            frmDelInfoMine.DrawLog += new frmDelInfoMine.DrawLogHandler(DrawLog);
+            frmDelInfoMine.Show();
+        }
+
+        private void tsmDeleteNoteMine_Click(object sender, EventArgs e)
+        {
+            DateTime sendToFrm = SelectedDate;
+            switch (SelectedPicName)
+            {
+                case "picMon":
+                    sendToFrm = SelectedMonday;
+                    break;
+                case "picTue":
+                    sendToFrm = SelectedTuesday;
+                    break;
+                case "picWed":
+                    sendToFrm = SelectedWednesday;
+                    break;
+                case "picThu":
+                    sendToFrm = SelectedThursday;
+                    break;
+                case "picFri":
+                    sendToFrm = SelectedFriday;
+                    break;
+                case "picSat":
+                    sendToFrm = SelectedSaturday;
+                    break;
+                case "picSun":
+                    sendToFrm = SelectedSunday;
+                    break;
+                default:
+                    break;
+            }
+            frmDelNoteMine frmDelNoteMine = new frmDelNoteMine(sendToFrm);
+            frmDelNoteMine.DrawLog += new frmDelNoteMine.DrawLogHandler(DrawLog);
+            frmDelNoteMine.Show();
+        }
+
+        private void tsmAddEvent_Click(object sender, EventArgs e)
+        {
+            DateTime sendToFrm = SelectedDate;
+            switch (SelectedPicName)
+            {
+                case "picMon":
+                    sendToFrm = SelectedMonday;
+                    break;
+                case "picTue":
+                    sendToFrm = SelectedTuesday;
+                    break;
+                case "picWed":
+                    sendToFrm = SelectedWednesday;
+                    break;
+                case "picThu":
+                    sendToFrm = SelectedThursday;
+                    break;
+                case "picFri":
+                    sendToFrm = SelectedFriday;
+                    break;
+                case "picSat":
+                    sendToFrm = SelectedSaturday;
+                    break;
+                case "picSun":
+                    sendToFrm = SelectedSunday;
+                    break;
+                default:
+                    break;
+            }
+            frmAddEvent frmAddEvent = new frmAddEvent(sendToFrm);
+            frmAddEvent.DrawLog += new frmAddEvent.DrawLogHandler(DrawLog);
+            frmAddEvent.Show();
+        }
+
+        private void tsmAddTransaction_Click(object sender, EventArgs e)
+        {
+            DateTime sendToFrm = SelectedDate;
+            switch (SelectedPicName)
+            {
+                case "picMon":
+                    sendToFrm = SelectedMonday;
+                    break;
+                case "picTue":
+                    sendToFrm = SelectedTuesday;
+                    break;
+                case "picWed":
+                    sendToFrm = SelectedWednesday;
+                    break;
+                case "picThu":
+                    sendToFrm = SelectedThursday;
+                    break;
+                case "picFri":
+                    sendToFrm = SelectedFriday;
+                    break;
+                case "picSat":
+                    sendToFrm = SelectedSaturday;
+                    break;
+                case "picSun":
+                    sendToFrm = SelectedSunday;
+                    break;
+                default:
+                    break;
+            }
+            frmAddTransaction frmAddTransaction = new frmAddTransaction(sendToFrm);
+            frmAddTransaction.DrawLog += new frmAddTransaction.DrawLogHandler(DrawLog);
+            frmAddTransaction.Show();
+        }
+
+        private void tsmAddTransactionDue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmAddWorkOut_Click(object sender, EventArgs e)
+        {
+            DateTime sendToFrm = SelectedDate;
+            switch (SelectedPicName)
+            {
+                case "picMon":
+                    sendToFrm = SelectedMonday;
+                    break;
+                case "picTue":
+                    sendToFrm = SelectedTuesday;
+                    break;
+                case "picWed":
+                    sendToFrm = SelectedWednesday;
+                    break;
+                case "picThu":
+                    sendToFrm = SelectedThursday;
+                    break;
+                case "picFri":
+                    sendToFrm = SelectedFriday;
+                    break;
+                case "picSat":
+                    sendToFrm = SelectedSaturday;
+                    break;
+                case "picSun":
+                    sendToFrm = SelectedSunday;
+                    break;
+                default:
+                    break;
+            }
+            frmAddWorkOut frmAddWorkOut = new frmAddWorkOut(sendToFrm);
+            frmAddWorkOut.DrawLog += new frmAddWorkOut.DrawLogHandler(DrawLog);
+            frmAddWorkOut.Show();
+        }
+
+        private void tsmAddMedicine_Click(object sender, EventArgs e)
+        {
+            DateTime sendToFrm = SelectedDate;
+            switch (SelectedPicName)
+            {
+                case "picMon":
+                    sendToFrm = SelectedMonday;
+                    break;
+                case "picTue":
+                    sendToFrm = SelectedTuesday;
+                    break;
+                case "picWed":
+                    sendToFrm = SelectedWednesday;
+                    break;
+                case "picThu":
+                    sendToFrm = SelectedThursday;
+                    break;
+                case "picFri":
+                    sendToFrm = SelectedFriday;
+                    break;
+                case "picSat":
+                    sendToFrm = SelectedSaturday;
+                    break;
+                case "picSun":
+                    sendToFrm = SelectedSunday;
+                    break;
+                default:
+                    break;
+            }
+            frmAddMedicine frmAddMedicine = new frmAddMedicine(sendToFrm);
+            frmAddMedicine.DrawLog += new frmAddMedicine.DrawLogHandler(DrawLog);
+            frmAddMedicine.Show();
+        }
+
+        private void tsmAddNote_Click(object sender, EventArgs e)
+        {
+            DateTime sendToFrm = SelectedDate;
+            switch (SelectedPicName)
+            {
+                case "picMon":
+                    sendToFrm = SelectedMonday;
+                    break;
+                case "picTue":
+                    sendToFrm = SelectedTuesday;
+                    break;
+                case "picWed":
+                    sendToFrm = SelectedWednesday;
+                    break;
+                case "picThu":
+                    sendToFrm = SelectedThursday;
+                    break;
+                case "picFri":
+                    sendToFrm = SelectedFriday;
+                    break;
+                case "picSat":
+                    sendToFrm = SelectedSaturday;
+                    break;
+                case "picSun":
+                    sendToFrm = SelectedSunday;
+                    break;
+                default:
+                    break;
+            }
+            frmInfoNote frmInfoNote = new frmInfoNote(sendToFrm);
+            frmInfoNote.DrawLog += new frmInfoNote.DrawLogHandler(DrawLog);
+            frmInfoNote.Show();
         }
 
         private void picMon_Click(object sender, EventArgs e)
@@ -431,7 +676,7 @@ namespace LifeGame
             lbl.Text = whole;
         }
 
-        private void DrawLog()
+        public void DrawLog()
         {
             Draw Draw = new Draw();
             LoadLblDaily(lblDDLMon, SelectedMonday);
@@ -488,7 +733,6 @@ namespace LifeGame
 
             }
         }
-
         private void DrawLogWithMode(string Mode)
         {
             Draw Draw = new Draw();
@@ -500,7 +744,6 @@ namespace LifeGame
             Draw.DrawScheduleAndLogController(picSat, SelectedSaturday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
             Draw.DrawScheduleAndLogController(picSun, SelectedSunday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
         }
-
         private void DrawScheduleWithMode(string Mode)
         {
             Draw Draw = new Draw();
@@ -512,53 +755,51 @@ namespace LifeGame
             Draw.DrawScheduleAndLogController(picSat, SelectedSaturday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
             Draw.DrawScheduleAndLogController(picSun, SelectedSunday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
         }
-
-        private void DrawEvent()
-        {
+        private void DrawEvent()        {
             Draw Draw = new Draw();
-            Draw.DrawEventController(picMon, SelectedMonday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
-            Draw.DrawEventController(picTue, SelectedTuesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
-            Draw.DrawEventController(picWed, SelectedWednesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
-            Draw.DrawEventController(picThu, SelectedThursday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
-            Draw.DrawEventController(picFri, SelectedFriday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
-            Draw.DrawEventController(picSat, SelectedSaturday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
-            Draw.DrawEventController(picSun, SelectedSunday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstLiteratureLog, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstMeeting);
+            Draw.DrawEventController(picMon, SelectedMonday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
+            Draw.DrawEventController(picTue, SelectedTuesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
+            Draw.DrawEventController(picWed, SelectedWednesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
+            Draw.DrawEventController(picThu, SelectedThursday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
+            Draw.DrawEventController(picFri, SelectedFriday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
+            Draw.DrawEventController(picSat, SelectedSaturday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
+            Draw.DrawEventController(picSun, SelectedSunday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
         }
 
         private void lblDDLMon_Click(object sender, EventArgs e)
         {
             Draw D = new Draw();
-            D.CallDDLInfo(lblDDLMon.Text);
+            D.CallInfoDDL(lblDDLMon.Text);
         }
         private void lblDDLTue_Click(object sender, EventArgs e)
         {
             Draw D = new Draw();
-            D.CallDDLInfo(lblDDLTue.Text);
+            D.CallInfoDDL(lblDDLTue.Text);
         }
         private void lblDDLWed_Click(object sender, EventArgs e)
         {
             Draw D = new Draw();
-            D.CallDDLInfo(lblDDLWed.Text);
+            D.CallInfoDDL(lblDDLWed.Text);
         }
         private void lblDDLThu_Click(object sender, EventArgs e)
         {
             Draw D = new Draw();
-            D.CallDDLInfo(lblDDLThu.Text);
+            D.CallInfoDDL(lblDDLThu.Text);
         }
         private void lblDDLFri_Click(object sender, EventArgs e)
         {
             Draw D = new Draw();
-            D.CallDDLInfo(lblDDLFri.Text);
+            D.CallInfoDDL(lblDDLFri.Text);
         }
         private void lblDDLSat_Click(object sender, EventArgs e)
         {
             Draw D = new Draw();
-            D.CallDDLInfo(lblDDLSat.Text);
+            D.CallInfoDDL(lblDDLSat.Text);
         }
         private void lblDDLSun_Click(object sender, EventArgs e)
         {
             Draw D = new Draw();
-            D.CallDDLInfo(lblDDLSun.Text);
+            D.CallInfoDDL(lblDDLSun.Text);
         }
 
         private void chkShowSchedule_CheckedChanged(object sender, EventArgs e)
@@ -572,12 +813,6 @@ namespace LifeGame
         private void chkMoney_CheckedChanged(object sender, EventArgs e)
         {
             DrawLog();
-        }
-
-        private void literatureLToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmLiterature frmLiterature = new frmLiterature();
-            frmLiterature.Show();
         }
 
 

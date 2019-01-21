@@ -103,6 +103,52 @@ namespace LifeGame
         }
 
         /// <summary>
+        /// 寻找一项task的所有子孙Account，各层级都要 Done: 01/06/2019
+        /// </summary>
+        /// <param name="AccountName"></param>
+        /// <param name="rSubAccounts"></param>
+        /// <returns></returns>
+        public List<string> FindAllHeirAccount(string AccountName, List<RSubAccount> rSubAccounts)
+        {
+            List<string> ret = new List<string>();
+            ret.Add(AccountName);
+            List<string> collect = new List<string>();
+            collect.Add(AccountName);
+            bool IsExpandFinish = true;
+            do
+            {
+                // 全部展开Flag置为完成
+                IsExpandFinish = true;
+                // 临时存放展开中间状态
+                List<string> tmp = new List<string>();
+                // 每次循环遍历ret现有元素是否都已经被展开完毕
+                for (int i = 0; i < collect.Count; i++)
+                {
+                    // 如果某个元素未被展开
+                    if (rSubAccounts.Exists(o => o.Account == collect[i]))
+                    {
+                        // 索引出所有该task的subAccount，代替该元素存入tmp
+                        List<RSubAccount> subs = rSubAccounts.FindAll(o => o.Account == collect[i]).ToList();
+                        subs = subs.OrderBy(o => o.index).ToList();
+                        foreach (RSubAccount subAccount in subs)
+                        {
+                            tmp.Add(subAccount.SubAccount);
+                            ret.Add(subAccount.SubAccount);
+                        }
+                        // 全部展开完毕的flag置为false
+                        IsExpandFinish = false;
+                    }
+                }
+                // 如果不是全部都展开完了，用tmp替代ret
+                if (!IsExpandFinish)
+                {
+                    collect = tmp.ToList();
+                }
+            } while (!IsExpandFinish);
+            return ret;
+        }
+
+        /// <summary>
         /// 返回task累计花费时间
         /// </summary>
         /// <param name="TaskName">任务名</param>
@@ -185,6 +231,47 @@ namespace LifeGame
             else
             {
                 System.Windows.Forms.MessageBox.Show("Can not delete a task with data related to it.");
+            }
+
+            return CanDeleteFlag;
+        }
+
+        /// <summary>
+        /// 删除Account，只有Account及subAccount都没有transaction记录和transactionDue记录的account能够被删除
+        /// </summary>
+        /// <param name="AccountName"></param>
+        /// <param name="rSubAccounts"></param>
+        /// <param name="tasks"></param>
+        public bool DeleteAccount(string AccountName, List<RSubAccount> rSubAccounts, List<CAccount> tasks, List<CTransaction> transactions, List<CTransactionDue> transactionDues)
+        {
+            bool CanDeleteFlag = true;
+            List<string> HeirAccount = FindAllHeirAccount(AccountName, rSubAccounts);
+            foreach (string heir in HeirAccount)
+            {
+                if (transactions.Exists(o => o.CreditAccount == heir || o.DebitAccount == heir))
+                {
+                    CanDeleteFlag = false;
+                    break;
+                }
+                if (transactionDues.Exists(o => o.Account == heir))
+                {
+                    CanDeleteFlag = false;
+                    break;
+                }
+            }
+
+            if (CanDeleteFlag)
+            {
+                List<string> heirAccount = FindAllHeirAccount(AccountName, rSubAccounts);
+                foreach (string heir in heirAccount)
+                {
+                    G.glb.lstSubAccount.RemoveAll(o => o.SubAccount == heir);
+                    G.glb.lstAccount.RemoveAll(o => o.AccountName == heir);
+                }
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Can not delete an account with data related to it.");
             }
 
             return CanDeleteFlag;
@@ -335,6 +422,45 @@ namespace LifeGame
                 ret = EMoneyFlowState.FlowOut;
             }
             return ret; 
+        }
+
+        public List<double> CalBalance(string AccountName, List<CAccount> accounts, List<RSubAccount> rSubAccounts, List<CTransaction> transactions, DateTime StartTime, DateTime EndTime)
+        {
+            double retOpeningBalanceDebit = 0;
+            double retOpeningBalanceCredit = 0;
+            double retAmountDebit = 0;
+            double retAmountCredit = 0;
+            double retEndingBalanceDebit = 0;
+            double retEndingBalanceCredit = 0;
+            // 找到所有的Heir科目
+            CalAndFind C = new CalAndFind();
+            List<string> heirAccount = C.FindAllHeirAccount(AccountName, rSubAccounts);
+            List<CTransaction> TransactionsInRange = transactions.FindAll(
+                o => o.TagTime >= StartTime 
+                && o.TagTime <= EndTime 
+                && heirAccount.Exists(
+                    p => p == o.DebitAccount 
+                    || p == o.CreditAccount)).ToList();
+            foreach (CTransaction transaction in TransactionsInRange)
+            {
+
+            }
+            List<double> ret = new List<double>() { retOpeningBalanceDebit, retOpeningBalanceCredit, retAmountDebit, retAmountCredit, retEndingBalanceDebit, retEndingBalanceCredit };
+            return ret;
+        }
+
+        public List<Double> CalInFlowPieChart(string AccountName, List<CAccount> accounts, List<CTransaction> transactions)
+        {
+            List<Double> ret = new List<double>();
+
+            return ret;
+        }
+
+        public List<Double> CalOutFlowPieChart(string AccountName, List<CAccount> accounts, List<CTransaction> transactions)
+        {
+            List<Double> ret = new List<double>();
+
+            return ret;
         }
     }
 }

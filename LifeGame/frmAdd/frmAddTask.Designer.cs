@@ -59,7 +59,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(391, 81);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(410, 81);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -75,15 +75,15 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(391, 26);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(410, 26);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // txtTask
             // 
             this.txtTask.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTask.Location = new System.Drawing.Point(76, 3);
+            this.txtTask.Location = new System.Drawing.Point(80, 3);
             this.txtTask.Name = "txtTask";
-            this.txtTask.Size = new System.Drawing.Size(312, 20);
+            this.txtTask.Size = new System.Drawing.Size(327, 20);
             this.txtTask.TabIndex = 0;
             // 
             // label1
@@ -92,7 +92,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 26);
+            this.label1.Size = new System.Drawing.Size(71, 26);
             this.label1.TabIndex = 1;
             this.label1.Text = "Task Name";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -114,7 +114,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(391, 26);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(410, 26);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // label2
@@ -123,7 +123,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(103, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 26);
+            this.label2.Size = new System.Drawing.Size(115, 26);
             this.label2.TabIndex = 0;
             this.label2.Text = "Deadline";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -143,7 +143,7 @@
             // 
             this.chkInfinite.AutoSize = true;
             this.chkInfinite.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkInfinite.Location = new System.Drawing.Point(317, 3);
+            this.chkInfinite.Location = new System.Drawing.Point(336, 3);
             this.chkInfinite.Name = "chkInfinite";
             this.chkInfinite.Size = new System.Drawing.Size(71, 20);
             this.chkInfinite.TabIndex = 2;
@@ -155,7 +155,7 @@
             // 
             this.dtpDeadLine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpDeadLine.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDeadLine.Location = new System.Drawing.Point(205, 3);
+            this.dtpDeadLine.Location = new System.Drawing.Point(224, 3);
             this.dtpDeadLine.Name = "dtpDeadLine";
             this.dtpDeadLine.Size = new System.Drawing.Size(106, 20);
             this.dtpDeadLine.TabIndex = 3;
@@ -163,8 +163,8 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.00511F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.99488F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.21951F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.78049F));
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 52);
@@ -172,15 +172,15 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(391, 29);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(410, 29);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
             // btnSave
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSave.Location = new System.Drawing.Point(308, 3);
+            this.btnSave.Location = new System.Drawing.Point(336, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(80, 23);
+            this.btnSave.Size = new System.Drawing.Size(71, 23);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -190,8 +190,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 81);
+            this.ClientSize = new System.Drawing.Size(410, 81);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddTask";
