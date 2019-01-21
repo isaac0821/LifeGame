@@ -50,9 +50,9 @@ namespace LifeGame
                 {
                     txtRate.Text = G.glb.lstCurrencyRate.Find(o => o.CurrencyA == lblCurrencyA.Text && o.CurrencyB == lblCurrencyB.Text).Rate.ToString();
                 }
-                if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == lblCurrencyB.Text && o.CurrencyB == lblCurrencyA.Text))
+                else if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == lblCurrencyB.Text && o.CurrencyB == lblCurrencyA.Text))
                 {
-                    txtRate.Text = (1 / G.glb.lstCurrencyRate.Find(o => o.CurrencyA == lblCurrencyA.Text && o.CurrencyB == lblCurrencyB.Text).Rate).ToString();
+                    txtRate.Text = (1 / G.glb.lstCurrencyRate.Find(o => o.CurrencyA == lblCurrencyB.Text && o.CurrencyB == lblCurrencyA.Text).Rate).ToString();
                 }
                 else
                 {
@@ -77,9 +77,9 @@ namespace LifeGame
                 {
                     txtRate.Text = G.glb.lstCurrencyRate.Find(o => o.CurrencyA == lblCurrencyA.Text && o.CurrencyB == lblCurrencyB.Text).Rate.ToString();
                 }
-                if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == lblCurrencyB.Text && o.CurrencyB == lblCurrencyA.Text))
+                else if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == lblCurrencyB.Text && o.CurrencyB == lblCurrencyA.Text))
                 {
-                    txtRate.Text = (1 / G.glb.lstCurrencyRate.Find(o => o.CurrencyA == lblCurrencyA.Text && o.CurrencyB == lblCurrencyB.Text).Rate).ToString();
+                    txtRate.Text = (1 / G.glb.lstCurrencyRate.Find(o => o.CurrencyA == lblCurrencyB.Text && o.CurrencyB == lblCurrencyA.Text).Rate).ToString();
                 }
                 else
                 {
@@ -90,20 +90,33 @@ namespace LifeGame
 
         private void SaveCurrencyRate(string CurrencyA, string CurrencyB, double Rate)
         {
+            if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == CurrencyA && o.CurrencyB == CurrencyB))
+            {
+                G.glb.lstCurrencyRate.Find(o => o.CurrencyA == CurrencyA && o.CurrencyB == CurrencyB).Rate = Convert.ToDouble(txtRate.Text);
+            }
+            else if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == CurrencyB && o.CurrencyB == CurrencyA))
+            {
+                G.glb.lstCurrencyRate.Find(o => o.CurrencyA == CurrencyB && o.CurrencyB == CurrencyA).Rate = 1 / (Convert.ToDouble(txtRate.Text));
+            }
+            else
+            {
+                RCurrencyRate newCurrencyRate = new RCurrencyRate();
+                newCurrencyRate.CurrencyA = CurrencyA;
+                newCurrencyRate.CurrencyB = CurrencyB;
+                newCurrencyRate.Rate = Rate;
+                G.glb.lstCurrencyRate.Add(newCurrencyRate);
+            }
+        }
+
+        private void frmCurrencyRate_FormClosing(object sender, FormClosingEventArgs e)
+        {
             try
             {
-                if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == CurrencyA && o.CurrencyB == CurrencyB))
-                {
-                    G.glb.lstCurrencyRate.Find(o => o.CurrencyA == CurrencyA && o.CurrencyB == CurrencyB).Rate = Convert.ToDouble(txtRate.Text);
-                }
-                else if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == CurrencyB && o.CurrencyB == CurrencyA))
-                {
-                    G.glb.lstCurrencyRate.Find(o => o.CurrencyA == CurrencyB && o.CurrencyB == CurrencyA).Rate = 1/(Convert.ToDouble(txtRate.Text));
-                }
+                SaveCurrencyRate(lblCurrencyA.Text, lblCurrencyB.Text, Convert.ToDouble(txtRate.Text));
             }
             catch (Exception)
             {
-                MessageBox.Show("Currency Rate should be a valid number");
+                MessageBox.Show("Input valid exchange rate");
             }
 
         }

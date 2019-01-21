@@ -81,12 +81,6 @@
     <Compile Include="frmCatalog\frmAccount.Designer.cs">
       <DependentUpon>frmAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCatalog\frmAchievement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCatalog\frmAchievement.Designer.cs">
-      <DependentUpon>frmAchievement.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmAdd\frmAddAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,9 +241,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatalog\frmAccount.resx">
       <DependentUpon>frmAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmCatalog\frmAchievement.resx">
-      <DependentUpon>frmAchievement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddAccount.resx">
       <DependentUpon>frmAddAccount.cs</DependentUpon>

@@ -6,50 +6,6 @@ using System.Threading.Tasks;
 
 namespace LifeGame
 {
-    /// <summary>
-    /// 逻辑关系
-    /// </summary>
-    [Serializable]
-    public enum ELogic : int
-    {
-        OR,
-        AND,
-        NOT
-    }
-
-    [Serializable]
-    public enum EAchievementState: int
-    {
-        NotStart,
-        InProcess,
-        Achieved,
-        Terminated
-    }
-
-    /// <summary>
-    /// 成就
-    /// </summary>
-    [Serializable]
-    public class CAchievement
-    {
-        public string AchievementName;
-        public string Description;
-        public int TotalProgressPoint;
-        public EAchievementState AchievementState;
-        public string IconName;
-    }
-
-    /// <summary>
-    /// 成就与前置成就关系
-    /// </summary>
-    [Serializable]
-    public class RPreReqAchievement
-    {
-        public string Achievement;
-        public string PreReqAchievement;
-        public ELogic PreReqLogic;
-    }
-
     [Serializable]
     public enum EEventState : int
     {

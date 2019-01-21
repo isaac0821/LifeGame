@@ -190,6 +190,7 @@
             this.MinimizeBox = false;
             this.Name = "frmCurrencyRate";
             this.Text = "frmCurrencyRate";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCurrencyRate_FormClosing);
             this.Load += new System.EventHandler(this.frmCurrencyRate_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

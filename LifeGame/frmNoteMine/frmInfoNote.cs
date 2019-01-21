@@ -368,7 +368,27 @@ namespace LifeGame
 
         private void tsmOpenOutsource_Click(object sender, EventArgs e)
         {
-
+            if (lsbOutsource.SelectedItem != null)
+            {
+                string selectedPath = lsbOutsource.SelectedItem.ToString();
+                string[] checkUrl = selectedPath.Split(':');
+                if (checkUrl[0] == "http" || checkUrl[0] == "https")
+                {
+                    System.Diagnostics.Process.Start("chrome.exe", selectedPath);
+                }
+                else
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start(selectedPath);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("File type is not supported.");
+                        throw;
+                    }
+                }
+            }
         }
     }
 }

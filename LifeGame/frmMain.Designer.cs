@@ -35,10 +35,7 @@
             this.viewVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taskTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moneyMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.achievementAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.literatureLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stsMain = new System.Windows.Forms.StatusStrip();
             this.tslVersionNumber = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -112,9 +109,7 @@
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filesFToolStripMenuItem,
-            this.viewVToolStripMenuItem,
-            this.reportRToolStripMenuItem,
-            this.helpHToolStripMenuItem});
+            this.viewVToolStripMenuItem});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
             this.mnsMain.Size = new System.Drawing.Size(1166, 24);
@@ -132,7 +127,7 @@
             // loadLToolStripMenuItem
             // 
             this.loadLToolStripMenuItem.Name = "loadLToolStripMenuItem";
-            this.loadLToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.loadLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadLToolStripMenuItem.Text = "Load(&L)";
             // 
             // viewVToolStripMenuItem
@@ -140,7 +135,6 @@
             this.viewVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.taskTToolStripMenuItem,
             this.moneyMToolStripMenuItem,
-            this.achievementAToolStripMenuItem,
             this.literatureLToolStripMenuItem});
             this.viewVToolStripMenuItem.Name = "viewVToolStripMenuItem";
             this.viewVToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
@@ -149,41 +143,23 @@
             // taskTToolStripMenuItem
             // 
             this.taskTToolStripMenuItem.Name = "taskTToolStripMenuItem";
-            this.taskTToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.taskTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.taskTToolStripMenuItem.Text = "Task(&T)";
             this.taskTToolStripMenuItem.Click += new System.EventHandler(this.taskTToolStripMenuItem_Click);
             // 
             // moneyMToolStripMenuItem
             // 
             this.moneyMToolStripMenuItem.Name = "moneyMToolStripMenuItem";
-            this.moneyMToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.moneyMToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.moneyMToolStripMenuItem.Text = "Money(&M)";
             this.moneyMToolStripMenuItem.Click += new System.EventHandler(this.moneyMToolStripMenuItem_Click);
-            // 
-            // achievementAToolStripMenuItem
-            // 
-            this.achievementAToolStripMenuItem.Name = "achievementAToolStripMenuItem";
-            this.achievementAToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.achievementAToolStripMenuItem.Text = "Achievement(&A)";
             // 
             // literatureLToolStripMenuItem
             // 
             this.literatureLToolStripMenuItem.Name = "literatureLToolStripMenuItem";
-            this.literatureLToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.literatureLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.literatureLToolStripMenuItem.Text = "Literature(&L)";
             this.literatureLToolStripMenuItem.Click += new System.EventHandler(this.literatureLToolStripMenuItem_Click);
-            // 
-            // reportRToolStripMenuItem
-            // 
-            this.reportRToolStripMenuItem.Name = "reportRToolStripMenuItem";
-            this.reportRToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.reportRToolStripMenuItem.Text = "Report(&R)";
-            // 
-            // helpHToolStripMenuItem
-            // 
-            this.helpHToolStripMenuItem.Name = "helpHToolStripMenuItem";
-            this.helpHToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.helpHToolStripMenuItem.Text = "Help(&H)";
             // 
             // stsMain
             // 
@@ -618,7 +594,7 @@
             this.lblDDLMon.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLMon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDDLMon.Location = new System.Drawing.Point(29, 3);
-            this.lblDDLMon.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblDDLMon.Margin = new System.Windows.Forms.Padding(3);
             this.lblDDLMon.Name = "lblDDLMon";
             this.lblDDLMon.Size = new System.Drawing.Size(152, 54);
             this.lblDDLMon.TabIndex = 21;
@@ -631,7 +607,7 @@
             this.lblDDLTue.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLTue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDDLTue.Location = new System.Drawing.Point(187, 3);
-            this.lblDDLTue.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblDDLTue.Margin = new System.Windows.Forms.Padding(3);
             this.lblDDLTue.Name = "lblDDLTue";
             this.lblDDLTue.Size = new System.Drawing.Size(152, 54);
             this.lblDDLTue.TabIndex = 22;
@@ -644,7 +620,7 @@
             this.lblDDLWed.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLWed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDDLWed.Location = new System.Drawing.Point(345, 3);
-            this.lblDDLWed.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblDDLWed.Margin = new System.Windows.Forms.Padding(3);
             this.lblDDLWed.Name = "lblDDLWed";
             this.lblDDLWed.Size = new System.Drawing.Size(152, 54);
             this.lblDDLWed.TabIndex = 23;
@@ -657,7 +633,7 @@
             this.lblDDLThu.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLThu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDDLThu.Location = new System.Drawing.Point(503, 3);
-            this.lblDDLThu.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblDDLThu.Margin = new System.Windows.Forms.Padding(3);
             this.lblDDLThu.Name = "lblDDLThu";
             this.lblDDLThu.Size = new System.Drawing.Size(152, 54);
             this.lblDDLThu.TabIndex = 24;
@@ -670,7 +646,7 @@
             this.lblDDLFri.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLFri.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDDLFri.Location = new System.Drawing.Point(661, 3);
-            this.lblDDLFri.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblDDLFri.Margin = new System.Windows.Forms.Padding(3);
             this.lblDDLFri.Name = "lblDDLFri";
             this.lblDDLFri.Size = new System.Drawing.Size(152, 54);
             this.lblDDLFri.TabIndex = 25;
@@ -683,7 +659,7 @@
             this.lblDDLSat.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLSat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDDLSat.Location = new System.Drawing.Point(819, 3);
-            this.lblDDLSat.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblDDLSat.Margin = new System.Windows.Forms.Padding(3);
             this.lblDDLSat.Name = "lblDDLSat";
             this.lblDDLSat.Size = new System.Drawing.Size(152, 54);
             this.lblDDLSat.TabIndex = 26;
@@ -696,7 +672,7 @@
             this.lblDDLSun.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLSun.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDDLSun.Location = new System.Drawing.Point(977, 3);
-            this.lblDDLSun.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblDDLSun.Margin = new System.Windows.Forms.Padding(3);
             this.lblDDLSun.Name = "lblDDLSun";
             this.lblDDLSun.Size = new System.Drawing.Size(152, 54);
             this.lblDDLSun.TabIndex = 27;
@@ -817,11 +793,9 @@
 
         private System.Windows.Forms.MenuStrip mnsMain;
         private System.Windows.Forms.ToolStripMenuItem filesFToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportRToolStripMenuItem;
         private System.Windows.Forms.StatusStrip stsMain;
         private System.Windows.Forms.ToolStripStatusLabel tslVersionNumber;
         private System.Windows.Forms.ToolStripMenuItem viewVToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpHToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -830,7 +804,6 @@
         private System.Windows.Forms.Button btnNextDate;
         private System.Windows.Forms.ToolStripMenuItem taskTToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem moneyMToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem achievementAToolStripMenuItem;
         private System.Windows.Forms.Label lblMonday;
         private System.Windows.Forms.Label lblTuesday;
         private System.Windows.Forms.Label lblWednesday;

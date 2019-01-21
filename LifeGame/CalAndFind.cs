@@ -424,7 +424,14 @@ namespace LifeGame
             return ret; 
         }
 
-        public List<double> CalBalance(string AccountName, List<CAccount> accounts, List<RSubAccount> rSubAccounts, List<CTransaction> transactions, DateTime StartTime, DateTime EndTime)
+        public List<double> CalBalance(
+            string AccountName,
+            List<CAccount> accounts,
+            List<RSubAccount> rSubAccounts,
+            List<CTransaction> transactions,
+            List<RCurrencyRate> currencyRates,
+            DateTime StartTime,
+            DateTime EndTime)
         {
             double retOpeningBalanceDebit = 0;
             double retOpeningBalanceCredit = 0;
@@ -436,14 +443,57 @@ namespace LifeGame
             CalAndFind C = new CalAndFind();
             List<string> heirAccount = C.FindAllHeirAccount(AccountName, rSubAccounts);
             List<CTransaction> TransactionsInRange = transactions.FindAll(
-                o => o.TagTime >= StartTime 
-                && o.TagTime <= EndTime 
+                o => o.TagTime >= StartTime
+                && o.TagTime <= EndTime
                 && heirAccount.Exists(
-                    p => p == o.DebitAccount 
+                    p => p == o.DebitAccount
                     || p == o.CreditAccount)).ToList();
             foreach (CTransaction transaction in TransactionsInRange)
             {
-
+                if (heirAccount.Exists(o => o == transaction.DebitAccount))
+                {
+                    if (transaction.DebitCurrency == accounts.Find(o => o.AccountName == AccountName).Currency)
+                    {
+                        retAmountDebit += transaction.DebitAmount;
+                    }
+                    else
+                    {
+                        if (currencyRates.Exists(o => o.CurrencyA == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyB == transaction.DebitCurrency))
+                        {
+                            retAmountDebit += transaction.DebitAmount / currencyRates.Find(o => o.CurrencyA == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyB == transaction.DebitCurrency).Rate;
+                        }
+                        else if ((currencyRates.Exists(o => o.CurrencyB == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyA == transaction.DebitCurrency)))
+                        {
+                            retAmountDebit += transaction.DebitAmount * currencyRates.Find(o => o.CurrencyB == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyA == transaction.DebitCurrency).Rate;
+                        }
+                        else
+                        {
+                            System.Windows.Forms.MessageBox.Show("Lack of exchange rate of " + transaction.DebitCurrency + " → " + accounts.Find(o => o.AccountName == AccountName).Currency);
+                        }
+                    }
+                }
+                else
+                {
+                    if (transaction.CreditCurrency == accounts.Find(o => o.AccountName == AccountName).Currency)
+                    {
+                        retAmountCredit += transaction.CreditAmount;
+                    }
+                    else
+                    {
+                        if (currencyRates.Exists(o => o.CurrencyA == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyB == transaction.CreditCurrency))
+                        {
+                            retAmountCredit += transaction.CreditAmount / currencyRates.Find(o => o.CurrencyA == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyB == transaction.CreditCurrency).Rate;
+                        }
+                        else if ((currencyRates.Exists(o => o.CurrencyB == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyA == transaction.CreditCurrency)))
+                        {
+                            retAmountCredit += transaction.CreditAmount * currencyRates.Find(o => o.CurrencyB == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyA == transaction.CreditCurrency).Rate;
+                        }
+                        else
+                        {
+                            System.Windows.Forms.MessageBox.Show("Lack of exchange rate of " + transaction.CreditCurrency + " → " + accounts.Find(o => o.AccountName == AccountName).Currency);
+                        }
+                    }
+                }
             }
             List<double> ret = new List<double>() { retOpeningBalanceDebit, retOpeningBalanceCredit, retAmountDebit, retAmountCredit, retEndingBalanceDebit, retEndingBalanceCredit };
             return ret;

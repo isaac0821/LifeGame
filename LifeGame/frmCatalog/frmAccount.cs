@@ -34,7 +34,7 @@ namespace LifeGame
 
         private void LoadChildAccountNode(TreeNode treeNode)
         {
-            if (G.glb.lstSubAccount.Exists(o=>o.Account==treeNode.Text))
+            if (G.glb.lstSubAccount.Exists(o => o.Account == treeNode.Text))
             {
                 List<RSubAccount> subAccounts = G.glb.lstSubAccount.FindAll(o => o.Account == treeNode.Text);
                 subAccounts = subAccounts.OrderBy(o => o.index).ToList();
@@ -74,7 +74,25 @@ namespace LifeGame
 
         private void LoadAccount(string accountName)
         {
-
+            CAccount account = G.glb.lstAccount.Find(o => o.AccountName == accountName);
+            lblAccountName.Text = account.AccountName;
+            lblCurrency.Text = account.Currency;
+            CalAndFind C = new CalAndFind();
+            List<double> balance = C.CalBalance(
+                accountName,
+                G.glb.lstAccount,
+                G.glb.lstSubAccount,
+                G.glb.lstTransaction,
+                G.glb.lstCurrencyRate,
+                dtpStatementPeriodStart.Value.Date,
+                dtpStatementPeriodEnd.Value.Date);
+            lblDebitOpening.Text = balance[0].ToString();
+            lblCreditOpening.Text = balance[1].ToString();
+            lblDebitAmount.Text = balance[2].ToString();
+            lblCreditAmount.Text = balance[3].ToString();
+            lblDebitEnding.Text = balance[4].ToString();
+            lblCreditEnding.Text = balance[5].ToString();
+            LoadAccountTransaction(accountName);
         }
 
         private void LoadAccountInFlowChart(string accountName)
@@ -93,9 +111,115 @@ namespace LifeGame
             CalAndFind C = new CalAndFind();
             List<string> heirAccounts = C.FindAllHeirAccount(accountName, G.glb.lstSubAccount);
             List<CTransaction> transactions = G.glb.lstTransaction.FindAll(o => heirAccounts.Exists(p => p == o.CreditAccount) || heirAccounts.Exists(p => p == o.DebitAccount));
-            dgvDetail.Rows.Add();
-
+            foreach (CTransaction trans in transactions)
+            {
+                if (heirAccounts.Exists(o => o == trans.DebitAccount))
+                {
+                    if (trans.DebitCurrency == G.glb.lstAccount.Find(o => o.AccountName == accountName).Currency)
+                    {
+                        dgvDetail.Rows.Add(
+                            trans.TagTime.Date.Year,
+                            trans.TagTime.Date.Month,
+                            trans.TagTime.Date.Day,
+                            trans.Summary,
+                            trans.DebitAccount,
+                            trans.CreditAccount,
+                            "D",
+                            trans.DebitAmount,
+                            trans.DebitCurrency,
+                            trans.DebitAmount,
+                            1);
+                    }
+                    else if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == trans.DebitCurrency && o.CurrencyB == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency))
+                    {
+                        dgvDetail.Rows.Add(
+                            trans.TagTime.Date.Year,
+                            trans.TagTime.Date.Month,
+                            trans.TagTime.Date.Day,
+                            trans.Summary,
+                            trans.DebitAccount,
+                            trans.CreditAccount,
+                            "D",
+                            trans.DebitAmount,
+                            trans.DebitCurrency,
+                            trans.DebitAmount * G.glb.lstCurrencyRate.Find(o => o.CurrencyA == trans.DebitCurrency && o.CurrencyB == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency).Rate,
+                            G.glb.lstCurrencyRate.Find(o => o.CurrencyA == trans.DebitCurrency && o.CurrencyB == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency).Rate);
+                    }
+                    else if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyB == trans.DebitCurrency && o.CurrencyA == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency))
+                    {
+                        dgvDetail.Rows.Add(
+                            trans.TagTime.Date.Year,
+                            trans.TagTime.Date.Month,
+                            trans.TagTime.Date.Day,
+                            trans.Summary,
+                            trans.DebitAccount,
+                            trans.CreditAccount,
+                            "D",
+                            trans.DebitAmount,
+                            trans.DebitCurrency,
+                            trans.DebitAmount / G.glb.lstCurrencyRate.Find(o => o.CurrencyB == trans.DebitCurrency && o.CurrencyA == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency).Rate,
+                            1 / G.glb.lstCurrencyRate.Find(o => o.CurrencyB == trans.DebitCurrency && o.CurrencyA == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency).Rate);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lack of exchange rate of " + trans.CreditCurrency + " → " + G.glb.lstAccount.Find(o => o.AccountName == accountName).Currency);
+                    }
+                }
+                if (heirAccounts.Exists(o => o == trans.CreditAccount))
+                {
+                    if (trans.CreditCurrency == G.glb.lstAccount.Find(o => o.AccountName == accountName).Currency)
+                    {
+                        dgvDetail.Rows.Add(
+                            trans.TagTime.Date.Year,
+                            trans.TagTime.Date.Month,
+                            trans.TagTime.Date.Day,
+                            trans.Summary,
+                            trans.CreditAccount,
+                            trans.DebitAccount,
+                            "C",
+                            trans.CreditAmount,
+                            trans.CreditCurrency,
+                            trans.CreditAmount,
+                            1);
+                    }
+                    else if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == trans.CreditCurrency && o.CurrencyB == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency))
+                    {
+                        dgvDetail.Rows.Add(
+                            trans.TagTime.Date.Year,
+                            trans.TagTime.Date.Month,
+                            trans.TagTime.Date.Day,
+                            trans.Summary,
+                            trans.CreditAccount,
+                            trans.DebitAccount,
+                            "C",
+                            trans.CreditAmount,
+                            trans.CreditCurrency,
+                            trans.CreditAmount * G.glb.lstCurrencyRate.Find(o => o.CurrencyA == trans.CreditCurrency && o.CurrencyB == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency).Rate,
+                            G.glb.lstCurrencyRate.Find(o => o.CurrencyA == trans.CreditCurrency && o.CurrencyB == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency).Rate);
+                    }
+                    else if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyB == trans.CreditCurrency && o.CurrencyA == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency))
+                    {
+                        dgvDetail.Rows.Add(
+                            trans.TagTime.Date.Year,
+                            trans.TagTime.Date.Month,
+                            trans.TagTime.Date.Day,
+                            trans.Summary,
+                            trans.CreditAccount,
+                            trans.DebitAccount,
+                            "C",
+                            trans.CreditAmount,
+                            trans.CreditCurrency,
+                            trans.CreditAmount / G.glb.lstCurrencyRate.Find(o => o.CurrencyB == trans.CreditCurrency && o.CurrencyA == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency).Rate,
+                            1 / G.glb.lstCurrencyRate.Find(o => o.CurrencyB == trans.CreditCurrency && o.CurrencyA == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency).Rate);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lack of exchange rate of " + trans.CreditCurrency + " → " + G.glb.lstAccount.Find(o => o.AccountName == accountName).Currency);
+                    }
+                }
+            }
         }
+
 
         private void tsmAddAccount_Click(object sender, EventArgs e)
         {
@@ -149,7 +273,8 @@ namespace LifeGame
         {
             if (trvAccount.SelectedNode != null)
             {
-                if (trvAccount.SelectedNode.Text != "(Root)")
+                if (trvAccount.SelectedNode.Text != "(Root)"
+                    && G.glb.lstAccount.Find(o => o.AccountName == trvAccount.SelectedNode.Text).ProtectedAccount == false)
                 {
                     string PreviousName = trvAccount.SelectedNode.Text;
                     string NewName = Interaction.InputBox("Input New Account Name", "Rename", trvAccount.SelectedNode.Text, 300, 300);
@@ -192,7 +317,8 @@ namespace LifeGame
         {
             if (trvAccount.SelectedNode != null)
             {
-                if (trvAccount.SelectedNode.Text == "(Root)")
+                if (trvAccount.SelectedNode.Text == "(Root)"
+                     && G.glb.lstAccount.Find(o => o.AccountName == trvAccount.SelectedNode.Text).ProtectedAccount == false)
                 {
                     MessageBox.Show("Cannot remove the root.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -324,6 +450,32 @@ namespace LifeGame
         {
             frmCurrencyRate frmCurrencyRate = new frmCurrencyRate();
             frmCurrencyRate.Show();
+        }
+
+        private void trvAccount_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (trvAccount.SelectedNode != null && trvAccount.SelectedNode.Text != "(Root)")
+            {
+                LoadAccount(trvAccount.SelectedNode.Text);
+            }
+        }
+
+        private void chkShowBalance_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkShowBalance.Checked)
+            {
+                lblDebitOpening.Visible = false;
+                lblCreditOpening.Visible = false;
+                lblDebitEnding.Visible = false;
+                lblCreditEnding.Visible = false;
+            }
+            else
+            {
+                lblDebitOpening.Visible = true;
+                lblCreditOpening.Visible = true;
+                lblDebitEnding.Visible = true;
+                lblCreditEnding.Visible = true;
+            }
         }
     }
 }

@@ -20,7 +20,6 @@ D:\LifeGame\LifeGame\bin\Debug\LifeGame.exe
 D:\LifeGame\LifeGame\bin\Debug\LifeGame.pdb
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.csprojAssemblyReference.cache
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAccount.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAchievement.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddLog.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSchedule.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmMain.resources
