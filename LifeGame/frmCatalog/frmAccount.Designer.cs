@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("(Root)");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("(Root)");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAccount));
             this.stsAccount = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -237,10 +237,10 @@
             this.trvAccount.ImageList = this.iglAccount;
             this.trvAccount.Location = new System.Drawing.Point(3, 16);
             this.trvAccount.Name = "trvAccount";
-            treeNode2.Name = "(Root)";
-            treeNode2.Text = "(Root)";
+            treeNode1.Name = "(Root)";
+            treeNode1.Text = "(Root)";
             this.trvAccount.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.trvAccount.SelectedImageIndex = 0;
             this.trvAccount.Size = new System.Drawing.Size(279, 328);
             this.trvAccount.TabIndex = 0;

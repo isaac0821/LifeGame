@@ -59,7 +59,8 @@ namespace LifeGame
 
         private void frmAddTransaction_Load(object sender, EventArgs e)
         {
-            List<CAccount> accountsChoics = G.glb.lstAccount.ToList();
+            List<CAccount> accountsChoics = G.glb.lstAccount.FindAll(o=>o.ProtectedAccount==false).ToList();
+            accountsChoics = accountsChoics.OrderBy(o => o.AccountName).ToList();
             List<string> choices = new List<string>();
             foreach (CAccount account in accountsChoics)
             {

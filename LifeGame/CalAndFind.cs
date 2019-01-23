@@ -495,6 +495,40 @@ namespace LifeGame
                     }
                 }
             }
+            // 目前账目等均以2019.1.13日为开始
+            if (EndTime >= new DateTime(2019, 1, 13))
+            {
+                List<double> toStart = CalBalance(AccountName, accounts, rSubAccounts, transactions, currencyRates, new DateTime(2019, 1, 13), StartTime.AddDays(-1));
+                // toStart[4]是之前累计的期末余额的Debit方
+                // toStart[5]是之前累计的期末余额的Credit方
+                if (toStart[4] - toStart[5] > 0)
+                {
+                    retOpeningBalanceDebit = toStart[4] - toStart[5];
+                    retOpeningBalanceCredit = 0;
+                }
+                else
+                {
+                    retOpeningBalanceDebit = 0;
+                    retOpeningBalanceCredit = -(toStart[4] - toStart[5]);
+                }
+            }
+            else
+            {
+                retOpeningBalanceDebit = 0;
+                retOpeningBalanceCredit = 0;
+            }
+            double abs = (retOpeningBalanceDebit + retAmountDebit) - (retOpeningBalanceCredit + retAmountCredit);
+            if (abs > 0)
+            {
+                retEndingBalanceDebit = abs;
+                retEndingBalanceCredit = 0;
+            }
+            else
+            {
+                retEndingBalanceDebit = 0;
+                retEndingBalanceCredit = -abs;
+            }
+
             List<double> ret = new List<double>() { retOpeningBalanceDebit, retOpeningBalanceCredit, retAmountDebit, retAmountCredit, retEndingBalanceDebit, retEndingBalanceCredit };
             return ret;
         }

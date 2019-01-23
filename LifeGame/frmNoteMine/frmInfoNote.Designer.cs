@@ -255,39 +255,39 @@
             this.toolStripSeparator4,
             this.tsmOpenOutsource});
             this.cmsOutsource.Name = "cmsOutsource";
-            this.cmsOutsource.Size = new System.Drawing.Size(181, 98);
+            this.cmsOutsource.Size = new System.Drawing.Size(108, 76);
             // 
             // tsmAddOutsource
             // 
             this.tsmAddOutsource.Name = "tsmAddOutsource";
-            this.tsmAddOutsource.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddOutsource.Size = new System.Drawing.Size(107, 22);
             this.tsmAddOutsource.Text = "Add";
             this.tsmAddOutsource.Click += new System.EventHandler(this.tsmAddOutsource_Click);
             // 
             // tsmDeleteOutsource
             // 
             this.tsmDeleteOutsource.Name = "tsmDeleteOutsource";
-            this.tsmDeleteOutsource.Size = new System.Drawing.Size(180, 22);
+            this.tsmDeleteOutsource.Size = new System.Drawing.Size(107, 22);
             this.tsmDeleteOutsource.Text = "Delete";
             this.tsmDeleteOutsource.Click += new System.EventHandler(this.tsmDeleteOutsource_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(104, 6);
             // 
             // tsmOpenOutsource
             // 
             this.tsmOpenOutsource.Name = "tsmOpenOutsource";
-            this.tsmOpenOutsource.Size = new System.Drawing.Size(180, 22);
+            this.tsmOpenOutsource.Size = new System.Drawing.Size(107, 22);
             this.tsmOpenOutsource.Text = "Open";
             this.tsmOpenOutsource.Click += new System.EventHandler(this.tsmOpenOutsource_Click);
             // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.92308F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.07692F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
             this.tableLayoutPanel4.Controls.Add(this.txtTopic, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.chkFinished, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -295,15 +295,16 @@
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(390, 26);
             this.tableLayoutPanel4.TabIndex = 4;
             // 
             // txtTopic
             // 
+            this.txtTopic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTopic.Location = new System.Drawing.Point(3, 3);
             this.txtTopic.Name = "txtTopic";
-            this.txtTopic.Size = new System.Drawing.Size(313, 20);
+            this.txtTopic.Size = new System.Drawing.Size(311, 20);
             this.txtTopic.TabIndex = 0;
             this.txtTopic.TextChanged += new System.EventHandler(this.txtTopic_TextChanged);
             // 
@@ -311,10 +312,10 @@
             // 
             this.chkFinished.AutoSize = true;
             this.chkFinished.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkFinished.Location = new System.Drawing.Point(321, 2);
+            this.chkFinished.Location = new System.Drawing.Point(319, 2);
             this.chkFinished.Margin = new System.Windows.Forms.Padding(2);
             this.chkFinished.Name = "chkFinished";
-            this.chkFinished.Size = new System.Drawing.Size(67, 22);
+            this.chkFinished.Size = new System.Drawing.Size(69, 22);
             this.chkFinished.TabIndex = 1;
             this.chkFinished.Text = "Finished";
             this.chkFinished.UseVisualStyleBackColor = true;

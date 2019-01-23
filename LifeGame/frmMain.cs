@@ -47,10 +47,10 @@ namespace LifeGame
         {
             Deserialize();
             //G.glb.lstLiterature = new List<CLiterature>();
-            //G.glb.lstLiteratureTag = new List<RLiteratureTag>();
             //G.glb.lstLiteratureAuthor = new List<RLiteratureAuthor>();
             //G.glb.lstLiteratureCiting = new List<RLiteratureInCiting>();
             //G.glb.lstLiteratureInstitution = new List<RLiteratureInstitution>();
+            //G.glb.lstLiteratureTag = new List<RLiteratureTag>();
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
             DrawLog();            

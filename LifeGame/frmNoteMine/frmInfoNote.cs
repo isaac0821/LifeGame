@@ -182,7 +182,7 @@ namespace LifeGame
             if (trvNote.SelectedNode != null && trvNote.SelectedNode.Parent != null)
             {
                 string OldLog = trvNote.SelectedNode.Text;
-                string NewLog = Interaction.InputBox("Input new note node", "Rename Note", "Rename Note", 300, 300);
+                string NewLog = Interaction.InputBox("Rename Note", "Rename Note", trvNote.SelectedNode.Text, 300, 300);
                 foreach (RNoteLog noteLog in noteLogs)
                 {
                     if (noteLog.Log == OldLog)
