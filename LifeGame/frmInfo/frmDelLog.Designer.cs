@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDelLog));
             this.lsbLogList = new System.Windows.Forms.ListBox();
             this.cmsLog = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,10 +110,11 @@
             this.ClientSize = new System.Drawing.Size(410, 361);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDelLog";
-            this.Text = "frmEditLogList";
+            this.Text = "LifeGame - Delete Log";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditLogList_FormClosing);
             this.Load += new System.EventHandler(this.frmEditLogList_Load);
             this.cmsLog.ResumeLayout(false);

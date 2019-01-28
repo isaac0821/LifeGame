@@ -363,8 +363,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 543);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmInfoNote";
-            this.Text = "Note";
+            this.Text = "LifeGame - Note";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInfoNote_FormClosing);
             this.Load += new System.EventHandler(this.frmInfoNote_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

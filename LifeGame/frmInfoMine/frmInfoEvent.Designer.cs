@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInfoEvent));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tlpEvent = new System.Windows.Forms.TableLayoutPanel();
             this.lblEventName = new System.Windows.Forms.Label();
@@ -101,9 +102,10 @@
             this.ClientSize = new System.Drawing.Size(580, 190);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmInfoEvent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmEvent";
+            this.Text = "LifeGame - Event";
             this.Deactivate += new System.EventHandler(this.frmInfoEvent_Deactivate);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tlpEvent.ResumeLayout(false);

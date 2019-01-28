@@ -935,9 +935,10 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.stsAccount);
             this.Controls.Add(this.mnsAccount);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnsAccount;
             this.Name = "frmAccount";
-            this.Text = "frmAccount";
+            this.Text = "LifeGame - Account";
             this.Load += new System.EventHandler(this.frmAccount_Load);
             this.stsAccount.ResumeLayout(false);
             this.stsAccount.PerformLayout();

@@ -254,8 +254,8 @@ namespace LifeGame
     public enum ETransactionDueType: int
     {
         Fixed,
-        RemainingBalanceAtSomeDate,
-        RemainingBalance
+        RemainingBalance,
+        RemainingBalanceWithPrePaidAmount
     }
 
     [Serializable]

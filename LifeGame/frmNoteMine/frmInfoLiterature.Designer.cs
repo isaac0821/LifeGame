@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInfoLiterature));
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.txtTitle = new System.Windows.Forms.TextBox();
@@ -386,38 +387,38 @@
             this.tsmAuthorUp,
             this.tsmAuthorDown});
             this.cmsAuthor.Name = "cmsAuthor";
-            this.cmsAuthor.Size = new System.Drawing.Size(181, 120);
+            this.cmsAuthor.Size = new System.Drawing.Size(118, 98);
             // 
             // tsmAuthorAdd
             // 
             this.tsmAuthorAdd.Name = "tsmAuthorAdd";
-            this.tsmAuthorAdd.Size = new System.Drawing.Size(180, 22);
+            this.tsmAuthorAdd.Size = new System.Drawing.Size(117, 22);
             this.tsmAuthorAdd.Text = "Add";
             this.tsmAuthorAdd.Click += new System.EventHandler(this.tsmAuthorAdd_Click);
             // 
             // tsmAuthorRemove
             // 
             this.tsmAuthorRemove.Name = "tsmAuthorRemove";
-            this.tsmAuthorRemove.Size = new System.Drawing.Size(180, 22);
+            this.tsmAuthorRemove.Size = new System.Drawing.Size(117, 22);
             this.tsmAuthorRemove.Text = "Remove";
             this.tsmAuthorRemove.Click += new System.EventHandler(this.tsmAuthorRemove_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(114, 6);
             // 
             // tsmAuthorUp
             // 
             this.tsmAuthorUp.Name = "tsmAuthorUp";
-            this.tsmAuthorUp.Size = new System.Drawing.Size(180, 22);
+            this.tsmAuthorUp.Size = new System.Drawing.Size(117, 22);
             this.tsmAuthorUp.Text = "Up";
             this.tsmAuthorUp.Click += new System.EventHandler(this.tsmAuthorUp_Click);
             // 
             // tsmAuthorDown
             // 
             this.tsmAuthorDown.Name = "tsmAuthorDown";
-            this.tsmAuthorDown.Size = new System.Drawing.Size(180, 22);
+            this.tsmAuthorDown.Size = new System.Drawing.Size(117, 22);
             this.tsmAuthorDown.Text = "Down";
             this.tsmAuthorDown.Click += new System.EventHandler(this.tsmAuthorDown_Click);
             // 
@@ -507,10 +508,11 @@
             this.ClientSize = new System.Drawing.Size(800, 240);
             this.Controls.Add(this.tableLayoutPanel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmInfoLiterature";
-            this.Text = "frmLiteratureDetail";
+            this.Text = "LifeGame - Literature Detail";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddLiterature_FormClosing);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCurrencyRate));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lsbCurrencyA = new System.Windows.Forms.ListBox();
             this.lsbCurrencyB = new System.Windows.Forms.ListBox();
@@ -186,10 +187,11 @@
             this.ClientSize = new System.Drawing.Size(279, 305);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmCurrencyRate";
-            this.Text = "frmCurrencyRate";
+            this.Text = "LifeGame - Currency Rate";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCurrencyRate_FormClosing);
             this.Load += new System.EventHandler(this.frmCurrencyRate_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDelNoteMine));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lsbNote = new System.Windows.Forms.ListBox();
             this.cmsDelete = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -111,11 +112,12 @@
             this.ClientSize = new System.Drawing.Size(410, 361);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDelNoteMine";
-            this.Text = "frmDelNoteMine";
+            this.Text = "LifeGame - Delete Note Mine";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDelNoteMine_FormClosing);
             this.Load += new System.EventHandler(this.frmDelNoteMine_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

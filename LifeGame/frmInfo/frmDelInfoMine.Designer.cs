@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDelInfoMine));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
@@ -113,7 +114,7 @@
             this.tabPage1.Controls.Add(this.lsbEvent);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(396, 299);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Event";
@@ -150,8 +151,8 @@
             this.tabPage2.Controls.Add(this.lsbTransaction);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage2.Size = new System.Drawing.Size(396, 298);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(396, 299);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Transaction";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -163,7 +164,7 @@
             this.lsbTransaction.FormattingEnabled = true;
             this.lsbTransaction.Location = new System.Drawing.Point(3, 3);
             this.lsbTransaction.Name = "lsbTransaction";
-            this.lsbTransaction.Size = new System.Drawing.Size(390, 292);
+            this.lsbTransaction.Size = new System.Drawing.Size(390, 293);
             this.lsbTransaction.TabIndex = 0;
             // 
             // tabPage3
@@ -171,8 +172,8 @@
             this.tabPage3.Controls.Add(this.lsbTransactionDue);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage3.Size = new System.Drawing.Size(396, 298);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(396, 299);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Transaction Due";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -184,7 +185,7 @@
             this.lsbTransactionDue.FormattingEnabled = true;
             this.lsbTransactionDue.Location = new System.Drawing.Point(3, 3);
             this.lsbTransactionDue.Name = "lsbTransactionDue";
-            this.lsbTransactionDue.Size = new System.Drawing.Size(390, 292);
+            this.lsbTransactionDue.Size = new System.Drawing.Size(390, 293);
             this.lsbTransactionDue.TabIndex = 0;
             // 
             // tabPage4
@@ -192,8 +193,8 @@
             this.tabPage4.Controls.Add(this.lsbWorkOut);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage4.Size = new System.Drawing.Size(396, 298);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(396, 299);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Work Out";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -205,7 +206,7 @@
             this.lsbWorkOut.FormattingEnabled = true;
             this.lsbWorkOut.Location = new System.Drawing.Point(3, 3);
             this.lsbWorkOut.Name = "lsbWorkOut";
-            this.lsbWorkOut.Size = new System.Drawing.Size(390, 292);
+            this.lsbWorkOut.Size = new System.Drawing.Size(390, 293);
             this.lsbWorkOut.TabIndex = 0;
             // 
             // tabPage5
@@ -213,8 +214,8 @@
             this.tabPage5.Controls.Add(this.lsbMedicine);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage5.Size = new System.Drawing.Size(396, 298);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(396, 299);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Medicine";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -226,7 +227,7 @@
             this.lsbMedicine.FormattingEnabled = true;
             this.lsbMedicine.Location = new System.Drawing.Point(3, 3);
             this.lsbMedicine.Name = "lsbMedicine";
-            this.lsbMedicine.Size = new System.Drawing.Size(390, 292);
+            this.lsbMedicine.Size = new System.Drawing.Size(390, 293);
             this.lsbMedicine.TabIndex = 0;
             // 
             // frmDelInfoMine
@@ -236,10 +237,11 @@
             this.ClientSize = new System.Drawing.Size(410, 361);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDelInfoMine";
-            this.Text = "frmDelInfoMine";
+            this.Text = "LifeGame - Delete Info Mine";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDelInfoMine_FormClosing);
             this.Load += new System.EventHandler(this.frmDelInfoMine_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

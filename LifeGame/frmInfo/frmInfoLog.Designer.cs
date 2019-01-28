@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInfoLog));
             this.tlpLogInfo = new System.Windows.Forms.TableLayoutPanel();
             this.lblTimePeriod = new System.Windows.Forms.Label();
             this.lblLogName = new System.Windows.Forms.Label();
@@ -142,11 +143,12 @@
             this.ClientSize = new System.Drawing.Size(580, 230);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmInfoLog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmLogInfo";
+            this.Text = "LifeGame - Log Info";
             this.Deactivate += new System.EventHandler(this.frmLogInfo_Deactivate);
             this.Click += new System.EventHandler(this.frmLogInfo_Click);
             this.tlpLogInfo.ResumeLayout(false);
