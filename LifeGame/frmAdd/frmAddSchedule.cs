@@ -66,7 +66,7 @@ namespace LifeGame
                             }
                             break;
                         case DayOfWeek.Thursday:
-                            if (chkTu.Checked)
+                            if (chkTh.Checked)
                             {
                                 IsAddSchedule = true;
                             }
