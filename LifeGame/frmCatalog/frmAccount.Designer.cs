@@ -138,16 +138,17 @@
             this.stsAccount.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.stsAccount.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.stsAccount.Location = new System.Drawing.Point(0, 579);
+            this.stsAccount.Location = new System.Drawing.Point(0, 715);
             this.stsAccount.Name = "stsAccount";
-            this.stsAccount.Size = new System.Drawing.Size(1295, 22);
+            this.stsAccount.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.stsAccount.Size = new System.Drawing.Size(1727, 25);
             this.stsAccount.TabIndex = 0;
             this.stsAccount.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(75, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(94, 20);
             this.toolStripStatusLabel1.Text = "Version: 0.0.0";
             // 
             // mnsAccount
@@ -158,14 +159,15 @@
             this.settingSToolStripMenuItem});
             this.mnsAccount.Location = new System.Drawing.Point(0, 0);
             this.mnsAccount.Name = "mnsAccount";
-            this.mnsAccount.Size = new System.Drawing.Size(1295, 24);
+            this.mnsAccount.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.mnsAccount.Size = new System.Drawing.Size(1727, 28);
             this.mnsAccount.TabIndex = 1;
             this.mnsAccount.Text = "menuStrip1";
             // 
             // filesFToolStripMenuItem
             // 
             this.filesFToolStripMenuItem.Name = "filesFToolStripMenuItem";
-            this.filesFToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.filesFToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.filesFToolStripMenuItem.Text = "Files(&F)";
             // 
             // settingSToolStripMenuItem
@@ -173,20 +175,21 @@
             this.settingSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmCurrencyRate});
             this.settingSToolStripMenuItem.Name = "settingSToolStripMenuItem";
-            this.settingSToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.settingSToolStripMenuItem.Size = new System.Drawing.Size(86, 24);
             this.settingSToolStripMenuItem.Text = "Setting(&S)";
             // 
             // tsmCurrencyRate
             // 
             this.tsmCurrencyRate.Name = "tsmCurrencyRate";
-            this.tsmCurrencyRate.Size = new System.Drawing.Size(148, 22);
+            this.tsmCurrencyRate.Size = new System.Drawing.Size(175, 26);
             this.tsmCurrencyRate.Text = "Currency Rate";
             this.tsmCurrencyRate.Click += new System.EventHandler(this.tsmCurrencyRate_Click);
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -196,8 +199,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.splitContainer1.Size = new System.Drawing.Size(1295, 555);
-            this.splitContainer1.SplitterDistance = 295;
+            this.splitContainer1.Size = new System.Drawing.Size(1727, 687);
+            this.splitContainer1.SplitterDistance = 393;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -208,21 +212,23 @@
             this.tableLayoutPanel1.Controls.Add(this.groupBox6, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 198F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 244F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(295, 555);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(393, 687);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.trvAccount);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(5, 203);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox1.Location = new System.Drawing.Point(7, 250);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(285, 347);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(379, 431);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Account Tree";
@@ -235,19 +241,21 @@
             this.trvAccount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvAccount.ImageIndex = 0;
             this.trvAccount.ImageList = this.iglAccount;
-            this.trvAccount.Location = new System.Drawing.Point(3, 16);
+            this.trvAccount.Location = new System.Drawing.Point(4, 19);
+            this.trvAccount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.trvAccount.Name = "trvAccount";
             treeNode1.Name = "(Root)";
             treeNode1.Text = "(Root)";
             this.trvAccount.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
             this.trvAccount.SelectedImageIndex = 0;
-            this.trvAccount.Size = new System.Drawing.Size(279, 328);
+            this.trvAccount.Size = new System.Drawing.Size(371, 408);
             this.trvAccount.TabIndex = 0;
             this.trvAccount.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvAccount_AfterSelect);
             // 
             // cmsAccount
             // 
+            this.cmsAccount.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsAccount.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAddAccount,
             this.tsmRenameAccount,
@@ -259,64 +267,64 @@
             this.tsmBelongTo,
             this.tsmIndependent});
             this.cmsAccount.Name = "cmsAccount";
-            this.cmsAccount.Size = new System.Drawing.Size(166, 170);
+            this.cmsAccount.Size = new System.Drawing.Size(191, 184);
             // 
             // tsmAddAccount
             // 
             this.tsmAddAccount.Name = "tsmAddAccount";
-            this.tsmAddAccount.Size = new System.Drawing.Size(165, 22);
+            this.tsmAddAccount.Size = new System.Drawing.Size(190, 24);
             this.tsmAddAccount.Text = "Add Account";
             this.tsmAddAccount.Click += new System.EventHandler(this.tsmAddAccount_Click);
             // 
             // tsmRenameAccount
             // 
             this.tsmRenameAccount.Name = "tsmRenameAccount";
-            this.tsmRenameAccount.Size = new System.Drawing.Size(165, 22);
+            this.tsmRenameAccount.Size = new System.Drawing.Size(190, 24);
             this.tsmRenameAccount.Text = "Rename Account";
             this.tsmRenameAccount.Click += new System.EventHandler(this.tsmRenameAccount_Click);
             // 
             // tsmDeleteAccount
             // 
             this.tsmDeleteAccount.Name = "tsmDeleteAccount";
-            this.tsmDeleteAccount.Size = new System.Drawing.Size(165, 22);
+            this.tsmDeleteAccount.Size = new System.Drawing.Size(190, 24);
             this.tsmDeleteAccount.Text = "Delete Account";
             this.tsmDeleteAccount.Click += new System.EventHandler(this.tsmDeleteAccount_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(187, 6);
             // 
             // tsmUp
             // 
             this.tsmUp.Name = "tsmUp";
-            this.tsmUp.Size = new System.Drawing.Size(165, 22);
+            this.tsmUp.Size = new System.Drawing.Size(190, 24);
             this.tsmUp.Text = "Up";
             this.tsmUp.Click += new System.EventHandler(this.tsmUp_Click);
             // 
             // tsmDown
             // 
             this.tsmDown.Name = "tsmDown";
-            this.tsmDown.Size = new System.Drawing.Size(165, 22);
+            this.tsmDown.Size = new System.Drawing.Size(190, 24);
             this.tsmDown.Text = "Down";
             this.tsmDown.Click += new System.EventHandler(this.tsmDown_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
             // 
             // tsmBelongTo
             // 
             this.tsmBelongTo.Name = "tsmBelongTo";
-            this.tsmBelongTo.Size = new System.Drawing.Size(165, 22);
+            this.tsmBelongTo.Size = new System.Drawing.Size(190, 24);
             this.tsmBelongTo.Text = "Belong To";
             this.tsmBelongTo.Click += new System.EventHandler(this.tsmBelongTo_Click);
             // 
             // tsmIndependent
             // 
             this.tsmIndependent.Name = "tsmIndependent";
-            this.tsmIndependent.Size = new System.Drawing.Size(165, 22);
+            this.tsmIndependent.Size = new System.Drawing.Size(190, 24);
             this.tsmIndependent.Text = "Independent";
             this.tsmIndependent.Click += new System.EventHandler(this.tsmIndependent_Click);
             // 
@@ -333,10 +341,11 @@
             // 
             this.groupBox6.Controls.Add(this.tableLayoutPanel3);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.Location = new System.Drawing.Point(5, 5);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox6.Location = new System.Drawing.Point(7, 6);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(285, 188);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Size = new System.Drawing.Size(379, 232);
             this.groupBox6.TabIndex = 3;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Balance";
@@ -353,7 +362,8 @@
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel14, 0, 5);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel15, 0, 6);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 19);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 7;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
@@ -363,7 +373,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.7929F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(279, 169);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(371, 209);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // tableLayoutPanel6
@@ -379,16 +389,17 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(279, 24);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(371, 29);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // lblAccountName
             // 
             this.lblAccountName.AutoSize = true;
             this.lblAccountName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblAccountName.Location = new System.Drawing.Point(3, 0);
+            this.lblAccountName.Location = new System.Drawing.Point(4, 0);
+            this.lblAccountName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAccountName.Name = "lblAccountName";
-            this.lblAccountName.Size = new System.Drawing.Size(189, 24);
+            this.lblAccountName.Size = new System.Drawing.Size(251, 29);
             this.lblAccountName.TabIndex = 0;
             this.lblAccountName.Text = "---";
             this.lblAccountName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -397,9 +408,10 @@
             // 
             this.lblCurrency.AutoSize = true;
             this.lblCurrency.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCurrency.Location = new System.Drawing.Point(198, 0);
+            this.lblCurrency.Location = new System.Drawing.Point(263, 0);
+            this.lblCurrency.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurrency.Name = "lblCurrency";
-            this.lblCurrency.Size = new System.Drawing.Size(78, 24);
+            this.lblCurrency.Size = new System.Drawing.Size(104, 29);
             this.lblCurrency.TabIndex = 1;
             this.lblCurrency.Text = "USD";
             this.lblCurrency.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -408,27 +420,28 @@
             // 
             this.tableLayoutPanel10.ColumnCount = 3;
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel10.Controls.Add(this.label6, 1, 0);
             this.tableLayoutPanel10.Controls.Add(this.dtpStatementPeriodStart, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.dtpStatementPeriodEnd, 2, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 24);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 29);
             this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(279, 24);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(371, 29);
             this.tableLayoutPanel10.TabIndex = 1;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(132, 0);
+            this.label6.Location = new System.Drawing.Point(175, 0);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(15, 24);
+            this.label6.Size = new System.Drawing.Size(20, 29);
             this.label6.TabIndex = 0;
             this.label6.Text = "-";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -437,44 +450,47 @@
             // 
             this.dtpStatementPeriodStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpStatementPeriodStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpStatementPeriodStart.Location = new System.Drawing.Point(3, 3);
+            this.dtpStatementPeriodStart.Location = new System.Drawing.Point(4, 4);
+            this.dtpStatementPeriodStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpStatementPeriodStart.Name = "dtpStatementPeriodStart";
-            this.dtpStatementPeriodStart.Size = new System.Drawing.Size(123, 20);
+            this.dtpStatementPeriodStart.Size = new System.Drawing.Size(163, 22);
             this.dtpStatementPeriodStart.TabIndex = 1;
             // 
             // dtpStatementPeriodEnd
             // 
             this.dtpStatementPeriodEnd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpStatementPeriodEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpStatementPeriodEnd.Location = new System.Drawing.Point(153, 3);
+            this.dtpStatementPeriodEnd.Location = new System.Drawing.Point(203, 4);
+            this.dtpStatementPeriodEnd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpStatementPeriodEnd.Name = "dtpStatementPeriodEnd";
-            this.dtpStatementPeriodEnd.Size = new System.Drawing.Size(123, 20);
+            this.dtpStatementPeriodEnd.Size = new System.Drawing.Size(164, 22);
             this.dtpStatementPeriodEnd.TabIndex = 2;
             // 
             // tableLayoutPanel11
             // 
             this.tableLayoutPanel11.ColumnCount = 2;
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 137F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel11.Controls.Add(this.chkShowBalance, 1, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(0, 48);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(0, 58);
             this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(279, 24);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(371, 29);
             this.tableLayoutPanel11.TabIndex = 2;
             // 
             // chkShowBalance
             // 
             this.chkShowBalance.AutoSize = true;
             this.chkShowBalance.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkShowBalance.Location = new System.Drawing.Point(179, 3);
+            this.chkShowBalance.Location = new System.Drawing.Point(238, 4);
+            this.chkShowBalance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkShowBalance.Name = "chkShowBalance";
-            this.chkShowBalance.Size = new System.Drawing.Size(97, 18);
+            this.chkShowBalance.Size = new System.Drawing.Size(129, 21);
             this.chkShowBalance.TabIndex = 0;
             this.chkShowBalance.Text = "Show Balance";
             this.chkShowBalance.UseVisualStyleBackColor = true;
@@ -489,21 +505,22 @@
             this.tableLayoutPanel12.Controls.Add(this.label2, 2, 0);
             this.tableLayoutPanel12.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(0, 72);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(0, 87);
             this.tableLayoutPanel12.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 1;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(279, 23);
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(371, 28);
             this.tableLayoutPanel12.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(189, 0);
+            this.label2.Location = new System.Drawing.Point(250, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 23);
+            this.label2.Size = new System.Drawing.Size(117, 28);
             this.label2.TabIndex = 1;
             this.label2.Text = "Credit";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -512,9 +529,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(96, 0);
+            this.label1.Location = new System.Drawing.Point(127, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 23);
+            this.label1.Size = new System.Drawing.Size(115, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Debit";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -529,21 +547,22 @@
             this.tableLayoutPanel13.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel13.Controls.Add(this.lblCreditOpening, 2, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(0, 95);
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(0, 115);
             this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(279, 25);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(371, 30);
             this.tableLayoutPanel13.TabIndex = 4;
             // 
             // lblDebitOpening
             // 
             this.lblDebitOpening.AutoSize = true;
             this.lblDebitOpening.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDebitOpening.Location = new System.Drawing.Point(96, 0);
+            this.lblDebitOpening.Location = new System.Drawing.Point(127, 0);
+            this.lblDebitOpening.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDebitOpening.Name = "lblDebitOpening";
-            this.lblDebitOpening.Size = new System.Drawing.Size(87, 25);
+            this.lblDebitOpening.Size = new System.Drawing.Size(115, 30);
             this.lblDebitOpening.TabIndex = 5;
             this.lblDebitOpening.Text = "-";
             this.lblDebitOpening.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -552,9 +571,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 0);
+            this.label3.Location = new System.Drawing.Point(4, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 25);
+            this.label3.Size = new System.Drawing.Size(115, 30);
             this.label3.TabIndex = 2;
             this.label3.Text = "Opening";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -563,9 +583,10 @@
             // 
             this.lblCreditOpening.AutoSize = true;
             this.lblCreditOpening.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCreditOpening.Location = new System.Drawing.Point(189, 0);
+            this.lblCreditOpening.Location = new System.Drawing.Point(250, 0);
+            this.lblCreditOpening.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCreditOpening.Name = "lblCreditOpening";
-            this.lblCreditOpening.Size = new System.Drawing.Size(87, 25);
+            this.lblCreditOpening.Size = new System.Drawing.Size(117, 30);
             this.lblCreditOpening.TabIndex = 8;
             this.lblCreditOpening.Text = "-";
             this.lblCreditOpening.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -580,21 +601,22 @@
             this.tableLayoutPanel14.Controls.Add(this.lblCreditAmount, 2, 0);
             this.tableLayoutPanel14.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel14.Location = new System.Drawing.Point(0, 120);
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(0, 145);
             this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
             this.tableLayoutPanel14.RowCount = 1;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(279, 24);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(371, 29);
             this.tableLayoutPanel14.TabIndex = 5;
             // 
             // lblDebitAmount
             // 
             this.lblDebitAmount.AutoSize = true;
             this.lblDebitAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDebitAmount.Location = new System.Drawing.Point(96, 0);
+            this.lblDebitAmount.Location = new System.Drawing.Point(127, 0);
+            this.lblDebitAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDebitAmount.Name = "lblDebitAmount";
-            this.lblDebitAmount.Size = new System.Drawing.Size(87, 24);
+            this.lblDebitAmount.Size = new System.Drawing.Size(115, 29);
             this.lblDebitAmount.TabIndex = 6;
             this.lblDebitAmount.Text = "-";
             this.lblDebitAmount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -603,9 +625,10 @@
             // 
             this.lblCreditAmount.AutoSize = true;
             this.lblCreditAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCreditAmount.Location = new System.Drawing.Point(189, 0);
+            this.lblCreditAmount.Location = new System.Drawing.Point(250, 0);
+            this.lblCreditAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCreditAmount.Name = "lblCreditAmount";
-            this.lblCreditAmount.Size = new System.Drawing.Size(87, 24);
+            this.lblCreditAmount.Size = new System.Drawing.Size(117, 29);
             this.lblCreditAmount.TabIndex = 9;
             this.lblCreditAmount.Text = "-";
             this.lblCreditAmount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -614,9 +637,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Location = new System.Drawing.Point(4, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 24);
+            this.label4.Size = new System.Drawing.Size(115, 29);
             this.label4.TabIndex = 3;
             this.label4.Text = "Amount";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -631,21 +655,22 @@
             this.tableLayoutPanel15.Controls.Add(this.lblDebitEnding, 1, 0);
             this.tableLayoutPanel15.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel15.Location = new System.Drawing.Point(0, 144);
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(0, 174);
             this.tableLayoutPanel15.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RowCount = 1;
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(279, 25);
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(371, 35);
             this.tableLayoutPanel15.TabIndex = 6;
             // 
             // lblCreditEnding
             // 
             this.lblCreditEnding.AutoSize = true;
             this.lblCreditEnding.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCreditEnding.Location = new System.Drawing.Point(189, 0);
+            this.lblCreditEnding.Location = new System.Drawing.Point(250, 0);
+            this.lblCreditEnding.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCreditEnding.Name = "lblCreditEnding";
-            this.lblCreditEnding.Size = new System.Drawing.Size(87, 25);
+            this.lblCreditEnding.Size = new System.Drawing.Size(117, 35);
             this.lblCreditEnding.TabIndex = 10;
             this.lblCreditEnding.Text = "-";
             this.lblCreditEnding.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -654,9 +679,10 @@
             // 
             this.lblDebitEnding.AutoSize = true;
             this.lblDebitEnding.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDebitEnding.Location = new System.Drawing.Point(96, 0);
+            this.lblDebitEnding.Location = new System.Drawing.Point(127, 0);
+            this.lblDebitEnding.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDebitEnding.Name = "lblDebitEnding";
-            this.lblDebitEnding.Size = new System.Drawing.Size(87, 25);
+            this.lblDebitEnding.Size = new System.Drawing.Size(115, 35);
             this.lblDebitEnding.TabIndex = 7;
             this.lblDebitEnding.Text = "-";
             this.lblDebitEnding.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -665,9 +691,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Location = new System.Drawing.Point(4, 0);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 25);
+            this.label5.Size = new System.Drawing.Size(115, 35);
             this.label5.TabIndex = 4;
             this.label5.Text = "Ending";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -675,16 +702,17 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 820F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1093F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 280F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(996, 555);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1329, 687);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel4
@@ -700,17 +728,18 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(996, 280);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1329, 1);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.tableLayoutPanel8);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(5, 5);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox3.Location = new System.Drawing.Point(7, 6);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(488, 270);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Size = new System.Drawing.Size(650, 1);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "In-flow Pie Chart";
@@ -718,24 +747,26 @@
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.ColumnCount = 2;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 251F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 335F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.Controls.Add(this.picDebit, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.lsbDebit, 1, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(4, 19);
+            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(482, 251);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(642, 0);
             this.tableLayoutPanel8.TabIndex = 0;
             // 
             // picDebit
             // 
             this.picDebit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picDebit.Location = new System.Drawing.Point(3, 3);
+            this.picDebit.Location = new System.Drawing.Point(4, 4);
+            this.picDebit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picDebit.Name = "picDebit";
-            this.picDebit.Size = new System.Drawing.Size(245, 245);
+            this.picDebit.Size = new System.Drawing.Size(327, 1);
             this.picDebit.TabIndex = 0;
             this.picDebit.TabStop = false;
             // 
@@ -745,19 +776,22 @@
             this.lsbDebit.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lsbDebit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbDebit.FormattingEnabled = true;
-            this.lsbDebit.Location = new System.Drawing.Point(254, 3);
+            this.lsbDebit.ItemHeight = 16;
+            this.lsbDebit.Location = new System.Drawing.Point(339, 4);
+            this.lsbDebit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lsbDebit.Name = "lsbDebit";
-            this.lsbDebit.Size = new System.Drawing.Size(225, 245);
+            this.lsbDebit.Size = new System.Drawing.Size(299, 1);
             this.lsbDebit.TabIndex = 1;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.tableLayoutPanel9);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(503, 5);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox4.Location = new System.Drawing.Point(671, 6);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(488, 270);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Size = new System.Drawing.Size(651, 1);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Out-flow Pie Chart";
@@ -765,24 +799,26 @@
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.ColumnCount = 2;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 251F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 335F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel9.Controls.Add(this.picCredit, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.lsbCredit, 1, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(4, 19);
+            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(482, 251);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(643, 0);
             this.tableLayoutPanel9.TabIndex = 0;
             // 
             // picCredit
             // 
             this.picCredit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picCredit.Location = new System.Drawing.Point(3, 3);
+            this.picCredit.Location = new System.Drawing.Point(4, 4);
+            this.picCredit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picCredit.Name = "picCredit";
-            this.picCredit.Size = new System.Drawing.Size(245, 245);
+            this.picCredit.Size = new System.Drawing.Size(327, 1);
             this.picCredit.TabIndex = 0;
             this.picCredit.TabStop = false;
             // 
@@ -792,9 +828,11 @@
             this.lsbCredit.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lsbCredit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbCredit.FormattingEnabled = true;
-            this.lsbCredit.Location = new System.Drawing.Point(254, 3);
+            this.lsbCredit.ItemHeight = 16;
+            this.lsbCredit.Location = new System.Drawing.Point(339, 4);
+            this.lsbCredit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lsbCredit.Name = "lsbCredit";
-            this.lsbCredit.Size = new System.Drawing.Size(225, 245);
+            this.lsbCredit.Size = new System.Drawing.Size(300, 1);
             this.lsbCredit.TabIndex = 1;
             // 
             // tableLayoutPanel5
@@ -803,22 +841,23 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.Controls.Add(this.groupBox7, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 280);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 1);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(996, 275);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1329, 686);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.dgvDetail);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox7.Location = new System.Drawing.Point(6, 6);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(6);
+            this.groupBox7.Location = new System.Drawing.Point(8, 7);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(984, 263);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Size = new System.Drawing.Size(1313, 672);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Details";
@@ -843,11 +882,12 @@
             this.colEquivalentAmount,
             this.colCurrencyRate});
             this.dgvDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDetail.Location = new System.Drawing.Point(3, 16);
+            this.dgvDetail.Location = new System.Drawing.Point(4, 19);
+            this.dgvDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvDetail.Name = "dgvDetail";
             this.dgvDetail.ReadOnly = true;
             this.dgvDetail.RowTemplate.Height = 23;
-            this.dgvDetail.Size = new System.Drawing.Size(978, 244);
+            this.dgvDetail.Size = new System.Drawing.Size(1305, 649);
             this.dgvDetail.TabIndex = 0;
             // 
             // colYear
@@ -925,18 +965,19 @@
             this.colCurrencyRate.HeaderText = "Currency/Unit Exchange Rate";
             this.colCurrencyRate.Name = "colCurrencyRate";
             this.colCurrencyRate.ReadOnly = true;
-            this.colCurrencyRate.Width = 160;
+            this.colCurrencyRate.Width = 230;
             // 
             // frmAccount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1295, 601);
+            this.ClientSize = new System.Drawing.Size(1727, 740);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.stsAccount);
             this.Controls.Add(this.mnsAccount);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnsAccount;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmAccount";
             this.Text = "LifeGame - Account";
             this.Load += new System.EventHandler(this.frmAccount_Load);

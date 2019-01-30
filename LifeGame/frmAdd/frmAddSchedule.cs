@@ -120,6 +120,7 @@ namespace LifeGame
             {
                 choices.Add(task.TaskName);
             }
+            choices = choices.OrderBy(o => o).ToList();
             cbxTask.DataSource = choices;
             cbxColor.SelectedIndex = 0;
         }

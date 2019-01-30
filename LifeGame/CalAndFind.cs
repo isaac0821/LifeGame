@@ -484,7 +484,7 @@ namespace LifeGame
                         {
                             retAmountCredit += transaction.CreditAmount / currencyRates.Find(o => o.CurrencyA == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyB == transaction.CreditCurrency).Rate;
                         }
-                        else if ((currencyRates.Exists(o => o.CurrencyB == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyA == transaction.CreditCurrency)))
+                        else if (currencyRates.Exists(o => o.CurrencyB == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyA == transaction.CreditCurrency))
                         {
                             retAmountCredit += transaction.CreditAmount * currencyRates.Find(o => o.CurrencyB == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyA == transaction.CreditCurrency).Rate;
                         }
@@ -533,14 +533,28 @@ namespace LifeGame
             return ret;
         }
 
-        public List<Double> CalInFlowPieChart(string AccountName, List<CAccount> accounts, List<CTransaction> transactions)
+        public List<Double> CalInFlowPieChart(
+            string AccountName,
+            List<CAccount> accounts,
+            List<RSubAccount> rSubAccounts,
+            List<CTransaction> transactions,
+            List<RCurrencyRate> currencyRates,
+            DateTime StartTime,
+            DateTime EndTime)
         {
             List<Double> ret = new List<double>();
 
             return ret;
         }
 
-        public List<Double> CalOutFlowPieChart(string AccountName, List<CAccount> accounts, List<CTransaction> transactions)
+        public List<Double> CalOutFlowPieChart(
+            string AccountName,
+            List<CAccount> accounts,
+            List<RSubAccount> rSubAccounts,
+            List<CTransaction> transactions,
+            List<RCurrencyRate> currencyRates,
+            DateTime StartTime,
+            DateTime EndTime)
         {
             List<Double> ret = new List<double>();
 
