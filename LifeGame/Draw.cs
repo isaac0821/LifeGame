@@ -119,7 +119,9 @@ namespace LifeGame
                     start = (todaySleep.GoToBedTime.Hour + todaySleep.GoToBedTime.Minute / 60d) / 24d * height;
                 }
                 double end = (todaySleep.GetUpTime.Hour + todaySleep.GetUpTime.Minute / 60d) / 24d * height;
-                string SleepTime = (todaySleep.IsGoToBedBeforeMidNight ? "(-1d)" : "") + todaySleep.GoToBedTime.ToShortTimeString() + " - " + todaySleep.GetUpTime.ToShortTimeString();
+                double totalHour = (todaySleep.GetUpTime - todaySleep.GoToBedTime).TotalHours;
+                totalHour = Math.Round(totalHour, 2);
+                string SleepTime = (todaySleep.IsGoToBedBeforeMidNight ? "(-1d)" : "") + todaySleep.GoToBedTime.ToShortTimeString() + " - " + todaySleep.GetUpTime.ToShortTimeString() + " [" + totalHour.ToString() + "h]";
                 picSleep.Width = width;
                 picSleep.Height = (int)(end - start);
                 picSleep.Left = left;
@@ -140,7 +142,9 @@ namespace LifeGame
                 {
                     double start = (tomorrowSleep.GoToBedTime.Hour + tomorrowSleep.GoToBedTime.Minute / 60d) / 24d * height;
                     double end = height;
-                    string SleepTime = tomorrowSleep.GoToBedTime.ToShortTimeString() + " - " + tomorrowSleep.GetUpTime.ToShortTimeString() + "(+1d)";
+                    double totalHour = (tomorrowSleep.GetUpTime - tomorrowSleep.GoToBedTime).TotalHours;
+                    totalHour = Math.Round(totalHour, 2);
+                    string SleepTime = tomorrowSleep.GoToBedTime.ToShortTimeString() + " - " + tomorrowSleep.GetUpTime.ToShortTimeString() + "(+1d)" + " [" + totalHour.ToString() + "h]";
                     picSleepYesterday.Width = width;
                     picSleepYesterday.Height = (int)(end - start);
                     picSleepYesterday.Left = left;
@@ -162,7 +166,9 @@ namespace LifeGame
                 lstLblLog.Add(new Label());
                 double start = 0;
                 double end = (yesterdayLogs[i].EndTime.Hour + yesterdayLogs[i].EndTime.Minute / 60d) / 24d * height;
-                string TimePeriod = yesterdayLogs[i].StartTime.ToShortTimeString() + "(-1d)" + " - " + yesterdayLogs[i].EndTime.ToShortTimeString();
+                double totalHour = (yesterdayLogs[i].EndTime - yesterdayLogs[i].StartTime).TotalHours;
+                totalHour = Math.Round(totalHour, 2);
+                string TimePeriod = yesterdayLogs[i].StartTime.ToShortTimeString() + "(-1d)" + " - " + yesterdayLogs[i].EndTime.ToShortTimeString() + " [" + totalHour.ToString() + "h]";
                 string LogName = yesterdayLogs[i].LogName;
                 string Location = yesterdayLogs[i].Location;
                 string WithWho = yesterdayLogs[i].WithWho;
@@ -187,16 +193,18 @@ namespace LifeGame
                 lstLblLog.Add(new Label());
                 double start = (todayLogs[i].StartTime.Hour + todayLogs[i].StartTime.Minute / 60d) / 24d * height;
                 double end;
+                double totalHour = (todayLogs[i].EndTime - todayLogs[i].StartTime).TotalHours;
+                totalHour = Math.Round(totalHour, 2);
                 string TimePeriod;
                 if (todayLogs[i].EndTime.Date == date)
                 {
                     end = (todayLogs[i].EndTime.Hour + todayLogs[i].EndTime.Minute / 60d) / 24d * height;
-                    TimePeriod = todayLogs[i].StartTime.ToShortTimeString() + " - " + todayLogs[i].EndTime.ToShortTimeString();
+                    TimePeriod = todayLogs[i].StartTime.ToShortTimeString() + " - " + todayLogs[i].EndTime.ToShortTimeString() + " [" + totalHour.ToString() + "h]";
                 }
                 else
                 {
                     end = height;
-                    TimePeriod = todayLogs[i].StartTime.ToShortTimeString() + " - " + todayLogs[i].EndTime.ToShortTimeString() + "(+1d)";
+                    TimePeriod = todayLogs[i].StartTime.ToShortTimeString() + " - " + todayLogs[i].EndTime.ToShortTimeString() + "(+1d)" + " [" + totalHour.ToString() + "h]";
                 }
                 string LogName = todayLogs[i].LogName;
                 string Location = todayLogs[i].Location;
