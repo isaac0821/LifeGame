@@ -79,7 +79,7 @@ namespace LifeGame
                 chkBottom.Checked = task.IsBottom;
                 chkFinished.Checked = task.IsFinished;
                 CalAndFind C = new CalAndFind();
-                lblTaskTimeSpent.Text = C.CalTimeSpentInTask(task.TaskName, G.glb.lstSubTask, G.glb.lstLog).ToString();
+                lblTaskTimeSpent.Text = Math.Round(C.CalTimeSpentInTask(task.TaskName, G.glb.lstSubTask, G.glb.lstLog),2).ToString() + "h";
                 DateTime? NextTimeMarker = C.FindNextTimeMarker(task.TaskName, G.glb.lstSubTask, G.glb.lstTask);
                 if (NextTimeMarker != null)
                 {

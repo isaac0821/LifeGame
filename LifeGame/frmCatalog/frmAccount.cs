@@ -20,6 +20,7 @@ namespace LifeGame
 
         private void frmAccount_Load(object sender, EventArgs e)
         {
+            dtpStatementPeriodStart.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             LoadTrvAccount();
         }
 
@@ -86,12 +87,12 @@ namespace LifeGame
                 G.glb.lstCurrencyRate,
                 dtpStatementPeriodStart.Value.Date,
                 dtpStatementPeriodEnd.Value.Date);
-            lblDebitOpening.Text = balance[0].ToString();
-            lblCreditOpening.Text = balance[1].ToString();
-            lblDebitAmount.Text = balance[2].ToString();
-            lblCreditAmount.Text = balance[3].ToString();
-            lblDebitEnding.Text = balance[4].ToString();
-            lblCreditEnding.Text = balance[5].ToString();
+            lblDebitOpening.Text = Math.Round(balance[0],2).ToString();
+            lblCreditOpening.Text = Math.Round(balance[1], 2).ToString();
+            lblDebitAmount.Text = Math.Round(balance[2], 2).ToString();
+            lblCreditAmount.Text = Math.Round(balance[3], 2).ToString();
+            lblDebitEnding.Text = Math.Round(balance[4], 2).ToString();
+            lblCreditEnding.Text = Math.Round(balance[5], 2).ToString();
             LoadAccountTransaction(accountName);
         }
 

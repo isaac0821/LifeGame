@@ -140,7 +140,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 28);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -162,7 +162,7 @@
             this.tableLayoutPanel6.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -176,7 +176,7 @@
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(294, 570);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -191,7 +191,7 @@
             this.trvTask.ImageIndex = 0;
             this.trvTask.ImageList = this.iglTask;
             this.trvTask.Location = new System.Drawing.Point(4, 19);
-            this.trvTask.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trvTask.Margin = new System.Windows.Forms.Padding(4);
             this.trvTask.Name = "trvTask";
             this.trvTask.SelectedImageIndex = 0;
             this.trvTask.Size = new System.Drawing.Size(286, 547);
@@ -311,7 +311,7 @@
             this.tableLayoutPanel7.Controls.Add(this.groupBox2, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -325,7 +325,7 @@
             this.groupBox2.Location = new System.Drawing.Point(7, 6);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(997, 570);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
@@ -341,7 +341,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 19);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
@@ -367,7 +367,7 @@
             this.colDuration});
             this.dgvLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLog.Location = new System.Drawing.Point(4, 80);
-            this.dgvLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvLog.Margin = new System.Windows.Forms.Padding(4);
             this.dgvLog.Name = "dgvLog";
             this.dgvLog.ReadOnly = true;
             this.dgvLog.RowTemplate.Height = 23;
@@ -417,7 +417,7 @@
             this.tableLayoutPanel2.Controls.Add(this.lblTaskTitle, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -460,7 +460,7 @@
             this.tableLayoutPanel3.Controls.Add(this.chkFinished, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 43);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -473,7 +473,7 @@
             this.chkBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkBottom.Enabled = false;
             this.chkBottom.Location = new System.Drawing.Point(4, 4);
-            this.chkBottom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkBottom.Margin = new System.Windows.Forms.Padding(4);
             this.chkBottom.Name = "chkBottom";
             this.chkBottom.Size = new System.Drawing.Size(80, 21);
             this.chkBottom.TabIndex = 0;
@@ -486,7 +486,7 @@
             this.chkInfinite.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkInfinite.Enabled = false;
             this.chkInfinite.Location = new System.Drawing.Point(898, 4);
-            this.chkInfinite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkInfinite.Margin = new System.Windows.Forms.Padding(4);
             this.chkInfinite.Name = "chkInfinite";
             this.chkInfinite.Size = new System.Drawing.Size(79, 21);
             this.chkInfinite.TabIndex = 1;
@@ -499,7 +499,7 @@
             this.dtpDeadline.Enabled = false;
             this.dtpDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDeadline.Location = new System.Drawing.Point(763, 4);
-            this.dtpDeadline.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDeadline.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDeadline.Name = "dtpDeadline";
             this.dtpDeadline.Size = new System.Drawing.Size(127, 22);
             this.dtpDeadline.TabIndex = 2;
@@ -510,7 +510,7 @@
             this.dtpNextTimeMarker.Enabled = false;
             this.dtpNextTimeMarker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpNextTimeMarker.Location = new System.Drawing.Point(541, 4);
-            this.dtpNextTimeMarker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpNextTimeMarker.Margin = new System.Windows.Forms.Padding(4);
             this.dtpNextTimeMarker.Name = "dtpNextTimeMarker";
             this.dtpNextTimeMarker.Size = new System.Drawing.Size(127, 22);
             this.dtpNextTimeMarker.TabIndex = 3;
@@ -566,7 +566,7 @@
             this.chkFinished.AutoSize = true;
             this.chkFinished.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkFinished.Location = new System.Drawing.Point(92, 4);
-            this.chkFinished.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkFinished.Margin = new System.Windows.Forms.Padding(4);
             this.chkFinished.Name = "chkFinished";
             this.chkFinished.Size = new System.Drawing.Size(88, 21);
             this.chkFinished.TabIndex = 8;
@@ -584,7 +584,7 @@
             this.Controls.Add(this.mnsTask);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnsTask;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTask";
             this.Text = "LifeGame - Task";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTask_FormClosing);

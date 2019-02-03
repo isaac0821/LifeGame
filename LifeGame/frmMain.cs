@@ -14,6 +14,8 @@ namespace LifeGame
 {
     public partial class frmMain : Form
     {
+        Timer timer = new Timer();
+
         private DateTime SelectedDate;
         private DateTime SelectedMonday;
         private DateTime SelectedTuesday;
@@ -53,7 +55,16 @@ namespace LifeGame
             //G.glb.lstLiteratureTag = new List<RLiteratureTag>();
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
-            DrawLog();            
+            DrawLog();
+            timer.Interval = 1000 * 60 * 10;
+            timer.Start();
+            timer.Tick += Timer_Tick;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            SerializeNow();
+            timer.Start();
         }
 
         private void frmMain_Resize(object sender, EventArgs e)

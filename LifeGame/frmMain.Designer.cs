@@ -208,7 +208,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28572F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28572F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28572F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel2.Controls.Add(this.btnNextDate, 8, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnPreDate, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.lblMonday, 1, 1);
@@ -246,10 +246,10 @@
             // btnNextDate
             // 
             this.btnNextDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNextDate.Location = new System.Drawing.Point(1535, 104);
+            this.btnNextDate.Location = new System.Drawing.Point(1534, 104);
             this.btnNextDate.Margin = new System.Windows.Forms.Padding(4);
             this.btnNextDate.Name = "btnNextDate";
-            this.btnNextDate.Size = new System.Drawing.Size(38, 754);
+            this.btnNextDate.Size = new System.Drawing.Size(39, 754);
             this.btnNextDate.TabIndex = 2;
             this.btnNextDate.Text = ">";
             this.btnNextDate.UseVisualStyleBackColor = true;
@@ -275,7 +275,7 @@
             this.lblMonday.Location = new System.Drawing.Point(44, 74);
             this.lblMonday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMonday.Name = "lblMonday";
-            this.lblMonday.Size = new System.Drawing.Size(205, 26);
+            this.lblMonday.Size = new System.Drawing.Size(204, 26);
             this.lblMonday.TabIndex = 14;
             this.lblMonday.Text = "Day 1";
             this.lblMonday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -285,7 +285,7 @@
             this.lblTuesday.AutoSize = true;
             this.lblTuesday.BackColor = System.Drawing.Color.Silver;
             this.lblTuesday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTuesday.Location = new System.Drawing.Point(257, 74);
+            this.lblTuesday.Location = new System.Drawing.Point(256, 74);
             this.lblTuesday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTuesday.Name = "lblTuesday";
             this.lblTuesday.Size = new System.Drawing.Size(205, 26);
@@ -298,7 +298,7 @@
             this.lblWednesday.AutoSize = true;
             this.lblWednesday.BackColor = System.Drawing.Color.Silver;
             this.lblWednesday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWednesday.Location = new System.Drawing.Point(470, 74);
+            this.lblWednesday.Location = new System.Drawing.Point(469, 74);
             this.lblWednesday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWednesday.Name = "lblWednesday";
             this.lblWednesday.Size = new System.Drawing.Size(205, 26);
@@ -311,7 +311,7 @@
             this.lblThursday.AutoSize = true;
             this.lblThursday.BackColor = System.Drawing.Color.Silver;
             this.lblThursday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblThursday.Location = new System.Drawing.Point(683, 74);
+            this.lblThursday.Location = new System.Drawing.Point(682, 74);
             this.lblThursday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblThursday.Name = "lblThursday";
             this.lblThursday.Size = new System.Drawing.Size(205, 26);
@@ -324,7 +324,7 @@
             this.lblFriday.AutoSize = true;
             this.lblFriday.BackColor = System.Drawing.Color.Silver;
             this.lblFriday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFriday.Location = new System.Drawing.Point(896, 74);
+            this.lblFriday.Location = new System.Drawing.Point(895, 74);
             this.lblFriday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFriday.Name = "lblFriday";
             this.lblFriday.Size = new System.Drawing.Size(205, 26);
@@ -337,7 +337,7 @@
             this.lblSaturday.AutoSize = true;
             this.lblSaturday.BackColor = System.Drawing.Color.Silver;
             this.lblSaturday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSaturday.Location = new System.Drawing.Point(1109, 74);
+            this.lblSaturday.Location = new System.Drawing.Point(1108, 74);
             this.lblSaturday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSaturday.Name = "lblSaturday";
             this.lblSaturday.Size = new System.Drawing.Size(205, 26);
@@ -350,7 +350,7 @@
             this.lblSunday.AutoSize = true;
             this.lblSunday.BackColor = System.Drawing.Color.Silver;
             this.lblSunday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSunday.Location = new System.Drawing.Point(1322, 74);
+            this.lblSunday.Location = new System.Drawing.Point(1321, 74);
             this.lblSunday.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSunday.Name = "lblSunday";
             this.lblSunday.Size = new System.Drawing.Size(205, 26);
@@ -366,7 +366,7 @@
             this.picMon.Location = new System.Drawing.Point(44, 104);
             this.picMon.Margin = new System.Windows.Forms.Padding(4);
             this.picMon.Name = "picMon";
-            this.picMon.Size = new System.Drawing.Size(205, 754);
+            this.picMon.Size = new System.Drawing.Size(204, 754);
             this.picMon.TabIndex = 0;
             this.picMon.TabStop = false;
             this.picMon.Click += new System.EventHandler(this.picMon_Click);
@@ -536,7 +536,7 @@
             this.picTue.BackColor = System.Drawing.Color.White;
             this.picTue.ContextMenuStrip = this.cmsMain;
             this.picTue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picTue.Location = new System.Drawing.Point(257, 104);
+            this.picTue.Location = new System.Drawing.Point(256, 104);
             this.picTue.Margin = new System.Windows.Forms.Padding(4);
             this.picTue.Name = "picTue";
             this.picTue.Size = new System.Drawing.Size(205, 754);
@@ -549,7 +549,7 @@
             this.picWed.BackColor = System.Drawing.Color.White;
             this.picWed.ContextMenuStrip = this.cmsMain;
             this.picWed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picWed.Location = new System.Drawing.Point(470, 104);
+            this.picWed.Location = new System.Drawing.Point(469, 104);
             this.picWed.Margin = new System.Windows.Forms.Padding(4);
             this.picWed.Name = "picWed";
             this.picWed.Size = new System.Drawing.Size(205, 754);
@@ -562,7 +562,7 @@
             this.picThu.BackColor = System.Drawing.Color.White;
             this.picThu.ContextMenuStrip = this.cmsMain;
             this.picThu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picThu.Location = new System.Drawing.Point(683, 104);
+            this.picThu.Location = new System.Drawing.Point(682, 104);
             this.picThu.Margin = new System.Windows.Forms.Padding(4);
             this.picThu.Name = "picThu";
             this.picThu.Size = new System.Drawing.Size(205, 754);
@@ -575,7 +575,7 @@
             this.picFri.BackColor = System.Drawing.Color.White;
             this.picFri.ContextMenuStrip = this.cmsMain;
             this.picFri.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picFri.Location = new System.Drawing.Point(896, 104);
+            this.picFri.Location = new System.Drawing.Point(895, 104);
             this.picFri.Margin = new System.Windows.Forms.Padding(4);
             this.picFri.Name = "picFri";
             this.picFri.Size = new System.Drawing.Size(205, 754);
@@ -588,7 +588,7 @@
             this.picSat.BackColor = System.Drawing.Color.White;
             this.picSat.ContextMenuStrip = this.cmsMain;
             this.picSat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picSat.Location = new System.Drawing.Point(1109, 104);
+            this.picSat.Location = new System.Drawing.Point(1108, 104);
             this.picSat.Margin = new System.Windows.Forms.Padding(4);
             this.picSat.Name = "picSat";
             this.picSat.Size = new System.Drawing.Size(205, 754);
@@ -601,7 +601,7 @@
             this.picSun.BackColor = System.Drawing.Color.White;
             this.picSun.ContextMenuStrip = this.cmsMain;
             this.picSun.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picSun.Location = new System.Drawing.Point(1322, 104);
+            this.picSun.Location = new System.Drawing.Point(1321, 104);
             this.picSun.Margin = new System.Windows.Forms.Padding(4);
             this.picSun.Name = "picSun";
             this.picSun.Size = new System.Drawing.Size(205, 754);
@@ -617,7 +617,7 @@
             this.lblDDLMon.Location = new System.Drawing.Point(44, 4);
             this.lblDDLMon.Margin = new System.Windows.Forms.Padding(4);
             this.lblDDLMon.Name = "lblDDLMon";
-            this.lblDDLMon.Size = new System.Drawing.Size(205, 66);
+            this.lblDDLMon.Size = new System.Drawing.Size(204, 66);
             this.lblDDLMon.TabIndex = 21;
             this.lblDDLMon.Text = "ddl";
             this.lblDDLMon.Click += new System.EventHandler(this.lblDDLMon_Click);
@@ -627,7 +627,7 @@
             this.lblDDLTue.AutoSize = true;
             this.lblDDLTue.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLTue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLTue.Location = new System.Drawing.Point(257, 4);
+            this.lblDDLTue.Location = new System.Drawing.Point(256, 4);
             this.lblDDLTue.Margin = new System.Windows.Forms.Padding(4);
             this.lblDDLTue.Name = "lblDDLTue";
             this.lblDDLTue.Size = new System.Drawing.Size(205, 66);
@@ -640,7 +640,7 @@
             this.lblDDLWed.AutoSize = true;
             this.lblDDLWed.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLWed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLWed.Location = new System.Drawing.Point(470, 4);
+            this.lblDDLWed.Location = new System.Drawing.Point(469, 4);
             this.lblDDLWed.Margin = new System.Windows.Forms.Padding(4);
             this.lblDDLWed.Name = "lblDDLWed";
             this.lblDDLWed.Size = new System.Drawing.Size(205, 66);
@@ -653,7 +653,7 @@
             this.lblDDLThu.AutoSize = true;
             this.lblDDLThu.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLThu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLThu.Location = new System.Drawing.Point(683, 4);
+            this.lblDDLThu.Location = new System.Drawing.Point(682, 4);
             this.lblDDLThu.Margin = new System.Windows.Forms.Padding(4);
             this.lblDDLThu.Name = "lblDDLThu";
             this.lblDDLThu.Size = new System.Drawing.Size(205, 66);
@@ -666,7 +666,7 @@
             this.lblDDLFri.AutoSize = true;
             this.lblDDLFri.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLFri.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLFri.Location = new System.Drawing.Point(896, 4);
+            this.lblDDLFri.Location = new System.Drawing.Point(895, 4);
             this.lblDDLFri.Margin = new System.Windows.Forms.Padding(4);
             this.lblDDLFri.Name = "lblDDLFri";
             this.lblDDLFri.Size = new System.Drawing.Size(205, 66);
@@ -679,7 +679,7 @@
             this.lblDDLSat.AutoSize = true;
             this.lblDDLSat.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLSat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLSat.Location = new System.Drawing.Point(1109, 4);
+            this.lblDDLSat.Location = new System.Drawing.Point(1108, 4);
             this.lblDDLSat.Margin = new System.Windows.Forms.Padding(4);
             this.lblDDLSat.Name = "lblDDLSat";
             this.lblDDLSat.Size = new System.Drawing.Size(205, 66);
@@ -692,7 +692,7 @@
             this.lblDDLSun.AutoSize = true;
             this.lblDDLSun.BackColor = System.Drawing.Color.Gainsboro;
             this.lblDDLSun.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLSun.Location = new System.Drawing.Point(1322, 4);
+            this.lblDDLSun.Location = new System.Drawing.Point(1321, 4);
             this.lblDDLSun.Margin = new System.Windows.Forms.Padding(4);
             this.lblDDLSun.Name = "lblDDLSun";
             this.lblDDLSun.Size = new System.Drawing.Size(205, 66);
