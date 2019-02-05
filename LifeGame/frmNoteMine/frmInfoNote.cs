@@ -16,6 +16,7 @@ namespace LifeGame
         CNote note = new CNote();
         List<RNoteLog> noteLogs = new List<RNoteLog>();
         List<RNoteOutsource> noteOutsources = new List<RNoteOutsource>();
+        bool RefreshInMain = true;
         public frmInfoNote(CNote info)
         {
             note = info;
@@ -36,6 +37,27 @@ namespace LifeGame
             LoadNoteLog();
             LoadNoteOutsource();
             dtpDate.Value = selectedDate;
+        }
+
+        public frmInfoNote(string LiteratureTitle)
+        {
+            RefreshInMain = false;
+            InitializeComponent();
+            note = new CNote();
+            noteLogs = new List<RNoteLog>();
+            List<RLiteratureOutSource> litOutSources = G.glb.lstLiteratureOutSource.FindAll(o => o.Title == LiteratureTitle).ToList();
+            for (int i = 0; i < litOutSources.Count; i++)
+            {
+                RNoteOutsource noteOutsource = new RNoteOutsource();
+                noteOutsource.TagTime = DateTime.Today.Date;
+                noteOutsource.Topic = litOutSources[i].Title;
+                noteOutsource.Outsourcepath = litOutSources[i].OutsourcePath;
+                noteOutsources.Add(noteOutsource);
+            }
+            LoadNoteLog();
+            LoadNoteOutsource();
+            txtTopic.Text = LiteratureTitle;
+            dtpDate.Value = DateTime.Today.Date;
         }
 
         private void LoadNote()
@@ -133,7 +155,10 @@ namespace LifeGame
                     noteOutsource.TagTime = dtpDate.Value.Date;
                     G.glb.lstNoteOutsource.Add(noteOutsource);
                 }
-                DrawLog();
+                if (RefreshInMain)
+                {
+                    DrawLog();
+                }
             }
             Dispose();
         }

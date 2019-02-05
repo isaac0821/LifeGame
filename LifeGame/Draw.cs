@@ -399,6 +399,12 @@ namespace LifeGame
             frmInfoNote.Show();
         }
 
+        public void CallInfoNoteAddNew(string LiteratureTitle)
+        {
+            frmInfoNote frmInfoNote = new frmInfoNote(LiteratureTitle);
+            frmInfoNote.Show();
+        }
+
         public void CallInfoTransaction(CTransaction info)
         {
             frmInfoTransaction frmInfoTransaction = new frmInfoTransaction(info);

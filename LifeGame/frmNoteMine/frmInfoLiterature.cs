@@ -414,6 +414,12 @@ namespace LifeGame
             }
         }
 
+        private void tsmNewNote_Click(object sender, EventArgs e)
+        {
+            Draw D = new Draw();
+            D.CallInfoNoteAddNew(txtTitle.Text);
+        }
+
         private void tsmAuthorAdd_Click(object sender, EventArgs e)
         {
             string strAuthor = Interaction.InputBox("Literature Author", "Literature Author", "Literature Author", 300, 300);
@@ -522,5 +528,7 @@ namespace LifeGame
                 lsbOutSource.Items.Add(lstLiteratureOutsource[i].OutsourcePath);
             }
         }
+
+
     }
 }
