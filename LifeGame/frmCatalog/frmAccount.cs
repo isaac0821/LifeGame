@@ -79,7 +79,7 @@ namespace LifeGame
             lblAccountName.Text = account.AccountName;
             lblCurrency.Text = account.Currency;
             CalAndFind C = new CalAndFind();
-            List<double> balance = C.CalBalance(
+            CalAndFind.SBalance balance = C.CalBalance(
                 accountName,
                 G.glb.lstAccount,
                 G.glb.lstSubAccount,
@@ -87,12 +87,12 @@ namespace LifeGame
                 G.glb.lstCurrencyRate,
                 dtpStatementPeriodStart.Value.Date,
                 dtpStatementPeriodEnd.Value.Date);
-            lblDebitOpening.Text = Math.Round(balance[0],2).ToString();
-            lblCreditOpening.Text = Math.Round(balance[1], 2).ToString();
-            lblDebitAmount.Text = Math.Round(balance[2], 2).ToString();
-            lblCreditAmount.Text = Math.Round(balance[3], 2).ToString();
-            lblDebitEnding.Text = Math.Round(balance[4], 2).ToString();
-            lblCreditEnding.Text = Math.Round(balance[5], 2).ToString();
+            lblDebitOpening.Text = Math.Round(balance.OpeningBalanceDebit,2).ToString();
+            lblCreditOpening.Text = Math.Round(balance.OpeningBalanceCredit, 2).ToString();
+            lblDebitAmount.Text = Math.Round(balance.AmountDebit, 2).ToString();
+            lblCreditAmount.Text = Math.Round(balance.AmountCredit, 2).ToString();
+            lblDebitEnding.Text = Math.Round(balance.EndingBalanceDebit, 2).ToString();
+            lblCreditEnding.Text = Math.Round(balance.EndingBalanceCredit, 2).ToString();
             LoadAccountTransaction(accountName);
         }
 

@@ -90,6 +90,16 @@ namespace LifeGame
     }
 
     /// <summary>
+    /// 文献的外链
+    /// </summary>
+    [Serializable]
+    public class RLiteratureOutSource
+    {
+        public string Title;
+        public string OutsourcePath;
+    }
+
+    /// <summary>
     /// 笔记
     /// </summary>
     [Serializable]
@@ -334,5 +344,26 @@ namespace LifeGame
         public bool IsGoToBedBeforeMidNight;
     }
 
+    /// <summary>
+    /// 知识点
+    /// </summary>
+    [Serializable]
+    public class CKnowledge
+    {
+        public string title;
+        public string LateXFilePath;
+        public EKnowledgeType KnowledgeType;
+    }
+
+    public enum EKnowledgeType : int
+    {
+        Definition,
+        Theorem,
+        Lamma,
+        Proof,
+        Example,
+        Algorithm,
+        Other
+    }
 
 }

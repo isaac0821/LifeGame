@@ -290,7 +290,7 @@ namespace LifeGame
                 string upperTask = rSubTasks.Find(o => o.SubTask == TaskName).Task;
                 bool IsTaskFinished = true;
                 List<RSubTask> children = rSubTasks.FindAll(o => o.Task == TaskName);
-                if (children.Count == 0 && tasks.Find(o=>o.TaskName == TaskName).IsBottom != true)
+                if (children.Count == 0 && tasks.Find(o => o.TaskName == TaskName).IsBottom != true)
                 {
                     IsTaskFinished = false;
                 }
@@ -421,10 +421,20 @@ namespace LifeGame
             {
                 ret = EMoneyFlowState.FlowOut;
             }
-            return ret; 
+            return ret;
         }
 
-        public List<double> CalBalance(
+        public struct SBalance
+        {
+            public double OpeningBalanceDebit;
+            public double OpeningBalanceCredit;
+            public double AmountDebit;
+            public double AmountCredit;
+            public double EndingBalanceDebit;
+            public double EndingBalanceCredit;
+        }
+
+        public SBalance CalBalance(
             string AccountName,
             List<CAccount> accounts,
             List<RSubAccount> rSubAccounts,
@@ -495,21 +505,19 @@ namespace LifeGame
                     }
                 }
             }
-            // 目前账目等均以2019.1.13日为开始
-            if (EndTime >= new DateTime(2019, 1, 13))
+            // 目前账目等均以2019.1.1开始，之前默认为无数据
+            if (EndTime >= new DateTime(2019, 1, 1))
             {
-                List<double> toStart = CalBalance(AccountName, accounts, rSubAccounts, transactions, currencyRates, new DateTime(2019, 1, 13), StartTime.AddDays(-1));
-                // toStart[4]是之前累计的期末余额的Debit方
-                // toStart[5]是之前累计的期末余额的Credit方
-                if (toStart[4] - toStart[5] > 0)
+                SBalance toStart = CalBalance(AccountName, accounts, rSubAccounts, transactions, currencyRates, new DateTime(2019, 1, 1), StartTime.AddDays(-1));
+                if (toStart.EndingBalanceDebit - toStart.EndingBalanceCredit > 0)
                 {
-                    retOpeningBalanceDebit = toStart[4] - toStart[5];
+                    retOpeningBalanceDebit = toStart.EndingBalanceDebit - toStart.EndingBalanceCredit;
                     retOpeningBalanceCredit = 0;
                 }
                 else
                 {
                     retOpeningBalanceDebit = 0;
-                    retOpeningBalanceCredit = -(toStart[4] - toStart[5]);
+                    retOpeningBalanceCredit = -(toStart.EndingBalanceDebit - toStart.EndingBalanceCredit);
                 }
             }
             else
@@ -529,35 +537,13 @@ namespace LifeGame
                 retEndingBalanceCredit = -abs;
             }
 
-            List<double> ret = new List<double>() { retOpeningBalanceDebit, retOpeningBalanceCredit, retAmountDebit, retAmountCredit, retEndingBalanceDebit, retEndingBalanceCredit };
-            return ret;
-        }
-
-        public List<Double> CalInFlowPieChart(
-            string AccountName,
-            List<CAccount> accounts,
-            List<RSubAccount> rSubAccounts,
-            List<CTransaction> transactions,
-            List<RCurrencyRate> currencyRates,
-            DateTime StartTime,
-            DateTime EndTime)
-        {
-            List<Double> ret = new List<double>();
-
-            return ret;
-        }
-
-        public List<Double> CalOutFlowPieChart(
-            string AccountName,
-            List<CAccount> accounts,
-            List<RSubAccount> rSubAccounts,
-            List<CTransaction> transactions,
-            List<RCurrencyRate> currencyRates,
-            DateTime StartTime,
-            DateTime EndTime)
-        {
-            List<Double> ret = new List<double>();
-
+            SBalance ret = new SBalance();
+            ret.OpeningBalanceDebit = retOpeningBalanceDebit;
+            ret.OpeningBalanceCredit = retOpeningBalanceCredit;
+            ret.AmountDebit = retAmountDebit;
+            ret.AmountCredit = retAmountCredit;
+            ret.EndingBalanceDebit = retEndingBalanceDebit;
+            ret.EndingBalanceCredit = retEndingBalanceCredit;
             return ret;
         }
     }

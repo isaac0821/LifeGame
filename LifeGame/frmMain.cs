@@ -53,6 +53,7 @@ namespace LifeGame
             //G.glb.lstLiteratureCiting = new List<RLiteratureInCiting>();
             //G.glb.lstLiteratureInstitution = new List<RLiteratureInstitution>();
             //G.glb.lstLiteratureTag = new List<RLiteratureTag>();
+            //G.glb.lstLiteratureOutSource = new List<RLiteratureOutSource>();
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
             DrawLog();

@@ -23,18 +23,24 @@ namespace LifeGame
             LoadTab();
         }
 
+        private class CItem
+        {
+            public CItem(string name, int count)
+            {
+                ItemName = name;
+                ItemCount = count;
+            }
+            public string ItemName;
+            public int ItemCount;
+        }
+
         private void LoadTab()
         {
-            List<string> Tags = new List<string>();
-            List<string> Authors = new List<string>();
-            List<string> Years = new List<string>();
-            List<string> Institutions = new List<string>();
-            List<string> JournalConferences = new List<string>();
-            List<int> TagNum = new List<int>();
-            List<int> AuthorNum = new List<int>();
-            List<int> YearNum = new List<int>();
-            List<int> InstitutionNum = new List<int>();
-            List<int> JournalConferenceNum = new List<int>();
+            List<CItem> Tags = new List<CItem>();
+            List<CItem> Authors = new List<CItem>();
+            List<CItem> Years = new List<CItem>();
+            List<CItem> Institutions = new List<CItem>();
+            List<CItem> JournalConferences = new List<CItem>();
 
             foreach (CLiterature literature in G.glb.lstLiterature)
             {
@@ -43,84 +49,84 @@ namespace LifeGame
                 List<RLiteratureInstitution> lstInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == literature.Title).ToList();
                 foreach (RLiteratureTag tag in lstTag)
                 {
-                    if (Tags.Exists(o => o == tag.Tag))
+                    if (Tags.Exists(o => o.ItemName == tag.Tag))
                     {
-                        TagNum[Tags.FindIndex(o => o == tag.Tag)] += 1;
+                        Tags[Tags.FindIndex(o => o.ItemName == tag.Tag)].ItemCount += 1;
                     }
                     else
                     {
-                        Tags.Add(tag.Tag);
-                        TagNum.Add(1);
+                        Tags.Add(new CItem(tag.Tag, 1));
                     }
                 }
+                Tags = Tags.OrderByDescending(o => o.ItemCount).ToList();
                 foreach (RLiteratureAuthor author in lstAuthor)
                 {
-                    if (Authors.Exists(o => o == author.Author))
+                    if (Authors.Exists(o => o.ItemName == author.Author))
                     {
-                        AuthorNum[Authors.FindIndex(o => o == author.Author)] += 1;
+                        Authors[Authors.FindIndex(o => o.ItemName == author.Author)].ItemCount += 1;
                     }
                     else
                     {
-                        Authors.Add(author.Author);
-                        AuthorNum.Add(1);
+                        Authors.Add(new CItem(author.Author, 1));
                     }
                 }
+                Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
                 foreach (RLiteratureInstitution insitution in lstInstitution)
                 {
-                    if (Institutions.Exists(o => o == insitution.Institution))
+                    if (Institutions.Exists(o => o.ItemName == insitution.Institution))
                     {
-                        InstitutionNum[Institutions.FindIndex(o => o == insitution.Institution)] += 1;
+                        Institutions[Institutions.FindIndex(o => o.ItemName == insitution.Institution)].ItemCount += 1;
                     }
                     else
                     {
-                        Institutions.Add(insitution.Institution);
-                        InstitutionNum.Add(1);
+                        Institutions.Add(new CItem(insitution.Institution, 1));
                     }
                 }
-                if (Years.Exists(o => o == literature.PublishYear.ToString()))
+                Institutions = Institutions.OrderByDescending(o => o.ItemCount).ToList();
+                if (Years.Exists(o => o.ItemName == literature.PublishYear.ToString()))
                 {
-                    YearNum[Years.FindIndex(o => o == literature.PublishYear.ToString())] += 1;
+                    Years[Years.FindIndex(o => o.ItemName == literature.PublishYear.ToString())].ItemCount += 1;
                 }
                 else
                 {
-                    Years.Add(literature.PublishYear.ToString());
-                    YearNum.Add(1);
+                    Years.Add(new CItem(literature.PublishYear.ToString(), 1));
                 }
-                if (JournalConferences.Exists(o => o == literature.JournalOrConferenceName))
+                Years = Years.OrderByDescending(o => Convert.ToInt16(o.ItemName)).ToList();
+                if (JournalConferences.Exists(o => o.ItemName == literature.JournalOrConferenceName))
                 {
-                    JournalConferenceNum[JournalConferences.FindIndex(o => o == literature.JournalOrConferenceName)] += 1;
+                    JournalConferences[JournalConferences.FindIndex(o => o.ItemName == literature.JournalOrConferenceName)].ItemCount += 1;
                 }
                 else
                 {
-                    JournalConferences.Add(literature.JournalOrConferenceName);
-                    JournalConferenceNum.Add(1);
+                    JournalConferences.Add(new CItem(literature.JournalOrConferenceName, 1));
                 }
+                JournalConferences = JournalConferences.OrderByDescending(o => o.ItemCount).ToList();
             }
 
             clbTag.Items.Clear();
             for (int i = 0; i < Tags.Count; i++)
             {
-                clbTag.Items.Add(Tags[i] + "[" + TagNum[i] + "]");
+                clbTag.Items.Add(Tags[i].ItemName + "[" + Tags[i].ItemCount + "]");
             }
             clbAuthor.Items.Clear();
             for (int i = 0; i < Authors.Count; i++)
             {
-                clbAuthor.Items.Add(Authors[i] + "[" + AuthorNum[i] + "]");
+                clbAuthor.Items.Add(Authors[i].ItemName + "[" + Authors[i].ItemCount + "]");
             }
             clbYear.Items.Clear();
             for (int i = 0; i < Years.Count; i++)
             {
-                clbYear.Items.Add(Years[i] + "[" + YearNum[i] + "]");
+                clbYear.Items.Add(Years[i].ItemName + "[" + Years[i].ItemCount + "]");
             }
             clbInstitution.Items.Clear();
             for (int i = 0; i < Institutions.Count; i++)
             {
-                clbInstitution.Items.Add(Institutions[i] + "[" + InstitutionNum[i] + "]");
+                clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]");
             }
             clbJournalConference.Items.Clear();
             for (int i = 0; i < JournalConferences.Count; i++)
             {
-                clbJournalConference.Items.Add(JournalConferences[i] + "[" + JournalConferenceNum[i] + "]");
+                clbJournalConference.Items.Add(JournalConferences[i].ItemName + "[" + JournalConferences[i].ItemCount + "]");
             }
         }
 

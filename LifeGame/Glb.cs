@@ -32,6 +32,7 @@ namespace LifeGame
         public List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
         public List<RLiteratureInCiting> lstLiteratureCiting = new List<RLiteratureInCiting>();
         public List<RLiteratureInstitution> lstLiteratureInstitution = new List<RLiteratureInstitution>();
+        public List<RLiteratureOutSource> lstLiteratureOutSource = new List<RLiteratureOutSource>();
 
         // Task and Log
         public List<CTask> lstTask = new List<CTask>();

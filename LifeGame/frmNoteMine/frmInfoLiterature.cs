@@ -14,10 +14,12 @@ namespace LifeGame
     public partial class frmInfoLiterature : Form
     {
         CLiterature literature = new CLiterature();
+        string InOneSentence = "";
         List<RLiteratureAuthor> lstLiteratureAuthor = new List<RLiteratureAuthor>();
         List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
         List<RLiteratureInstitution> lstLiteratureInstitution = new List<RLiteratureInstitution>();
         List<RLiteratureInCiting> lstLiteratureInCiting = new List<RLiteratureInCiting>();
+        List<RLiteratureOutSource> lstLiteratureOutsource = new List<RLiteratureOutSource>();
         List<CNote> lstNote = new List<CNote>();
         public frmInfoLiterature(string LiteratureTitle)
         {
@@ -25,8 +27,10 @@ namespace LifeGame
             lstLiteratureTag = G.glb.lstLiteratureTag.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
+            InOneSentence = literature.InOneSentence;
             lstLiteratureInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureInCiting = G.glb.lstLiteratureCiting.FindAll(o => o.Title == LiteratureTitle).ToList();
+            lstLiteratureOutsource = G.glb.lstLiteratureOutSource.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstNote = G.glb.lstNote.FindAll(o => o.LiteratureTitle == LiteratureTitle).ToList();
             InitializeComponent();
             LoadLiterature();
@@ -50,8 +54,10 @@ namespace LifeGame
             txtJournalConference.Text = "";
             cbxImportance.SelectedIndex = 3;
             cbxReadingStatus.SelectedIndex = 5;
+            txtInOneSentence.Text = "";
             lsbAuthor.Items.Clear();
             lsbTag.Items.Clear();
+            lsbOutSource.Items.Clear();
             lsbInstitution.Items.Clear();
             lsbNote.Items.Clear();
             lsbInCiting.Items.Clear();
@@ -64,6 +70,7 @@ namespace LifeGame
             txtTitle.Text = literature.Title;
             txtYear.Text = literature.PublishYear.ToString();
             txtJournalConference.Text = literature.JournalOrConferenceName;
+            txtInOneSentence.Text = literature.InOneSentence;
             cbxImportance.SelectedIndex = (int)literature.Importance;
             cbxReadingStatus.SelectedIndex = (int)literature.ReadingStatus;
             lsbAuthor.Items.Clear();
@@ -75,6 +82,11 @@ namespace LifeGame
             foreach (RLiteratureTag tag in lstLiteratureTag)
             {
                 lsbTag.Items.Add(tag.Tag);
+            }
+            lsbOutSource.Items.Clear();
+            foreach (RLiteratureOutSource outSource in lstLiteratureOutsource)
+            {
+                lsbOutSource.Items.Add(outSource.OutsourcePath);
             }
             lsbInstitution.Items.Clear();
             foreach (RLiteratureInstitution institution in lstLiteratureInstitution)
@@ -150,6 +162,7 @@ namespace LifeGame
                     newLiterature.Title = txtTitle.Text;
                     newLiterature.PublishYear = Convert.ToInt32(txtYear.Text);
                     newLiterature.JournalOrConferenceName = txtJournalConference.Text;
+                    newLiterature.InOneSentence = txtInOneSentence.Text;
                     switch (cbxImportance.SelectedIndex)
                     {
                         case 0:
@@ -194,6 +207,10 @@ namespace LifeGame
                     {
                         author.Title = txtTitle.Text;
                     }
+                    foreach (RLiteratureOutSource outSource in lstLiteratureOutsource)
+                    {
+                        outSource.Title = txtTitle.Text;
+                    }
                     foreach (RLiteratureTag tag in lstLiteratureTag)
                     {
                         tag.Title = txtTitle.Text;
@@ -209,6 +226,7 @@ namespace LifeGame
                     G.glb.lstLiterature.Add(newLiterature);
                     G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
                     G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
+                    G.glb.lstLiteratureOutSource.AddRange(lstLiteratureOutsource);
                     G.glb.lstLiteratureInstitution.AddRange(lstLiteratureInstitution);
                     G.glb.lstLiteratureCiting.AddRange(lstLiteratureInCiting);
                 }
@@ -216,6 +234,7 @@ namespace LifeGame
                 {
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PublishYear = Convert.ToInt32(txtYear.Text);
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).JournalOrConferenceName = txtJournalConference.Text;
+                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).InOneSentence = txtInOneSentence.Text;
                     switch (cbxImportance.SelectedIndex)
                     {
                         case 0:
@@ -264,6 +283,10 @@ namespace LifeGame
                     {
                         tag.Title = txtTitle.Text;
                     }
+                    foreach (RLiteratureOutSource outSource in lstLiteratureOutsource)
+                    {
+                        outSource.Title = txtTitle.Text;
+                    }
                     foreach (RLiteratureInstitution institution in lstLiteratureInstitution)
                     {
                         institution.Title = txtTitle.Text;
@@ -274,10 +297,12 @@ namespace LifeGame
                     }
                     G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == txtTitle.Text);
                     G.glb.lstLiteratureTag.RemoveAll(o => o.Title == txtTitle.Text);
+                    G.glb.lstLiteratureOutSource.RemoveAll(o => o.Title == txtTitle.Text);
                     G.glb.lstLiteratureInstitution.RemoveAll(o => o.Title == txtTitle.Text);
                     G.glb.lstLiteratureCiting.RemoveAll(o => o.Title == txtTitle.Text);
                     G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
                     G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
+                    G.glb.lstLiteratureOutSource.AddRange(lstLiteratureOutsource);
                     G.glb.lstLiteratureInstitution.AddRange(lstLiteratureInstitution);
                     G.glb.lstLiteratureCiting.AddRange(lstLiteratureInCiting);
                 }
@@ -447,6 +472,54 @@ namespace LifeGame
                     lstLiteratureAuthor[selectedIndex + 1].Rank = selectedIndex;
                     lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
                 }
+            }
+        }
+
+        private void tsmOpenOutSource_Click(object sender, EventArgs e)
+        {
+            if (lsbOutSource.SelectedItem != null)
+            {
+                string selectedPath = lsbOutSource.SelectedItem.ToString();
+                string[] checkUrl = selectedPath.Split(':');
+                if (checkUrl[0] == "http" || checkUrl[0] == "https")
+                {
+                    System.Diagnostics.Process.Start("chrome.exe", selectedPath);
+                }
+                else
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start(selectedPath);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("File type is not supported.");
+                        throw;
+                    }
+                }
+            }
+        }
+
+        private void tsmAddOutSource_Click(object sender, EventArgs e)
+        {
+            string strOutsource = Interaction.InputBox("Literature Link", "Literature Link", "Literature Link", 300, 300);
+            RLiteratureOutSource newOutSource = new RLiteratureOutSource();
+            newOutSource.Title = txtTitle.Text;
+            newOutSource.OutsourcePath = strOutsource;
+            lstLiteratureOutsource.Add(newOutSource);
+            lsbOutSource.Items.Add(strOutsource);
+        }
+
+        private void DeleteOutSource_Click(object sender, EventArgs e)
+        {
+            if (lsbOutSource.SelectedItem != null)
+            {
+                lstLiteratureOutsource.RemoveAll(o => o.OutsourcePath == lsbOutSource.SelectedItem.ToString());
+            }
+            lsbOutSource.Items.Clear();
+            for (int i = 0; i < lstLiteratureOutsource.Count; i++)
+            {
+                lsbOutSource.Items.Add(lstLiteratureOutsource[i].OutsourcePath);
             }
         }
     }
