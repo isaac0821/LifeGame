@@ -326,7 +326,8 @@ namespace LifeGame
             frmAddLog.DrawLog += new frmAddLog.DrawLogHandler(DrawLog);
             frmAddLog.Show();
         }
-        private void tsmDeleteSchedule_Click(object sender, EventArgs e)
+
+        private void tsmDeleteSingleSchedule_Click(object sender, EventArgs e)
         {
             DateTime sendToFrm = SelectedDate;
             switch (SelectedPicName)
@@ -359,6 +360,14 @@ namespace LifeGame
             frmDelLog.DrawLog += new frmDelLog.DrawLogHandler(DrawLog);
             frmDelLog.Show();
         }
+
+        private void tsmClearSchedule_Click(object sender, EventArgs e)
+        {
+            frmClearSchedule frmClearSchedule = new frmClearSchedule();
+            frmClearSchedule.DrawLog += new frmClearSchedule.DrawLogHandler(DrawLog);
+            frmClearSchedule.Show();
+        }
+
         private void tsmDeleteLog_Click(object sender, EventArgs e)
         {
             DateTime sendToFrm = SelectedDate;
@@ -826,7 +835,5 @@ namespace LifeGame
         {
             DrawLog();
         }
-
-
     }
 }

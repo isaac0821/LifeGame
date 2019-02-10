@@ -53,3 +53,4 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmDelInfoMine.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmCurrencyRate.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmDelNoteMine.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoLiterature.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmClearSchedule.resources

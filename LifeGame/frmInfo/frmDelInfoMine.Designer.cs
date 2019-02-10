@@ -65,34 +65,37 @@
             this.tableLayoutPanel1.Controls.Add(this.tabControl1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(410, 361);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(547, 444);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135F));
             this.tableLayoutPanel2.Controls.Add(this.dtpDate, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(404, 24);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(539, 29);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // dtpDate
             // 
             this.dtpDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(306, 3);
+            this.dtpDate.Location = new System.Drawing.Point(408, 4);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(95, 20);
+            this.dtpDate.Size = new System.Drawing.Size(127, 22);
             this.dtpDate.TabIndex = 0;
             // 
             // tabControl1
@@ -103,19 +106,21 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(3, 33);
+            this.tabControl1.Location = new System.Drawing.Point(4, 41);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(404, 325);
+            this.tabControl1.Size = new System.Drawing.Size(539, 399);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.lsbEvent);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(396, 299);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Size = new System.Drawing.Size(531, 370);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Event";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -125,9 +130,11 @@
             this.lsbEvent.ContextMenuStrip = this.cmsDelete;
             this.lsbEvent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbEvent.FormattingEnabled = true;
-            this.lsbEvent.Location = new System.Drawing.Point(3, 3);
+            this.lsbEvent.ItemHeight = 16;
+            this.lsbEvent.Location = new System.Drawing.Point(4, 4);
+            this.lsbEvent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lsbEvent.Name = "lsbEvent";
-            this.lsbEvent.Size = new System.Drawing.Size(390, 293);
+            this.lsbEvent.Size = new System.Drawing.Size(523, 362);
             this.lsbEvent.TabIndex = 1;
             // 
             // cmsDelete
@@ -136,23 +143,24 @@
             this.cmsDelete.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem});
             this.cmsDelete.Name = "cmsDelete";
-            this.cmsDelete.Size = new System.Drawing.Size(108, 26);
+            this.cmsDelete.Size = new System.Drawing.Size(123, 28);
             this.cmsDelete.Opening += new System.ComponentModel.CancelEventHandler(this.cmsDelete_Opening);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.lsbTransaction);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(396, 299);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Size = new System.Drawing.Size(531, 371);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Transaction";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -162,18 +170,21 @@
             this.lsbTransaction.ContextMenuStrip = this.cmsDelete;
             this.lsbTransaction.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbTransaction.FormattingEnabled = true;
-            this.lsbTransaction.Location = new System.Drawing.Point(3, 3);
+            this.lsbTransaction.ItemHeight = 16;
+            this.lsbTransaction.Location = new System.Drawing.Point(4, 4);
+            this.lsbTransaction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lsbTransaction.Name = "lsbTransaction";
-            this.lsbTransaction.Size = new System.Drawing.Size(390, 293);
+            this.lsbTransaction.Size = new System.Drawing.Size(523, 363);
             this.lsbTransaction.TabIndex = 0;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.lsbTransactionDue);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(396, 299);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Size = new System.Drawing.Size(531, 371);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Transaction Due";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -183,18 +194,21 @@
             this.lsbTransactionDue.ContextMenuStrip = this.cmsDelete;
             this.lsbTransactionDue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbTransactionDue.FormattingEnabled = true;
-            this.lsbTransactionDue.Location = new System.Drawing.Point(3, 3);
+            this.lsbTransactionDue.ItemHeight = 16;
+            this.lsbTransactionDue.Location = new System.Drawing.Point(4, 4);
+            this.lsbTransactionDue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lsbTransactionDue.Name = "lsbTransactionDue";
-            this.lsbTransactionDue.Size = new System.Drawing.Size(390, 293);
+            this.lsbTransactionDue.Size = new System.Drawing.Size(523, 363);
             this.lsbTransactionDue.TabIndex = 0;
             // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.lsbWorkOut);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(396, 299);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage4.Size = new System.Drawing.Size(531, 371);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Work Out";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -204,18 +218,21 @@
             this.lsbWorkOut.ContextMenuStrip = this.cmsDelete;
             this.lsbWorkOut.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbWorkOut.FormattingEnabled = true;
-            this.lsbWorkOut.Location = new System.Drawing.Point(3, 3);
+            this.lsbWorkOut.ItemHeight = 16;
+            this.lsbWorkOut.Location = new System.Drawing.Point(4, 4);
+            this.lsbWorkOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lsbWorkOut.Name = "lsbWorkOut";
-            this.lsbWorkOut.Size = new System.Drawing.Size(390, 293);
+            this.lsbWorkOut.Size = new System.Drawing.Size(523, 363);
             this.lsbWorkOut.TabIndex = 0;
             // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.lsbMedicine);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(396, 299);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage5.Size = new System.Drawing.Size(531, 371);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Medicine";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -225,19 +242,22 @@
             this.lsbMedicine.ContextMenuStrip = this.cmsDelete;
             this.lsbMedicine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbMedicine.FormattingEnabled = true;
-            this.lsbMedicine.Location = new System.Drawing.Point(3, 3);
+            this.lsbMedicine.ItemHeight = 16;
+            this.lsbMedicine.Location = new System.Drawing.Point(4, 4);
+            this.lsbMedicine.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lsbMedicine.Name = "lsbMedicine";
-            this.lsbMedicine.Size = new System.Drawing.Size(390, 293);
+            this.lsbMedicine.Size = new System.Drawing.Size(523, 363);
             this.lsbMedicine.TabIndex = 0;
             // 
             // frmDelInfoMine
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 361);
+            this.ClientSize = new System.Drawing.Size(547, 444);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDelInfoMine";

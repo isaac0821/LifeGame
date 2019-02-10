@@ -74,7 +74,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
@@ -161,7 +161,7 @@
             "Brown",
             "Gray"});
             this.cbxColor.Location = new System.Drawing.Point(289, 4);
-            this.cbxColor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxColor.Margin = new System.Windows.Forms.Padding(4);
             this.cbxColor.Name = "cbxColor";
             this.cbxColor.Size = new System.Drawing.Size(81, 24);
             this.cbxColor.TabIndex = 0;
@@ -182,7 +182,7 @@
             // 
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdd.Location = new System.Drawing.Point(391, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(72, 24);
             this.btnAdd.TabIndex = 5;
@@ -204,7 +204,7 @@
             this.tableLayoutPanel3.Controls.Add(this.chkPlusOneDay, 5, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(84, 68);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -247,7 +247,7 @@
             // 
             this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtLog.Location = new System.Drawing.Point(84, 36);
-            this.txtLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLog.Margin = new System.Windows.Forms.Padding(4);
             this.txtLog.Name = "txtLog";
             this.txtLog.Size = new System.Drawing.Size(459, 22);
             this.txtLog.TabIndex = 13;
@@ -258,7 +258,7 @@
             this.cbxTask.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxTask.FormattingEnabled = true;
             this.cbxTask.Location = new System.Drawing.Point(84, 132);
-            this.cbxTask.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxTask.Margin = new System.Windows.Forms.Padding(4);
             this.cbxTask.Name = "cbxTask";
             this.cbxTask.Size = new System.Drawing.Size(459, 24);
             this.cbxTask.TabIndex = 14;
@@ -283,7 +283,7 @@
             this.dtpDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDate.Location = new System.Drawing.Point(336, 4);
-            this.dtpDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(127, 22);
             this.dtpDate.TabIndex = 0;
@@ -311,7 +311,7 @@
             // 
             this.txtWhere.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtWhere.Location = new System.Drawing.Point(4, 4);
-            this.txtWhere.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtWhere.Margin = new System.Windows.Forms.Padding(4);
             this.txtWhere.Name = "txtWhere";
             this.txtWhere.Size = new System.Drawing.Size(189, 22);
             this.txtWhere.TabIndex = 0;
@@ -320,7 +320,7 @@
             // 
             this.txtWith.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtWith.Location = new System.Drawing.Point(258, 4);
-            this.txtWith.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtWith.Margin = new System.Windows.Forms.Padding(4);
             this.txtWith.Name = "txtWith";
             this.txtWith.Size = new System.Drawing.Size(205, 22);
             this.txtWith.TabIndex = 1;
@@ -357,7 +357,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddLog";

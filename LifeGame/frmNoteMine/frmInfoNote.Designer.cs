@@ -49,10 +49,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lsbOutsource = new System.Windows.Forms.ListBox();
             this.cmsOutsource = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmOpenOutsource = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAddOutsource = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDeleteOutsource = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmOpenOutsource = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.txtTopic = new System.Windows.Forms.TextBox();
             this.chkFinished = new System.Windows.Forms.CheckBox();
@@ -264,6 +264,18 @@
             this.cmsOutsource.Name = "cmsOutsource";
             this.cmsOutsource.Size = new System.Drawing.Size(123, 82);
             // 
+            // tsmOpenOutsource
+            // 
+            this.tsmOpenOutsource.Name = "tsmOpenOutsource";
+            this.tsmOpenOutsource.Size = new System.Drawing.Size(122, 24);
+            this.tsmOpenOutsource.Text = "Open";
+            this.tsmOpenOutsource.Click += new System.EventHandler(this.tsmOpenOutsource_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(119, 6);
+            // 
             // tsmAddOutsource
             // 
             this.tsmAddOutsource.Name = "tsmAddOutsource";
@@ -277,18 +289,6 @@
             this.tsmDeleteOutsource.Size = new System.Drawing.Size(122, 24);
             this.tsmDeleteOutsource.Text = "Delete";
             this.tsmDeleteOutsource.Click += new System.EventHandler(this.tsmDeleteOutsource_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(119, 6);
-            // 
-            // tsmOpenOutsource
-            // 
-            this.tsmOpenOutsource.Name = "tsmOpenOutsource";
-            this.tsmOpenOutsource.Size = new System.Drawing.Size(122, 24);
-            this.tsmOpenOutsource.Text = "Open";
-            this.tsmOpenOutsource.Click += new System.EventHandler(this.tsmOpenOutsource_Click);
             // 
             // tableLayoutPanel4
             // 
