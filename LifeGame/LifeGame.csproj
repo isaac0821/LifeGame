@@ -139,6 +139,12 @@
     <Compile Include="frmCatalog\frmCurrencyRate.Designer.cs">
       <DependentUpon>frmCurrencyRate.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmInfo\frmConvertTransactionDue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfo\frmConvertTransactionDue.Designer.cs">
+      <DependentUpon>frmConvertTransactionDue.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInfo\frmDelNoteMine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,6 +288,9 @@
     <EmbeddedResource Include="frmInfo\frmClearSchedule.resx">
       <DependentUpon>frmClearSchedule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmInfo\frmConvertTransactionDue.resx">
+      <DependentUpon>frmConvertTransactionDue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmInfo\frmDelInfoMine.resx">
       <DependentUpon>frmDelInfoMine.cs</DependentUpon>
     </EmbeddedResource>
@@ -400,49 +409,7 @@
     <None Include="Resources\iconMoneyWithin.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\iconTransactionDue.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\iconNote.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo6.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo7.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo8.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo9.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo10.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo11.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo12.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconNoteLogo0.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\iconNote1.png" />
@@ -452,6 +419,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\iconTransactionDueWithin.png" />
+    <None Include="Resources\iconTransactionDueOut.png" />
+    <None Include="Resources\iconTransactionDueIn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

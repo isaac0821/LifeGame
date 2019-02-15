@@ -64,6 +64,7 @@ namespace LifeGame
         {
             txtTopic.Text = note.Topic;
             txtLiteratureTitle.Text = note.LiteratureTitle;
+            cbxTask.Text = note.TaskName;
             chkFinished.Checked = note.FinishedNote;
         }
 
@@ -94,7 +95,7 @@ namespace LifeGame
                 subNoteLog = subNoteLog.OrderBy(o => o.Index).ToList();
                 foreach (RNoteLog sub in subNoteLog)
                 {
-                    TreeNode childNode = new TreeNode(sub.SubLog, sub.LogoIndex, sub.LogoIndex);
+                    TreeNode childNode = new TreeNode(sub.SubLog);
                     childNode.Name = sub.SubLog;
                     LoadChildNoteLog(childNode);
                     treeNode.Nodes.Add(childNode);
@@ -127,6 +128,7 @@ namespace LifeGame
                         }
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).FinishedNote = chkFinished.Checked;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).LiteratureTitle = txtLiteratureTitle.Text;
+                        G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).TaskName = cbxTask.Text;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).TagTime = dtpDate.Value.Date;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Topic = txtTopic.Text;
                         break;
@@ -141,6 +143,7 @@ namespace LifeGame
                 note.Topic = txtTopic.Text;
                 note.FinishedNote = chkFinished.Checked;
                 note.LiteratureTitle = txtLiteratureTitle.Text;
+                note.TaskName = cbxTask.Text;
                 note.TagTime = dtpDate.Value.Date;
                 G.glb.lstNote.Add(note);
                 foreach (RNoteLog noteLog in noteLogs)
@@ -167,11 +170,23 @@ namespace LifeGame
         public event DrawLogHandler DrawLog;
 
         private void frmInfoNote_Load(object sender, EventArgs e)
-        {
+        { 
+            // Bind Task
+            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.IsBottom && !o.IsFinished && !o.IsAbort).ToList();
+            List<string> choices = new List<string>();
+            choices.Add("");
+            foreach (CTask task in taskChoices)
+            {
+                choices.Add(task.TaskName);
+            }
+            choices = choices.OrderBy(o => o).ToList();
+            cbxTask.DataSource = choices;
+
             if (note.Topic != null)
             {
                 txtTopic.Text = note.Topic;
                 txtLiteratureTitle.Text = note.LiteratureTitle;
+                cbxTask.Text = note.TaskName;
                 chkFinished.Checked = note.FinishedNote;
             }
         }
@@ -193,7 +208,6 @@ namespace LifeGame
                     newNoteLog.Log = trvNote.SelectedNode.Text;
                     newNoteLog.SubLog = NewLog;
                     newNoteLog.Index = trvNote.SelectedNode.Nodes.Count;
-                    newNoteLog.LogoIndex = 0;
                     noteLogs.Add(newNoteLog);
                     TreeNode newNode = new TreeNode(NewLog, 0, 0);
                     newNode.Name = NewLog;

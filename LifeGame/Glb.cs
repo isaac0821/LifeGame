@@ -42,7 +42,7 @@ namespace LifeGame
 
         // Money
         public List<CTransaction> lstTransaction = new List<CTransaction>();
-        public List<CTransactionDue> lstTransactionDue = new List<CTransactionDue>();
+        public List<CTransaction> lstTransactionDue = new List<CTransaction>();
         public List<CAccount> lstAccount = new List<CAccount>();
         public List<RSubAccount> lstSubAccount = new List<RSubAccount>();
         public List<RCurrencyRate> lstCurrencyRate = new List<RCurrencyRate>();

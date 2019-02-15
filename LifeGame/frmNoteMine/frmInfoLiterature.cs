@@ -15,6 +15,7 @@ namespace LifeGame
     {
         CLiterature literature = new CLiterature();
         string InOneSentence = "";
+        string BibRef = "";
         List<RLiteratureAuthor> lstLiteratureAuthor = new List<RLiteratureAuthor>();
         List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
         List<RLiteratureInstitution> lstLiteratureInstitution = new List<RLiteratureInstitution>();
@@ -28,6 +29,7 @@ namespace LifeGame
             lstLiteratureAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
             InOneSentence = literature.InOneSentence;
+            BibRef = literature.BibRef;
             lstLiteratureInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureInCiting = G.glb.lstLiteratureCiting.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureOutsource = G.glb.lstLiteratureOutSource.FindAll(o => o.Title == LiteratureTitle).ToList();
@@ -55,6 +57,7 @@ namespace LifeGame
             cbxImportance.SelectedIndex = 3;
             cbxReadingStatus.SelectedIndex = 5;
             txtInOneSentence.Text = "";
+            txtBibRef.Text = "";
             lsbAuthor.Items.Clear();
             lsbTag.Items.Clear();
             lsbOutSource.Items.Clear();
@@ -71,6 +74,7 @@ namespace LifeGame
             txtYear.Text = literature.PublishYear.ToString();
             txtJournalConference.Text = literature.JournalOrConferenceName;
             txtInOneSentence.Text = literature.InOneSentence;
+            txtBibRef.Text = literature.BibRef;
             cbxImportance.SelectedIndex = (int)literature.Importance;
             cbxReadingStatus.SelectedIndex = (int)literature.ReadingStatus;
             lsbAuthor.Items.Clear();
@@ -163,6 +167,7 @@ namespace LifeGame
                     newLiterature.PublishYear = Convert.ToInt32(txtYear.Text);
                     newLiterature.JournalOrConferenceName = txtJournalConference.Text;
                     newLiterature.InOneSentence = txtInOneSentence.Text;
+                    newLiterature.BibRef = txtBibRef.Text;
                     switch (cbxImportance.SelectedIndex)
                     {
                         case 0:
@@ -235,6 +240,7 @@ namespace LifeGame
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PublishYear = Convert.ToInt32(txtYear.Text);
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).JournalOrConferenceName = txtJournalConference.Text;
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).InOneSentence = txtInOneSentence.Text;
+                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibRef = txtBibRef.Text;
                     switch (cbxImportance.SelectedIndex)
                     {
                         case 0:
@@ -500,7 +506,6 @@ namespace LifeGame
                     catch (Exception)
                     {
                         MessageBox.Show("File type is not supported.");
-                        throw;
                     }
                 }
             }
@@ -508,7 +513,8 @@ namespace LifeGame
 
         private void tsmAddOutSource_Click(object sender, EventArgs e)
         {
-            string strOutsource = Interaction.InputBox("Literature Link", "Literature Link", "Literature Link", 300, 300);
+            string tmpPath = "D:\\paper\\" + txtTitle.Text + ".pdf"; 
+            string strOutsource = Interaction.InputBox("Literature Link", "Literature Link", tmpPath, 300, 300);
             RLiteratureOutSource newOutSource = new RLiteratureOutSource();
             newOutSource.Title = txtTitle.Text;
             newOutSource.OutsourcePath = strOutsource;

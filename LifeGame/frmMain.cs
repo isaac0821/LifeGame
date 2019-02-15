@@ -54,6 +54,11 @@ namespace LifeGame
             //G.glb.lstLiteratureInstitution = new List<RLiteratureInstitution>();
             //G.glb.lstLiteratureTag = new List<RLiteratureTag>();
             //G.glb.lstLiteratureOutSource = new List<RLiteratureOutSource>();
+            //G.glb.lstTransactionDue = new List<CTransaction>();
+            //foreach (CNote note in G.glb.lstNote)
+            //{
+            //    note.TaskName = "";
+            //}
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
             DrawLog();
@@ -504,7 +509,7 @@ namespace LifeGame
             frmAddEvent.Show();
         }
 
-        private void tsmAddTransaction_Click(object sender, EventArgs e)
+        private void tsmAddNewTransaction_Click(object sender, EventArgs e)
         {
             DateTime sendToFrm = SelectedDate;
             switch (SelectedPicName)
@@ -538,9 +543,72 @@ namespace LifeGame
             frmAddTransaction.Show();
         }
 
+        private void tsmConvertTransactionDue_Click(object sender, EventArgs e)
+        {
+            DateTime sendToFrm = SelectedDate;
+            switch (SelectedPicName)
+            {
+                case "picMon":
+                    sendToFrm = SelectedMonday;
+                    break;
+                case "picTue":
+                    sendToFrm = SelectedTuesday;
+                    break;
+                case "picWed":
+                    sendToFrm = SelectedWednesday;
+                    break;
+                case "picThu":
+                    sendToFrm = SelectedThursday;
+                    break;
+                case "picFri":
+                    sendToFrm = SelectedFriday;
+                    break;
+                case "picSat":
+                    sendToFrm = SelectedSaturday;
+                    break;
+                case "picSun":
+                    sendToFrm = SelectedSunday;
+                    break;
+                default:
+                    break;
+            }
+            frmConvertTransactionDue frmConvertTransactionDue = new frmConvertTransactionDue(sendToFrm);
+            frmConvertTransactionDue.DrawLog += new frmConvertTransactionDue.DrawLogHandler(DrawLog);
+            frmConvertTransactionDue.Show();
+        }
+
         private void tsmAddTransactionDue_Click(object sender, EventArgs e)
         {
-
+            DateTime sendToFrm = SelectedDate;
+            switch (SelectedPicName)
+            {
+                case "picMon":
+                    sendToFrm = SelectedMonday;
+                    break;
+                case "picTue":
+                    sendToFrm = SelectedTuesday;
+                    break;
+                case "picWed":
+                    sendToFrm = SelectedWednesday;
+                    break;
+                case "picThu":
+                    sendToFrm = SelectedThursday;
+                    break;
+                case "picFri":
+                    sendToFrm = SelectedFriday;
+                    break;
+                case "picSat":
+                    sendToFrm = SelectedSaturday;
+                    break;
+                case "picSun":
+                    sendToFrm = SelectedSunday;
+                    break;
+                default:
+                    break;
+            }
+            frmAddTransactionDue frmAddTransactionDue = new frmAddTransactionDue(sendToFrm);
+            frmAddTransactionDue.DrawLog += new frmAddTransactionDue.DrawLogHandler(DrawLog);
+            frmAddTransactionDue.Show();
         }
 
         private void tsmAddWorkOut_Click(object sender, EventArgs e)

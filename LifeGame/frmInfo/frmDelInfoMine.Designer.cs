@@ -65,7 +65,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tabControl1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
@@ -81,7 +81,7 @@
             this.tableLayoutPanel2.Controls.Add(this.dtpDate, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -93,7 +93,7 @@
             this.dtpDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDate.Location = new System.Drawing.Point(408, 4);
-            this.dtpDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(127, 22);
             this.dtpDate.TabIndex = 0;
@@ -107,7 +107,7 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(4, 41);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(539, 399);
@@ -117,9 +117,9 @@
             // 
             this.tabPage1.Controls.Add(this.lsbEvent);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(531, 370);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Event";
@@ -132,7 +132,7 @@
             this.lsbEvent.FormattingEnabled = true;
             this.lsbEvent.ItemHeight = 16;
             this.lsbEvent.Location = new System.Drawing.Point(4, 4);
-            this.lsbEvent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lsbEvent.Margin = new System.Windows.Forms.Padding(4);
             this.lsbEvent.Name = "lsbEvent";
             this.lsbEvent.Size = new System.Drawing.Size(523, 362);
             this.lsbEvent.TabIndex = 1;
@@ -157,10 +157,10 @@
             // 
             this.tabPage2.Controls.Add(this.lsbTransaction);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage2.Size = new System.Drawing.Size(531, 371);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Size = new System.Drawing.Size(531, 370);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Transaction";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -172,19 +172,19 @@
             this.lsbTransaction.FormattingEnabled = true;
             this.lsbTransaction.ItemHeight = 16;
             this.lsbTransaction.Location = new System.Drawing.Point(4, 4);
-            this.lsbTransaction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lsbTransaction.Margin = new System.Windows.Forms.Padding(4);
             this.lsbTransaction.Name = "lsbTransaction";
-            this.lsbTransaction.Size = new System.Drawing.Size(523, 363);
+            this.lsbTransaction.Size = new System.Drawing.Size(523, 362);
             this.lsbTransaction.TabIndex = 0;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.lsbTransactionDue);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage3.Size = new System.Drawing.Size(531, 371);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage3.Size = new System.Drawing.Size(531, 370);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Transaction Due";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -196,19 +196,19 @@
             this.lsbTransactionDue.FormattingEnabled = true;
             this.lsbTransactionDue.ItemHeight = 16;
             this.lsbTransactionDue.Location = new System.Drawing.Point(4, 4);
-            this.lsbTransactionDue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lsbTransactionDue.Margin = new System.Windows.Forms.Padding(4);
             this.lsbTransactionDue.Name = "lsbTransactionDue";
-            this.lsbTransactionDue.Size = new System.Drawing.Size(523, 363);
+            this.lsbTransactionDue.Size = new System.Drawing.Size(523, 362);
             this.lsbTransactionDue.TabIndex = 0;
             // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.lsbWorkOut);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage4.Size = new System.Drawing.Size(531, 371);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage4.Size = new System.Drawing.Size(531, 370);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Work Out";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -220,19 +220,19 @@
             this.lsbWorkOut.FormattingEnabled = true;
             this.lsbWorkOut.ItemHeight = 16;
             this.lsbWorkOut.Location = new System.Drawing.Point(4, 4);
-            this.lsbWorkOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lsbWorkOut.Margin = new System.Windows.Forms.Padding(4);
             this.lsbWorkOut.Name = "lsbWorkOut";
-            this.lsbWorkOut.Size = new System.Drawing.Size(523, 363);
+            this.lsbWorkOut.Size = new System.Drawing.Size(523, 362);
             this.lsbWorkOut.TabIndex = 0;
             // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.lsbMedicine);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage5.Size = new System.Drawing.Size(531, 371);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage5.Size = new System.Drawing.Size(531, 370);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Medicine";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -244,9 +244,9 @@
             this.lsbMedicine.FormattingEnabled = true;
             this.lsbMedicine.ItemHeight = 16;
             this.lsbMedicine.Location = new System.Drawing.Point(4, 4);
-            this.lsbMedicine.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lsbMedicine.Margin = new System.Windows.Forms.Padding(4);
             this.lsbMedicine.Name = "lsbMedicine";
-            this.lsbMedicine.Size = new System.Drawing.Size(523, 363);
+            this.lsbMedicine.Size = new System.Drawing.Size(523, 362);
             this.lsbMedicine.TabIndex = 0;
             // 
             // frmDelInfoMine
@@ -257,7 +257,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDelInfoMine";

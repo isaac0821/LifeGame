@@ -21,6 +21,7 @@ namespace LifeGame
     public class CLiterature
     {
         public string Title;
+        public string BibRef;
         public int PublishYear;
         public ELiteratureImportance Importance;
         public ELiteratureReadingStatus ReadingStatus;
@@ -99,6 +100,24 @@ namespace LifeGame
         public string OutsourcePath;
     }
 
+    public enum EBibEntry:int
+    {
+        article,
+        book,
+        booklet,
+        conference,
+        inbook,
+        incollection,
+        inproceedings,
+        manual,
+        mastersthesis,
+        misc,
+        phdthesis,
+        proceedings,
+        techreport,
+        unpublished
+    }
+
     /// <summary>
     /// 笔记
     /// </summary>
@@ -108,6 +127,7 @@ namespace LifeGame
         public DateTime TagTime;
         public string Topic;
         public string LiteratureTitle;
+        public string TaskName;
         public bool FinishedNote;
     }
 
@@ -133,7 +153,6 @@ namespace LifeGame
         public string Log;
         public string SubLog;
         public int Index;
-        public int LogoIndex;
     }
 
     /// <summary>
@@ -241,31 +260,6 @@ namespace LifeGame
         public string DebitCurrency;
         public string CreditCurrency;
         public EMoneyFlowState IconType;
-    }
-
-    /// <summary>
-    /// 预计收入支出
-    /// </summary>
-    [Serializable]
-    public class CTransactionDue
-    {
-        public string Summary;
-        public DateTime TagTime;
-        public string Account;
-        public ETransactionDueType TransactionDueType;
-        public double FixedAmount;
-        public DateTime BalanceDate;
-        public string Amount;
-        public string Currency;
-        public bool DebitOrCredit;
-    }
-
-    [Serializable]
-    public enum ETransactionDueType: int
-    {
-        Fixed,
-        RemainingBalance,
-        RemainingBalanceWithPrePaidAmount
     }
 
     [Serializable]

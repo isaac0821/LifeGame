@@ -116,6 +116,12 @@ namespace LifeGame
                             );
                     }
                 }
+                lsbTaskNote.Items.Clear();
+                List<CNote> notes = G.glb.lstNote.FindAll(o => C.FindAllHeirTask(taskName, G.glb.lstSubTask).Exists(p => p == o.TaskName));
+                foreach (CNote note in notes)
+                {
+                    lsbTaskNote.Items.Add(note.TagTime.Year.ToString() + "." + note.TagTime.Month.ToString() + "." + note.TagTime.Day.ToString() + " - " + note.Topic);
+                }
             }
             else
             {
@@ -124,6 +130,7 @@ namespace LifeGame
                 chkFinished.Checked = false;
                 chkInfinite.Checked = false;
                 lblTaskTimeSpent.Text = "----";
+                lsbTaskNote.Items.Clear();
                 dtpNextTimeMarker.Value = DateTime.Today;
                 dtpDeadline.Value = DateTime.Today;
             }
@@ -512,6 +519,31 @@ namespace LifeGame
                     }
 
                 }
+            }
+        }
+
+        private void tsmOpen_Click(object sender, EventArgs e)
+        {
+            if (lsbTaskNote.SelectedItem != null)
+            {
+                string selectedItemText = lsbTaskNote.SelectedItem.ToString();
+                string[] split = selectedItemText.Split('-');
+                string[] datelist = split[0].Split('.');
+                int Year = Convert.ToInt16(datelist[0]);
+                int Month = Convert.ToInt16(datelist[1]);
+                int Day = Convert.ToInt16(datelist[2].Substring(0, datelist[2].Length - 1));
+                DateTime date = new DateTime(Year, Month, Day, 0, 0, 0);
+                split[1] = split[1].Substring(1, split[1].Length - 1);
+                string NoteTopic = "";
+                for (int i = 1; i < split.Length; i++)
+                {
+                    NoteTopic += split[i];
+                    NoteTopic += "-";
+                }
+                NoteTopic = NoteTopic.Substring(0, NoteTopic.Length - 1);
+                CNote note = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic);
+                Draw D = new Draw();
+                D.CallInfoNote(note);
             }
         }
     }

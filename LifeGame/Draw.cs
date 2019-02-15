@@ -232,7 +232,7 @@ namespace LifeGame
             List<CWorkOut> workOuts,
             List<CMedicine> medicines,
             List<CTransaction> transactions,
-            List<CTransactionDue> transactionDues,
+            List<CTransaction> transactionDues,
             List<CNote> notes)
         {
             int left = picMap.Width - 27 > 0 ? picMap.Width - 27 : 0;
@@ -241,14 +241,13 @@ namespace LifeGame
             List<CWorkOut> lstWorkOut = workOuts.FindAll(o => o.TagTime.Date == date).ToList();
             List<CMedicine> lstMedicine = medicines.FindAll(o => o.TagTime.Date == date).ToList();
             List<CTransaction> lstTransaction = transactions.FindAll(o => o.TagTime.Date == date).ToList();
-            List<CTransactionDue> lstTransactionDue = transactionDues.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CTransaction> lstTransactionDue = transactionDues.FindAll(o => o.TagTime.Date == date).ToList();
             List<CNote> lstNote = notes.FindAll(o => o.TagTime.Date == date).ToList();
             int acc = 0;
             for (int i = 0; i < lstEvent.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
                 CEvent eve = lstEvent[i];
-                double middle = lstEvent[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
                 if (lstEvent[i].EventState == EEventState.LogEvent)
                 {
                     lstPicEvent[i].Image = icon.iconEvent;
@@ -273,7 +272,6 @@ namespace LifeGame
             {
                 lstPicEvent.Add(new PictureBox());
                 CWorkOut workOut = lstWorkOut[i];
-                double middle = lstWorkOut[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
                 lstPicEvent[i + acc].Image = icon.iconFitness;
                 lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;
@@ -287,7 +285,6 @@ namespace LifeGame
             {
                 lstPicEvent.Add(new PictureBox());
                 CMedicine medicine = lstMedicine[i];
-                double middle = lstMedicine[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
                 lstPicEvent[i + acc].Image = icon.iconHealth;
                 lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;
@@ -301,7 +298,6 @@ namespace LifeGame
             {
                 lstPicEvent.Add(new PictureBox());
                 CTransaction transaction = lstTransaction[i];
-                double middle = lstTransaction[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
                 EMoneyFlowState MoneyFlowState = lstTransaction[i].IconType;
                 switch (MoneyFlowState)
                 {
@@ -328,9 +324,22 @@ namespace LifeGame
             for (int i = 0; i < lstTransactionDue.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
-                CTransactionDue transactionDue = lstTransactionDue[i];
-                double middle = lstTransactionDue[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
-                lstPicEvent[i + acc].Image = icon.iconTransactionDue;
+                CTransaction transactionDue = lstTransactionDue[i];
+                EMoneyFlowState MoneyFlowState = lstTransactionDue[i].IconType;
+                switch (MoneyFlowState)
+                {
+                    case EMoneyFlowState.WithinSystem:
+                        lstPicEvent[i + acc].Image = icon.iconTransactionDueWithin;
+                        break;
+                    case EMoneyFlowState.FlowIn:
+                        lstPicEvent[i + acc].Image = icon.iconTransactionDueIn;
+                        break;
+                    case EMoneyFlowState.FlowOut:
+                        lstPicEvent[i + acc].Image = icon.iconTransactionDueOut;
+                        break;
+                    default:
+                        break;
+                }
                 lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;
                 lstPicEvent[i + acc].Width = 24;
@@ -343,7 +352,6 @@ namespace LifeGame
             {
                 lstPicEvent.Add(new PictureBox());
                 CNote note = lstNote[i];
-                double middle = lstNote[i].TagTime.TimeOfDay.TotalDays * picMap.Height;
                 if (lstNote[i].FinishedNote)
                 {
                     if (lstNote[i].LiteratureTitle != "")
@@ -411,7 +419,7 @@ namespace LifeGame
             frmInfoTransaction.Show();
         }
 
-        public void CallInfoTransactionDue (CTransactionDue info)
+        public void CallInfoTransactionDue (CTransaction info)
         {
             frmInfoTransactionDues frmInfoTransactionDues = new frmInfoTransactionDues(info);
             frmInfoTransactionDues.Show();

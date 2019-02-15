@@ -75,6 +75,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblTaskTimeSpent = new System.Windows.Forms.Label();
             this.chkFinished = new System.Windows.Forms.CheckBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lsbTaskNote = new System.Windows.Forms.ListBox();
+            this.cmsNote = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.stsTask.SuspendLayout();
             this.mnsTask.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -90,6 +94,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLog)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.cmsNote.SuspendLayout();
             this.SuspendLayout();
             // 
             // stsTask
@@ -97,17 +103,16 @@
             this.stsTask.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.stsTask.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.stsTask.Location = new System.Drawing.Point(0, 610);
+            this.stsTask.Location = new System.Drawing.Point(0, 494);
             this.stsTask.Name = "stsTask";
-            this.stsTask.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.stsTask.Size = new System.Drawing.Size(1324, 25);
+            this.stsTask.Size = new System.Drawing.Size(993, 22);
             this.stsTask.TabIndex = 1;
             this.stsTask.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(94, 20);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(75, 17);
             this.toolStripStatusLabel1.Text = "Version: 0.0.0";
             // 
             // mnsTask
@@ -117,8 +122,7 @@
             this.filesFToolStripMenuItem});
             this.mnsTask.Location = new System.Drawing.Point(0, 0);
             this.mnsTask.Name = "mnsTask";
-            this.mnsTask.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.mnsTask.Size = new System.Drawing.Size(1324, 28);
+            this.mnsTask.Size = new System.Drawing.Size(993, 24);
             this.mnsTask.TabIndex = 2;
             this.mnsTask.Text = "menuStrip1";
             // 
@@ -127,20 +131,19 @@
             this.filesFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addLogToolStripMenuItem});
             this.filesFToolStripMenuItem.Name = "filesFToolStripMenuItem";
-            this.filesFToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.filesFToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.filesFToolStripMenuItem.Text = "Files(&F)";
             // 
             // addLogToolStripMenuItem
             // 
             this.addLogToolStripMenuItem.Name = "addLogToolStripMenuItem";
-            this.addLogToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
+            this.addLogToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.addLogToolStripMenuItem.Text = "Add Log";
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -150,9 +153,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel7);
-            this.splitContainer1.Size = new System.Drawing.Size(1324, 582);
-            this.splitContainer1.SplitterDistance = 308;
-            this.splitContainer1.SplitterWidth = 5;
+            this.splitContainer1.Size = new System.Drawing.Size(993, 470);
+            this.splitContainer1.SplitterDistance = 231;
             this.splitContainer1.TabIndex = 3;
             // 
             // tableLayoutPanel6
@@ -162,22 +164,20 @@
             this.tableLayoutPanel6.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(308, 582);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(231, 470);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.trvTask);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(7, 6);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox1.Location = new System.Drawing.Point(5, 5);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(294, 570);
+            this.groupBox1.Size = new System.Drawing.Size(221, 460);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Task Tree";
@@ -190,11 +190,10 @@
             this.trvTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvTask.ImageIndex = 0;
             this.trvTask.ImageList = this.iglTask;
-            this.trvTask.Location = new System.Drawing.Point(4, 19);
-            this.trvTask.Margin = new System.Windows.Forms.Padding(4);
+            this.trvTask.Location = new System.Drawing.Point(3, 16);
             this.trvTask.Name = "trvTask";
             this.trvTask.SelectedImageIndex = 0;
-            this.trvTask.Size = new System.Drawing.Size(286, 547);
+            this.trvTask.Size = new System.Drawing.Size(215, 441);
             this.trvTask.TabIndex = 0;
             this.trvTask.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvTask_AfterSelect);
             // 
@@ -215,83 +214,83 @@
             this.tsmFinished,
             this.tsmAbort});
             this.cmsTask.Name = "cmsTask";
-            this.cmsTask.Size = new System.Drawing.Size(190, 238);
+            this.cmsTask.Size = new System.Drawing.Size(165, 220);
             // 
             // tsmAdd
             // 
             this.tsmAdd.Name = "tsmAdd";
-            this.tsmAdd.Size = new System.Drawing.Size(189, 24);
+            this.tsmAdd.Size = new System.Drawing.Size(164, 22);
             this.tsmAdd.Text = "Add";
             this.tsmAdd.Click += new System.EventHandler(this.tsmAdd_Click);
             // 
             // tsmRename
             // 
             this.tsmRename.Name = "tsmRename";
-            this.tsmRename.Size = new System.Drawing.Size(189, 24);
+            this.tsmRename.Size = new System.Drawing.Size(164, 22);
             this.tsmRename.Text = "Edit(Rename)";
             this.tsmRename.Click += new System.EventHandler(this.tsmRename_Click);
             // 
             // tsmRemove
             // 
             this.tsmRemove.Name = "tsmRemove";
-            this.tsmRemove.Size = new System.Drawing.Size(189, 24);
+            this.tsmRemove.Size = new System.Drawing.Size(164, 22);
             this.tsmRemove.Text = "Remove";
             this.tsmRemove.Click += new System.EventHandler(this.tsmRemove_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(186, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
             // 
             // tsmUp
             // 
             this.tsmUp.Name = "tsmUp";
-            this.tsmUp.Size = new System.Drawing.Size(189, 24);
+            this.tsmUp.Size = new System.Drawing.Size(164, 22);
             this.tsmUp.Text = "Up";
             this.tsmUp.Click += new System.EventHandler(this.tsmUp_Click);
             // 
             // tsmDown
             // 
             this.tsmDown.Name = "tsmDown";
-            this.tsmDown.Size = new System.Drawing.Size(189, 24);
+            this.tsmDown.Size = new System.Drawing.Size(164, 22);
             this.tsmDown.Text = "Down";
             this.tsmDown.Click += new System.EventHandler(this.tsmDown_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(186, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(161, 6);
             // 
             // tsmBelongTo
             // 
             this.tsmBelongTo.Name = "tsmBelongTo";
-            this.tsmBelongTo.Size = new System.Drawing.Size(189, 24);
+            this.tsmBelongTo.Size = new System.Drawing.Size(164, 22);
             this.tsmBelongTo.Text = "Belong To";
             this.tsmBelongTo.Click += new System.EventHandler(this.tsmBelongTo_Click);
             // 
             // tsmIndependent
             // 
             this.tsmIndependent.Name = "tsmIndependent";
-            this.tsmIndependent.Size = new System.Drawing.Size(189, 24);
+            this.tsmIndependent.Size = new System.Drawing.Size(164, 22);
             this.tsmIndependent.Text = "Independent";
             this.tsmIndependent.Click += new System.EventHandler(this.tsmIndependent_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(186, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(161, 6);
             // 
             // tsmFinished
             // 
             this.tsmFinished.Name = "tsmFinished";
-            this.tsmFinished.Size = new System.Drawing.Size(189, 24);
+            this.tsmFinished.Size = new System.Drawing.Size(164, 22);
             this.tsmFinished.Text = "Mark As Finished";
             this.tsmFinished.Click += new System.EventHandler(this.tsmFinished_Click);
             // 
             // tsmAbort
             // 
             this.tsmAbort.Name = "tsmAbort";
-            this.tsmAbort.Size = new System.Drawing.Size(189, 24);
+            this.tsmAbort.Size = new System.Drawing.Size(164, 22);
             this.tsmAbort.Text = "Mark As Abort";
             this.tsmAbort.Click += new System.EventHandler(this.tsmAbort_Click);
             // 
@@ -306,27 +305,27 @@
             // 
             // tableLayoutPanel7
             // 
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel7.Controls.Add(this.groupBox2, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.groupBox3, 1, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(1011, 582);
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(758, 470);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(7, 6);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox2.Location = new System.Drawing.Point(5, 5);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(997, 570);
+            this.groupBox2.Size = new System.Drawing.Size(548, 460);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Task Details";
@@ -335,19 +334,18 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.dgvLog, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 19);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(989, 547);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(542, 441);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // dgvLog
@@ -366,12 +364,11 @@
             this.colLog,
             this.colDuration});
             this.dgvLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvLog.Location = new System.Drawing.Point(4, 80);
-            this.dgvLog.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvLog.Location = new System.Drawing.Point(3, 65);
             this.dgvLog.Name = "dgvLog";
             this.dgvLog.ReadOnly = true;
             this.dgvLog.RowTemplate.Height = 23;
-            this.dgvLog.Size = new System.Drawing.Size(981, 463);
+            this.dgvLog.Size = new System.Drawing.Size(536, 373);
             this.dgvLog.TabIndex = 0;
             // 
             // colYear
@@ -416,22 +413,20 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.lblTaskTitle, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(981, 31);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(536, 26);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // lblTaskTitle
             // 
             this.lblTaskTitle.AutoSize = true;
             this.lblTaskTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTaskTitle.Location = new System.Drawing.Point(4, 0);
-            this.lblTaskTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTaskTitle.Location = new System.Drawing.Point(3, 0);
             this.lblTaskTitle.Name = "lblTaskTitle";
-            this.lblTaskTitle.Size = new System.Drawing.Size(973, 31);
+            this.lblTaskTitle.Size = new System.Drawing.Size(530, 26);
             this.lblTaskTitle.TabIndex = 0;
             this.lblTaskTitle.Text = "---";
             this.lblTaskTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -439,16 +434,16 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 10;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 132F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tableLayoutPanel3.Controls.Add(this.chkBottom, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.chkInfinite, 9, 0);
             this.tableLayoutPanel3.Controls.Add(this.dtpDeadline, 8, 0);
@@ -459,12 +454,11 @@
             this.tableLayoutPanel3.Controls.Add(this.lblTaskTimeSpent, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.chkFinished, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 43);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 35);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(981, 29);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(536, 24);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // chkBottom
@@ -472,10 +466,9 @@
             this.chkBottom.AutoSize = true;
             this.chkBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkBottom.Enabled = false;
-            this.chkBottom.Location = new System.Drawing.Point(4, 4);
-            this.chkBottom.Margin = new System.Windows.Forms.Padding(4);
+            this.chkBottom.Location = new System.Drawing.Point(3, 3);
             this.chkBottom.Name = "chkBottom";
-            this.chkBottom.Size = new System.Drawing.Size(80, 21);
+            this.chkBottom.Size = new System.Drawing.Size(60, 18);
             this.chkBottom.TabIndex = 0;
             this.chkBottom.Text = "Bottom";
             this.chkBottom.UseVisualStyleBackColor = true;
@@ -485,10 +478,9 @@
             this.chkInfinite.AutoSize = true;
             this.chkInfinite.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkInfinite.Enabled = false;
-            this.chkInfinite.Location = new System.Drawing.Point(898, 4);
-            this.chkInfinite.Margin = new System.Windows.Forms.Padding(4);
+            this.chkInfinite.Location = new System.Drawing.Point(474, 3);
             this.chkInfinite.Name = "chkInfinite";
-            this.chkInfinite.Size = new System.Drawing.Size(79, 21);
+            this.chkInfinite.Size = new System.Drawing.Size(59, 18);
             this.chkInfinite.TabIndex = 1;
             this.chkInfinite.Text = "Infinite";
             this.chkInfinite.UseVisualStyleBackColor = true;
@@ -498,10 +490,9 @@
             this.dtpDeadline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpDeadline.Enabled = false;
             this.dtpDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDeadline.Location = new System.Drawing.Point(763, 4);
-            this.dtpDeadline.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpDeadline.Location = new System.Drawing.Point(373, 3);
             this.dtpDeadline.Name = "dtpDeadline";
-            this.dtpDeadline.Size = new System.Drawing.Size(127, 22);
+            this.dtpDeadline.Size = new System.Drawing.Size(95, 20);
             this.dtpDeadline.TabIndex = 2;
             // 
             // dtpNextTimeMarker
@@ -509,20 +500,18 @@
             this.dtpNextTimeMarker.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpNextTimeMarker.Enabled = false;
             this.dtpNextTimeMarker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNextTimeMarker.Location = new System.Drawing.Point(541, 4);
-            this.dtpNextTimeMarker.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpNextTimeMarker.Location = new System.Drawing.Point(207, 3);
             this.dtpNextTimeMarker.Name = "dtpNextTimeMarker";
-            this.dtpNextTimeMarker.Size = new System.Drawing.Size(127, 22);
+            this.dtpNextTimeMarker.Size = new System.Drawing.Size(95, 20);
             this.dtpNextTimeMarker.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(408, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(107, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(125, 29);
+            this.label2.Size = new System.Drawing.Size(94, 24);
             this.label2.TabIndex = 4;
             this.label2.Text = "Next Time Marker: ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -531,10 +520,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(676, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(308, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 29);
+            this.label3.Size = new System.Drawing.Size(59, 24);
             this.label3.TabIndex = 5;
             this.label3.Text = "Deadline: ";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -543,9 +531,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(187, 0);
+            this.label4.Location = new System.Drawing.Point(140, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(126, 29);
+            this.label4.Size = new System.Drawing.Size(95, 24);
             this.label4.TabIndex = 6;
             this.label4.Text = "Total Time Spent: ";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -554,9 +543,10 @@
             // 
             this.lblTaskTimeSpent.AutoSize = true;
             this.lblTaskTimeSpent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTaskTimeSpent.Location = new System.Drawing.Point(319, 0);
+            this.lblTaskTimeSpent.Location = new System.Drawing.Point(239, 0);
+            this.lblTaskTimeSpent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTaskTimeSpent.Name = "lblTaskTimeSpent";
-            this.lblTaskTimeSpent.Size = new System.Drawing.Size(57, 29);
+            this.lblTaskTimeSpent.Size = new System.Drawing.Size(43, 24);
             this.lblTaskTimeSpent.TabIndex = 7;
             this.lblTaskTimeSpent.Text = "999h";
             this.lblTaskTimeSpent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -565,26 +555,60 @@
             // 
             this.chkFinished.AutoSize = true;
             this.chkFinished.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkFinished.Location = new System.Drawing.Point(92, 4);
-            this.chkFinished.Margin = new System.Windows.Forms.Padding(4);
+            this.chkFinished.Location = new System.Drawing.Point(69, 3);
             this.chkFinished.Name = "chkFinished";
-            this.chkFinished.Size = new System.Drawing.Size(88, 21);
+            this.chkFinished.Size = new System.Drawing.Size(66, 18);
             this.chkFinished.TabIndex = 8;
             this.chkFinished.Text = "Finished";
             this.chkFinished.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkFinished.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lsbTaskNote);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(563, 5);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(190, 460);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Task Notes";
+            // 
+            // lsbTaskNote
+            // 
+            this.lsbTaskNote.ContextMenuStrip = this.cmsNote;
+            this.lsbTaskNote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsbTaskNote.FormattingEnabled = true;
+            this.lsbTaskNote.Location = new System.Drawing.Point(3, 16);
+            this.lsbTaskNote.Name = "lsbTaskNote";
+            this.lsbTaskNote.Size = new System.Drawing.Size(184, 441);
+            this.lsbTaskNote.TabIndex = 0;
+            // 
+            // cmsNote
+            // 
+            this.cmsNote.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmOpen});
+            this.cmsNote.Name = "cmsNote";
+            this.cmsNote.Size = new System.Drawing.Size(181, 48);
+            // 
+            // tsmOpen
+            // 
+            this.tsmOpen.Name = "tsmOpen";
+            this.tsmOpen.Size = new System.Drawing.Size(180, 22);
+            this.tsmOpen.Text = "Open";
+            this.tsmOpen.Click += new System.EventHandler(this.tsmOpen_Click);
+            // 
             // frmTask
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1324, 635);
+            this.ClientSize = new System.Drawing.Size(993, 516);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.stsTask);
             this.Controls.Add(this.mnsTask);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnsTask;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTask";
             this.Text = "LifeGame - Task";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTask_FormClosing);
@@ -608,6 +632,8 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.cmsNote.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -660,5 +686,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmRename;
         private System.Windows.Forms.CheckBox chkFinished;
         private System.Windows.Forms.Label lblTaskTitle;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ListBox lsbTaskNote;
+        private System.Windows.Forms.ContextMenuStrip cmsNote;
+        private System.Windows.Forms.ToolStripMenuItem tsmOpen;
     }
 }

@@ -55,8 +55,8 @@ namespace LifeGame
         private void LoadTransactionDue()
         {
             lsbTransactionDue.Items.Clear();
-            List<CTransactionDue> transactionDues = G.glb.lstTransactionDue.FindAll(o => o.TagTime == curDate).ToList();
-            foreach (CTransactionDue tranDues in transactionDues)
+            List<CTransaction> transactionDues = G.glb.lstTransactionDue.FindAll(o => o.TagTime == curDate).ToList();
+            foreach (CTransaction tranDues in transactionDues)
             {
                 lsbTransactionDue.Items.Add(tranDues.Summary);
             }

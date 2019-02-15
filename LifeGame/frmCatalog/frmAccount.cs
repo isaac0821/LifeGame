@@ -21,6 +21,11 @@ namespace LifeGame
         private void frmAccount_Load(object sender, EventArgs e)
         {
             dtpStatementPeriodStart.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            dtpStatementPeriodEnd.Value = DateTime.Today.Date;
+            DateTime lastDayOfThisMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            lastDayOfThisMonth = lastDayOfThisMonth.AddMonths(1);
+            lastDayOfThisMonth = lastDayOfThisMonth.AddDays(-1);
+            dtpEndOfPredictPeriod.Value = lastDayOfThisMonth;
             LoadTrvAccount();
         }
 
@@ -302,10 +307,15 @@ namespace LifeGame
                         {
                             transaction.DebitAccount = NewName;
                         }
-                        List<CTransactionDue> transactionDues = G.glb.lstTransactionDue.FindAll(o => o.Account == PreviousName);
-                        foreach (CTransactionDue due in transactionDues)
+                        List<CTransaction> creditTransactionDue = G.glb.lstTransactionDue.FindAll(o => o.CreditAccount == PreviousName);
+                        foreach (CTransaction transaction in creditTransactionDue)
                         {
-                            due.Account = NewName;
+                            transaction.CreditAccount = NewName;
+                        }
+                        List<CTransaction> debitTransactionDue = G.glb.lstTransactionDue.FindAll(o => o.DebitAccount == PreviousName);
+                        foreach (CTransaction transaction in debitTransaction)
+                        {
+                            transaction.DebitAccount = NewName;
                         }
                         trvAccount.SelectedNode.Text = NewName;
                         trvAccount.SelectedNode.Name = NewName;
@@ -476,6 +486,14 @@ namespace LifeGame
                 lblCreditOpening.Visible = true;
                 lblDebitEnding.Visible = true;
                 lblCreditEnding.Visible = true;
+            }
+        }
+
+        private void dtpEndOfPredictPeriod_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpEndOfPredictPeriod.Value.Date < dtpStatementPeriodEnd.Value.Date)
+            {
+                dtpEndOfPredictPeriod.Value = dtpStatementPeriodEnd.Value;
             }
         }
     }

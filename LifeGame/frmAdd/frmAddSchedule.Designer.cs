@@ -119,7 +119,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 32);
             this.label2.TabIndex = 1;
-            this.label2.Text = "By Period";
+            this.label2.Text = "Period";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtSchedule

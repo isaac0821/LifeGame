@@ -193,136 +193,6 @@ namespace LifeGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo0 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo1 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo10 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo10", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo11 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo11", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo12 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo12", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo2 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo3 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo4 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo5 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo5", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo6 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo6", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo7 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo7", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo8 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo8", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconNoteLogo9 {
-            get {
-                object obj = ResourceManager.GetObject("iconNoteLogo9", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap iconOut {
             get {
                 object obj = ResourceManager.GetObject("iconOut", resourceCulture);
@@ -343,9 +213,29 @@ namespace LifeGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap iconTransactionDue {
+        internal static System.Drawing.Bitmap iconTransactionDueIn {
             get {
-                object obj = ResourceManager.GetObject("iconTransactionDue", resourceCulture);
+                object obj = ResourceManager.GetObject("iconTransactionDueIn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconTransactionDueOut {
+            get {
+                object obj = ResourceManager.GetObject("iconTransactionDueOut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconTransactionDueWithin {
+            get {
+                object obj = ResourceManager.GetObject("iconTransactionDueWithin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -242,7 +242,7 @@ namespace LifeGame
         /// <param name="AccountName"></param>
         /// <param name="rSubAccounts"></param>
         /// <param name="tasks"></param>
-        public bool DeleteAccount(string AccountName, List<RSubAccount> rSubAccounts, List<CAccount> tasks, List<CTransaction> transactions, List<CTransactionDue> transactionDues)
+        public bool DeleteAccount(string AccountName, List<RSubAccount> rSubAccounts, List<CAccount> tasks, List<CTransaction> transactions, List<CTransaction> transactionDues)
         {
             bool CanDeleteFlag = true;
             List<string> HeirAccount = FindAllHeirAccount(AccountName, rSubAccounts);
@@ -253,7 +253,7 @@ namespace LifeGame
                     CanDeleteFlag = false;
                     break;
                 }
-                if (transactionDues.Exists(o => o.Account == heir))
+                if (transactionDues.Exists(o => o.CreditAccount == heir || o.DebitAccount == heir))
                 {
                     CanDeleteFlag = false;
                     break;
