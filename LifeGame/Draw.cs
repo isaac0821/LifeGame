@@ -232,7 +232,7 @@ namespace LifeGame
             List<CWorkOut> workOuts,
             List<CMedicine> medicines,
             List<CTransaction> transactions,
-            List<CTransaction> transactionDues,
+            List<CTransaction> budgets,
             List<CNote> notes)
         {
             int left = picMap.Width - 27 > 0 ? picMap.Width - 27 : 0;
@@ -241,7 +241,7 @@ namespace LifeGame
             List<CWorkOut> lstWorkOut = workOuts.FindAll(o => o.TagTime.Date == date).ToList();
             List<CMedicine> lstMedicine = medicines.FindAll(o => o.TagTime.Date == date).ToList();
             List<CTransaction> lstTransaction = transactions.FindAll(o => o.TagTime.Date == date).ToList();
-            List<CTransaction> lstTransactionDue = transactionDues.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CTransaction> lstBudget = budgets.FindAll(o => o.TagTime.Date == date).ToList();
             List<CNote> lstNote = notes.FindAll(o => o.TagTime.Date == date).ToList();
             int acc = 0;
             for (int i = 0; i < lstEvent.Count; i++)
@@ -321,11 +321,11 @@ namespace LifeGame
                 picMap.Controls.Add(lstPicEvent[i + acc]);
             }
             acc = acc + lstTransaction.Count;
-            for (int i = 0; i < lstTransactionDue.Count; i++)
+            for (int i = 0; i < lstBudget.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
-                CTransaction transactionDue = lstTransactionDue[i];
-                EMoneyFlowState MoneyFlowState = lstTransactionDue[i].IconType;
+                CTransaction transactionDue = lstBudget[i];
+                EMoneyFlowState MoneyFlowState = lstBudget[i].IconType;
                 switch (MoneyFlowState)
                 {
                     case EMoneyFlowState.WithinSystem:
@@ -344,10 +344,10 @@ namespace LifeGame
                 lstPicEvent[i + acc].Left = left;
                 lstPicEvent[i + acc].Width = 24;
                 lstPicEvent[i + acc].Height = 24;
-                lstPicEvent[i + acc].Click += (e, a) => CallInfoTransactionDue(transactionDue);
+                lstPicEvent[i + acc].Click += (e, a) => CallInfoBudget(transactionDue);
                 picMap.Controls.Add(lstPicEvent[i + acc]);
             }
-            acc = acc + lstTransactionDue.Count;
+            acc = acc + lstBudget.Count;
             for (int i = 0; i < lstNote.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
@@ -419,10 +419,10 @@ namespace LifeGame
             frmInfoTransaction.Show();
         }
 
-        public void CallInfoTransactionDue (CTransaction info)
+        public void CallInfoBudget (CTransaction info)
         {
-            frmInfoTransactionDues frmInfoTransactionDues = new frmInfoTransactionDues(info);
-            frmInfoTransactionDues.Show();
+            frmInfoTransaction frmInfoBudget = new frmInfoTransaction(info);
+            frmInfoBudget.Show();
         }
 
         public void CallInfoWorkOut(CWorkOut info)

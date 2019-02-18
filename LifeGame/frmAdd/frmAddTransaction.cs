@@ -29,7 +29,7 @@ namespace LifeGame
             {
                 MessageBox.Show("Need a summary name");
                 CanSaveFlag = false;
-                            }
+            }
             if (txtCreditAmount.Text == "" || txtDebitAmount.Text == "")
             {
                 MessageBox.Show("Amount incomplete");

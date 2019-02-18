@@ -307,13 +307,13 @@ namespace LifeGame
                         {
                             transaction.DebitAccount = NewName;
                         }
-                        List<CTransaction> creditTransactionDue = G.glb.lstTransactionDue.FindAll(o => o.CreditAccount == PreviousName);
-                        foreach (CTransaction transaction in creditTransactionDue)
+                        List<CTransaction> creditBudget = G.glb.lstBudget.FindAll(o => o.CreditAccount == PreviousName);
+                        foreach (CTransaction transaction in creditBudget)
                         {
                             transaction.CreditAccount = NewName;
                         }
-                        List<CTransaction> debitTransactionDue = G.glb.lstTransactionDue.FindAll(o => o.DebitAccount == PreviousName);
-                        foreach (CTransaction transaction in debitTransaction)
+                        List<CTransaction> debitBudget = G.glb.lstBudget.FindAll(o => o.DebitAccount == PreviousName);
+                        foreach (CTransaction transaction in debitBudget)
                         {
                             transaction.DebitAccount = NewName;
                         }
@@ -337,7 +337,7 @@ namespace LifeGame
                 {
                     string UpperAccount = trvAccount.SelectedNode.Parent.Text;
                     CalAndFind C = new CalAndFind();
-                    bool CanDeleteFlag = C.DeleteAccount(trvAccount.SelectedNode.Text, G.glb.lstSubAccount, G.glb.lstAccount, G.glb.lstTransaction, G.glb.lstTransactionDue);
+                    bool CanDeleteFlag = C.DeleteAccount(trvAccount.SelectedNode.Text, G.glb.lstSubAccount, G.glb.lstAccount, G.glb.lstTransaction, G.glb.lstBudget);
                     if (CanDeleteFlag)
                     {
                         trvAccount.Nodes.Remove(trvAccount.SelectedNode);

@@ -67,11 +67,11 @@
     <Compile Include="frmAdd\frmAddMedicine.Designer.cs">
       <DependentUpon>frmAddMedicine.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAdd\frmAddTransactionDue.cs">
+    <Compile Include="frmAdd\frmAddBudget.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAdd\frmAddTransactionDue.Designer.cs">
-      <DependentUpon>frmAddTransactionDue.cs</DependentUpon>
+    <Compile Include="frmAdd\frmAddBudget.Designer.cs">
+      <DependentUpon>frmAddBudget.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAdd\frmAddWorkOut.cs">
       <SubType>Form</SubType>
@@ -139,11 +139,11 @@
     <Compile Include="frmCatalog\frmCurrencyRate.Designer.cs">
       <DependentUpon>frmCurrencyRate.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInfo\frmConvertTransactionDue.cs">
+    <Compile Include="frmInfo\frmConvertBudget.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmInfo\frmConvertTransactionDue.Designer.cs">
-      <DependentUpon>frmConvertTransactionDue.cs</DependentUpon>
+    <Compile Include="frmInfo\frmConvertBudget.Designer.cs">
+      <DependentUpon>frmConvertBudget.cs</DependentUpon>
     </Compile>
     <Compile Include="frmInfo\frmDelNoteMine.cs">
       <SubType>Form</SubType>
@@ -223,12 +223,6 @@
     <Compile Include="frmCatalog\frmTask.Designer.cs">
       <DependentUpon>frmTask.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInfoMine\frmInfoTransactionDues.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfoMine\frmInfoTransactionDues.Designer.cs">
-      <DependentUpon>frmInfoTransactionDues.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmInfoMine\frmInfoTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,8 +243,8 @@
     <EmbeddedResource Include="frmAdd\frmAddMedicine.resx">
       <DependentUpon>frmAddMedicine.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddTransactionDue.resx">
-      <DependentUpon>frmAddTransactionDue.cs</DependentUpon>
+    <EmbeddedResource Include="frmAdd\frmAddBudget.resx">
+      <DependentUpon>frmAddBudget.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddWorkOut.resx">
       <DependentUpon>frmAddWorkOut.cs</DependentUpon>
@@ -288,8 +282,8 @@
     <EmbeddedResource Include="frmInfo\frmClearSchedule.resx">
       <DependentUpon>frmClearSchedule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmInfo\frmConvertTransactionDue.resx">
-      <DependentUpon>frmConvertTransactionDue.cs</DependentUpon>
+    <EmbeddedResource Include="frmInfo\frmConvertBudget.resx">
+      <DependentUpon>frmConvertBudget.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfo\frmDelInfoMine.resx">
       <DependentUpon>frmDelInfoMine.cs</DependentUpon>
@@ -302,9 +296,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfoMine\frmInfoTransaction.resx">
       <DependentUpon>frmInfoTransaction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfoMine\frmInfoTransactionDues.resx">
-      <DependentUpon>frmInfoTransactionDues.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfoMine\frmInfoWorkOut.resx">
       <DependentUpon>frmInfoWorkOut.cs</DependentUpon>

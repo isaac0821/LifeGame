@@ -27,7 +27,7 @@ namespace LifeGame
         {
             LoadEvents();
             LoadTransaction();
-            LoadTransactionDue();
+            LoadBudget();
             LoadWorkOut();
             LoadMedicine();
         }
@@ -52,13 +52,13 @@ namespace LifeGame
             }
         }
 
-        private void LoadTransactionDue()
+        private void LoadBudget()
         {
-            lsbTransactionDue.Items.Clear();
-            List<CTransaction> transactionDues = G.glb.lstTransactionDue.FindAll(o => o.TagTime == curDate).ToList();
+            lsbBudget.Items.Clear();
+            List<CTransaction> transactionDues = G.glb.lstBudget.FindAll(o => o.TagTime == curDate).ToList();
             foreach (CTransaction tranDues in transactionDues)
             {
-                lsbTransactionDue.Items.Add(tranDues.Summary);
+                lsbBudget.Items.Add(tranDues.Summary);
             }
         }
 
@@ -111,11 +111,11 @@ namespace LifeGame
                         LoadTransaction();
                     }
                     break;
-                case "lsbTransactionDue":
-                    if (lsbTransactionDue.SelectedItems!=null)
+                case "lsbBudget":
+                    if (lsbBudget.SelectedItems!=null)
                     {
-                        G.glb.lstTransactionDue.RemoveAll(o => o.TagTime == curDate && o.Summary == lsbTransactionDue.SelectedItem.ToString());
-                        LoadTransactionDue();
+                        G.glb.lstBudget.RemoveAll(o => o.TagTime == curDate && o.Summary == lsbBudget.SelectedItem.ToString());
+                        LoadBudget();
                     }
                     break;
                 case "lsbWorkOut":

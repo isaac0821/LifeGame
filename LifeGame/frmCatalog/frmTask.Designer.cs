@@ -103,9 +103,9 @@
             this.stsTask.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.stsTask.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.stsTask.Location = new System.Drawing.Point(0, 494);
+            this.stsTask.Location = new System.Drawing.Point(0, 625);
             this.stsTask.Name = "stsTask";
-            this.stsTask.Size = new System.Drawing.Size(993, 22);
+            this.stsTask.Size = new System.Drawing.Size(1233, 22);
             this.stsTask.TabIndex = 1;
             this.stsTask.Text = "statusStrip1";
             // 
@@ -122,7 +122,7 @@
             this.filesFToolStripMenuItem});
             this.mnsTask.Location = new System.Drawing.Point(0, 0);
             this.mnsTask.Name = "mnsTask";
-            this.mnsTask.Size = new System.Drawing.Size(993, 24);
+            this.mnsTask.Size = new System.Drawing.Size(1233, 24);
             this.mnsTask.TabIndex = 2;
             this.mnsTask.Text = "menuStrip1";
             // 
@@ -153,8 +153,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel7);
-            this.splitContainer1.Size = new System.Drawing.Size(993, 470);
-            this.splitContainer1.SplitterDistance = 231;
+            this.splitContainer1.Size = new System.Drawing.Size(1233, 601);
+            this.splitContainer1.SplitterDistance = 286;
             this.splitContainer1.TabIndex = 3;
             // 
             // tableLayoutPanel6
@@ -167,7 +167,7 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(231, 470);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(286, 601);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // groupBox1
@@ -175,9 +175,9 @@
             this.groupBox1.Controls.Add(this.trvTask);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(5, 5);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(221, 460);
+            this.groupBox1.Size = new System.Drawing.Size(276, 591);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Task Tree";
@@ -193,7 +193,7 @@
             this.trvTask.Location = new System.Drawing.Point(3, 16);
             this.trvTask.Name = "trvTask";
             this.trvTask.SelectedImageIndex = 0;
-            this.trvTask.Size = new System.Drawing.Size(215, 441);
+            this.trvTask.Size = new System.Drawing.Size(270, 572);
             this.trvTask.TabIndex = 0;
             this.trvTask.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvTask_AfterSelect);
             // 
@@ -315,7 +315,7 @@
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(758, 470);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(943, 601);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // groupBox2
@@ -323,9 +323,9 @@
             this.groupBox2.Controls.Add(this.tableLayoutPanel1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(5, 5);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(548, 460);
+            this.groupBox2.Size = new System.Drawing.Size(733, 591);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Task Details";
@@ -345,7 +345,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(542, 441);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(727, 572);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // dgvLog
@@ -368,7 +368,7 @@
             this.dgvLog.Name = "dgvLog";
             this.dgvLog.ReadOnly = true;
             this.dgvLog.RowTemplate.Height = 23;
-            this.dgvLog.Size = new System.Drawing.Size(536, 373);
+            this.dgvLog.Size = new System.Drawing.Size(721, 504);
             this.dgvLog.TabIndex = 0;
             // 
             // colYear
@@ -417,7 +417,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(536, 26);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(721, 26);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // lblTaskTitle
@@ -426,7 +426,7 @@
             this.lblTaskTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTaskTitle.Location = new System.Drawing.Point(3, 0);
             this.lblTaskTitle.Name = "lblTaskTitle";
-            this.lblTaskTitle.Size = new System.Drawing.Size(530, 26);
+            this.lblTaskTitle.Size = new System.Drawing.Size(715, 26);
             this.lblTaskTitle.TabIndex = 0;
             this.lblTaskTitle.Text = "---";
             this.lblTaskTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -458,7 +458,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(536, 24);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(721, 24);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // chkBottom
@@ -478,7 +478,7 @@
             this.chkInfinite.AutoSize = true;
             this.chkInfinite.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkInfinite.Enabled = false;
-            this.chkInfinite.Location = new System.Drawing.Point(474, 3);
+            this.chkInfinite.Location = new System.Drawing.Point(659, 3);
             this.chkInfinite.Name = "chkInfinite";
             this.chkInfinite.Size = new System.Drawing.Size(59, 18);
             this.chkInfinite.TabIndex = 1;
@@ -490,7 +490,7 @@
             this.dtpDeadline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpDeadline.Enabled = false;
             this.dtpDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDeadline.Location = new System.Drawing.Point(373, 3);
+            this.dtpDeadline.Location = new System.Drawing.Point(558, 3);
             this.dtpDeadline.Name = "dtpDeadline";
             this.dtpDeadline.Size = new System.Drawing.Size(95, 20);
             this.dtpDeadline.TabIndex = 2;
@@ -500,7 +500,7 @@
             this.dtpNextTimeMarker.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpNextTimeMarker.Enabled = false;
             this.dtpNextTimeMarker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNextTimeMarker.Location = new System.Drawing.Point(207, 3);
+            this.dtpNextTimeMarker.Location = new System.Drawing.Point(392, 3);
             this.dtpNextTimeMarker.Name = "dtpNextTimeMarker";
             this.dtpNextTimeMarker.Size = new System.Drawing.Size(95, 20);
             this.dtpNextTimeMarker.TabIndex = 3;
@@ -509,7 +509,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(107, 0);
+            this.label2.Location = new System.Drawing.Point(292, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 24);
             this.label2.TabIndex = 4;
@@ -520,7 +520,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(308, 0);
+            this.label3.Location = new System.Drawing.Point(493, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 24);
             this.label3.TabIndex = 5;
@@ -567,10 +567,10 @@
             // 
             this.groupBox3.Controls.Add(this.lsbTaskNote);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(563, 5);
+            this.groupBox3.Location = new System.Drawing.Point(748, 5);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(190, 460);
+            this.groupBox3.Size = new System.Drawing.Size(190, 591);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Task Notes";
@@ -582,7 +582,7 @@
             this.lsbTaskNote.FormattingEnabled = true;
             this.lsbTaskNote.Location = new System.Drawing.Point(3, 16);
             this.lsbTaskNote.Name = "lsbTaskNote";
-            this.lsbTaskNote.Size = new System.Drawing.Size(184, 441);
+            this.lsbTaskNote.Size = new System.Drawing.Size(184, 572);
             this.lsbTaskNote.TabIndex = 0;
             // 
             // cmsNote
@@ -590,12 +590,12 @@
             this.cmsNote.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmOpen});
             this.cmsNote.Name = "cmsNote";
-            this.cmsNote.Size = new System.Drawing.Size(181, 48);
+            this.cmsNote.Size = new System.Drawing.Size(104, 26);
             // 
             // tsmOpen
             // 
             this.tsmOpen.Name = "tsmOpen";
-            this.tsmOpen.Size = new System.Drawing.Size(180, 22);
+            this.tsmOpen.Size = new System.Drawing.Size(103, 22);
             this.tsmOpen.Text = "Open";
             this.tsmOpen.Click += new System.EventHandler(this.tsmOpen_Click);
             // 
@@ -603,7 +603,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 516);
+            this.ClientSize = new System.Drawing.Size(1233, 647);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.stsTask);
             this.Controls.Add(this.mnsTask);

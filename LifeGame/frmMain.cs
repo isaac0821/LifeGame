@@ -47,18 +47,48 @@ namespace LifeGame
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            Deserialize();
-            //G.glb.lstLiterature = new List<CLiterature>();
-            //G.glb.lstLiteratureAuthor = new List<RLiteratureAuthor>();
-            //G.glb.lstLiteratureCiting = new List<RLiteratureInCiting>();
-            //G.glb.lstLiteratureInstitution = new List<RLiteratureInstitution>();
-            //G.glb.lstLiteratureTag = new List<RLiteratureTag>();
-            //G.glb.lstLiteratureOutSource = new List<RLiteratureOutSource>();
-            //G.glb.lstTransactionDue = new List<CTransaction>();
-            //foreach (CNote note in G.glb.lstNote)
-            //{
-            //    note.TaskName = "";
-            //}
+            try
+            {
+                Deserialize();
+                MessageBox.Show("Load existing file successfully.");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Can not find an existing data file, a new empty data file is auto-created");
+                // Event
+                G.glb.lstEvent = new List<CEvent>();
+                G.glb.lstSleepSchedule = new List<CSleep>();
+                G.glb.lstSleepLog = new List<CSleep>();
+                G.glb.lstWorkOut = new List<CWorkOut>();
+                G.glb.lstMedicine = new List<CMedicine>();
+
+                // Note
+                G.glb.lstNote = new List<CNote>();
+                G.glb.lstNoteOutsource = new List<RNoteOutsource>();
+                G.glb.lstNoteLog = new List<RNoteLog>();
+
+                // Literature
+                G.glb.lstLiterature = new List<CLiterature>();
+                G.glb.lstLiteratureAuthor = new List<RLiteratureAuthor>();
+                G.glb.lstLiteratureTag = new List<RLiteratureTag>();
+                G.glb.lstLiteratureCiting = new List<RLiteratureInCiting>();
+                G.glb.lstLiteratureInstitution = new List<RLiteratureInstitution>();
+                G.glb.lstLiteratureOutSource = new List<RLiteratureOutSource>();
+
+                // Task and Log
+                G.glb.lstTask = new List<CTask>();
+                G.glb.lstSubTask = new List<RSubTask>();
+                G.glb.lstSchedule = new List<CLog>();
+                G.glb.lstLog = new List<CLog>();
+
+                // Money
+                G.glb.lstTransaction = new List<CTransaction>();
+                G.glb.lstBudget = new List<CTransaction>();
+                G.glb.lstAccount = new List<CAccount>();
+                G.glb.lstSubAccount = new List<RSubAccount>();
+                G.glb.lstCurrencyRate = new List<RCurrencyRate>();
+            }
+
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
             DrawLog();
@@ -543,7 +573,7 @@ namespace LifeGame
             frmAddTransaction.Show();
         }
 
-        private void tsmConvertTransactionDue_Click(object sender, EventArgs e)
+        private void tsmConvertBudget_Click(object sender, EventArgs e)
         {
             DateTime sendToFrm = SelectedDate;
             switch (SelectedPicName)
@@ -572,12 +602,12 @@ namespace LifeGame
                 default:
                     break;
             }
-            frmConvertTransactionDue frmConvertTransactionDue = new frmConvertTransactionDue(sendToFrm);
-            frmConvertTransactionDue.DrawLog += new frmConvertTransactionDue.DrawLogHandler(DrawLog);
-            frmConvertTransactionDue.Show();
+            frmConvertBudget frmConvertBudget = new frmConvertBudget(sendToFrm);
+            frmConvertBudget.DrawLog += new frmConvertBudget.DrawLogHandler(DrawLog);
+            frmConvertBudget.Show();
         }
 
-        private void tsmAddTransactionDue_Click(object sender, EventArgs e)
+        private void tsmAddBudget_Click(object sender, EventArgs e)
         {
             DateTime sendToFrm = SelectedDate;
             switch (SelectedPicName)
@@ -606,9 +636,9 @@ namespace LifeGame
                 default:
                     break;
             }
-            frmAddTransactionDue frmAddTransactionDue = new frmAddTransactionDue(sendToFrm);
-            frmAddTransactionDue.DrawLog += new frmAddTransactionDue.DrawLogHandler(DrawLog);
-            frmAddTransactionDue.Show();
+            frmAddBudget frmAddBudget = new frmAddBudget(sendToFrm);
+            frmAddBudget.DrawLog += new frmAddBudget.DrawLogHandler(DrawLog);
+            frmAddBudget.Show();
         }
 
         private void tsmAddWorkOut_Click(object sender, EventArgs e)
@@ -846,13 +876,13 @@ namespace LifeGame
         }
         private void DrawEvent()        {
             Draw Draw = new Draw();
-            Draw.DrawEventController(picMon, SelectedMonday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
-            Draw.DrawEventController(picTue, SelectedTuesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
-            Draw.DrawEventController(picWed, SelectedWednesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
-            Draw.DrawEventController(picThu, SelectedThursday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
-            Draw.DrawEventController(picFri, SelectedFriday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
-            Draw.DrawEventController(picSat, SelectedSaturday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
-            Draw.DrawEventController(picSun, SelectedSunday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstTransactionDue, G.glb.lstNote);
+            Draw.DrawEventController(picMon, SelectedMonday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawEventController(picTue, SelectedTuesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawEventController(picWed, SelectedWednesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawEventController(picThu, SelectedThursday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawEventController(picFri, SelectedFriday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawEventController(picSat, SelectedSaturday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawEventController(picSun, SelectedSunday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
         }
 
         private void lblDDLMon_Click(object sender, EventArgs e)
