@@ -65,6 +65,12 @@ namespace LifeGame
         /// <param name="LocationMode">位置模式："all" - 全部; "left" - 左侧; "right" - 右侧</param>
         public void DrawScheduleAndLogController(PictureBox picMap, DateTime date, List<CLog> logs, List<CSleep> healths, string LocationMode)
         {
+            picMap.BackColor = Color.White;
+            if (date == DateTime.Today.Date)
+            {
+                picMap.BackColor = Color.FromArgb(19, 92, 08, 21);
+            }
+
             int left = 0;
             int width = picMap.Width;
             if (LocationMode == "all")
@@ -98,7 +104,6 @@ namespace LifeGame
                 width = (picMap.Width - 30) > 0 ? (picMap.Width - 30) / 2 : 0;
             }
             int height = picMap.Height;
-            picMap.BackColor = Color.White;
 
             List<CLog> todayLogs = logs.FindAll(o => o.StartTime.Date == date).ToList();
             List<CLog> yesterdayLogs = logs.FindAll(o => o.StartTime.Date == date.AddDays(-1) && o.EndTime.Date == date).ToList();

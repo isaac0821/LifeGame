@@ -50,7 +50,6 @@ namespace LifeGame
             try
             {
                 Deserialize();
-                MessageBox.Show("Load existing file successfully.");
             }
             catch (Exception)
             {
