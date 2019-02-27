@@ -247,7 +247,7 @@
             this.groupBox1.Controls.Add(this.trvAccount);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(5, 296);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(241, 254);
             this.groupBox1.TabIndex = 0;
@@ -362,7 +362,7 @@
             this.groupBox6.Controls.Add(this.tableLayoutPanel3);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.Location = new System.Drawing.Point(5, 5);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(241, 281);
             this.groupBox6.TabIndex = 3;
@@ -793,7 +793,7 @@
             this.chkUseTransactionDue.AutoSize = true;
             this.chkUseTransactionDue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkUseTransactionDue.Location = new System.Drawing.Point(2, 2);
-            this.chkUseTransactionDue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkUseTransactionDue.Margin = new System.Windows.Forms.Padding(2);
             this.chkUseTransactionDue.Name = "chkUseTransactionDue";
             this.chkUseTransactionDue.Size = new System.Drawing.Size(130, 19);
             this.chkUseTransactionDue.TabIndex = 3;
@@ -927,7 +927,7 @@
             this.groupBox7.Controls.Add(this.dgvDetail);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox7.Location = new System.Drawing.Point(6, 6);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(1028, 543);
             this.groupBox7.TabIndex = 0;

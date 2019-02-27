@@ -116,7 +116,9 @@ namespace LifeGame
             dgvDetail.Rows.Clear();
             CalAndFind C = new CalAndFind();
             List<string> heirAccounts = C.FindAllHeirAccount(accountName, G.glb.lstSubAccount);
-            List<CTransaction> transactions = G.glb.lstTransaction.FindAll(o => heirAccounts.Exists(p => p == o.CreditAccount) || heirAccounts.Exists(p => p == o.DebitAccount));
+            List<CTransaction> transactions = G.glb.lstTransaction.FindAll(
+                o => (heirAccounts.Exists(p => p == o.CreditAccount) || heirAccounts.Exists(p => p == o.DebitAccount))
+                && o.TagTime >= dtpStatementPeriodStart.Value.Date && o.TagTime <= dtpStatementPeriodEnd.Value.Date);
             foreach (CTransaction trans in transactions)
             {
                 if (heirAccounts.Exists(o => o == trans.DebitAccount))
