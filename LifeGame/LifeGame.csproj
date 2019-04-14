@@ -79,6 +79,12 @@
     <Compile Include="frmAdd\frmAddWorkOut.Designer.cs">
       <DependentUpon>frmAddWorkOut.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAdd\frmAddPath.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd\frmAddPath.Designer.cs">
+      <DependentUpon>frmAddPath.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInfo\frmClearSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -278,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfoMine\frmInfoEvent.resx">
       <DependentUpon>frmInfoEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdd\frmAddPath.resx">
+      <DependentUpon>frmAddPath.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfo\frmClearSchedule.resx">
       <DependentUpon>frmClearSchedule.cs</DependentUpon>

@@ -103,7 +103,7 @@ namespace LifeGame
         }
 
         /// <summary>
-        /// 寻找一项task的所有子孙Account，各层级都要 Done: 01/06/2019
+        /// 寻找一项account的所有子孙Account，各层级都要 Done: 01/06/2019
         /// </summary>
         /// <param name="AccountName"></param>
         /// <param name="rSubAccounts"></param>
@@ -482,7 +482,7 @@ namespace LifeGame
                         }
                     }
                 }
-                else
+                if (heirAccount.Exists(o => o == transaction.CreditAccount))
                 {
                     if (transaction.CreditCurrency == accounts.Find(o => o.AccountName == AccountName).Currency)
                     {

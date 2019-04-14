@@ -26,6 +26,7 @@ namespace LifeGame
             LoadNoteLog();
             LoadNoteOutsource();
             dtpDate.Value = note.TagTime;
+            txtTopic.Enabled = false;
         }
 
         public frmInfoNote(DateTime selectedDate)
