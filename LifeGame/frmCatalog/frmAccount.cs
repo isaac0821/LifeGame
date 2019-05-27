@@ -98,6 +98,19 @@ namespace LifeGame
             lblCreditAmount.Text = Math.Round(balance.AmountCredit, 2).ToString();
             lblDebitEnding.Text = Math.Round(balance.EndingBalanceDebit, 2).ToString();
             lblCreditEnding.Text = Math.Round(balance.EndingBalanceCredit, 2).ToString();
+            CalAndFind.SBalance futureBalance = C.CalFutureBalance(
+                accountName,
+                G.glb.lstAccount,
+                G.glb.lstSubAccount,
+                G.glb.lstTransaction,
+                G.glb.lstBudget,
+                G.glb.lstCurrencyRate,
+                dtpStatementPeriodStart.Value.Date,
+                dtpEndOfPredictPeriod.Value.Date);
+            lblFutureDebitAmount.Text = Math.Round(futureBalance.AmountDebit, 2).ToString();
+            lblFutureCreditAmount.Text = Math.Round(futureBalance.AmountCredit, 2).ToString();
+            lblFutureDebitEnding.Text = Math.Round(futureBalance.EndingBalanceDebit, 2).ToString();
+            lblFutureCreditEnding.Text = Math.Round(futureBalance.EndingBalanceCredit, 2).ToString();
             LoadAccountTransaction(accountName);
         }
 

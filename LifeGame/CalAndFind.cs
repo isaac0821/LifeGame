@@ -171,7 +171,6 @@ namespace LifeGame
             return ret;
         }
 
-
         /// <summary>
         /// 找到所有heir中未完成且未被放弃的任务中deadline最小的
         /// </summary>
@@ -509,6 +508,123 @@ namespace LifeGame
             if (EndTime >= new DateTime(2019, 1, 1))
             {
                 SBalance toStart = CalBalance(AccountName, accounts, rSubAccounts, transactions, currencyRates, new DateTime(2019, 1, 1), StartTime.AddDays(-1));
+                if (toStart.EndingBalanceDebit - toStart.EndingBalanceCredit > 0)
+                {
+                    retOpeningBalanceDebit = toStart.EndingBalanceDebit - toStart.EndingBalanceCredit;
+                    retOpeningBalanceCredit = 0;
+                }
+                else
+                {
+                    retOpeningBalanceDebit = 0;
+                    retOpeningBalanceCredit = -(toStart.EndingBalanceDebit - toStart.EndingBalanceCredit);
+                }
+            }
+            else
+            {
+                retOpeningBalanceDebit = 0;
+                retOpeningBalanceCredit = 0;
+            }
+            double abs = (retOpeningBalanceDebit + retAmountDebit) - (retOpeningBalanceCredit + retAmountCredit);
+            if (abs > 0)
+            {
+                retEndingBalanceDebit = abs;
+                retEndingBalanceCredit = 0;
+            }
+            else
+            {
+                retEndingBalanceDebit = 0;
+                retEndingBalanceCredit = -abs;
+            }
+
+            SBalance ret = new SBalance();
+            ret.OpeningBalanceDebit = retOpeningBalanceDebit;
+            ret.OpeningBalanceCredit = retOpeningBalanceCredit;
+            ret.AmountDebit = retAmountDebit;
+            ret.AmountCredit = retAmountCredit;
+            ret.EndingBalanceDebit = retEndingBalanceDebit;
+            ret.EndingBalanceCredit = retEndingBalanceCredit;
+            return ret;
+        }
+
+        public SBalance CalFutureBalance(
+            string AccountName,
+            List<CAccount> accounts,
+            List<RSubAccount> rSubAccounts,
+            List<CTransaction> transactions,
+            List<CTransaction> budgets,
+            List<RCurrencyRate> currencyRates,
+            DateTime StartTime,
+            DateTime EndTime)
+        {
+            // Calculate The Balance without budget
+            SBalance balance = CalBalance(AccountName, accounts, rSubAccounts, transactions, currencyRates, StartTime, EndTime);
+            double retOpeningBalanceDebit = balance.OpeningBalanceDebit;
+            double retOpeningBalanceCredit = balance.OpeningBalanceCredit;
+            double retAmountDebit = balance.AmountDebit;
+            double retAmountCredit = balance.AmountCredit;
+            double retEndingBalanceDebit = balance.EndingBalanceDebit;
+            double retEndingBalanceCredit = balance.EndingBalanceCredit;
+
+            // 找到所有的Heir科目
+            CalAndFind C = new CalAndFind();
+            List<string> heirAccount = C.FindAllHeirAccount(AccountName, rSubAccounts);
+            List<CTransaction> BudgetsInRange = budgets.FindAll(
+                o => o.TagTime >= StartTime
+                && o.TagTime <= EndTime
+                && heirAccount.Exists(
+                    p => p == o.DebitAccount
+                    || p == o.CreditAccount)).ToList();
+            foreach (CTransaction budget in BudgetsInRange)
+            {
+                if (heirAccount.Exists(o => o == budget.DebitAccount))
+                {
+                    if (budget.DebitCurrency == accounts.Find(o => o.AccountName == AccountName).Currency)
+                    {
+                        retAmountDebit += budget.DebitAmount;
+                    }
+                    else
+                    {
+                        if (currencyRates.Exists(o => o.CurrencyA == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyB == budget.DebitCurrency))
+                        {
+                            retAmountDebit += budget.DebitAmount / currencyRates.Find(o => o.CurrencyA == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyB == budget.DebitCurrency).Rate;
+                        }
+                        else if (currencyRates.Exists(o => o.CurrencyB == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyA == budget.DebitCurrency))
+                        {
+                            retAmountDebit += budget.DebitAmount * currencyRates.Find(o => o.CurrencyB == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyA == budget.DebitCurrency).Rate;
+                        }
+                        else
+                        {
+                            System.Windows.Forms.MessageBox.Show("Lack of exchange rate of " + budget.DebitCurrency + " → " + accounts.Find(o => o.AccountName == AccountName).Currency);
+                        }
+                    }
+                }
+                if (heirAccount.Exists(o => o == budget.CreditAccount))
+                {
+                    if (budget.CreditCurrency == accounts.Find(o => o.AccountName == AccountName).Currency)
+                    {
+                        retAmountCredit += budget.CreditAmount;
+                    }
+                    else
+                    {
+                        if (currencyRates.Exists(o => o.CurrencyA == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyB == budget.CreditCurrency))
+                        {
+                            retAmountCredit += budget.CreditAmount / currencyRates.Find(o => o.CurrencyA == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyB == budget.CreditCurrency).Rate;
+                        }
+                        else if (currencyRates.Exists(o => o.CurrencyB == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyA == budget.CreditCurrency))
+                        {
+                            retAmountCredit += budget.CreditAmount * currencyRates.Find(o => o.CurrencyB == accounts.Find(p => p.AccountName == AccountName).Currency && o.CurrencyA == budget.CreditCurrency).Rate;
+                        }
+                        else
+                        {
+                            System.Windows.Forms.MessageBox.Show("Lack of exchange rate of " + budget.CreditCurrency + " → " + accounts.Find(o => o.AccountName == AccountName).Currency);
+                        }
+                    }
+                }
+            }
+            // 目前账目等均以2019.1.1开始，之前默认为无数据
+            if (EndTime >= new DateTime(2019, 1, 1))
+            {
+                SBalance toStart = CalFutureBalance(AccountName, accounts, rSubAccounts, transactions, budgets, currencyRates, new DateTime(2019, 1, 1), StartTime.AddDays(-1));
                 if (toStart.EndingBalanceDebit - toStart.EndingBalanceCredit > 0)
                 {
                     retOpeningBalanceDebit = toStart.EndingBalanceDebit - toStart.EndingBalanceCredit;

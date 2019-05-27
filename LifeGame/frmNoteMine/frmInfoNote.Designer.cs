@@ -78,7 +78,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
@@ -92,7 +92,7 @@
             this.trvNote.ContextMenuStrip = this.cmsTrvNote;
             this.trvNote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvNote.Location = new System.Drawing.Point(4, 227);
-            this.trvNote.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trvNote.Margin = new System.Windows.Forms.Padding(4);
             this.trvNote.Name = "trvNote";
             this.trvNote.Size = new System.Drawing.Size(605, 437);
             this.trvNote.TabIndex = 0;
@@ -192,7 +192,7 @@
             this.dtpDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDate.Location = new System.Drawing.Point(478, 4);
-            this.dtpDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(131, 22);
             this.dtpDate.TabIndex = 0;
@@ -253,7 +253,7 @@
             this.lsbOutsource.FormattingEnabled = true;
             this.lsbOutsource.ItemHeight = 16;
             this.lsbOutsource.Location = new System.Drawing.Point(97, 100);
-            this.lsbOutsource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lsbOutsource.Margin = new System.Windows.Forms.Padding(4);
             this.lsbOutsource.Name = "lsbOutsource";
             this.lsbOutsource.Size = new System.Drawing.Size(512, 87);
             this.lsbOutsource.TabIndex = 3;
@@ -267,31 +267,31 @@
             this.tsmAddOutsource,
             this.tsmDeleteOutsource});
             this.cmsOutsource.Name = "cmsOutsource";
-            this.cmsOutsource.Size = new System.Drawing.Size(211, 110);
+            this.cmsOutsource.Size = new System.Drawing.Size(123, 82);
             // 
             // tsmOpenOutsource
             // 
             this.tsmOpenOutsource.Name = "tsmOpenOutsource";
-            this.tsmOpenOutsource.Size = new System.Drawing.Size(210, 24);
+            this.tsmOpenOutsource.Size = new System.Drawing.Size(122, 24);
             this.tsmOpenOutsource.Text = "Open";
             this.tsmOpenOutsource.Click += new System.EventHandler(this.tsmOpenOutsource_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(207, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(119, 6);
             // 
             // tsmAddOutsource
             // 
             this.tsmAddOutsource.Name = "tsmAddOutsource";
-            this.tsmAddOutsource.Size = new System.Drawing.Size(210, 24);
+            this.tsmAddOutsource.Size = new System.Drawing.Size(122, 24);
             this.tsmAddOutsource.Text = "Add";
             this.tsmAddOutsource.Click += new System.EventHandler(this.tsmAddOutsource_Click);
             // 
             // tsmDeleteOutsource
             // 
             this.tsmDeleteOutsource.Name = "tsmDeleteOutsource";
-            this.tsmDeleteOutsource.Size = new System.Drawing.Size(210, 24);
+            this.tsmDeleteOutsource.Size = new System.Drawing.Size(122, 24);
             this.tsmDeleteOutsource.Text = "Delete";
             this.tsmDeleteOutsource.Click += new System.EventHandler(this.tsmDeleteOutsource_Click);
             // 
@@ -315,7 +315,7 @@
             // 
             this.txtTopic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTopic.Location = new System.Drawing.Point(4, 4);
-            this.txtTopic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTopic.Margin = new System.Windows.Forms.Padding(4);
             this.txtTopic.Name = "txtTopic";
             this.txtTopic.Size = new System.Drawing.Size(415, 22);
             this.txtTopic.TabIndex = 0;
@@ -349,7 +349,7 @@
             // 
             this.txtLiteratureTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtLiteratureTitle.Location = new System.Drawing.Point(97, 68);
-            this.txtLiteratureTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLiteratureTitle.Margin = new System.Windows.Forms.Padding(4);
             this.txtLiteratureTitle.Name = "txtLiteratureTitle";
             this.txtLiteratureTitle.Size = new System.Drawing.Size(512, 22);
             this.txtLiteratureTitle.TabIndex = 6;
@@ -372,7 +372,7 @@
             this.cbxTask.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxTask.FormattingEnabled = true;
             this.cbxTask.Location = new System.Drawing.Point(97, 36);
-            this.cbxTask.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxTask.Margin = new System.Windows.Forms.Padding(4);
             this.cbxTask.Name = "cbxTask";
             this.cbxTask.Size = new System.Drawing.Size(512, 24);
             this.cbxTask.TabIndex = 8;
@@ -402,7 +402,7 @@
             this.ClientSize = new System.Drawing.Size(613, 668);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmInfoNote";
             this.Text = "LifeGame - Note";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInfoNote_FormClosing);

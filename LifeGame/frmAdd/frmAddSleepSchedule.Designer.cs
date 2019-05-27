@@ -67,7 +67,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
@@ -101,7 +101,7 @@
             this.tableLayoutPanel2.Controls.Add(this.dtpPeriodEnd, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(84, 4);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -142,7 +142,7 @@
             this.tableLayoutPanel3.Controls.Add(this.chkMinusOneDay, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(84, 68);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -214,7 +214,7 @@
             this.chkMo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkMo.Location = new System.Drawing.Point(4, 4);
-            this.chkMo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkMo.Margin = new System.Windows.Forms.Padding(4);
             this.chkMo.Name = "chkMo";
             this.chkMo.Size = new System.Drawing.Size(58, 24);
             this.chkMo.TabIndex = 0;
@@ -228,7 +228,7 @@
             this.chkTu.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkTu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkTu.Location = new System.Drawing.Point(70, 4);
-            this.chkTu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkTu.Margin = new System.Windows.Forms.Padding(4);
             this.chkTu.Name = "chkTu";
             this.chkTu.Size = new System.Drawing.Size(58, 24);
             this.chkTu.TabIndex = 1;
@@ -242,7 +242,7 @@
             this.chkWe.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkWe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkWe.Location = new System.Drawing.Point(136, 4);
-            this.chkWe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkWe.Margin = new System.Windows.Forms.Padding(4);
             this.chkWe.Name = "chkWe";
             this.chkWe.Size = new System.Drawing.Size(58, 24);
             this.chkWe.TabIndex = 2;
@@ -256,7 +256,7 @@
             this.cheTh.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cheTh.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cheTh.Location = new System.Drawing.Point(202, 4);
-            this.cheTh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cheTh.Margin = new System.Windows.Forms.Padding(4);
             this.cheTh.Name = "cheTh";
             this.cheTh.Size = new System.Drawing.Size(58, 24);
             this.cheTh.TabIndex = 3;
@@ -270,7 +270,7 @@
             this.chkFr.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkFr.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkFr.Location = new System.Drawing.Point(268, 4);
-            this.chkFr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkFr.Margin = new System.Windows.Forms.Padding(4);
             this.chkFr.Name = "chkFr";
             this.chkFr.Size = new System.Drawing.Size(58, 24);
             this.chkFr.TabIndex = 4;
@@ -284,7 +284,7 @@
             this.chkSa.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkSa.Location = new System.Drawing.Point(334, 4);
-            this.chkSa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkSa.Margin = new System.Windows.Forms.Padding(4);
             this.chkSa.Name = "chkSa";
             this.chkSa.Size = new System.Drawing.Size(58, 24);
             this.chkSa.TabIndex = 5;
@@ -298,7 +298,7 @@
             this.chkSu.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkSu.Location = new System.Drawing.Point(400, 4);
-            this.chkSu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkSu.Margin = new System.Windows.Forms.Padding(4);
             this.chkSu.Name = "chkSu";
             this.chkSu.Size = new System.Drawing.Size(63, 24);
             this.chkSu.TabIndex = 6;
@@ -327,7 +327,7 @@
             // 
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdd.Location = new System.Drawing.Point(391, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(72, 25);
             this.btnAdd.TabIndex = 5;
@@ -343,7 +343,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddSleepSchedule";
