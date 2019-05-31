@@ -173,7 +173,7 @@ namespace LifeGame
         private void frmInfoNote_Load(object sender, EventArgs e)
         { 
             // Bind Task
-            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.IsBottom && !o.IsFinished && !o.IsAbort).ToList();
+            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.IsBottom && o.TaskState != ETaskState.Finished && o.TaskState != ETaskState.Aborted).ToList();
             List<string> choices = new List<string>();
             choices.Add("");
             foreach (CTask task in taskChoices)

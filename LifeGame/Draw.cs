@@ -370,7 +370,7 @@ namespace LifeGame
                 }
                 else
                 {
-                    lstPicEvent[i + acc].Image = icon.iconUnfinishedNote;
+                    lstPicEvent[i + acc].Image = icon.iconWorkingNote;
                 }
                 lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;

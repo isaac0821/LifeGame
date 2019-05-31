@@ -50,6 +50,27 @@ namespace LifeGame
             try
             {
                 Deserialize();
+
+                //foreach (CTask task in G.glb.lstTask)
+                //{
+                //    CalAndFind C = new CalAndFind();
+                //    if (C.CalTimeSpentInTask(task.TaskName, G.glb.lstSubTask, G.glb.lstLog) == 0)
+                //    {
+                //        task.TaskState = ETaskState.NotStartedYet;
+                //    }
+                //    else
+                //    {
+                //        task.TaskState = ETaskState.Ongoing;
+                //    }
+                //    if (task.IsFinished)
+                //    {
+                //        task.TaskState = ETaskState.Finished;
+                //    }
+                //    if (task.IsAbort)
+                //    {
+                //        task.TaskState = ETaskState.Aborted;
+                //    }
+                //}
             }
             catch (Exception)
             {
@@ -86,6 +107,8 @@ namespace LifeGame
                 G.glb.lstAccount = new List<CAccount>();
                 G.glb.lstSubAccount = new List<RSubAccount>();
                 G.glb.lstCurrencyRate = new List<RCurrencyRate>();
+
+                SerializeNow();
             }
 
             SelectedDate = DateTime.Today.Date;

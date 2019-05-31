@@ -38,9 +38,8 @@ namespace LifeGame
                 CTask newTask = new CTask();
                 newTask.TaskName = txtTask.Text;
                 newTask.DeadLine = dtpDeadLine.Value.Date;
-                newTask.IsFinished = false;
+                newTask.TaskState = ETaskState.NotStartedYet;
                 newTask.IsBottom = chkBottom.Checked;
-                newTask.IsAbort = false;
                 newTask.IsInfinite = chkInfinite.Checked;
                 G.glb.lstTask.Add(newTask);
                 RSubTask newRSubTask = new RSubTask();

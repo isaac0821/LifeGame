@@ -77,7 +77,10 @@ namespace LifeGame
                 CTask task = G.glb.lstTask.Find(o => o.TaskName == taskName);
                 lblTaskTitle.Text = task.TaskName;
                 chkBottom.Checked = task.IsBottom;
-                chkFinished.Checked = task.IsFinished;
+                if (task.TaskState == ETaskState.Finished)
+                {
+                    chkFinished.Checked = true;
+                }
                 CalAndFind C = new CalAndFind();
                 lblTaskTimeSpent.Text = Math.Round(C.CalTimeSpentInTask(task.TaskName, G.glb.lstSubTask, G.glb.lstLog),2).ToString() + "h";
                 DateTime? NextTimeMarker = C.FindNextTimeMarker(task.TaskName, G.glb.lstSubTask, G.glb.lstTask);
@@ -141,17 +144,47 @@ namespace LifeGame
             int iconIndex;
             if (G.glb.lstTask.Exists(o => o.TaskName == node.Text))
             {
-                if (G.glb.lstTask.Find(o => o.TaskName == node.Text).IsAbort)
+                if (!G.glb.lstTask.Find(o => o.TaskName == node.Text).IsInfinite)
                 {
-                    iconIndex = 3;
-                }
-                else if (G.glb.lstTask.Find(o => o.TaskName == node.Text).IsFinished)
-                {
-                    iconIndex = 2;
+                    switch (G.glb.lstTask.Find(o => o.TaskName == node.Text).TaskState)
+                    {
+                        case ETaskState.NotStartedYet:
+                            iconIndex = 1;
+                            break;
+                        case ETaskState.Ongoing:
+                            iconIndex = 2;
+                            break;
+                        case ETaskState.Finished:
+                            iconIndex = 3;
+                            break;
+                        case ETaskState.Aborted:
+                            iconIndex = 4;
+                            break;
+                        default:
+                            iconIndex = 0;
+                            break;
+                    }
                 }
                 else
                 {
-                    iconIndex = 1;
+                    switch (G.glb.lstTask.Find(o => o.TaskName == node.Text).TaskState)
+                    {
+                        case ETaskState.NotStartedYet:
+                            iconIndex = 5;
+                            break;
+                        case ETaskState.Ongoing:
+                            iconIndex = 6;
+                            break;
+                        case ETaskState.Finished:
+                            iconIndex = 7;
+                            break;
+                        case ETaskState.Aborted:
+                            iconIndex = 8;
+                            break;
+                        default:
+                            iconIndex = 0;
+                            break;
+                    }
                 }
             }
             else
@@ -210,7 +243,7 @@ namespace LifeGame
                 newNode.Name = nodeName;
                 node.Nodes.Add(newNode);
                 CalAndFind C = new CalAndFind();
-                C.RefreshFinishTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask);
+                C.RefreshFinishTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                 RefreshIcon(trvTask.Nodes[0]);
             }
         }
@@ -232,7 +265,7 @@ namespace LifeGame
                     if (CanDeleteFlag)
                     {
                         trvTask.Nodes.Remove(trvTask.SelectedNode);
-                        C.RefreshFinishTask(UpperTask, G.glb.lstSubTask, G.glb.lstTask);
+                        C.RefreshFinishTask(UpperTask, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         ReIndex(UpperTask);
                         RefreshIcon(trvTask.Nodes[0]);
                     }
@@ -320,7 +353,7 @@ namespace LifeGame
                     ReIndex(parentNodeName);
                     ReIndex(preNodeName);
                     CalAndFind C = new CalAndFind();
-                    C.RefreshFinishTask(preNodeName, G.glb.lstSubTask, G.glb.lstTask);
+                    C.RefreshFinishTask(preNodeName, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                     RefreshIcon(trvTask.Nodes[0]);
                 }
             }
@@ -350,7 +383,7 @@ namespace LifeGame
                     ReIndex(grandparentNodeName);
                     ReIndex(parentNodeName);
                     CalAndFind C = new CalAndFind();
-                    C.RefreshFinishTask(parentNodeName, G.glb.lstSubTask, G.glb.lstTask);
+                    C.RefreshFinishTask(parentNodeName, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                     RefreshIcon(trvTask.Nodes[0]);
                 }
             }
@@ -366,16 +399,18 @@ namespace LifeGame
                 }
                 else if (G.glb.lstTask.Exists(o => o.TaskName == trvTask.SelectedNode.Text))
                 {
-                    if (!G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).IsFinished)
+                    if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).TaskState != ETaskState.Finished)
                     {
                         CalAndFind C = new CalAndFind();
-                        C.FinishTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask);
+                        C.FinishTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
+                        C.RefreshFinishTask(trvTask.SelectedNode.Parent.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         RefreshIcon(trvTask.Nodes[0]);
                     }
                     else
                     {
                         CalAndFind C = new CalAndFind();
-                        C.UnfinishTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask);
+                        C.UnfinishTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
+                        C.RefreshFinishTask(trvTask.SelectedNode.Parent.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         RefreshIcon(trvTask.Nodes[0]);
                     }
                 }
@@ -393,16 +428,18 @@ namespace LifeGame
                 }
                 else if (G.glb.lstTask.Exists(o => o.TaskName == trvTask.SelectedNode.Text))
                 {
-                    if (!G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).IsAbort)
+                    if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).TaskState != ETaskState.Aborted)
                     {
                         CalAndFind C = new CalAndFind();
-                        C.AbortTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask);
+                        C.AbortTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
+                        C.RefreshFinishTask(trvTask.SelectedNode.Parent.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         RefreshIcon(trvTask.Nodes[0]);
                     }
                     else
                     {
                         CalAndFind C = new CalAndFind();
-                        C.ReAssignTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask);
+                        C.ReAssignTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
+                        C.RefreshFinishTask(trvTask.SelectedNode.Parent.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         RefreshIcon(trvTask.Nodes[0]);
                     }
                 }
@@ -486,30 +523,15 @@ namespace LifeGame
                             tsmBelongTo.Enabled = false;
                         }
                     }
-                    if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).IsAbort)
+                    if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).IsBottom)
                     {
-                        if (trvTask.SelectedNode.Parent != null)
-                        {
-                            if (trvTask.SelectedNode.Parent.Text != "(Root)")
-                            {
-                                if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Parent.Text).IsAbort)
-                                {
-                                    tsmAbort.Enabled = false;
-                                }
-                            }
-                        }
-                        tsmAbort.Text = "Reassign";
-                        tsmFinished.Enabled = false;
+                        tsmFinished.Enabled = true;
                     }
                     else
                     {
-                        tsmAbort.Text = "Mark as Aborted";
-                    }
-                    if (G.glb.lstSubTask.Exists(o=>o.Task==trvTask.SelectedNode.Text))
-                    {
                         tsmFinished.Enabled = false;
                     }
-                    if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).IsFinished)
+                    if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).TaskState == ETaskState.Finished)
                     {
                         tsmFinished.Text = "Mark as Unfinished";
                     }
@@ -517,7 +539,26 @@ namespace LifeGame
                     {
                         tsmFinished.Text = "Mark as Finished";
                     }
-
+                    if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).TaskState == ETaskState.Aborted)
+                    {
+                        tsmAbort.Text = "Reassign";
+                        tsmFinished.Enabled = false;
+                    }
+                    else
+                    {
+                        tsmAbort.Text = "Mark as Aborted";
+                    }
+                    if (G.glb.lstSubTask.Exists(o => o.SubTask == trvTask.SelectedNode.Text))
+                    {
+                        string upperTask = G.glb.lstSubTask.Find(o => o.SubTask == trvTask.SelectedNode.Text).Task;
+                        if (upperTask != "(Root)")
+                        {
+                            if (G.glb.lstTask.Find(o => o.TaskName == upperTask).TaskState == ETaskState.Aborted)
+                            {
+                                tsmAbort.Enabled = false;
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -185,8 +185,8 @@ namespace LifeGame
             foreach (string heir in heirTasks)
             {
                 if (G.glb.lstTask.Find(o => o.TaskName == heir).DeadLine < ret
-                    && G.glb.lstTask.Find(o => o.TaskName == heir).IsAbort == false
-                    && G.glb.lstTask.Find(o => o.TaskName == heir).IsFinished == false)
+                    && G.glb.lstTask.Find(o => o.TaskName == heir).TaskState != ETaskState.Finished
+                    && G.glb.lstTask.Find(o => o.TaskName == heir).TaskState != ETaskState.Aborted)
                 {
                     ret = G.glb.lstTask.Find(o => o.TaskName == heir).DeadLine;
                 }
@@ -282,27 +282,57 @@ namespace LifeGame
         /// <param name="TaskName"></param>
         /// <param name="rSubTasks"></param>
         /// <param name="tasks"></param>
-        public void RefreshFinishTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks)
+        public void RefreshFinishTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks, List<CLog> logs)
         {
             if (TaskName != "(Root)")
             {
                 string upperTask = rSubTasks.Find(o => o.SubTask == TaskName).Task;
-                bool IsTaskFinished = true;
                 List<RSubTask> children = rSubTasks.FindAll(o => o.Task == TaskName);
                 if (children.Count == 0 && tasks.Find(o => o.TaskName == TaskName).IsBottom != true)
                 {
-                    IsTaskFinished = false;
+                    tasks.Find(o => o.TaskName == TaskName).TaskState = ETaskState.NotStartedYet;
                 }
-                foreach (RSubTask task in children)
+                else
                 {
-                    if (tasks.Find(o => o.TaskName == task.SubTask).IsFinished == false)
+                    // Check if the task is not started, if it is not NotStartedYet, assume it is finished
+                    if (CalTimeSpentInTask(TaskName, rSubTasks, logs) == 0)
                     {
-                        IsTaskFinished = false;
-                        break;
+                        tasks.Find(o => o.TaskName == TaskName).TaskState = ETaskState.NotStartedYet;
+                    }
+                    else
+                    {
+                        tasks.Find(o => o.TaskName == TaskName).TaskState = ETaskState.Finished;
+                    }
+
+                    // Check if the task is ongoing, if a task has at least one ongoing sub-task, the task is Ongoing
+                    if (tasks.Find(o => o.TaskName == TaskName).TaskState == ETaskState.Finished)
+                    {
+                        foreach (RSubTask task in children)
+                        {
+                            if (tasks.Find(o => o.TaskName == task.SubTask).TaskState == ETaskState.Ongoing
+                                || tasks.Find(o => o.TaskName == task.SubTask).TaskState == ETaskState.NotStartedYet)
+                            {
+                                tasks.Find(o => o.TaskName == TaskName).TaskState = ETaskState.Ongoing;
+                                break;
+                            }
+                        }
+                        // Check if the task is aborted, a task is aborted iff all its sub-tasks are aborted
+                        bool IsAborted = true;
+                        foreach (RSubTask task in children)
+                        {
+                            if (tasks.Find(o => o.TaskName == task.SubTask).TaskState != ETaskState.Aborted)
+                            {
+                                IsAborted = false;
+                                break;
+                            }
+                        }
+                        if (IsAborted)
+                        {
+                            tasks.Find(o => o.TaskName == TaskName).TaskState = ETaskState.Aborted;
+                        }
                     }
                 }
-                tasks.Find(o => o.TaskName == TaskName).IsFinished = IsTaskFinished;
-                RefreshFinishTask(upperTask, rSubTasks, tasks);
+                RefreshFinishTask(upperTask, rSubTasks, tasks, logs);
             }
         }
 
@@ -312,27 +342,10 @@ namespace LifeGame
         /// <param name="TaskName"></param>
         /// <param name="rSubTasks"></param>
         /// <param name="tasks"></param>
-        public void FinishTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks)
+        public void FinishTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks, List<CLog> logs)
         {
             string upperTask = rSubTasks.Find(o => o.SubTask == TaskName).Task;
-            tasks.Find(o => o.TaskName == TaskName).IsFinished = true;
-            if (upperTask != "(Root)")
-            {
-                bool IsUpperTaskFinished = true;
-                List<RSubTask> sameLevel = rSubTasks.FindAll(o => o.Task == upperTask);
-                foreach (RSubTask task in sameLevel)
-                {
-                    if (tasks.Find(o => o.TaskName == task.SubTask).IsFinished == false)
-                    {
-                        IsUpperTaskFinished = false;
-                        break;
-                    }
-                }
-                if (IsUpperTaskFinished)
-                {
-                    FinishTask(upperTask, rSubTasks, tasks);
-                }
-            }
+            tasks.Find(o => o.TaskName == TaskName).TaskState = ETaskState.Finished;
         }
 
         /// <summary>
@@ -341,13 +354,20 @@ namespace LifeGame
         /// <param name="TaskName"></param>
         /// <param name="rSubTasks"></param>
         /// <param name="tasks"></param>
-        public void UnfinishTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks)
+        public void UnfinishTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks, List<CLog> logs)
         {
             string upperTask = rSubTasks.Find(o => o.SubTask == TaskName).Task;
-            tasks.Find(o => o.TaskName == TaskName).IsFinished = false;
+            if (CalTimeSpentInTask(TaskName, rSubTasks, logs) == 0)
+            {
+                tasks.Find(o => o.TaskName == TaskName).TaskState = ETaskState.NotStartedYet;
+            }
+            else
+            {
+                tasks.Find(o => o.TaskName == TaskName).TaskState = ETaskState.Ongoing;
+            }
             if (upperTask != "(Root)")
             {
-                UnfinishTask(upperTask, rSubTasks, tasks);
+                UnfinishTask(upperTask, rSubTasks, tasks, logs);
             }
         }
 
@@ -357,22 +377,16 @@ namespace LifeGame
         /// <param name="TaskName"></param>
         /// <param name="rSubTasks"></param>
         /// <param name="tasks"></param>
-        public void AbortTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks)
+        public void AbortTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks, List<CLog> logs)
         {
-            if (tasks.Exists(o => o.TaskName == TaskName))
-            {
-                tasks.Find(o => o.TaskName == TaskName).IsAbort = true;
-            }
+            tasks.Find(o => o.TaskName == TaskName).TaskState = ETaskState.Aborted;
             if (rSubTasks.Exists(o => o.Task == TaskName))
             {
                 List<RSubTask> subOfThisTask = rSubTasks.FindAll(o => o.Task == TaskName).ToList();
                 foreach (RSubTask sub in subOfThisTask)
                 {
-                    if (tasks.Exists(o => o.TaskName == sub.SubTask))
-                    {
-                        AbortTask(sub.SubTask, rSubTasks, tasks);
-                    }
-                }
+                    AbortTask(sub.SubTask, rSubTasks, tasks, logs);
+                }                
             }
         }
 
@@ -382,21 +396,22 @@ namespace LifeGame
         /// <param name="TaskName"></param>
         /// <param name="rSubTasks"></param>
         /// <param name="tasks"></param>
-        public void ReAssignTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks)
+        public void ReAssignTask(string TaskName, List<RSubTask> rSubTasks, List<CTask> tasks, List<CLog> logs)
         {
-            if (tasks.Exists(o => o.TaskName == TaskName))
+            if (CalTimeSpentInTask(TaskName, rSubTasks, logs) == 0)
             {
-                tasks.Find(o => o.TaskName == TaskName).IsAbort = false;
+                tasks.Find(o => o.TaskName == TaskName).TaskState = ETaskState.NotStartedYet;
+            }
+            else
+            {
+                tasks.Find(o => o.TaskName == TaskName).TaskState = ETaskState.Ongoing;
             }
             if (rSubTasks.Exists(o => o.Task == TaskName))
             {
                 List<RSubTask> subOfThisTask = rSubTasks.FindAll(o => o.Task == TaskName).ToList();
                 foreach (RSubTask sub in subOfThisTask)
                 {
-                    if (tasks.Exists(o => o.TaskName == sub.SubTask))
-                    {
-                        ReAssignTask(sub.SubTask, rSubTasks, tasks);
-                    }
+                    ReAssignTask(sub.SubTask, rSubTasks, tasks, logs);
                 }
             }
         }

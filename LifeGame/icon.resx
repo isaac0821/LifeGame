@@ -119,7 +119,10 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="iconAbort" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resource\iconAbort.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Resources\iconAbort.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconAbortLongTerm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconAbortLongTerm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconEvent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\iconEvent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -128,7 +131,10 @@
     <value>Resources\iconFailedEvent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconFinished" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resource\iconFinished.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Resources\iconFinished.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconFinishedLongTerm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconFinishedLongTerm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconFitness" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\iconFitness.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -137,10 +143,10 @@
     <value>Resources\iconHealth.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconIn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resource\iconIn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Resources\iconIn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconInAndOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resource\iconInAndOut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Resources\iconInAndOut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconLiterature" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\iconLiterature.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,8 +163,14 @@
   <data name="iconNote" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\iconNote.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="iconOngoing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconOngoing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconOngoingLongTerm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconOngoingLongTerm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="iconOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resource\iconOut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Resources\iconOut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconSucceedEvent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\iconSucceedEvent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,13 +184,16 @@
   <data name="iconTransactionDueWithin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\iconTransactionDueWithin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconUnFinished" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resource\iconUnFinished.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="iconUnStartedYet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconUnStartedYet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconUnfinishedNote" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\iconNote1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="iconUnStartedYetLongTerm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconUnStartedYetLongTerm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconWorkingNote" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\iconWorkingNote.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconWW" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resource\iconWW.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Resources\iconWW.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -133,9 +133,9 @@
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADY
-        BwAAAk1TRnQBSQFMAgEBBAEAAeABAAHgAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
-        AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABK
+        CQAAAk1TRnQBSQFMAgEBCQEAAegBAAHoAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        AwABQAMAATADAAEBAQABCAYAAQwYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
         AWYDAAGZAwABzAIAATMDAAIzAgABMwFmAgABMwGZAgABMwHMAgABMwH/AgABZgMAAWYBMwIAAmYCAAFm
@@ -162,14 +162,38 @@
         AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
         AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
         AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
-        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD//8A/wD/AP8ABQAF/wdv
-        N/8KbwT/DkcC/w5VAv8O0wP/DG8D/w5HAv8OVQL/DtMD/w1vAv8ORwL/DlUC/w7TAv8PbwH/DkcC/w5V
-        Av8O0wL/D28B/w5HAv8OVQL/DtMB/xBvAf8ORwL/DlUC/w7TAf8QbwH/DkcC/w5VAv8O0wH/EG8B/w5H
-        Av8OVQL/DtMC/w9vAf8ORwL/DlUC/w7TAv8PbwH/DkcC/w5VAv8O0wL/Dm8C/w5HAv8OVQL/DtMD/w1v
-        Av8ORwL/DlUC/w7TBP8LbwP/DkcC/w5VAv8O0wX/CG8F/w5HAv8OVQL/DtMI/wNvNv8BQgFNAT4HAAE+
-        AwABKAMAAUADAAEgAwABAQEAAQEGAAEBFgAD//8AAgAL
+        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/wEAEP8wAAH/CtMEWAH/
+        MAAB/wvTA1gB/zAAAf8M0wJYAf8wAAH/DdMBWAH/MAAB/w7TAf8wAAH/DtMB/zAAAf8O0wH/MAAB/w7T
+        Af8wAAH/DtMB/zAAAf8O0wH/MAAB/w7TAf8wAAH/DtMB/zAAAf8O0wH/MAAB/w7TAf8wABD/MABB/w7T
+        Av8KRwRYAv8KOARYAv8KVQRYAv8O0wL/C0cDWAL/CzgDWAL/C1UDWAL/DtMC/wxHAlgC/ww4AlgC/wxV
+        AlgC/w7TAv8NRwFYAv8NOAFYAv8NVQFYAv8O0wL/DkcC/w44Av8OVQL/DtMC/w5HAv8OOAL/DlUC/w7T
+        Av8ORwL/DjgC/w5VAv8O0wL/DkcC/w44Av8OVQL/DtMC/w5HAv8OOAL/DlUC/w7TAv8ORwL/DjgC/w5V
+        Av8O0wL/DkcC/w44Av8OVQL/DtMC/w5HAv8OOAL/DlUC/w7TAv8ORwL/DjgC/w5VAv8O0wL/DkcC/w44
+        Av8OVUb/B283/wpvBP8ORwL/DjgC/w5VA/8MbwP/DkcC/w44Av8OVQP/DW8C/w5HAv8OOAL/DlUC/w9v
+        Af8ORwL/DjgC/w5VAv8PbwH/DkcC/w44Av8OVQH/EG8B/w5HAv8OOAL/DlUB/xBvAf8ORwL/DjgC/w5V
+        Af8QbwH/DkcC/w44Av8OVQL/D28B/w5HAv8OOAL/DlUC/w9vAf8ORwL/DjgC/w5VAv8ObwL/DkcC/w44
+        Av8OVQP/DW8C/w5HAv8OOAL/DlUE/wtvA/8ORwL/DjgC/w5VBf8IbwX/DkcC/w44Av8OVQj/A282/wFC
+        AU0BPgcAAT4DAAEoAwABQAMAATADAAEBAQABAQUAAYABARYAA///AIIACw==
 </value>
   </data>
+  <metadata name="colYear.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="colMonth.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="colDay.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="colTask.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="colLog.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="colDuration.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="colYear.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

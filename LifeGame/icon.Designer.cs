@@ -73,6 +73,16 @@ namespace LifeGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconAbortLongTerm {
+            get {
+                object obj = ResourceManager.GetObject("iconAbortLongTerm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconEvent {
             get {
                 object obj = ResourceManager.GetObject("iconEvent", resourceCulture);
@@ -96,6 +106,16 @@ namespace LifeGame {
         internal static System.Drawing.Bitmap iconFinished {
             get {
                 object obj = ResourceManager.GetObject("iconFinished", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconFinishedLongTerm {
+            get {
+                object obj = ResourceManager.GetObject("iconFinishedLongTerm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,6 +213,26 @@ namespace LifeGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconOngoing {
+            get {
+                object obj = ResourceManager.GetObject("iconOngoing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconOngoingLongTerm {
+            get {
+                object obj = ResourceManager.GetObject("iconOngoingLongTerm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconOut {
             get {
                 object obj = ResourceManager.GetObject("iconOut", resourceCulture);
@@ -243,9 +283,9 @@ namespace LifeGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap iconUnFinished {
+        internal static System.Drawing.Bitmap iconUnStartedYet {
             get {
-                object obj = ResourceManager.GetObject("iconUnFinished", resourceCulture);
+                object obj = ResourceManager.GetObject("iconUnStartedYet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +293,19 @@ namespace LifeGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap iconUnfinishedNote {
+        internal static System.Drawing.Bitmap iconUnStartedYetLongTerm {
             get {
-                object obj = ResourceManager.GetObject("iconUnfinishedNote", resourceCulture);
+                object obj = ResourceManager.GetObject("iconUnStartedYetLongTerm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconWorkingNote {
+            get {
+                object obj = ResourceManager.GetObject("iconWorkingNote", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

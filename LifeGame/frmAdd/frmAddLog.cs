@@ -86,7 +86,7 @@ namespace LifeGame
         private void frmAddLog_Load(object sender, EventArgs e)
         {
             dtpDate.Value = curDate;
-            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.IsBottom && !o.IsFinished && !o.IsAbort).ToList();
+            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.IsBottom && o.TaskState != ETaskState.Finished && o.TaskState != ETaskState.Aborted).ToList();
             List<string> choices = new List<string>();
             choices.Add("");
             foreach (CTask task in taskChoices)

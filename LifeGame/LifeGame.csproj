@@ -336,6 +336,7 @@
     <EmbeddedResource Include="icon.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>icon.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -361,25 +362,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resource\iconWW.png" />
+    <None Include="Resources\iconWW.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resource\iconAbort.png" />
+    <None Include="Resources\iconAbort.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resource\iconFinished.png" />
+    <None Include="Resources\iconFinished.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resource\iconUnfinished.png" />
+    <None Include="Resources\iconIn.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resource\iconIn.png" />
+    <None Include="Resources\iconInAndOut.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resource\iconInAndOut.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resource\iconOut.png" />
+    <None Include="Resources\iconOut.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\iconMoney.png" />
@@ -419,6 +417,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\iconUnStartedYetLongTerm.png" />
+    <None Include="Resources\iconOngoingLongTerm.png" />
+    <None Include="Resources\iconFinishedLongTerm.png" />
+    <None Include="Resources\iconAbortLongTerm.png" />
+    <None Include="Resources\iconOngoing.png" />
+    <None Include="Resources\iconWorkingNote.png" />
+    <None Include="Resources\iconUnStartedYet.png" />
     <None Include="Resources\iconTransactionDueWithin.png" />
     <None Include="Resources\iconTransactionDueOut.png" />
     <None Include="Resources\iconTransactionDueIn.png" />

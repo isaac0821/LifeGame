@@ -213,10 +213,18 @@ namespace LifeGame
     {
         public string TaskName;
         public DateTime DeadLine;
-        public bool IsFinished;
         public bool IsBottom;
-        public bool IsAbort;
         public bool IsInfinite;
+        public ETaskState TaskState;
+    }
+
+    [Serializable]
+    public enum ETaskState: int
+    {
+        NotStartedYet,
+        Ongoing,
+        Finished,
+        Aborted
     }
 
     /// <summary>
@@ -337,27 +345,4 @@ namespace LifeGame
         public DateTime GoToBedTime;
         public bool IsGoToBedBeforeMidNight;
     }
-
-    /// <summary>
-    /// 知识点
-    /// </summary>
-    [Serializable]
-    public class CKnowledge
-    {
-        public string title;
-        public string LateXFilePath;
-        public EKnowledgeType KnowledgeType;
-    }
-
-    public enum EKnowledgeType : int
-    {
-        Definition,
-        Theorem,
-        Lamma,
-        Proof,
-        Example,
-        Algorithm,
-        Other
-    }
-
 }

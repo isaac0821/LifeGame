@@ -101,8 +101,6 @@
             // stsTask
             // 
             this.stsTask.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.stsTask.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
             this.stsTask.Location = new System.Drawing.Point(0, 625);
             this.stsTask.Name = "stsTask";
             this.stsTask.Size = new System.Drawing.Size(1233, 22);
@@ -118,8 +116,6 @@
             // mnsTask
             // 
             this.mnsTask.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.mnsTask.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.filesFToolStripMenuItem});
             this.mnsTask.Location = new System.Drawing.Point(0, 0);
             this.mnsTask.Name = "mnsTask";
             this.mnsTask.Size = new System.Drawing.Size(1233, 24);
@@ -299,9 +295,14 @@
             this.iglTask.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iglTask.ImageStream")));
             this.iglTask.TransparentColor = System.Drawing.Color.Transparent;
             this.iglTask.Images.SetKeyName(0, "iconWW.png");
-            this.iglTask.Images.SetKeyName(1, "iconUnFinished.png");
-            this.iglTask.Images.SetKeyName(2, "iconFinished.png");
-            this.iglTask.Images.SetKeyName(3, "iconAbort.png");
+            this.iglTask.Images.SetKeyName(1, "iconUnStartedYet.png");
+            this.iglTask.Images.SetKeyName(2, "iconOngoing.png");
+            this.iglTask.Images.SetKeyName(3, "iconFinished.png");
+            this.iglTask.Images.SetKeyName(4, "iconAbort.png");
+            this.iglTask.Images.SetKeyName(5, "iconUnStartedYetLongTerm.png");
+            this.iglTask.Images.SetKeyName(6, "iconOngoingLongTerm.png");
+            this.iglTask.Images.SetKeyName(7, "iconFinishedLongTerm.png");
+            this.iglTask.Images.SetKeyName(8, "iconAbortLongTerm.png");
             // 
             // tableLayoutPanel7
             // 
