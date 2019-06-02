@@ -25,6 +25,11 @@ namespace LifeGame
         private void btnSave_Click(object sender, EventArgs e)
         {
             bool CanSaveFlag = true;
+            if (dtpPeriodEnd.Value < dtpPeriodStart.Value)
+            {
+                MessageBox.Show("End date can not earlier than start date");
+                CanSaveFlag = false;
+            }
             if (txtSummary.Text == "")
             {
                 MessageBox.Show("Need a summary name");
@@ -38,20 +43,76 @@ namespace LifeGame
 
             if (CanSaveFlag)
             {
-                CTransaction newBudget = new CTransaction();
-                newBudget.TagTime = curDate;
-                newBudget.Summary = txtSummary.Text;
-                newBudget.CreditAccount = cbxCredit.Text;
-                newBudget.CreditAmount = Convert.ToDouble(txtCreditAmount.Text);
-                newBudget.CreditCurrency = lblCreditCurrency.Text;
-                newBudget.DebitAccount = cbxDebit.Text;
-                newBudget.DebitAmount = Convert.ToDouble(txtDebitAmount.Text);
-                newBudget.DebitCurrency = lblDebitCurrency.Text;
-                CalAndFind C = new CalAndFind();
-                newBudget.IconType = C.MoneyInOrOut(
-                    G.glb.lstAccount.Find(o => o.AccountName == cbxDebit.Text).AccountType,
-                    G.glb.lstAccount.Find(o => o.AccountName == cbxCredit.Text).AccountType);
-                G.glb.lstBudget.Add(newBudget);
+                DateTime startDate = dtpPeriodStart.Value.Date;
+                DateTime endDate = dtpPeriodEnd.Value.Date;
+                for (DateTime day = startDate; day <= endDate; day = day.AddDays(1))
+                {
+                    bool IsSaveBudget = false;
+                    switch (day.DayOfWeek)
+                    {
+                        case DayOfWeek.Sunday:
+                            if (chkSu.Checked)
+                            {
+                                IsSaveBudget = true;
+                            }
+                            break;
+                        case DayOfWeek.Monday:
+                            if (chkMo.Checked)
+                            {
+                                IsSaveBudget = true;
+                            }
+                            break;
+                        case DayOfWeek.Tuesday:
+                            if (chkTu.Checked)
+                            {
+                                IsSaveBudget = true;
+                            }
+                            break;
+                        case DayOfWeek.Wednesday:
+                            if (chkWe.Checked)
+                            {
+                                IsSaveBudget = true;
+                            }
+                            break;
+                        case DayOfWeek.Thursday:
+                            if (chkTh.Checked)
+                            {
+                                IsSaveBudget = true;
+                            }
+                            break;
+                        case DayOfWeek.Friday:
+                            if (chkFr.Checked)
+                            {
+                                IsSaveBudget = true;
+                            }
+                            break;
+                        case DayOfWeek.Saturday:
+                            if (chkSa.Checked)
+                            {
+                                IsSaveBudget = true;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    if (IsSaveBudget)
+                    {
+                        CTransaction newBudget = new CTransaction();
+                        newBudget.TagTime = day;
+                        newBudget.Summary = txtSummary.Text;
+                        newBudget.CreditAccount = cbxCredit.Text;
+                        newBudget.CreditAmount = Convert.ToDouble(txtCreditAmount.Text);
+                        newBudget.CreditCurrency = lblCreditCurrency.Text;
+                        newBudget.DebitAccount = cbxDebit.Text;
+                        newBudget.DebitAmount = Convert.ToDouble(txtDebitAmount.Text);
+                        newBudget.DebitCurrency = lblDebitCurrency.Text;
+                        CalAndFind C = new CalAndFind();
+                        newBudget.IconType = C.MoneyInOrOut(
+                            G.glb.lstAccount.Find(o => o.AccountName == cbxDebit.Text).AccountType,
+                            G.glb.lstAccount.Find(o => o.AccountName == cbxCredit.Text).AccountType);
+                        G.glb.lstBudget.Add(newBudget);
+                    }
+                }
                 DrawLog();
                 Dispose();
             }

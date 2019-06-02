@@ -38,11 +38,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtYear = new System.Windows.Forms.TextBox();
             this.txtJournalConference = new System.Windows.Forms.TextBox();
             this.cbxImportance = new System.Windows.Forms.ComboBox();
-            this.cbxReadingStatus = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.txtInOneSentence = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -157,23 +155,19 @@
             // 
             // tableLayoutPanel6
             // 
-            this.tableLayoutPanel6.ColumnCount = 8;
+            this.tableLayoutPanel6.ColumnCount = 6;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 174F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 145F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 522F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 92F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 396F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
             this.tableLayoutPanel6.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.label4, 2, 0);
             this.tableLayoutPanel6.Controls.Add(this.label5, 4, 0);
-            this.tableLayoutPanel6.Controls.Add(this.label6, 6, 0);
             this.tableLayoutPanel6.Controls.Add(this.txtYear, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.txtJournalConference, 3, 0);
             this.tableLayoutPanel6.Controls.Add(this.cbxImportance, 5, 0);
-            this.tableLayoutPanel6.Controls.Add(this.cbxReadingStatus, 7, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 26);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
@@ -209,23 +203,12 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(369, 0);
+            this.label5.Location = new System.Drawing.Point(717, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 26);
+            this.label5.Size = new System.Drawing.Size(86, 26);
             this.label5.TabIndex = 2;
             this.label5.Text = "Importance";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(582, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 26);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Reading Status";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtYear
             // 
@@ -240,7 +223,7 @@
             this.txtJournalConference.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtJournalConference.Location = new System.Drawing.Point(195, 3);
             this.txtJournalConference.Name = "txtJournalConference";
-            this.txtJournalConference.Size = new System.Drawing.Size(168, 20);
+            this.txtJournalConference.Size = new System.Drawing.Size(516, 20);
             this.txtJournalConference.TabIndex = 5;
             // 
             // cbxImportance
@@ -253,27 +236,10 @@
             "Important",
             "Medium",
             "Unimportant"});
-            this.cbxImportance.Location = new System.Drawing.Point(437, 3);
+            this.cbxImportance.Location = new System.Drawing.Point(809, 3);
             this.cbxImportance.Name = "cbxImportance";
-            this.cbxImportance.Size = new System.Drawing.Size(139, 21);
+            this.cbxImportance.Size = new System.Drawing.Size(109, 21);
             this.cbxImportance.TabIndex = 6;
-            // 
-            // cbxReadingStatus
-            // 
-            this.cbxReadingStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbxReadingStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxReadingStatus.FormattingEnabled = true;
-            this.cbxReadingStatus.Items.AddRange(new object[] {
-            "Model Recur",
-            "Formula Derivation",
-            "Understand Model",
-            "Get Idea and Structure",
-            "Abstract and Conclusion",
-            "Not Yet Started"});
-            this.cbxReadingStatus.Location = new System.Drawing.Point(674, 3);
-            this.cbxReadingStatus.Name = "cbxReadingStatus";
-            this.cbxReadingStatus.Size = new System.Drawing.Size(390, 21);
-            this.cbxReadingStatus.TabIndex = 7;
             // 
             // tableLayoutPanel8
             // 
@@ -706,11 +672,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtYear;
         private System.Windows.Forms.TextBox txtJournalConference;
         private System.Windows.Forms.ComboBox cbxImportance;
-        private System.Windows.Forms.ComboBox cbxReadingStatus;
         private System.Windows.Forms.ListBox lsbTag;
         private System.Windows.Forms.ListBox lsbAuthor;
         private System.Windows.Forms.ListBox lsbInstitution;

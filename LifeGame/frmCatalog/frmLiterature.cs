@@ -12,6 +12,12 @@ namespace LifeGame
 {
     public partial class frmLiterature : Form
     {
+        List<CItem> Tags = new List<CItem>();
+        List<CItem> Authors = new List<CItem>();
+        List<CItem> Years = new List<CItem>();
+        List<CItem> Institutions = new List<CItem>();
+        List<CItem> JournalConferences = new List<CItem>();
+
         public frmLiterature()
         {
             InitializeComponent();
@@ -36,12 +42,11 @@ namespace LifeGame
 
         private void LoadTab()
         {
-            List<CItem> Tags = new List<CItem>();
-            List<CItem> Authors = new List<CItem>();
-            List<CItem> Years = new List<CItem>();
-            List<CItem> Institutions = new List<CItem>();
-            List<CItem> JournalConferences = new List<CItem>();
-
+            Tags = new List<CItem>();
+            Authors = new List<CItem>();
+            Years = new List<CItem>();
+            Institutions = new List<CItem>();
+            JournalConferences = new List<CItem>();
             foreach (CLiterature literature in G.glb.lstLiterature)
             {
                 List<RLiteratureTag> lstTag = G.glb.lstLiteratureTag.FindAll(o => o.Title == literature.Title).ToList();
@@ -58,6 +63,7 @@ namespace LifeGame
                         Tags.Add(new CItem(tag.Tag, 1));
                     }
                 }
+                Tags = Tags.OrderBy(o => o.ItemName).ToList();
                 Tags = Tags.OrderByDescending(o => o.ItemCount).ToList();
                 foreach (RLiteratureAuthor author in lstAuthor)
                 {
@@ -70,6 +76,7 @@ namespace LifeGame
                         Authors.Add(new CItem(author.Author, 1));
                     }
                 }
+                Authors = Authors.OrderBy(o => o.ItemName).ToList();
                 Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
                 foreach (RLiteratureInstitution insitution in lstInstitution)
                 {
@@ -82,6 +89,7 @@ namespace LifeGame
                         Institutions.Add(new CItem(insitution.Institution, 1));
                     }
                 }
+                Institutions = Institutions.OrderBy(o => o.ItemName).ToList();
                 Institutions = Institutions.OrderByDescending(o => o.ItemCount).ToList();
                 if (Years.Exists(o => o.ItemName == literature.PublishYear.ToString()))
                 {
@@ -100,6 +108,7 @@ namespace LifeGame
                 {
                     JournalConferences.Add(new CItem(literature.JournalOrConferenceName, 1));
                 }
+                JournalConferences = JournalConferences.OrderBy(o => o.ItemName).ToList();
                 JournalConferences = JournalConferences.OrderByDescending(o => o.ItemCount).ToList();
             }
 
@@ -239,15 +248,15 @@ namespace LifeGame
                 List<string> ShownTitle = new List<string>();
                 foreach (CLiterature literature in G.glb.lstLiterature)
                 {
-                    if (chosenYear.Exists(o=>o==literature.PublishYear))
+                    if (chosenYear.Exists(o => o == literature.PublishYear))
                     {
                         ShownTitle.Add(literature.Title);
                     }
-                    if (chosenJournalConference.Exists(o=>o==literature.JournalOrConferenceName))
+                    if (chosenJournalConference.Exists(o => o == literature.JournalOrConferenceName))
                     {
                         ShownTitle.Add(literature.Title);
                     }
-                    if (chosenTag.Exists(o=>G.glb.lstLiteratureTag.Exists(p=>p.Title==literature.Title&&p.Tag ==o)))
+                    if (chosenTag.Exists(o => G.glb.lstLiteratureTag.Exists(p => p.Title == literature.Title && p.Tag == o)))
                     {
                         ShownTitle.Add(literature.Title);
                     }
@@ -310,6 +319,96 @@ namespace LifeGame
         {
             AndOrMode = false;
             btnApply.Enabled = true;
+        }
+
+        private void btnTagAll_Click(object sender, EventArgs e)
+        {
+            clbTag.Items.Clear();
+            for (int i = 0; i < Tags.Count; i++)
+            {
+                clbTag.Items.Add(Tags[i].ItemName + "[" + Tags[i].ItemCount + "]", true);
+            }
+        }
+
+        private void btnTagClear_Click(object sender, EventArgs e)
+        {
+            clbTag.Items.Clear();
+            for (int i = 0; i < Tags.Count; i++)
+            {
+                clbTag.Items.Add(Tags[i].ItemName + "[" + Tags[i].ItemCount + "]", false);
+            }
+        }
+
+        private void btnAuthorAll_Click(object sender, EventArgs e)
+        {
+            clbAuthor.Items.Clear();
+            for (int i = 0; i < Authors.Count; i++)
+            {
+                clbAuthor.Items.Add(Authors[i].ItemName + "[" + Authors[i].ItemCount + "]", true);
+            }
+        }
+
+        private void btnAuthorClear_Click(object sender, EventArgs e)
+        {
+            clbAuthor.Items.Clear();
+            for (int i = 0; i < Authors.Count; i++)
+            {
+                clbAuthor.Items.Add(Authors[i].ItemName + "[" + Authors[i].ItemCount + "]", false);
+            }
+        }
+
+        private void btnYearAll_Click(object sender, EventArgs e)
+        {
+            clbYear.Items.Clear();
+            for (int i = 0; i < Years.Count; i++)
+            {
+                clbYear.Items.Add(Years[i].ItemName + "[" + Years[i].ItemCount + "]", true);
+            }
+        }
+
+        private void btnYearClear_Click(object sender, EventArgs e)
+        {
+            clbYear.Items.Clear();
+            for (int i = 0; i < Years.Count; i++)
+            {
+                clbYear.Items.Add(Years[i].ItemName + "[" + Years[i].ItemCount + "]", false);
+            }
+        }
+
+        private void btnInsAll_Click(object sender, EventArgs e)
+        {
+            clbInstitution.Items.Clear();
+            for (int i = 0; i < Institutions.Count; i++)
+            {
+                clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]", true);
+            }
+        }
+
+        private void btnInsClear_Click(object sender, EventArgs e)
+        {
+            clbInstitution.Items.Clear();
+            for (int i = 0; i < Institutions.Count; i++)
+            {
+                clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]", false);
+            }
+        }
+
+        private void btnJourAll_Click(object sender, EventArgs e)
+        {
+            clbJournalConference.Items.Clear();
+            for (int i = 0; i < JournalConferences.Count; i++)
+            {
+                clbJournalConference.Items.Add(JournalConferences[i].ItemName + "[" + JournalConferences[i].ItemCount + "]", true);
+            }
+        }
+
+        private void btnJourClear_Click(object sender, EventArgs e)
+        {
+            clbJournalConference.Items.Clear();
+            for (int i = 0; i < JournalConferences.Count; i++)
+            {
+                clbJournalConference.Items.Add(JournalConferences[i].ItemName + "[" + JournalConferences[i].ItemCount + "]", false);
+            }
         }
     }
 }

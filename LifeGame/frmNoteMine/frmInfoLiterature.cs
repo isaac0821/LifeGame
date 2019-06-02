@@ -55,7 +55,6 @@ namespace LifeGame
             txtYear.Text = "";
             txtJournalConference.Text = "";
             cbxImportance.SelectedIndex = 3;
-            cbxReadingStatus.SelectedIndex = 5;
             txtInOneSentence.Text = "";
             txtBibRef.Text = "";
             lsbAuthor.Items.Clear();
@@ -76,7 +75,6 @@ namespace LifeGame
             txtInOneSentence.Text = literature.InOneSentence;
             txtBibRef.Text = literature.BibRef;
             cbxImportance.SelectedIndex = (int)literature.Importance;
-            cbxReadingStatus.SelectedIndex = (int)literature.ReadingStatus;
             lsbAuthor.Items.Clear();
             foreach (RLiteratureAuthor author in lstLiteratureAuthor)
             {
@@ -137,11 +135,6 @@ namespace LifeGame
                 MessageBox.Show("Choose an importance level");
                 CanSaveFlag = false;
             }
-            if (cbxReadingStatus.Text == "")
-            {
-                MessageBox.Show("Choose a reading status");
-                CanSaveFlag = false;
-            }
             if (lsbAuthor.Items.Count == 0)
             {
                 MessageBox.Show("Add author");
@@ -181,29 +174,6 @@ namespace LifeGame
                             break;
                         case 3:
                             newLiterature.Importance = ELiteratureImportance.Unimportant;
-                            break;
-                        default:
-                            break;
-                    }
-                    switch (cbxReadingStatus.SelectedIndex)
-                    {
-                        case 0:
-                            newLiterature.ReadingStatus = ELiteratureReadingStatus.ModelRecur;
-                            break;
-                        case 1:
-                            newLiterature.ReadingStatus = ELiteratureReadingStatus.FormulaDerivation;
-                            break;
-                        case 2:
-                            newLiterature.ReadingStatus = ELiteratureReadingStatus.UnderstandModel;
-                            break;
-                        case 3:
-                            newLiterature.ReadingStatus = ELiteratureReadingStatus.GetIdeaAndStructure;
-                            break;
-                        case 4:
-                            newLiterature.ReadingStatus = ELiteratureReadingStatus.AbstractAndConclusion;
-                            break;
-                        case 5:
-                            newLiterature.ReadingStatus = ELiteratureReadingStatus.NotYetStarted;
                             break;
                         default:
                             break;
@@ -258,29 +228,6 @@ namespace LifeGame
                         default:
                             break;
                     }
-                    switch (cbxReadingStatus.SelectedIndex)
-                    {
-                        case 0:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).ReadingStatus = ELiteratureReadingStatus.ModelRecur;
-                            break;
-                        case 1:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).ReadingStatus = ELiteratureReadingStatus.FormulaDerivation;
-                            break;
-                        case 2:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).ReadingStatus = ELiteratureReadingStatus.UnderstandModel;
-                            break;
-                        case 3:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).ReadingStatus = ELiteratureReadingStatus.GetIdeaAndStructure;
-                            break;
-                        case 4:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).ReadingStatus = ELiteratureReadingStatus.AbstractAndConclusion;
-                            break;
-                        case 5:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).ReadingStatus = ELiteratureReadingStatus.NotYetStarted;
-                            break;
-                        default:
-                            break;
-                    }
                     foreach (RLiteratureAuthor author in lstLiteratureAuthor)
                     {
                         author.Title = txtTitle.Text;
@@ -322,7 +269,6 @@ namespace LifeGame
         {
             SelectedAttri = (sender as ContextMenuStrip).SourceControl.Name;
         }
-
         private void tsmAttriAdd_Click(object sender, EventArgs e)
         {
             switch (SelectedAttri)

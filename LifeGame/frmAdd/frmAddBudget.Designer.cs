@@ -51,11 +51,25 @@
             this.label13 = new System.Windows.Forms.Label();
             this.lblDebitCurrency = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.dtpPeriodStart = new System.Windows.Forms.DateTimePicker();
+            this.dtpPeriodEnd = new System.Windows.Forms.DateTimePicker();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.chkMo = new System.Windows.Forms.CheckBox();
+            this.chkTu = new System.Windows.Forms.CheckBox();
+            this.chkWe = new System.Windows.Forms.CheckBox();
+            this.chkTh = new System.Windows.Forms.CheckBox();
+            this.chkFr = new System.Windows.Forms.CheckBox();
+            this.chkSa = new System.Windows.Forms.CheckBox();
+            this.chkSu = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel11
@@ -74,6 +88,9 @@
             this.tableLayoutPanel11.Controls.Add(this.tableLayoutPanel1, 1, 5);
             this.tableLayoutPanel11.Controls.Add(this.tableLayoutPanel3, 1, 7);
             this.tableLayoutPanel11.Controls.Add(this.label1, 0, 5);
+            this.tableLayoutPanel11.Controls.Add(this.label7, 0, 1);
+            this.tableLayoutPanel11.Controls.Add(this.tableLayoutPanel4, 1, 1);
+            this.tableLayoutPanel11.Controls.Add(this.tableLayoutPanel5, 1, 2);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel11.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
@@ -343,6 +360,172 @@
             this.label1.Text = "↓";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Location = new System.Drawing.Point(3, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(57, 26);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "By Week";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 5;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel4.Controls.Add(this.dtpPeriodStart, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.dtpPeriodEnd, 3, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(66, 29);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(341, 20);
+            this.tableLayoutPanel4.TabIndex = 23;
+            // 
+            // dtpPeriodStart
+            // 
+            this.dtpPeriodStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtpPeriodStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpPeriodStart.Location = new System.Drawing.Point(44, 0);
+            this.dtpPeriodStart.Margin = new System.Windows.Forms.Padding(0);
+            this.dtpPeriodStart.Name = "dtpPeriodStart";
+            this.dtpPeriodStart.Size = new System.Drawing.Size(101, 20);
+            this.dtpPeriodStart.TabIndex = 0;
+            // 
+            // dtpPeriodEnd
+            // 
+            this.dtpPeriodEnd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtpPeriodEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpPeriodEnd.Location = new System.Drawing.Point(165, 0);
+            this.dtpPeriodEnd.Margin = new System.Windows.Forms.Padding(0);
+            this.dtpPeriodEnd.Name = "dtpPeriodEnd";
+            this.dtpPeriodEnd.Size = new System.Drawing.Size(101, 20);
+            this.dtpPeriodEnd.TabIndex = 1;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 7;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel5.Controls.Add(this.chkMo, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.chkTu, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.chkWe, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.chkTh, 3, 0);
+            this.tableLayoutPanel5.Controls.Add(this.chkFr, 4, 0);
+            this.tableLayoutPanel5.Controls.Add(this.chkSa, 5, 0);
+            this.tableLayoutPanel5.Controls.Add(this.chkSu, 6, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(63, 52);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(347, 26);
+            this.tableLayoutPanel5.TabIndex = 24;
+            // 
+            // chkMo
+            // 
+            this.chkMo.AutoSize = true;
+            this.chkMo.Checked = true;
+            this.chkMo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkMo.Location = new System.Drawing.Point(3, 3);
+            this.chkMo.Name = "chkMo";
+            this.chkMo.Size = new System.Drawing.Size(43, 20);
+            this.chkMo.TabIndex = 0;
+            this.chkMo.Text = "Mo";
+            this.chkMo.UseVisualStyleBackColor = true;
+            // 
+            // chkTu
+            // 
+            this.chkTu.AutoSize = true;
+            this.chkTu.Checked = true;
+            this.chkTu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkTu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkTu.Location = new System.Drawing.Point(52, 3);
+            this.chkTu.Name = "chkTu";
+            this.chkTu.Size = new System.Drawing.Size(43, 20);
+            this.chkTu.TabIndex = 1;
+            this.chkTu.Text = "Tu";
+            this.chkTu.UseVisualStyleBackColor = true;
+            // 
+            // chkWe
+            // 
+            this.chkWe.AutoSize = true;
+            this.chkWe.Checked = true;
+            this.chkWe.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkWe.Location = new System.Drawing.Point(101, 3);
+            this.chkWe.Name = "chkWe";
+            this.chkWe.Size = new System.Drawing.Size(43, 20);
+            this.chkWe.TabIndex = 2;
+            this.chkWe.Text = "We";
+            this.chkWe.UseVisualStyleBackColor = true;
+            // 
+            // chkTh
+            // 
+            this.chkTh.AutoSize = true;
+            this.chkTh.Checked = true;
+            this.chkTh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkTh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkTh.Location = new System.Drawing.Point(150, 3);
+            this.chkTh.Name = "chkTh";
+            this.chkTh.Size = new System.Drawing.Size(43, 20);
+            this.chkTh.TabIndex = 3;
+            this.chkTh.Text = "Th";
+            this.chkTh.UseVisualStyleBackColor = true;
+            // 
+            // chkFr
+            // 
+            this.chkFr.AutoSize = true;
+            this.chkFr.Checked = true;
+            this.chkFr.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkFr.Location = new System.Drawing.Point(199, 3);
+            this.chkFr.Name = "chkFr";
+            this.chkFr.Size = new System.Drawing.Size(43, 20);
+            this.chkFr.TabIndex = 4;
+            this.chkFr.Text = "Fr";
+            this.chkFr.UseVisualStyleBackColor = true;
+            // 
+            // chkSa
+            // 
+            this.chkSa.AutoSize = true;
+            this.chkSa.Checked = true;
+            this.chkSa.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkSa.Location = new System.Drawing.Point(248, 3);
+            this.chkSa.Name = "chkSa";
+            this.chkSa.Size = new System.Drawing.Size(43, 20);
+            this.chkSa.TabIndex = 5;
+            this.chkSa.Text = "Sa";
+            this.chkSa.UseVisualStyleBackColor = true;
+            // 
+            // chkSu
+            // 
+            this.chkSu.AutoSize = true;
+            this.chkSu.Checked = true;
+            this.chkSu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkSu.Location = new System.Drawing.Point(297, 3);
+            this.chkSu.Name = "chkSu";
+            this.chkSu.Size = new System.Drawing.Size(47, 20);
+            this.chkSu.TabIndex = 6;
+            this.chkSu.Text = "Su";
+            this.chkSu.UseVisualStyleBackColor = true;
+            // 
             // frmAddBudget
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -364,6 +547,9 @@
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -392,5 +578,17 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.DateTimePicker dtpPeriodStart;
+        private System.Windows.Forms.DateTimePicker dtpPeriodEnd;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.CheckBox chkMo;
+        private System.Windows.Forms.CheckBox chkTu;
+        private System.Windows.Forms.CheckBox chkWe;
+        private System.Windows.Forms.CheckBox chkTh;
+        private System.Windows.Forms.CheckBox chkFr;
+        private System.Windows.Forms.CheckBox chkSa;
+        private System.Windows.Forms.CheckBox chkSu;
     }
 }

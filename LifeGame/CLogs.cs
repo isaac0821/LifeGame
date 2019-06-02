@@ -24,7 +24,6 @@ namespace LifeGame
         public string BibRef;
         public int PublishYear;
         public ELiteratureImportance Importance;
-        public ELiteratureReadingStatus ReadingStatus;
         public string JournalOrConferenceName;
         public string InOneSentence;
     }
@@ -36,17 +35,6 @@ namespace LifeGame
         Important,
         Medium,
         Unimportant
-    }
-
-    [Serializable]
-    public enum ELiteratureReadingStatus : int
-    {
-        ModelRecur,
-        FormulaDerivation,
-        UnderstandModel,
-        GetIdeaAndStructure,
-        AbstractAndConclusion,
-        NotYetStarted,
     }
 
     /// <summary>
@@ -98,24 +86,6 @@ namespace LifeGame
     {
         public string Title;
         public string OutsourcePath;
-    }
-
-    public enum EBibEntry:int
-    {
-        article,
-        book,
-        booklet,
-        conference,
-        inbook,
-        incollection,
-        inproceedings,
-        manual,
-        mastersthesis,
-        misc,
-        phdthesis,
-        proceedings,
-        techreport,
-        unpublished
     }
 
     /// <summary>
