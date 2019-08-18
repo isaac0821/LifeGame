@@ -79,8 +79,6 @@
             this.lsbTaskNote = new System.Windows.Forms.ListBox();
             this.cmsNote = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.stsTask.SuspendLayout();
-            this.mnsTask.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -434,23 +432,23 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 10;
+            this.tableLayoutPanel3.ColumnCount = 9;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Controls.Add(this.chkBottom, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.chkInfinite, 9, 0);
-            this.tableLayoutPanel3.Controls.Add(this.dtpDeadline, 8, 0);
-            this.tableLayoutPanel3.Controls.Add(this.dtpNextTimeMarker, 6, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label2, 5, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label3, 7, 0);
+            this.tableLayoutPanel3.Controls.Add(this.chkInfinite, 8, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dtpDeadline, 7, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dtpNextTimeMarker, 5, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label2, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 6, 0);
             this.tableLayoutPanel3.Controls.Add(this.label4, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.lblTaskTimeSpent, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.chkFinished, 1, 0);
@@ -547,7 +545,7 @@
             this.lblTaskTimeSpent.Location = new System.Drawing.Point(239, 0);
             this.lblTaskTimeSpent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTaskTimeSpent.Name = "lblTaskTimeSpent";
-            this.lblTaskTimeSpent.Size = new System.Drawing.Size(43, 24);
+            this.lblTaskTimeSpent.Size = new System.Drawing.Size(48, 24);
             this.lblTaskTimeSpent.TabIndex = 7;
             this.lblTaskTimeSpent.Text = "999h";
             this.lblTaskTimeSpent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -614,10 +612,6 @@
             this.Text = "LifeGame - Task";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTask_FormClosing);
             this.Load += new System.EventHandler(this.frmTask_Load);
-            this.stsTask.ResumeLayout(false);
-            this.stsTask.PerformLayout();
-            this.mnsTask.ResumeLayout(false);
-            this.mnsTask.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

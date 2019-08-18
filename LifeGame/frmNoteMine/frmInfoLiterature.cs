@@ -110,10 +110,15 @@ namespace LifeGame
         private void frmAddLiterature_FormClosing(object sender, FormClosingEventArgs e)
         {
             bool CanSaveFlag = true;
+            bool EntirelyEmptyFlag = true;
             if (txtTitle.Text == "")
             {
                 MessageBox.Show("Title is missing.");
                 CanSaveFlag = false;
+            }
+            else
+            {
+                EntirelyEmptyFlag = false;
             }
             if (G.glb.lstLiterature.Exists(o => o.Title == txtTitle.Text) && txtTitle.Enabled == true)
             {
@@ -125,10 +130,18 @@ namespace LifeGame
                 MessageBox.Show("Publish year is missing");
                 CanSaveFlag = false;
             }
+            else
+            {
+                EntirelyEmptyFlag = false;
+            }
             if (txtJournalConference.Text == "")
             {
                 MessageBox.Show("Journal/Conference Name is missing");
                 CanSaveFlag = false;
+            }
+            else
+            {
+                EntirelyEmptyFlag = false;
             }
             if (cbxImportance.Text == "")
             {
@@ -140,15 +153,27 @@ namespace LifeGame
                 MessageBox.Show("Add author");
                 CanSaveFlag = false;
             }
+            else
+            {
+                EntirelyEmptyFlag = false;
+            }
             if (lsbTag.Items.Count == 0)
             {
                 MessageBox.Show("Add tag");
                 CanSaveFlag = false;
             }
+            else
+            {
+                EntirelyEmptyFlag = false;
+            }
             if (lsbInstitution.Items.Count == 0)
             {
                 MessageBox.Show("Add institution");
                 CanSaveFlag = false;
+            }
+            else
+            {
+                EntirelyEmptyFlag = false;
             }
             if (CanSaveFlag)
             {
@@ -261,6 +286,13 @@ namespace LifeGame
                 }
                 RefreshTab();
                 Dispose();
+            }
+            else
+            {
+                if (!EntirelyEmptyFlag)
+                {
+                    e.Cancel = true;
+                }
             }
         }
 
