@@ -350,7 +350,7 @@ namespace LifeGame
             frmAddSchedule.DrawLog += new frmAddSchedule.DrawLogHandler(DrawLog);
             frmAddSchedule.Show();
         }
-        private void tsmAddLog_Click(object sender, EventArgs e)
+        private void tsmAddNewLog_Click(object sender, EventArgs e)
         {
             DateTime sendToFrm = SelectedDate;
             switch (SelectedPicName)
@@ -382,6 +382,40 @@ namespace LifeGame
             frmAddLog frmAddLog = new frmAddLog(sendToFrm);
             frmAddLog.DrawLog += new frmAddLog.DrawLogHandler(DrawLog);
             frmAddLog.Show();
+        }
+
+        private void tsmConvertSchedule_Click(object sender, EventArgs e)
+        {
+            DateTime sendToFrm = SelectedDate;
+            switch (SelectedPicName)
+            {
+                case "picMon":
+                    sendToFrm = SelectedMonday;
+                    break;
+                case "picTue":
+                    sendToFrm = SelectedTuesday;
+                    break;
+                case "picWed":
+                    sendToFrm = SelectedWednesday;
+                    break;
+                case "picThu":
+                    sendToFrm = SelectedThursday;
+                    break;
+                case "picFri":
+                    sendToFrm = SelectedFriday;
+                    break;
+                case "picSat":
+                    sendToFrm = SelectedSaturday;
+                    break;
+                case "picSun":
+                    sendToFrm = SelectedSunday;
+                    break;
+                default:
+                    break;
+            }
+            frmConvertSchedule frmConvertSchedule = new frmConvertSchedule(sendToFrm);
+            frmConvertSchedule.DrawLog += new frmConvertSchedule.DrawLogHandler(DrawLog);
+            frmConvertSchedule.Show();
         }
 
         private void tsmDeleteSingleSchedule_Click(object sender, EventArgs e)

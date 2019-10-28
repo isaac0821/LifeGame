@@ -55,3 +55,4 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmClearSchedule.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddBudget.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmConvertBudget.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddPath.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmConvertSchedule.resources
