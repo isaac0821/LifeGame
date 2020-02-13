@@ -349,8 +349,8 @@
             // 
             this.tableLayoutPanel5.ColumnCount = 5;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 223F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
@@ -374,27 +374,27 @@
             this.cbxColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxColor.FormattingEnabled = true;
             this.cbxColor.Items.AddRange(new object[] {
-            "Red",
-            "Orange",
-            "Yellow",
-            "Green",
-            "Cyan",
-            "Blue",
-            "Purple",
-            "Brown",
-            "Gray"});
-            this.cbxColor.Location = new System.Drawing.Point(216, 3);
+            "(Very Important!!) - Red",
+            "(Workout related) - Orange",
+            "(TA/RA funding related) - Yellow",
+            "(Course related) - Green",
+            "(Research/lab related) - Cyan",
+            "(Living routines) - Blue",
+            "(Personal projects) - Purple",
+            "(Events/interperson activities) - Brown",
+            "(Uncategorized) - Gray"});
+            this.cbxColor.Location = new System.Drawing.Point(60, 3);
             this.cbxColor.Name = "cbxColor";
-            this.cbxColor.Size = new System.Drawing.Size(61, 21);
+            this.cbxColor.Size = new System.Drawing.Size(217, 21);
             this.cbxColor.TabIndex = 0;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(165, 0);
+            this.label5.Location = new System.Drawing.Point(11, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 26);
+            this.label5.Size = new System.Drawing.Size(43, 26);
             this.label5.TabIndex = 2;
             this.label5.Text = "Color";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

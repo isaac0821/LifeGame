@@ -29,7 +29,7 @@ namespace LifeGame
             lstLiteratureAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
             InOneSentence = literature.InOneSentence;
-            BibRef = literature.BibRef;
+            // BibRef = literature.BibRef;
             lstLiteratureInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureInCiting = G.glb.lstLiteratureCiting.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureOutsource = G.glb.lstLiteratureOutSource.FindAll(o => o.Title == LiteratureTitle).ToList();
@@ -54,7 +54,6 @@ namespace LifeGame
             txtTitle.Text = "";
             txtYear.Text = "";
             txtJournalConference.Text = "";
-            cbxImportance.SelectedIndex = 3;
             txtInOneSentence.Text = "";
             txtBibRef.Text = "";
             lsbAuthor.Items.Clear();
@@ -73,8 +72,7 @@ namespace LifeGame
             txtYear.Text = literature.PublishYear.ToString();
             txtJournalConference.Text = literature.JournalOrConferenceName;
             txtInOneSentence.Text = literature.InOneSentence;
-            txtBibRef.Text = literature.BibRef;
-            cbxImportance.SelectedIndex = (int)literature.Importance;
+            // txtBibRef.Text = literature.BibRef;
             lsbAuthor.Items.Clear();
             foreach (RLiteratureAuthor author in lstLiteratureAuthor)
             {
@@ -143,11 +141,6 @@ namespace LifeGame
             {
                 EntirelyEmptyFlag = false;
             }
-            if (cbxImportance.Text == "")
-            {
-                MessageBox.Show("Choose an importance level");
-                CanSaveFlag = false;
-            }
             if (lsbAuthor.Items.Count == 0)
             {
                 MessageBox.Show("Add author");
@@ -185,24 +178,7 @@ namespace LifeGame
                     newLiterature.PublishYear = Convert.ToInt32(txtYear.Text);
                     newLiterature.JournalOrConferenceName = txtJournalConference.Text;
                     newLiterature.InOneSentence = txtInOneSentence.Text;
-                    newLiterature.BibRef = txtBibRef.Text;
-                    switch (cbxImportance.SelectedIndex)
-                    {
-                        case 0:
-                            newLiterature.Importance = ELiteratureImportance.VeryImportant;
-                            break;
-                        case 1:
-                            newLiterature.Importance = ELiteratureImportance.Important;
-                            break;
-                        case 2:
-                            newLiterature.Importance = ELiteratureImportance.Medium;
-                            break;
-                        case 3:
-                            newLiterature.Importance = ELiteratureImportance.Unimportant;
-                            break;
-                        default:
-                            break;
-                    }
+                    // newLiterature.BibRef = txtBibRef.Text;
                     foreach (RLiteratureAuthor author in lstLiteratureAuthor)
                     {
                         author.Title = txtTitle.Text;
@@ -235,24 +211,7 @@ namespace LifeGame
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PublishYear = Convert.ToInt32(txtYear.Text);
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).JournalOrConferenceName = txtJournalConference.Text;
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).InOneSentence = txtInOneSentence.Text;
-                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibRef = txtBibRef.Text;
-                    switch (cbxImportance.SelectedIndex)
-                    {
-                        case 0:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Importance = ELiteratureImportance.VeryImportant;
-                            break;
-                        case 1:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Importance = ELiteratureImportance.Important;
-                            break;
-                        case 2:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Importance = ELiteratureImportance.Medium;
-                            break;
-                        case 3:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Importance = ELiteratureImportance.Unimportant;
-                            break;
-                        default:
-                            break;
-                    }
+                    // G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibRef = txtBibRef.Text;
                     foreach (RLiteratureAuthor author in lstLiteratureAuthor)
                     {
                         author.Title = txtTitle.Text;
@@ -512,7 +471,5 @@ namespace LifeGame
                 lsbOutSource.Items.Add(lstLiteratureOutsource[i].OutsourcePath);
             }
         }
-
-
     }
 }

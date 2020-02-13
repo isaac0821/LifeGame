@@ -14,6 +14,56 @@ namespace LifeGame
         Failed
     }
 
+    [Serializable]
+    public enum EBibEntry: int
+    {
+        Article,
+        Book,
+        Booklet,
+        Conference,
+        Inbook,
+        Incollection,
+        Inproceedings,
+        Manual,
+        Mastersthesis,
+        Misc,
+        Phdthesis,
+        Proceedings,
+        Techreport,
+        Unpublished
+    }
+
+    [Serializable]
+    public class CBibRef
+    {
+        public string CiteAbbr;
+        public string Address;
+        public string Annote;
+        public string Author;
+        public string Booktitle;
+        public string Chapter;
+        public string Crossref;
+        public string Doi;
+        public string Edition;
+        public string Editor;
+        public string Howpublished;
+        public string Institution;
+        public string Journal;
+        public string Key;
+        public string Month;
+        public string Note;
+        public string Number;
+        public string Organization;
+        public string Pages;
+        public string Publisher;
+        public string School;
+        public string Series;
+        public string Title;
+        public string Type;
+        public string Volume;
+        public string Year;
+    }
+    
     /// <summary>
     /// 文献类
     /// </summary>
@@ -21,20 +71,10 @@ namespace LifeGame
     public class CLiterature
     {
         public string Title;
-        public string BibRef;
+        public CBibRef BibRef;
         public int PublishYear;
-        public ELiteratureImportance Importance;
         public string JournalOrConferenceName;
         public string InOneSentence;
-    }
-
-    [Serializable]
-    public enum ELiteratureImportance: int
-    {
-        VeryImportant,
-        Important,
-        Medium,
-        Unimportant
     }
 
     /// <summary>
@@ -143,7 +183,7 @@ namespace LifeGame
     public class CWorkOut
     {
         public DateTime TagTime;
-        public string WorkOutType;        
+        public string WorkOutType;
         public double WorkOutQty;
         public string WorkOutUnit;
         public string Location;
@@ -157,7 +197,7 @@ namespace LifeGame
     {
         public DateTime TagTime;
         public EMedicineTiming MedicineTime;
-        public string MedicineName;        
+        public string MedicineName;
         public double MedicineQty;
         public string MedicineUnit;
     }
@@ -186,6 +226,21 @@ namespace LifeGame
         public bool IsBottom;
         public bool IsInfinite;
         public ETaskState TaskState;
+        public ETaskCategory TaskCategory;
+    }
+
+    [Serializable]
+    public enum ETaskCategory: int
+    {
+        VeryImportant,   // Red
+        Workout,         // Orange
+        Funding,         // Yellow
+        Acadamic,        // Green
+        Research,        // Cyan
+        Living,          // Blue
+        PersonalProject, // Purple
+        Interpersonal,   // Brown
+        Uncategorized    // Gray
     }
 
     [Serializable]

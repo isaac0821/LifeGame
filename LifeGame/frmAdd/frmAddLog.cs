@@ -76,7 +76,7 @@ namespace LifeGame
                 newLog.Location = txtWhere.Text;
                 newLog.WithWho = txtWith.Text;
                 newLog.ContributionToTask = cbxTask.Text;
-                newLog.Color = cbxColor.Text;
+                newLog.Color = cbxColor.Text.Split(' ').Last();
                 G.glb.lstLog.Add(newLog);
                 DrawLog();
                 Dispose();

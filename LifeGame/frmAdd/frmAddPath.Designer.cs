@@ -41,7 +41,7 @@
             // txtPath
             // 
             this.txtPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPath.Location = new System.Drawing.Point(3, 59);
+            this.txtPath.Location = new System.Drawing.Point(3, 31);
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(285, 20);
             this.txtPath.TabIndex = 0;
@@ -62,11 +62,11 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.txtPath, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblTitle, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnFind, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnAdd, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnCancel, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtPath, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";

@@ -136,7 +136,7 @@ namespace LifeGame
                             newSchedule.Location = txtWhere.Text;
                             newSchedule.WithWho = txtWith.Text;
                             newSchedule.ContributionToTask = cbxTask.Text;
-                            newSchedule.Color = cbxColor.Text;
+                            newSchedule.Color = cbxColor.Text.Split(' ').Last();
                             G.glb.lstSchedule.Add(newSchedule);
                         }
                     }
