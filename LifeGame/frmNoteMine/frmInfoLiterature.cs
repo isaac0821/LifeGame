@@ -15,13 +15,13 @@ namespace LifeGame
     {
         CLiterature literature = new CLiterature();
         string InOneSentence = "";
-        string BibRef = "";
         List<RLiteratureAuthor> lstLiteratureAuthor = new List<RLiteratureAuthor>();
         List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
         List<RLiteratureInstitution> lstLiteratureInstitution = new List<RLiteratureInstitution>();
         List<RLiteratureInCiting> lstLiteratureInCiting = new List<RLiteratureInCiting>();
         List<RLiteratureOutSource> lstLiteratureOutsource = new List<RLiteratureOutSource>();
         List<CNote> lstNote = new List<CNote>();
+        CBibTeX literatureBib = new CBibTeX();
         public frmInfoLiterature(string LiteratureTitle)
         {
             literature = G.glb.lstLiterature.Find(o => o.Title == LiteratureTitle);
@@ -29,11 +29,11 @@ namespace LifeGame
             lstLiteratureAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
             InOneSentence = literature.InOneSentence;
-            BibRef = literature.BibRef;
             lstLiteratureInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureInCiting = G.glb.lstLiteratureCiting.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureOutsource = G.glb.lstLiteratureOutSource.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstNote = G.glb.lstNote.FindAll(o => o.LiteratureTitle == LiteratureTitle).ToList();
+            literatureBib = literature.BibTeX;
             InitializeComponent();
             LoadLiterature();
         }
@@ -47,16 +47,55 @@ namespace LifeGame
         public delegate void RefreshTabHandler();
         public event RefreshTabHandler RefreshTab;
 
+        ParseBibTeX ParseBib = new ParseBibTeX();
+        private void ParseBibTeXText(CBibTeX bib)
+        {
+            switch (bib.BibEntry)
+            {
+                case EBibEntry.Article:
+                    txtBibRef.Text = ParseBib.ParseBibTeXArticle(bib, literature.DateAdded, literature.DateModified);
+                    break;
+                case EBibEntry.Book:
+                    break;
+                case EBibEntry.Booklet:
+                    break;
+                case EBibEntry.Conference:
+                    break;
+                case EBibEntry.Inbook:
+                    break;
+                case EBibEntry.Incollection:
+                    break;
+                case EBibEntry.Inproceedings:
+                    break;
+                case EBibEntry.Manual:
+                    break;
+                case EBibEntry.Mastersthesis:
+                    break;
+                case EBibEntry.Misc:
+                    break;
+                case EBibEntry.Phdthesis:
+                    txtBibRef.Text = ParseBib.ParseBibTeXPhdthesis(bib, literature.DateAdded, literature.DateModified);
+                    break;
+                case EBibEntry.Proceedings:
+                    break;
+                case EBibEntry.Techreport:
+                    break;
+                case EBibEntry.Unpublished:
+                    break;
+                default:
+                    break;
+            }
+            literatureBib = bib;
+        }
+
         private void NewLiterature()
         {
             txtTitle.Enabled = true;
-
             txtTitle.Text = "";
             txtYear.Text = "";
             txtJournalConference.Text = "";
-            cbxImportance.SelectedIndex = 3;
             txtInOneSentence.Text = "";
-            txtBibRef.Text = "";
+            txtBibKey.Text = "";
             lsbAuthor.Items.Clear();
             lsbTag.Items.Clear();
             lsbOutSource.Items.Clear();
@@ -73,8 +112,8 @@ namespace LifeGame
             txtYear.Text = literature.PublishYear.ToString();
             txtJournalConference.Text = literature.JournalOrConferenceName;
             txtInOneSentence.Text = literature.InOneSentence;
-            txtBibRef.Text = literature.BibRef;
-            cbxImportance.SelectedIndex = (int)literature.Importance;
+            txtBibKey.Text = literature.BibKey;
+            cbxBibEntryType.Text = literature.BibTeX.BibEntry.ToString();
             lsbAuthor.Items.Clear();
             foreach (RLiteratureAuthor author in lstLiteratureAuthor)
             {
@@ -105,6 +144,7 @@ namespace LifeGame
             {
                 lsbNote.Items.Add(note.TagTime.Year.ToString() + "." + note.TagTime.Month.ToString() + "." + note.TagTime.Day.ToString() + " - " + note.Topic);
             }
+            ParseBibTeXText(literature.BibTeX);
         }
 
         private void frmAddLiterature_FormClosing(object sender, FormClosingEventArgs e)
@@ -125,6 +165,11 @@ namespace LifeGame
                 MessageBox.Show("Literature exists.");
                 CanSaveFlag = false;
             }
+            if (G.glb.lstLiterature.Exists(o => o.BibKey != "" && o.BibKey == txtBibKey.Text && o.Title != txtTitle.Text))
+            {
+                MessageBox.Show("Bibkey exists.");
+                CanSaveFlag = false;
+            }
             if (txtYear.Text == "")
             {
                 MessageBox.Show("Publish year is missing");
@@ -142,11 +187,6 @@ namespace LifeGame
             else
             {
                 EntirelyEmptyFlag = false;
-            }
-            if (cbxImportance.Text == "")
-            {
-                MessageBox.Show("Choose an importance level");
-                CanSaveFlag = false;
             }
             if (lsbAuthor.Items.Count == 0)
             {
@@ -185,24 +225,10 @@ namespace LifeGame
                     newLiterature.PublishYear = Convert.ToInt32(txtYear.Text);
                     newLiterature.JournalOrConferenceName = txtJournalConference.Text;
                     newLiterature.InOneSentence = txtInOneSentence.Text;
-                    newLiterature.BibRef = txtBibRef.Text;
-                    switch (cbxImportance.SelectedIndex)
-                    {
-                        case 0:
-                            newLiterature.Importance = ELiteratureImportance.VeryImportant;
-                            break;
-                        case 1:
-                            newLiterature.Importance = ELiteratureImportance.Important;
-                            break;
-                        case 2:
-                            newLiterature.Importance = ELiteratureImportance.Medium;
-                            break;
-                        case 3:
-                            newLiterature.Importance = ELiteratureImportance.Unimportant;
-                            break;
-                        default:
-                            break;
-                    }
+                    newLiterature.BibKey = txtBibKey.Text;
+                    newLiterature.BibTeX = literatureBib;
+                    newLiterature.DateAdded = DateTime.Today;
+                    newLiterature.DateModified = DateTime.Today;
                     foreach (RLiteratureAuthor author in lstLiteratureAuthor)
                     {
                         author.Title = txtTitle.Text;
@@ -235,24 +261,9 @@ namespace LifeGame
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PublishYear = Convert.ToInt32(txtYear.Text);
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).JournalOrConferenceName = txtJournalConference.Text;
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).InOneSentence = txtInOneSentence.Text;
-                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibRef = txtBibRef.Text;
-                    switch (cbxImportance.SelectedIndex)
-                    {
-                        case 0:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Importance = ELiteratureImportance.VeryImportant;
-                            break;
-                        case 1:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Importance = ELiteratureImportance.Important;
-                            break;
-                        case 2:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Importance = ELiteratureImportance.Medium;
-                            break;
-                        case 3:
-                            G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Importance = ELiteratureImportance.Unimportant;
-                            break;
-                        default:
-                            break;
-                    }
+                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibKey = txtBibKey.Text;
+                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibTeX = literatureBib;
+                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).DateModified = DateTime.Today;
                     foreach (RLiteratureAuthor author in lstLiteratureAuthor)
                     {
                         author.Title = txtTitle.Text;
@@ -404,6 +415,18 @@ namespace LifeGame
             D.CallInfoNoteAddNew(txtTitle.Text);
         }
 
+        private void GetBibKey()
+        {
+            string bibKey = "";
+            if (lsbAuthor.Items.Count > 0)
+            {
+                string firstAuthor = lsbAuthor.Items[0].ToString();
+                string[] firstAuthorNameSplit = firstAuthor.Split(" ".ToCharArray());
+                bibKey = firstAuthorNameSplit[firstAuthorNameSplit.Length - 1] + txtYear.Text;
+            }
+            txtBibKey.Text = bibKey;
+        }
+
         private void tsmAuthorAdd_Click(object sender, EventArgs e)
         {
             string strAuthor = Interaction.InputBox("Literature Author", "Literature Author", "Literature Author", 300, 300);
@@ -412,6 +435,7 @@ namespace LifeGame
             newAuthor.Rank = lsbAuthor.Items.Count;
             lstLiteratureAuthor.Add(newAuthor);
             lsbAuthor.Items.Add(strAuthor);
+            GetBibKey();
         }
 
         private void tsmAuthorRemove_Click(object sender, EventArgs e)
@@ -427,6 +451,7 @@ namespace LifeGame
                 lsbAuthor.Items.Add(lstLiteratureAuthor[i].Author);
                 lstLiteratureAuthor[i].Rank = i;
             }
+            GetBibKey();
         }
 
         private void tsmAuthorUp_Click(object sender, EventArgs e)
@@ -445,6 +470,7 @@ namespace LifeGame
                     lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
                 }
             }
+            GetBibKey();
         }
 
         private void tsmAuthorDown_Click(object sender, EventArgs e)
@@ -463,6 +489,7 @@ namespace LifeGame
                     lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
                 }
             }
+            GetBibKey();
         }
 
         private void tsmOpenOutSource_Click(object sender, EventArgs e)
@@ -513,6 +540,86 @@ namespace LifeGame
             }
         }
 
+        private void btnBibTeX_Click(object sender, EventArgs e)
+        {
+            // First, create a temp literature log, use it to generate BibTeX
+            // So that we don't need to care if the BibTeX is generated for new literature log or existing literature log
+            // Anyway, BibTeX is just a set of attribution and eventually become a string
+            CLiterature tmpLiterature = new CLiterature();
+            tmpLiterature.Title = txtTitle.Text;
+            tmpLiterature.BibKey = txtBibKey.Text;
+            tmpLiterature.JournalOrConferenceName = txtJournalConference.Text;
+            if (txtTitle.Enabled == false)
+            {
+                tmpLiterature.DateAdded = G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).DateAdded;
+            }
+            else
+            {
+                tmpLiterature.DateAdded = DateTime.Today;
+            }
+            tmpLiterature.DateModified = DateTime.Today;
+            if (txtYear.Text == "")
+            {
+                tmpLiterature.PublishYear = 9999;
+            }
+            else
+            {
+                tmpLiterature.PublishYear = Convert.ToInt32(txtYear.Text);
+            }           
+            List<RLiteratureAuthor> tmpAuthorList = new List<RLiteratureAuthor>();
+            for (int i = 0; i < lsbAuthor.Items.Count; i++)
+            {
+                RLiteratureAuthor tmpAuthor = new RLiteratureAuthor();
+                tmpAuthor.Author = lsbAuthor.Items[i].ToString();
+                tmpAuthor.Rank = i;
+                tmpAuthorList.Add(tmpAuthor);
+            }
+            List<RLiteratureInstitution> tmpInstitutionList = new List<RLiteratureInstitution>();
+            for (int i = 0; i < lsbInstitution.Items.Count; i++)
+            {
+                RLiteratureInstitution tmpInstitution = new RLiteratureInstitution();
+                tmpInstitution.Institution = lsbInstitution.Items[i].ToString();
+                tmpInstitutionList.Add(tmpInstitution);
+            }
 
+            switch (cbxBibEntryType.Text)
+            {
+                case "Article":
+                    frmBibArticle frmBibArticle = new frmBibArticle(tmpLiterature, tmpAuthorList);
+                    frmBibArticle.BuildBibTeX += new frmBibArticle.BuildBibTeXHandler(ParseBibTeXText); 
+                    frmBibArticle.Show();
+                    break;
+                case "Phdthesis":
+                    RLiteratureAuthor tmpAuthor = new RLiteratureAuthor();
+                    if (tmpAuthorList.Count > 0)
+                    {
+                        tmpAuthor = tmpAuthorList[0];
+                    }
+                    else
+                    {
+                        tmpAuthor.Author = "";   
+                    }
+                    RLiteratureInstitution tmpInstitution = new RLiteratureInstitution();
+                    if (tmpInstitutionList.Count > 0)
+                    {
+                        tmpInstitution = tmpInstitutionList[0];
+                    }
+                    else
+                    {
+                        tmpInstitution.Institution = "";
+                    }
+                    frmBibPhDThesis frmBibPhDThesis = new frmBibPhDThesis(tmpLiterature, tmpAuthor, tmpInstitution);
+                    frmBibPhDThesis.BuildBibTeX += new frmBibPhDThesis.BuildBibTeXHandler(ParseBibTeXText);
+                    frmBibPhDThesis.Show();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void txtYear_TextChanged(object sender, EventArgs e)
+        {
+            GetBibKey();
+        }
     }
 }

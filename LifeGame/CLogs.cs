@@ -20,21 +20,65 @@ namespace LifeGame
     [Serializable]
     public class CLiterature
     {
+        public CBibTeX BibTeX;
+        public string BibKey;
+        public DateTime DateAdded;
+        public DateTime DateModified;
         public string Title;
-        public string BibRef;
         public int PublishYear;
-        public ELiteratureImportance Importance;
         public string JournalOrConferenceName;
         public string InOneSentence;
     }
 
     [Serializable]
-    public enum ELiteratureImportance: int
+    public enum EBibEntry : int
     {
-        VeryImportant,
-        Important,
-        Medium,
-        Unimportant
+        Article,
+        Book,
+        Booklet,
+        Conference,
+        Inbook,
+        Incollection,
+        Inproceedings,
+        Manual,
+        Mastersthesis,
+        Misc,
+        Phdthesis,
+        Proceedings,
+        Techreport,
+        Unpublished
+    }
+
+    [Serializable]
+    public class CBibTeX
+    {
+        public EBibEntry BibEntry;
+        public string BibKey;
+        public string Address;
+        public string Annote;
+        public string Author;
+        public string Booktitle;
+        public string Chapter;
+        public string Crossref;
+        public string Doi;
+        public string Edition;
+        public string Editor;
+        public string Howpublished;
+        public string Institution;
+        public string Journal;
+        public string Key;
+        public string Month;
+        public string Note;
+        public string Number;
+        public string Organization;
+        public string Pages;
+        public string Publisher;
+        public string School;
+        public string Series;
+        public string Title;
+        public string Type;
+        public string Volume;
+        public string Year;
     }
 
     /// <summary>
