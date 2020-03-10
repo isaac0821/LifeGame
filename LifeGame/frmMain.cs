@@ -51,6 +51,12 @@ namespace LifeGame
             {
                 Deserialize();
 
+                //foreach (CLiterature item in G.glb.lstLiterature)
+                //{
+                //    item.DateAdded = DateTime.Today;
+                //    item.DateModified = DateTime.Today;
+                //}
+
                 //foreach (CTask task in G.glb.lstTask)
                 //{
                 //    CalAndFind C = new CalAndFind();

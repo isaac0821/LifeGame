@@ -113,7 +113,11 @@ namespace LifeGame
             txtJournalConference.Text = literature.JournalOrConferenceName;
             txtInOneSentence.Text = literature.InOneSentence;
             txtBibKey.Text = literature.BibKey;
-            cbxBibEntryType.Text = literature.BibTeX.BibEntry.ToString();
+            if (literature.BibTeX != null)
+            {
+                cbxBibEntryType.Text = literature.BibTeX.BibEntry.ToString();
+                ParseBibTeXText(literature.BibTeX);
+            }
             lsbAuthor.Items.Clear();
             foreach (RLiteratureAuthor author in lstLiteratureAuthor)
             {
@@ -144,7 +148,6 @@ namespace LifeGame
             {
                 lsbNote.Items.Add(note.TagTime.Year.ToString() + "." + note.TagTime.Month.ToString() + "." + note.TagTime.Day.ToString() + " - " + note.Topic);
             }
-            ParseBibTeXText(literature.BibTeX);
         }
 
         private void frmAddLiterature_FormClosing(object sender, FormClosingEventArgs e)
