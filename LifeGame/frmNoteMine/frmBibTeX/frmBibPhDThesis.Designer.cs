@@ -467,7 +467,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmBibPhDThesis";
-            this.Text = "frmBibArticle";
+            this.Text = "BibTeX - Phdthesis";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);

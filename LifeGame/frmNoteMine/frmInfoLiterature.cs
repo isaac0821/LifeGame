@@ -60,12 +60,11 @@ namespace LifeGame
                 case EBibEntry.Booklet:
                     break;
                 case EBibEntry.Conference:
+                    txtBibRef.Text = ParseBib.ParseBibTeXConference(bib, literature.DateAdded, literature.DateModified);
                     break;
                 case EBibEntry.Inbook:
                     break;
                 case EBibEntry.Incollection:
-                    break;
-                case EBibEntry.Inproceedings:
                     break;
                 case EBibEntry.Manual:
                     break;
@@ -86,6 +85,7 @@ namespace LifeGame
                     break;
             }
             literatureBib = bib;
+            literature.DateModified = DateTime.Today;
         }
 
         private void NewLiterature()
@@ -521,7 +521,7 @@ namespace LifeGame
 
         private void tsmAddOutSource_Click(object sender, EventArgs e)
         {
-            string tmpPath = "D:\\paper\\" + txtTitle.Text + ".pdf"; 
+            string tmpPath = "D:\\literature\\" + txtTitle.Text + ".pdf"; 
             string strOutsource = Interaction.InputBox("Literature Link", "Literature Link", tmpPath, 300, 300);
             RLiteratureOutSource newOutSource = new RLiteratureOutSource();
             newOutSource.Title = txtTitle.Text;
@@ -552,6 +552,8 @@ namespace LifeGame
             tmpLiterature.Title = txtTitle.Text;
             tmpLiterature.BibKey = txtBibKey.Text;
             tmpLiterature.JournalOrConferenceName = txtJournalConference.Text;
+            tmpLiterature.BibTeX = literatureBib;
+
             if (txtTitle.Enabled == false)
             {
                 tmpLiterature.DateAdded = G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).DateAdded;
@@ -614,6 +616,11 @@ namespace LifeGame
                     frmBibPhDThesis frmBibPhDThesis = new frmBibPhDThesis(tmpLiterature, tmpAuthor, tmpInstitution);
                     frmBibPhDThesis.BuildBibTeX += new frmBibPhDThesis.BuildBibTeXHandler(ParseBibTeXText);
                     frmBibPhDThesis.Show();
+                    break;
+                case "Conference":
+                    frmBibConference frmBibConference = new frmBibConference(tmpLiterature, tmpAuthorList);
+                    frmBibConference.BuildBibTeX += new frmBibConference.BuildBibTeXHandler(ParseBibTeXText);
+                    frmBibConference.Show();
                     break;
                 default:
                     break;

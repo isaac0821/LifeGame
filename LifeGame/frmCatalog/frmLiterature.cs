@@ -17,6 +17,7 @@ namespace LifeGame
         List<CItem> Years = new List<CItem>();
         List<CItem> Institutions = new List<CItem>();
         List<CItem> JournalConferences = new List<CItem>();
+        List<CItem> Projects = new List<CItem>();
 
         public frmLiterature()
         {
@@ -47,11 +48,13 @@ namespace LifeGame
             Years = new List<CItem>();
             Institutions = new List<CItem>();
             JournalConferences = new List<CItem>();
+            Projects = new List<CItem>();
             foreach (CLiterature literature in G.glb.lstLiterature)
             {
                 List<RLiteratureTag> lstTag = G.glb.lstLiteratureTag.FindAll(o => o.Title == literature.Title).ToList();
                 List<RLiteratureAuthor> lstAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == literature.Title).ToList();
                 List<RLiteratureInstitution> lstInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == literature.Title).ToList();
+                List<RLiteratureInCiting> lstCiting = G.glb.lstLiteratureCiting.FindAll(o => o.Title == literature.Title).ToList();
                 foreach (RLiteratureTag tag in lstTag)
                 {
                     if (Tags.Exists(o => o.ItemName == tag.Tag))
@@ -110,6 +113,19 @@ namespace LifeGame
                 }
                 JournalConferences = JournalConferences.OrderBy(o => o.ItemName).ToList();
                 JournalConferences = JournalConferences.OrderByDescending(o => o.ItemCount).ToList();
+                foreach (RLiteratureInCiting citing in lstCiting)
+                {
+                    if (Projects.Exists(o => o.ItemName == citing.TitleOfMyArticle))
+                    {
+                        Projects[Projects.FindIndex(o => o.ItemName == citing.TitleOfMyArticle)].ItemCount += 1;
+                    }
+                    else
+                    {
+                        Projects.Add(new CItem(citing.TitleOfMyArticle, 1));
+                    }
+                }
+                Projects = Projects.OrderBy(o => o.ItemName).ToList();
+                Projects = Projects.OrderByDescending(o => o.ItemCount).ToList();
             }
 
             clbTag.Items.Clear();
@@ -137,6 +153,11 @@ namespace LifeGame
             {
                 clbJournalConference.Items.Add(JournalConferences[i].ItemName + "[" + JournalConferences[i].ItemCount + "]");
             }
+            clbProject.Items.Clear();
+            for (int i = 0; i < Projects.Count; i++)
+            {
+                clbProject.Items.Add(Projects[i].ItemName + "[" + Projects[i].ItemCount + "]");
+            }
         }
 
         private void tsmAddLiterature_Click(object sender, EventArgs e)
@@ -148,7 +169,7 @@ namespace LifeGame
 
         private void tsmViewLiterature_Click(object sender, EventArgs e)
         {
-            if (dgvLiterature.SelectedRows != null)
+            if (dgvLiterature.SelectedCells.Count == 1)
             {
                 frmInfoLiterature frmInfoLiterature = new frmInfoLiterature(dgvLiterature.CurrentRow.Cells[0].Value.ToString());
                 frmInfoLiterature.RefreshTab += new frmInfoLiterature.RefreshTabHandler(LoadTab);
@@ -158,7 +179,7 @@ namespace LifeGame
 
         private void tsmRemoveLiterature_Click(object sender, EventArgs e)
         {
-            if (dgvLiterature.SelectedRows != null)
+            if (dgvLiterature.SelectedCells.Count == 1)
             {
                 DialogResult result = MessageBox.Show("Delete this literature?", "Delete", MessageBoxButtons.YesNo);
                 switch (result)
@@ -187,6 +208,7 @@ namespace LifeGame
             List<string> chosenInstitution = new List<string>();
             List<int> chosenYear = new List<int>();
             List<string> chosenJournalConference = new List<string>();
+            List<string> chosenProject = new List<string>();
 
             for (int i = 0; i < clbTag.CheckedItems.Count; i++)
             {
@@ -208,117 +230,81 @@ namespace LifeGame
             {
                 chosenJournalConference.Add(clbJournalConference.CheckedItems[i].ToString().Split('[').First());
             }
+            for (int i = 0; i < clbProject.CheckedItems.Count; i++)
+            {
+                chosenProject.Add(clbProject.CheckedItems[i].ToString().Split('[').First());
+            }
 
-            // 如果是And模式
-            if (AndOrMode)
+            List<string> ShownTitle = new List<string>();
+            foreach (CLiterature literature in G.glb.lstLiterature)
             {
-                List<string> ShownTitle = new List<string>();
-                // Year和Journal/Conference比较容易过滤，先过滤这俩
-                foreach (CLiterature literature in G.glb.lstLiterature)
+                if (chosenYear.Exists(o => o == literature.PublishYear))
                 {
-                    if (chosenYear.Exists(o => o == literature.PublishYear) && chosenJournalConference.Exists(o => o == literature.JournalOrConferenceName))
-                    {
-                        ShownTitle.Add(literature.Title);
-                    }
+                    ShownTitle.Add(literature.Title);
                 }
-                List<string> tmp = new List<string>();
-                foreach (string title in ShownTitle)
+                if (chosenJournalConference.Exists(o => o == literature.JournalOrConferenceName))
                 {
-                    if (chosenTag.Exists(o => G.glb.lstLiteratureTag.Exists(p => p.Title == title && p.Tag == o)))
-                    {
-                        if (chosenAuthor.Exists(o => G.glb.lstLiteratureAuthor.Exists(p => p.Title == title && p.Author == o)))
-                        {
-                            if (chosenInstitution.Exists(o => G.glb.lstLiteratureInstitution.Exists(p => p.Title == title && p.Institution == o)))
-                            {
-                                tmp.Add(title);
-                            }
-                        }
-                    }
+                    ShownTitle.Add(literature.Title);
                 }
-                ShownTitle = tmp.ToList();
-                dgvLiterature.Rows.Clear();
-                foreach (string title in ShownTitle)
+                if (chosenTag.Exists(o => G.glb.lstLiteratureTag.Exists(p => p.Title == literature.Title && p.Tag == o)))
                 {
-                    dgvLiterature.Rows.Add(title);
+                    ShownTitle.Add(literature.Title);
+                }
+                if (chosenAuthor.Exists(o => G.glb.lstLiteratureAuthor.Exists(p => p.Title == literature.Title && p.Author == o)))
+                {
+                    ShownTitle.Add(literature.Title);
+                }
+                if (chosenInstitution.Exists(o => G.glb.lstLiteratureInstitution.Exists(p => p.Title == literature.Title && p.Institution == o)))
+                {
+                    ShownTitle.Add(literature.Title);
+                }
+                if (chosenProject.Exists(o => G.glb.lstLiteratureCiting.Exists(p => p.Title == literature.Title && p.TitleOfMyArticle == o)))
+                {
+                    ShownTitle.Add(literature.Title);
                 }
             }
-            // 如果是Or模式
-            else
+            ShownTitle = ShownTitle.Distinct().ToList();
+            dgvLiterature.Rows.Clear();
+            foreach (string title in ShownTitle)
             {
-                List<string> ShownTitle = new List<string>();
-                foreach (CLiterature literature in G.glb.lstLiterature)
-                {
-                    if (chosenYear.Exists(o => o == literature.PublishYear))
-                    {
-                        ShownTitle.Add(literature.Title);
-                    }
-                    if (chosenJournalConference.Exists(o => o == literature.JournalOrConferenceName))
-                    {
-                        ShownTitle.Add(literature.Title);
-                    }
-                    if (chosenTag.Exists(o => G.glb.lstLiteratureTag.Exists(p => p.Title == literature.Title && p.Tag == o)))
-                    {
-                        ShownTitle.Add(literature.Title);
-                    }
-                    if (chosenAuthor.Exists(o => G.glb.lstLiteratureAuthor.Exists(p => p.Title == literature.Title && p.Author == o)))
-                    {
-                        ShownTitle.Add(literature.Title);
-                    }
-                    if (chosenInstitution.Exists(o => G.glb.lstLiteratureInstitution.Exists(p => p.Title == literature.Title && p.Institution == o)))
-                    {
-                        ShownTitle.Add(literature.Title);
-                    }
-                }
-                ShownTitle = ShownTitle.Distinct().ToList();
-                dgvLiterature.Rows.Clear();
-                foreach (string title in ShownTitle)
-                {
-                    dgvLiterature.Rows.Add(title);
-                }
+                dgvLiterature.Rows.Add(title);
             }
-        }
+        }        
 
         private void btnApply_Click(object sender, EventArgs e)
         {
             LoadLiteratureList();
-            btnApply.Enabled = false;
+            //btnApply.Enabled = false;
         }
 
         private void clbTag_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnApply.Enabled = true;
+            //btnApply.Enabled = true;
         }
 
         private void clbAuthor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnApply.Enabled = true;
+            //btnApply.Enabled = true;
         }
 
         private void clbYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnApply.Enabled = true;
+            //btnApply.Enabled = true;
         }
 
         private void clbInstitution_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnApply.Enabled = true;
+            //btnApply.Enabled = true;
         }
 
         private void clbJournalConference_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnApply.Enabled = true;
+            //btnApply.Enabled = true;
         }
 
-        private void rdoAnd_CheckedChanged(object sender, EventArgs e)
+        private void clbProject_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AndOrMode = true;
-            btnApply.Enabled = true;
-        }
-
-        private void rdoOr_CheckedChanged(object sender, EventArgs e)
-        {
-            AndOrMode = false;
-            btnApply.Enabled = true;
+            //btnApply.Enabled = true;
         }
 
         private void btnTagAll_Click(object sender, EventArgs e)
@@ -410,5 +396,25 @@ namespace LifeGame
                 clbJournalConference.Items.Add(JournalConferences[i].ItemName + "[" + JournalConferences[i].ItemCount + "]", false);
             }
         }
+
+        private void btnProjectAll_Click(object sender, EventArgs e)
+        {
+            clbProject.Items.Clear();
+            for (int i = 0; i < Projects.Count; i++)
+            {
+                clbProject.Items.Add(Projects[i].ItemName + "[" + Projects[i].ItemCount + "]", true);
+            }
+        }
+
+        private void btnProjectClear_Click(object sender, EventArgs e)
+        {
+            clbProject.Items.Clear();
+            for (int i = 0; i < Projects.Count; i++)
+            {
+                clbProject.Items.Add(Projects[i].ItemName + "[" + Projects[i].ItemCount + "]", false);
+            }
+        }
+
+
     }
 }

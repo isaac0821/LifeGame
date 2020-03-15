@@ -27,9 +27,29 @@ namespace LifeGame
             bibTeX.BibEntry = EBibEntry.Phdthesis;
             literature = inputLiterature;
             txtTitle.Text = literature.Title;
-            txtBibTitle.Text = literature.Title;
-            bibTeX.Title = literature.Title;
-            if (inputAuthor.Author != "")
+            txtBibKey.Text = literature.BibKey;
+            bibTeX.BibKey = literature.BibKey;
+
+            if (inputLiterature.BibTeX != null)
+            {
+                if (inputLiterature.BibTeX.BibEntry != EBibEntry.Phdthesis)
+                {
+                    inputLiterature.BibTeX = null;
+                }
+            }
+
+            if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Title == "" || inputLiterature.BibTeX.Title == null)
+            {
+                txtBibTitle.Text = literature.Title;
+                bibTeX.Title = literature.Title;
+            }
+            else
+            {
+                txtBibTitle.Text = literature.BibTeX.Title;
+                bibTeX.Title = literature.BibTeX.Title;
+            }
+
+            if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Author == "" || inputLiterature.BibTeX.Author == null)
             {
                 string[] thesisAuthorFullName = inputAuthor.Author.Split(" ".ToCharArray());
                 string thesisAuthor = thesisAuthorFullName[0].Substring(0, 1).ToUpper() + ". " + thesisAuthorFullName[thesisAuthorFullName.Length - 1];
@@ -38,17 +58,62 @@ namespace LifeGame
             }
             else
             {
-                txtBibAuthor.Text = "";
-                bibTeX.Author = "";
+                txtBibAuthor.Text = inputLiterature.BibTeX.Author;
+                bibTeX.Author = inputLiterature.BibTeX.Author;
             }
-            txtBibKey.Text = literature.BibKey;
-            bibTeX.BibKey = literature.BibKey;
-            txtBibSchool.Text = inputSchool.Institution;
-            bibTeX.School = inputSchool.Institution;
-            if (literature.PublishYear != 9999)
+
+            if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Booktitle == "" || inputLiterature.BibTeX.Booktitle == null)
             {
-                txtBibYear.Text = literature.PublishYear.ToString();
-                bibTeX.Year = literature.PublishYear.ToString();
+                txtBibSchool.Text = inputSchool.Institution;
+                bibTeX.School = inputSchool.Institution;
+            }
+            else
+            {
+                txtBibSchool.Text = literature.BibTeX.School;
+                bibTeX.School = literature.BibTeX.School;
+            }
+
+            if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Year == "" || inputLiterature.BibTeX.Year == null)
+            {
+                if (literature.PublishYear != 9999)
+                {
+                    txtBibYear.Text = literature.PublishYear.ToString();
+                    bibTeX.Year = literature.PublishYear.ToString();
+                }
+                else
+                {
+                    txtBibYear.Text = "";
+                    bibTeX.Year = "";
+                }
+            }
+            else
+            {
+                txtBibYear.Text = inputLiterature.BibTeX.Year;
+                bibTeX.Year = inputLiterature.BibTeX.Year;
+            }
+
+            if (inputLiterature.BibTeX != null)
+            {
+                if (inputLiterature.BibTeX.Address != null)
+                {
+                    txtBibAddress.Text = inputLiterature.BibTeX.Address;
+                    bibTeX.Address = inputLiterature.BibTeX.Address;
+                }
+                if (inputLiterature.BibTeX.Month != null)
+                {
+                    cbxBibMonth.Text = inputLiterature.BibTeX.Month;
+                    bibTeX.Month = inputLiterature.BibTeX.Month;
+                }
+                if (inputLiterature.BibTeX.Note != null)
+                {
+                    txtBibNote.Text = inputLiterature.BibTeX.Note;
+                    bibTeX.Note = inputLiterature.BibTeX.Note;
+                }
+                if (inputLiterature.BibTeX.Key != null)
+                {
+                    txtBibKeyBackup.Text = inputLiterature.BibTeX.Key;
+                    bibTeX.Key = inputLiterature.BibTeX.Key;
+                }
             }
             dateAdded = literature.DateAdded;
             txtBibTeX.Text = ParseBib.ParseBibTeXPhdthesis(bibTeX, dateAdded, DateTime.Today);

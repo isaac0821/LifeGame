@@ -27,19 +27,102 @@ namespace LifeGame
             bibTeX.BibEntry = EBibEntry.Article;
             literature = inputLiterature;
             txtTitle.Text = literature.Title;
-            txtBibTitle.Text = literature.Title;
-            bibTeX.Title = literature.Title;
-            txtBibAuthor.Text = ParseBib.GetAuthor(inputAuthorList);
-            bibTeX.Author = txtBibAuthor.Text;
             txtBibKey.Text = literature.BibKey;
             bibTeX.BibKey = literature.BibKey;
-            txtBibJournal.Text = literature.JournalOrConferenceName;
-            bibTeX.Journal = literature.JournalOrConferenceName;
-            if (literature.PublishYear != 9999)
+
+            if (inputLiterature.BibTeX != null)
             {
-                txtBibYear.Text = literature.PublishYear.ToString();
-                bibTeX.Year = literature.PublishYear.ToString();
+                if (inputLiterature.BibTeX.BibEntry != EBibEntry.Article) {
+                    inputLiterature.BibTeX = null;
+                }
             }
+            
+            if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Title == "" || inputLiterature.BibTeX.Title == null)
+            {
+                txtBibTitle.Text = literature.Title;
+                bibTeX.Title = literature.Title;
+            }
+            else
+            {
+                txtBibTitle.Text = literature.BibTeX.Title;
+                bibTeX.Title = literature.BibTeX.Title;
+            }
+
+            if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Author == "" || inputLiterature.BibTeX.Author == null)
+            {
+                txtBibAuthor.Text = ParseBib.GetAuthor(inputAuthorList);
+                bibTeX.Author = txtBibAuthor.Text;
+            }
+            else
+            {
+                txtBibAuthor.Text = inputLiterature.BibTeX.Author;
+                bibTeX.Author = inputLiterature.BibTeX.Author;
+            }
+
+            if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Journal == "" || inputLiterature.BibTeX.Journal == null)
+            {
+                txtBibJournal.Text = literature.JournalOrConferenceName;
+                bibTeX.Journal = literature.JournalOrConferenceName;
+            }
+            else
+            {
+                txtBibJournal.Text = literature.BibTeX.Journal;
+                bibTeX.Journal = literature.BibTeX.Journal;
+            }
+
+            if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Year == "" || inputLiterature.BibTeX.Year == null)
+            {
+                if (literature.PublishYear != 9999)
+                {
+                    txtBibYear.Text = literature.PublishYear.ToString();
+                    bibTeX.Year = literature.PublishYear.ToString();
+                }
+                else
+                {
+                    txtBibYear.Text = "";
+                    bibTeX.Year = "";
+                }
+            }
+            else
+            {
+                txtBibYear.Text = inputLiterature.BibTeX.Year;
+                bibTeX.Year = inputLiterature.BibTeX.Year;
+            }
+
+            if (inputLiterature.BibTeX != null)
+            {
+                if (inputLiterature.BibTeX.Volume != null)
+                {
+                    txtBibVolume.Text = inputLiterature.BibTeX.Volume;
+                    bibTeX.Volume = inputLiterature.BibTeX.Volume;
+                }
+                if (inputLiterature.BibTeX.Number != null)
+                {
+                    txtBibNumber.Text = inputLiterature.BibTeX.Number;
+                    bibTeX.Number = inputLiterature.BibTeX.Number;
+                }
+                if (inputLiterature.BibTeX.Pages != null)
+                {
+                    txtBibPages.Text = inputLiterature.BibTeX.Pages;
+                    bibTeX.Pages = inputLiterature.BibTeX.Pages;
+                }
+                if (inputLiterature.BibTeX.Month != null)
+                {
+                    cbxBibMonth.Text = inputLiterature.BibTeX.Month;
+                    bibTeX.Month = inputLiterature.BibTeX.Month;
+                }
+                if (inputLiterature.BibTeX.Note != null)
+                {
+                    txtBibNote.Text = inputLiterature.BibTeX.Note;
+                    bibTeX.Note = inputLiterature.BibTeX.Note;
+                }
+                if (inputLiterature.BibTeX.Key != null)
+                {
+                    txtBibKeyBackup.Text = inputLiterature.BibTeX.Key;
+                    bibTeX.Key = inputLiterature.BibTeX.Key;
+                }
+            }
+
             dateAdded = literature.DateAdded;
             txtBibTeX.Text = ParseBib.ParseBibTeXArticle(bibTeX, dateAdded, DateTime.Today);
         }

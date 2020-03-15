@@ -57,6 +57,19 @@ namespace LifeGame
                 //    item.DateModified = DateTime.Today;
                 //}
 
+                //foreach (RLiteratureOutSource p in G.glb.lstLiteratureOutSource)
+                //{
+                //    string[] outSource = p.OutsourcePath.Split('\\');
+                //    outSource[1] = "Literature";
+                //    string newOutSource = "";
+                //    for (int i = 0; i<outSource.Length; i++)
+                //    {
+                //        newOutSource += outSource[i];
+                //        newOutSource += "\\";
+                //    }
+                //    p.OutsourcePath = newOutSource;
+                //}
+
                 //foreach (CTask task in G.glb.lstTask)
                 //{
                 //    CalAndFind C = new CalAndFind();

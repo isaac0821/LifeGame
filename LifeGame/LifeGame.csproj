@@ -193,6 +193,12 @@
     <Compile Include="frmInfo\frmDelLog.Designer.cs">
       <DependentUpon>frmDelLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNoteMine\frmBibTeX\frmBibConference.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoteMine\frmBibTeX\frmBibConference.Designer.cs">
+      <DependentUpon>frmBibConference.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNoteMine\frmBibTeX\frmBibPhDThesis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -336,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfo\frmDelLog.resx">
       <DependentUpon>frmDelLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoteMine\frmBibTeX\frmBibConference.resx">
+      <DependentUpon>frmBibConference.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNoteMine\frmBibTeX\frmBibPhDThesis.resx">
       <DependentUpon>frmBibPhDThesis.cs</DependentUpon>

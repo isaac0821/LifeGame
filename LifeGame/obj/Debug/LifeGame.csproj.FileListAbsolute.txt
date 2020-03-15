@@ -58,3 +58,4 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddPath.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmConvertSchedule.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibArticle.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibPhDThesis.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibConference.resources

@@ -37,20 +37,37 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpgTag = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.clbTag = new System.Windows.Forms.CheckedListBox();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnTagAll = new System.Windows.Forms.Button();
+            this.btnTagClear = new System.Windows.Forms.Button();
             this.tpgAuthor = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.clbAuthor = new System.Windows.Forms.CheckedListBox();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAuthorAll = new System.Windows.Forms.Button();
+            this.btnAuthorClear = new System.Windows.Forms.Button();
             this.tpgYear = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.clbYear = new System.Windows.Forms.CheckedListBox();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnYearAll = new System.Windows.Forms.Button();
+            this.btnYearClear = new System.Windows.Forms.Button();
             this.tpgInstitution = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.clbInstitution = new System.Windows.Forms.CheckedListBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnInsAll = new System.Windows.Forms.Button();
+            this.btnInsClear = new System.Windows.Forms.Button();
+            this.tpgJournalConference = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.clbJournalConference = new System.Windows.Forms.CheckedListBox();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnJourAll = new System.Windows.Forms.Button();
+            this.btnJourClear = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.rdoOr = new System.Windows.Forms.RadioButton();
-            this.rdoAnd = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnApply = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvLiterature = new System.Windows.Forms.DataGridView();
@@ -60,26 +77,12 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAddLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnTagAll = new System.Windows.Forms.Button();
-            this.btnTagClear = new System.Windows.Forms.Button();
-            this.btnAuthorAll = new System.Windows.Forms.Button();
-            this.btnAuthorClear = new System.Windows.Forms.Button();
-            this.btnYearAll = new System.Windows.Forms.Button();
-            this.btnYearClear = new System.Windows.Forms.Button();
-            this.btnInsAll = new System.Windows.Forms.Button();
-            this.btnInsClear = new System.Windows.Forms.Button();
-            this.btnJourAll = new System.Windows.Forms.Button();
-            this.btnJourClear = new System.Windows.Forms.Button();
+            this.tpgProject = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.clbProject = new System.Windows.Forms.CheckedListBox();
+            this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnProjectAll = new System.Windows.Forms.Button();
+            this.btnProjectClear = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -89,25 +92,28 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpgTag.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
             this.tpgAuthor.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
             this.tpgYear.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
             this.tpgInstitution.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
+            this.tpgJournalConference.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).BeginInit();
             this.cmsLiterature.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
-            this.tableLayoutPanel10.SuspendLayout();
-            this.tableLayoutPanel11.SuspendLayout();
-            this.tableLayoutPanel12.SuspendLayout();
-            this.tableLayoutPanel13.SuspendLayout();
+            this.tpgProject.SuspendLayout();
+            this.tableLayoutPanel14.SuspendLayout();
+            this.tableLayoutPanel15.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -177,10 +183,11 @@
             // 
             this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
             this.tabControl1.Controls.Add(this.tpgTag);
+            this.tabControl1.Controls.Add(this.tpgProject);
             this.tabControl1.Controls.Add(this.tpgAuthor);
             this.tabControl1.Controls.Add(this.tpgYear);
             this.tabControl1.Controls.Add(this.tpgInstitution);
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tpgJournalConference);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 34);
             this.tabControl1.Multiline = true;
@@ -200,6 +207,21 @@
             this.tpgTag.Text = "Tag";
             this.tpgTag.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.clbTag, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel13, 0, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(248, 366);
+            this.tableLayoutPanel4.TabIndex = 1;
+            // 
             // clbTag
             // 
             this.clbTag.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -210,6 +232,45 @@
             this.clbTag.Size = new System.Drawing.Size(242, 329);
             this.clbTag.TabIndex = 0;
             this.clbTag.SelectedIndexChanged += new System.EventHandler(this.clbTag_SelectedIndexChanged);
+            // 
+            // tableLayoutPanel13
+            // 
+            this.tableLayoutPanel13.ColumnCount = 3;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel13.Controls.Add(this.btnTagAll, 1, 0);
+            this.tableLayoutPanel13.Controls.Add(this.btnTagClear, 2, 0);
+            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 338);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 1;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(242, 25);
+            this.tableLayoutPanel13.TabIndex = 1;
+            // 
+            // btnTagAll
+            // 
+            this.btnTagAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTagAll.Location = new System.Drawing.Point(125, 3);
+            this.btnTagAll.Name = "btnTagAll";
+            this.btnTagAll.Size = new System.Drawing.Size(54, 19);
+            this.btnTagAll.TabIndex = 0;
+            this.btnTagAll.Text = "All";
+            this.btnTagAll.UseVisualStyleBackColor = true;
+            this.btnTagAll.Click += new System.EventHandler(this.btnTagAll_Click);
+            // 
+            // btnTagClear
+            // 
+            this.btnTagClear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTagClear.Location = new System.Drawing.Point(185, 3);
+            this.btnTagClear.Name = "btnTagClear";
+            this.btnTagClear.Size = new System.Drawing.Size(54, 19);
+            this.btnTagClear.TabIndex = 1;
+            this.btnTagClear.Text = "Clear";
+            this.btnTagClear.UseVisualStyleBackColor = true;
+            this.btnTagClear.Click += new System.EventHandler(this.btnTagClear_Click);
             // 
             // tpgAuthor
             // 
@@ -222,6 +283,21 @@
             this.tpgAuthor.Text = "Author";
             this.tpgAuthor.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.clbAuthor, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel10, 0, 1);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(248, 366);
+            this.tableLayoutPanel5.TabIndex = 1;
+            // 
             // clbAuthor
             // 
             this.clbAuthor.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -232,6 +308,44 @@
             this.clbAuthor.Size = new System.Drawing.Size(242, 329);
             this.clbAuthor.TabIndex = 0;
             this.clbAuthor.SelectedIndexChanged += new System.EventHandler(this.clbAuthor_SelectedIndexChanged);
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 3;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel10.Controls.Add(this.btnAuthorAll, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.btnAuthorClear, 2, 0);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 338);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(242, 25);
+            this.tableLayoutPanel10.TabIndex = 1;
+            // 
+            // btnAuthorAll
+            // 
+            this.btnAuthorAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAuthorAll.Location = new System.Drawing.Point(125, 3);
+            this.btnAuthorAll.Name = "btnAuthorAll";
+            this.btnAuthorAll.Size = new System.Drawing.Size(54, 19);
+            this.btnAuthorAll.TabIndex = 0;
+            this.btnAuthorAll.Text = "All";
+            this.btnAuthorAll.UseVisualStyleBackColor = true;
+            this.btnAuthorAll.Click += new System.EventHandler(this.btnAuthorAll_Click);
+            // 
+            // btnAuthorClear
+            // 
+            this.btnAuthorClear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAuthorClear.Location = new System.Drawing.Point(185, 3);
+            this.btnAuthorClear.Name = "btnAuthorClear";
+            this.btnAuthorClear.Size = new System.Drawing.Size(54, 19);
+            this.btnAuthorClear.TabIndex = 1;
+            this.btnAuthorClear.Text = "Clear";
+            this.btnAuthorClear.UseVisualStyleBackColor = true;
+            this.btnAuthorClear.Click += new System.EventHandler(this.btnAuthorClear_Click);
             // 
             // tpgYear
             // 
@@ -244,6 +358,21 @@
             this.tpgYear.Text = "Year";
             this.tpgYear.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.clbYear, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel11, 0, 1);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(248, 366);
+            this.tableLayoutPanel6.TabIndex = 1;
+            // 
             // clbYear
             // 
             this.clbYear.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -254,6 +383,44 @@
             this.clbYear.Size = new System.Drawing.Size(242, 329);
             this.clbYear.TabIndex = 0;
             this.clbYear.SelectedIndexChanged += new System.EventHandler(this.clbYear_SelectedIndexChanged);
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 3;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel11.Controls.Add(this.btnYearAll, 1, 0);
+            this.tableLayoutPanel11.Controls.Add(this.btnYearClear, 2, 0);
+            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 338);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 1;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(242, 25);
+            this.tableLayoutPanel11.TabIndex = 1;
+            // 
+            // btnYearAll
+            // 
+            this.btnYearAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnYearAll.Location = new System.Drawing.Point(125, 3);
+            this.btnYearAll.Name = "btnYearAll";
+            this.btnYearAll.Size = new System.Drawing.Size(54, 19);
+            this.btnYearAll.TabIndex = 0;
+            this.btnYearAll.Text = "All";
+            this.btnYearAll.UseVisualStyleBackColor = true;
+            this.btnYearAll.Click += new System.EventHandler(this.btnYearAll_Click);
+            // 
+            // btnYearClear
+            // 
+            this.btnYearClear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnYearClear.Location = new System.Drawing.Point(185, 3);
+            this.btnYearClear.Name = "btnYearClear";
+            this.btnYearClear.Size = new System.Drawing.Size(54, 19);
+            this.btnYearClear.TabIndex = 1;
+            this.btnYearClear.Text = "Clear";
+            this.btnYearClear.UseVisualStyleBackColor = true;
+            this.btnYearClear.Click += new System.EventHandler(this.btnYearClear_Click);
             // 
             // tpgInstitution
             // 
@@ -266,6 +433,21 @@
             this.tpgInstitution.Text = "Institution";
             this.tpgInstitution.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Controls.Add(this.clbInstitution, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel12, 0, 1);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 2;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(248, 366);
+            this.tableLayoutPanel7.TabIndex = 1;
+            // 
             // clbInstitution
             // 
             this.clbInstitution.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -277,16 +459,69 @@
             this.clbInstitution.TabIndex = 0;
             this.clbInstitution.SelectedIndexChanged += new System.EventHandler(this.clbInstitution_SelectedIndexChanged);
             // 
-            // tabPage1
+            // tableLayoutPanel12
             // 
-            this.tabPage1.Controls.Add(this.tableLayoutPanel8);
-            this.tabPage1.Location = new System.Drawing.Point(23, 4);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(254, 372);
-            this.tabPage1.TabIndex = 4;
-            this.tabPage1.Text = "Journal/Conference";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel12.ColumnCount = 3;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel12.Controls.Add(this.btnInsAll, 1, 0);
+            this.tableLayoutPanel12.Controls.Add(this.btnInsClear, 2, 0);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 338);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 1;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(242, 25);
+            this.tableLayoutPanel12.TabIndex = 1;
+            // 
+            // btnInsAll
+            // 
+            this.btnInsAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInsAll.Location = new System.Drawing.Point(125, 3);
+            this.btnInsAll.Name = "btnInsAll";
+            this.btnInsAll.Size = new System.Drawing.Size(54, 19);
+            this.btnInsAll.TabIndex = 0;
+            this.btnInsAll.Text = "All";
+            this.btnInsAll.UseVisualStyleBackColor = true;
+            this.btnInsAll.Click += new System.EventHandler(this.btnInsAll_Click);
+            // 
+            // btnInsClear
+            // 
+            this.btnInsClear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInsClear.Location = new System.Drawing.Point(185, 3);
+            this.btnInsClear.Name = "btnInsClear";
+            this.btnInsClear.Size = new System.Drawing.Size(54, 19);
+            this.btnInsClear.TabIndex = 1;
+            this.btnInsClear.Text = "Clear";
+            this.btnInsClear.UseVisualStyleBackColor = true;
+            this.btnInsClear.Click += new System.EventHandler(this.btnInsClear_Click);
+            // 
+            // tpgJournalConference
+            // 
+            this.tpgJournalConference.Controls.Add(this.tableLayoutPanel8);
+            this.tpgJournalConference.Location = new System.Drawing.Point(23, 4);
+            this.tpgJournalConference.Name = "tpgJournalConference";
+            this.tpgJournalConference.Padding = new System.Windows.Forms.Padding(3);
+            this.tpgJournalConference.Size = new System.Drawing.Size(254, 372);
+            this.tpgJournalConference.TabIndex = 4;
+            this.tpgJournalConference.Text = "Journal/Conference";
+            this.tpgJournalConference.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 1;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.Controls.Add(this.clbJournalConference, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel9, 0, 1);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 2;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(248, 366);
+            this.tableLayoutPanel8.TabIndex = 1;
             // 
             // clbJournalConference
             // 
@@ -299,17 +534,50 @@
             this.clbJournalConference.TabIndex = 0;
             this.clbJournalConference.SelectedIndexChanged += new System.EventHandler(this.clbJournalConference_SelectedIndexChanged);
             // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 3;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel9.Controls.Add(this.btnJourAll, 1, 0);
+            this.tableLayoutPanel9.Controls.Add(this.btnJourClear, 2, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 338);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(242, 25);
+            this.tableLayoutPanel9.TabIndex = 1;
+            // 
+            // btnJourAll
+            // 
+            this.btnJourAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnJourAll.Location = new System.Drawing.Point(125, 3);
+            this.btnJourAll.Name = "btnJourAll";
+            this.btnJourAll.Size = new System.Drawing.Size(54, 19);
+            this.btnJourAll.TabIndex = 0;
+            this.btnJourAll.Text = "All";
+            this.btnJourAll.UseVisualStyleBackColor = true;
+            this.btnJourAll.Click += new System.EventHandler(this.btnJourAll_Click);
+            // 
+            // btnJourClear
+            // 
+            this.btnJourClear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnJourClear.Location = new System.Drawing.Point(185, 3);
+            this.btnJourClear.Name = "btnJourClear";
+            this.btnJourClear.Size = new System.Drawing.Size(54, 19);
+            this.btnJourClear.TabIndex = 1;
+            this.btnJourClear.Text = "Clear";
+            this.btnJourClear.UseVisualStyleBackColor = true;
+            this.btnJourClear.Click += new System.EventHandler(this.btnJourClear_Click);
+            // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
-            this.tableLayoutPanel2.Controls.Add(this.rdoOr, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.rdoAnd, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnApply, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnSearch, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -318,53 +586,16 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(281, 25);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
-            // rdoOr
+            // btnSearch
             // 
-            this.rdoOr.AutoSize = true;
-            this.rdoOr.Checked = true;
-            this.rdoOr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rdoOr.Location = new System.Drawing.Point(182, 3);
-            this.rdoOr.Name = "rdoOr";
-            this.rdoOr.Size = new System.Drawing.Size(45, 19);
-            this.rdoOr.TabIndex = 0;
-            this.rdoOr.TabStop = true;
-            this.rdoOr.Text = "OR";
-            this.rdoOr.UseVisualStyleBackColor = true;
-            this.rdoOr.CheckedChanged += new System.EventHandler(this.rdoOr_CheckedChanged);
-            // 
-            // rdoAnd
-            // 
-            this.rdoAnd.AutoSize = true;
-            this.rdoAnd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rdoAnd.Location = new System.Drawing.Point(128, 3);
-            this.rdoAnd.Name = "rdoAnd";
-            this.rdoAnd.Size = new System.Drawing.Size(48, 19);
-            this.rdoAnd.TabIndex = 1;
-            this.rdoAnd.Text = "AND";
-            this.rdoAnd.UseVisualStyleBackColor = true;
-            this.rdoAnd.CheckedChanged += new System.EventHandler(this.rdoAnd_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 25);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Search Mode:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnApply
-            // 
-            this.btnApply.Location = new System.Drawing.Point(230, 0);
-            this.btnApply.Margin = new System.Windows.Forms.Padding(0);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(51, 23);
-            this.btnApply.TabIndex = 3;
-            this.btnApply.Text = "Apply";
-            this.btnApply.UseVisualStyleBackColor = true;
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            this.btnSearch.Location = new System.Drawing.Point(230, 0);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(51, 23);
+            this.btnSearch.TabIndex = 3;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -451,271 +682,81 @@
             this.tsmRemoveLiterature.Text = "Remove";
             this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
             // 
-            // tableLayoutPanel4
+            // tpgProject
             // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.clbTag, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel13, 0, 1);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(248, 366);
-            this.tableLayoutPanel4.TabIndex = 1;
+            this.tpgProject.Controls.Add(this.tableLayoutPanel14);
+            this.tpgProject.Location = new System.Drawing.Point(23, 4);
+            this.tpgProject.Name = "tpgProject";
+            this.tpgProject.Padding = new System.Windows.Forms.Padding(3);
+            this.tpgProject.Size = new System.Drawing.Size(254, 372);
+            this.tpgProject.TabIndex = 5;
+            this.tpgProject.Text = "Project";
+            this.tpgProject.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel5
+            // tableLayoutPanel14
             // 
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.clbAuthor, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel10, 0, 1);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(248, 366);
-            this.tableLayoutPanel5.TabIndex = 1;
+            this.tableLayoutPanel14.ColumnCount = 1;
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel14.Controls.Add(this.clbProject, 0, 0);
+            this.tableLayoutPanel14.Controls.Add(this.tableLayoutPanel15, 0, 1);
+            this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel14.Name = "tableLayoutPanel14";
+            this.tableLayoutPanel14.RowCount = 2;
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(248, 366);
+            this.tableLayoutPanel14.TabIndex = 2;
             // 
-            // tableLayoutPanel6
+            // clbProject
             // 
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.clbYear, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel11, 0, 1);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(248, 366);
-            this.tableLayoutPanel6.TabIndex = 1;
+            this.clbProject.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.clbProject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clbProject.FormattingEnabled = true;
+            this.clbProject.Location = new System.Drawing.Point(3, 3);
+            this.clbProject.Name = "clbProject";
+            this.clbProject.Size = new System.Drawing.Size(242, 329);
+            this.clbProject.TabIndex = 0;
+            this.clbProject.SelectedIndexChanged += new System.EventHandler(this.clbProject_SelectedIndexChanged);
             // 
-            // tableLayoutPanel7
+            // tableLayoutPanel15
             // 
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Controls.Add(this.clbInstitution, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel12, 0, 1);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 2;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(248, 366);
-            this.tableLayoutPanel7.TabIndex = 1;
+            this.tableLayoutPanel15.ColumnCount = 3;
+            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel15.Controls.Add(this.btnProjectAll, 1, 0);
+            this.tableLayoutPanel15.Controls.Add(this.btnProjectClear, 2, 0);
+            this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(3, 338);
+            this.tableLayoutPanel15.Name = "tableLayoutPanel15";
+            this.tableLayoutPanel15.RowCount = 1;
+            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(242, 25);
+            this.tableLayoutPanel15.TabIndex = 1;
             // 
-            // tableLayoutPanel8
+            // btnProjectAll
             // 
-            this.tableLayoutPanel8.ColumnCount = 1;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Controls.Add(this.clbJournalConference, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel9, 0, 1);
-            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 2;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(248, 366);
-            this.tableLayoutPanel8.TabIndex = 1;
+            this.btnProjectAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnProjectAll.Location = new System.Drawing.Point(125, 3);
+            this.btnProjectAll.Name = "btnProjectAll";
+            this.btnProjectAll.Size = new System.Drawing.Size(54, 19);
+            this.btnProjectAll.TabIndex = 0;
+            this.btnProjectAll.Text = "All";
+            this.btnProjectAll.UseVisualStyleBackColor = true;
+            this.btnProjectAll.Click += new System.EventHandler(this.btnProjectAll_Click);
             // 
-            // tableLayoutPanel9
+            // btnProjectClear
             // 
-            this.tableLayoutPanel9.ColumnCount = 3;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel9.Controls.Add(this.btnJourAll, 1, 0);
-            this.tableLayoutPanel9.Controls.Add(this.btnJourClear, 2, 0);
-            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 338);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 1;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(242, 25);
-            this.tableLayoutPanel9.TabIndex = 1;
-            // 
-            // tableLayoutPanel10
-            // 
-            this.tableLayoutPanel10.ColumnCount = 3;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel10.Controls.Add(this.btnAuthorAll, 1, 0);
-            this.tableLayoutPanel10.Controls.Add(this.btnAuthorClear, 2, 0);
-            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 338);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 1;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(242, 25);
-            this.tableLayoutPanel10.TabIndex = 1;
-            // 
-            // tableLayoutPanel11
-            // 
-            this.tableLayoutPanel11.ColumnCount = 3;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel11.Controls.Add(this.btnYearAll, 1, 0);
-            this.tableLayoutPanel11.Controls.Add(this.btnYearClear, 2, 0);
-            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 338);
-            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
-            this.tableLayoutPanel11.RowCount = 1;
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(242, 25);
-            this.tableLayoutPanel11.TabIndex = 1;
-            // 
-            // tableLayoutPanel12
-            // 
-            this.tableLayoutPanel12.ColumnCount = 3;
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel12.Controls.Add(this.btnInsAll, 1, 0);
-            this.tableLayoutPanel12.Controls.Add(this.btnInsClear, 2, 0);
-            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 338);
-            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
-            this.tableLayoutPanel12.RowCount = 1;
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(242, 25);
-            this.tableLayoutPanel12.TabIndex = 1;
-            // 
-            // tableLayoutPanel13
-            // 
-            this.tableLayoutPanel13.ColumnCount = 3;
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel13.Controls.Add(this.btnTagAll, 1, 0);
-            this.tableLayoutPanel13.Controls.Add(this.btnTagClear, 2, 0);
-            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 338);
-            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
-            this.tableLayoutPanel13.RowCount = 1;
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(242, 25);
-            this.tableLayoutPanel13.TabIndex = 1;
-            // 
-            // btnTagAll
-            // 
-            this.btnTagAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnTagAll.Location = new System.Drawing.Point(125, 3);
-            this.btnTagAll.Name = "btnTagAll";
-            this.btnTagAll.Size = new System.Drawing.Size(54, 19);
-            this.btnTagAll.TabIndex = 0;
-            this.btnTagAll.Text = "All";
-            this.btnTagAll.UseVisualStyleBackColor = true;
-            this.btnTagAll.Click += new System.EventHandler(this.btnTagAll_Click);
-            // 
-            // btnTagClear
-            // 
-            this.btnTagClear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnTagClear.Location = new System.Drawing.Point(185, 3);
-            this.btnTagClear.Name = "btnTagClear";
-            this.btnTagClear.Size = new System.Drawing.Size(54, 19);
-            this.btnTagClear.TabIndex = 1;
-            this.btnTagClear.Text = "Clear";
-            this.btnTagClear.UseVisualStyleBackColor = true;
-            this.btnTagClear.Click += new System.EventHandler(this.btnTagClear_Click);
-            // 
-            // btnAuthorAll
-            // 
-            this.btnAuthorAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAuthorAll.Location = new System.Drawing.Point(125, 3);
-            this.btnAuthorAll.Name = "btnAuthorAll";
-            this.btnAuthorAll.Size = new System.Drawing.Size(54, 19);
-            this.btnAuthorAll.TabIndex = 0;
-            this.btnAuthorAll.Text = "All";
-            this.btnAuthorAll.UseVisualStyleBackColor = true;
-            this.btnAuthorAll.Click += new System.EventHandler(this.btnAuthorAll_Click);
-            // 
-            // btnAuthorClear
-            // 
-            this.btnAuthorClear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAuthorClear.Location = new System.Drawing.Point(185, 3);
-            this.btnAuthorClear.Name = "btnAuthorClear";
-            this.btnAuthorClear.Size = new System.Drawing.Size(54, 19);
-            this.btnAuthorClear.TabIndex = 1;
-            this.btnAuthorClear.Text = "Clear";
-            this.btnAuthorClear.UseVisualStyleBackColor = true;
-            this.btnAuthorClear.Click += new System.EventHandler(this.btnAuthorClear_Click);
-            // 
-            // btnYearAll
-            // 
-            this.btnYearAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnYearAll.Location = new System.Drawing.Point(125, 3);
-            this.btnYearAll.Name = "btnYearAll";
-            this.btnYearAll.Size = new System.Drawing.Size(54, 19);
-            this.btnYearAll.TabIndex = 0;
-            this.btnYearAll.Text = "All";
-            this.btnYearAll.UseVisualStyleBackColor = true;
-            this.btnYearAll.Click += new System.EventHandler(this.btnYearAll_Click);
-            // 
-            // btnYearClear
-            // 
-            this.btnYearClear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnYearClear.Location = new System.Drawing.Point(185, 3);
-            this.btnYearClear.Name = "btnYearClear";
-            this.btnYearClear.Size = new System.Drawing.Size(54, 19);
-            this.btnYearClear.TabIndex = 1;
-            this.btnYearClear.Text = "Clear";
-            this.btnYearClear.UseVisualStyleBackColor = true;
-            this.btnYearClear.Click += new System.EventHandler(this.btnYearClear_Click);
-            // 
-            // btnInsAll
-            // 
-            this.btnInsAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnInsAll.Location = new System.Drawing.Point(125, 3);
-            this.btnInsAll.Name = "btnInsAll";
-            this.btnInsAll.Size = new System.Drawing.Size(54, 19);
-            this.btnInsAll.TabIndex = 0;
-            this.btnInsAll.Text = "All";
-            this.btnInsAll.UseVisualStyleBackColor = true;
-            this.btnInsAll.Click += new System.EventHandler(this.btnInsAll_Click);
-            // 
-            // btnInsClear
-            // 
-            this.btnInsClear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnInsClear.Location = new System.Drawing.Point(185, 3);
-            this.btnInsClear.Name = "btnInsClear";
-            this.btnInsClear.Size = new System.Drawing.Size(54, 19);
-            this.btnInsClear.TabIndex = 1;
-            this.btnInsClear.Text = "Clear";
-            this.btnInsClear.UseVisualStyleBackColor = true;
-            this.btnInsClear.Click += new System.EventHandler(this.btnInsClear_Click);
-            // 
-            // btnJourAll
-            // 
-            this.btnJourAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnJourAll.Location = new System.Drawing.Point(125, 3);
-            this.btnJourAll.Name = "btnJourAll";
-            this.btnJourAll.Size = new System.Drawing.Size(54, 19);
-            this.btnJourAll.TabIndex = 0;
-            this.btnJourAll.Text = "All";
-            this.btnJourAll.UseVisualStyleBackColor = true;
-            this.btnJourAll.Click += new System.EventHandler(this.btnJourAll_Click);
-            // 
-            // btnJourClear
-            // 
-            this.btnJourClear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnJourClear.Location = new System.Drawing.Point(185, 3);
-            this.btnJourClear.Name = "btnJourClear";
-            this.btnJourClear.Size = new System.Drawing.Size(54, 19);
-            this.btnJourClear.TabIndex = 1;
-            this.btnJourClear.Text = "Clear";
-            this.btnJourClear.UseVisualStyleBackColor = true;
-            this.btnJourClear.Click += new System.EventHandler(this.btnJourClear_Click);
+            this.btnProjectClear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnProjectClear.Location = new System.Drawing.Point(185, 3);
+            this.btnProjectClear.Name = "btnProjectClear";
+            this.btnProjectClear.Size = new System.Drawing.Size(54, 19);
+            this.btnProjectClear.TabIndex = 1;
+            this.btnProjectClear.Text = "Clear";
+            this.btnProjectClear.UseVisualStyleBackColor = true;
+            this.btnProjectClear.Click += new System.EventHandler(this.btnProjectClear_Click);
             // 
             // frmLiterature
             // 
@@ -739,26 +780,28 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tpgTag.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel13.ResumeLayout(false);
             this.tpgAuthor.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel10.ResumeLayout(false);
             this.tpgYear.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel11.ResumeLayout(false);
             this.tpgInstitution.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.tpgJournalConference.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).EndInit();
             this.cmsLiterature.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel8.ResumeLayout(false);
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel10.ResumeLayout(false);
-            this.tableLayoutPanel11.ResumeLayout(false);
-            this.tableLayoutPanel12.ResumeLayout(false);
-            this.tableLayoutPanel13.ResumeLayout(false);
+            this.tpgProject.ResumeLayout(false);
+            this.tableLayoutPanel14.ResumeLayout(false);
+            this.tableLayoutPanel15.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -780,21 +823,18 @@
         private System.Windows.Forms.CheckedListBox clbInstitution;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.RadioButton rdoOr;
-        private System.Windows.Forms.RadioButton rdoAnd;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvLiterature;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tpgJournalConference;
         private System.Windows.Forms.CheckedListBox clbJournalConference;
         private System.Windows.Forms.ContextMenuStrip cmsLiterature;
         private System.Windows.Forms.ToolStripMenuItem tsmAddLiterature;
         private System.Windows.Forms.ToolStripMenuItem tsmViewLiterature;
         private System.Windows.Forms.ToolStripMenuItem tsmRemoveLiterature;
-        private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
@@ -816,5 +856,11 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Button btnJourAll;
         private System.Windows.Forms.Button btnJourClear;
+        private System.Windows.Forms.TabPage tpgProject;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
+        private System.Windows.Forms.CheckedListBox clbProject;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
+        private System.Windows.Forms.Button btnProjectAll;
+        private System.Windows.Forms.Button btnProjectClear;
     }
 }

@@ -39,7 +39,6 @@ namespace LifeGame
         Conference,
         Inbook,
         Incollection,
-        Inproceedings,
         Manual,
         Mastersthesis,
         Misc,
