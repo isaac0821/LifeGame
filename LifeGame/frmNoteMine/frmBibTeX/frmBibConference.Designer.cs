@@ -185,6 +185,7 @@
             this.txtBibBooktitle.Name = "txtBibBooktitle";
             this.txtBibBooktitle.Size = new System.Drawing.Size(281, 20);
             this.txtBibBooktitle.TabIndex = 2;
+            this.txtBibBooktitle.TextChanged += new System.EventHandler(this.txtBibBooktitle_TextChanged);
             // 
             // txtBibYear
             // 

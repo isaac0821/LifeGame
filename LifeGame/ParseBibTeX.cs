@@ -34,6 +34,31 @@ namespace LifeGame
             return Authors;
         }
 
+        public string ParseBibTeXUnpublished(CBibTeX bib, DateTime DateAdded, DateTime DateModified)
+        {
+            string BibTeX = "";
+            BibTeX += "@Unpublished{" + bib.BibKey + ",\r\n";
+            BibTeX += "    author = {" + bib.Author + "},\r\n";
+            BibTeX += "    title = {" + bib.Title + "},\r\n";
+            BibTeX += "    note = {" + bib.Note + "},\r\n";
+            if (bib.Month != "" && bib.Month != null)
+            {
+                BibTeX += "    month = {" + bib.Month + "},\r\n";
+            }
+             if (bib.Year != "" && bib.Year != null)
+            {
+                BibTeX += "    year = {" + bib.Year + "},\r\n";
+            }           
+            if (bib.Key != "" && bib.Key != null)
+            {
+                BibTeX += "    key = {" + bib.Key + "},\r\n";
+            }
+            BibTeX += "    Date-Added = {" + DateAdded + "},\r\n";
+            BibTeX += "    Date-Modified = {" + DateModified + "},\r\n";
+            BibTeX += "}";
+            return BibTeX;
+        }
+
         public string ParseBibTeXArticle(CBibTeX bib, DateTime DateAdded, DateTime DateModified)
         {
             string BibTeX = "";
@@ -41,7 +66,7 @@ namespace LifeGame
             BibTeX += "    author = {" + bib.Author + "},\r\n";
             BibTeX += "    title = {" + bib.Title + "},\r\n";
             BibTeX += "    journal = {" + bib.Journal + "},\r\n";
-            BibTeX += "    year = " + bib.Year + ",\r\n";
+            BibTeX += "    year = {" + bib.Year + "},\r\n";
             if (bib.Volume != "" && bib.Volume != null)
             {
                 BibTeX += "    volume = {" + bib.Volume + "},\r\n";
@@ -79,7 +104,33 @@ namespace LifeGame
             BibTeX += "    author = {" + bib.Author + "},\r\n";
             BibTeX += "    title = {" + bib.Title + "},\r\n";
             BibTeX += "    school = {" + bib.School + "},\r\n";
-            BibTeX += "    year = " + bib.Year + ",\r\n";
+            BibTeX += "    year = {" + bib.Year + "},\r\n";
+            if (bib.Month != "" && bib.Month != null)
+            {
+                BibTeX += "    month = {" + bib.Month + "},\r\n";
+            }
+            if (bib.Note != "" && bib.Note != null)
+            {
+                BibTeX += "    note = {" + bib.Note + "},\r\n";
+            }
+            if (bib.Key != "" && bib.Key != null)
+            {
+                BibTeX += "    key = {" + bib.Key + "},\r\n";
+            }
+            BibTeX += "    Date-Added = {" + DateAdded + "},\r\n";
+            BibTeX += "    Date-Modified = {" + DateModified + "},\r\n";
+            BibTeX += "}";
+            return BibTeX;
+        }
+
+        public string ParseBibTeXMastersthesis(CBibTeX bib, DateTime DateAdded, DateTime DateModified)
+        {
+            string BibTeX = "";
+            BibTeX += "@Mastersthesis{" + bib.BibKey + ",\r\n";
+            BibTeX += "    author = {" + bib.Author + "},\r\n";
+            BibTeX += "    title = {" + bib.Title + "},\r\n";
+            BibTeX += "    school = {" + bib.School + "},\r\n";
+            BibTeX += "    year = {" + bib.Year + "},\r\n";
             if (bib.Month != "" && bib.Month != null)
             {
                 BibTeX += "    month = {" + bib.Month + "},\r\n";
@@ -105,7 +156,7 @@ namespace LifeGame
             BibTeX += "    author = {" + bib.Author + "},\r\n";
             BibTeX += "    title = {" + bib.Title + "},\r\n";
             BibTeX += "    booktitle = {" + bib.Booktitle + "},\r\n";
-            BibTeX += "    year = " + bib.Year + ",\r\n";
+            BibTeX += "    year = {" + bib.Year + "},\r\n";
             if (bib.Editor != "" && bib.Editor != null)
             {
                 BibTeX += "    editor = {" + bib.Editor + "},\r\n";

@@ -69,6 +69,7 @@ namespace LifeGame
                 case EBibEntry.Manual:
                     break;
                 case EBibEntry.Mastersthesis:
+                    txtBibRef.Text = ParseBib.ParseBibTeXMastersthesis(bib, literature.DateAdded, literature.DateModified);
                     break;
                 case EBibEntry.Misc:
                     break;
@@ -80,6 +81,7 @@ namespace LifeGame
                 case EBibEntry.Techreport:
                     break;
                 case EBibEntry.Unpublished:
+                    txtBibRef.Text = ParseBib.ParseBibTeXUnpublished(bib, literature.DateAdded, literature.DateModified);
                     break;
                 default:
                     break;
@@ -594,26 +596,49 @@ namespace LifeGame
                     frmBibArticle.BuildBibTeX += new frmBibArticle.BuildBibTeXHandler(ParseBibTeXText); 
                     frmBibArticle.Show();
                     break;
-                case "Phdthesis":
-                    RLiteratureAuthor tmpAuthor = new RLiteratureAuthor();
+                case "Mastersthesis":
+                    RLiteratureAuthor tmpMasterAuthor = new RLiteratureAuthor();
                     if (tmpAuthorList.Count > 0)
                     {
-                        tmpAuthor = tmpAuthorList[0];
+                        tmpMasterAuthor = tmpAuthorList[0];
                     }
                     else
                     {
-                        tmpAuthor.Author = "";   
+                        tmpMasterAuthor.Author = "";
                     }
-                    RLiteratureInstitution tmpInstitution = new RLiteratureInstitution();
+                    RLiteratureInstitution tmpMasterInstitution = new RLiteratureInstitution();
                     if (tmpInstitutionList.Count > 0)
                     {
-                        tmpInstitution = tmpInstitutionList[0];
+                        tmpMasterInstitution = tmpInstitutionList[0];
                     }
                     else
                     {
-                        tmpInstitution.Institution = "";
+                        tmpMasterInstitution.Institution = "";
                     }
-                    frmBibPhDThesis frmBibPhDThesis = new frmBibPhDThesis(tmpLiterature, tmpAuthor, tmpInstitution);
+                    frmBibMasterThesis frmBibMasterThesis = new frmBibMasterThesis(tmpLiterature, tmpMasterAuthor, tmpMasterInstitution);
+                    frmBibMasterThesis.BuildBibTeX += new frmBibMasterThesis.BuildBibTeXHandler(ParseBibTeXText);
+                    frmBibMasterThesis.Show();
+                    break;
+                case "Phdthesis":
+                    RLiteratureAuthor tmpPhDAuthor = new RLiteratureAuthor();
+                    if (tmpAuthorList.Count > 0)
+                    {
+                        tmpPhDAuthor = tmpAuthorList[0];
+                    }
+                    else
+                    {
+                        tmpPhDAuthor.Author = "";   
+                    }
+                    RLiteratureInstitution tmpPhDInstitution = new RLiteratureInstitution();
+                    if (tmpInstitutionList.Count > 0)
+                    {
+                        tmpPhDInstitution = tmpInstitutionList[0];
+                    }
+                    else
+                    {
+                        tmpPhDInstitution.Institution = "";
+                    }
+                    frmBibPhDThesis frmBibPhDThesis = new frmBibPhDThesis(tmpLiterature, tmpPhDAuthor, tmpPhDInstitution);
                     frmBibPhDThesis.BuildBibTeX += new frmBibPhDThesis.BuildBibTeXHandler(ParseBibTeXText);
                     frmBibPhDThesis.Show();
                     break;
@@ -621,6 +646,11 @@ namespace LifeGame
                     frmBibConference frmBibConference = new frmBibConference(tmpLiterature, tmpAuthorList);
                     frmBibConference.BuildBibTeX += new frmBibConference.BuildBibTeXHandler(ParseBibTeXText);
                     frmBibConference.Show();
+                    break;
+                case "Unpublished":
+                    frmBibUnpublished frmBibUnpublished = new frmBibUnpublished(tmpLiterature, tmpAuthorList);
+                    frmBibUnpublished.BuildBibTeX += new frmBibUnpublished.BuildBibTeXHandler(ParseBibTeXText);
+                    frmBibUnpublished.Show();
                     break;
                 default:
                     break;

@@ -218,5 +218,11 @@ namespace LifeGame
             bibTeX.Address = txtBibAddress.Text;
             txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
         }
+
+        private void txtBibBooktitle_TextChanged(object sender, EventArgs e)
+        {
+            bibTeX.Booktitle = txtBibBooktitle.Text;
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+        }
     }
 }
