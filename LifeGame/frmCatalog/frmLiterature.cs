@@ -201,6 +201,24 @@ namespace LifeGame
             LoadLiteratureList();
         }
 
+        private void LoadLiteratureList(string SearchText)
+        {
+            List<string> ShownTitle = new List<string>();
+            foreach (CLiterature literature in G.glb.lstLiterature)
+            {
+                if (literature.Title.ToUpper().Contains(SearchText.ToUpper()))
+                {
+                    ShownTitle.Add(literature.Title);
+                }
+            }
+            ShownTitle = ShownTitle.Distinct().ToList();
+            dgvLiterature.Rows.Clear();
+            foreach (string title in ShownTitle)
+            {
+                dgvLiterature.Rows.Add(title);
+            }
+        }
+
         private void LoadLiteratureList()
         {
             List<string> chosenTag = new List<string>();
@@ -273,37 +291,43 @@ namespace LifeGame
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            LoadLiteratureList();
+            LoadLiteratureList(txtSearch.Text);
             //btnApply.Enabled = false;
         }
 
         private void clbTag_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadLiteratureList();
             //btnApply.Enabled = true;
         }
 
         private void clbAuthor_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadLiteratureList();
             //btnApply.Enabled = true;
         }
 
         private void clbYear_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadLiteratureList();
             //btnApply.Enabled = true;
         }
 
         private void clbInstitution_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadLiteratureList();
             //btnApply.Enabled = true;
         }
 
         private void clbJournalConference_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadLiteratureList();
             //btnApply.Enabled = true;
         }
 
         private void clbProject_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadLiteratureList();
             //btnApply.Enabled = true;
         }
 
@@ -314,6 +338,7 @@ namespace LifeGame
             {
                 clbTag.Items.Add(Tags[i].ItemName + "[" + Tags[i].ItemCount + "]", true);
             }
+            LoadLiteratureList();
         }
 
         private void btnTagClear_Click(object sender, EventArgs e)
@@ -323,6 +348,7 @@ namespace LifeGame
             {
                 clbTag.Items.Add(Tags[i].ItemName + "[" + Tags[i].ItemCount + "]", false);
             }
+            LoadLiteratureList();
         }
 
         private void btnAuthorAll_Click(object sender, EventArgs e)
@@ -332,6 +358,7 @@ namespace LifeGame
             {
                 clbAuthor.Items.Add(Authors[i].ItemName + "[" + Authors[i].ItemCount + "]", true);
             }
+            LoadLiteratureList();
         }
 
         private void btnAuthorClear_Click(object sender, EventArgs e)
@@ -341,6 +368,7 @@ namespace LifeGame
             {
                 clbAuthor.Items.Add(Authors[i].ItemName + "[" + Authors[i].ItemCount + "]", false);
             }
+            LoadLiteratureList();
         }
 
         private void btnYearAll_Click(object sender, EventArgs e)
@@ -350,6 +378,7 @@ namespace LifeGame
             {
                 clbYear.Items.Add(Years[i].ItemName + "[" + Years[i].ItemCount + "]", true);
             }
+            LoadLiteratureList();
         }
 
         private void btnYearClear_Click(object sender, EventArgs e)
@@ -359,6 +388,7 @@ namespace LifeGame
             {
                 clbYear.Items.Add(Years[i].ItemName + "[" + Years[i].ItemCount + "]", false);
             }
+            LoadLiteratureList();
         }
 
         private void btnInsAll_Click(object sender, EventArgs e)
@@ -368,6 +398,7 @@ namespace LifeGame
             {
                 clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]", true);
             }
+            LoadLiteratureList();
         }
 
         private void btnInsClear_Click(object sender, EventArgs e)
@@ -377,6 +408,7 @@ namespace LifeGame
             {
                 clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]", false);
             }
+            LoadLiteratureList();
         }
 
         private void btnJourAll_Click(object sender, EventArgs e)
@@ -386,6 +418,7 @@ namespace LifeGame
             {
                 clbJournalConference.Items.Add(JournalConferences[i].ItemName + "[" + JournalConferences[i].ItemCount + "]", true);
             }
+            LoadLiteratureList();
         }
 
         private void btnJourClear_Click(object sender, EventArgs e)
@@ -395,6 +428,7 @@ namespace LifeGame
             {
                 clbJournalConference.Items.Add(JournalConferences[i].ItemName + "[" + JournalConferences[i].ItemCount + "]", false);
             }
+            LoadLiteratureList();
         }
 
         private void btnProjectAll_Click(object sender, EventArgs e)
@@ -404,6 +438,7 @@ namespace LifeGame
             {
                 clbProject.Items.Add(Projects[i].ItemName + "[" + Projects[i].ItemCount + "]", true);
             }
+            LoadLiteratureList();
         }
 
         private void btnProjectClear_Click(object sender, EventArgs e)
@@ -413,6 +448,7 @@ namespace LifeGame
             {
                 clbProject.Items.Add(Projects[i].ItemName + "[" + Projects[i].ItemCount + "]", false);
             }
+            LoadLiteratureList();
         }
 
 

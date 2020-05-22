@@ -363,9 +363,9 @@
             this.groupBox1.Controls.Add(this.lsbTag);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(2, 2);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(135, 168);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
@@ -410,9 +410,9 @@
             this.groupBox2.Controls.Add(this.lsbAuthor);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(2, 174);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(135, 169);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
@@ -497,9 +497,9 @@
             this.groupBox3.Controls.Add(this.lsbInstitution);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(2, 2);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(334, 82);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
@@ -520,9 +520,9 @@
             this.groupBox4.Controls.Add(this.lsbOutSource);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(2, 88);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox4.Size = new System.Drawing.Size(334, 82);
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
@@ -580,9 +580,9 @@
             this.groupBox5.Controls.Add(this.lsbNote);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Location = new System.Drawing.Point(2, 174);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox5.Size = new System.Drawing.Size(334, 82);
             this.groupBox5.TabIndex = 14;
             this.groupBox5.TabStop = false;
@@ -632,9 +632,9 @@
             this.groupBox6.Controls.Add(this.lsbInCiting);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.Location = new System.Drawing.Point(2, 260);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox6.Size = new System.Drawing.Size(334, 83);
             this.groupBox6.TabIndex = 15;
             this.groupBox6.TabStop = false;
@@ -655,9 +655,9 @@
             this.groupBox7.Controls.Add(this.txtBibRef);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox7.Location = new System.Drawing.Point(491, 2);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox7.Size = new System.Drawing.Size(198, 347);
             this.groupBox7.TabIndex = 2;
             this.groupBox7.TabStop = false;
@@ -667,7 +667,7 @@
             // 
             this.txtBibRef.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtBibRef.Location = new System.Drawing.Point(2, 15);
-            this.txtBibRef.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBibRef.Margin = new System.Windows.Forms.Padding(2);
             this.txtBibRef.Multiline = true;
             this.txtBibRef.Name = "txtBibRef";
             this.txtBibRef.Size = new System.Drawing.Size(194, 330);
