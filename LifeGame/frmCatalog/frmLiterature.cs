@@ -292,43 +292,6 @@ namespace LifeGame
         private void btnApply_Click(object sender, EventArgs e)
         {
             LoadLiteratureList(txtSearch.Text);
-            //btnApply.Enabled = false;
-        }
-
-        private void clbTag_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadLiteratureList();
-            //btnApply.Enabled = true;
-        }
-
-        private void clbAuthor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadLiteratureList();
-            //btnApply.Enabled = true;
-        }
-
-        private void clbYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadLiteratureList();
-            //btnApply.Enabled = true;
-        }
-
-        private void clbInstitution_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadLiteratureList();
-            //btnApply.Enabled = true;
-        }
-
-        private void clbJournalConference_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadLiteratureList();
-            //btnApply.Enabled = true;
-        }
-
-        private void clbProject_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadLiteratureList();
-            //btnApply.Enabled = true;
         }
 
         private void btnTagAll_Click(object sender, EventArgs e)
@@ -451,6 +414,9 @@ namespace LifeGame
             LoadLiteratureList();
         }
 
-
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            LoadLiteratureList();
+        }
     }
 }

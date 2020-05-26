@@ -74,6 +74,7 @@
             this.btnJourClear = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvLiterature = new System.Windows.Forms.DataGridView();
@@ -83,7 +84,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAddLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnFilter = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -232,7 +233,6 @@
             this.clbTag.Name = "clbTag";
             this.clbTag.Size = new System.Drawing.Size(242, 329);
             this.clbTag.TabIndex = 0;
-            this.clbTag.SelectedIndexChanged += new System.EventHandler(this.clbTag_SelectedIndexChanged);
             // 
             // tableLayoutPanel13
             // 
@@ -308,7 +308,6 @@
             this.clbProject.Name = "clbProject";
             this.clbProject.Size = new System.Drawing.Size(242, 329);
             this.clbProject.TabIndex = 0;
-            this.clbProject.SelectedIndexChanged += new System.EventHandler(this.clbProject_SelectedIndexChanged);
             // 
             // tableLayoutPanel15
             // 
@@ -384,7 +383,6 @@
             this.clbAuthor.Name = "clbAuthor";
             this.clbAuthor.Size = new System.Drawing.Size(242, 329);
             this.clbAuthor.TabIndex = 0;
-            this.clbAuthor.SelectedIndexChanged += new System.EventHandler(this.clbAuthor_SelectedIndexChanged);
             // 
             // tableLayoutPanel10
             // 
@@ -459,7 +457,6 @@
             this.clbYear.Name = "clbYear";
             this.clbYear.Size = new System.Drawing.Size(242, 329);
             this.clbYear.TabIndex = 0;
-            this.clbYear.SelectedIndexChanged += new System.EventHandler(this.clbYear_SelectedIndexChanged);
             // 
             // tableLayoutPanel11
             // 
@@ -534,7 +531,6 @@
             this.clbInstitution.Name = "clbInstitution";
             this.clbInstitution.Size = new System.Drawing.Size(242, 329);
             this.clbInstitution.TabIndex = 0;
-            this.clbInstitution.SelectedIndexChanged += new System.EventHandler(this.clbInstitution_SelectedIndexChanged);
             // 
             // tableLayoutPanel12
             // 
@@ -609,7 +605,6 @@
             this.clbJournalConference.Name = "clbJournalConference";
             this.clbJournalConference.Size = new System.Drawing.Size(242, 329);
             this.clbJournalConference.TabIndex = 0;
-            this.clbJournalConference.SelectedIndexChanged += new System.EventHandler(this.clbJournalConference_SelectedIndexChanged);
             // 
             // tableLayoutPanel9
             // 
@@ -651,11 +646,13 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel2.Controls.Add(this.btnSearch, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtSearch, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnFilter, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -666,7 +663,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(230, 0);
+            this.btnSearch.Location = new System.Drawing.Point(179, 0);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(0);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(51, 23);
@@ -674,6 +671,14 @@
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearch.Location = new System.Drawing.Point(3, 3);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(173, 20);
+            this.txtSearch.TabIndex = 4;
             // 
             // tableLayoutPanel3
             // 
@@ -760,13 +765,16 @@
             this.tsmRemoveLiterature.Text = "Remove";
             this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
             // 
-            // txtSearch
+            // btnFilter
             // 
-            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSearch.Location = new System.Drawing.Point(3, 3);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(224, 20);
-            this.txtSearch.TabIndex = 4;
+            this.btnFilter.Location = new System.Drawing.Point(230, 0);
+            this.btnFilter.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(51, 23);
+            this.btnFilter.TabIndex = 5;
+            this.btnFilter.Text = "Filter";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // frmLiterature
             // 
@@ -874,5 +882,6 @@
         private System.Windows.Forms.Button btnProjectAll;
         private System.Windows.Forms.Button btnProjectClear;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnFilter;
     }
 }
