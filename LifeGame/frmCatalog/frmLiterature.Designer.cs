@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLiterature));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.filesFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmExportBib = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -75,6 +76,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnFilter = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvLiterature = new System.Windows.Forms.DataGridView();
@@ -84,7 +86,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAddLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnFilter = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -131,9 +132,18 @@
             // 
             // filesFToolStripMenuItem
             // 
+            this.filesFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmExportBib});
             this.filesFToolStripMenuItem.Name = "filesFToolStripMenuItem";
             this.filesFToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.filesFToolStripMenuItem.Text = "Files(&F)";
+            // 
+            // tsmExportBib
+            // 
+            this.tsmExportBib.Name = "tsmExportBib";
+            this.tsmExportBib.Size = new System.Drawing.Size(180, 22);
+            this.tsmExportBib.Text = "Export bib";
+            this.tsmExportBib.Click += new System.EventHandler(this.tsmExportBib_Click);
             // 
             // splitContainer1
             // 
@@ -680,6 +690,17 @@
             this.txtSearch.Size = new System.Drawing.Size(173, 20);
             this.txtSearch.TabIndex = 4;
             // 
+            // btnFilter
+            // 
+            this.btnFilter.Location = new System.Drawing.Point(230, 0);
+            this.btnFilter.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(51, 23);
+            this.btnFilter.TabIndex = 5;
+            this.btnFilter.Text = "Filter";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -764,17 +785,6 @@
             this.tsmRemoveLiterature.Size = new System.Drawing.Size(117, 22);
             this.tsmRemoveLiterature.Text = "Remove";
             this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
-            // 
-            // btnFilter
-            // 
-            this.btnFilter.Location = new System.Drawing.Point(230, 0);
-            this.btnFilter.Margin = new System.Windows.Forms.Padding(0);
-            this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(51, 23);
-            this.btnFilter.TabIndex = 5;
-            this.btnFilter.Text = "Filter";
-            this.btnFilter.UseVisualStyleBackColor = true;
-            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // frmLiterature
             // 
@@ -883,5 +893,6 @@
         private System.Windows.Forms.Button btnProjectClear;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnFilter;
+        private System.Windows.Forms.ToolStripMenuItem tsmExportBib;
     }
 }

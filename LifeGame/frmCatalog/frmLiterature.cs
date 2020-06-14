@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace LifeGame
 {
@@ -417,6 +418,65 @@ namespace LifeGame
         private void btnFilter_Click(object sender, EventArgs e)
         {
             LoadLiteratureList();
+        }
+
+        private void tsmExportBib_Click(object sender, EventArgs e)
+        {
+            string strProject = Interaction.InputBox("Project", "Project", "Project", 300, 300);
+            List<RLiteratureInCiting> lstLiterature = G.glb.lstLiteratureCiting.FindAll(o => o.TitleOfMyArticle == strProject);
+            List<CLiterature> lstLitsToBeExported = new List<CLiterature>();
+
+            string bib = "";
+
+            foreach (RLiteratureInCiting lit in lstLiterature)
+            {
+                lstLitsToBeExported.Add(G.glb.lstLiterature.Find(o => o.Title == lit.Title));
+            }
+            foreach (CLiterature lit in lstLitsToBeExported)
+            {
+                ParseBibTeX ParseBibTeX = new ParseBibTeX();
+                string bibLog = "";
+                switch (lit.BibTeX.BibEntry)
+                {
+                    case EBibEntry.Article:
+                        bibLog = ParseBibTeX.ParseBibTeXArticle(lit.BibTeX, lit.DateAdded, lit.DateModified);
+                        break;
+                    case EBibEntry.Book:
+                        break;
+                    case EBibEntry.Booklet:
+                        break;
+                    case EBibEntry.Conference:
+                        bibLog = ParseBibTeX.ParseBibTeXConference(lit.BibTeX, lit.DateAdded, lit.DateModified);
+                        break;
+                    case EBibEntry.Inbook:
+                        break;
+                    case EBibEntry.Incollection:
+                        break;
+                    case EBibEntry.Manual:
+                        break;
+                    case EBibEntry.Mastersthesis:
+                        bibLog = ParseBibTeX.ParseBibTeXMastersthesis(lit.BibTeX, lit.DateAdded, lit.DateModified);
+                        break;
+                    case EBibEntry.Misc:
+                        break;
+                    case EBibEntry.Phdthesis:
+                        bibLog = ParseBibTeX.ParseBibTeXPhdthesis(lit.BibTeX, lit.DateAdded, lit.DateModified);
+                        break;
+                    case EBibEntry.Proceedings:
+                        break;
+                    case EBibEntry.Techreport:
+                        break;
+                    case EBibEntry.Unpublished:
+                        bibLog = ParseBibTeX.ParseBibTeXUnpublished(lit.BibTeX, lit.DateAdded, lit.DateModified);
+                        break;
+                    default:
+                        break;
+                }
+
+                bib += bibLog + "\n\n";
+            }
+
+            System.IO.File.WriteAllText(@"D:\" + strProject + "Bib.bib", bib);
         }
     }
 }

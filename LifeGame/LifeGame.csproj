@@ -85,6 +85,12 @@
     <Compile Include="frmAdd\frmAddPath.Designer.cs">
       <DependentUpon>frmAddPath.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCatalog\frmSurvey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatalog\frmSurvey.Designer.cs">
+      <DependentUpon>frmSurvey.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInfo\frmClearSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -318,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatalog\frmCurrencyRate.resx">
       <DependentUpon>frmCurrencyRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatalog\frmSurvey.resx">
+      <DependentUpon>frmSurvey.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfoMine\frmInfoEvent.resx">
       <DependentUpon>frmInfoEvent.cs</DependentUpon>

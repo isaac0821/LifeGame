@@ -131,6 +131,37 @@ namespace LifeGame
         public string OutsourcePath;
     }
 
+    //[Serializable]
+    //public class CSurvey
+    //{
+    //    public string SurveyTitle;
+    //    public string SurveyDescription;
+    //}
+
+    //[Serializable]
+    //public class RSurveyTag
+    //{
+    //    public string SurveyTitle;
+    //    public string Tag;
+    //    public string TagShortForm;
+    //    public string TagDescription;
+    //}
+
+    //[Serializable]
+    //public class RSurveyLiterature
+    //{
+    //    public string SurveyTitle;
+    //    public string LiteratureTitle;
+    //}
+
+    //[Serializable]
+    //public class RSurveyLiteratureTag
+    //{
+    //    public string SurveyTitle;
+    //    public string LiteratureTitle;
+    //    public string Tag;
+    //}
+
     /// <summary>
     /// 笔记
     /// </summary>
@@ -186,7 +217,7 @@ namespace LifeGame
     public class CWorkOut
     {
         public DateTime TagTime;
-        public string WorkOutType;        
+        public string WorkOutType;
         public double WorkOutQty;
         public string WorkOutUnit;
         public string Location;
@@ -200,13 +231,13 @@ namespace LifeGame
     {
         public DateTime TagTime;
         public EMedicineTiming MedicineTime;
-        public string MedicineName;        
+        public string MedicineName;
         public double MedicineQty;
         public string MedicineUnit;
     }
 
     [Serializable]
-    public enum EMedicineTiming: int
+    public enum EMedicineTiming : int
     {
         BeforeBreakfast,
         AfterBreakfast,
@@ -232,7 +263,7 @@ namespace LifeGame
     }
 
     [Serializable]
-    public enum ETaskState: int
+    public enum ETaskState : int
     {
         NotStartedYet,
         Ongoing,
@@ -300,7 +331,7 @@ namespace LifeGame
     }
 
     [Serializable]
-    public enum EAccountType: int
+    public enum EAccountType : int
     {
         /// <summary>
         /// 资产

@@ -61,3 +61,4 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibPhDThesis.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibConference.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibMasterThesis.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibUnpublished.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmCatalog.frmSurvey.resources
