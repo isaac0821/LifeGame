@@ -523,8 +523,9 @@ namespace LifeGame
 
         private void tsmAddOutSource_Click(object sender, EventArgs e)
         {
-            string tmpPath = "D:\\literature\\" + txtTitle.Text + ".pdf";
+            string tmpPath = txtTitle.Text + ".pdf";
             tmpPath = tmpPath.Replace(":", "-");
+            tmpPath = "D:\\literature\\" + tmpPath;
             string strOutsource = Interaction.InputBox("Literature Link", "Literature Link", tmpPath, 300, 300);
             RLiteratureOutSource newOutSource = new RLiteratureOutSource();
             newOutSource.Title = txtTitle.Text;

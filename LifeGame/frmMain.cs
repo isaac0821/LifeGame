@@ -60,9 +60,9 @@ namespace LifeGame
                 //foreach (RLiteratureOutSource p in G.glb.lstLiteratureOutSource)
                 //{
                 //    string[] outSource = p.OutsourcePath.Split('\\');
-                //    outSource[1] = "Literature";
+                //    outSource[0] = "D:";
                 //    string newOutSource = "";
-                //    for (int i = 0; i<outSource.Length; i++)
+                //    for (int i = 0; i < outSource.Length; i++)
                 //    {
                 //        newOutSource += outSource[i];
                 //        newOutSource += "\\";

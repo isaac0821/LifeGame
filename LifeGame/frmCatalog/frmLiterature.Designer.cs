@@ -46,6 +46,8 @@
             this.tpgProject = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.clbProject = new System.Windows.Forms.CheckedListBox();
+            this.cmsProject = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmRemoveProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.btnProjectAll = new System.Windows.Forms.Button();
             this.btnProjectClear = new System.Windows.Forms.Button();
@@ -99,6 +101,7 @@
             this.tableLayoutPanel13.SuspendLayout();
             this.tpgProject.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
+            this.cmsProject.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
             this.tpgAuthor.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -121,6 +124,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filesFToolStripMenuItem});
@@ -132,8 +136,10 @@
             // 
             // filesFToolStripMenuItem
             // 
+            this.filesFToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
             this.filesFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmExportBib});
+            this.filesFToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.filesFToolStripMenuItem.Name = "filesFToolStripMenuItem";
             this.filesFToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.filesFToolStripMenuItem.Text = "Files(&F)";
@@ -141,7 +147,7 @@
             // tsmExportBib
             // 
             this.tsmExportBib.Name = "tsmExportBib";
-            this.tsmExportBib.Size = new System.Drawing.Size(180, 22);
+            this.tsmExportBib.Size = new System.Drawing.Size(128, 22);
             this.tsmExportBib.Text = "Export bib";
             this.tsmExportBib.Click += new System.EventHandler(this.tsmExportBib_Click);
             // 
@@ -312,12 +318,27 @@
             // clbProject
             // 
             this.clbProject.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.clbProject.ContextMenuStrip = this.cmsProject;
             this.clbProject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clbProject.FormattingEnabled = true;
             this.clbProject.Location = new System.Drawing.Point(3, 3);
             this.clbProject.Name = "clbProject";
             this.clbProject.Size = new System.Drawing.Size(242, 329);
             this.clbProject.TabIndex = 0;
+            // 
+            // cmsProject
+            // 
+            this.cmsProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmRemoveProject});
+            this.cmsProject.Name = "cmsProject";
+            this.cmsProject.Size = new System.Drawing.Size(158, 26);
+            // 
+            // tsmRemoveProject
+            // 
+            this.tsmRemoveProject.Name = "tsmRemoveProject";
+            this.tsmRemoveProject.Size = new System.Drawing.Size(157, 22);
+            this.tsmRemoveProject.Text = "Remove Project";
+            this.tsmRemoveProject.Click += new System.EventHandler(this.tsmRemoveProject_Click);
             // 
             // tableLayoutPanel15
             // 
@@ -812,6 +833,7 @@
             this.tableLayoutPanel13.ResumeLayout(false);
             this.tpgProject.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
+            this.cmsProject.ResumeLayout(false);
             this.tableLayoutPanel15.ResumeLayout(false);
             this.tpgAuthor.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -894,5 +916,7 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.ToolStripMenuItem tsmExportBib;
+        private System.Windows.Forms.ContextMenuStrip cmsProject;
+        private System.Windows.Forms.ToolStripMenuItem tsmRemoveProject;
     }
 }

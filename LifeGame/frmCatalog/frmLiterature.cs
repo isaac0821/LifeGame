@@ -478,5 +478,50 @@ namespace LifeGame
 
             System.IO.File.WriteAllText(@"D:\" + strProject + "Bib.bib", bib);
         }
+
+        private void tsmRemoveProject_Click(object sender, EventArgs e)
+        {
+            List<String> selectedProjects = new List<string>();
+            if (clbProject.CheckedItems != null)
+            {
+                foreach (var selected in clbProject.CheckedItems)
+                {
+                    string[] sub = selected.ToString().Split('[');
+                    selectedProjects.Add(sub[0]);
+                }
+            }
+            if (selectedProjects.Count > 0)
+            {
+                string projectList = "";
+                if (selectedProjects.Count > 1)
+                {
+                    foreach (string proj in selectedProjects)
+                    {
+                        projectList += proj + "; ";
+                    }
+                    projectList = projectList.Remove(projectList.Length - 2, 2);
+                }
+                else
+                {
+                    projectList = selectedProjects[0];
+                }
+                DialogResult result = MessageBox.Show("Do you confirm to remove the following project(s):" + projectList + "? This process cannot be recovered.", "Clear Schedule", MessageBoxButtons.YesNoCancel);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        foreach (string proj in selectedProjects)
+                        {
+                            G.glb.lstLiteratureCiting.RemoveAll(o => o.TitleOfMyArticle == proj);
+                        }
+                        break;
+                    case DialogResult.No:
+                        break;
+                    default:
+                        break;
+                }
+                LoadTab();
+                LoadLiteratureList();
+            }
+        }
     }
 }
