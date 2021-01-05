@@ -173,7 +173,7 @@ namespace LifeGame
         private void frmInfoNote_Load(object sender, EventArgs e)
         { 
             // Bind Task
-            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.IsBottom && o.TaskState != ETaskState.Finished && o.TaskState != ETaskState.Aborted).ToList();
+            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.TaskState != ETaskState.Finished && o.TaskState != ETaskState.Aborted).ToList();
             List<string> choices = new List<string>();
             choices.Add("");
             foreach (CTask task in taskChoices)
@@ -221,20 +221,20 @@ namespace LifeGame
         {
             if (trvNote.SelectedNode != null && trvNote.SelectedNode.Parent != null)
             {
-                string OldLog = trvNote.SelectedNode.Text;
-                string NewLog = Interaction.InputBox("Rename Note", "Rename Note", trvNote.SelectedNode.Text, 300, 300);
+                string oldLog = trvNote.SelectedNode.Text;
+                string newLog = Interaction.InputBox("Rename Note", "Rename Note", trvNote.SelectedNode.Text, 300, 300);
                 foreach (RNoteLog noteLog in noteLogs)
                 {
-                    if (noteLog.Log == OldLog)
+                    if (noteLog.Log == oldLog)
                     {
-                        noteLog.Log = NewLog;
+                        noteLog.Log = newLog;
                     }
-                    if (noteLog.SubLog == OldLog)
+                    if (noteLog.SubLog == oldLog)
                     {
-                        noteLog.SubLog = NewLog;
+                        noteLog.SubLog = newLog;
                     }
-                    trvNote.SelectedNode.Text = NewLog;
-                    trvNote.SelectedNode.Name = NewLog;
+                    trvNote.SelectedNode.Text = newLog;
+                    trvNote.SelectedNode.Name = newLog;
                 }
             }
         }
@@ -271,7 +271,7 @@ namespace LifeGame
         {
             if (trvNote.SelectedNode != null)
             {
-                string UpperNote = trvNote.SelectedNode.Parent.Text;
+                string upperNote = trvNote.SelectedNode.Parent.Text;
                 TreeNode node = trvNote.SelectedNode;
                 TreeNode preNode = node.PrevNode;
                 if (preNode != null)
@@ -287,7 +287,7 @@ namespace LifeGame
                     }
                     node.Remove();
                     trvNote.SelectedNode = newNode;
-                    ReIndex(UpperNote);
+                    ReIndex(upperNote);
                 }
             }
         }
@@ -296,7 +296,7 @@ namespace LifeGame
         {
             if (trvNote.SelectedNode != null)
             {
-                string UpperNote = trvNote.SelectedNode.Parent.Text;
+                string upperNote = trvNote.SelectedNode.Parent.Text;
                 TreeNode node = trvNote.SelectedNode;
                 TreeNode nextNode = node.NextNode;
                 if (nextNode != null)
@@ -312,7 +312,7 @@ namespace LifeGame
                     }
                     node.Remove();
                     trvNote.SelectedNode = newNode;
-                    ReIndex(UpperNote);
+                    ReIndex(upperNote);
                 }
             }
         }

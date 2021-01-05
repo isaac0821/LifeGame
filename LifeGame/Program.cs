@@ -14,6 +14,7 @@ namespace LifeGame
         [STAThread]
         static void Main()
         {
+            object Object = new object();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());

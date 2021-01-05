@@ -40,9 +40,14 @@
             this.tpgTag = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.clbTag = new System.Windows.Forms.CheckedListBox();
+            this.cmsTags = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.btnTagAll = new System.Windows.Forms.Button();
             this.btnTagClear = new System.Windows.Forms.Button();
+            this.btnTagRefresh = new System.Windows.Forms.Button();
             this.tpgProject = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.clbProject = new System.Windows.Forms.CheckedListBox();
@@ -51,30 +56,35 @@
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.btnProjectAll = new System.Windows.Forms.Button();
             this.btnProjectClear = new System.Windows.Forms.Button();
+            this.btnProjectRefresh = new System.Windows.Forms.Button();
             this.tpgAuthor = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.clbAuthor = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAuthorAll = new System.Windows.Forms.Button();
             this.btnAuthorClear = new System.Windows.Forms.Button();
+            this.btnAuthorRefresh = new System.Windows.Forms.Button();
             this.tpgYear = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.clbYear = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.btnYearAll = new System.Windows.Forms.Button();
             this.btnYearClear = new System.Windows.Forms.Button();
+            this.btnYearRefresh = new System.Windows.Forms.Button();
             this.tpgInstitution = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.clbInstitution = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.btnInsAll = new System.Windows.Forms.Button();
             this.btnInsClear = new System.Windows.Forms.Button();
+            this.btnInstitutionRefresh = new System.Windows.Forms.Button();
             this.tpgJournalConference = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.clbJournalConference = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.btnJourAll = new System.Windows.Forms.Button();
             this.btnJourClear = new System.Windows.Forms.Button();
+            this.btnJournalRefresh = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -82,12 +92,15 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvLiterature = new System.Windows.Forms.DataGridView();
-            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsLiterature = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmViewLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAddLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.Star = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -98,6 +111,7 @@
             this.tabControl1.SuspendLayout();
             this.tpgTag.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.cmsTags.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             this.tpgProject.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
@@ -243,6 +257,7 @@
             // clbTag
             // 
             this.clbTag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.clbTag.ContextMenuStrip = this.cmsTags;
             this.clbTag.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clbTag.FormattingEnabled = true;
             this.clbTag.Location = new System.Drawing.Point(3, 3);
@@ -250,20 +265,51 @@
             this.clbTag.Size = new System.Drawing.Size(242, 329);
             this.clbTag.TabIndex = 0;
             // 
+            // cmsTags
+            // 
+            this.cmsTags.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renameToolStripMenuItem,
+            this.groupToolStripMenuItem,
+            this.removeTagToolStripMenuItem});
+            this.cmsTags.Name = "cmsTags";
+            this.cmsTags.Size = new System.Drawing.Size(139, 70);
+            // 
+            // renameToolStripMenuItem
+            // 
+            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.renameToolStripMenuItem.Text = "Rename Tag";
+            this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
+            // 
+            // groupToolStripMenuItem
+            // 
+            this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
+            this.groupToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.groupToolStripMenuItem.Text = "Group";
+            this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
+            // 
+            // removeTagToolStripMenuItem
+            // 
+            this.removeTagToolStripMenuItem.Name = "removeTagToolStripMenuItem";
+            this.removeTagToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.removeTagToolStripMenuItem.Text = "Remove Tag";
+            this.removeTagToolStripMenuItem.Click += new System.EventHandler(this.removeTagToolStripMenuItem_Click);
+            // 
             // tableLayoutPanel13
             // 
-            this.tableLayoutPanel13.ColumnCount = 3;
+            this.tableLayoutPanel13.ColumnCount = 4;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel13.Controls.Add(this.btnTagAll, 1, 0);
-            this.tableLayoutPanel13.Controls.Add(this.btnTagClear, 2, 0);
+            this.tableLayoutPanel13.Controls.Add(this.btnTagAll, 2, 0);
+            this.tableLayoutPanel13.Controls.Add(this.btnTagClear, 3, 0);
+            this.tableLayoutPanel13.Controls.Add(this.btnTagRefresh, 0, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 338);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel13.Size = new System.Drawing.Size(242, 25);
             this.tableLayoutPanel13.TabIndex = 1;
             // 
@@ -288,6 +334,16 @@
             this.btnTagClear.Text = "Clear";
             this.btnTagClear.UseVisualStyleBackColor = true;
             this.btnTagClear.Click += new System.EventHandler(this.btnTagClear_Click);
+            // 
+            // btnTagRefresh
+            // 
+            this.btnTagRefresh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTagRefresh.Location = new System.Drawing.Point(3, 3);
+            this.btnTagRefresh.Name = "btnTagRefresh";
+            this.btnTagRefresh.Size = new System.Drawing.Size(54, 19);
+            this.btnTagRefresh.TabIndex = 2;
+            this.btnTagRefresh.Text = "Refresh";
+            this.btnTagRefresh.UseVisualStyleBackColor = true;
             // 
             // tpgProject
             // 
@@ -342,18 +398,19 @@
             // 
             // tableLayoutPanel15
             // 
-            this.tableLayoutPanel15.ColumnCount = 3;
+            this.tableLayoutPanel15.ColumnCount = 4;
+            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel15.Controls.Add(this.btnProjectAll, 1, 0);
-            this.tableLayoutPanel15.Controls.Add(this.btnProjectClear, 2, 0);
+            this.tableLayoutPanel15.Controls.Add(this.btnProjectAll, 2, 0);
+            this.tableLayoutPanel15.Controls.Add(this.btnProjectClear, 3, 0);
+            this.tableLayoutPanel15.Controls.Add(this.btnProjectRefresh, 0, 0);
             this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel15.Location = new System.Drawing.Point(3, 338);
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RowCount = 1;
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel15.Size = new System.Drawing.Size(242, 25);
             this.tableLayoutPanel15.TabIndex = 1;
             // 
@@ -378,6 +435,17 @@
             this.btnProjectClear.Text = "Clear";
             this.btnProjectClear.UseVisualStyleBackColor = true;
             this.btnProjectClear.Click += new System.EventHandler(this.btnProjectClear_Click);
+            // 
+            // btnProjectRefresh
+            // 
+            this.btnProjectRefresh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnProjectRefresh.Location = new System.Drawing.Point(3, 3);
+            this.btnProjectRefresh.Name = "btnProjectRefresh";
+            this.btnProjectRefresh.Size = new System.Drawing.Size(54, 19);
+            this.btnProjectRefresh.TabIndex = 2;
+            this.btnProjectRefresh.Text = "Refresh";
+            this.btnProjectRefresh.UseVisualStyleBackColor = true;
+            this.btnProjectRefresh.Click += new System.EventHandler(this.btnProjectRefresh_Click);
             // 
             // tpgAuthor
             // 
@@ -417,12 +485,14 @@
             // 
             // tableLayoutPanel10
             // 
-            this.tableLayoutPanel10.ColumnCount = 3;
+            this.tableLayoutPanel10.ColumnCount = 4;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel10.Controls.Add(this.btnAuthorAll, 1, 0);
-            this.tableLayoutPanel10.Controls.Add(this.btnAuthorClear, 2, 0);
+            this.tableLayoutPanel10.Controls.Add(this.btnAuthorAll, 2, 0);
+            this.tableLayoutPanel10.Controls.Add(this.btnAuthorClear, 3, 0);
+            this.tableLayoutPanel10.Controls.Add(this.btnAuthorRefresh, 0, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 338);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
@@ -452,6 +522,17 @@
             this.btnAuthorClear.Text = "Clear";
             this.btnAuthorClear.UseVisualStyleBackColor = true;
             this.btnAuthorClear.Click += new System.EventHandler(this.btnAuthorClear_Click);
+            // 
+            // btnAuthorRefresh
+            // 
+            this.btnAuthorRefresh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAuthorRefresh.Location = new System.Drawing.Point(3, 3);
+            this.btnAuthorRefresh.Name = "btnAuthorRefresh";
+            this.btnAuthorRefresh.Size = new System.Drawing.Size(54, 19);
+            this.btnAuthorRefresh.TabIndex = 2;
+            this.btnAuthorRefresh.Text = "Refresh";
+            this.btnAuthorRefresh.UseVisualStyleBackColor = true;
+            this.btnAuthorRefresh.Click += new System.EventHandler(this.btnAuthorRefresh_Click);
             // 
             // tpgYear
             // 
@@ -491,12 +572,14 @@
             // 
             // tableLayoutPanel11
             // 
-            this.tableLayoutPanel11.ColumnCount = 3;
+            this.tableLayoutPanel11.ColumnCount = 4;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel11.Controls.Add(this.btnYearAll, 1, 0);
-            this.tableLayoutPanel11.Controls.Add(this.btnYearClear, 2, 0);
+            this.tableLayoutPanel11.Controls.Add(this.btnYearAll, 2, 0);
+            this.tableLayoutPanel11.Controls.Add(this.btnYearClear, 3, 0);
+            this.tableLayoutPanel11.Controls.Add(this.btnYearRefresh, 0, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 338);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
@@ -526,6 +609,17 @@
             this.btnYearClear.Text = "Clear";
             this.btnYearClear.UseVisualStyleBackColor = true;
             this.btnYearClear.Click += new System.EventHandler(this.btnYearClear_Click);
+            // 
+            // btnYearRefresh
+            // 
+            this.btnYearRefresh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnYearRefresh.Location = new System.Drawing.Point(3, 3);
+            this.btnYearRefresh.Name = "btnYearRefresh";
+            this.btnYearRefresh.Size = new System.Drawing.Size(54, 19);
+            this.btnYearRefresh.TabIndex = 2;
+            this.btnYearRefresh.Text = "Refresh";
+            this.btnYearRefresh.UseVisualStyleBackColor = true;
+            this.btnYearRefresh.Click += new System.EventHandler(this.btnYearRefresh_Click);
             // 
             // tpgInstitution
             // 
@@ -565,17 +659,19 @@
             // 
             // tableLayoutPanel12
             // 
-            this.tableLayoutPanel12.ColumnCount = 3;
+            this.tableLayoutPanel12.ColumnCount = 4;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel12.Controls.Add(this.btnInsAll, 1, 0);
-            this.tableLayoutPanel12.Controls.Add(this.btnInsClear, 2, 0);
+            this.tableLayoutPanel12.Controls.Add(this.btnInsAll, 2, 0);
+            this.tableLayoutPanel12.Controls.Add(this.btnInsClear, 3, 0);
+            this.tableLayoutPanel12.Controls.Add(this.btnInstitutionRefresh, 0, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 338);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 1;
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel12.Size = new System.Drawing.Size(242, 25);
             this.tableLayoutPanel12.TabIndex = 1;
             // 
@@ -600,6 +696,17 @@
             this.btnInsClear.Text = "Clear";
             this.btnInsClear.UseVisualStyleBackColor = true;
             this.btnInsClear.Click += new System.EventHandler(this.btnInsClear_Click);
+            // 
+            // btnInstitutionRefresh
+            // 
+            this.btnInstitutionRefresh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInstitutionRefresh.Location = new System.Drawing.Point(3, 3);
+            this.btnInstitutionRefresh.Name = "btnInstitutionRefresh";
+            this.btnInstitutionRefresh.Size = new System.Drawing.Size(54, 19);
+            this.btnInstitutionRefresh.TabIndex = 2;
+            this.btnInstitutionRefresh.Text = "Refresh";
+            this.btnInstitutionRefresh.UseVisualStyleBackColor = true;
+            this.btnInstitutionRefresh.Click += new System.EventHandler(this.btnInstitutionRefresh_Click);
             // 
             // tpgJournalConference
             // 
@@ -639,17 +746,19 @@
             // 
             // tableLayoutPanel9
             // 
-            this.tableLayoutPanel9.ColumnCount = 3;
+            this.tableLayoutPanel9.ColumnCount = 4;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel9.Controls.Add(this.btnJourAll, 1, 0);
-            this.tableLayoutPanel9.Controls.Add(this.btnJourClear, 2, 0);
+            this.tableLayoutPanel9.Controls.Add(this.btnJourAll, 2, 0);
+            this.tableLayoutPanel9.Controls.Add(this.btnJourClear, 3, 0);
+            this.tableLayoutPanel9.Controls.Add(this.btnJournalRefresh, 0, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 338);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(242, 25);
             this.tableLayoutPanel9.TabIndex = 1;
             // 
@@ -674,6 +783,17 @@
             this.btnJourClear.Text = "Clear";
             this.btnJourClear.UseVisualStyleBackColor = true;
             this.btnJourClear.Click += new System.EventHandler(this.btnJourClear_Click);
+            // 
+            // btnJournalRefresh
+            // 
+            this.btnJournalRefresh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnJournalRefresh.Location = new System.Drawing.Point(3, 3);
+            this.btnJournalRefresh.Name = "btnJournalRefresh";
+            this.btnJournalRefresh.Size = new System.Drawing.Size(54, 19);
+            this.btnJournalRefresh.TabIndex = 2;
+            this.btnJournalRefresh.Text = "Refresh";
+            this.btnJournalRefresh.UseVisualStyleBackColor = true;
+            this.btnJournalRefresh.Click += new System.EventHandler(this.btnJournalRefresh_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -754,7 +874,10 @@
             this.dgvLiterature.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvLiterature.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLiterature.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colTitle});
+            this.Star,
+            this.colTitle,
+            this.addDate,
+            this.lastModifyDate});
             this.dgvLiterature.ContextMenuStrip = this.cmsLiterature;
             this.dgvLiterature.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLiterature.Location = new System.Drawing.Point(3, 16);
@@ -762,13 +885,6 @@
             this.dgvLiterature.ReadOnly = true;
             this.dgvLiterature.Size = new System.Drawing.Size(713, 411);
             this.dgvLiterature.TabIndex = 1;
-            // 
-            // colTitle
-            // 
-            this.colTitle.HeaderText = "Title";
-            this.colTitle.Name = "colTitle";
-            this.colTitle.ReadOnly = true;
-            this.colTitle.Width = 600;
             // 
             // cmsLiterature
             // 
@@ -807,6 +923,34 @@
             this.tsmRemoveLiterature.Text = "Remove";
             this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
             // 
+            // Star
+            // 
+            this.Star.HeaderText = "Star";
+            this.Star.Name = "Star";
+            this.Star.ReadOnly = true;
+            this.Star.Width = 40;
+            // 
+            // colTitle
+            // 
+            this.colTitle.HeaderText = "Title";
+            this.colTitle.Name = "colTitle";
+            this.colTitle.ReadOnly = true;
+            this.colTitle.Width = 600;
+            // 
+            // addDate
+            // 
+            this.addDate.HeaderText = "Added Date";
+            this.addDate.Name = "addDate";
+            this.addDate.ReadOnly = true;
+            this.addDate.Width = 120;
+            // 
+            // lastModifyDate
+            // 
+            this.lastModifyDate.HeaderText = "Latest Modification";
+            this.lastModifyDate.Name = "lastModifyDate";
+            this.lastModifyDate.ReadOnly = true;
+            this.lastModifyDate.Width = 120;
+            // 
             // frmLiterature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -830,6 +974,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tpgTag.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.cmsTags.ResumeLayout(false);
             this.tableLayoutPanel13.ResumeLayout(false);
             this.tpgProject.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
@@ -876,7 +1021,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.DataGridView dgvLiterature;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TabPage tpgJournalConference;
@@ -918,5 +1062,19 @@
         private System.Windows.Forms.ToolStripMenuItem tsmExportBib;
         private System.Windows.Forms.ContextMenuStrip cmsProject;
         private System.Windows.Forms.ToolStripMenuItem tsmRemoveProject;
+        private System.Windows.Forms.Button btnTagRefresh;
+        private System.Windows.Forms.Button btnProjectRefresh;
+        private System.Windows.Forms.Button btnAuthorRefresh;
+        private System.Windows.Forms.Button btnYearRefresh;
+        private System.Windows.Forms.Button btnInstitutionRefresh;
+        private System.Windows.Forms.Button btnJournalRefresh;
+        private System.Windows.Forms.ContextMenuStrip cmsTags;
+        private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem groupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeTagToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Star;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastModifyDate;
     }
 }

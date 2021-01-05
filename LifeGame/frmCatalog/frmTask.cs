@@ -81,7 +81,7 @@ namespace LifeGame
                 {
                     chkFinished.Checked = true;
                 }
-                CalAndFind C = new CalAndFind();
+                calculate C = new calculate();
                 lblTaskTimeSpent.Text = Math.Round(C.CalTimeSpentInTask(task.TaskName, G.glb.lstSubTask, G.glb.lstLog),2).ToString() + "h";
                 DateTime? NextTimeMarker = C.FindNextTimeMarker(task.TaskName, G.glb.lstSubTask, G.glb.lstTask);
                 if (NextTimeMarker != null)
@@ -110,9 +110,7 @@ namespace LifeGame
                     {
                         TimeSpan span = log.EndTime - log.StartTime;
                         dgvLog.Rows.Add(
-                            log.StartTime.Year.ToString(),
-                            log.StartTime.Month.ToString(),
-                            log.StartTime.Day.ToString(),
+                            log.StartTime.ToString("MM/dd/yyyy"),
                             bottomTask,
                             log.LogName,
                             span.TotalHours
@@ -242,7 +240,7 @@ namespace LifeGame
                 TreeNode newNode = new TreeNode(nodeName, 1, 1);
                 newNode.Name = nodeName;
                 node.Nodes.Add(newNode);
-                CalAndFind C = new CalAndFind();
+                calculate C = new calculate();
                 C.RefreshFinishTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                 RefreshIcon(trvTask.Nodes[0]);
             }
@@ -260,7 +258,7 @@ namespace LifeGame
                 else if (G.glb.lstTask.Exists(o => o.TaskName == trvTask.SelectedNode.Text))
                 {
                     string UpperTask = trvTask.SelectedNode.Parent.Text;
-                    CalAndFind C = new CalAndFind();
+                    calculate C = new calculate();
                     bool CanDeleteFlag = C.DeleteTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog, G.glb.lstSchedule);
                     if (CanDeleteFlag)
                     {
@@ -352,7 +350,7 @@ namespace LifeGame
                     trvTask.SelectedNode = newNode;
                     ReIndex(parentNodeName);
                     ReIndex(preNodeName);
-                    CalAndFind C = new CalAndFind();
+                    calculate C = new calculate();
                     C.RefreshFinishTask(preNodeName, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                     RefreshIcon(trvTask.Nodes[0]);
                 }
@@ -382,7 +380,7 @@ namespace LifeGame
                     trvTask.SelectedNode = newNode;
                     ReIndex(grandparentNodeName);
                     ReIndex(parentNodeName);
-                    CalAndFind C = new CalAndFind();
+                    calculate C = new calculate();
                     C.RefreshFinishTask(parentNodeName, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                     RefreshIcon(trvTask.Nodes[0]);
                 }
@@ -401,14 +399,14 @@ namespace LifeGame
                 {
                     if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).TaskState != ETaskState.Finished)
                     {
-                        CalAndFind C = new CalAndFind();
+                        calculate C = new calculate();
                         C.FinishTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         C.RefreshFinishTask(trvTask.SelectedNode.Parent.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         RefreshIcon(trvTask.Nodes[0]);
                     }
                     else
                     {
-                        CalAndFind C = new CalAndFind();
+                        calculate C = new calculate();
                         C.UnfinishTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         C.RefreshFinishTask(trvTask.SelectedNode.Parent.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         RefreshIcon(trvTask.Nodes[0]);
@@ -430,14 +428,14 @@ namespace LifeGame
                 {
                     if (G.glb.lstTask.Find(o => o.TaskName == trvTask.SelectedNode.Text).TaskState != ETaskState.Aborted)
                     {
-                        CalAndFind C = new CalAndFind();
+                        calculate C = new calculate();
                         C.AbortTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         C.RefreshFinishTask(trvTask.SelectedNode.Parent.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         RefreshIcon(trvTask.Nodes[0]);
                     }
                     else
                     {
-                        CalAndFind C = new CalAndFind();
+                        calculate C = new calculate();
                         C.ReAssignTask(trvTask.SelectedNode.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         C.RefreshFinishTask(trvTask.SelectedNode.Parent.Text, G.glb.lstSubTask, G.glb.lstTask, G.glb.lstLog);
                         RefreshIcon(trvTask.Nodes[0]);
@@ -583,7 +581,7 @@ namespace LifeGame
                 }
                 NoteTopic = NoteTopic.Substring(0, NoteTopic.Length - 1);
                 CNote note = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic);
-                Draw D = new Draw();
+                plot D = new plot();
                 D.CallInfoNote(note);
             }
         }

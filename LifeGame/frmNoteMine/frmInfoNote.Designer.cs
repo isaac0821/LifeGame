@@ -318,7 +318,7 @@
             this.chkFinished.AutoSize = true;
             this.chkFinished.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkFinished.Location = new System.Drawing.Point(319, 2);
-            this.chkFinished.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkFinished.Margin = new System.Windows.Forms.Padding(2);
             this.chkFinished.Name = "chkFinished";
             this.chkFinished.Size = new System.Drawing.Size(69, 22);
             this.chkFinished.TabIndex = 1;

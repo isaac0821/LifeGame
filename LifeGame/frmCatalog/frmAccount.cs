@@ -80,11 +80,35 @@ namespace LifeGame
 
         private void LoadAccount(string accountName)
         {
+            calculate C = new calculate();
+
+            double curAssetsBalance = 0;
+            double curLiabilitiesBalance = 0;
+            calculate.SBalance currentAssets = C.CalBalance(
+                "(Assets)",
+                G.glb.lstAccount,
+                G.glb.lstSubAccount,
+                G.glb.lstTransaction,
+                G.glb.lstCurrencyRate,
+                dtpStatementPeriodStart.Value.Date,
+                dtpStatementPeriodEnd.Value.Date);
+            curAssetsBalance = currentAssets.EndingBalanceDebit - currentAssets.EndingBalanceCredit;
+            calculate.SBalance currentLiabilities = C.CalBalance(
+                "(Liability)",
+                G.glb.lstAccount,
+                G.glb.lstSubAccount,
+                G.glb.lstTransaction,
+                G.glb.lstCurrencyRate,
+                dtpStatementPeriodStart.Value.Date,
+                dtpStatementPeriodEnd.Value.Date);
+            curLiabilitiesBalance = currentLiabilities.EndingBalanceDebit - currentLiabilities.EndingBalanceCredit;
+            lblBalance.Text = Math.Round(curAssetsBalance + curLiabilitiesBalance, 2).ToString();
+
             CAccount account = G.glb.lstAccount.Find(o => o.AccountName == accountName);
             lblAccountName.Text = account.AccountName;
             lblCurrency.Text = account.Currency;
-            CalAndFind C = new CalAndFind();
-            CalAndFind.SBalance balance = C.CalBalance(
+            
+            calculate.SBalance balance = C.CalBalance(
                 accountName,
                 G.glb.lstAccount,
                 G.glb.lstSubAccount,
@@ -98,7 +122,32 @@ namespace LifeGame
             lblCreditAmount.Text = Math.Round(balance.AmountCredit, 2).ToString();
             lblDebitEnding.Text = Math.Round(balance.EndingBalanceDebit, 2).ToString();
             lblCreditEnding.Text = Math.Round(balance.EndingBalanceCredit, 2).ToString();
-            CalAndFind.SBalance futureBalance = C.CalFutureBalance(
+
+            double futureAssetsBalance = 0;
+            double futureLiabilitiesBalance = 0;
+            calculate.SBalance futureAssets = C.CalFutureBalance(
+                "(Assets)",
+                G.glb.lstAccount,
+                G.glb.lstSubAccount,
+                G.glb.lstTransaction,
+                G.glb.lstBudget,
+                G.glb.lstCurrencyRate,
+                dtpStatementPeriodStart.Value.Date,
+                dtpEndOfPredictPeriod.Value.Date);
+            futureAssetsBalance = futureAssets.EndingBalanceDebit - futureAssets.EndingBalanceCredit;
+            calculate.SBalance futureLiabilities = C.CalFutureBalance(
+                "(Liability)",
+                G.glb.lstAccount,
+                G.glb.lstSubAccount,
+                G.glb.lstTransaction,
+                G.glb.lstBudget,
+                G.glb.lstCurrencyRate,
+                dtpStatementPeriodStart.Value.Date,
+                dtpEndOfPredictPeriod.Value.Date);
+            futureLiabilitiesBalance = futureLiabilities.EndingBalanceDebit - futureLiabilities.EndingBalanceCredit;
+            lblFutureBalance.Text = Math.Round(futureAssetsBalance + futureLiabilitiesBalance, 2).ToString();
+
+            calculate.SBalance futureBalance = C.CalFutureBalance(
                 accountName,
                 G.glb.lstAccount,
                 G.glb.lstSubAccount,
@@ -127,7 +176,7 @@ namespace LifeGame
         private void LoadAccountTransaction(string accountName)
         {
             dgvDetail.Rows.Clear();
-            CalAndFind C = new CalAndFind();
+            calculate C = new calculate();
             List<string> heirAccounts = C.FindAllHeirAccount(accountName, G.glb.lstSubAccount);
             List<CTransaction> transactions = G.glb.lstTransaction.FindAll(
                 o => (heirAccounts.Exists(p => p == o.CreditAccount) || heirAccounts.Exists(p => p == o.DebitAccount))
@@ -139,9 +188,7 @@ namespace LifeGame
                     if (trans.DebitCurrency == G.glb.lstAccount.Find(o => o.AccountName == accountName).Currency)
                     {
                         dgvDetail.Rows.Add(
-                            trans.TagTime.Date.Year,
-                            trans.TagTime.Date.Month,
-                            trans.TagTime.Date.Day,
+                            trans.TagTime.Date.ToString("MM/dd/yyyy"),
                             trans.Summary,
                             trans.DebitAccount,
                             trans.CreditAccount,
@@ -154,9 +201,7 @@ namespace LifeGame
                     else if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == trans.DebitCurrency && o.CurrencyB == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency))
                     {
                         dgvDetail.Rows.Add(
-                            trans.TagTime.Date.Year,
-                            trans.TagTime.Date.Month,
-                            trans.TagTime.Date.Day,
+                            trans.TagTime.Date.ToString("MM/dd/yyyy"),
                             trans.Summary,
                             trans.DebitAccount,
                             trans.CreditAccount,
@@ -169,9 +214,7 @@ namespace LifeGame
                     else if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyB == trans.DebitCurrency && o.CurrencyA == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency))
                     {
                         dgvDetail.Rows.Add(
-                            trans.TagTime.Date.Year,
-                            trans.TagTime.Date.Month,
-                            trans.TagTime.Date.Day,
+                            trans.TagTime.Date.ToString("MM/dd/yyyy"),
                             trans.Summary,
                             trans.DebitAccount,
                             trans.CreditAccount,
@@ -191,9 +234,7 @@ namespace LifeGame
                     if (trans.CreditCurrency == G.glb.lstAccount.Find(o => o.AccountName == accountName).Currency)
                     {
                         dgvDetail.Rows.Add(
-                            trans.TagTime.Date.Year,
-                            trans.TagTime.Date.Month,
-                            trans.TagTime.Date.Day,
+                            trans.TagTime.Date.ToString("MM/dd/yyyy"),
                             trans.Summary,
                             trans.CreditAccount,
                             trans.DebitAccount,
@@ -206,9 +247,7 @@ namespace LifeGame
                     else if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == trans.CreditCurrency && o.CurrencyB == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency))
                     {
                         dgvDetail.Rows.Add(
-                            trans.TagTime.Date.Year,
-                            trans.TagTime.Date.Month,
-                            trans.TagTime.Date.Day,
+                            trans.TagTime.Date.ToString("MM/dd/yyyy"),
                             trans.Summary,
                             trans.CreditAccount,
                             trans.DebitAccount,
@@ -221,9 +260,7 @@ namespace LifeGame
                     else if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyB == trans.CreditCurrency && o.CurrencyA == G.glb.lstAccount.Find(p => p.AccountName == accountName).Currency))
                     {
                         dgvDetail.Rows.Add(
-                            trans.TagTime.Date.Year,
-                            trans.TagTime.Date.Month,
-                            trans.TagTime.Date.Day,
+                            trans.TagTime.Date.ToString("MM/dd/yyyy"),
                             trans.Summary,
                             trans.CreditAccount,
                             trans.DebitAccount,
@@ -351,7 +388,7 @@ namespace LifeGame
                 else if (G.glb.lstAccount.Exists(o => o.AccountName == trvAccount.SelectedNode.Text))
                 {
                     string UpperAccount = trvAccount.SelectedNode.Parent.Text;
-                    CalAndFind C = new CalAndFind();
+                    calculate C = new calculate();
                     bool CanDeleteFlag = C.DeleteAccount(trvAccount.SelectedNode.Text, G.glb.lstSubAccount, G.glb.lstAccount, G.glb.lstTransaction, G.glb.lstBudget);
                     if (CanDeleteFlag)
                     {

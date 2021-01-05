@@ -104,6 +104,7 @@ namespace LifeGame
             lsbInstitution.Items.Clear();
             lsbNote.Items.Clear();
             lsbInCiting.Items.Clear();
+            chkStar.Checked = false;
         }
 
         private void LoadLiterature()
@@ -115,6 +116,7 @@ namespace LifeGame
             txtJournalConference.Text = literature.JournalOrConferenceName;
             txtInOneSentence.Text = literature.InOneSentence;
             txtBibKey.Text = literature.BibKey;
+            chkStar.Checked = literature.Star;
             if (literature.BibTeX != null)
             {
                 cbxBibEntryType.Text = literature.BibTeX.BibEntry.ToString();
@@ -234,6 +236,7 @@ namespace LifeGame
                     newLiterature.BibTeX = literatureBib;
                     newLiterature.DateAdded = DateTime.Today;
                     newLiterature.DateModified = DateTime.Today;
+                    newLiterature.Star = chkStar.Checked;
                     foreach (RLiteratureAuthor author in lstLiteratureAuthor)
                     {
                         author.Title = txtTitle.Text;
@@ -269,6 +272,7 @@ namespace LifeGame
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibKey = txtBibKey.Text;
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibTeX = literatureBib;
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).DateModified = DateTime.Today;
+                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Star = chkStar.Checked;
                     foreach (RLiteratureAuthor author in lstLiteratureAuthor)
                     {
                         author.Title = txtTitle.Text;
@@ -409,14 +413,14 @@ namespace LifeGame
                 }
                 NoteTopic = NoteTopic.Substring(0, NoteTopic.Length - 1);
                 CNote note = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic);
-                Draw D = new Draw();
+                plot D = new plot();
                 D.CallInfoNote(note);
             }
         }
 
         private void tsmNewNote_Click(object sender, EventArgs e)
         {
-            Draw D = new Draw();
+            plot D = new plot();
             D.CallInfoNoteAddNew(txtTitle.Text);
         }
 
@@ -662,6 +666,12 @@ namespace LifeGame
         private void txtYear_TextChanged(object sender, EventArgs e)
         {
             GetBibKey();
+        }
+
+        private void btnGoogleScholar_Click(object sender, EventArgs e)
+        {
+            string link = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C33&q=" + txtTitle.Text.Replace(" ", "+") + "&btnG=";
+            System.Diagnostics.Process.Start("chrome.exe", link);
         }
     }
 }

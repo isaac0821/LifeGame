@@ -50,6 +50,82 @@ namespace LifeGame
             try
             {
                 Deserialize();
+                G.glb.showMode = EShowMode.LightMode;
+                G.glb.lstSurvey = new List<CSurvey>();
+                G.glb.lstSurveyTag = new List<RSurveyTag>();
+                G.glb.lstSurveyTagValueOption = new List<RSurveyTagValueOption>();
+                G.glb.lstSurveySubTag = new List<RSurveySubTag>();
+                G.glb.lstSurveyLiteratureTagValue = new List<RSurveyLiteratureTagValue>();
+
+                // Initialize bank accounts
+                //G.glb.lstAccount.Add(new CAccount());
+                //G.glb.lstAccount.Add(new CAccount());
+                //G.glb.lstAccount.Add(new CAccount());
+                //G.glb.lstAccount.Add(new CAccount());
+                //G.glb.lstAccount.Add(new CAccount());
+                //G.glb.lstAccount.Add(new CAccount());
+                //G.glb.lstAccount.Add(new CAccount());
+                //G.glb.lstAccount[0].AccountName = "(Assets)";
+                //G.glb.lstAccount[0].AccountType = EAccountType.Assets;
+                //G.glb.lstAccount[0].Currency = "USD";
+                //G.glb.lstAccount[0].ProtectedAccount = true;
+                //G.glb.lstAccount[1].AccountName = "(Gain/Loss on Exchange)";
+                //G.glb.lstAccount[1].AccountType = EAccountType.Assets;
+                //G.glb.lstAccount[1].Currency = "USD";
+                //G.glb.lstAccount[1].ProtectedAccount = true;
+                //G.glb.lstAccount[2].AccountName = "(Expense)";
+                //G.glb.lstAccount[2].AccountType = EAccountType.Expense;
+                //G.glb.lstAccount[2].Currency = "USD";
+                //G.glb.lstAccount[2].ProtectedAccount = true;
+                //G.glb.lstAccount[3].AccountName = "(Equity)";
+                //G.glb.lstAccount[3].AccountType = EAccountType.Equity;
+                //G.glb.lstAccount[3].Currency = "USD";
+                //G.glb.lstAccount[3].ProtectedAccount = true;
+                //G.glb.lstAccount[4].AccountName = "(Openning Balance)";
+                //G.glb.lstAccount[4].AccountType = EAccountType.Equity;
+                //G.glb.lstAccount[4].Currency = "USD";
+                //G.glb.lstAccount[4].ProtectedAccount = true;
+                //G.glb.lstAccount[5].AccountName = "(Liability)";
+                //G.glb.lstAccount[5].AccountType = EAccountType.Liability;
+                //G.glb.lstAccount[5].Currency = "USD";
+                //G.glb.lstAccount[5].ProtectedAccount = true;
+                //G.glb.lstAccount[6].AccountName = "(Income)";
+                //G.glb.lstAccount[6].AccountType = EAccountType.Income;
+                //G.glb.lstAccount[6].Currency = "USD";
+                //G.glb.lstAccount[6].ProtectedAccount = true;
+                //G.glb.lstSubAccount.Add(new RSubAccount());
+                //G.glb.lstSubAccount.Add(new RSubAccount());
+                //G.glb.lstSubAccount.Add(new RSubAccount());
+                //G.glb.lstSubAccount.Add(new RSubAccount());
+                //G.glb.lstSubAccount.Add(new RSubAccount());
+                //G.glb.lstSubAccount.Add(new RSubAccount());
+                //G.glb.lstSubAccount.Add(new RSubAccount());
+                //G.glb.lstSubAccount[0].Account = "(Root)";
+                //G.glb.lstSubAccount[0].SubAccount = "(Assets)";
+                //G.glb.lstSubAccount[0].index = 0;
+                //G.glb.lstSubAccount[1].Account = "(Root)";
+                //G.glb.lstSubAccount[1].SubAccount = "(Expense)";
+                //G.glb.lstSubAccount[1].index = 1;
+                //G.glb.lstSubAccount[2].Account = "(Root)";
+                //G.glb.lstSubAccount[2].SubAccount = "(Equity)";
+                //G.glb.lstSubAccount[2].index = 2;
+                //G.glb.lstSubAccount[3].Account = "(Root)";
+                //G.glb.lstSubAccount[3].SubAccount = "(Liability)";
+                //G.glb.lstSubAccount[3].index = 3;
+                //G.glb.lstSubAccount[4].Account = "(Root)";
+                //G.glb.lstSubAccount[4].SubAccount = "(Income)";
+                //G.glb.lstSubAccount[4].index = 4;
+                //G.glb.lstSubAccount[5].Account = "(Assets)";
+                //G.glb.lstSubAccount[5].SubAccount = "(Gain/Loss on Exchange)";
+                //G.glb.lstSubAccount[5].index = 0;
+                //G.glb.lstSubAccount[6].Account = "(Equity)";
+                //G.glb.lstSubAccount[6].SubAccount = "(Openning Balance)";
+                //G.glb.lstSubAccount[6].index = 0;
+                //G.glb.lstCurrencyRate.Add(new RCurrencyRate());
+                //G.glb.lstCurrencyRate[0].CurrencyA = "USD";
+                //G.glb.lstCurrencyRate[0].CurrencyB = "RMB";
+                //G.glb.lstCurrencyRate[0].Rate = 7.1;
+
 
                 //foreach (CLiterature item in G.glb.lstLiterature)
                 //{
@@ -146,6 +222,8 @@ namespace LifeGame
 
         private void frmMain_Resize(object sender, EventArgs e)
         {
+            tblMain.ColumnStyles[0].Width = 30;
+            tblMain.ColumnStyles[8].Width = 30;
             DrawLog();
         }
 
@@ -186,6 +264,12 @@ namespace LifeGame
         {
             frmLiterature frmLiterature = new frmLiterature();
             frmLiterature.Show();
+        }
+
+        private void surveyVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSurvey frmSurvey = new frmSurvey();
+            frmSurvey.Show();
         }
 
         private void dtpDate_ValueChanged(object sender, EventArgs e)
@@ -872,7 +956,7 @@ namespace LifeGame
 
         public void DrawLog()
         {
-            Draw Draw = new Draw();
+            plot Draw = new plot();
             LoadLblDaily(lblDDLMon, SelectedMonday);
             LoadLblDaily(lblDDLTue, SelectedTuesday);
             LoadLblDaily(lblDDLWed, SelectedWednesday);
@@ -929,7 +1013,7 @@ namespace LifeGame
         }
         private void DrawLogWithMode(string Mode)
         {
-            Draw Draw = new Draw();
+            plot Draw = new plot();
             Draw.DrawScheduleAndLogController(picMon, SelectedMonday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
             Draw.DrawScheduleAndLogController(picTue, SelectedTuesday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
             Draw.DrawScheduleAndLogController(picWed, SelectedWednesday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
@@ -940,7 +1024,7 @@ namespace LifeGame
         }
         private void DrawScheduleWithMode(string Mode)
         {
-            Draw Draw = new Draw();
+            plot Draw = new plot();
             Draw.DrawScheduleAndLogController(picMon, SelectedMonday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
             Draw.DrawScheduleAndLogController(picTue, SelectedTuesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
             Draw.DrawScheduleAndLogController(picWed, SelectedWednesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
@@ -949,8 +1033,9 @@ namespace LifeGame
             Draw.DrawScheduleAndLogController(picSat, SelectedSaturday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
             Draw.DrawScheduleAndLogController(picSun, SelectedSunday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
         }
-        private void DrawEvent()        {
-            Draw Draw = new Draw();
+        private void DrawEvent()
+        {
+            plot Draw = new plot();
             Draw.DrawEventController(picMon, SelectedMonday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
             Draw.DrawEventController(picTue, SelectedTuesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
             Draw.DrawEventController(picWed, SelectedWednesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
@@ -962,37 +1047,37 @@ namespace LifeGame
 
         private void lblDDLMon_Click(object sender, EventArgs e)
         {
-            Draw D = new Draw();
+            plot D = new plot();
             D.CallInfoDDL(lblDDLMon.Text);
         }
         private void lblDDLTue_Click(object sender, EventArgs e)
         {
-            Draw D = new Draw();
+            plot D = new plot();
             D.CallInfoDDL(lblDDLTue.Text);
         }
         private void lblDDLWed_Click(object sender, EventArgs e)
         {
-            Draw D = new Draw();
+            plot D = new plot();
             D.CallInfoDDL(lblDDLWed.Text);
         }
         private void lblDDLThu_Click(object sender, EventArgs e)
         {
-            Draw D = new Draw();
+            plot D = new plot();
             D.CallInfoDDL(lblDDLThu.Text);
         }
         private void lblDDLFri_Click(object sender, EventArgs e)
         {
-            Draw D = new Draw();
+            plot D = new plot();
             D.CallInfoDDL(lblDDLFri.Text);
         }
         private void lblDDLSat_Click(object sender, EventArgs e)
         {
-            Draw D = new Draw();
+            plot D = new plot();
             D.CallInfoDDL(lblDDLSat.Text);
         }
         private void lblDDLSun_Click(object sender, EventArgs e)
         {
-            Draw D = new Draw();
+            plot D = new plot();
             D.CallInfoDDL(lblDDLSun.Text);
         }
 

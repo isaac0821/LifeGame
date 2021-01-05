@@ -20,12 +20,13 @@ namespace LifeGame
         List<CItem> JournalConferences = new List<CItem>();
         List<CItem> Projects = new List<CItem>();
 
+        List<string> loadedLiteratures = new List<string>();
+
         public frmLiterature()
         {
             InitializeComponent();
         }
 
-        bool AndOrMode = false;
         private void frmLiterature_Load(object sender, EventArgs e)
         {
             LoadTab();
@@ -52,10 +53,8 @@ namespace LifeGame
             Projects = new List<CItem>();
             foreach (CLiterature literature in G.glb.lstLiterature)
             {
+                // By Tag
                 List<RLiteratureTag> lstTag = G.glb.lstLiteratureTag.FindAll(o => o.Title == literature.Title).ToList();
-                List<RLiteratureAuthor> lstAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == literature.Title).ToList();
-                List<RLiteratureInstitution> lstInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == literature.Title).ToList();
-                List<RLiteratureInCiting> lstCiting = G.glb.lstLiteratureCiting.FindAll(o => o.Title == literature.Title).ToList();
                 foreach (RLiteratureTag tag in lstTag)
                 {
                     if (Tags.Exists(o => o.ItemName == tag.Tag))
@@ -66,22 +65,25 @@ namespace LifeGame
                     {
                         Tags.Add(new CItem(tag.Tag, 1));
                     }
-                }
-                Tags = Tags.OrderBy(o => o.ItemName).ToList();
-                Tags = Tags.OrderByDescending(o => o.ItemCount).ToList();
+                }               
+                
+                // By Authors
+                List<RLiteratureAuthor> lstAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == literature.Title).ToList();
+                names names = new names();
                 foreach (RLiteratureAuthor author in lstAuthor)
                 {
-                    if (Authors.Exists(o => o.ItemName == author.Author))
+                    if (Authors.Exists(o => o.ItemName == names.processName(author.Author)))
                     {
-                        Authors[Authors.FindIndex(o => o.ItemName == author.Author)].ItemCount += 1;
+                        Authors[Authors.FindIndex(o => o.ItemName == names.processName(author.Author))].ItemCount += 1;
                     }
                     else
                     {
-                        Authors.Add(new CItem(author.Author, 1));
+                        Authors.Add(new CItem(names.processName(author.Author), 1));
                     }
-                }
-                Authors = Authors.OrderBy(o => o.ItemName).ToList();
-                Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
+                }                
+
+                // By Institute
+                List<RLiteratureInstitution> lstInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == literature.Title).ToList();
                 foreach (RLiteratureInstitution insitution in lstInstitution)
                 {
                     if (Institutions.Exists(o => o.ItemName == insitution.Institution))
@@ -93,27 +95,9 @@ namespace LifeGame
                         Institutions.Add(new CItem(insitution.Institution, 1));
                     }
                 }
-                Institutions = Institutions.OrderBy(o => o.ItemName).ToList();
-                Institutions = Institutions.OrderByDescending(o => o.ItemCount).ToList();
-                if (Years.Exists(o => o.ItemName == literature.PublishYear.ToString()))
-                {
-                    Years[Years.FindIndex(o => o.ItemName == literature.PublishYear.ToString())].ItemCount += 1;
-                }
-                else
-                {
-                    Years.Add(new CItem(literature.PublishYear.ToString(), 1));
-                }
-                Years = Years.OrderByDescending(o => Convert.ToInt16(o.ItemName)).ToList();
-                if (JournalConferences.Exists(o => o.ItemName == literature.JournalOrConferenceName))
-                {
-                    JournalConferences[JournalConferences.FindIndex(o => o.ItemName == literature.JournalOrConferenceName)].ItemCount += 1;
-                }
-                else
-                {
-                    JournalConferences.Add(new CItem(literature.JournalOrConferenceName, 1));
-                }
-                JournalConferences = JournalConferences.OrderBy(o => o.ItemName).ToList();
-                JournalConferences = JournalConferences.OrderByDescending(o => o.ItemCount).ToList();
+
+                // By Project (Citing)
+                List<RLiteratureInCiting> lstCiting = G.glb.lstLiteratureCiting.FindAll(o => o.Title == literature.Title).ToList();
                 foreach (RLiteratureInCiting citing in lstCiting)
                 {
                     if (Projects.Exists(o => o.ItemName == citing.TitleOfMyArticle))
@@ -125,9 +109,39 @@ namespace LifeGame
                         Projects.Add(new CItem(citing.TitleOfMyArticle, 1));
                     }
                 }
-                Projects = Projects.OrderBy(o => o.ItemName).ToList();
-                Projects = Projects.OrderByDescending(o => o.ItemCount).ToList();
+
+                // By Year
+                if (Years.Exists(o => o.ItemName == literature.PublishYear.ToString()))
+                {
+                    Years[Years.FindIndex(o => o.ItemName == literature.PublishYear.ToString())].ItemCount += 1;
+                }
+                else
+                {
+                    Years.Add(new CItem(literature.PublishYear.ToString(), 1));
+                }
+
+                // By Journal/Conference
+                if (JournalConferences.Exists(o => o.ItemName == literature.JournalOrConferenceName))
+                {
+                    JournalConferences[JournalConferences.FindIndex(o => o.ItemName == literature.JournalOrConferenceName)].ItemCount += 1;
+                }
+                else
+                {
+                    JournalConferences.Add(new CItem(literature.JournalOrConferenceName, 1));
+                }
             }
+
+            Tags = Tags.OrderBy(o => o.ItemName).ToList();
+            Tags = Tags.OrderByDescending(o => o.ItemCount).ToList();
+            Authors = Authors.OrderBy(o => o.ItemName).ToList();
+            Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
+            Institutions = Institutions.OrderBy(o => o.ItemName).ToList();
+            Institutions = Institutions.OrderByDescending(o => o.ItemCount).ToList();
+            Projects = Projects.OrderBy(o => o.ItemName).ToList();
+            Projects = Projects.OrderByDescending(o => o.ItemCount).ToList();
+            Years = Years.OrderByDescending(o => Convert.ToInt16(o.ItemName)).ToList();
+            JournalConferences = JournalConferences.OrderBy(o => o.ItemName).ToList();
+            JournalConferences = JournalConferences.OrderByDescending(o => o.ItemCount).ToList();
 
             clbTag.Items.Clear();
             for (int i = 0; i < Tags.Count; i++)
@@ -159,6 +173,7 @@ namespace LifeGame
             {
                 clbProject.Items.Add(Projects[i].ItemName + "[" + Projects[i].ItemCount + "]");
             }
+            LoadLiteratureList(loadedLiteratures);
         }
 
         private void tsmAddLiterature_Click(object sender, EventArgs e)
@@ -172,7 +187,7 @@ namespace LifeGame
         {
             if (dgvLiterature.SelectedCells.Count == 1)
             {
-                frmInfoLiterature frmInfoLiterature = new frmInfoLiterature(dgvLiterature.CurrentRow.Cells[0].Value.ToString());
+                frmInfoLiterature frmInfoLiterature = new frmInfoLiterature(dgvLiterature.CurrentRow.Cells[1].Value.ToString());
                 frmInfoLiterature.RefreshTab += new frmInfoLiterature.RefreshTabHandler(LoadTab);
                 frmInfoLiterature.Show();
             }
@@ -186,11 +201,13 @@ namespace LifeGame
                 switch (result)
                 {
                     case DialogResult.Yes:
-                        G.glb.lstLiterature.RemoveAll(o => o.Title == dgvLiterature.CurrentRow.Cells[0].Value.ToString());
-                        G.glb.lstLiteratureTag.RemoveAll(o => o.Title == dgvLiterature.CurrentRow.Cells[0].Value.ToString());
-                        G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == dgvLiterature.CurrentRow.Cells[0].Value.ToString());
-                        G.glb.lstLiteratureInstitution.RemoveAll(o => o.Title == dgvLiterature.CurrentRow.Cells[0].Value.ToString());
-                        G.glb.lstLiteratureCiting.RemoveAll(o => o.Title == dgvLiterature.CurrentRow.Cells[0].Value.ToString());
+                        string removedLit = dgvLiterature.CurrentRow.Cells[1].Value.ToString();
+                        G.glb.lstLiterature.RemoveAll(o => o.Title == removedLit);
+                        G.glb.lstLiteratureTag.RemoveAll(o => o.Title == removedLit);
+                        G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == removedLit);
+                        G.glb.lstLiteratureInstitution.RemoveAll(o => o.Title == removedLit);
+                        G.glb.lstLiteratureCiting.RemoveAll(o => o.Title == removedLit);
+                        loadedLiteratures.RemoveAll(o => o == removedLit);
                         break;
                     case DialogResult.No:
                         break;
@@ -199,7 +216,26 @@ namespace LifeGame
                 }
             }
             LoadTab();
-            LoadLiteratureList();
+        }
+
+        private void LoadLiteratureList(List<string> loadedLits)
+        {
+            dgvLiterature.Rows.Clear();
+            dgvLiterature.ShowCellToolTips = true;
+            foreach (string title in loadedLits)
+            {
+                DateTime addedDate = new DateTime();
+                DateTime lastModifyDate = new DateTime();
+                addedDate = G.glb.lstLiterature.Find(o => o.Title == title).DateAdded;
+                lastModifyDate = G.glb.lstLiterature.Find(o => o.Title == title).DateModified;
+                string starFlag = "";
+                if (G.glb.lstLiterature.Find(o => o.Title == title).Star)
+                {
+                    starFlag = "√";
+                }
+                dgvLiterature.Rows.Add(starFlag, title, addedDate.ToString("MM/dd/yyyy"), lastModifyDate.ToString("MM/dd/yyyy"));
+                dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].Cells[1].ToolTipText = G.glb.lstLiterature.Find(o => o.Title == title).InOneSentence;
+            }
         }
 
         private void LoadLiteratureList(string SearchText)
@@ -213,11 +249,8 @@ namespace LifeGame
                 }
             }
             ShownTitle = ShownTitle.Distinct().ToList();
-            dgvLiterature.Rows.Clear();
-            foreach (string title in ShownTitle)
-            {
-                dgvLiterature.Rows.Add(title);
-            }
+            loadedLiteratures = ShownTitle;
+            LoadLiteratureList(loadedLiteratures);
         }
 
         private void LoadLiteratureList()
@@ -269,7 +302,8 @@ namespace LifeGame
                 {
                     ShownTitle.Add(literature.Title);
                 }
-                if (chosenAuthor.Exists(o => G.glb.lstLiteratureAuthor.Exists(p => p.Title == literature.Title && p.Author == o)))
+                names names = new names();
+                if (chosenAuthor.Exists(o => G.glb.lstLiteratureAuthor.Exists(p => p.Title == literature.Title && names.processName(p.Author) == o)))
                 {
                     ShownTitle.Add(literature.Title);
                 }
@@ -283,12 +317,9 @@ namespace LifeGame
                 }
             }
             ShownTitle = ShownTitle.Distinct().ToList();
-            dgvLiterature.Rows.Clear();
-            foreach (string title in ShownTitle)
-            {
-                dgvLiterature.Rows.Add(title);
-            }
-        }        
+            loadedLiteratures = ShownTitle;
+            LoadLiteratureList(loadedLiteratures);
+        }
 
         private void btnApply_Click(object sender, EventArgs e)
         {
@@ -479,9 +510,176 @@ namespace LifeGame
             System.IO.File.WriteAllText(@"D:\" + strProject + "Bib.bib", bib);
         }
 
+        private void removeTagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<string> selectedTags = new List<string>();
+            if (clbTag.CheckedItems != null)
+            {
+                foreach (var selected in clbTag.CheckedItems)
+                {
+                    string[] sub = selected.ToString().Split('[');
+                    selectedTags.Add(sub[0]);
+                }
+                DialogResult result = MessageBox.Show("Do you want to remove these tags? Literature without tag will add a new tag called '(default)'", "Remove confirm", MessageBoxButtons.YesNo);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        foreach (string tag in selectedTags)
+                        {
+                            G.glb.lstLiteratureTag.RemoveAll(o => o.Tag == tag);
+                        }
+                        foreach (CLiterature lit in G.glb.lstLiterature)
+                        {
+                            if (!G.glb.lstLiteratureTag.Exists(o => o.Title == lit.Title))
+                            {
+                                RLiteratureTag defaultTag = new RLiteratureTag();
+                                defaultTag.Title = lit.Title;
+                                defaultTag.Tag = "(default)";
+                                G.glb.lstLiteratureTag.Add(defaultTag);
+                            }
+                        }
+                        LoadTab();
+                        LoadLiteratureList();
+                        break;
+                    case DialogResult.No:
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void groupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<string> selectedTags = new List<string>();
+            if (clbTag.CheckedItems != null)
+            {
+                foreach (var selected in clbTag.CheckedItems)
+                {
+                    string[] sub = selected.ToString().Split('[');
+                    selectedTags.Add(sub[0]);
+                }
+            }
+            string NewName = Interaction.InputBox("Input Group Tag Name", "Rename", "Rename Tag", 300, 300);
+            List<string> existingTags = new List<string>();
+            foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
+            {
+                if (!existingTags.Exists(o => o == litTag.Tag))
+                {
+                    existingTags.Add(litTag.Tag);
+                }
+            }
+            if (existingTags.Exists(o => o == NewName))
+            {
+                DialogResult result = MessageBox.Show("Tag '" + NewName + "' exists, do you want to add this tag?", "Group confirm", MessageBoxButtons.YesNo);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        List<RLiteratureTag> newTags = new List<RLiteratureTag>();
+                        foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
+                        {
+                            if (selectedTags.Exists(o => o == litTag.Tag))
+                            {
+                                if (!G.glb.lstLiteratureTag.Exists(o => o.Title == litTag.Title && o.Tag == NewName))
+                                {
+                                    RLiteratureTag groupTag = new RLiteratureTag();
+                                    groupTag.Title = litTag.Title;
+                                    groupTag.Tag = NewName;
+                                    newTags.Add(groupTag);
+                                }
+                            }
+                        }
+                        G.glb.lstLiteratureTag.AddRange(newTags);
+                        LoadTab();
+                        LoadLiteratureList();
+                        break;
+                    case DialogResult.No:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                List<RLiteratureTag> newTags = new List<RLiteratureTag>();
+                foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
+                {
+                    if (selectedTags.Exists(o => o == litTag.Tag))
+                    {
+                        if (!G.glb.lstLiteratureTag.Exists(o => o.Title == litTag.Title && o.Tag == NewName))
+                        {
+                            RLiteratureTag groupTag = new RLiteratureTag();
+                            groupTag.Title = litTag.Title;
+                            groupTag.Tag = NewName;
+                            newTags.Add(groupTag);
+                        }
+                    }
+                }
+                G.glb.lstLiteratureTag.AddRange(newTags);
+                LoadTab();
+                LoadLiteratureList();
+            }
+        }
+
+        private void renameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<string> selectedTags = new List<string>();
+            if (clbTag.CheckedItems != null)
+            {
+                foreach (var selected in clbTag.CheckedItems)
+                {
+                    string[] sub = selected.ToString().Split('[');
+                    selectedTags.Add(sub[0]);
+                }
+            }
+            string NewName = Interaction.InputBox("Input New Tag Name", "Rename", "Rename Tag", 300, 300);
+            List<string> existingTags = new List<string>();
+            foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
+            {
+                if (!existingTags.Exists(o => o == litTag.Tag))
+                {
+                    existingTags.Add(litTag.Tag);
+                }
+            }
+            if (existingTags.Exists(o => o == NewName))
+            {
+                DialogResult result = MessageBox.Show("Tag '" + NewName + "' exists, do you want to merge into this tag?", "Merge confirm", MessageBoxButtons.YesNo);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
+                        {
+                            if (selectedTags.Exists(o => o == litTag.Tag) && !G.glb.lstLiteratureTag.Exists(p => p.Tag == NewName && p.Title == litTag.Title))
+                            {
+                                litTag.Tag = NewName;
+                            }
+                        }
+                        LoadTab();
+                        LoadLiteratureList();
+                        break;
+                    case DialogResult.No:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
+                {
+                    if (selectedTags.Exists(o => o == litTag.Tag) && !G.glb.lstLiteratureTag.Exists(p => p.Tag == NewName && p.Title == litTag.Title))
+                    {
+                        litTag.Tag = NewName;
+                    }
+                }
+                LoadTab();
+                LoadLiteratureList();
+            }
+        }
+
         private void tsmRemoveProject_Click(object sender, EventArgs e)
         {
-            List<String> selectedProjects = new List<string>();
+            List<string> selectedProjects = new List<string>();
             if (clbProject.CheckedItems != null)
             {
                 foreach (var selected in clbProject.CheckedItems)
@@ -505,7 +703,7 @@ namespace LifeGame
                 {
                     projectList = selectedProjects[0];
                 }
-                DialogResult result = MessageBox.Show("Do you confirm to remove the following project(s):" + projectList + "? This process cannot be recovered.", "Clear Schedule", MessageBoxButtons.YesNoCancel);
+                DialogResult result = MessageBox.Show("Do you confirm to remove the following project(s):" + projectList + "? This process cannot be recovered.", "Clear Schedule", MessageBoxButtons.YesNo);
                 switch (result)
                 {
                     case DialogResult.Yes:
@@ -522,6 +720,48 @@ namespace LifeGame
                 LoadTab();
                 LoadLiteratureList();
             }
+        }
+
+        private void RemoveDuplicatedTags()
+        {
+            List<RLiteratureTag> noDupTags = new List<RLiteratureTag>();
+            foreach (RLiteratureTag item in G.glb.lstLiteratureTag)
+            {
+                if (!noDupTags.Exists(o => o.Title == item.Title && o.Tag == item.Tag))
+                {
+                    noDupTags.Add(item);
+                }
+            }
+            G.glb.lstLiteratureTag.Clear();
+            foreach (RLiteratureTag item in noDupTags)
+            {
+                G.glb.lstLiteratureTag.Add(item);
+            }
+        }
+
+        private void btnJournalRefresh_Click(object sender, EventArgs e)
+        {
+            LoadTab();
+        }
+
+        private void btnProjectRefresh_Click(object sender, EventArgs e)
+        {
+            LoadTab();
+        }
+
+        private void btnAuthorRefresh_Click(object sender, EventArgs e)
+        {
+            LoadTab();
+        }
+
+        private void btnYearRefresh_Click(object sender, EventArgs e)
+        {
+            LoadTab();
+        }
+
+        private void btnInstitutionRefresh_Click(object sender, EventArgs e)
+        {
+            LoadTab();
         }
     }
 }

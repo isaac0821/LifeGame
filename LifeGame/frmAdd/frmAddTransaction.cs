@@ -47,7 +47,7 @@ namespace LifeGame
                 newTransaction.DebitAccount = cbxDebit.Text;
                 newTransaction.DebitAmount = Convert.ToDouble(txtDebitAmount.Text);
                 newTransaction.DebitCurrency = lblDebitCurrency.Text;
-                CalAndFind C = new CalAndFind();
+                calculate C = new calculate();
                 newTransaction.IconType = C.MoneyInOrOut(
                     G.glb.lstAccount.Find(o => o.AccountName == cbxDebit.Text).AccountType,
                     G.glb.lstAccount.Find(o => o.AccountName == cbxCredit.Text).AccountType);
