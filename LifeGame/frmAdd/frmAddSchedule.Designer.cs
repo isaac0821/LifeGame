@@ -53,6 +53,10 @@
             this.cbxColor = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.chkAlarm = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtMinsAhead = new System.Windows.Forms.TextBox();
             this.cbxTask = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.txtWhere = new System.Windows.Forms.TextBox();
@@ -64,6 +68,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,6 +99,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(410, 182);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -359,6 +365,7 @@
             this.tableLayoutPanel5.Controls.Add(this.cbxColor, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.label5, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnAdd, 4, 0);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel7, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(60, 156);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
@@ -410,6 +417,57 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 3;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Controls.Add(this.chkAlarm, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.label4, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.txtMinsAhead, 2, 0);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(162, 26);
+            this.tableLayoutPanel7.TabIndex = 14;
+            // 
+            // chkAlarm
+            // 
+            this.chkAlarm.AutoSize = true;
+            this.chkAlarm.Checked = true;
+            this.chkAlarm.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAlarm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkAlarm.Location = new System.Drawing.Point(3, 3);
+            this.chkAlarm.Name = "chkAlarm";
+            this.chkAlarm.Size = new System.Drawing.Size(52, 20);
+            this.chkAlarm.TabIndex = 0;
+            this.chkAlarm.Text = "alarm";
+            this.chkAlarm.UseVisualStyleBackColor = true;
+            this.chkAlarm.CheckedChanged += new System.EventHandler(this.chkAlarm_CheckedChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(61, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 26);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "mins ahead";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtMinsAhead
+            // 
+            this.txtMinsAhead.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtMinsAhead.Location = new System.Drawing.Point(133, 3);
+            this.txtMinsAhead.Name = "txtMinsAhead";
+            this.txtMinsAhead.Size = new System.Drawing.Size(26, 20);
+            this.txtMinsAhead.TabIndex = 2;
+            this.txtMinsAhead.Text = "5";
+            // 
             // cbxTask
             // 
             this.cbxTask.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -419,6 +477,7 @@
             this.cbxTask.Name = "cbxTask";
             this.cbxTask.Size = new System.Drawing.Size(344, 21);
             this.cbxTask.TabIndex = 11;
+            this.cbxTask.SelectedIndexChanged += new System.EventHandler(this.cbxTask_SelectedIndexChanged);
             // 
             // tableLayoutPanel6
             // 
@@ -499,6 +558,8 @@
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
@@ -537,5 +598,9 @@
         private System.Windows.Forms.TextBox txtWith;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.CheckBox chkAlarm;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtMinsAhead;
     }
 }

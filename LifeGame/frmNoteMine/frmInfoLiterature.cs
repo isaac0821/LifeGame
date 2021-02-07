@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
+using System.IO;
+using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
@@ -670,8 +672,31 @@ namespace LifeGame
 
         private void btnGoogleScholar_Click(object sender, EventArgs e)
         {
-            string link = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C33&q=" + txtTitle.Text.Replace(" ", "+") + "&btnG=";
-            System.Diagnostics.Process.Start("chrome.exe", link);
+            string url = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C33&q=" + txtTitle.Text.Replace(" ", "+") + "&btnG=";
+            System.Diagnostics.Process.Start("chrome.exe", url);
+        }
+
+        private void frmInfoLiterature_Load(object sender, EventArgs e)
+        {
+            //靠！！气死了，白写了，谷歌学术会检查是不是机器人...咋绕过去呢...
+            //try
+            //{
+            //    string url = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C33&q=" + txtTitle.Text.Replace(" ", "+") + "&btnG=";
+            //    WebRequest request = WebRequest.Create(url);
+            //    WebResponse response = request.GetResponse();
+            //    StreamReader reader = new StreamReader(response.GetResponseStream());
+            //    string htmlStr = reader.ReadToEnd();
+            //    reader.Close();
+            //    response.Close();
+            //    Regex citation = new Regex(@"(Cited)\s(by)\s[0-9]*");
+            //    bool cite = citation.IsMatch(htmlStr);
+            //    Match m = citation.Match(htmlStr);
+            //    lblCited.Text = m.ToString();
+            //}
+            //catch (Exception)
+            //{
+            //    lblCited.Text = "NaN";
+            //}
         }
     }
 }

@@ -518,6 +518,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\iconLiterature1.png" />
+    <None Include="Resources\iconClock.png" />
     <Content Include="Resources\iconSurveyTagBoolean.png" />
     <Content Include="Resources\iconSurveyTagInteger.png" />
     <Content Include="Resources\iconSurveyTagMultipleOptions.png" />

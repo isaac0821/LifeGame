@@ -48,6 +48,7 @@
             this.txtInOneSentence = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btnGoogleScholar = new System.Windows.Forms.Button();
+            this.chkStar = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -90,7 +91,6 @@
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chkStar = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -307,12 +307,13 @@
             this.tableLayoutPanel8.ColumnCount = 4;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
-            this.tableLayoutPanel8.Controls.Add(this.txtInOneSentence, 1, 0);
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel8.Controls.Add(this.label12, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.btnGoogleScholar, 3, 0);
             this.tableLayoutPanel8.Controls.Add(this.chkStar, 2, 0);
+            this.tableLayoutPanel8.Controls.Add(this.txtInOneSentence, 1, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 52);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
@@ -327,7 +328,7 @@
             this.txtInOneSentence.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtInOneSentence.Location = new System.Drawing.Point(103, 4);
             this.txtInOneSentence.Name = "txtInOneSentence";
-            this.txtInOneSentence.Size = new System.Drawing.Size(423, 20);
+            this.txtInOneSentence.Size = new System.Drawing.Size(433, 20);
             this.txtInOneSentence.TabIndex = 0;
             // 
             // label12
@@ -344,13 +345,24 @@
             // btnGoogleScholar
             // 
             this.btnGoogleScholar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGoogleScholar.Location = new System.Drawing.Point(586, 3);
+            this.btnGoogleScholar.Location = new System.Drawing.Point(599, 3);
             this.btnGoogleScholar.Name = "btnGoogleScholar";
-            this.btnGoogleScholar.Size = new System.Drawing.Size(108, 22);
+            this.btnGoogleScholar.Size = new System.Drawing.Size(95, 22);
             this.btnGoogleScholar.TabIndex = 2;
             this.btnGoogleScholar.Text = "Google Scholar";
             this.btnGoogleScholar.UseVisualStyleBackColor = true;
             this.btnGoogleScholar.Click += new System.EventHandler(this.btnGoogleScholar_Click);
+            // 
+            // chkStar
+            // 
+            this.chkStar.AutoSize = true;
+            this.chkStar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkStar.Location = new System.Drawing.Point(542, 3);
+            this.chkStar.Name = "chkStar";
+            this.chkStar.Size = new System.Drawing.Size(51, 22);
+            this.chkStar.TabIndex = 3;
+            this.chkStar.Text = "Star";
+            this.chkStar.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -760,17 +772,6 @@
             this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.removeToolStripMenuItem.Text = "Remove";
             // 
-            // chkStar
-            // 
-            this.chkStar.AutoSize = true;
-            this.chkStar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkStar.Location = new System.Drawing.Point(532, 3);
-            this.chkStar.Name = "chkStar";
-            this.chkStar.Size = new System.Drawing.Size(48, 22);
-            this.chkStar.TabIndex = 3;
-            this.chkStar.Text = "Star";
-            this.chkStar.UseVisualStyleBackColor = true;
-            // 
             // frmInfoLiterature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -784,6 +785,7 @@
             this.Name = "frmInfoLiterature";
             this.Text = "LifeGame - Literature Detail";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddLiterature_FormClosing);
+            this.Load += new System.EventHandler(this.frmInfoLiterature_Load);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();

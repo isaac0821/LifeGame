@@ -8,7 +8,10 @@ namespace LifeGame
 {
     public class names
     {
-        List<string> chnConsonantList = new List<string> { "b", "p", "m", "f", "d", "t", "n", "l", "g", "k", "h", "j", "q", "x", "zh", "ch", "sh", "r", "z", "c", "s", "y", "w" };
+        List<string> chnConsonantList = new List<string> {
+            "b", "p", "m", "f", "d", "t", "n", "l",
+            "g", "k", "h", "j", "q", "x",
+            "zh", "ch", "sh", "r", "z", "c", "s", "y", "w" };
         List<string> chnVowelList = new List<string> {
             "a", "o", "e", "i", "u", "v",
             "ao", "ai", "an", "ang",

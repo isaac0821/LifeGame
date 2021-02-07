@@ -137,6 +137,8 @@ namespace LifeGame
                             newSchedule.WithWho = txtWith.Text;
                             newSchedule.ContributionToTask = cbxTask.Text;
                             newSchedule.Color = cbxColor.Text;
+                            newSchedule.Alarm = chkAlarm.Checked;
+                            newSchedule.AlarmTime = StartTime - new TimeSpan(0, Convert.ToInt16(txtMinsAhead.Text), 0);
                             G.glb.lstSchedule.Add(newSchedule);
                         }
                     }
@@ -158,6 +160,26 @@ namespace LifeGame
             choices = choices.OrderBy(o => o).ToList();
             cbxTask.DataSource = choices;
             cbxColor.SelectedIndex = 0;
+        }
+
+        private void chkAlarm_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkAlarm.Checked)
+            {
+                txtMinsAhead.Enabled = true;
+            }
+            else
+            {
+                txtMinsAhead.Enabled = false;
+            }
+        }
+
+        private void cbxTask_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (txtSchedule.Text == "")
+            {
+                txtSchedule.Text = cbxTask.Text;
+            }
         }
     }
 }

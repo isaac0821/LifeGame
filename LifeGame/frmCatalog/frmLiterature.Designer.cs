@@ -92,15 +92,15 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvLiterature = new System.Windows.Forms.DataGridView();
+            this.Star = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsLiterature = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmViewLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAddLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
-            this.Star = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -886,6 +886,34 @@
             this.dgvLiterature.Size = new System.Drawing.Size(713, 411);
             this.dgvLiterature.TabIndex = 1;
             // 
+            // Star
+            // 
+            this.Star.HeaderText = "Star";
+            this.Star.Name = "Star";
+            this.Star.ReadOnly = true;
+            this.Star.Width = 40;
+            // 
+            // colTitle
+            // 
+            this.colTitle.HeaderText = "Title";
+            this.colTitle.Name = "colTitle";
+            this.colTitle.ReadOnly = true;
+            this.colTitle.Width = 600;
+            // 
+            // addDate
+            // 
+            this.addDate.HeaderText = "Added Date";
+            this.addDate.Name = "addDate";
+            this.addDate.ReadOnly = true;
+            this.addDate.Width = 120;
+            // 
+            // lastModifyDate
+            // 
+            this.lastModifyDate.HeaderText = "Latest Modification";
+            this.lastModifyDate.Name = "lastModifyDate";
+            this.lastModifyDate.ReadOnly = true;
+            this.lastModifyDate.Width = 120;
+            // 
             // cmsLiterature
             // 
             this.cmsLiterature.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -922,34 +950,6 @@
             this.tsmRemoveLiterature.Size = new System.Drawing.Size(117, 22);
             this.tsmRemoveLiterature.Text = "Remove";
             this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
-            // 
-            // Star
-            // 
-            this.Star.HeaderText = "Star";
-            this.Star.Name = "Star";
-            this.Star.ReadOnly = true;
-            this.Star.Width = 40;
-            // 
-            // colTitle
-            // 
-            this.colTitle.HeaderText = "Title";
-            this.colTitle.Name = "colTitle";
-            this.colTitle.ReadOnly = true;
-            this.colTitle.Width = 600;
-            // 
-            // addDate
-            // 
-            this.addDate.HeaderText = "Added Date";
-            this.addDate.Name = "addDate";
-            this.addDate.ReadOnly = true;
-            this.addDate.Width = 120;
-            // 
-            // lastModifyDate
-            // 
-            this.lastModifyDate.HeaderText = "Latest Modification";
-            this.lastModifyDate.Name = "lastModifyDate";
-            this.lastModifyDate.ReadOnly = true;
-            this.lastModifyDate.Width = 120;
             // 
             // frmLiterature
             // 

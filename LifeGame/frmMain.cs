@@ -14,7 +14,8 @@ namespace LifeGame
 {
     public partial class frmMain : Form
     {
-        Timer timer = new Timer();
+        Timer autoSaveTimer = new Timer();
+        Timer curPointerTimer = new Timer();
 
         private DateTime SelectedDate;
         private DateTime SelectedMonday;
@@ -206,25 +207,81 @@ namespace LifeGame
                 SerializeNow();
             }
 
+            // 转至当天
             SelectedDate = DateTime.Today.Date;
             dtpDate.Value = SelectedDate;
             DrawLog();
-            timer.Interval = 1000 * 60 * 10;
-            timer.Start();
-            timer.Tick += Timer_Tick;
+
+            // 定时保存， 每10分钟
+            autoSaveTimer.Interval = 1000 * 60 * 10;
+            autoSaveTimer.Start();
+            autoSaveTimer.Tick += AutoSave;
+
+            // 每一分钟绘制一次当前的时刻
+            TimeSpan secToNextMin = new TimeSpan();
+            DateTime datetimeWithoutSec = new DateTime(
+                DateTime.Now.Year,
+                DateTime.Now.Month,
+                DateTime.Now.Day,
+                DateTime.Now.Hour,
+                DateTime.Now.Minute,
+                0);
+            secToNextMin = DateTime.Now - datetimeWithoutSec;
+            curPointerTimer.Interval = (int)(1000 * (60 - secToNextMin.TotalSeconds));
+            curPointerTimer.Start();
+            curPointerTimer.Tick += RefreshBackground;
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void AutoSave(object sender, EventArgs e)
         {
             SerializeNow();
-            timer.Start();
+        }
+
+        private void RefreshBackground(object sender, EventArgs e)
+        {
+            curPointerTimer.Interval = 1000 * 60;
+            DrawToday();
+            FindNextToAlarm();
         }
 
         private void frmMain_Resize(object sender, EventArgs e)
         {
             tblMain.ColumnStyles[0].Width = 30;
             tblMain.ColumnStyles[8].Width = 30;
-            DrawLog();
+            DrawLog();            
+        }
+
+        private void FindNextToAlarm()
+        {
+            CLog nextAlarmingSchedule = G.glb.lstSchedule.FindAll(o => o.Alarm == true).OrderBy(o => o.AlarmTime).FirstOrDefault();
+            if (nextAlarmingSchedule != null)
+            {
+                TimeSpan minToNextAlarm = new TimeSpan();
+                minToNextAlarm = nextAlarmingSchedule.AlarmTime - DateTime.Now;
+                if ((int)minToNextAlarm.TotalMinutes == 0)
+                {
+                    double totalHour = (nextAlarmingSchedule.EndTime - nextAlarmingSchedule.StartTime).TotalHours;
+                    totalHour = Math.Round(totalHour, 2);
+                    string TimePeriod;
+                    if (nextAlarmingSchedule.EndTime.Date == DateTime.Today.Date)
+                    {
+                        TimePeriod = nextAlarmingSchedule.StartTime.ToShortTimeString() + " - " + nextAlarmingSchedule.EndTime.ToShortTimeString() + " [" + totalHour.ToString() + "h]";
+                    }
+                    else
+                    {
+                        TimePeriod = nextAlarmingSchedule.StartTime.ToShortTimeString() + " - " + nextAlarmingSchedule.EndTime.ToShortTimeString() + "(+1d)" + " [" + totalHour.ToString() + "h]";
+                    }
+                    string LogName = nextAlarmingSchedule.LogName;
+                    string Location = nextAlarmingSchedule.Location;
+                    string WithWho = nextAlarmingSchedule.WithWho;
+                    string TaskName = nextAlarmingSchedule.ContributionToTask;
+                    bool IsAlarm = nextAlarmingSchedule.Alarm;
+                    plot p = new plot();
+                    Color backColor = p.GetColor(nextAlarmingSchedule.Color);
+                    frmInfoLog frmInfoLog = new frmInfoLog(TimePeriod, LogName, Location, WithWho, TaskName, backColor, IsAlarm, false);
+                    frmInfoLog.Show();
+                }
+            }
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -954,6 +1011,92 @@ namespace LifeGame
             lbl.Text = whole;
         }
 
+        public void DrawToday()
+        {
+            plot Draw = new plot();
+            DateTime TodayDayOfWeek = new DateTime();
+            bool NeedRefresh = true;
+            if (DateTime.Today == SelectedSunday)
+            {
+                picSun.Controls.Clear();
+                TodayDayOfWeek = SelectedSunday;
+            }
+            else if (DateTime.Today == SelectedMonday)
+            {
+                picMon.Controls.Clear();
+                TodayDayOfWeek = SelectedMonday;
+            }
+            else if (DateTime.Today == SelectedTuesday)
+            {
+                picTue.Controls.Clear();
+                TodayDayOfWeek = SelectedTuesday;
+            }
+            else if (DateTime.Today == SelectedWednesday)
+            {
+                picWed.Controls.Clear();
+                TodayDayOfWeek = SelectedWednesday;
+            }
+            else if (DateTime.Today == SelectedThursday)
+            {
+                picThu.Controls.Clear();
+                TodayDayOfWeek = SelectedThursday;
+            }
+            else if (DateTime.Today == SelectedFriday)
+            {
+                picFri.Controls.Clear();
+                TodayDayOfWeek = SelectedFriday;
+            }
+            else if (DateTime.Today == SelectedSaturday)
+            {
+                picSat.Controls.Clear();
+                TodayDayOfWeek = SelectedSaturday;
+            }
+            else
+            {
+                NeedRefresh = false;
+            }
+            if (NeedRefresh)
+            {
+                if (chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
+                {
+                    Draw.DrawEventController(picSun, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "leftWithSupp");
+                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "rightWithSupp");
+                }
+                else if (chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
+                {
+                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "left");
+                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "right");
+                }
+                else if (chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
+                {
+                    Draw.DrawEventController(picSun, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "allWithSupp");
+                }
+                else if (chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
+                {
+                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "all");
+                }
+                else if (!chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
+                {
+                    Draw.DrawEventController(picSun, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepSchedule, "allWithSupp");
+                }
+                else if (!chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
+                {
+                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepSchedule, "all");
+                }
+                else if (!chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
+                {
+                    Draw.DrawEventController(picSun, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+                }
+                else if (!chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
+                {
+
+                }
+            }
+        }
+
         public void DrawLog()
         {
             plot Draw = new plot();
@@ -973,40 +1116,40 @@ namespace LifeGame
             picSat.Controls.Clear();
             picSun.Controls.Clear();
 
-            if (chkShowSchedule.Checked && chkShowLog.Checked & chkMoney.Checked)
+            if (chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
             {
-                DrawScheduleWithMode("leftWithSupp");
-                DrawLogWithMode("rightWithSupp");
                 DrawEvent();
+                DrawScheduleWithMode("leftWithSupp");
+                DrawLogWithMode("rightWithSupp");                
             }
-            else if (chkShowSchedule.Checked && chkShowLog.Checked & !chkMoney.Checked)
+            else if (chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
             {
                 DrawScheduleWithMode("left");
                 DrawLogWithMode("right");
             }
-            else if (chkShowSchedule.Checked && !chkShowLog.Checked & chkMoney.Checked)
+            else if (chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
             {
-                DrawScheduleWithMode("allWithSupp");
                 DrawEvent();
+                DrawScheduleWithMode("allWithSupp");                
             }
-            else if (chkShowSchedule.Checked && !chkShowLog.Checked & !chkMoney.Checked)
+            else if (chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
             {
                 DrawScheduleWithMode("all");
             }
-            else if (!chkShowSchedule.Checked && chkShowLog.Checked & chkMoney.Checked)
+            else if (!chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
             {
-                DrawLogWithMode("allWithSupp");
                 DrawEvent();
+                DrawLogWithMode("allWithSupp");                
             }
-            else if (!chkShowSchedule.Checked && chkShowLog.Checked & !chkMoney.Checked)
+            else if (!chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
             {
                 DrawLogWithMode("all");
             }
-            else if (!chkShowSchedule.Checked && !chkShowLog.Checked & chkMoney.Checked)
+            else if (!chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
             {
                 DrawEvent();
             }
-            else if (!chkShowSchedule.Checked && !chkShowLog.Checked & !chkMoney.Checked)
+            else if (!chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
             {
 
             }
@@ -1092,6 +1235,11 @@ namespace LifeGame
         private void chkMoney_CheckedChanged(object sender, EventArgs e)
         {
             DrawLog();
+        }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FindNextToAlarm();
         }
     }
 }

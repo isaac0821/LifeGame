@@ -65,12 +65,6 @@ namespace LifeGame
         /// <param name="LocationMode">位置模式："all" - 全部; "left" - 左侧; "right" - 右侧</param>
         public void DrawScheduleAndLogController(PictureBox picMap, DateTime date, List<CLog> logs, List<CSleep> healths, string LocationMode)
         {
-            picMap.BackColor = Color.White;
-            if (date == DateTime.Today.Date)
-            {
-                picMap.BackColor = Color.FromArgb(19, 92, 08, 21);
-            }
-
             int left = 0;
             int width = picMap.Width;
             if (LocationMode == "all")
@@ -104,6 +98,38 @@ namespace LifeGame
                 width = (picMap.Width - 30) > 0 ? (picMap.Width - 30) / 2 : 0;
             }
             int height = picMap.Height;
+            PictureBox picTimePointer = new PictureBox();
+            PictureBox picToday = new PictureBox();
+            Label lblNow = new Label();
+            if (date < DateTime.Today.Date)
+            {
+                picMap.BackColor = Color.FromArgb(19, 92, 08, 21);
+            }
+            else if (date == DateTime.Today.Date)
+            {
+                picMap.BackColor = Color.FromArgb(19, 92, 08, 21);
+            }
+            else
+            {
+                picMap.BackColor = Color.White;
+            }
+            if (date == DateTime.Today.Date)
+            {
+                picTimePointer.Width = picMap.Width;
+                picTimePointer.Height = 2;
+                picTimePointer.Left = 0;
+                picTimePointer.Top = (int)(height * DateTime.Now.TimeOfDay.TotalMinutes / (24 * 60));
+                picTimePointer.BackColor = Color.Black;
+                picMap.Controls.Add(picTimePointer);
+                lblNow.Text = DateTime.Now.ToShortTimeString();
+                lblNow.Top = (int)(height * DateTime.Now.TimeOfDay.TotalMinutes / (24 * 60)) - 14;
+                lblNow.Left = picMap.Width - 50;
+                lblNow.Height = 14;
+                lblNow.BringToFront();
+                lblNow.BackColor = Color.Black;
+                lblNow.ForeColor = Color.White;
+                picMap.Controls.Add(lblNow);
+            }
 
             List<CLog> todayLogs = logs.FindAll(o => o.StartTime.Date == date).ToList();
             List<CLog> yesterdayLogs = logs.FindAll(o => o.StartTime.Date == date.AddDays(-1) && o.EndTime.Date == date).ToList();
@@ -135,7 +161,7 @@ namespace LifeGame
                 picMap.Controls.Add(picSleep);
                 lblSleep.Text = SleepTime + "\n" + "Sleep";
                 lblSleep.Dock = DockStyle.Fill;
-                lblSleep.Click += (e, a) => CallInfoLog(SleepTime, "Sleep", "", "", "", picSleep.BackColor);
+                lblSleep.Click += (e, a) => CallInfoLog(SleepTime, "Sleep", "", "", "", picSleep.BackColor, false);
                 picSleep.Controls.Add(lblSleep);
             }
 
@@ -158,7 +184,7 @@ namespace LifeGame
                     picMap.Controls.Add(picSleepYesterday);
                     lblSleepYesterday.Text = SleepTime + "\n" + "Sleep";
                     lblSleepYesterday.Dock = DockStyle.Fill;
-                    lblSleepYesterday.Click += (e, a) => CallInfoLog("", "Sleep", "", "", "", picSleepYesterday.BackColor);
+                    lblSleepYesterday.Click += (e, a) => CallInfoLog("", "Sleep", "", "", "", picSleepYesterday.BackColor, false);
                     picSleepYesterday.Controls.Add(lblSleepYesterday);
                 }
             }
@@ -178,6 +204,7 @@ namespace LifeGame
                 string Location = yesterdayLogs[i].Location;
                 string WithWho = yesterdayLogs[i].WithWho;
                 string TaskName = yesterdayLogs[i].ContributionToTask;
+                bool IsAlarm = yesterdayLogs[i].Alarm;
                 Color backColor = GetColor(yesterdayLogs[i].Color);
                 lstPicLog[i].Width = width;
                 lstPicLog[i].Height = (int)(end - start);
@@ -188,7 +215,7 @@ namespace LifeGame
                 lstLblLog[i].Text = TimePeriod + "\n" + LogName + "\n" + Location + "\n" + WithWho;
                 lstLblLog[i].Dock = DockStyle.Fill;
                 lstLblLog[i].ForeColor = Color.FromArgb(255 - backColor.R, 255 - backColor.G, 255 - backColor.B);
-                lstLblLog[i].Click += (e, a) => CallInfoLog(TimePeriod, LogName, Location, WithWho, TaskName, backColor);
+                lstLblLog[i].Click += (e, a) => CallInfoLog(TimePeriod, LogName, Location, WithWho, TaskName, backColor, IsAlarm);
                 lstPicLog[i].Controls.Add(lstLblLog[i]);
             }
 
@@ -215,6 +242,7 @@ namespace LifeGame
                 string Location = todayLogs[i].Location;
                 string WithWho = todayLogs[i].WithWho;
                 string TaskName = todayLogs[i].ContributionToTask;
+                bool IsAlarm = todayLogs[i].Alarm;
                 Color backColor = GetColor(todayLogs[i].Color);
                 lstPicLog[i + yesterdayLogs.Count].Width = width;
                 lstPicLog[i + yesterdayLogs.Count].Height = (int)(end - start);
@@ -225,8 +253,18 @@ namespace LifeGame
                 lstLblLog[i + yesterdayLogs.Count].Text = TimePeriod + "\n" + LogName + "\n" + Location + "\n" + WithWho;
                 lstLblLog[i + yesterdayLogs.Count].Dock = DockStyle.Fill;
                 lstLblLog[i + yesterdayLogs.Count].ForeColor = Color.FromArgb(255 - backColor.R, 255 - backColor.G, 255 - backColor.B);
-                lstLblLog[i + yesterdayLogs.Count].Click += (e, a) => CallInfoLog(TimePeriod, LogName, Location, WithWho, TaskName, backColor);
+                lstLblLog[i + yesterdayLogs.Count].Click += (e, a) => CallInfoLog(TimePeriod, LogName, Location, WithWho, TaskName, backColor, IsAlarm);
                 lstPicLog[i + yesterdayLogs.Count].Controls.Add(lstLblLog[i + yesterdayLogs.Count]);
+            }
+
+            if (date == DateTime.Today.Date)
+            {
+                picToday.Width = picMap.Width;
+                picToday.Height = (int)(height - height * DateTime.Now.TimeOfDay.TotalMinutes / (24 * 60));
+                picToday.Left = 0;
+                picToday.Top = (int)(height * DateTime.Now.TimeOfDay.TotalMinutes / (24 * 60));
+                picToday.BackColor = Color.White;
+                picMap.Controls.Add(picToday);
             }
         }
 
@@ -382,9 +420,9 @@ namespace LifeGame
             acc = acc + lstNote.Count;
         }
 
-        public void CallInfoLog(string Timeperiod, string LogName, string Location, string WithWho, string TaskName, Color color)
+        public void CallInfoLog(string Timeperiod, string LogName, string Location, string WithWho, string TaskName, Color color, bool IsAlarm)
         {
-            frmInfoLog frmInfoLog = new frmInfoLog(Timeperiod, LogName, Location, WithWho, TaskName, color);
+            frmInfoLog frmInfoLog = new frmInfoLog(Timeperiod, LogName, Location, WithWho, TaskName, color, IsAlarm);
             frmInfoLog.Show();
         }
 

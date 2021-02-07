@@ -243,6 +243,8 @@ namespace LifeGame
         public string Location;
         public string WithWho;
         public string Color;
+        public bool Alarm;
+        public DateTime AlarmTime;
     }
 
     /// <summary>
