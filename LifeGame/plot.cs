@@ -119,14 +119,14 @@ namespace LifeGame
                 picTimePointer.Height = 2;
                 picTimePointer.Left = 0;
                 picTimePointer.Top = (int)(height * DateTime.Now.TimeOfDay.TotalMinutes / (24 * 60));
-                picTimePointer.BackColor = Color.Black;
+                picTimePointer.BackColor = Color.DarkRed;
                 picMap.Controls.Add(picTimePointer);
                 lblNow.Text = DateTime.Now.ToShortTimeString();
                 lblNow.Top = (int)(height * DateTime.Now.TimeOfDay.TotalMinutes / (24 * 60)) - 14;
                 lblNow.Left = picMap.Width - 50;
                 lblNow.Height = 14;
                 lblNow.BringToFront();
-                lblNow.BackColor = Color.Black;
+                lblNow.BackColor = Color.DarkRed;
                 lblNow.ForeColor = Color.White;
                 picMap.Controls.Add(lblNow);
             }
