@@ -57,8 +57,10 @@ namespace LifeGame
                 G.glb.lstSurveyTagValueOption = new List<RSurveyTagValueOption>();
                 G.glb.lstSurveySubTag = new List<RSurveySubTag>();
                 G.glb.lstSurveyLiteratureTagValue = new List<RSurveyLiteratureTagValue>();
-
+                
                 // Initialize bank accounts
+                //G.glb.lstTransaction.Clear();               
+                //G.glb.lstAccount.Clear();
                 //G.glb.lstAccount.Add(new CAccount());
                 //G.glb.lstAccount.Add(new CAccount());
                 //G.glb.lstAccount.Add(new CAccount());
@@ -94,6 +96,7 @@ namespace LifeGame
                 //G.glb.lstAccount[6].AccountType = EAccountType.Income;
                 //G.glb.lstAccount[6].Currency = "USD";
                 //G.glb.lstAccount[6].ProtectedAccount = true;
+                //G.glb.lstSubAccount.Clear();
                 //G.glb.lstSubAccount.Add(new RSubAccount());
                 //G.glb.lstSubAccount.Add(new RSubAccount());
                 //G.glb.lstSubAccount.Add(new RSubAccount());
@@ -122,6 +125,7 @@ namespace LifeGame
                 //G.glb.lstSubAccount[6].Account = "(Equity)";
                 //G.glb.lstSubAccount[6].SubAccount = "(Openning Balance)";
                 //G.glb.lstSubAccount[6].index = 0;
+                //G.glb.lstCurrencyRate.Clear();
                 //G.glb.lstCurrencyRate.Add(new RCurrencyRate());
                 //G.glb.lstCurrencyRate[0].CurrencyA = "USD";
                 //G.glb.lstCurrencyRate[0].CurrencyB = "RMB";
@@ -240,8 +244,8 @@ namespace LifeGame
         private void RefreshBackground(object sender, EventArgs e)
         {
             curPointerTimer.Interval = 1000 * 60;
-            DrawToday();
             FindNextToAlarm();
+            DrawToday();            
         }
 
         private void frmMain_Resize(object sender, EventArgs e)
@@ -253,7 +257,7 @@ namespace LifeGame
 
         private void FindNextToAlarm()
         {
-            CLog nextAlarmingSchedule = G.glb.lstSchedule.FindAll(o => o.Alarm == true).OrderBy(o => o.AlarmTime).FirstOrDefault();
+            CLog nextAlarmingSchedule = G.glb.lstSchedule.FindAll(o => o.Alarm == true && o.StartTime >= DateTime.Now && (DateTime.Now - o.AlarmTime).TotalMinutes <= 2).OrderBy(o => o.AlarmTime).FirstOrDefault();
             if (nextAlarmingSchedule != null)
             {
                 TimeSpan minToNextAlarm = new TimeSpan();
@@ -1015,40 +1019,48 @@ namespace LifeGame
         {
             plot Draw = new plot();
             DateTime TodayDayOfWeek = new DateTime();
+            PictureBox selectedPic = new PictureBox();
             bool NeedRefresh = true;
             if (DateTime.Today == SelectedSunday)
             {
                 picSun.Controls.Clear();
+                selectedPic = picSun;
                 TodayDayOfWeek = SelectedSunday;
             }
             else if (DateTime.Today == SelectedMonday)
             {
                 picMon.Controls.Clear();
+                selectedPic = picMon;
                 TodayDayOfWeek = SelectedMonday;
             }
             else if (DateTime.Today == SelectedTuesday)
             {
                 picTue.Controls.Clear();
+                selectedPic = picTue;
                 TodayDayOfWeek = SelectedTuesday;
             }
             else if (DateTime.Today == SelectedWednesday)
             {
                 picWed.Controls.Clear();
+                selectedPic = picWed;
                 TodayDayOfWeek = SelectedWednesday;
             }
             else if (DateTime.Today == SelectedThursday)
             {
                 picThu.Controls.Clear();
+                selectedPic = picThu;
                 TodayDayOfWeek = SelectedThursday;
             }
             else if (DateTime.Today == SelectedFriday)
             {
                 picFri.Controls.Clear();
+                selectedPic = picFri;
                 TodayDayOfWeek = SelectedFriday;
             }
             else if (DateTime.Today == SelectedSaturday)
             {
                 picSat.Controls.Clear();
+                selectedPic = picSat;
                 TodayDayOfWeek = SelectedSaturday;
             }
             else
@@ -1059,36 +1071,36 @@ namespace LifeGame
             {
                 if (chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
                 {
-                    Draw.DrawEventController(picSun, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "leftWithSupp");
-                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "rightWithSupp");
+                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "leftWithSupp");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "rightWithSupp");
                 }
                 else if (chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
                 {
-                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "left");
-                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "right");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "left");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "right");
                 }
                 else if (chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
                 {
-                    Draw.DrawEventController(picSun, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "allWithSupp");
+                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "allWithSupp");
                 }
                 else if (chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
                 {
-                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "all");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "all");
                 }
                 else if (!chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
                 {
-                    Draw.DrawEventController(picSun, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepSchedule, "allWithSupp");
+                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepSchedule, "allWithSupp");
                 }
                 else if (!chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
                 {
-                    Draw.DrawScheduleAndLogController(picSun, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepSchedule, "all");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepSchedule, "all");
                 }
                 else if (!chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
                 {
-                    Draw.DrawEventController(picSun, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
                 }
                 else if (!chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
                 {

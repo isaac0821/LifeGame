@@ -423,13 +423,13 @@ namespace LifeGame
         public void CallInfoLog(string Timeperiod, string LogName, string Location, string WithWho, string TaskName, Color color, bool IsAlarm)
         {
             frmInfoLog frmInfoLog = new frmInfoLog(Timeperiod, LogName, Location, WithWho, TaskName, color, IsAlarm);
-            frmInfoLog.Show();
+            frmInfoLog.ShowDialog();
         }
 
         public void CallInfoDDL(string InfoDDL)
         {
             frmInfoDDL frmInfoDDL = new frmInfoDDL(InfoDDL);
-            frmInfoDDL.Show();
+            frmInfoDDL.ShowDialog();
         }
 
         public void CallInfoEvent(CEvent info)
