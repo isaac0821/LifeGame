@@ -257,7 +257,7 @@ namespace LifeGame
 
         private void FindNextToAlarm()
         {
-            CLog nextAlarmingSchedule = G.glb.lstSchedule.FindAll(o => o.Alarm == true && o.StartTime >= DateTime.Now && (DateTime.Now - o.AlarmTime).TotalMinutes <= 2).OrderBy(o => o.AlarmTime).FirstOrDefault();
+            CLog nextAlarmingSchedule = G.glb.lstSchedule.FindAll(o => o.Alarm == true && o.StartTime >= DateTime.Now && (DateTime.Now - o.AlarmTime).TotalMinutes <= 1).OrderBy(o => o.AlarmTime).FirstOrDefault();
             if (nextAlarmingSchedule != null)
             {
                 TimeSpan minToNextAlarm = new TimeSpan();

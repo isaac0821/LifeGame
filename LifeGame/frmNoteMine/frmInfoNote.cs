@@ -27,6 +27,7 @@ namespace LifeGame
             LoadNoteOutsource();
             dtpDate.Value = note.TagTime;
             txtTopic.Enabled = false;
+            btnSave.Enabled = false;
         }
 
         public frmInfoNote(DateTime selectedDate)
@@ -38,6 +39,7 @@ namespace LifeGame
             LoadNoteLog();
             LoadNoteOutsource();
             dtpDate.Value = selectedDate;
+            btnSave.Enabled = true;
         }
 
         public frmInfoNote(string LiteratureTitle)
@@ -59,6 +61,7 @@ namespace LifeGame
             LoadNoteOutsource();
             txtTopic.Text = LiteratureTitle;
             dtpDate.Value = DateTime.Today.Date;
+            btnSave.Enabled = true;
         }
 
         private void LoadNote()
@@ -104,7 +107,7 @@ namespace LifeGame
             }
         }
 
-        private void frmInfoNote_FormClosing(object sender, FormClosingEventArgs e)
+        private void SaveNote()
         {
             // 表示已经存在这个Note了，提示是否覆盖，否则提示是否新建
             if (G.glb.lstNote.Exists(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date))
@@ -164,6 +167,11 @@ namespace LifeGame
                     DrawLog();
                 }
             }
+        }
+
+        private void frmInfoNote_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveNote();
             Dispose();
         }
 
@@ -215,6 +223,7 @@ namespace LifeGame
                     trvNote.SelectedNode.Nodes.Add(newNode);
                 }
             }
+            btnSave.Enabled = true;
         }
 
         private void tsmEdit_Click(object sender, EventArgs e)
@@ -237,6 +246,7 @@ namespace LifeGame
                     trvNote.SelectedNode.Name = newLog;
                 }
             }
+            btnSave.Enabled = true;
         }
 
         private void tsmRemove_Click(object sender, EventArgs e)
@@ -256,6 +266,7 @@ namespace LifeGame
                     MessageBox.Show("To be cautious, can not remove note with sub node");
                 }
             }
+            btnSave.Enabled = true;
         }
 
         private void ReIndex(string UpperNote)
@@ -290,6 +301,7 @@ namespace LifeGame
                     ReIndex(upperNote);
                 }
             }
+            btnSave.Enabled = true;
         }
 
         private void tsmDown_Click(object sender, EventArgs e)
@@ -315,6 +327,7 @@ namespace LifeGame
                     ReIndex(upperNote);
                 }
             }
+            btnSave.Enabled = true;
         }
 
         private void tsmBelongTo_Click(object sender, EventArgs e)
@@ -342,6 +355,7 @@ namespace LifeGame
                     ReIndex(preNodeName);
                 }
             }
+            btnSave.Enabled = true;
         }
 
         private void tsmIndependent_Click(object sender, EventArgs e)
@@ -369,14 +383,7 @@ namespace LifeGame
                     ReIndex(parentNodeName);
                 }
             }
-        }
-
-        private void tsmChangeLogo_Click(object sender, EventArgs e)
-        {
-            if (trvNote.SelectedNode != null)
-            {
-
-            }
+            btnSave.Enabled = true;
         }
 
         private void txtTopic_TextChanged(object sender, EventArgs e)
@@ -395,6 +402,7 @@ namespace LifeGame
             newNoteOutsource.Outsourcepath = newOutsourcePath;
             noteOutsources.Add(newNoteOutsource);
             LoadNoteOutsource();
+            btnSave.Enabled = true;
         }
 
         private void tsmDeleteOutsource_Click(object sender, EventArgs e)
@@ -404,6 +412,7 @@ namespace LifeGame
                 noteOutsources.RemoveAll(o => o.Outsourcepath == lsbOutsource.SelectedItem.ToString());
                 LoadNoteOutsource();
             }
+            btnSave.Enabled = true;
         }
 
         private void tsmOpenOutsource_Click(object sender, EventArgs e)
@@ -429,6 +438,13 @@ namespace LifeGame
                     }
                 }
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveNote();
+            txtTopic.Enabled = false;
+            btnSave.Enabled = false;
         }
     }
 }
