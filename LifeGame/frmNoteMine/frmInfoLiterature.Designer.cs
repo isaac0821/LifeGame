@@ -45,10 +45,10 @@
             this.cbxBibEntryType = new System.Windows.Forms.ComboBox();
             this.btnBibTeX = new System.Windows.Forms.Button();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtInOneSentence = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btnGoogleScholar = new System.Windows.Forms.Button();
             this.chkStar = new System.Windows.Forms.CheckBox();
+            this.txtInOneSentence = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -323,14 +323,6 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(697, 28);
             this.tableLayoutPanel8.TabIndex = 3;
             // 
-            // txtInOneSentence
-            // 
-            this.txtInOneSentence.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInOneSentence.Location = new System.Drawing.Point(103, 4);
-            this.txtInOneSentence.Name = "txtInOneSentence";
-            this.txtInOneSentence.Size = new System.Drawing.Size(433, 20);
-            this.txtInOneSentence.TabIndex = 0;
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -363,6 +355,14 @@
             this.chkStar.TabIndex = 3;
             this.chkStar.Text = "Star";
             this.chkStar.UseVisualStyleBackColor = true;
+            // 
+            // txtInOneSentence
+            // 
+            this.txtInOneSentence.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInOneSentence.Location = new System.Drawing.Point(103, 4);
+            this.txtInOneSentence.Name = "txtInOneSentence";
+            this.txtInOneSentence.Size = new System.Drawing.Size(433, 20);
+            this.txtInOneSentence.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 

@@ -83,22 +83,22 @@ namespace LifeGame
             trvNote.Nodes.Clear();
             TreeNode rootNode = new TreeNode(note.Topic, 0, 0);
             rootNode.Name = note.Topic;
-            LoadChildNoteLog(rootNode);
+            LoadChildNoteLog(rootNode, note.Topic);
             trvNote.Nodes.Add(rootNode);
         }
 
-        private void LoadChildNoteLog(TreeNode treeNode)
+        private void LoadChildNoteLog(TreeNode treeNode, string topic)
         {
             // 如果本条NoteLog作为上级NoteLog存在，添加所有的SubLog
-            if (noteLogs.Exists(o => o.Log == treeNode.Text))
+            if (noteLogs.Exists(o => o.Log == treeNode.Text && o.Topic == topic))
             {
-                List<RNoteLog> subNoteLog = G.glb.lstNoteLog.FindAll(o => o.Log == treeNode.Text).ToList();
+                List<RNoteLog> subNoteLog = G.glb.lstNoteLog.FindAll(o => o.Log == treeNode.Text && o.Topic == note.Topic).ToList();
                 subNoteLog = subNoteLog.OrderBy(o => o.Index).ToList();
                 foreach (RNoteLog sub in subNoteLog)
                 {
                     TreeNode childNode = new TreeNode(sub.SubLog);
                     childNode.Name = sub.SubLog;
-                    LoadChildNoteLog(childNode);
+                    LoadChildNoteLog(childNode, note.Topic);
                     treeNode.Nodes.Add(childNode);
                 }
             }
