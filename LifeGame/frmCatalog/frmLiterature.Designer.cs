@@ -33,6 +33,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.filesFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExportBib = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goodJournalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -92,15 +94,16 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvLiterature = new System.Windows.Forms.DataGridView();
-            this.Star = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsLiterature = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmViewLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAddLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.Star = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGoodJournal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -141,7 +144,8 @@
             this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.filesFToolStripMenuItem});
+            this.filesFToolStripMenuItem,
+            this.settingsSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1022, 24);
@@ -164,6 +168,21 @@
             this.tsmExportBib.Size = new System.Drawing.Size(128, 22);
             this.tsmExportBib.Text = "Export bib";
             this.tsmExportBib.Click += new System.EventHandler(this.tsmExportBib_Click);
+            // 
+            // settingsSToolStripMenuItem
+            // 
+            this.settingsSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.goodJournalsToolStripMenuItem});
+            this.settingsSToolStripMenuItem.Name = "settingsSToolStripMenuItem";
+            this.settingsSToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.settingsSToolStripMenuItem.Text = "Settings(&S)";
+            // 
+            // goodJournalsToolStripMenuItem
+            // 
+            this.goodJournalsToolStripMenuItem.Name = "goodJournalsToolStripMenuItem";
+            this.goodJournalsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.goodJournalsToolStripMenuItem.Text = "Good Journals";
+            this.goodJournalsToolStripMenuItem.Click += new System.EventHandler(this.goodJournalsToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -876,6 +895,7 @@
             this.dgvLiterature.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Star,
             this.colTitle,
+            this.colGoodJournal,
             this.addDate,
             this.lastModifyDate});
             this.dgvLiterature.ContextMenuStrip = this.cmsLiterature;
@@ -885,34 +905,6 @@
             this.dgvLiterature.ReadOnly = true;
             this.dgvLiterature.Size = new System.Drawing.Size(713, 411);
             this.dgvLiterature.TabIndex = 1;
-            // 
-            // Star
-            // 
-            this.Star.HeaderText = "Star";
-            this.Star.Name = "Star";
-            this.Star.ReadOnly = true;
-            this.Star.Width = 40;
-            // 
-            // colTitle
-            // 
-            this.colTitle.HeaderText = "Title";
-            this.colTitle.Name = "colTitle";
-            this.colTitle.ReadOnly = true;
-            this.colTitle.Width = 600;
-            // 
-            // addDate
-            // 
-            this.addDate.HeaderText = "Added Date";
-            this.addDate.Name = "addDate";
-            this.addDate.ReadOnly = true;
-            this.addDate.Width = 120;
-            // 
-            // lastModifyDate
-            // 
-            this.lastModifyDate.HeaderText = "Latest Modification";
-            this.lastModifyDate.Name = "lastModifyDate";
-            this.lastModifyDate.ReadOnly = true;
-            this.lastModifyDate.Width = 120;
             // 
             // cmsLiterature
             // 
@@ -950,6 +942,41 @@
             this.tsmRemoveLiterature.Size = new System.Drawing.Size(117, 22);
             this.tsmRemoveLiterature.Text = "Remove";
             this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
+            // 
+            // Star
+            // 
+            this.Star.HeaderText = "Star";
+            this.Star.Name = "Star";
+            this.Star.ReadOnly = true;
+            this.Star.Width = 40;
+            // 
+            // colTitle
+            // 
+            this.colTitle.HeaderText = "Title";
+            this.colTitle.Name = "colTitle";
+            this.colTitle.ReadOnly = true;
+            this.colTitle.Width = 600;
+            // 
+            // colGoodJournal
+            // 
+            this.colGoodJournal.HeaderText = "Good Journal";
+            this.colGoodJournal.Name = "colGoodJournal";
+            this.colGoodJournal.ReadOnly = true;
+            this.colGoodJournal.Width = 95;
+            // 
+            // addDate
+            // 
+            this.addDate.HeaderText = "Added Date";
+            this.addDate.Name = "addDate";
+            this.addDate.ReadOnly = true;
+            this.addDate.Width = 120;
+            // 
+            // lastModifyDate
+            // 
+            this.lastModifyDate.HeaderText = "Latest Modification";
+            this.lastModifyDate.Name = "lastModifyDate";
+            this.lastModifyDate.ReadOnly = true;
+            this.lastModifyDate.Width = 120;
             // 
             // frmLiterature
             // 
@@ -1072,8 +1099,11 @@
         private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem groupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeTagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem goodJournalsToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn Star;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGoodJournal;
         private System.Windows.Forms.DataGridViewTextBoxColumn addDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastModifyDate;
     }

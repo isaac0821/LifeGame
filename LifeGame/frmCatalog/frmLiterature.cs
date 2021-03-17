@@ -233,7 +233,12 @@ namespace LifeGame
                 {
                     starFlag = "√";
                 }
-                dgvLiterature.Rows.Add(starFlag, title, addedDate.ToString("MM/dd/yyyy"), lastModifyDate.ToString("MM/dd/yyyy"));
+                string goodJourFlag = "";
+                if (G.glb.lstGoodJournal.Exists(o => o == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
+                {
+                    goodJourFlag = "√";
+                }
+                dgvLiterature.Rows.Add(starFlag, title, goodJourFlag, addedDate.ToString("MM/dd/yyyy"), lastModifyDate.ToString("MM/dd/yyyy"));
                 dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].Cells[1].ToolTipText = G.glb.lstLiterature.Find(o => o.Title == title).InOneSentence;
             }
         }
@@ -762,6 +767,13 @@ namespace LifeGame
         private void btnInstitutionRefresh_Click(object sender, EventArgs e)
         {
             LoadTab();
+        }
+
+        private void goodJournalsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGoodJournal frmGoodJournal = new frmGoodJournal();
+            frmGoodJournal.RefreshLits += new frmGoodJournal.RefreshLitsHandler(LoadLiteratureList);
+            frmGoodJournal.Show();
         }
     }
 }

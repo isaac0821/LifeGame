@@ -52,6 +52,10 @@ namespace LifeGame
             {
                 Deserialize();
                 G.glb.showMode = EShowMode.LightMode;
+                if (G.glb.lstGoodJournal == null)
+                {
+                    G.glb.lstGoodJournal = new List<string>();
+                }
                 G.glb.lstSurvey = new List<CSurvey>();
                 G.glb.lstSurveyTag = new List<RSurveyTag>();
                 G.glb.lstSurveyTagValueOption = new List<RSurveyTagValueOption>();

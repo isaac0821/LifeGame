@@ -53,6 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes.cs" />
+    <Compile Include="frmSettings\frmGoodJournal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettings\frmGoodJournal.Designer.cs">
+      <DependentUpon>frmGoodJournal.cs</DependentUpon>
+    </Compile>
     <Compile Include="names.cs" />
     <Compile Include="plot.cs" />
     <Compile Include="calculate.cs" />
@@ -158,10 +164,10 @@
     <Compile Include="frmAdd\frmAddTransaction.Designer.cs">
       <DependentUpon>frmAddTransaction.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCatalog\frmCurrencyRate.cs">
+    <Compile Include="frmSettings\frmCurrencyRate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCatalog\frmCurrencyRate.Designer.cs">
+    <Compile Include="frmSettings\frmCurrencyRate.Designer.cs">
       <DependentUpon>frmCurrencyRate.cs</DependentUpon>
     </Compile>
     <Compile Include="frmInfo\frmConvertSchedule.cs">
@@ -353,7 +359,7 @@
     <EmbeddedResource Include="frmAdd\frmAddTransaction.resx">
       <DependentUpon>frmAddTransaction.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCatalog\frmCurrencyRate.resx">
+    <EmbeddedResource Include="frmSettings\frmCurrencyRate.resx">
       <DependentUpon>frmCurrencyRate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatalog\frmSurvey.resx">
@@ -433,6 +439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNoteMine\frmInfoSurvey.resx">
       <DependentUpon>frmInfoSurvey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettings\frmGoodJournal.resx">
+      <DependentUpon>frmGoodJournal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="icon.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -518,7 +527,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <None Include="Resources\iconLiterature1.png" />
     <None Include="Resources\iconClock.png" />
     <Content Include="Resources\iconSurveyTagBoolean.png" />
     <Content Include="Resources\iconSurveyTagInteger.png" />

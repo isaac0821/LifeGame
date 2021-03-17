@@ -190,7 +190,7 @@
             // tsmCurrencyRate
             // 
             this.tsmCurrencyRate.Name = "tsmCurrencyRate";
-            this.tsmCurrencyRate.Size = new System.Drawing.Size(148, 22);
+            this.tsmCurrencyRate.Size = new System.Drawing.Size(180, 22);
             this.tsmCurrencyRate.Text = "Currency Rate";
             this.tsmCurrencyRate.Click += new System.EventHandler(this.tsmCurrencyRate_Click);
             // 
@@ -200,7 +200,7 @@
             this.darkModeToolStripMenuItem,
             this.lightModeToolStripMenuItem});
             this.modeToolStripMenuItem.Name = "modeToolStripMenuItem";
-            this.modeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.modeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modeToolStripMenuItem.Text = "Mode";
             // 
             // darkModeToolStripMenuItem

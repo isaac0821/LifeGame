@@ -16,6 +16,7 @@ namespace LifeGame
     {
         // Settings
         public EShowMode showMode = EShowMode.LightMode;
+        public List<string> lstGoodJournal = new List<string>();
 
         // Tasks, Logs and Events
         public List<CTask> lstTask = new List<CTask>();
