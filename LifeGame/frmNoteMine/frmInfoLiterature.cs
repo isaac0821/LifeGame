@@ -119,6 +119,7 @@ namespace LifeGame
             txtInOneSentence.Text = literature.InOneSentence;
             txtBibKey.Text = literature.BibKey;
             chkStar.Checked = literature.Star;
+            chkPredatroyAlert.Checked = literature.PredatoryAlert;
             if (literature.BibTeX != null)
             {
                 cbxBibEntryType.Text = literature.BibTeX.BibEntry.ToString();
@@ -239,6 +240,8 @@ namespace LifeGame
                     newLiterature.DateAdded = DateTime.Today;
                     newLiterature.DateModified = DateTime.Today;
                     newLiterature.Star = chkStar.Checked;
+                    newLiterature.PredatoryAlert = chkPredatroyAlert.Checked;
+
                     foreach (RLiteratureAuthor author in lstLiteratureAuthor)
                     {
                         author.Title = txtTitle.Text;
@@ -275,6 +278,7 @@ namespace LifeGame
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibTeX = literatureBib;
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).DateModified = DateTime.Today;
                     G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Star = chkStar.Checked;
+                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PredatoryAlert = chkPredatroyAlert.Checked;
                     foreach (RLiteratureAuthor author in lstLiteratureAuthor)
                     {
                         author.Title = txtTitle.Text;
@@ -323,6 +327,17 @@ namespace LifeGame
         {
             SelectedAttri = (sender as ContextMenuStrip).SourceControl.Name;
         }
+
+        private void GetInstitution(string strInstitution)
+        {
+            if (!lsbInstitution.Items.Contains(strInstitution))
+            {
+                RLiteratureInstitution newInstitution = new RLiteratureInstitution();
+                newInstitution.Institution = strInstitution;
+                lstLiteratureInstitution.Add(newInstitution);
+                lsbInstitution.Items.Add(strInstitution);
+            }
+        }
         private void tsmAttriAdd_Click(object sender, EventArgs e)
         {
             switch (SelectedAttri)
@@ -335,11 +350,14 @@ namespace LifeGame
                     lsbTag.Items.Add(strTag);
                     break;
                 case "lsbInstitution":
-                    string strInstitution = Interaction.InputBox("Literature Institution", "Literature Institution", "Literature Institution", 300, 300);
-                    RLiteratureInstitution newInstitution = new RLiteratureInstitution();
-                    newInstitution.Institution = strInstitution;
-                    lstLiteratureInstitution.Add(newInstitution);
-                    lsbInstitution.Items.Add(strInstitution);
+                    List<string> authors = new List<string>();
+                    foreach (object item in lsbAuthor.Items)
+                    {
+                        authors.Add(item.ToString());
+                    }
+                    frmAddInstitution frmAddInstitution = new frmAddInstitution(authors);
+                    frmAddInstitution.SendInstitution += new frmAddInstitution.GetInstitution(GetInstitution);
+                    frmAddInstitution.Show();
                     break;
                 case "lsbInCiting":
                     string strInCiting = Interaction.InputBox("Literature InCiting", "Literature InCiting", "Literature InCiting", 300, 300);
@@ -397,7 +415,7 @@ namespace LifeGame
 
         private void tsmOpen_Click(object sender, EventArgs e)
         {
-            if (lsbNote.SelectedItem!=null)
+            if (lsbNote.SelectedItem != null)
             {
                 string selectedItemText = lsbNote.SelectedItem.ToString();
                 string[] split = selectedItemText.Split('-');
@@ -446,6 +464,11 @@ namespace LifeGame
             newAuthor.Rank = lsbAuthor.Items.Count;
             lstLiteratureAuthor.Add(newAuthor);
             lsbAuthor.Items.Add(strAuthor);
+            if (G.glb.lstAuthor.Exists(o=>o.Author == strAuthor))
+            {
+                string PrimeInstitution = G.glb.lstAuthor.Find(o => o.Author == strAuthor).PrimeAffiliation;
+                GetInstitution(PrimeInstitution);
+            }
             GetBibKey();
         }
 
@@ -486,9 +509,9 @@ namespace LifeGame
 
         private void tsmAuthorDown_Click(object sender, EventArgs e)
         {
-            if (lsbAuthor.SelectedItem!=null)
+            if (lsbAuthor.SelectedItem != null)
             {
-                if (lsbAuthor.SelectedIndex<lsbAuthor.Items.Count-1)
+                if (lsbAuthor.SelectedIndex < lsbAuthor.Items.Count - 1)
                 {
                     int selectedIndex = lsbAuthor.SelectedIndex;
                     string itemSelected = lsbAuthor.SelectedItem.ToString();
@@ -580,7 +603,7 @@ namespace LifeGame
             else
             {
                 tmpLiterature.PublishYear = Convert.ToInt32(txtYear.Text);
-            }           
+            }
             List<RLiteratureAuthor> tmpAuthorList = new List<RLiteratureAuthor>();
             for (int i = 0; i < lsbAuthor.Items.Count; i++)
             {
@@ -601,7 +624,7 @@ namespace LifeGame
             {
                 case "Article":
                     frmBibArticle frmBibArticle = new frmBibArticle(tmpLiterature, tmpAuthorList);
-                    frmBibArticle.BuildBibTeX += new frmBibArticle.BuildBibTeXHandler(ParseBibTeXText); 
+                    frmBibArticle.BuildBibTeX += new frmBibArticle.BuildBibTeXHandler(ParseBibTeXText);
                     frmBibArticle.Show();
                     break;
                 case "Mastersthesis":
@@ -635,7 +658,7 @@ namespace LifeGame
                     }
                     else
                     {
-                        tmpPhDAuthor.Author = "";   
+                        tmpPhDAuthor.Author = "";
                     }
                     RLiteratureInstitution tmpPhDInstitution = new RLiteratureInstitution();
                     if (tmpInstitutionList.Count > 0)

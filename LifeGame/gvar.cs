@@ -15,7 +15,6 @@ namespace LifeGame
     public class Mem
     {
         // Settings
-        public EShowMode showMode = EShowMode.LightMode;
         public List<string> lstGoodJournal = new List<string>();
 
         // Tasks, Logs and Events
@@ -48,6 +47,8 @@ namespace LifeGame
         public List<RLiteratureInCiting> lstLiteratureCiting = new List<RLiteratureInCiting>();
         public List<RLiteratureInstitution> lstLiteratureInstitution = new List<RLiteratureInstitution>();
         public List<RLiteratureOutSource> lstLiteratureOutSource = new List<RLiteratureOutSource>();
+        public List<CAuthor> lstAuthor = new List<CAuthor>();
+        public List<RAuthorAffiliation> lstAuthorAffiliation = new List<RAuthorAffiliation>();
 
         // Survey
         public List<CSurvey> lstSurvey = new List<CSurvey>();

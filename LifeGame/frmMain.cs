@@ -51,7 +51,6 @@ namespace LifeGame
             try
             {
                 Deserialize();
-                G.glb.showMode = EShowMode.LightMode;
                 if (G.glb.lstGoodJournal == null)
                 {
                     G.glb.lstGoodJournal = new List<string>();
@@ -61,9 +60,23 @@ namespace LifeGame
                 G.glb.lstSurveyTagValueOption = new List<RSurveyTagValueOption>();
                 G.glb.lstSurveySubTag = new List<RSurveySubTag>();
                 G.glb.lstSurveyLiteratureTagValue = new List<RSurveyLiteratureTagValue>();
-                
-                // Initialize bank accounts
-                //G.glb.lstTransaction.Clear();               
+
+                //G.glb.lstAuthor = new List<CAuthor>();
+                //G.glb.lstAuthorAffiliation = new List<RAuthorAffiliation>();
+                //foreach (RLiteratureAuthor literature in G.glb.lstLiteratureAuthor)
+                //{
+                //    if (!G.glb.lstAuthor.Exists(o => o.Author == literature.Author))
+                //    {
+                //        CAuthor author = new CAuthor();
+                //        author.Author = literature.Author;
+                //        author.PrimeAffiliation = "";
+                //        author.IsReliable = false;
+                //        G.glb.lstAuthor.Add(author);
+                //    }
+                //}
+
+                //Initialize bank accounts
+                //G.glb.lstTransaction.Clear();
                 //G.glb.lstAccount.Clear();
                 //G.glb.lstAccount.Add(new CAccount());
                 //G.glb.lstAccount.Add(new CAccount());
@@ -133,7 +146,7 @@ namespace LifeGame
                 //G.glb.lstCurrencyRate.Add(new RCurrencyRate());
                 //G.glb.lstCurrencyRate[0].CurrencyA = "USD";
                 //G.glb.lstCurrencyRate[0].CurrencyB = "RMB";
-                //G.glb.lstCurrencyRate[0].Rate = 7.1;
+                //G.glb.lstCurrencyRate[0].Rate = 6.5;
 
 
                 //foreach (CLiterature item in G.glb.lstLiterature)
@@ -155,26 +168,6 @@ namespace LifeGame
                 //    p.OutsourcePath = newOutSource;
                 //}
 
-                //foreach (CTask task in G.glb.lstTask)
-                //{
-                //    CalAndFind C = new CalAndFind();
-                //    if (C.CalTimeSpentInTask(task.TaskName, G.glb.lstSubTask, G.glb.lstLog) == 0)
-                //    {
-                //        task.TaskState = ETaskState.NotStartedYet;
-                //    }
-                //    else
-                //    {
-                //        task.TaskState = ETaskState.Ongoing;
-                //    }
-                //    if (task.IsFinished)
-                //    {
-                //        task.TaskState = ETaskState.Finished;
-                //    }
-                //    if (task.IsAbort)
-                //    {
-                //        task.TaskState = ETaskState.Aborted;
-                //    }
-                //}
             }
             catch (Exception)
             {
@@ -211,6 +204,77 @@ namespace LifeGame
                 G.glb.lstAccount = new List<CAccount>();
                 G.glb.lstSubAccount = new List<RSubAccount>();
                 G.glb.lstCurrencyRate = new List<RCurrencyRate>();
+                G.glb.lstTransaction.Clear();
+                G.glb.lstAccount.Clear();
+                G.glb.lstAccount.Add(new CAccount());
+                G.glb.lstAccount.Add(new CAccount());
+                G.glb.lstAccount.Add(new CAccount());
+                G.glb.lstAccount.Add(new CAccount());
+                G.glb.lstAccount.Add(new CAccount());
+                G.glb.lstAccount.Add(new CAccount());
+                G.glb.lstAccount.Add(new CAccount());
+                G.glb.lstAccount[0].AccountName = "(Assets)";
+                G.glb.lstAccount[0].AccountType = EAccountType.Assets;
+                G.glb.lstAccount[0].Currency = "USD";
+                G.glb.lstAccount[0].ProtectedAccount = true;
+                G.glb.lstAccount[1].AccountName = "(Gain/Loss on Exchange)";
+                G.glb.lstAccount[1].AccountType = EAccountType.Assets;
+                G.glb.lstAccount[1].Currency = "USD";
+                G.glb.lstAccount[1].ProtectedAccount = true;
+                G.glb.lstAccount[2].AccountName = "(Expense)";
+                G.glb.lstAccount[2].AccountType = EAccountType.Expense;
+                G.glb.lstAccount[2].Currency = "USD";
+                G.glb.lstAccount[2].ProtectedAccount = true;
+                G.glb.lstAccount[3].AccountName = "(Equity)";
+                G.glb.lstAccount[3].AccountType = EAccountType.Equity;
+                G.glb.lstAccount[3].Currency = "USD";
+                G.glb.lstAccount[3].ProtectedAccount = true;
+                G.glb.lstAccount[4].AccountName = "(Openning Balance)";
+                G.glb.lstAccount[4].AccountType = EAccountType.Equity;
+                G.glb.lstAccount[4].Currency = "USD";
+                G.glb.lstAccount[4].ProtectedAccount = true;
+                G.glb.lstAccount[5].AccountName = "(Liability)";
+                G.glb.lstAccount[5].AccountType = EAccountType.Liability;
+                G.glb.lstAccount[5].Currency = "USD";
+                G.glb.lstAccount[5].ProtectedAccount = true;
+                G.glb.lstAccount[6].AccountName = "(Income)";
+                G.glb.lstAccount[6].AccountType = EAccountType.Income;
+                G.glb.lstAccount[6].Currency = "USD";
+                G.glb.lstAccount[6].ProtectedAccount = true;
+                G.glb.lstSubAccount.Clear();
+                G.glb.lstSubAccount.Add(new RSubAccount());
+                G.glb.lstSubAccount.Add(new RSubAccount());
+                G.glb.lstSubAccount.Add(new RSubAccount());
+                G.glb.lstSubAccount.Add(new RSubAccount());
+                G.glb.lstSubAccount.Add(new RSubAccount());
+                G.glb.lstSubAccount.Add(new RSubAccount());
+                G.glb.lstSubAccount.Add(new RSubAccount());
+                G.glb.lstSubAccount[0].Account = "(Root)";
+                G.glb.lstSubAccount[0].SubAccount = "(Assets)";
+                G.glb.lstSubAccount[0].index = 0;
+                G.glb.lstSubAccount[1].Account = "(Root)";
+                G.glb.lstSubAccount[1].SubAccount = "(Expense)";
+                G.glb.lstSubAccount[1].index = 1;
+                G.glb.lstSubAccount[2].Account = "(Root)";
+                G.glb.lstSubAccount[2].SubAccount = "(Equity)";
+                G.glb.lstSubAccount[2].index = 2;
+                G.glb.lstSubAccount[3].Account = "(Root)";
+                G.glb.lstSubAccount[3].SubAccount = "(Liability)";
+                G.glb.lstSubAccount[3].index = 3;
+                G.glb.lstSubAccount[4].Account = "(Root)";
+                G.glb.lstSubAccount[4].SubAccount = "(Income)";
+                G.glb.lstSubAccount[4].index = 4;
+                G.glb.lstSubAccount[5].Account = "(Assets)";
+                G.glb.lstSubAccount[5].SubAccount = "(Gain/Loss on Exchange)";
+                G.glb.lstSubAccount[5].index = 0;
+                G.glb.lstSubAccount[6].Account = "(Equity)";
+                G.glb.lstSubAccount[6].SubAccount = "(Openning Balance)";
+                G.glb.lstSubAccount[6].index = 0;
+                G.glb.lstCurrencyRate.Clear();
+                G.glb.lstCurrencyRate.Add(new RCurrencyRate());
+                G.glb.lstCurrencyRate[0].CurrencyA = "USD";
+                G.glb.lstCurrencyRate[0].CurrencyB = "RMB";
+                G.glb.lstCurrencyRate[0].Rate = 6.5;
 
                 SerializeNow();
             }

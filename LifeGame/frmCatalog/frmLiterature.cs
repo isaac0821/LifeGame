@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
+using System.Text.RegularExpressions;
 
 namespace LifeGame
 {
@@ -228,18 +225,90 @@ namespace LifeGame
                 DateTime lastModifyDate = new DateTime();
                 addedDate = G.glb.lstLiterature.Find(o => o.Title == title).DateAdded;
                 lastModifyDate = G.glb.lstLiterature.Find(o => o.Title == title).DateModified;
-                string starFlag = "";
+                string starStr = "";
+                string predatoryStr = "";
+                bool predatoryShowFlag = true; // true if we want to show it
+                string goodJourStr = "";
+                bool goodJourShowFlag = false;  // true if we want to show it
+                bool showFlag = true;
+                string litType = "";
+                int year = G.glb.lstLiterature.Find(o => o.Title == title).PublishYear;
                 if (G.glb.lstLiterature.Find(o => o.Title == title).Star)
                 {
-                    starFlag = "√";
+                    starStr = "√";
                 }
-                string goodJourFlag = "";
+                if (G.glb.lstLiterature.Find(o => o.Title == title).PredatoryAlert)
+                {
+                    predatoryStr = "√";
+                    predatoryShowFlag = false;
+                }
                 if (G.glb.lstGoodJournal.Exists(o => o == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
                 {
-                    goodJourFlag = "√";
+                    goodJourStr = "√";
+                    goodJourShowFlag = true;
                 }
-                dgvLiterature.Rows.Add(starFlag, title, goodJourFlag, addedDate.ToString("MM/dd/yyyy"), lastModifyDate.ToString("MM/dd/yyyy"));
-                dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].Cells[1].ToolTipText = G.glb.lstLiterature.Find(o => o.Title == title).InOneSentence;
+                // Only if chkOnlyGood is checked and goodJournalShowFlag is not true, don't show it.
+                if (chkOnlyGood.Checked && !goodJourShowFlag)
+                {
+                    showFlag = false;
+                }
+                if (showFlag)
+                {
+                    // For those showing lits, if chkNoBad is checked and the journal could be bad, don't show it.
+                    if (chkNoBad.Checked && !predatoryShowFlag)
+                    {
+                        showFlag = false;
+                    }
+                }
+                switch (G.glb.lstLiterature.Find(o => o.Title == title).BibTeX.BibEntry)
+                {
+                    case EBibEntry.Article:
+                        litType = "J";
+                        break;
+                    case EBibEntry.Book:
+                        litType = "M";
+                        break;
+                    case EBibEntry.Booklet:
+                        litType = "M";
+                        break;
+                    case EBibEntry.Conference:
+                        litType = "C";
+                        break;
+                    case EBibEntry.Inbook:
+                        litType = "M";
+                        break;
+                    case EBibEntry.Incollection:
+                        litType = "A";
+                        break;
+                    case EBibEntry.Manual:
+                        litType = "M";
+                        break;
+                    case EBibEntry.Mastersthesis:
+                        litType = "D";
+                        break;
+                    case EBibEntry.Misc:
+                        litType = "M";
+                        break;
+                    case EBibEntry.Phdthesis:
+                        litType = "D";
+                        break;
+                    case EBibEntry.Proceedings:
+                        litType = "C";
+                        break;
+                    case EBibEntry.Techreport:
+                        litType = "R";
+                        break;
+                    case EBibEntry.Unpublished:
+                        litType = "M";
+                        break;
+                    default:
+                        break;
+                }
+                if (showFlag)
+                {
+                    dgvLiterature.Rows.Add(starStr, title, Convert.ToString(year), litType, goodJourStr, predatoryStr, addedDate.ToString("yyyy/MM/dd"), lastModifyDate.ToString("yyyy/MM/dd"));
+                    dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].Cells[1].ToolTipText = G.glb.lstLiterature.Find(o => o.Title == title).InOneSentence;
+                }
             }
         }
 
@@ -771,9 +840,41 @@ namespace LifeGame
 
         private void goodJournalsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmGoodJournal frmGoodJournal = new frmGoodJournal();
-            frmGoodJournal.RefreshLits += new frmGoodJournal.RefreshLitsHandler(LoadLiteratureList);
-            frmGoodJournal.Show();
+            frmReliableJournal frmReliableJournal = new frmReliableJournal();
+            frmReliableJournal.RefreshLits += new frmReliableJournal.RefreshLitsHandler(LoadLiteratureList);
+            frmReliableJournal.Show();
+        }
+
+        private void chkOnlyGood_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadLiteratureList();
+        }
+
+        private void chkNoBad_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadLiteratureList();
+        }
+
+        private void dgvLiterature_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        {
+            if(e.Column.Name == "colCited")
+            {
+                e.SortResult = (
+                    Convert.ToString(e.CellValue1) == "" && Convert.ToString(e.CellValue2) == ""? 0 :
+                    Convert.ToString(e.CellValue1) != "" && Convert.ToString(e.CellValue2) == "" ? 1 :
+                    Convert.ToString(e.CellValue1) == "" && Convert.ToString(e.CellValue2) != "" ? -1 :
+                    Convert.ToInt32(e.CellValue1) > Convert.ToInt32(e.CellValue2) ? 1 : 
+                    Convert.ToInt32(e.CellValue1) < Convert.ToInt32(e.CellValue2) ? -1 : 
+                    0);
+                e.Handled = true;
+            }
+        }
+
+        private void authorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAuthorInfo frmAuthorInfo = new frmAuthorInfo();
+            frmAuthorInfo.RefreshLits += new frmAuthorInfo.RefreshLitsHandler(LoadLiteratureList);
+            frmAuthorInfo.Show();
         }
     }
 }

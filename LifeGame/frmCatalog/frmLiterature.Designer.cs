@@ -99,11 +99,20 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAddLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
+            this.chkNoBad = new System.Windows.Forms.CheckBox();
+            this.chkOnlyGood = new System.Windows.Forms.CheckBox();
             this.Star = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLitType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGoodJournal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPredatory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goodInstitutionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.authorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -137,6 +146,7 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).BeginInit();
             this.cmsLiterature.SuspendLayout();
+            this.tableLayoutPanel16.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -172,7 +182,10 @@
             // settingsSToolStripMenuItem
             // 
             this.settingsSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.goodJournalsToolStripMenuItem});
+            this.goodJournalsToolStripMenuItem,
+            this.goodInstitutionToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.authorsToolStripMenuItem});
             this.settingsSToolStripMenuItem.Name = "settingsSToolStripMenuItem";
             this.settingsSToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
             this.settingsSToolStripMenuItem.Text = "Settings(&S)";
@@ -180,8 +193,8 @@
             // goodJournalsToolStripMenuItem
             // 
             this.goodJournalsToolStripMenuItem.Name = "goodJournalsToolStripMenuItem";
-            this.goodJournalsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.goodJournalsToolStripMenuItem.Text = "Good Journals";
+            this.goodJournalsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.goodJournalsToolStripMenuItem.Text = "Reliable Source";
             this.goodJournalsToolStripMenuItem.Click += new System.EventHandler(this.goodJournalsToolStripMenuItem_Click);
             // 
             // splitContainer1
@@ -198,7 +211,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel3);
-            this.splitContainer1.Size = new System.Drawing.Size(1022, 436);
+            this.splitContainer1.Size = new System.Drawing.Size(1022, 617);
             this.splitContainer1.SplitterDistance = 293;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -210,7 +223,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBox1.Size = new System.Drawing.Size(287, 430);
+            this.groupBox1.Size = new System.Drawing.Size(287, 611);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
@@ -227,7 +240,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(287, 417);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(287, 598);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tabControl1
@@ -244,7 +257,7 @@
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(281, 380);
+            this.tabControl1.Size = new System.Drawing.Size(281, 561);
             this.tabControl1.TabIndex = 0;
             // 
             // tpgTag
@@ -253,7 +266,7 @@
             this.tpgTag.Location = new System.Drawing.Point(23, 4);
             this.tpgTag.Name = "tpgTag";
             this.tpgTag.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgTag.Size = new System.Drawing.Size(254, 372);
+            this.tpgTag.Size = new System.Drawing.Size(254, 553);
             this.tpgTag.TabIndex = 0;
             this.tpgTag.Text = "Tag";
             this.tpgTag.UseVisualStyleBackColor = true;
@@ -270,7 +283,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(248, 366);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(248, 547);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // clbTag
@@ -281,7 +294,7 @@
             this.clbTag.FormattingEnabled = true;
             this.clbTag.Location = new System.Drawing.Point(3, 3);
             this.clbTag.Name = "clbTag";
-            this.clbTag.Size = new System.Drawing.Size(242, 329);
+            this.clbTag.Size = new System.Drawing.Size(242, 510);
             this.clbTag.TabIndex = 0;
             // 
             // cmsTags
@@ -325,7 +338,7 @@
             this.tableLayoutPanel13.Controls.Add(this.btnTagClear, 3, 0);
             this.tableLayoutPanel13.Controls.Add(this.btnTagRefresh, 0, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 338);
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 519);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -370,7 +383,7 @@
             this.tpgProject.Location = new System.Drawing.Point(23, 4);
             this.tpgProject.Name = "tpgProject";
             this.tpgProject.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgProject.Size = new System.Drawing.Size(254, 372);
+            this.tpgProject.Size = new System.Drawing.Size(254, 553);
             this.tpgProject.TabIndex = 5;
             this.tpgProject.Text = "Project";
             this.tpgProject.UseVisualStyleBackColor = true;
@@ -387,7 +400,7 @@
             this.tableLayoutPanel14.RowCount = 2;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(248, 366);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(248, 547);
             this.tableLayoutPanel14.TabIndex = 2;
             // 
             // clbProject
@@ -398,7 +411,7 @@
             this.clbProject.FormattingEnabled = true;
             this.clbProject.Location = new System.Drawing.Point(3, 3);
             this.clbProject.Name = "clbProject";
-            this.clbProject.Size = new System.Drawing.Size(242, 329);
+            this.clbProject.Size = new System.Drawing.Size(242, 510);
             this.clbProject.TabIndex = 0;
             // 
             // cmsProject
@@ -426,7 +439,7 @@
             this.tableLayoutPanel15.Controls.Add(this.btnProjectClear, 3, 0);
             this.tableLayoutPanel15.Controls.Add(this.btnProjectRefresh, 0, 0);
             this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel15.Location = new System.Drawing.Point(3, 338);
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(3, 519);
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RowCount = 1;
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -472,7 +485,7 @@
             this.tpgAuthor.Location = new System.Drawing.Point(23, 4);
             this.tpgAuthor.Name = "tpgAuthor";
             this.tpgAuthor.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgAuthor.Size = new System.Drawing.Size(254, 372);
+            this.tpgAuthor.Size = new System.Drawing.Size(254, 553);
             this.tpgAuthor.TabIndex = 1;
             this.tpgAuthor.Text = "Author";
             this.tpgAuthor.UseVisualStyleBackColor = true;
@@ -489,7 +502,7 @@
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(248, 366);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(248, 547);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
             // clbAuthor
@@ -499,7 +512,7 @@
             this.clbAuthor.FormattingEnabled = true;
             this.clbAuthor.Location = new System.Drawing.Point(3, 3);
             this.clbAuthor.Name = "clbAuthor";
-            this.clbAuthor.Size = new System.Drawing.Size(242, 329);
+            this.clbAuthor.Size = new System.Drawing.Size(242, 510);
             this.clbAuthor.TabIndex = 0;
             // 
             // tableLayoutPanel10
@@ -513,7 +526,7 @@
             this.tableLayoutPanel10.Controls.Add(this.btnAuthorClear, 3, 0);
             this.tableLayoutPanel10.Controls.Add(this.btnAuthorRefresh, 0, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 338);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 519);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -559,7 +572,7 @@
             this.tpgYear.Location = new System.Drawing.Point(23, 4);
             this.tpgYear.Name = "tpgYear";
             this.tpgYear.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgYear.Size = new System.Drawing.Size(254, 372);
+            this.tpgYear.Size = new System.Drawing.Size(254, 553);
             this.tpgYear.TabIndex = 2;
             this.tpgYear.Text = "Year";
             this.tpgYear.UseVisualStyleBackColor = true;
@@ -576,7 +589,7 @@
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(248, 366);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(248, 547);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // clbYear
@@ -586,7 +599,7 @@
             this.clbYear.FormattingEnabled = true;
             this.clbYear.Location = new System.Drawing.Point(3, 3);
             this.clbYear.Name = "clbYear";
-            this.clbYear.Size = new System.Drawing.Size(242, 329);
+            this.clbYear.Size = new System.Drawing.Size(242, 510);
             this.clbYear.TabIndex = 0;
             // 
             // tableLayoutPanel11
@@ -600,7 +613,7 @@
             this.tableLayoutPanel11.Controls.Add(this.btnYearClear, 3, 0);
             this.tableLayoutPanel11.Controls.Add(this.btnYearRefresh, 0, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 338);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 519);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -646,7 +659,7 @@
             this.tpgInstitution.Location = new System.Drawing.Point(23, 4);
             this.tpgInstitution.Name = "tpgInstitution";
             this.tpgInstitution.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgInstitution.Size = new System.Drawing.Size(254, 372);
+            this.tpgInstitution.Size = new System.Drawing.Size(254, 553);
             this.tpgInstitution.TabIndex = 3;
             this.tpgInstitution.Text = "Institution";
             this.tpgInstitution.UseVisualStyleBackColor = true;
@@ -663,7 +676,7 @@
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(248, 366);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(248, 547);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
             // clbInstitution
@@ -673,7 +686,7 @@
             this.clbInstitution.FormattingEnabled = true;
             this.clbInstitution.Location = new System.Drawing.Point(3, 3);
             this.clbInstitution.Name = "clbInstitution";
-            this.clbInstitution.Size = new System.Drawing.Size(242, 329);
+            this.clbInstitution.Size = new System.Drawing.Size(242, 510);
             this.clbInstitution.TabIndex = 0;
             // 
             // tableLayoutPanel12
@@ -687,7 +700,7 @@
             this.tableLayoutPanel12.Controls.Add(this.btnInsClear, 3, 0);
             this.tableLayoutPanel12.Controls.Add(this.btnInstitutionRefresh, 0, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 338);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 519);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 1;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -733,7 +746,7 @@
             this.tpgJournalConference.Location = new System.Drawing.Point(23, 4);
             this.tpgJournalConference.Name = "tpgJournalConference";
             this.tpgJournalConference.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgJournalConference.Size = new System.Drawing.Size(254, 372);
+            this.tpgJournalConference.Size = new System.Drawing.Size(254, 553);
             this.tpgJournalConference.TabIndex = 4;
             this.tpgJournalConference.Text = "Journal/Conference";
             this.tpgJournalConference.UseVisualStyleBackColor = true;
@@ -750,7 +763,7 @@
             this.tableLayoutPanel8.RowCount = 2;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(248, 366);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(248, 547);
             this.tableLayoutPanel8.TabIndex = 1;
             // 
             // clbJournalConference
@@ -760,7 +773,7 @@
             this.clbJournalConference.FormattingEnabled = true;
             this.clbJournalConference.Location = new System.Drawing.Point(3, 3);
             this.clbJournalConference.Name = "clbJournalConference";
-            this.clbJournalConference.Size = new System.Drawing.Size(242, 329);
+            this.clbJournalConference.Size = new System.Drawing.Size(242, 510);
             this.clbJournalConference.TabIndex = 0;
             // 
             // tableLayoutPanel9
@@ -774,7 +787,7 @@
             this.tableLayoutPanel9.Controls.Add(this.btnJourClear, 3, 0);
             this.tableLayoutPanel9.Controls.Add(this.btnJournalRefresh, 0, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 338);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 519);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -864,23 +877,25 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.groupBox2, 0, 0);
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.groupBox2, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel16, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.27864F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(725, 436);
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(725, 617);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgvLiterature);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Location = new System.Drawing.Point(3, 36);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(719, 430);
+            this.groupBox2.Size = new System.Drawing.Size(719, 578);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Literature List";
@@ -895,7 +910,10 @@
             this.dgvLiterature.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Star,
             this.colTitle,
+            this.colYear,
+            this.colLitType,
             this.colGoodJournal,
+            this.colPredatory,
             this.addDate,
             this.lastModifyDate});
             this.dgvLiterature.ContextMenuStrip = this.cmsLiterature;
@@ -903,8 +921,9 @@
             this.dgvLiterature.Location = new System.Drawing.Point(3, 16);
             this.dgvLiterature.Name = "dgvLiterature";
             this.dgvLiterature.ReadOnly = true;
-            this.dgvLiterature.Size = new System.Drawing.Size(713, 411);
+            this.dgvLiterature.Size = new System.Drawing.Size(713, 559);
             this.dgvLiterature.TabIndex = 1;
+            this.dgvLiterature.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dgvLiterature_SortCompare);
             // 
             // cmsLiterature
             // 
@@ -943,6 +962,47 @@
             this.tsmRemoveLiterature.Text = "Remove";
             this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
             // 
+            // tableLayoutPanel16
+            // 
+            this.tableLayoutPanel16.ColumnCount = 3;
+            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
+            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
+            this.tableLayoutPanel16.Controls.Add(this.chkNoBad, 2, 0);
+            this.tableLayoutPanel16.Controls.Add(this.chkOnlyGood, 1, 0);
+            this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel16.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel16.Name = "tableLayoutPanel16";
+            this.tableLayoutPanel16.RowCount = 1;
+            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(719, 27);
+            this.tableLayoutPanel16.TabIndex = 4;
+            // 
+            // chkNoBad
+            // 
+            this.chkNoBad.AutoSize = true;
+            this.chkNoBad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkNoBad.Location = new System.Drawing.Point(567, 3);
+            this.chkNoBad.Name = "chkNoBad";
+            this.chkNoBad.Size = new System.Drawing.Size(149, 21);
+            this.chkNoBad.TabIndex = 0;
+            this.chkNoBad.Text = "Exclude low quality paper";
+            this.chkNoBad.UseVisualStyleBackColor = true;
+            this.chkNoBad.CheckedChanged += new System.EventHandler(this.chkNoBad_CheckedChanged);
+            // 
+            // chkOnlyGood
+            // 
+            this.chkOnlyGood.AutoSize = true;
+            this.chkOnlyGood.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkOnlyGood.Location = new System.Drawing.Point(411, 3);
+            this.chkOnlyGood.Name = "chkOnlyGood";
+            this.chkOnlyGood.Size = new System.Drawing.Size(150, 21);
+            this.chkOnlyGood.TabIndex = 1;
+            this.chkOnlyGood.Text = "Only show reliable journal";
+            this.chkOnlyGood.UseVisualStyleBackColor = true;
+            this.chkOnlyGood.CheckedChanged += new System.EventHandler(this.chkOnlyGood_CheckedChanged);
+            // 
             // Star
             // 
             this.Star.HeaderText = "Star";
@@ -957,12 +1017,33 @@
             this.colTitle.ReadOnly = true;
             this.colTitle.Width = 600;
             // 
+            // colYear
+            // 
+            this.colYear.HeaderText = "Year";
+            this.colYear.Name = "colYear";
+            this.colYear.ReadOnly = true;
+            this.colYear.Width = 45;
+            // 
+            // colLitType
+            // 
+            this.colLitType.HeaderText = "Type";
+            this.colLitType.Name = "colLitType";
+            this.colLitType.ReadOnly = true;
+            this.colLitType.Width = 45;
+            // 
             // colGoodJournal
             // 
-            this.colGoodJournal.HeaderText = "Good Journal";
+            this.colGoodJournal.HeaderText = "Good Source";
             this.colGoodJournal.Name = "colGoodJournal";
             this.colGoodJournal.ReadOnly = true;
             this.colGoodJournal.Width = 95;
+            // 
+            // colPredatory
+            // 
+            this.colPredatory.HeaderText = "Low Quality";
+            this.colPredatory.Name = "colPredatory";
+            this.colPredatory.ReadOnly = true;
+            this.colPredatory.Width = 95;
             // 
             // addDate
             // 
@@ -978,11 +1059,29 @@
             this.lastModifyDate.ReadOnly = true;
             this.lastModifyDate.Width = 120;
             // 
+            // goodInstitutionToolStripMenuItem
+            // 
+            this.goodInstitutionToolStripMenuItem.Name = "goodInstitutionToolStripMenuItem";
+            this.goodInstitutionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.goodInstitutionToolStripMenuItem.Text = "Reliable Institution";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // authorsToolStripMenuItem
+            // 
+            this.authorsToolStripMenuItem.Name = "authorsToolStripMenuItem";
+            this.authorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.authorsToolStripMenuItem.Text = "Authors";
+            this.authorsToolStripMenuItem.Click += new System.EventHandler(this.authorsToolStripMenuItem_Click);
+            // 
             // frmLiterature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1022, 460);
+            this.ClientSize = new System.Drawing.Size(1022, 641);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1025,6 +1124,8 @@
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).EndInit();
             this.cmsLiterature.ResumeLayout(false);
+            this.tableLayoutPanel16.ResumeLayout(false);
+            this.tableLayoutPanel16.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1101,10 +1202,19 @@
         private System.Windows.Forms.ToolStripMenuItem removeTagToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem goodJournalsToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
+        private System.Windows.Forms.CheckBox chkNoBad;
+        private System.Windows.Forms.CheckBox chkOnlyGood;
         private System.Windows.Forms.DataGridViewTextBoxColumn Star;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colYear;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLitType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGoodJournal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPredatory;
         private System.Windows.Forms.DataGridViewTextBoxColumn addDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastModifyDate;
+        private System.Windows.Forms.ToolStripMenuItem goodInstitutionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem authorsToolStripMenuItem;
     }
 }

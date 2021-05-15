@@ -1,6 +1,6 @@
 ﻿namespace LifeGame
 {
-    partial class frmGoodJournal
+    partial class frmReliableJournal
     {
         /// <summary>
         /// Required designer variable.
@@ -134,7 +134,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(305, 23);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Good Journals / Conferences";
+            this.label2.Text = "Reliable Journals / Conferences";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmGoodJournal
@@ -144,7 +144,7 @@
             this.ClientSize = new System.Drawing.Size(651, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "frmGoodJournal";
-            this.Text = "LifeGame - Good Journals / Conferences";
+            this.Text = "LifeGame - Reliable Journals / Conferences";
             this.Load += new System.EventHandler(this.frmGoodJournal_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

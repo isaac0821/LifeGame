@@ -6,14 +6,6 @@ using System.Threading.Tasks;
 
 namespace LifeGame
 {
-    #region Settings
-    public enum EShowMode : int
-    {
-        LightMode,
-        DarkMode
-    }
-    #endregion
-
     #region 文献系统
     /// <summary>
     /// 文献类
@@ -25,6 +17,7 @@ namespace LifeGame
         public string BibKey;
         public DateTime DateAdded;
         public DateTime DateModified;
+        public bool PredatoryAlert;
         public string Title;
         public int PublishYear;
         public string JournalOrConferenceName;
@@ -111,6 +104,28 @@ namespace LifeGame
         public string Title;
         public string Author;
         public int Rank;
+    }
+
+    /// <summary>
+    /// 作者
+    /// </summary>
+    [Serializable]
+    public class CAuthor
+    {
+        public string Author;
+        public string PrimeAffiliation;
+        public bool IsReliable;
+    }
+
+    /// <summary>
+    /// 作者单位
+    /// </summary>
+    [Serializable]
+    public class RAuthorAffiliation
+    {
+        public string Author;
+        public string Affiliation;
+        public bool IsPrime;
     }
 
     /// <summary>

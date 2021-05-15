@@ -49,6 +49,7 @@
             this.btnGoogleScholar = new System.Windows.Forms.Button();
             this.chkStar = new System.Windows.Forms.CheckBox();
             this.txtInOneSentence = new System.Windows.Forms.TextBox();
+            this.chkPredatroyAlert = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -130,7 +131,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(697, 435);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(897, 586);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
             // tableLayoutPanel5
@@ -150,7 +151,7 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(697, 26);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(897, 26);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // txtTitle
@@ -158,7 +159,7 @@
             this.txtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTitle.Location = new System.Drawing.Point(49, 3);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(463, 20);
+            this.txtTitle.Size = new System.Drawing.Size(663, 20);
             this.txtTitle.TabIndex = 0;
             // 
             // label2
@@ -176,7 +177,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(518, 0);
+            this.label1.Location = new System.Drawing.Point(718, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 26);
             this.label1.TabIndex = 2;
@@ -186,7 +187,7 @@
             // txtBibKey
             // 
             this.txtBibKey.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBibKey.Location = new System.Drawing.Point(574, 3);
+            this.txtBibKey.Location = new System.Drawing.Point(774, 3);
             this.txtBibKey.Name = "txtBibKey";
             this.txtBibKey.Size = new System.Drawing.Size(120, 20);
             this.txtBibKey.TabIndex = 3;
@@ -197,9 +198,9 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 246F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 447F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.label4, 2, 0);
@@ -214,7 +215,7 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(697, 26);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(897, 26);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // label3
@@ -243,9 +244,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(441, 0);
+            this.label5.Location = new System.Drawing.Point(642, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 26);
+            this.label5.Size = new System.Drawing.Size(89, 26);
             this.label5.TabIndex = 2;
             this.label5.Text = "Bib Entry Type";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -264,7 +265,7 @@
             this.txtJournalConference.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtJournalConference.Location = new System.Drawing.Point(195, 3);
             this.txtJournalConference.Name = "txtJournalConference";
-            this.txtJournalConference.Size = new System.Drawing.Size(240, 20);
+            this.txtJournalConference.Size = new System.Drawing.Size(441, 20);
             this.txtJournalConference.TabIndex = 5;
             // 
             // cbxBibEntryType
@@ -286,17 +287,17 @@
             "Proceedings",
             "Techreport",
             "Unpublished"});
-            this.cbxBibEntryType.Location = new System.Drawing.Point(531, 3);
+            this.cbxBibEntryType.Location = new System.Drawing.Point(737, 3);
             this.cbxBibEntryType.Name = "cbxBibEntryType";
-            this.cbxBibEntryType.Size = new System.Drawing.Size(97, 21);
+            this.cbxBibEntryType.Size = new System.Drawing.Size(84, 21);
             this.cbxBibEntryType.TabIndex = 6;
             // 
             // btnBibTeX
             // 
             this.btnBibTeX.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnBibTeX.Location = new System.Drawing.Point(634, 3);
+            this.btnBibTeX.Location = new System.Drawing.Point(827, 3);
             this.btnBibTeX.Name = "btnBibTeX";
-            this.btnBibTeX.Size = new System.Drawing.Size(60, 20);
+            this.btnBibTeX.Size = new System.Drawing.Size(67, 20);
             this.btnBibTeX.TabIndex = 7;
             this.btnBibTeX.Text = "BibTex";
             this.btnBibTeX.UseVisualStyleBackColor = true;
@@ -304,23 +305,24 @@
             // 
             // tableLayoutPanel8
             // 
-            this.tableLayoutPanel8.ColumnCount = 4;
+            this.tableLayoutPanel8.ColumnCount = 5;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel8.Controls.Add(this.label12, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.btnGoogleScholar, 3, 0);
+            this.tableLayoutPanel8.Controls.Add(this.btnGoogleScholar, 4, 0);
             this.tableLayoutPanel8.Controls.Add(this.chkStar, 2, 0);
             this.tableLayoutPanel8.Controls.Add(this.txtInOneSentence, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.chkPredatroyAlert, 3, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 52);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(697, 28);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(897, 28);
             this.tableLayoutPanel8.TabIndex = 3;
             // 
             // label12
@@ -337,9 +339,9 @@
             // btnGoogleScholar
             // 
             this.btnGoogleScholar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGoogleScholar.Location = new System.Drawing.Point(599, 3);
+            this.btnGoogleScholar.Location = new System.Drawing.Point(800, 3);
             this.btnGoogleScholar.Name = "btnGoogleScholar";
-            this.btnGoogleScholar.Size = new System.Drawing.Size(95, 22);
+            this.btnGoogleScholar.Size = new System.Drawing.Size(94, 22);
             this.btnGoogleScholar.TabIndex = 2;
             this.btnGoogleScholar.Text = "Google Scholar";
             this.btnGoogleScholar.UseVisualStyleBackColor = true;
@@ -349,9 +351,9 @@
             // 
             this.chkStar.AutoSize = true;
             this.chkStar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkStar.Location = new System.Drawing.Point(542, 3);
+            this.chkStar.Location = new System.Drawing.Point(635, 3);
             this.chkStar.Name = "chkStar";
-            this.chkStar.Size = new System.Drawing.Size(51, 22);
+            this.chkStar.Size = new System.Drawing.Size(48, 22);
             this.chkStar.TabIndex = 3;
             this.chkStar.Text = "Star";
             this.chkStar.UseVisualStyleBackColor = true;
@@ -361,14 +363,25 @@
             this.txtInOneSentence.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtInOneSentence.Location = new System.Drawing.Point(103, 4);
             this.txtInOneSentence.Name = "txtInOneSentence";
-            this.txtInOneSentence.Size = new System.Drawing.Size(433, 20);
+            this.txtInOneSentence.Size = new System.Drawing.Size(526, 20);
             this.txtInOneSentence.TabIndex = 0;
+            // 
+            // chkPredatroyAlert
+            // 
+            this.chkPredatroyAlert.AutoSize = true;
+            this.chkPredatroyAlert.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkPredatroyAlert.Location = new System.Drawing.Point(689, 3);
+            this.chkPredatroyAlert.Name = "chkPredatroyAlert";
+            this.chkPredatroyAlert.Size = new System.Drawing.Size(105, 22);
+            this.chkPredatroyAlert.TabIndex = 5;
+            this.chkPredatroyAlert.Text = "Low Quality Alert";
+            this.chkPredatroyAlert.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.5369F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.33575F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.88552F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.79124F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.27207F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
@@ -378,7 +391,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(691, 349);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(891, 500);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // tableLayoutPanel2
@@ -394,7 +407,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(128, 343);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(189, 494);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // groupBox1
@@ -405,7 +418,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(124, 167);
+            this.groupBox1.Size = new System.Drawing.Size(185, 243);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tag";
@@ -417,7 +430,7 @@
             this.lsbTag.FormattingEnabled = true;
             this.lsbTag.Location = new System.Drawing.Point(2, 15);
             this.lsbTag.Name = "lsbTag";
-            this.lsbTag.Size = new System.Drawing.Size(120, 150);
+            this.lsbTag.Size = new System.Drawing.Size(181, 226);
             this.lsbTag.TabIndex = 5;
             // 
             // cmsAttri
@@ -448,11 +461,11 @@
             // 
             this.groupBox2.Controls.Add(this.lsbAuthor);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(2, 173);
+            this.groupBox2.Location = new System.Drawing.Point(2, 249);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(124, 168);
+            this.groupBox2.Size = new System.Drawing.Size(185, 243);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Author";
@@ -464,7 +477,7 @@
             this.lsbAuthor.FormattingEnabled = true;
             this.lsbAuthor.Location = new System.Drawing.Point(2, 15);
             this.lsbAuthor.Name = "lsbAuthor";
-            this.lsbAuthor.Size = new System.Drawing.Size(120, 151);
+            this.lsbAuthor.Size = new System.Drawing.Size(181, 226);
             this.lsbAuthor.TabIndex = 6;
             // 
             // cmsAuthor
@@ -521,14 +534,14 @@
             this.tableLayoutPanel3.Controls.Add(this.groupBox5, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.groupBox6, 0, 3);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(137, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(198, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 4;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(327, 343);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(402, 494);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // groupBox3
@@ -539,7 +552,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(323, 81);
+            this.groupBox3.Size = new System.Drawing.Size(398, 119);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Institution";
@@ -551,18 +564,18 @@
             this.lsbInstitution.FormattingEnabled = true;
             this.lsbInstitution.Location = new System.Drawing.Point(2, 15);
             this.lsbInstitution.Name = "lsbInstitution";
-            this.lsbInstitution.Size = new System.Drawing.Size(319, 64);
+            this.lsbInstitution.Size = new System.Drawing.Size(394, 102);
             this.lsbInstitution.TabIndex = 7;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.lsbOutSource);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(2, 87);
+            this.groupBox4.Location = new System.Drawing.Point(2, 125);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(323, 81);
+            this.groupBox4.Size = new System.Drawing.Size(398, 119);
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Out Source";
@@ -574,7 +587,7 @@
             this.lsbOutSource.FormattingEnabled = true;
             this.lsbOutSource.Location = new System.Drawing.Point(2, 15);
             this.lsbOutSource.Name = "lsbOutSource";
-            this.lsbOutSource.Size = new System.Drawing.Size(319, 64);
+            this.lsbOutSource.Size = new System.Drawing.Size(394, 102);
             this.lsbOutSource.TabIndex = 11;
             // 
             // cmsOutSource
@@ -618,11 +631,11 @@
             // 
             this.groupBox5.Controls.Add(this.lsbNote);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(2, 172);
+            this.groupBox5.Location = new System.Drawing.Point(2, 248);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox5.Size = new System.Drawing.Size(323, 81);
+            this.groupBox5.Size = new System.Drawing.Size(398, 119);
             this.groupBox5.TabIndex = 14;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Note";
@@ -634,7 +647,7 @@
             this.lsbNote.FormattingEnabled = true;
             this.lsbNote.Location = new System.Drawing.Point(2, 15);
             this.lsbNote.Name = "lsbNote";
-            this.lsbNote.Size = new System.Drawing.Size(319, 64);
+            this.lsbNote.Size = new System.Drawing.Size(394, 102);
             this.lsbNote.TabIndex = 8;
             // 
             // cmsNote
@@ -670,11 +683,11 @@
             // 
             this.groupBox6.Controls.Add(this.lsbInCiting);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.Location = new System.Drawing.Point(2, 257);
+            this.groupBox6.Location = new System.Drawing.Point(2, 371);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox6.Size = new System.Drawing.Size(323, 84);
+            this.groupBox6.Size = new System.Drawing.Size(398, 121);
             this.groupBox6.TabIndex = 15;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Cited In Project";
@@ -686,7 +699,7 @@
             this.lsbInCiting.FormattingEnabled = true;
             this.lsbInCiting.Location = new System.Drawing.Point(2, 15);
             this.lsbInCiting.Name = "lsbInCiting";
-            this.lsbInCiting.Size = new System.Drawing.Size(319, 67);
+            this.lsbInCiting.Size = new System.Drawing.Size(394, 104);
             this.lsbInCiting.TabIndex = 9;
             // 
             // tableLayoutPanel7
@@ -696,12 +709,12 @@
             this.tableLayoutPanel7.Controls.Add(this.groupBox7, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.groupBox8, 0, 1);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(470, 3);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(606, 3);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(218, 343);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(282, 494);
             this.tableLayoutPanel7.TabIndex = 2;
             // 
             // groupBox7
@@ -710,7 +723,7 @@
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox7.Location = new System.Drawing.Point(3, 3);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(212, 165);
+            this.groupBox7.Size = new System.Drawing.Size(276, 241);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "BibTeX";
@@ -721,16 +734,16 @@
             this.txtBibRef.Location = new System.Drawing.Point(3, 16);
             this.txtBibRef.Multiline = true;
             this.txtBibRef.Name = "txtBibRef";
-            this.txtBibRef.Size = new System.Drawing.Size(206, 146);
+            this.txtBibRef.Size = new System.Drawing.Size(270, 222);
             this.txtBibRef.TabIndex = 0;
             // 
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.lsbSurvey);
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox8.Location = new System.Drawing.Point(3, 174);
+            this.groupBox8.Location = new System.Drawing.Point(3, 250);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(212, 166);
+            this.groupBox8.Size = new System.Drawing.Size(276, 241);
             this.groupBox8.TabIndex = 1;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Survey / Review";
@@ -742,7 +755,7 @@
             this.lsbSurvey.FormattingEnabled = true;
             this.lsbSurvey.Location = new System.Drawing.Point(3, 16);
             this.lsbSurvey.Name = "lsbSurvey";
-            this.lsbSurvey.Size = new System.Drawing.Size(206, 147);
+            this.lsbSurvey.Size = new System.Drawing.Size(270, 222);
             this.lsbSurvey.TabIndex = 0;
             // 
             // cmsSurvey
@@ -776,7 +789,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(697, 435);
+            this.ClientSize = new System.Drawing.Size(897, 586);
             this.Controls.Add(this.tableLayoutPanel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -878,5 +891,6 @@
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.Button btnGoogleScholar;
         private System.Windows.Forms.CheckBox chkStar;
+        private System.Windows.Forms.CheckBox chkPredatroyAlert;
     }
 }

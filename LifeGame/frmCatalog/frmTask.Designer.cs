@@ -216,83 +216,83 @@
             this.tsmFinished,
             this.tsmAbort});
             this.cmsTask.Name = "cmsTask";
-            this.cmsTask.Size = new System.Drawing.Size(181, 242);
+            this.cmsTask.Size = new System.Drawing.Size(165, 220);
             // 
             // tsmAdd
             // 
             this.tsmAdd.Name = "tsmAdd";
-            this.tsmAdd.Size = new System.Drawing.Size(180, 22);
+            this.tsmAdd.Size = new System.Drawing.Size(164, 22);
             this.tsmAdd.Text = "Add";
             this.tsmAdd.Click += new System.EventHandler(this.tsmAdd_Click);
             // 
             // tsmRename
             // 
             this.tsmRename.Name = "tsmRename";
-            this.tsmRename.Size = new System.Drawing.Size(180, 22);
+            this.tsmRename.Size = new System.Drawing.Size(164, 22);
             this.tsmRename.Text = "Edit(Rename)";
             this.tsmRename.Click += new System.EventHandler(this.tsmRename_Click);
             // 
             // tsmRemove
             // 
             this.tsmRemove.Name = "tsmRemove";
-            this.tsmRemove.Size = new System.Drawing.Size(180, 22);
+            this.tsmRemove.Size = new System.Drawing.Size(164, 22);
             this.tsmRemove.Text = "Remove";
             this.tsmRemove.Click += new System.EventHandler(this.tsmRemove_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
             // 
             // tsmUp
             // 
             this.tsmUp.Name = "tsmUp";
-            this.tsmUp.Size = new System.Drawing.Size(180, 22);
+            this.tsmUp.Size = new System.Drawing.Size(164, 22);
             this.tsmUp.Text = "Up";
             this.tsmUp.Click += new System.EventHandler(this.tsmUp_Click);
             // 
             // tsmDown
             // 
             this.tsmDown.Name = "tsmDown";
-            this.tsmDown.Size = new System.Drawing.Size(180, 22);
+            this.tsmDown.Size = new System.Drawing.Size(164, 22);
             this.tsmDown.Text = "Down";
             this.tsmDown.Click += new System.EventHandler(this.tsmDown_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(161, 6);
             // 
             // tsmBelongTo
             // 
             this.tsmBelongTo.Name = "tsmBelongTo";
-            this.tsmBelongTo.Size = new System.Drawing.Size(180, 22);
+            this.tsmBelongTo.Size = new System.Drawing.Size(164, 22);
             this.tsmBelongTo.Text = "Belong To";
             this.tsmBelongTo.Click += new System.EventHandler(this.tsmBelongTo_Click);
             // 
             // tsmIndependent
             // 
             this.tsmIndependent.Name = "tsmIndependent";
-            this.tsmIndependent.Size = new System.Drawing.Size(180, 22);
+            this.tsmIndependent.Size = new System.Drawing.Size(164, 22);
             this.tsmIndependent.Text = "Independent";
             this.tsmIndependent.Click += new System.EventHandler(this.tsmIndependent_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(161, 6);
             // 
             // tsmFinished
             // 
             this.tsmFinished.Name = "tsmFinished";
-            this.tsmFinished.Size = new System.Drawing.Size(180, 22);
+            this.tsmFinished.Size = new System.Drawing.Size(164, 22);
             this.tsmFinished.Text = "Mark As Finished";
             this.tsmFinished.Click += new System.EventHandler(this.tsmFinished_Click);
             // 
             // tsmAbort
             // 
             this.tsmAbort.Name = "tsmAbort";
-            this.tsmAbort.Size = new System.Drawing.Size(180, 22);
+            this.tsmAbort.Size = new System.Drawing.Size(164, 22);
             this.tsmAbort.Text = "Mark As Abort";
             this.tsmAbort.Click += new System.EventHandler(this.tsmAbort_Click);
             // 

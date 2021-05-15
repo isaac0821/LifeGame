@@ -82,7 +82,7 @@ namespace LifeGame
             string lastName = splitName[splitName.Count() - 1];
             if (lastName == "")
             {
-                return "(Error)";
+                return "(No-last-Name)";
             }
             if (!chnLastName(lastName))
             {

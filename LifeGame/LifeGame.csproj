@@ -53,11 +53,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes.cs" />
-    <Compile Include="frmSettings\frmGoodJournal.cs">
+    <Compile Include="frmInfo\frmAddInstitution.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSettings\frmGoodJournal.Designer.cs">
-      <DependentUpon>frmGoodJournal.cs</DependentUpon>
+    <Compile Include="frmInfo\frmAddInstitution.Designer.cs">
+      <DependentUpon>frmAddInstitution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSettings\frmAuthorInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettings\frmAuthorInfo.Designer.cs">
+      <DependentUpon>frmAuthorInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSettings\frmReliableJournal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettings\frmReliableJournal.Designer.cs">
+      <DependentUpon>frmReliableJournal.cs</DependentUpon>
     </Compile>
     <Compile Include="names.cs" />
     <Compile Include="plot.cs" />
@@ -359,6 +371,12 @@
     <EmbeddedResource Include="frmAdd\frmAddTransaction.resx">
       <DependentUpon>frmAddTransaction.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmInfo\frmAddInstitution.resx">
+      <DependentUpon>frmAddInstitution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettings\frmAuthorInfo.resx">
+      <DependentUpon>frmAuthorInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSettings\frmCurrencyRate.resx">
       <DependentUpon>frmCurrencyRate.cs</DependentUpon>
     </EmbeddedResource>
@@ -440,8 +458,8 @@
     <EmbeddedResource Include="frmNoteMine\frmInfoSurvey.resx">
       <DependentUpon>frmInfoSurvey.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSettings\frmGoodJournal.resx">
-      <DependentUpon>frmGoodJournal.cs</DependentUpon>
+    <EmbeddedResource Include="frmSettings\frmReliableJournal.resx">
+      <DependentUpon>frmReliableJournal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="icon.resx">
       <Generator>ResXFileCodeGenerator</Generator>

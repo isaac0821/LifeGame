@@ -66,4 +66,6 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoLiteratureSurvey.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoSurvey.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSurveyTagOption.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSurveyTagPlain.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmGoodJournal.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAuthorInfo.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmReliableJournal.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddInstitution.resources

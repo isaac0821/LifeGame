@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LifeGame
 {
-    public partial class frmGoodJournal : Form
+    public partial class frmReliableJournal : Form
     {
-        public frmGoodJournal()
+        public frmReliableJournal()
         {
             InitializeComponent();
         }
