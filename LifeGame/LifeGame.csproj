@@ -53,10 +53,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes.cs" />
-    <Compile Include="frmInfo\frmAddInstitution.cs">
+    <Compile Include="frmAdd\frmAddAuthor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmInfo\frmAddInstitution.Designer.cs">
+    <Compile Include="frmAdd\frmAddAuthor.Designer.cs">
+      <DependentUpon>frmAddAuthor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdd\frmAddInstitution.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd\frmAddInstitution.Designer.cs">
       <DependentUpon>frmAddInstitution.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSettings\frmAuthorInfo.cs">
@@ -103,12 +109,6 @@
     </Compile>
     <Compile Include="frmAdd\frmAddWorkOut.Designer.cs">
       <DependentUpon>frmAddWorkOut.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddPath.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddPath.Designer.cs">
-      <DependentUpon>frmAddPath.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAdd\frmAddSurveyTagPlain.cs">
       <SubType>Form</SubType>
@@ -332,6 +332,9 @@
     <EmbeddedResource Include="frmAdd\frmAddEvent.resx">
       <DependentUpon>frmAddEvent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAdd\frmAddAuthor.resx">
+      <DependentUpon>frmAddAuthor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddMedicine.resx">
       <DependentUpon>frmAddMedicine.cs</DependentUpon>
     </EmbeddedResource>
@@ -371,7 +374,7 @@
     <EmbeddedResource Include="frmAdd\frmAddTransaction.resx">
       <DependentUpon>frmAddTransaction.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmInfo\frmAddInstitution.resx">
+    <EmbeddedResource Include="frmAdd\frmAddInstitution.resx">
       <DependentUpon>frmAddInstitution.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettings\frmAuthorInfo.resx">
@@ -385,9 +388,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfoMine\frmInfoEvent.resx">
       <DependentUpon>frmInfoEvent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddPath.resx">
-      <DependentUpon>frmAddPath.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfo\frmClearSchedule.resx">
       <DependentUpon>frmClearSchedule.cs</DependentUpon>

@@ -54,7 +54,6 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoLiterature.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmClearSchedule.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddBudget.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmConvertBudget.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddPath.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmConvertSchedule.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibArticle.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibPhDThesis.resources
@@ -69,3 +68,4 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSurveyTagPlain.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAuthorInfo.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmReliableJournal.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddInstitution.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddAuthor.resources

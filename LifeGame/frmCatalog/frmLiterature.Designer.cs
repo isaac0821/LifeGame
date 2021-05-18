@@ -35,6 +35,8 @@
             this.tsmExportBib = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.goodJournalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.authorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -94,14 +96,6 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvLiterature = new System.Windows.Forms.DataGridView();
-            this.cmsLiterature = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmViewLiterature = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmAddLiterature = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
-            this.chkNoBad = new System.Windows.Forms.CheckBox();
-            this.chkOnlyGood = new System.Windows.Forms.CheckBox();
             this.Star = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,9 +104,14 @@
             this.colPredatory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goodInstitutionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.authorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsLiterature = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmViewLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmAddLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
+            this.chkNoBad = new System.Windows.Forms.CheckBox();
+            this.chkOnlyGood = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -183,7 +182,6 @@
             // 
             this.settingsSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.goodJournalsToolStripMenuItem,
-            this.goodInstitutionToolStripMenuItem,
             this.toolStripSeparator2,
             this.authorsToolStripMenuItem});
             this.settingsSToolStripMenuItem.Name = "settingsSToolStripMenuItem";
@@ -193,9 +191,21 @@
             // goodJournalsToolStripMenuItem
             // 
             this.goodJournalsToolStripMenuItem.Name = "goodJournalsToolStripMenuItem";
-            this.goodJournalsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.goodJournalsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.goodJournalsToolStripMenuItem.Text = "Reliable Source";
             this.goodJournalsToolStripMenuItem.Click += new System.EventHandler(this.goodJournalsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(151, 6);
+            // 
+            // authorsToolStripMenuItem
+            // 
+            this.authorsToolStripMenuItem.Name = "authorsToolStripMenuItem";
+            this.authorsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.authorsToolStripMenuItem.Text = "Authors";
+            this.authorsToolStripMenuItem.Click += new System.EventHandler(this.authorsToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -925,6 +935,62 @@
             this.dgvLiterature.TabIndex = 1;
             this.dgvLiterature.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dgvLiterature_SortCompare);
             // 
+            // Star
+            // 
+            this.Star.HeaderText = "Star";
+            this.Star.Name = "Star";
+            this.Star.ReadOnly = true;
+            this.Star.Width = 40;
+            // 
+            // colTitle
+            // 
+            this.colTitle.HeaderText = "Title";
+            this.colTitle.Name = "colTitle";
+            this.colTitle.ReadOnly = true;
+            this.colTitle.Width = 600;
+            // 
+            // colYear
+            // 
+            this.colYear.HeaderText = "Year";
+            this.colYear.Name = "colYear";
+            this.colYear.ReadOnly = true;
+            this.colYear.Width = 45;
+            // 
+            // colLitType
+            // 
+            this.colLitType.HeaderText = "Type";
+            this.colLitType.Name = "colLitType";
+            this.colLitType.ReadOnly = true;
+            this.colLitType.Width = 45;
+            // 
+            // colGoodJournal
+            // 
+            this.colGoodJournal.HeaderText = "Good Source";
+            this.colGoodJournal.Name = "colGoodJournal";
+            this.colGoodJournal.ReadOnly = true;
+            this.colGoodJournal.Width = 95;
+            // 
+            // colPredatory
+            // 
+            this.colPredatory.HeaderText = "Low Quality";
+            this.colPredatory.Name = "colPredatory";
+            this.colPredatory.ReadOnly = true;
+            this.colPredatory.Width = 95;
+            // 
+            // addDate
+            // 
+            this.addDate.HeaderText = "Added Date";
+            this.addDate.Name = "addDate";
+            this.addDate.ReadOnly = true;
+            this.addDate.Width = 120;
+            // 
+            // lastModifyDate
+            // 
+            this.lastModifyDate.HeaderText = "Latest Modification";
+            this.lastModifyDate.Name = "lastModifyDate";
+            this.lastModifyDate.ReadOnly = true;
+            this.lastModifyDate.Width = 120;
+            // 
             // cmsLiterature
             // 
             this.cmsLiterature.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -1002,80 +1068,6 @@
             this.chkOnlyGood.Text = "Only show reliable journal";
             this.chkOnlyGood.UseVisualStyleBackColor = true;
             this.chkOnlyGood.CheckedChanged += new System.EventHandler(this.chkOnlyGood_CheckedChanged);
-            // 
-            // Star
-            // 
-            this.Star.HeaderText = "Star";
-            this.Star.Name = "Star";
-            this.Star.ReadOnly = true;
-            this.Star.Width = 40;
-            // 
-            // colTitle
-            // 
-            this.colTitle.HeaderText = "Title";
-            this.colTitle.Name = "colTitle";
-            this.colTitle.ReadOnly = true;
-            this.colTitle.Width = 600;
-            // 
-            // colYear
-            // 
-            this.colYear.HeaderText = "Year";
-            this.colYear.Name = "colYear";
-            this.colYear.ReadOnly = true;
-            this.colYear.Width = 45;
-            // 
-            // colLitType
-            // 
-            this.colLitType.HeaderText = "Type";
-            this.colLitType.Name = "colLitType";
-            this.colLitType.ReadOnly = true;
-            this.colLitType.Width = 45;
-            // 
-            // colGoodJournal
-            // 
-            this.colGoodJournal.HeaderText = "Good Source";
-            this.colGoodJournal.Name = "colGoodJournal";
-            this.colGoodJournal.ReadOnly = true;
-            this.colGoodJournal.Width = 95;
-            // 
-            // colPredatory
-            // 
-            this.colPredatory.HeaderText = "Low Quality";
-            this.colPredatory.Name = "colPredatory";
-            this.colPredatory.ReadOnly = true;
-            this.colPredatory.Width = 95;
-            // 
-            // addDate
-            // 
-            this.addDate.HeaderText = "Added Date";
-            this.addDate.Name = "addDate";
-            this.addDate.ReadOnly = true;
-            this.addDate.Width = 120;
-            // 
-            // lastModifyDate
-            // 
-            this.lastModifyDate.HeaderText = "Latest Modification";
-            this.lastModifyDate.Name = "lastModifyDate";
-            this.lastModifyDate.ReadOnly = true;
-            this.lastModifyDate.Width = 120;
-            // 
-            // goodInstitutionToolStripMenuItem
-            // 
-            this.goodInstitutionToolStripMenuItem.Name = "goodInstitutionToolStripMenuItem";
-            this.goodInstitutionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.goodInstitutionToolStripMenuItem.Text = "Reliable Institution";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // authorsToolStripMenuItem
-            // 
-            this.authorsToolStripMenuItem.Name = "authorsToolStripMenuItem";
-            this.authorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.authorsToolStripMenuItem.Text = "Authors";
-            this.authorsToolStripMenuItem.Click += new System.EventHandler(this.authorsToolStripMenuItem_Click);
             // 
             // frmLiterature
             // 
@@ -1213,7 +1205,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colPredatory;
         private System.Windows.Forms.DataGridViewTextBoxColumn addDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastModifyDate;
-        private System.Windows.Forms.ToolStripMenuItem goodInstitutionToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem authorsToolStripMenuItem;
     }

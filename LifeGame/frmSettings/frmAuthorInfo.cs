@@ -28,6 +28,13 @@ namespace LifeGame
             InitializeComponent();
         }
 
+        public frmAuthorInfo(string initAuthor)
+        {
+            InitAuthor = initAuthor;
+            InitializeComponent();
+        }
+
+        private string InitAuthor;
         public delegate void RefreshLitsHandler();
         public event RefreshLitsHandler RefreshLits;
 
@@ -44,6 +51,9 @@ namespace LifeGame
         names names = new names();
         private void frmAuthorInfo_Load(object sender, EventArgs e)
         {
+            G.glb.lstAuthor.RemoveAll(o =>
+                !G.glb.lstLiteratureAuthor.Exists(p=>p.Author == o.Author));
+
             foreach (CAuthor author in G.glb.lstAuthor)
             {
                 if (!lstAuthorName.Exists(o => o == author.Author))
@@ -68,6 +78,10 @@ namespace LifeGame
             foreach (string author in lstAuthorAbbr)
             {
                 lsbAuthor.Items.Add(author);
+            }
+            if (InitAuthor != "")
+            {
+                lsbAuthor.SelectedItem = names.processName(InitAuthor);
             }
         }
 

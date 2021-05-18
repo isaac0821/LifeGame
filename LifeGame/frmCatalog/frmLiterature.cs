@@ -62,8 +62,8 @@ namespace LifeGame
                     {
                         Tags.Add(new CItem(tag.Tag, 1));
                     }
-                }               
-                
+                }
+
                 // By Authors
                 List<RLiteratureAuthor> lstAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == literature.Title).ToList();
                 names names = new names();
@@ -77,7 +77,7 @@ namespace LifeGame
                     {
                         Authors.Add(new CItem(names.processName(author.Author), 1));
                     }
-                }                
+                }
 
                 // By Institute
                 List<RLiteratureInstitution> lstInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == literature.Title).ToList();
@@ -242,7 +242,14 @@ namespace LifeGame
                     predatoryStr = "√";
                     predatoryShowFlag = false;
                 }
+                // If the journal is reliable
                 if (G.glb.lstGoodJournal.Exists(o => o == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
+                {
+                    goodJourStr = "√";
+                    goodJourShowFlag = true;
+                }
+                // If first author is reliable
+                if (G.glb.lstAuthor.Find(o => o.Author == G.glb.lstLiteratureAuthor.Find(p => p.Title == title && p.Rank == 0).Author).IsReliable)
                 {
                     goodJourStr = "√";
                     goodJourShowFlag = true;
@@ -306,8 +313,15 @@ namespace LifeGame
                 }
                 if (showFlag)
                 {
-                    dgvLiterature.Rows.Add(starStr, title, Convert.ToString(year), litType, goodJourStr, predatoryStr, addedDate.ToString("yyyy/MM/dd"), lastModifyDate.ToString("yyyy/MM/dd"));
-                    dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].Cells[1].ToolTipText = G.glb.lstLiterature.Find(o => o.Title == title).InOneSentence;
+                    try
+                    {
+                        dgvLiterature.Rows.Add(starStr, title, Convert.ToString(year), litType, goodJourStr, predatoryStr, addedDate.ToString("yyyy/MM/dd"), lastModifyDate.ToString("yyyy/MM/dd"));
+                        dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].Cells[1].ToolTipText = G.glb.lstLiterature.Find(o => o.Title == title).InOneSentence;
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
         }
@@ -857,14 +871,14 @@ namespace LifeGame
 
         private void dgvLiterature_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
         {
-            if(e.Column.Name == "colCited")
+            if (e.Column.Name == "colCited")
             {
                 e.SortResult = (
-                    Convert.ToString(e.CellValue1) == "" && Convert.ToString(e.CellValue2) == ""? 0 :
+                    Convert.ToString(e.CellValue1) == "" && Convert.ToString(e.CellValue2) == "" ? 0 :
                     Convert.ToString(e.CellValue1) != "" && Convert.ToString(e.CellValue2) == "" ? 1 :
                     Convert.ToString(e.CellValue1) == "" && Convert.ToString(e.CellValue2) != "" ? -1 :
-                    Convert.ToInt32(e.CellValue1) > Convert.ToInt32(e.CellValue2) ? 1 : 
-                    Convert.ToInt32(e.CellValue1) < Convert.ToInt32(e.CellValue2) ? -1 : 
+                    Convert.ToInt32(e.CellValue1) > Convert.ToInt32(e.CellValue2) ? 1 :
+                    Convert.ToInt32(e.CellValue1) < Convert.ToInt32(e.CellValue2) ? -1 :
                     0);
                 e.Handled = true;
             }

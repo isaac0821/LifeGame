@@ -310,6 +310,18 @@ namespace LifeGame
                     G.glb.lstLiteratureInstitution.AddRange(lstLiteratureInstitution);
                     G.glb.lstLiteratureCiting.AddRange(lstLiteratureInCiting);
                 }
+
+                foreach (object item in lsbAuthor.Items)
+                {
+                    if (!G.glb.lstAuthor.Exists(o => o.Author == item.ToString()))
+                    {
+                        CAuthor author = new CAuthor();
+                        author.Author = item.ToString();
+                        author.IsReliable = false;
+                        author.PrimeAffiliation = "";
+                        G.glb.lstAuthor.Add(author);
+                    }
+                }
                 RefreshTab();
                 Dispose();
             }
@@ -456,20 +468,26 @@ namespace LifeGame
             txtBibKey.Text = bibKey;
         }
 
-        private void tsmAuthorAdd_Click(object sender, EventArgs e)
+        private void GetAuthor(string strAuthor)
         {
-            string strAuthor = Interaction.InputBox("Literature Author", "Literature Author", "Literature Author", 300, 300);
             RLiteratureAuthor newAuthor = new RLiteratureAuthor();
             newAuthor.Author = strAuthor;
             newAuthor.Rank = lsbAuthor.Items.Count;
             lstLiteratureAuthor.Add(newAuthor);
             lsbAuthor.Items.Add(strAuthor);
-            if (G.glb.lstAuthor.Exists(o=>o.Author == strAuthor))
+            if (G.glb.lstAuthor.Exists(o => o.Author == strAuthor))
             {
                 string PrimeInstitution = G.glb.lstAuthor.Find(o => o.Author == strAuthor).PrimeAffiliation;
                 GetInstitution(PrimeInstitution);
             }
             GetBibKey();
+        }
+
+        private void tsmAuthorAdd_Click(object sender, EventArgs e)
+        {
+            frmAddAuthor frmAddAuthor = new frmAddAuthor();
+            frmAddAuthor.SendAuthor += new frmAddAuthor.GetAuthor(GetAuthor);
+            frmAddAuthor.Show();
         }
 
         private void tsmAuthorRemove_Click(object sender, EventArgs e)
@@ -720,6 +738,18 @@ namespace LifeGame
             //{
             //    lblCited.Text = "NaN";
             //}
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(lsbAuthor.SelectedItem != null)
+            {
+                if (G.glb.lstAuthor.Exists(o=>o.Author == lsbAuthor.SelectedItem.ToString()))
+                {
+                    frmAuthorInfo frmAuthorInfo = new frmAuthorInfo(lsbAuthor.SelectedItem.ToString());
+                    frmAuthorInfo.Show();
+                }
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace LifeGame
 {
-    partial class frmAddInstitution
+    partial class frmAddAuthor
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace LifeGame
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lsbCandidates = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtInstitution = new System.Windows.Forms.TextBox();
+            this.txtAuthor = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -68,7 +68,7 @@ namespace LifeGame
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel2.Controls.Add(this.txtInstitution, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtAuthor, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -79,13 +79,14 @@ namespace LifeGame
             this.tableLayoutPanel2.Size = new System.Drawing.Size(394, 26);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
-            // txtInstitution
+            // txtAuthor
             // 
-            this.txtInstitution.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtInstitution.Location = new System.Drawing.Point(3, 3);
-            this.txtInstitution.Name = "txtInstitution";
-            this.txtInstitution.Size = new System.Drawing.Size(322, 20);
-            this.txtInstitution.TabIndex = 0;
+            this.txtAuthor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtAuthor.Location = new System.Drawing.Point(3, 3);
+            this.txtAuthor.Name = "txtAuthor";
+            this.txtAuthor.Size = new System.Drawing.Size(322, 20);
+            this.txtAuthor.TabIndex = 0;
+            this.txtAuthor.TextChanged += new System.EventHandler(this.txtAuthor_TextChanged);
             // 
             // btnAdd
             // 
@@ -97,7 +98,7 @@ namespace LifeGame
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // frmAddInstitution
+            // frmAddAuthor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -105,9 +106,9 @@ namespace LifeGame
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmAddInstitution";
-            this.Text = "frmAddInstitution";
-            this.Load += new System.EventHandler(this.frmAddInstitution_Load);
+            this.Name = "frmAddAuthor";
+            this.Text = "LifeGame - Add Author";
+            this.Load += new System.EventHandler(this.frmAddAuthor_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -120,7 +121,7 @@ namespace LifeGame
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ListBox lsbCandidates;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TextBox txtInstitution;
+        private System.Windows.Forms.TextBox txtAuthor;
         private System.Windows.Forms.Button btnAdd;
     }
 }
