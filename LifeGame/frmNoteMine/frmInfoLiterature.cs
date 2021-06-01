@@ -350,16 +350,25 @@ namespace LifeGame
                 lsbInstitution.Items.Add(strInstitution);
             }
         }
+        private void GetTag(string strTag)
+        {
+            if (!lsbTag.Items.Contains(strTag))
+            {
+                RLiteratureTag newTag = new RLiteratureTag();
+                newTag.Tag = strTag;
+                lstLiteratureTag.Add(newTag);
+                lsbTag.Items.Add(strTag);
+            }
+        }
+
         private void tsmAttriAdd_Click(object sender, EventArgs e)
         {
             switch (SelectedAttri)
             {
                 case "lsbTag":
-                    string strTag = Interaction.InputBox("Literature Tag", "Literature Tag", "Literature Tag", 300, 300);
-                    RLiteratureTag newTag = new RLiteratureTag();
-                    newTag.Tag = strTag;
-                    lstLiteratureTag.Add(newTag);
-                    lsbTag.Items.Add(strTag);
+                    frmAddTag frmAddTag = new frmAddTag();
+                    frmAddTag.SendTag += new frmAddTag.GetTag(GetTag);
+                    frmAddTag.Show();
                     break;
                 case "lsbInstitution":
                     List<string> authors = new List<string>();

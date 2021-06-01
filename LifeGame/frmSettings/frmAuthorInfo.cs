@@ -79,7 +79,7 @@ namespace LifeGame
             {
                 lsbAuthor.Items.Add(author);
             }
-            if (InitAuthor != "")
+            if (InitAuthor != "" && InitAuthor != null)
             {
                 lsbAuthor.SelectedItem = names.processName(InitAuthor);
             }

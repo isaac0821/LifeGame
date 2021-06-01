@@ -69,3 +69,4 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAuthorInfo.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmReliableJournal.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddInstitution.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddAuthor.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddTag.resources

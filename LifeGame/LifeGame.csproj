@@ -53,6 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes.cs" />
+    <Compile Include="frmAdd\frmAddTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd\frmAddTag.Designer.cs">
+      <DependentUpon>frmAddTag.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAdd\frmAddAuthor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,6 +335,9 @@
     <Compile Include="ParseBibTeX.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAdd\frmAddTag.resx">
+      <DependentUpon>frmAddTag.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddEvent.resx">
       <DependentUpon>frmAddEvent.cs</DependentUpon>
     </EmbeddedResource>
