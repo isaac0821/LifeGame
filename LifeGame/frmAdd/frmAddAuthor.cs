@@ -22,7 +22,7 @@ namespace LifeGame
 
         private void frmAddAuthor_Load(object sender, EventArgs e)
         {
-
+            this.ActiveControl = txtAuthor;
         }
 
         private void lsbCandidates_SelectedIndexChanged(object sender, EventArgs e)
@@ -38,6 +38,7 @@ namespace LifeGame
             if (SendAuthor != null)
             {
                 SendAuthor(txtAuthor.Text);
+                txtAuthor.Text = "";
             }
         }
 

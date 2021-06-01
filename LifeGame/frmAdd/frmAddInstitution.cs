@@ -37,6 +37,7 @@ namespace LifeGame
             {
                 lsbCandidates.Items.Add(ins);
             }
+            this.ActiveControl = txtInstitution;
         }
 
         private void lsbCandidates_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,6 +53,7 @@ namespace LifeGame
             if (SendInstitution != null)
             {
                 SendInstitution(txtInstitution.Text);
+                txtInstitution.Text = "";
             }
         }
 

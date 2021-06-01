@@ -22,7 +22,7 @@ namespace LifeGame
 
         private void frmAddTag_Load(object sender, EventArgs e)
         {
-
+            this.ActiveControl = txtTag;
         }
 
         private void lsbCandidates_SelectedIndexChanged(object sender, EventArgs e)
@@ -38,6 +38,7 @@ namespace LifeGame
             if (SendTag != null)
             {
                 SendTag(txtTag.Text);
+                txtTag.Text = "";
             }
         }
 

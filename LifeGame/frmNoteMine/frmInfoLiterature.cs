@@ -728,6 +728,10 @@ namespace LifeGame
 
         private void frmInfoLiterature_Load(object sender, EventArgs e)
         {
+            if (txtTitle.Enabled)
+            {
+                this.ActiveControl = txtTitle;
+            }
             //靠！！气死了，白写了，谷歌学术会检查是不是机器人...咋绕过去呢...
             //try
             //{
