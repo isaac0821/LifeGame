@@ -114,6 +114,10 @@
             this.colCurrency = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEquivalentAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCurrencyRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.picDebit = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.picCredit = new System.Windows.Forms.PictureBox();
             this.stsAccount.SuspendLayout();
             this.mnsAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -140,6 +144,10 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picDebit)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCredit)).BeginInit();
             this.SuspendLayout();
             // 
             // stsAccount
@@ -190,7 +198,7 @@
             // tsmCurrencyRate
             // 
             this.tsmCurrencyRate.Name = "tsmCurrencyRate";
-            this.tsmCurrencyRate.Size = new System.Drawing.Size(180, 22);
+            this.tsmCurrencyRate.Size = new System.Drawing.Size(148, 22);
             this.tsmCurrencyRate.Text = "Currency Rate";
             this.tsmCurrencyRate.Click += new System.EventHandler(this.tsmCurrencyRate_Click);
             // 
@@ -200,7 +208,7 @@
             this.darkModeToolStripMenuItem,
             this.lightModeToolStripMenuItem});
             this.modeToolStripMenuItem.Name = "modeToolStripMenuItem";
-            this.modeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.modeToolStripMenuItem.Text = "Mode";
             // 
             // darkModeToolStripMenuItem
@@ -974,14 +982,18 @@
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.groupBox7, 0, 0);
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.groupBox7, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.groupBox2, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.groupBox3, 0, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(889, 555);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
@@ -989,10 +1001,10 @@
             // 
             this.groupBox7.Controls.Add(this.dgvDetail);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox7.Location = new System.Drawing.Point(6, 6);
+            this.groupBox7.Location = new System.Drawing.Point(6, 206);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(877, 543);
+            this.groupBox7.Size = new System.Drawing.Size(877, 343);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Details";
@@ -1019,7 +1031,7 @@
             this.dgvDetail.Name = "dgvDetail";
             this.dgvDetail.ReadOnly = true;
             this.dgvDetail.RowTemplate.Height = 23;
-            this.dgvDetail.Size = new System.Drawing.Size(871, 524);
+            this.dgvDetail.Size = new System.Drawing.Size(871, 324);
             this.dgvDetail.TabIndex = 0;
             // 
             // colDate
@@ -1085,6 +1097,48 @@
             this.colCurrencyRate.ReadOnly = true;
             this.colCurrencyRate.Width = 230;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.picDebit);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(883, 94);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Debit";
+            // 
+            // picDebit
+            // 
+            this.picDebit.BackColor = System.Drawing.Color.White;
+            this.picDebit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picDebit.Location = new System.Drawing.Point(3, 16);
+            this.picDebit.Name = "picDebit";
+            this.picDebit.Size = new System.Drawing.Size(877, 75);
+            this.picDebit.TabIndex = 0;
+            this.picDebit.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.picCredit);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(3, 103);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(883, 94);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Credit";
+            // 
+            // picCredit
+            // 
+            this.picCredit.BackColor = System.Drawing.Color.White;
+            this.picCredit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picCredit.Location = new System.Drawing.Point(3, 16);
+            this.picCredit.Name = "picCredit";
+            this.picCredit.Size = new System.Drawing.Size(877, 75);
+            this.picCredit.TabIndex = 0;
+            this.picCredit.TabStop = false;
+            // 
             // frmAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1098,6 +1152,7 @@
             this.Name = "frmAccount";
             this.Text = "LifeGame - Account";
             this.Load += new System.EventHandler(this.frmAccount_Load);
+            this.Resize += new System.EventHandler(this.frmAccount_Resize);
             this.stsAccount.ResumeLayout(false);
             this.stsAccount.PerformLayout();
             this.mnsAccount.ResumeLayout(false);
@@ -1137,6 +1192,10 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picDebit)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picCredit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1227,5 +1286,9 @@
         private System.Windows.Forms.ToolStripMenuItem modeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem darkModeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lightModeToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.PictureBox picDebit;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.PictureBox picCredit;
     }
 }

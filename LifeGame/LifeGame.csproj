@@ -104,23 +104,11 @@
     <Compile Include="frmAdd\frmAddBudget.Designer.cs">
       <DependentUpon>frmAddBudget.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAdd\frmAddSurveyTagOption.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddSurveyTagOption.Designer.cs">
-      <DependentUpon>frmAddSurveyTagOption.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmAdd\frmAddWorkOut.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAdd\frmAddWorkOut.Designer.cs">
       <DependentUpon>frmAddWorkOut.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddSurveyTagPlain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddSurveyTagPlain.Designer.cs">
-      <DependentUpon>frmAddSurveyTagPlain.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatalog\frmSurvey.cs">
       <SubType>Form</SubType>
@@ -272,12 +260,6 @@
     <Compile Include="frmNoteMine\frmInfoLiterature.Designer.cs">
       <DependentUpon>frmInfoLiterature.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiteratureSurvey.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiteratureSurvey.Designer.cs">
-      <DependentUpon>frmInfoLiteratureSurvey.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmNoteMine\frmInfoNote.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,12 +302,6 @@
     <Compile Include="frmInfoMine\frmInfoTransaction.Designer.cs">
       <DependentUpon>frmInfoTransaction.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNoteMine\frmInfoSurvey.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoSurvey.Designer.cs">
-      <DependentUpon>frmInfoSurvey.cs</DependentUpon>
-    </Compile>
     <Compile Include="gvar.cs" />
     <Compile Include="icon.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -349,12 +325,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddBudget.resx">
       <DependentUpon>frmAddBudget.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddSurveyTagOption.resx">
-      <DependentUpon>frmAddSurveyTagOption.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddSurveyTagPlain.resx">
-      <DependentUpon>frmAddSurveyTagPlain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddWorkOut.resx">
       <DependentUpon>frmAddWorkOut.cs</DependentUpon>
@@ -446,9 +416,6 @@
     <EmbeddedResource Include="frmNoteMine\frmInfoLiterature.resx">
       <DependentUpon>frmInfoLiterature.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurvey.resx">
-      <DependentUpon>frmInfoLiteratureSurvey.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmNoteMine\frmInfoNote.resx">
       <DependentUpon>frmInfoNote.cs</DependentUpon>
     </EmbeddedResource>
@@ -463,9 +430,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatalog\frmTask.resx">
       <DependentUpon>frmTask.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmInfoSurvey.resx">
-      <DependentUpon>frmInfoSurvey.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettings\frmReliableJournal.resx">
       <DependentUpon>frmReliableJournal.cs</DependentUpon>
@@ -557,7 +521,7 @@
     <None Include="Resources\iconClock.png" />
     <Content Include="Resources\iconSurveyTagBoolean.png" />
     <Content Include="Resources\iconSurveyTagInteger.png" />
-    <Content Include="Resources\iconSurveyTagMultipleOptions.png" />
+    <Content Include="Resources\iconSurveyTagNonBottom.png" />
     <Content Include="Resources\iconSurveyTagSingleOption.png" />
     <Content Include="Resources\iconSurveyTagStrings.png" />
     <None Include="Resources\iconUnStartedYetLongTerm.png" />

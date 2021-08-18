@@ -78,8 +78,25 @@ namespace LifeGame
             }
         }
 
-        private void LoadAccount(string accountName)
+        class CAccountBalanceDetail
         {
+            public double lblBalance;
+            public double lblDebitOpening;
+            public double lblCreditOpening;
+            public double lblDebitAmount;
+            public double lblCreditAmount;
+            public double lblDebitEnding;
+            public double lblCreditEnding;
+            public double lblFutureBalance;
+            public double lblFutureDebitAmount;
+            public double lblFutureCreditAmount;
+            public double lblFutureDebitEnding;
+            public double lblFutureCreditEnding;
+        }
+
+        private CAccountBalanceDetail LoadAccount(string accountName)
+        {
+            CAccountBalanceDetail res = new CAccountBalanceDetail();
             calculate C = new calculate();
 
             double curAssetsBalance = 0;
@@ -102,11 +119,7 @@ namespace LifeGame
                 dtpStatementPeriodStart.Value.Date,
                 dtpStatementPeriodEnd.Value.Date);
             curLiabilitiesBalance = currentLiabilities.EndingBalanceDebit - currentLiabilities.EndingBalanceCredit;
-            lblBalance.Text = Math.Round(curAssetsBalance + curLiabilitiesBalance, 2).ToString();
-
-            CAccount account = G.glb.lstAccount.Find(o => o.AccountName == accountName);
-            lblAccountName.Text = account.AccountName;
-            lblCurrency.Text = account.Currency;
+            res.lblBalance = Math.Round(curAssetsBalance + curLiabilitiesBalance, 2);
             
             calculate.SBalance balance = C.CalBalance(
                 accountName,
@@ -116,12 +129,12 @@ namespace LifeGame
                 G.glb.lstCurrencyRate,
                 dtpStatementPeriodStart.Value.Date,
                 dtpStatementPeriodEnd.Value.Date);
-            lblDebitOpening.Text = Math.Round(balance.OpeningBalanceDebit,2).ToString();
-            lblCreditOpening.Text = Math.Round(balance.OpeningBalanceCredit, 2).ToString();
-            lblDebitAmount.Text = Math.Round(balance.AmountDebit, 2).ToString();
-            lblCreditAmount.Text = Math.Round(balance.AmountCredit, 2).ToString();
-            lblDebitEnding.Text = Math.Round(balance.EndingBalanceDebit, 2).ToString();
-            lblCreditEnding.Text = Math.Round(balance.EndingBalanceCredit, 2).ToString();
+            res.lblDebitOpening = Math.Round(balance.OpeningBalanceDebit,2);
+            res.lblCreditOpening = Math.Round(balance.OpeningBalanceCredit, 2);
+            res.lblDebitAmount = Math.Round(balance.AmountDebit, 2);
+            res.lblCreditAmount = Math.Round(balance.AmountCredit, 2);
+            res.lblDebitEnding = Math.Round(balance.EndingBalanceDebit, 2);
+            res.lblCreditEnding = Math.Round(balance.EndingBalanceCredit, 2);
 
             double futureAssetsBalance = 0;
             double futureLiabilitiesBalance = 0;
@@ -145,7 +158,7 @@ namespace LifeGame
                 dtpStatementPeriodStart.Value.Date,
                 dtpEndOfPredictPeriod.Value.Date);
             futureLiabilitiesBalance = futureLiabilities.EndingBalanceDebit - futureLiabilities.EndingBalanceCredit;
-            lblFutureBalance.Text = Math.Round(futureAssetsBalance + futureLiabilitiesBalance, 2).ToString();
+            res.lblFutureBalance = Math.Round(futureAssetsBalance + futureLiabilitiesBalance, 2);
 
             calculate.SBalance futureBalance = C.CalFutureBalance(
                 accountName,
@@ -156,21 +169,13 @@ namespace LifeGame
                 G.glb.lstCurrencyRate,
                 dtpStatementPeriodStart.Value.Date,
                 dtpEndOfPredictPeriod.Value.Date);
-            lblFutureDebitAmount.Text = Math.Round(futureBalance.AmountDebit, 2).ToString();
-            lblFutureCreditAmount.Text = Math.Round(futureBalance.AmountCredit, 2).ToString();
-            lblFutureDebitEnding.Text = Math.Round(futureBalance.EndingBalanceDebit, 2).ToString();
-            lblFutureCreditEnding.Text = Math.Round(futureBalance.EndingBalanceCredit, 2).ToString();
-            LoadAccountTransaction(accountName);
-        }
+            res.lblFutureDebitAmount = Math.Round(futureBalance.AmountDebit, 2);
+            res.lblFutureCreditAmount = Math.Round(futureBalance.AmountCredit, 2);
+            res.lblFutureDebitEnding = Math.Round(futureBalance.EndingBalanceDebit, 2);
+            res.lblFutureCreditEnding = Math.Round(futureBalance.EndingBalanceCredit, 2);
 
-        private void LoadAccountInFlowChart(string accountName)
-        {
-
-        }
-
-        private void LoadAccountOutFlowChart(string accountName)
-        {
-
+            
+            return res;
         }
 
         private void LoadAccountTransaction(string accountName)
@@ -515,11 +520,147 @@ namespace LifeGame
             frmCurrencyRate.Show();
         }
 
+
+
         private void trvAccount_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (trvAccount.SelectedNode != null && trvAccount.SelectedNode.Text != "(Root)")
             {
-                LoadAccount(trvAccount.SelectedNode.Text);
+                
+                CAccountBalanceDetail balance = LoadAccount(trvAccount.SelectedNode.Text);
+                LoadAccountTransaction(trvAccount.SelectedNode.Text);
+
+                lblBalance.Text = balance.lblBalance.ToString();
+                lblDebitOpening.Text = balance.lblDebitOpening.ToString();
+                lblCreditOpening.Text = balance.lblCreditOpening.ToString();
+                lblDebitAmount.Text = balance.lblDebitAmount.ToString();
+                lblCreditAmount.Text = balance.lblCreditAmount.ToString();
+                lblDebitEnding.Text = balance.lblDebitEnding.ToString();
+                lblCreditEnding.Text = balance.lblCreditEnding.ToString();
+                lblFutureBalance.Text = balance.lblFutureBalance.ToString();
+                lblFutureDebitAmount.Text = balance.lblFutureDebitAmount.ToString();
+                lblFutureCreditAmount.Text = balance.lblFutureCreditAmount.ToString();
+                lblFutureDebitEnding.Text = balance.lblFutureDebitEnding.ToString();
+                lblFutureCreditEnding.Text = balance.lblFutureCreditEnding.ToString();
+
+                CAccount account = G.glb.lstAccount.Find(o => o.AccountName == trvAccount.SelectedNode.Text);
+                lblAccountName.Text = account.AccountName;
+                lblCurrency.Text = account.Currency;
+
+                RefreshPtgSubAccount(trvAccount.SelectedNode.Text);
+
+
+                //plot.DrawPercentageBlocks(picCredit, "g", new List<double> { 0.2, 0.3, 0.3, 0.1, 0.1 }, new List<string> { "", "", "" });
+                //plot.DrawPercentageBlocks(picDebit, "r", new List<double> { 0.2, 0.3, 0.5 }, new List<string> { "", "", "" });
+            }
+        }
+
+        private void RefreshPtgSubAccount(string accountname)
+        {
+            plot plot = new plot();
+            // Get list of subaccounts
+            if (trvAccount.SelectedNode.Text == "(Root)")
+            {
+                picDebit.BackColor = Color.White;
+                picDebit.Controls.Clear();
+                picCredit.BackColor = Color.White;
+                picCredit.Controls.Clear();
+            }
+            else
+            {
+                List<RSubAccount> sub = G.glb.lstSubAccount.FindAll(o => o.Account == accountname);
+                if (sub.Count > 0)
+                {
+                    List<double> lstCreditAmounts = new List<double>();
+                    List<string> lstCreditDesc = new List<string>();
+                    List<double> lstDebitAmounts = new List<double>();
+                    List<string> lstDebitDesc = new List<string>();
+                    foreach (RSubAccount item in sub)
+                    {
+                        CAccountBalanceDetail subBalance = new CAccountBalanceDetail();
+                        string accountCurrency = G.glb.lstAccount.Find(o => o.AccountName == accountname).Currency;
+                        string subAccountCurrency = G.glb.lstAccount.Find(o => o.AccountName == item.SubAccount).Currency;
+                        subBalance = LoadAccount(item.SubAccount);
+                        if (subBalance.lblCreditAmount > 0)
+                        {
+                            if (accountCurrency == subAccountCurrency)
+                            {
+                                lstCreditAmounts.Add(subBalance.lblCreditAmount);
+                            }
+                            else
+                            {
+                                double currencyRate = 0;
+                                if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == accountCurrency && o.CurrencyB == subAccountCurrency))
+                                {
+                                    currencyRate = G.glb.lstCurrencyRate.Find(o => o.CurrencyA == accountCurrency && o.CurrencyB == subAccountCurrency).Rate;
+                                    lstCreditAmounts.Add(subBalance.lblCreditAmount / currencyRate);
+                                }
+                                else
+                                {
+                                    currencyRate = G.glb.lstCurrencyRate.Find(o => o.CurrencyB == accountCurrency && o.CurrencyA == subAccountCurrency).Rate;
+                                    lstCreditAmounts.Add(subBalance.lblCreditAmount * currencyRate);
+                                }
+                            }
+                            lstCreditDesc.Add(item.SubAccount);
+                        }
+                        if (subBalance.lblDebitAmount > 0)
+                        {
+                            if (accountCurrency == subAccountCurrency)
+                            {
+                                lstDebitAmounts.Add(subBalance.lblDebitAmount);
+                            }
+                            else
+                            {
+                                double currencyRate = 0;
+                                if (G.glb.lstCurrencyRate.Exists(o => o.CurrencyA == accountCurrency && o.CurrencyB == subAccountCurrency))
+                                {
+                                    currencyRate = G.glb.lstCurrencyRate.Find(o => o.CurrencyA == accountCurrency && o.CurrencyB == subAccountCurrency).Rate;
+                                    lstDebitAmounts.Add(subBalance.lblDebitAmount / currencyRate);
+                                }
+                                else
+                                {
+                                    currencyRate = G.glb.lstCurrencyRate.Find(o => o.CurrencyB == accountCurrency && o.CurrencyA == subAccountCurrency).Rate;
+                                    lstDebitAmounts.Add(subBalance.lblDebitAmount * currencyRate);
+                                }
+                            }
+                            lstDebitDesc.Add(item.SubAccount);
+                        }
+                    }
+                    if (lstCreditAmounts.Count > 0)
+                    {
+                        plot.DrawPercentageBlocks(picCredit, "g", lstCreditAmounts, lstCreditDesc);
+                    }
+                    else
+                    {
+                        picCredit.BackColor = Color.White;
+                        picCredit.Controls.Clear();
+                    }
+                    if (lstDebitAmounts.Count > 0)
+                    {
+                        plot.DrawPercentageBlocks(picDebit, "r", lstDebitAmounts, lstDebitDesc);
+                    }
+                    else
+                    {
+                        picDebit.BackColor = Color.White;
+                        picDebit.Controls.Clear();
+                    }
+                }
+                else
+                {
+                    CAccountBalanceDetail balance = LoadAccount(accountname);
+                    picDebit.BackColor = Color.White;
+                    picDebit.Controls.Clear();
+                    picCredit.BackColor = Color.White;
+                    picCredit.Controls.Clear();
+                    if (balance.lblCreditAmount > 0)
+                    {
+                        plot.DrawPercentageBlocks(picCredit, "g", new List<double> { balance.lblCreditAmount }, new List<string> { accountname });
+                    }
+                    if (balance.lblDebitAmount > 0)
+                    {
+                        plot.DrawPercentageBlocks(picDebit, "r", new List<double> { balance.lblDebitAmount }, new List<string> { accountname });
+                    }
+                }
             }
         }
 
@@ -547,6 +688,11 @@ namespace LifeGame
             {
                 dtpEndOfPredictPeriod.Value = dtpStatementPeriodEnd.Value;
             }
+        }
+
+        private void frmAccount_Resize(object sender, EventArgs e)
+        {
+            RefreshPtgSubAccount(trvAccount.SelectedNode.Text);
         }
     }
 }

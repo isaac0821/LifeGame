@@ -523,7 +523,6 @@ namespace LifeGame
                 {
                     int selectedIndex = lsbAuthor.SelectedIndex;
                     string itemSelected = lsbAuthor.SelectedItem.ToString();
-                    string itemAhead = lsbAuthor.Items[lsbAuthor.SelectedIndex - 1].ToString();
                     lsbAuthor.Items.RemoveAt(selectedIndex);
                     lsbAuthor.Items.Insert(selectedIndex - 1, itemSelected);
                     lstLiteratureAuthor[selectedIndex].Rank = selectedIndex - 1;
@@ -542,7 +541,6 @@ namespace LifeGame
                 {
                     int selectedIndex = lsbAuthor.SelectedIndex;
                     string itemSelected = lsbAuthor.SelectedItem.ToString();
-                    string itemNext = lsbAuthor.Items[lsbAuthor.SelectedIndex + 1].ToString();
                     lsbAuthor.Items.RemoveAt(selectedIndex);
                     lsbAuthor.Items.Insert(selectedIndex + 1, itemSelected);
                     lstLiteratureAuthor[selectedIndex].Rank = selectedIndex + 1;
@@ -763,6 +761,16 @@ namespace LifeGame
                     frmAuthorInfo.Show();
                 }
             }
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lsbSurvey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

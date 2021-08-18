@@ -126,9 +126,6 @@
   <metadata name="cmsTagTree.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>241, 17</value>
   </metadata>
-  <metadata name="Literature.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="iglTag.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>358, 17</value>
   </metadata>
@@ -136,8 +133,8 @@
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABS
-        CQAAAk1TRnQBSQFMAgEBBQEAASABAAEgAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADG
+        CQAAAk1TRnQBSQFMAgEBBgEAAXABAAFwAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -165,20 +162,31 @@
         AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
         AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
         AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
-        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/wEAEP8wABD/MAAB/wQA
-        Af8BAAL/AgAC/wEAAv8wAAL/AQAD/wEAAv8CAAL/AQAC/zAAAv8BAAP/AQAC/wIAAv8BAAL/MAAC/wEA
-        A/8BAAP/AQAC/wEAAv8wAAL/AQAD/wEAAf8BAAH/AQAC/wEAAv8wAAL/AQAD/wEAAf8BAAH/AQAC/wEA
-        Av8wAAL/AQAD/wEAAf8BAAH/AQAC/wEAAv8wAAL/AQAD/wEAA/8BAAL/AQAC/zAAAv8BAAP/AgAC/wEA
-        Av8BAAL/MAAC/wEAA/8CAAL/AQAC/wEAAv8wAAH/BAAB/wIAAv82ABD/MAAQ/zAAEP8wAAX/B28N/wIA
-        KP8Kbwz/AgAK/wcAFv8Mbwv/AgAJ/wEAB/8BAAj/BgAB7Ab/DW8D/wEABv8CAAj/AQAJ/wEABv8IAAHx
-        BP8PbwP/AQAF/wYAA/8BAAv/AQAF/wIAAfMD/wEQAgAE/w9vBP8BAAT/AgAT/wEABf8B7QEQBP8B7QIA
-        A/8QbwX/AQAD/wIABv8BAAz/AQAJ/wHxBAAD/xBvBP8BAAH/AQAC/wIABv8BAAz/AQAH/wYABP8QbwT/
-        AQAC/wEAAf8GAAL/AQAM/wEABf8B8wYABv8PbwT/AQAD/wEAFf8BAAX/AwABDgn/D28E/wEABP8BAAj/
-        AQAL/wEABf8CAAT/AgAB7AT/Dm8F/wEABf8BAAf/AQAK/wEABv8CAAFtAv8B8wIAAfMF/w1vBf8BAAb/
-        AQAH/wERAQAH/wEAB/8B8AcAB/8LbwP/BwAE/wEAB/8CAAX/AQAJ/wHzBAABFAn/CG8F/wcABf8BAAj/
-        BAAd/wNvNv8BQgFNAT4HAAE+AwABKAMAAUADAAEgAwABAQEAAQEGAAEBFgAD//8AAgAL
+        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/wEAIP8gACD/IAAF/wYA
+        AewF/wQAAf8BAAL/AgAC/wEAAv8gAAT/CAAB8QX/AQAD/wEAAv8CAAL/AQAC/yAABP8CAAHzA/8BEAIA
+        Bf8BAAP/AQAC/wIAAv8BAAL/IAAE/wHtARAE/wHtAgAF/wEAA/8BAAP/AQAC/wEAAv8gAAj/AfEEAAX/
+        AQAD/wEAAf8BAAH/AQAC/wEAAv8gAAb/BgAG/wEAA/8BAAH/AQAB/wEAAv8BAAL/IAAE/wHzBgAH/wEA
+        A/8BAAH/AQAB/wEAAv8BAAL/IAAE/wMAAQ4K/wEAA/8BAAP/AQAC/wEAAv8gAAT/AgAE/wIAAewF/wEA
+        A/8CAAL/AQAC/wEAAv8gAAT/AgABbQL/AfMCAAHzBf8BAAP/AgAC/wEAAv8BAAL/IAAE/wHwBwAF/wQA
+        Af8CAAL/JgAF/wHzBAABFBX/IAAg/yAAIP8gAAX/B28d/wIAGP8KbwT/DgAK/wIACv8HAAb/DG8D/wIA
+        C/8BAAr/AgAJ/wEAB/8BAAX/DW8C/wIABP8DAAT/AQAD/wEABv8CAAj/AQAJ/wEAA/8PbwH/AgAE/wMA
+        BP8BAAT/AQAF/wYAA/8BAAv/AQAC/w9vAf8CAAT/AwAE/wEABf8BAAT/AgAT/wEAAf8QbwH/AgAE/wMA
+        BP8BAAb/AQAD/wIABv8BAAz/AQAB/xBvAf8OAAX/AQAB/wEAAv8CAAb/AQAM/wEAAf8QbwH/DgAF/wEA
+        Av8BAAH/BgAC/wEADP8BAAL/D28B/wIABP8DAAT/AQAF/wEAA/8BABX/AQAC/w9vAf8CAAT/AwAE/wEA
+        Bf8BAAT/AQAI/wEAC/8BAAL/Dm8C/wIABP8DAAT/AQAF/wEABf8BAAf/AQAK/wEABP8NbwL/AgAL/wEA
+        Bf8BAAb/AQAH/wERAQAH/wEABv8LbwP/DgAC/wcABP8BAAf/AgAF/wEACP8IbxX/BwAF/wEACP8EAA3/
+        A282/wFCAU0BPgcAAT4DAAEoAwABQAMAASADAAEBAQABAQYAAQEWAAP//wACAAs=
 </value>
   </data>
+  <metadata name="colLiterature.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cmsSurveyLit.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>554, 17</value>
+  </metadata>
+  <metadata name="cmsOption.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>443, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -37,6 +37,7 @@ namespace LifeGame
                     lstAllJournal.Add(lit.JournalOrConferenceName);
                 }
             }
+            lstAllJournal = lstAllJournal.OrderBy(o => o).ToList();
             foreach (string jour in lstAllJournal)
             {
                 if (G.glb.lstGoodJournal.Exists(o => o == jour))

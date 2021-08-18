@@ -165,15 +165,14 @@ namespace LifeGame
     {
         public string SurveyTitle;
         public string Tag;
-        public bool IsBottom;
         public ESurveyTagType TagType;
-        public string Description;
     }
 
     [Serializable]
     public enum ESurveyTagType: int
     {
-        Boolean = 1,
+        NonBottom = 0,
+        Boolean,
         SingleOption,
         String,
         Number
@@ -194,7 +193,7 @@ namespace LifeGame
         public string SurveyTitle;
         public string Tag;
         public string SubTag;
-        public int index;
+        public int SubTagIndex;
     }
 
     [Serializable]
@@ -203,11 +202,7 @@ namespace LifeGame
         public string SurveyTitle;
         public string LiteratureTitle;
         public string Tag;
-        public ESurveyTagType TagType;
-        public int TagValueOptionIndex;
-        public bool TagValueBoolean;
-        public string TagValueString;
-        public int TagValueNumber;
+        public string TagValueString; // Convert tag value (includeing Number/Boolean/SingleOptions) into string 
     }
     #endregion
 

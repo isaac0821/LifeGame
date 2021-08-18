@@ -92,7 +92,6 @@
             this.lsbSurvey = new System.Windows.Forms.ListBox();
             this.cmsSurvey = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -773,27 +772,22 @@
             this.lsbSurvey.Name = "lsbSurvey";
             this.lsbSurvey.Size = new System.Drawing.Size(265, 222);
             this.lsbSurvey.TabIndex = 0;
+            this.lsbSurvey.SelectedIndexChanged += new System.EventHandler(this.lsbSurvey_SelectedIndexChanged);
             // 
             // cmsSurvey
             // 
             this.cmsSurvey.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addToolStripMenuItem,
-            this.editToolStripMenuItem,
             this.removeToolStripMenuItem});
             this.cmsSurvey.Name = "cmsSurvey";
-            this.cmsSurvey.Size = new System.Drawing.Size(118, 70);
+            this.cmsSurvey.Size = new System.Drawing.Size(118, 48);
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
             this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.addToolStripMenuItem.Text = "New";
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // removeToolStripMenuItem
             // 
@@ -903,7 +897,6 @@
         private System.Windows.Forms.ListBox lsbSurvey;
         private System.Windows.Forms.ContextMenuStrip cmsSurvey;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.Button btnGoogleScholar;
         private System.Windows.Forms.CheckBox chkStar;

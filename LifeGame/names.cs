@@ -96,5 +96,35 @@ namespace LifeGame
             }
             return initialed;
         }
+
+        public string processLastName(string name)
+        {
+            string initialed = "";
+            string[] splitName = name.Split(' ');
+
+            string lastName = splitName[splitName.Count() - 1];
+            if (lastName == "")
+            {
+                return "(No-last-Name)";
+            }
+            if (!chnLastName(lastName))
+            {
+                initialed += splitName[splitName.Count() - 1];
+                initialed += ", ";
+                initialed += splitName[0].ToCharArray()[0];
+                initialed += ". ";
+            }
+            else
+            {
+                initialed += splitName[splitName.Count() - 1];
+                initialed += ", ";
+                for (int i = 0; i < splitName.Count() - 1; i++)
+                {
+                    initialed += splitName[i];
+                    initialed += " ";
+                }
+            }
+            return initialed;
+        }
     }
 }

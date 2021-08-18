@@ -313,14 +313,14 @@ namespace LifeGame
         {
             curPointerTimer.Interval = 1000 * 60;
             FindNextToAlarm();
-            DrawToday();            
+            DrawToday();
         }
 
         private void frmMain_Resize(object sender, EventArgs e)
         {
             tblMain.ColumnStyles[0].Width = 30;
             tblMain.ColumnStyles[8].Width = 30;
-            DrawLog();            
+            DrawLog();
         }
 
         private void FindNextToAlarm()
@@ -393,12 +393,6 @@ namespace LifeGame
         {
             frmLiterature frmLiterature = new frmLiterature();
             frmLiterature.Show();
-        }
-
-        private void surveyVToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmSurvey frmSurvey = new frmSurvey();
-            frmSurvey.Show();
         }
 
         private void dtpDate_ValueChanged(object sender, EventArgs e)
@@ -1200,7 +1194,7 @@ namespace LifeGame
             {
                 DrawEvent();
                 DrawScheduleWithMode("leftWithSupp");
-                DrawLogWithMode("rightWithSupp");                
+                DrawLogWithMode("rightWithSupp");
             }
             else if (chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
             {
@@ -1210,7 +1204,7 @@ namespace LifeGame
             else if (chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
             {
                 DrawEvent();
-                DrawScheduleWithMode("allWithSupp");                
+                DrawScheduleWithMode("allWithSupp");
             }
             else if (chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
             {
@@ -1219,7 +1213,7 @@ namespace LifeGame
             else if (!chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
             {
                 DrawEvent();
-                DrawLogWithMode("allWithSupp");                
+                DrawLogWithMode("allWithSupp");
             }
             else if (!chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
             {
@@ -1320,6 +1314,12 @@ namespace LifeGame
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FindNextToAlarm();
+        }
+
+        private void surveyVToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            frmSurvey frmSurvey = new frmSurvey();
+            frmSurvey.Show();
         }
     }
 }

@@ -112,6 +112,7 @@
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.chkNoBad = new System.Windows.Forms.CheckBox();
             this.chkOnlyGood = new System.Windows.Forms.CheckBox();
+            this.lblNumFound = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -1036,6 +1037,7 @@
             this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
             this.tableLayoutPanel16.Controls.Add(this.chkNoBad, 2, 0);
             this.tableLayoutPanel16.Controls.Add(this.chkOnlyGood, 1, 0);
+            this.tableLayoutPanel16.Controls.Add(this.lblNumFound, 0, 0);
             this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel16.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel16.Name = "tableLayoutPanel16";
@@ -1068,6 +1070,16 @@
             this.chkOnlyGood.Text = "Only show reliable journal";
             this.chkOnlyGood.UseVisualStyleBackColor = true;
             this.chkOnlyGood.CheckedChanged += new System.EventHandler(this.chkOnlyGood_CheckedChanged);
+            // 
+            // lblNumFound
+            // 
+            this.lblNumFound.AutoSize = true;
+            this.lblNumFound.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNumFound.Location = new System.Drawing.Point(3, 0);
+            this.lblNumFound.Name = "lblNumFound";
+            this.lblNumFound.Size = new System.Drawing.Size(402, 27);
+            this.lblNumFound.TabIndex = 2;
+            this.lblNumFound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frmLiterature
             // 
@@ -1207,5 +1219,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lastModifyDate;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem authorsToolStripMenuItem;
+        private System.Windows.Forms.Label lblNumFound;
     }
 }

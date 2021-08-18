@@ -69,13 +69,13 @@ namespace LifeGame
                 names names = new names();
                 foreach (RLiteratureAuthor author in lstAuthor)
                 {
-                    if (Authors.Exists(o => o.ItemName == names.processName(author.Author)))
+                    if (Authors.Exists(o => o.ItemName == names.processLastName(author.Author)))
                     {
-                        Authors[Authors.FindIndex(o => o.ItemName == names.processName(author.Author))].ItemCount += 1;
+                        Authors[Authors.FindIndex(o => o.ItemName == names.processLastName(author.Author))].ItemCount += 1;
                     }
                     else
                     {
-                        Authors.Add(new CItem(names.processName(author.Author), 1));
+                        Authors.Add(new CItem(names.processLastName(author.Author), 1));
                     }
                 }
 
@@ -129,9 +129,9 @@ namespace LifeGame
             }
 
             Tags = Tags.OrderBy(o => o.ItemName).ToList();
-            Tags = Tags.OrderByDescending(o => o.ItemCount).ToList();
+            // Tags = Tags.OrderByDescending(o => o.ItemCount).ToList();
             Authors = Authors.OrderBy(o => o.ItemName).ToList();
-            Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
+            // Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
             Institutions = Institutions.OrderBy(o => o.ItemName).ToList();
             Institutions = Institutions.OrderByDescending(o => o.ItemCount).ToList();
             Projects = Projects.OrderBy(o => o.ItemName).ToList();
@@ -313,29 +313,42 @@ namespace LifeGame
                 }
                 if (showFlag)
                 {
-                    try
-                    {
-                        dgvLiterature.Rows.Add(starStr, title, Convert.ToString(year), litType, goodJourStr, predatoryStr, addedDate.ToString("yyyy/MM/dd"), lastModifyDate.ToString("yyyy/MM/dd"));
-                        dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].Cells[1].ToolTipText = G.glb.lstLiterature.Find(o => o.Title == title).InOneSentence;
-                    }
-                    catch
-                    {
-
-                    }
+                    dgvLiterature.Rows.Add(starStr, title, Convert.ToString(year), litType, goodJourStr, predatoryStr, addedDate.ToString("yyyy/MM/dd"), lastModifyDate.ToString("yyyy/MM/dd"));
+                    dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].Cells[1].ToolTipText = G.glb.lstLiterature.Find(o => o.Title == title).InOneSentence;
                 }
+                lblNumFound.Text = Convert.ToString(dgvLiterature.Rows.Count) + " result(s) found";
             }
         }
 
         private void LoadLiteratureList(string SearchText)
         {
-            List<string> ShownTitle = new List<string>();
+            List<string> ShownTitle = new List<string>();            
             foreach (CLiterature literature in G.glb.lstLiterature)
             {
+                // Find literature with the search text in its title
                 if (literature.Title.ToUpper().Contains(SearchText.ToUpper()))
                 {
                     ShownTitle.Add(literature.Title);
                 }
+                // Find literature with the search text as part of the bibtex
+                if (literature.BibKey.ToUpper().Contains(SearchText.ToUpper()))
+                {
+                    ShownTitle.Add(literature.Title);
+                }
             }
+            // Find literature with the search text as the author name
+            foreach (CAuthor author in G.glb.lstAuthor)
+            {
+                if (author.Author.ToUpper().Contains(SearchText.ToUpper()))
+                {
+                    foreach (RLiteratureAuthor literatureAuthor in G.glb.lstLiteratureAuthor.FindAll(o => o.Author == author.Author))
+                    {
+                        ShownTitle.Add(literatureAuthor.Title);
+                    }
+                }
+            }
+            
+
             ShownTitle = ShownTitle.Distinct().ToList();
             loadedLiteratures = ShownTitle;
             LoadLiteratureList(loadedLiteratures);
@@ -391,7 +404,7 @@ namespace LifeGame
                     ShownTitle.Add(literature.Title);
                 }
                 names names = new names();
-                if (chosenAuthor.Exists(o => G.glb.lstLiteratureAuthor.Exists(p => p.Title == literature.Title && names.processName(p.Author) == o)))
+                if (chosenAuthor.Exists(o => G.glb.lstLiteratureAuthor.Exists(p => p.Title == literature.Title && names.processLastName(p.Author) == o)))
                 {
                     ShownTitle.Add(literature.Title);
                 }

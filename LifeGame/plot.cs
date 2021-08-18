@@ -54,6 +54,84 @@ namespace LifeGame
             return ret;
         }
 
+        public Color RandomColor()
+        {
+            Random r = new Random();
+            Color rndColor = Color.FromArgb(r.Next(0, 256), r.Next(0, 256), r.Next(0, 256));
+            return rndColor;
+        }
+
+        public void DrawPercentageBlocks(PictureBox picMap, string baseColor, List<double> lstAmount, List<string> lstDesc)
+        {
+            picMap.BackColor = Color.White;
+            picMap.Controls.Clear();
+            // Check percentage
+            double totalAmount = 0;
+            foreach (double amount in lstAmount)
+            {
+                totalAmount += amount;
+            }
+            List<double> lstPercentage = new List<double>();
+            for (int i = 0; i < lstAmount.Count(); i++)
+            {
+                lstPercentage.Add(lstAmount[i] / totalAmount);
+            }
+            
+            double accLeft = 0;
+            List<Color> backgroundColorList = new List<Color>();
+            if (baseColor == "r")
+            {
+                backgroundColorList.Add(Color.FromArgb(100, 0, 0));
+                backgroundColorList.Add(Color.FromArgb(200, 0, 0));
+            }
+            else if (baseColor == "g")
+            {
+                backgroundColorList.Add(Color.FromArgb(0, 100, 0));
+                backgroundColorList.Add(Color.FromArgb(0, 200, 0));
+            }
+
+            List<PictureBox> picPtgBlock = new List<PictureBox>();
+            for (int i = 0; i < lstPercentage.Count(); i++)
+            {
+                picPtgBlock.Add(new PictureBox());
+                picPtgBlock[i].Width = (int)(lstPercentage[i] * picMap.Width);
+                picPtgBlock[i].Height = picMap.Height;
+                picPtgBlock[i].Left = (int)accLeft;
+                picPtgBlock[i].Top = 0;
+                picPtgBlock[i].BackColor = backgroundColorList[i % 2];
+                Label lblPtg = new Label();
+                lblPtg.Text = Math.Round(lstPercentage[i] * 100, 2).ToString() + "%";
+                lblPtg.ForeColor = Color.White;
+                lblPtg.Height = 11;
+                lblPtg.Top = 0;
+                lblPtg.Left = 0;
+                picPtgBlock[i].Controls.Add(lblPtg);
+                Label lblDesc = new Label();
+                lblDesc.Text = lstDesc[i];
+                lblDesc.ForeColor = Color.White;
+                lblDesc.Top = lblPtg.Height;
+                lblDesc.Height = 11;
+                lblDesc.Left = 0;
+                lblDesc.Width = picPtgBlock[i].Width;
+                Label lblAmount = new Label();
+                lblAmount.Text = Math.Round(lstAmount[i], 2).ToString();
+                lblAmount.ForeColor = Color.White;
+                lblAmount.Top = lblDesc.Top + lblDesc.Height;
+                lblAmount.Left = 0;
+                lblAmount.Width = picPtgBlock[i].Width;
+                picPtgBlock[i].Controls.Add(lblAmount);
+                picPtgBlock[i].Controls.Add(lblDesc);
+                picPtgBlock[i].Controls.Add(lblAmount);
+                picMap.Controls.Add(picPtgBlock[i]);
+                accLeft += (int)(lstPercentage[i] * picMap.Width);
+            }
+        }
+
+        private void ShowDesc(string desc)
+        {
+            MessageBox.Show(desc);
+        }
+
         /// <summary>
         /// 绘制计划图或日志图 Done: 01/03/2019
         /// </summary>
