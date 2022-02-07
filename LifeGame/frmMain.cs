@@ -51,15 +51,35 @@ namespace LifeGame
             try
             {
                 Deserialize();
-                if (G.glb.lstGoodJournal == null)
-                {
-                    G.glb.lstGoodJournal = new List<string>();
-                }
                 G.glb.lstSurvey = new List<CSurvey>();
                 G.glb.lstSurveyTag = new List<RSurveyTag>();
                 G.glb.lstSurveyTagValueOption = new List<RSurveyTagValueOption>();
                 G.glb.lstSurveySubTag = new List<RSurveySubTag>();
                 G.glb.lstSurveyLiteratureTagValue = new List<RSurveyLiteratureTagValue>();
+
+
+                // Tasks, Logs and Events
+                //G.glb.lstTask = new List<CTask>();
+                //G.glb.lstSubTask = new List<RSubTask>();
+                //G.glb.lstSchedule = new List<CLog>();
+                //G.glb.lstLog = new List<CLog>();
+                //G.glb.lstEvent = new List<CEvent>();
+                //G.glb.lstSleepSchedule = new List<CSleep>();
+                //G.glb.lstSleepLog = new List<CSleep>();
+                //G.glb.lstWorkOut = new List<CWorkOut>();
+                //G.glb.lstMedicine = new List<CMedicine>();
+
+                //// Finiance
+                //G.glb.lstTransaction = new List<CTransaction>();
+                //G.glb.lstBudget = new List<CTransaction>();
+                //G.glb.lstAccount = new List<CAccount>();
+                //G.glb.lstSubAccount = new List<RSubAccount>();
+                //G.glb.lstCurrencyRate = new List<RCurrencyRate>();
+
+                //// Note
+                //G.glb.lstNote = new List<CNote>();
+                //G.glb.lstNoteOutsource = new List<RNoteOutsource>();
+                //G.glb.lstNoteLog = new List<RNoteLog>();
 
                 //G.glb.lstAuthor = new List<CAuthor>();
                 //G.glb.lstAuthorAffiliation = new List<RAuthorAffiliation>();

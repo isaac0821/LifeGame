@@ -268,6 +268,7 @@
             this.txtJournalConference.Name = "txtJournalConference";
             this.txtJournalConference.Size = new System.Drawing.Size(441, 20);
             this.txtJournalConference.TabIndex = 2;
+            this.txtJournalConference.TextChanged += new System.EventHandler(this.txtJournalConference_TextChanged);
             // 
             // cbxBibEntryType
             // 
@@ -292,6 +293,7 @@
             this.cbxBibEntryType.Name = "cbxBibEntryType";
             this.cbxBibEntryType.Size = new System.Drawing.Size(84, 21);
             this.cbxBibEntryType.TabIndex = 6;
+            this.cbxBibEntryType.SelectedIndexChanged += new System.EventHandler(this.cbxBibEntryType_SelectedIndexChanged);
             // 
             // btnBibTeX
             // 
@@ -366,6 +368,7 @@
             this.txtInOneSentence.Name = "txtInOneSentence";
             this.txtInOneSentence.Size = new System.Drawing.Size(509, 20);
             this.txtInOneSentence.TabIndex = 3;
+            this.txtInOneSentence.TextChanged += new System.EventHandler(this.txtInOneSentence_TextChanged);
             // 
             // chkPredatroyAlert
             // 

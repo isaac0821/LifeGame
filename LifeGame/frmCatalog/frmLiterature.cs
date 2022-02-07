@@ -346,8 +346,7 @@ namespace LifeGame
                         ShownTitle.Add(literatureAuthor.Title);
                     }
                 }
-            }
-            
+            }           
 
             ShownTitle = ShownTitle.Distinct().ToList();
             loadedLiteratures = ShownTitle;
@@ -422,9 +421,12 @@ namespace LifeGame
             LoadLiteratureList(loadedLiteratures);
         }
 
-        private void btnApply_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadLiteratureList(txtSearch.Text);
+            if (txtSearch.Text != "")
+            {
+                LoadLiteratureList(txtSearch.Text);
+            }
         }
 
         private void btnTagAll_Click(object sender, EventArgs e)

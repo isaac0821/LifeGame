@@ -15,6 +15,8 @@ namespace LifeGame
 {
     public partial class frmInfoLiterature : Form
     {
+        bool modifiedFlag = false;
+
         CLiterature literature = new CLiterature();
         string InOneSentence = "";
         List<RLiteratureAuthor> lstLiteratureAuthor = new List<RLiteratureAuthor>();
@@ -38,12 +40,14 @@ namespace LifeGame
             literatureBib = literature.BibTeX;
             InitializeComponent();
             LoadLiterature();
+            modifiedFlag = false;
         }
 
         public frmInfoLiterature()
         {
             InitializeComponent();
             NewLiterature();
+            modifiedFlag = false;
         }
 
         public delegate void RefreshTabHandler();
@@ -161,175 +165,178 @@ namespace LifeGame
         {
             bool CanSaveFlag = true;
             bool EntirelyEmptyFlag = true;
-            if (txtTitle.Text == "")
+            if (modifiedFlag)
             {
-                MessageBox.Show("Title is missing.");
-                CanSaveFlag = false;
-            }
-            else
-            {
-                EntirelyEmptyFlag = false;
-            }
-            if (G.glb.lstLiterature.Exists(o => o.Title == txtTitle.Text) && txtTitle.Enabled == true)
-            {
-                MessageBox.Show("Literature exists.");
-                CanSaveFlag = false;
-            }
-            if (G.glb.lstLiterature.Exists(o => o.BibKey != "" && o.BibKey == txtBibKey.Text && o.Title != txtTitle.Text))
-            {
-                MessageBox.Show("Bibkey exists.");
-                CanSaveFlag = false;
-            }
-            if (txtYear.Text == "")
-            {
-                MessageBox.Show("Publish year is missing");
-                CanSaveFlag = false;
-            }
-            else
-            {
-                EntirelyEmptyFlag = false;
-            }
-            if (txtJournalConference.Text == "")
-            {
-                MessageBox.Show("Journal/Conference Name is missing");
-                CanSaveFlag = false;
-            }
-            else
-            {
-                EntirelyEmptyFlag = false;
-            }
-            if (lsbAuthor.Items.Count == 0)
-            {
-                MessageBox.Show("Add author");
-                CanSaveFlag = false;
-            }
-            else
-            {
-                EntirelyEmptyFlag = false;
-            }
-            if (lsbTag.Items.Count == 0)
-            {
-                MessageBox.Show("Add tag");
-                CanSaveFlag = false;
-            }
-            else
-            {
-                EntirelyEmptyFlag = false;
-            }
-            if (lsbInstitution.Items.Count == 0)
-            {
-                MessageBox.Show("Add institution");
-                CanSaveFlag = false;
-            }
-            else
-            {
-                EntirelyEmptyFlag = false;
-            }
-            if (CanSaveFlag)
-            {
-                // 如果本来没有这篇文献，说明是新增文献，否则是删改文献
-                if (!G.glb.lstLiterature.Exists(o => o.Title == txtTitle.Text))
+                if (txtTitle.Text == "")
                 {
-                    CLiterature newLiterature = new CLiterature();
-                    newLiterature.Title = txtTitle.Text;
-                    newLiterature.PublishYear = Convert.ToInt32(txtYear.Text);
-                    newLiterature.JournalOrConferenceName = txtJournalConference.Text;
-                    newLiterature.InOneSentence = txtInOneSentence.Text;
-                    newLiterature.BibKey = txtBibKey.Text;
-                    newLiterature.BibTeX = literatureBib;
-                    newLiterature.DateAdded = DateTime.Today;
-                    newLiterature.DateModified = DateTime.Today;
-                    newLiterature.Star = chkStar.Checked;
-                    newLiterature.PredatoryAlert = chkPredatroyAlert.Checked;
-
-                    foreach (RLiteratureAuthor author in lstLiteratureAuthor)
-                    {
-                        author.Title = txtTitle.Text;
-                    }
-                    foreach (RLiteratureOutSource outSource in lstLiteratureOutsource)
-                    {
-                        outSource.Title = txtTitle.Text;
-                    }
-                    foreach (RLiteratureTag tag in lstLiteratureTag)
-                    {
-                        tag.Title = txtTitle.Text;
-                    }
-                    foreach (RLiteratureInstitution institution in lstLiteratureInstitution)
-                    {
-                        institution.Title = txtTitle.Text;
-                    }
-                    foreach (RLiteratureInCiting inCiting in lstLiteratureInCiting)
-                    {
-                        inCiting.Title = txtTitle.Text;
-                    }
-                    G.glb.lstLiterature.Add(newLiterature);
-                    G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
-                    G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
-                    G.glb.lstLiteratureOutSource.AddRange(lstLiteratureOutsource);
-                    G.glb.lstLiteratureInstitution.AddRange(lstLiteratureInstitution);
-                    G.glb.lstLiteratureCiting.AddRange(lstLiteratureInCiting);
+                    MessageBox.Show("Title is missing.");
+                    CanSaveFlag = false;
                 }
                 else
                 {
-                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PublishYear = Convert.ToInt32(txtYear.Text);
-                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).JournalOrConferenceName = txtJournalConference.Text;
-                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).InOneSentence = txtInOneSentence.Text;
-                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibKey = txtBibKey.Text;
-                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibTeX = literatureBib;
-                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).DateModified = DateTime.Today;
-                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Star = chkStar.Checked;
-                    G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PredatoryAlert = chkPredatroyAlert.Checked;
-                    foreach (RLiteratureAuthor author in lstLiteratureAuthor)
-                    {
-                        author.Title = txtTitle.Text;
-                    }
-                    foreach (RLiteratureTag tag in lstLiteratureTag)
-                    {
-                        tag.Title = txtTitle.Text;
-                    }
-                    foreach (RLiteratureOutSource outSource in lstLiteratureOutsource)
-                    {
-                        outSource.Title = txtTitle.Text;
-                    }
-                    foreach (RLiteratureInstitution institution in lstLiteratureInstitution)
-                    {
-                        institution.Title = txtTitle.Text;
-                    }
-                    foreach (RLiteratureInCiting inCiting in lstLiteratureInCiting)
-                    {
-                        inCiting.Title = txtTitle.Text;
-                    }
-                    G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == txtTitle.Text);
-                    G.glb.lstLiteratureTag.RemoveAll(o => o.Title == txtTitle.Text);
-                    G.glb.lstLiteratureOutSource.RemoveAll(o => o.Title == txtTitle.Text);
-                    G.glb.lstLiteratureInstitution.RemoveAll(o => o.Title == txtTitle.Text);
-                    G.glb.lstLiteratureCiting.RemoveAll(o => o.Title == txtTitle.Text);
-                    G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
-                    G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
-                    G.glb.lstLiteratureOutSource.AddRange(lstLiteratureOutsource);
-                    G.glb.lstLiteratureInstitution.AddRange(lstLiteratureInstitution);
-                    G.glb.lstLiteratureCiting.AddRange(lstLiteratureInCiting);
+                    EntirelyEmptyFlag = false;
                 }
+                if (G.glb.lstLiterature.Exists(o => o.Title == txtTitle.Text) && txtTitle.Enabled == true)
+                {
+                    MessageBox.Show("Literature exists.");
+                    CanSaveFlag = false;
+                }
+                if (G.glb.lstLiterature.Exists(o => o.BibKey != "" && o.BibKey == txtBibKey.Text && o.Title != txtTitle.Text))
+                {
+                    MessageBox.Show("Bibkey exists.");
+                    CanSaveFlag = false;
+                }
+                if (txtYear.Text == "")
+                {
+                    MessageBox.Show("Publish year is missing");
+                    CanSaveFlag = false;
+                }
+                else
+                {
+                    EntirelyEmptyFlag = false;
+                }
+                if (txtJournalConference.Text == "")
+                {
+                    MessageBox.Show("Journal/Conference Name is missing");
+                    CanSaveFlag = false;
+                }
+                else
+                {
+                    EntirelyEmptyFlag = false;
+                }
+                if (lsbAuthor.Items.Count == 0)
+                {
+                    MessageBox.Show("Add author");
+                    CanSaveFlag = false;
+                }
+                else
+                {
+                    EntirelyEmptyFlag = false;
+                }
+                if (lsbTag.Items.Count == 0)
+                {
+                    MessageBox.Show("Add tag");
+                    CanSaveFlag = false;
+                }
+                else
+                {
+                    EntirelyEmptyFlag = false;
+                }
+                if (lsbInstitution.Items.Count == 0)
+                {
+                    MessageBox.Show("Add institution");
+                    CanSaveFlag = false;
+                }
+                else
+                {
+                    EntirelyEmptyFlag = false;
+                }
+                if (CanSaveFlag)
+                {
+                    // 如果本来没有这篇文献，说明是新增文献，否则是删改文献
+                    if (!G.glb.lstLiterature.Exists(o => o.Title == txtTitle.Text))
+                    {
+                        CLiterature newLiterature = new CLiterature();
+                        newLiterature.Title = txtTitle.Text;
+                        newLiterature.PublishYear = Convert.ToInt32(txtYear.Text);
+                        newLiterature.JournalOrConferenceName = txtJournalConference.Text;
+                        newLiterature.InOneSentence = txtInOneSentence.Text;
+                        newLiterature.BibKey = txtBibKey.Text;
+                        newLiterature.BibTeX = literatureBib;
+                        newLiterature.DateAdded = DateTime.Today;
+                        newLiterature.DateModified = DateTime.Today;
+                        newLiterature.Star = chkStar.Checked;
+                        newLiterature.PredatoryAlert = chkPredatroyAlert.Checked;
 
-                foreach (object item in lsbAuthor.Items)
-                {
-                    if (!G.glb.lstAuthor.Exists(o => o.Author == item.ToString()))
-                    {
-                        CAuthor author = new CAuthor();
-                        author.Author = item.ToString();
-                        author.IsReliable = false;
-                        author.PrimeAffiliation = "";
-                        G.glb.lstAuthor.Add(author);
+                        foreach (RLiteratureAuthor author in lstLiteratureAuthor)
+                        {
+                            author.Title = txtTitle.Text;
+                        }
+                        foreach (RLiteratureOutSource outSource in lstLiteratureOutsource)
+                        {
+                            outSource.Title = txtTitle.Text;
+                        }
+                        foreach (RLiteratureTag tag in lstLiteratureTag)
+                        {
+                            tag.Title = txtTitle.Text;
+                        }
+                        foreach (RLiteratureInstitution institution in lstLiteratureInstitution)
+                        {
+                            institution.Title = txtTitle.Text;
+                        }
+                        foreach (RLiteratureInCiting inCiting in lstLiteratureInCiting)
+                        {
+                            inCiting.Title = txtTitle.Text;
+                        }
+                        G.glb.lstLiterature.Add(newLiterature);
+                        G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
+                        G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
+                        G.glb.lstLiteratureOutSource.AddRange(lstLiteratureOutsource);
+                        G.glb.lstLiteratureInstitution.AddRange(lstLiteratureInstitution);
+                        G.glb.lstLiteratureCiting.AddRange(lstLiteratureInCiting);
                     }
+                    else
+                    {
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PublishYear = Convert.ToInt32(txtYear.Text);
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).JournalOrConferenceName = txtJournalConference.Text;
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).InOneSentence = txtInOneSentence.Text;
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibKey = txtBibKey.Text;
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibTeX = literatureBib;
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).DateModified = DateTime.Today;
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Star = chkStar.Checked;
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PredatoryAlert = chkPredatroyAlert.Checked;
+                        foreach (RLiteratureAuthor author in lstLiteratureAuthor)
+                        {
+                            author.Title = txtTitle.Text;
+                        }
+                        foreach (RLiteratureTag tag in lstLiteratureTag)
+                        {
+                            tag.Title = txtTitle.Text;
+                        }
+                        foreach (RLiteratureOutSource outSource in lstLiteratureOutsource)
+                        {
+                            outSource.Title = txtTitle.Text;
+                        }
+                        foreach (RLiteratureInstitution institution in lstLiteratureInstitution)
+                        {
+                            institution.Title = txtTitle.Text;
+                        }
+                        foreach (RLiteratureInCiting inCiting in lstLiteratureInCiting)
+                        {
+                            inCiting.Title = txtTitle.Text;
+                        }
+                        G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == txtTitle.Text);
+                        G.glb.lstLiteratureTag.RemoveAll(o => o.Title == txtTitle.Text);
+                        G.glb.lstLiteratureOutSource.RemoveAll(o => o.Title == txtTitle.Text);
+                        G.glb.lstLiteratureInstitution.RemoveAll(o => o.Title == txtTitle.Text);
+                        G.glb.lstLiteratureCiting.RemoveAll(o => o.Title == txtTitle.Text);
+                        G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
+                        G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
+                        G.glb.lstLiteratureOutSource.AddRange(lstLiteratureOutsource);
+                        G.glb.lstLiteratureInstitution.AddRange(lstLiteratureInstitution);
+                        G.glb.lstLiteratureCiting.AddRange(lstLiteratureInCiting);
+                    }
+
+                    foreach (object item in lsbAuthor.Items)
+                    {
+                        if (!G.glb.lstAuthor.Exists(o => o.Author == item.ToString()))
+                        {
+                            CAuthor author = new CAuthor();
+                            author.Author = item.ToString();
+                            author.IsReliable = false;
+                            author.PrimeAffiliation = "";
+                            G.glb.lstAuthor.Add(author);
+                        }
+                    }
+                    RefreshTab();
+                    Dispose();
                 }
-                RefreshTab();
-                Dispose();
-            }
-            else
-            {
-                if (!EntirelyEmptyFlag)
+                else
                 {
-                    e.Cancel = true;
+                    if (!EntirelyEmptyFlag)
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
         }
@@ -363,6 +370,7 @@ namespace LifeGame
 
         private void tsmAttriAdd_Click(object sender, EventArgs e)
         {
+            modifiedFlag = true;
             switch (SelectedAttri)
             {
                 case "lsbTag":
@@ -394,6 +402,7 @@ namespace LifeGame
 
         private void tsmAttriRemove_Click(object sender, EventArgs e)
         {
+            modifiedFlag = true;
             switch (SelectedAttri)
             {
                 case "lsbTag":
@@ -461,6 +470,7 @@ namespace LifeGame
 
         private void tsmNewNote_Click(object sender, EventArgs e)
         {
+            modifiedFlag = true;
             plot D = new plot();
             D.CallInfoNoteAddNew(txtTitle.Text);
         }
@@ -494,6 +504,7 @@ namespace LifeGame
 
         private void tsmAuthorAdd_Click(object sender, EventArgs e)
         {
+            modifiedFlag = true;
             frmAddAuthor frmAddAuthor = new frmAddAuthor();
             frmAddAuthor.SendAuthor += new frmAddAuthor.GetAuthor(GetAuthor);
             frmAddAuthor.Show();
@@ -501,6 +512,7 @@ namespace LifeGame
 
         private void tsmAuthorRemove_Click(object sender, EventArgs e)
         {
+            modifiedFlag = true;
             if (lsbAuthor.SelectedItem != null)
             {
                 lstLiteratureAuthor.RemoveAll(o => o.Author == lsbAuthor.SelectedItem.ToString());
@@ -517,6 +529,7 @@ namespace LifeGame
 
         private void tsmAuthorUp_Click(object sender, EventArgs e)
         {
+            modifiedFlag = true;
             if (lsbAuthor.SelectedItem != null)
             {
                 if (lsbAuthor.SelectedIndex > 0)
@@ -535,6 +548,7 @@ namespace LifeGame
 
         private void tsmAuthorDown_Click(object sender, EventArgs e)
         {
+            modifiedFlag = true;
             if (lsbAuthor.SelectedItem != null)
             {
                 if (lsbAuthor.SelectedIndex < lsbAuthor.Items.Count - 1)
@@ -577,6 +591,7 @@ namespace LifeGame
 
         private void tsmAddOutSource_Click(object sender, EventArgs e)
         {
+            modifiedFlag = true;
             string tmpPath = txtTitle.Text + ".pdf";
             tmpPath = tmpPath.Replace(":", "-");
             tmpPath = "D:\\literature\\" + tmpPath;
@@ -590,6 +605,7 @@ namespace LifeGame
 
         private void DeleteOutSource_Click(object sender, EventArgs e)
         {
+            modifiedFlag = true;
             if (lsbOutSource.SelectedItem != null)
             {
                 lstLiteratureOutsource.RemoveAll(o => o.OutsourcePath == lsbOutSource.SelectedItem.ToString());
@@ -611,6 +627,7 @@ namespace LifeGame
             tmpLiterature.BibKey = txtBibKey.Text;
             tmpLiterature.JournalOrConferenceName = txtJournalConference.Text;
             tmpLiterature.BibTeX = literatureBib;
+            modifiedFlag = true;
 
             if (txtTitle.Enabled == false)
             {
@@ -715,6 +732,7 @@ namespace LifeGame
 
         private void txtYear_TextChanged(object sender, EventArgs e)
         {
+            modifiedFlag = true;
             GetBibKey();
         }
 
@@ -770,7 +788,22 @@ namespace LifeGame
 
         private void lsbSurvey_SelectedIndexChanged(object sender, EventArgs e)
         {
+            modifiedFlag = true;
+        }
 
+        private void txtJournalConference_TextChanged(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+        }
+
+        private void cbxBibEntryType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+        }
+
+        private void txtInOneSentence_TextChanged(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
         }
     }
 }
