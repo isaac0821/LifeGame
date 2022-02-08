@@ -360,6 +360,7 @@
             this.chkStar.TabIndex = 4;
             this.chkStar.Text = "Star";
             this.chkStar.UseVisualStyleBackColor = true;
+            this.chkStar.CheckedChanged += new System.EventHandler(this.chkStar_CheckedChanged);
             // 
             // txtInOneSentence
             // 
@@ -380,6 +381,7 @@
             this.chkPredatroyAlert.TabIndex = 5;
             this.chkPredatroyAlert.Text = "Low Quality Alert";
             this.chkPredatroyAlert.UseVisualStyleBackColor = true;
+            this.chkPredatroyAlert.CheckedChanged += new System.EventHandler(this.chkPredatroyAlert_CheckedChanged);
             // 
             // tableLayoutPanel1
             // 

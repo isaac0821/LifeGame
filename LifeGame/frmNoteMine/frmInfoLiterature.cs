@@ -805,5 +805,15 @@ namespace LifeGame
         {
             modifiedFlag = true;
         }
+
+        private void chkStar_CheckedChanged(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+        }
+
+        private void chkPredatroyAlert_CheckedChanged(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+        }
     }
 }
