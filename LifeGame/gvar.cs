@@ -52,6 +52,7 @@ namespace LifeGame
 
         // Survey
         public List<CSurvey> lstSurvey = new List<CSurvey>();
+        public List<RSurveyLiterature> lstSurveyLiterature = new List<RSurveyLiterature>();
         public List<RSurveyTag> lstSurveyTag = new List<RSurveyTag>();
         public List<RSurveyTagValueOption> lstSurveyTagValueOption = new List<RSurveyTagValueOption>();
         public List<RSurveySubTag> lstSurveySubTag = new List<RSurveySubTag>();

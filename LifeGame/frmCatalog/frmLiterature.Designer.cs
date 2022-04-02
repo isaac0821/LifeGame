@@ -1001,31 +1001,31 @@
             this.tsmAddLiterature,
             this.tsmRemoveLiterature});
             this.cmsLiterature.Name = "cmsLiterature";
-            this.cmsLiterature.Size = new System.Drawing.Size(118, 76);
+            this.cmsLiterature.Size = new System.Drawing.Size(181, 98);
             // 
             // tsmViewLiterature
             // 
             this.tsmViewLiterature.Name = "tsmViewLiterature";
-            this.tsmViewLiterature.Size = new System.Drawing.Size(117, 22);
+            this.tsmViewLiterature.Size = new System.Drawing.Size(180, 22);
             this.tsmViewLiterature.Text = "View";
             this.tsmViewLiterature.Click += new System.EventHandler(this.tsmViewLiterature_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(114, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmAddLiterature
             // 
             this.tsmAddLiterature.Name = "tsmAddLiterature";
-            this.tsmAddLiterature.Size = new System.Drawing.Size(117, 22);
+            this.tsmAddLiterature.Size = new System.Drawing.Size(180, 22);
             this.tsmAddLiterature.Text = "Add";
             this.tsmAddLiterature.Click += new System.EventHandler(this.tsmAddLiterature_Click);
             // 
             // tsmRemoveLiterature
             // 
             this.tsmRemoveLiterature.Name = "tsmRemoveLiterature";
-            this.tsmRemoveLiterature.Size = new System.Drawing.Size(117, 22);
+            this.tsmRemoveLiterature.Size = new System.Drawing.Size(180, 22);
             this.tsmRemoveLiterature.Text = "Remove";
             this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
             // 

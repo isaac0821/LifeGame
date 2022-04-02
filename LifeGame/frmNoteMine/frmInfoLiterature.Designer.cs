@@ -91,8 +91,10 @@
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.lsbSurvey = new System.Windows.Forms.ListBox();
             this.cmsSurvey = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmOpenSurvey = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmAddSurvey = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRemoveSurvey = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -782,23 +784,38 @@
             // cmsSurvey
             // 
             this.cmsSurvey.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.removeToolStripMenuItem});
+            this.tsmOpenSurvey,
+            this.toolStripSeparator5,
+            this.tsmAddSurvey,
+            this.tsmRemoveSurvey});
             this.cmsSurvey.Name = "cmsSurvey";
-            this.cmsSurvey.Size = new System.Drawing.Size(118, 48);
+            this.cmsSurvey.Size = new System.Drawing.Size(118, 76);
             // 
-            // addToolStripMenuItem
+            // tsmOpenSurvey
             // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            this.tsmOpenSurvey.Name = "tsmOpenSurvey";
+            this.tsmOpenSurvey.Size = new System.Drawing.Size(117, 22);
+            this.tsmOpenSurvey.Text = "Open";
+            this.tsmOpenSurvey.Click += new System.EventHandler(this.tsmOpenSurvey_Click);
             // 
-            // removeToolStripMenuItem
+            // toolStripSeparator5
             // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.removeToolStripMenuItem.Text = "Remove";
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(114, 6);
+            // 
+            // tsmAddSurvey
+            // 
+            this.tsmAddSurvey.Name = "tsmAddSurvey";
+            this.tsmAddSurvey.Size = new System.Drawing.Size(117, 22);
+            this.tsmAddSurvey.Text = "Add";
+            this.tsmAddSurvey.Click += new System.EventHandler(this.tsmAddSurvey_Click);
+            // 
+            // tsmRemoveSurvey
+            // 
+            this.tsmRemoveSurvey.Name = "tsmRemoveSurvey";
+            this.tsmRemoveSurvey.Size = new System.Drawing.Size(117, 22);
+            this.tsmRemoveSurvey.Text = "Remove";
+            this.tsmRemoveSurvey.Click += new System.EventHandler(this.tsmRemoveSurvey_Click);
             // 
             // frmInfoLiterature
             // 
@@ -901,12 +918,14 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.ListBox lsbSurvey;
         private System.Windows.Forms.ContextMenuStrip cmsSurvey;
-        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddSurvey;
+        private System.Windows.Forms.ToolStripMenuItem tsmRemoveSurvey;
         private System.Windows.Forms.Button btnGoogleScholar;
         private System.Windows.Forms.CheckBox chkStar;
         private System.Windows.Forms.CheckBox chkPredatroyAlert;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmOpenSurvey;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }

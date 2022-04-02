@@ -51,12 +51,12 @@ namespace LifeGame
             try
             {
                 Deserialize();
-                G.glb.lstSurvey = new List<CSurvey>();
-                G.glb.lstSurveyTag = new List<RSurveyTag>();
-                G.glb.lstSurveyTagValueOption = new List<RSurveyTagValueOption>();
-                G.glb.lstSurveySubTag = new List<RSurveySubTag>();
-                G.glb.lstSurveyLiteratureTagValue = new List<RSurveyLiteratureTagValue>();
-
+                //G.glb.lstSurvey = new List<CSurvey>();
+                //G.glb.lstSurveyTag = new List<RSurveyTag>();
+                //G.glb.lstSurveyTagValueOption = new List<RSurveyTagValueOption>();
+                //G.glb.lstSurveySubTag = new List<RSurveySubTag>();
+                //G.glb.lstSurveyLiteratureTagValue = new List<RSurveyLiteratureTagValue>();
+                //G.glb.lstSurveyLiterature = new List<RSurveyLiterature>();
 
                 // Tasks, Logs and Events
                 //G.glb.lstTask = new List<CTask>();
@@ -1331,12 +1331,7 @@ namespace LifeGame
             DrawLog();
         }
 
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FindNextToAlarm();
-        }
-
-        private void surveyVToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void surveyVToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmSurvey frmSurvey = new frmSurvey();
             frmSurvey.Show();
