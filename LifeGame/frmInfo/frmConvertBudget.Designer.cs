@@ -72,12 +72,12 @@
             this.cmsConvert.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmConvert});
             this.cmsConvert.Name = "cmsConvert";
-            this.cmsConvert.Size = new System.Drawing.Size(181, 48);
+            this.cmsConvert.Size = new System.Drawing.Size(117, 26);
             // 
             // tsmConvert
             // 
             this.tsmConvert.Name = "tsmConvert";
-            this.tsmConvert.Size = new System.Drawing.Size(180, 22);
+            this.tsmConvert.Size = new System.Drawing.Size(116, 22);
             this.tsmConvert.Text = "Convert";
             this.tsmConvert.Click += new System.EventHandler(this.tsmConvert_Click);
             // 

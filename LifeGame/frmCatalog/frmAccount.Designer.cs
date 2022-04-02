@@ -115,8 +115,8 @@
             this.colEquivalentAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCurrencyRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.picDebit = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.picDebit = new System.Windows.Forms.PictureBox();
             this.picCredit = new System.Windows.Forms.PictureBox();
             this.stsAccount.SuspendLayout();
             this.mnsAccount.SuspendLayout();
@@ -145,8 +145,8 @@
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picDebit)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picDebit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCredit)).BeginInit();
             this.SuspendLayout();
             // 
@@ -969,7 +969,7 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 820F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 889F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -1108,16 +1108,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Debit";
             // 
-            // picDebit
-            // 
-            this.picDebit.BackColor = System.Drawing.Color.White;
-            this.picDebit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picDebit.Location = new System.Drawing.Point(3, 16);
-            this.picDebit.Name = "picDebit";
-            this.picDebit.Size = new System.Drawing.Size(877, 75);
-            this.picDebit.TabIndex = 0;
-            this.picDebit.TabStop = false;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.picCredit);
@@ -1128,6 +1118,16 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Credit";
+            // 
+            // picDebit
+            // 
+            this.picDebit.BackColor = System.Drawing.Color.White;
+            this.picDebit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picDebit.Location = new System.Drawing.Point(3, 16);
+            this.picDebit.Name = "picDebit";
+            this.picDebit.Size = new System.Drawing.Size(877, 75);
+            this.picDebit.TabIndex = 0;
+            this.picDebit.TabStop = false;
             // 
             // picCredit
             // 
@@ -1193,8 +1193,8 @@
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetail)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picDebit)).EndInit();
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picDebit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCredit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

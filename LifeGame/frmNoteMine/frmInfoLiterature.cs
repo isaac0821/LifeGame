@@ -24,6 +24,7 @@ namespace LifeGame
         List<RLiteratureInstitution> lstLiteratureInstitution = new List<RLiteratureInstitution>();
         List<RLiteratureInCiting> lstLiteratureInCiting = new List<RLiteratureInCiting>();
         List<RLiteratureOutSource> lstLiteratureOutsource = new List<RLiteratureOutSource>();
+        List<RSurveyLiterature> lstSurveyLiterature = new List<RSurveyLiterature>();
         List<CNote> lstNote = new List<CNote>();
         CBibTeX literatureBib = new CBibTeX();
         public frmInfoLiterature(string LiteratureTitle)
@@ -37,6 +38,7 @@ namespace LifeGame
             lstLiteratureInCiting = G.glb.lstLiteratureCiting.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureOutsource = G.glb.lstLiteratureOutSource.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstNote = G.glb.lstNote.FindAll(o => o.LiteratureTitle == LiteratureTitle).ToList();
+            lstSurveyLiterature = G.glb.lstSurveyLiterature.FindAll(o => o.LiteratureTitle == LiteratureTitle).ToList();
             literatureBib = literature.BibTeX;
             InitializeComponent();
             LoadLiterature();
@@ -110,13 +112,13 @@ namespace LifeGame
             lsbInstitution.Items.Clear();
             lsbNote.Items.Clear();
             lsbInCiting.Items.Clear();
+            lsbSurvey.Items.Clear();
             chkStar.Checked = false;
         }
 
         private void LoadLiterature()
         {
             txtTitle.Enabled = false;
-
             txtTitle.Text = literature.Title;
             txtYear.Text = literature.PublishYear.ToString();
             txtJournalConference.Text = literature.JournalOrConferenceName;
@@ -158,6 +160,10 @@ namespace LifeGame
             foreach (CNote note in lstNote)
             {
                 lsbNote.Items.Add(note.TagTime.Year.ToString() + "." + note.TagTime.Month.ToString() + "." + note.TagTime.Day.ToString() + " - " + note.Topic);
+            }
+            foreach (RSurveyLiterature survey in lstSurveyLiterature)
+            {
+                lsbSurvey.Items.Add(survey.SurveyTitle);
             }
         }
 
@@ -268,12 +274,23 @@ namespace LifeGame
                         {
                             inCiting.Title = txtTitle.Text;
                         }
+                        foreach (RSurveyLiterature surveyLiterature in lstSurveyLiterature)
+                        {
+                            surveyLiterature.LiteratureTitle = txtTitle.Text;
+                            if (!G.glb.lstSurvey.Exists(o => o.SurveyTitle == surveyLiterature.SurveyTitle))
+                            {
+                                CSurvey survey = new CSurvey();
+                                survey.SurveyTitle = surveyLiterature.SurveyTitle;
+                                G.glb.lstSurvey.Add(survey);
+                            }
+                        }
                         G.glb.lstLiterature.Add(newLiterature);
                         G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
                         G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
                         G.glb.lstLiteratureOutSource.AddRange(lstLiteratureOutsource);
                         G.glb.lstLiteratureInstitution.AddRange(lstLiteratureInstitution);
                         G.glb.lstLiteratureCiting.AddRange(lstLiteratureInCiting);
+                        G.glb.lstSurveyLiterature.AddRange(lstSurveyLiterature);
                     }
                     else
                     {
@@ -771,24 +788,14 @@ namespace LifeGame
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(lsbAuthor.SelectedItem != null)
+            if (lsbAuthor.SelectedItem != null)
             {
-                if (G.glb.lstAuthor.Exists(o=>o.Author == lsbAuthor.SelectedItem.ToString()))
+                if (G.glb.lstAuthor.Exists(o => o.Author == lsbAuthor.SelectedItem.ToString()))
                 {
                     frmAuthorInfo frmAuthorInfo = new frmAuthorInfo(lsbAuthor.SelectedItem.ToString());
                     frmAuthorInfo.Show();
                 }
             }
-        }
-
-        private void addToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lsbSurvey_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            modifiedFlag = true;
         }
 
         private void txtJournalConference_TextChanged(object sender, EventArgs e)
@@ -814,6 +821,140 @@ namespace LifeGame
         private void chkPredatroyAlert_CheckedChanged(object sender, EventArgs e)
         {
             modifiedFlag = true;
+        }
+
+        private void tsmOpenSurvey_Click(object sender, EventArgs e)
+        {
+            if (lsbSurvey.SelectedItem != null)
+            {
+                if (G.glb.lstSurveyLiterature.Exists(o => 
+                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                    && o.LiteratureTitle == txtTitle.Text))
+                {
+                    frmInfoLiteratureSurvey frmInfoLiteratureSurvey = new frmInfoLiteratureSurvey(txtTitle.Text, lsbSurvey.SelectedItem.ToString());
+                    frmInfoLiteratureSurvey.Show();
+                }
+            }
+        }
+
+        private void tsmAddSurvey_Click(object sender, EventArgs e)
+        {
+            frmAddSurveyLiterature frmAddSurveyLiterature = new frmAddSurveyLiterature(txtTitle.Text);
+            frmAddSurveyLiterature.SendSurvey += new frmAddSurveyLiterature.GetSurvey(GetSurvey);
+            frmAddSurveyLiterature.Show();
+        }
+
+        private void GetSurvey(string strSurvey)
+        {
+            // 如果文献标题可编辑，先暂存到缓存区，否则直接操作存储区
+            if (txtTitle.Enabled == true)
+            {
+                if (!lstSurveyLiterature.Exists(o => o.SurveyTitle == strSurvey))
+                {
+                    RSurveyLiterature newSurveyLiterature = new RSurveyLiterature();
+                    newSurveyLiterature.SurveyTitle = strSurvey;
+                    lstSurveyLiterature.Add(newSurveyLiterature);
+                    lsbSurvey.Items.Add(strSurvey);
+                }
+                else
+                {
+                    MessageBox.Show("Already included in survey");
+                }
+            }
+            else
+            {
+                if (!G.glb.lstSurvey.Exists(o => o.SurveyTitle == strSurvey))
+                {
+                    CSurvey survey = new CSurvey();
+                    survey.SurveyTitle = strSurvey;
+                    G.glb.lstSurvey.Add(survey);
+                }
+                if (!G.glb.lstSurveyLiterature.Exists(o => o.LiteratureTitle == txtTitle.Text && o.SurveyTitle == strSurvey))
+                {
+                    RSurveyLiterature newSurveyLiterature = new RSurveyLiterature();
+                    newSurveyLiterature.LiteratureTitle = txtTitle.Text;
+                    newSurveyLiterature.SurveyTitle = strSurvey;
+                    G.glb.lstSurveyLiterature.Add(newSurveyLiterature);
+                    lsbSurvey.Items.Add(strSurvey);
+                }
+                else
+                {
+                    MessageBox.Show("Already included in survey");
+                }
+            }
+        }
+
+
+        private void tsmRemoveSurvey_Click(object sender, EventArgs e)
+        {
+            if (lsbSurvey.SelectedItem != null)
+            {
+                if (txtTitle.Enabled == true)
+                {
+                    lstSurveyLiterature.RemoveAll(o => o.SurveyTitle == lsbSurvey.SelectedItem.ToString());
+                    lsbSurvey.Items.Clear();
+                    foreach (RSurveyLiterature item in lstSurveyLiterature)
+                    {
+                        lsbSurvey.Items.Add(item.SurveyTitle);
+                    }
+                }
+                else
+                {
+                    // 如果已经有数据， 跳出确认框确认下，否则直接删
+                    if (G.glb.lstSurveyLiteratureTagValue.Exists(o => 
+                        o.LiteratureTitle == txtTitle.Text
+                        && o.SurveyTitle == lsbSurvey.SelectedItem.ToString()))
+                    {
+                        DialogResult result = MessageBox.Show("Warning: There are some records for this literature, delete can not be restored!", "Delete", MessageBoxButtons.YesNo);
+                        switch (result)
+                        {
+                            case DialogResult.Yes:
+                                G.glb.lstSurveyLiteratureTagValue.RemoveAll(o => 
+                                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                                    && o.LiteratureTitle == txtTitle.Text); 
+                                G.glb.lstSurveyLiterature.RemoveAll(o =>
+                                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                                    && o.LiteratureTitle == txtTitle.Text);                                
+                                lsbSurvey.Items.Clear();
+                                foreach (RSurveyLiterature item in G.glb.lstSurveyLiterature)
+                                {
+                                    lsbSurvey.Items.Add(item.SurveyTitle);
+                                }
+                                break;
+                            case DialogResult.No:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        G.glb.lstSurveyLiterature.RemoveAll(o =>
+                            o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                            && o.LiteratureTitle == txtTitle.Text);
+                        lsbSurvey.Items.Clear();
+                        foreach (RSurveyLiterature item in G.glb.lstSurveyLiterature)
+                        {
+                            lsbSurvey.Items.Add(item.SurveyTitle);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void lsbSurvey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tsmOpenSurvey.Enabled = false;
+            if (lsbSurvey.SelectedItem != null)
+            {
+                if (G.glb.lstSurveyLiterature.Exists(o =>
+                    o.LiteratureTitle == txtTitle.Text
+                    && o.SurveyTitle == lsbSurvey.SelectedItem.ToString())
+                    && txtTitle.Enabled == false)
+                {
+                    tsmOpenSurvey.Enabled = true;
+                }
+            }
         }
     }
 }

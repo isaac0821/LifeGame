@@ -184,7 +184,6 @@ namespace LifeGame
         public string SurveyTitle;
         public string Tag;
         public string TagOption;
-        public int TagOptionIndex;
     }
 
     [Serializable]
@@ -197,12 +196,21 @@ namespace LifeGame
     }
 
     [Serializable]
+    public class RSurveyLiterature
+    {
+        public string SurveyTitle;
+        public string LiteratureTitle;
+    }
+
+    [Serializable]
     public class RSurveyLiteratureTagValue
     {
         public string SurveyTitle;
         public string LiteratureTitle;
         public string Tag;
-        public string TagValueString; // Convert tag value (includeing Number/Boolean/SingleOptions) into string 
+        public string TagValueString;
+        public int TagValueNumber;
+        public bool TagValueBoolean;
     }
     #endregion
 

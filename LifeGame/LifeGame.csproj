@@ -53,6 +53,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes.cs" />
+    <Compile Include="frmAdd\frmAddSurveyLiterature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd\frmAddSurveyLiterature.Designer.cs">
+      <DependentUpon>frmAddSurveyLiterature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdd\frmAddSurveyTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd\frmAddSurveyTag.Designer.cs">
+      <DependentUpon>frmAddSurveyTag.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAdd\frmAddTag.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +82,36 @@
     </Compile>
     <Compile Include="frmAdd\frmAddInstitution.Designer.cs">
       <DependentUpon>frmAddInstitution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNoteMine\frmInfoLiteratureSurvey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoteMine\frmInfoLiteratureSurvey.Designer.cs">
+      <DependentUpon>frmInfoLiteratureSurvey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveySingleOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveySingleOption.Designer.cs">
+      <DependentUpon>frmInfoLiteratureSurveySingleOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagNumber.Designer.cs">
+      <DependentUpon>frmInfoLiteratureSurveyTagNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagString.Designer.cs">
+      <DependentUpon>frmInfoLiteratureSurveyTagString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagBoolean.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagBoolean.Designer.cs">
+      <DependentUpon>frmInfoLiteratureSurveyTagBoolean.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSettings\frmAuthorInfo.cs">
       <SubType>Form</SubType>
@@ -311,6 +353,12 @@
     <Compile Include="ParseBibTeX.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAdd\frmAddSurveyLiterature.resx">
+      <DependentUpon>frmAddSurveyLiterature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdd\frmAddSurveyTag.resx">
+      <DependentUpon>frmAddSurveyTag.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddTag.resx">
       <DependentUpon>frmAddTag.cs</DependentUpon>
     </EmbeddedResource>
@@ -355,6 +403,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddInstitution.resx">
       <DependentUpon>frmAddInstitution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurvey.resx">
+      <DependentUpon>frmInfoLiteratureSurvey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveySingleOption.resx">
+      <DependentUpon>frmInfoLiteratureSurveySingleOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagNumber.resx">
+      <DependentUpon>frmInfoLiteratureSurveyTagNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagString.resx">
+      <DependentUpon>frmInfoLiteratureSurveyTagString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagBoolean.resx">
+      <DependentUpon>frmInfoLiteratureSurveyTagBoolean.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettings\frmAuthorInfo.resx">
       <DependentUpon>frmAuthorInfo.cs</DependentUpon>
@@ -535,6 +598,7 @@
     <None Include="Resources\iconTransactionDueOut.png" />
     <None Include="Resources\iconTransactionDueIn.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
