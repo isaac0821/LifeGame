@@ -19,6 +19,9 @@ namespace LifeGame
             InitializeComponent();
         }
 
+        public delegate void RefreshDgvHandler();
+        public event RefreshDgvHandler RefreshDgv;
+
         private string LiteratureTitle;
         private string SurveyName;
 

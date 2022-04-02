@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("(Root)");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("(Root)");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSurvey));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.filesFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +51,6 @@
             this.trvSurveyTag = new System.Windows.Forms.TreeView();
             this.cmsTagTree = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAddTag = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmEditTag = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveTag = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmUpTag = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,8 +70,7 @@
             this.dgvSurvey = new System.Windows.Forms.DataGridView();
             this.colLiterature = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsSurveyLit = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cmsAddLiterature = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsOption = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsAddTagOption = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsEditTagOption = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,6 +78,12 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.upToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.downToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRenameTag = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSingleOption2String = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmString2SingleOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmViewLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmViewSurvey = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -295,10 +299,10 @@
             this.trvSurveyTag.ImageList = this.iglTag;
             this.trvSurveyTag.Location = new System.Drawing.Point(3, 16);
             this.trvSurveyTag.Name = "trvSurveyTag";
-            treeNode2.Name = "(Root)";
-            treeNode2.Text = "(Root)";
+            treeNode1.Name = "(Root)";
+            treeNode1.Text = "(Root)";
             this.trvSurveyTag.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.trvSurveyTag.SelectedImageIndex = 0;
             this.trvSurveyTag.Size = new System.Drawing.Size(213, 296);
             this.trvSurveyTag.TabIndex = 1;
@@ -308,7 +312,9 @@
             // 
             this.cmsTagTree.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAddTag,
-            this.tsmEditTag,
+            this.tsmRenameTag,
+            this.tsmString2SingleOption,
+            this.tsmSingleOption2String,
             this.tsmRemoveTag,
             this.toolStripSeparator1,
             this.tsmUpTag,
@@ -317,64 +323,57 @@
             this.tsmBelongToTag,
             this.tsmIndependentTag});
             this.cmsTagTree.Name = "cmsTagTree";
-            this.cmsTagTree.Size = new System.Drawing.Size(142, 170);
+            this.cmsTagTree.Size = new System.Drawing.Size(181, 236);
             // 
             // tsmAddTag
             // 
             this.tsmAddTag.Name = "tsmAddTag";
-            this.tsmAddTag.Size = new System.Drawing.Size(141, 22);
+            this.tsmAddTag.Size = new System.Drawing.Size(180, 22);
             this.tsmAddTag.Text = "Add";
             this.tsmAddTag.Click += new System.EventHandler(this.cmsAddTag_Click);
-            // 
-            // tsmEditTag
-            // 
-            this.tsmEditTag.Name = "tsmEditTag";
-            this.tsmEditTag.Size = new System.Drawing.Size(141, 22);
-            this.tsmEditTag.Text = "Edit";
-            this.tsmEditTag.Click += new System.EventHandler(this.cmsEditTag_Click);
             // 
             // tsmRemoveTag
             // 
             this.tsmRemoveTag.Name = "tsmRemoveTag";
-            this.tsmRemoveTag.Size = new System.Drawing.Size(141, 22);
+            this.tsmRemoveTag.Size = new System.Drawing.Size(180, 22);
             this.tsmRemoveTag.Text = "Remove";
             this.tsmRemoveTag.Click += new System.EventHandler(this.cmsTagRemove_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmUpTag
             // 
             this.tsmUpTag.Name = "tsmUpTag";
-            this.tsmUpTag.Size = new System.Drawing.Size(141, 22);
+            this.tsmUpTag.Size = new System.Drawing.Size(180, 22);
             this.tsmUpTag.Text = "Up";
             this.tsmUpTag.Click += new System.EventHandler(this.cmsTagUp_Click);
             // 
             // tsmDownTag
             // 
             this.tsmDownTag.Name = "tsmDownTag";
-            this.tsmDownTag.Size = new System.Drawing.Size(141, 22);
+            this.tsmDownTag.Size = new System.Drawing.Size(180, 22);
             this.tsmDownTag.Text = "Down";
             this.tsmDownTag.Click += new System.EventHandler(this.cmsTagDown_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(138, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmBelongToTag
             // 
             this.tsmBelongToTag.Name = "tsmBelongToTag";
-            this.tsmBelongToTag.Size = new System.Drawing.Size(141, 22);
+            this.tsmBelongToTag.Size = new System.Drawing.Size(180, 22);
             this.tsmBelongToTag.Text = "Belong To";
             this.tsmBelongToTag.Click += new System.EventHandler(this.cmsTagBelongTo_Click);
             // 
             // tsmIndependentTag
             // 
             this.tsmIndependentTag.Name = "tsmIndependentTag";
-            this.tsmIndependentTag.Size = new System.Drawing.Size(141, 22);
+            this.tsmIndependentTag.Size = new System.Drawing.Size(180, 22);
             this.tsmIndependentTag.Text = "Independent";
             this.tsmIndependentTag.Click += new System.EventHandler(this.cmsTagIndependent_Click);
             // 
@@ -504,32 +503,30 @@
             this.dgvSurvey.ReadOnly = true;
             this.dgvSurvey.Size = new System.Drawing.Size(639, 525);
             this.dgvSurvey.TabIndex = 3;
+            this.dgvSurvey.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSurvey_CellContentClick);
             // 
             // colLiterature
             // 
             this.colLiterature.HeaderText = "Literature";
             this.colLiterature.Name = "colLiterature";
+            this.colLiterature.ReadOnly = true;
             // 
             // cmsSurveyLit
             // 
             this.cmsSurveyLit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmsAddLiterature,
-            this.cmsRemoveLiterature});
+            this.tsmViewLiterature,
+            this.tsmViewSurvey,
+            this.toolStripSeparator4,
+            this.tsmRemoveLiterature});
             this.cmsSurveyLit.Name = "cmsSurveyLit";
-            this.cmsSurveyLit.Size = new System.Drawing.Size(171, 48);
+            this.cmsSurveyLit.Size = new System.Drawing.Size(191, 76);
             // 
-            // cmsAddLiterature
+            // tsmRemoveLiterature
             // 
-            this.cmsAddLiterature.Name = "cmsAddLiterature";
-            this.cmsAddLiterature.Size = new System.Drawing.Size(170, 22);
-            this.cmsAddLiterature.Text = "Add Literature";
-            this.cmsAddLiterature.Click += new System.EventHandler(this.cmsAddLiterature_Click);
-            // 
-            // cmsRemoveLiterature
-            // 
-            this.cmsRemoveLiterature.Name = "cmsRemoveLiterature";
-            this.cmsRemoveLiterature.Size = new System.Drawing.Size(170, 22);
-            this.cmsRemoveLiterature.Text = "Remove Literature";
+            this.tsmRemoveLiterature.Name = "tsmRemoveLiterature";
+            this.tsmRemoveLiterature.Size = new System.Drawing.Size(190, 22);
+            this.tsmRemoveLiterature.Text = "Remove";
+            this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
             // 
             // cmsOption
             // 
@@ -577,6 +574,46 @@
             this.downToolStripMenuItem1.Name = "downToolStripMenuItem1";
             this.downToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
             this.downToolStripMenuItem1.Text = "Down";
+            // 
+            // tsmRenameTag
+            // 
+            this.tsmRenameTag.Name = "tsmRenameTag";
+            this.tsmRenameTag.Size = new System.Drawing.Size(180, 22);
+            this.tsmRenameTag.Text = "Rename";
+            this.tsmRenameTag.Click += new System.EventHandler(this.tsmRenameTag_Click);
+            // 
+            // tsmSingleOption2String
+            // 
+            this.tsmSingleOption2String.Name = "tsmSingleOption2String";
+            this.tsmSingleOption2String.Size = new System.Drawing.Size(180, 22);
+            this.tsmSingleOption2String.Text = "SingleOption2String";
+            this.tsmSingleOption2String.Click += new System.EventHandler(this.tsmSingleOption2String_Click);
+            // 
+            // tsmString2SingleOption
+            // 
+            this.tsmString2SingleOption.Name = "tsmString2SingleOption";
+            this.tsmString2SingleOption.Size = new System.Drawing.Size(180, 22);
+            this.tsmString2SingleOption.Text = "String2SingleOption";
+            this.tsmString2SingleOption.Click += new System.EventHandler(this.tsmString2SingleOption_Click);
+            // 
+            // tsmViewLiterature
+            // 
+            this.tsmViewLiterature.Name = "tsmViewLiterature";
+            this.tsmViewLiterature.Size = new System.Drawing.Size(190, 22);
+            this.tsmViewLiterature.Text = "View Literature";
+            this.tsmViewLiterature.Click += new System.EventHandler(this.tsmViewLiterature_Click);
+            // 
+            // tsmViewSurvey
+            // 
+            this.tsmViewSurvey.Name = "tsmViewSurvey";
+            this.tsmViewSurvey.Size = new System.Drawing.Size(190, 22);
+            this.tsmViewSurvey.Text = "View Literature Survey";
+            this.tsmViewSurvey.Click += new System.EventHandler(this.tsmViewSurvey_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(187, 6);
             // 
             // frmSurvey
             // 
@@ -653,7 +690,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem upToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem downToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem tsmEditTag;
         private System.Windows.Forms.Label lblTagName;
         private System.Windows.Forms.ToolStripMenuItem exportSurveyEToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -661,9 +697,14 @@
         private System.Windows.Forms.DataGridView dgvSurvey;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLiterature;
         private System.Windows.Forms.ContextMenuStrip cmsSurveyLit;
-        private System.Windows.Forms.ToolStripMenuItem cmsAddLiterature;
-        private System.Windows.Forms.ToolStripMenuItem cmsRemoveLiterature;
+        private System.Windows.Forms.ToolStripMenuItem tsmRemoveLiterature;
         private System.Windows.Forms.ListBox lsbOption;
         private System.Windows.Forms.Label lblTagType;
+        private System.Windows.Forms.ToolStripMenuItem tsmRenameTag;
+        private System.Windows.Forms.ToolStripMenuItem tsmString2SingleOption;
+        private System.Windows.Forms.ToolStripMenuItem tsmSingleOption2String;
+        private System.Windows.Forms.ToolStripMenuItem tsmViewLiterature;
+        private System.Windows.Forms.ToolStripMenuItem tsmViewSurvey;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }

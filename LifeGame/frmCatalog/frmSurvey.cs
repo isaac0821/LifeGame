@@ -223,23 +223,62 @@ namespace LifeGame
                 newNode.SelectedImageIndex = 1 + (int)G.glb.lstSurveyTag.Find(o => o.SurveyTitle == lblSurvey.Text && o.Tag == nodeName).TagType;
                 newNode.ImageIndex = 1 + (int)G.glb.lstSurveyTag.Find(o => o.SurveyTitle == lblSurvey.Text && o.Tag == nodeName).TagType;
                 node.Nodes.Add(newNode);
-            }
+                LoadSurveyLits(lsbSurvey.SelectedItem.ToString());
+            }            
         }
 
-        private void cmsEditTag_Click(object sender, EventArgs e)
-        {
-            if (trvSurveyTag.SelectedNode != null)
-            {
-                // Check if exists Survey
-
-            }
-        }
         private void cmsTagRemove_Click(object sender, EventArgs e)
         {
+            bool canRemove = false;
             if (trvSurveyTag.SelectedNode != null)
             {
-                // Check if exists Survey
-
+                if (trvSurveyTag.SelectedNode.Nodes.Count == 0 && trvSurveyTag.SelectedNode.Text != "(Root)")
+                {
+                    // Check if exists Survey
+                    if (G.glb.lstSurveyLiteratureTagValue.Exists(o =>
+                        o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                        && o.Tag == trvSurveyTag.SelectedNode.Text))
+                    {
+                        DialogResult result = MessageBox.Show("Warning: Survey that has been deleted cannot be restored!", "Delete", MessageBoxButtons.YesNo);
+                        switch (result)
+                        {
+                            case DialogResult.Yes:
+                                canRemove = true;
+                                break;
+                            case DialogResult.No:
+                                canRemove = false;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        canRemove = true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Can only remove the tag that does not have child node.");
+                }
+            }
+            if (canRemove)
+            {
+                string UpperTag = trvSurveyTag.SelectedNode.Parent.Text;                
+                G.glb.lstSurveyTag.RemoveAll(o =>
+                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                    && o.Tag == trvSurveyTag.SelectedNode.Text);
+                G.glb.lstSurveyLiteratureTagValue.RemoveAll(o =>
+                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                    && o.Tag == trvSurveyTag.SelectedNode.Text);
+                G.glb.lstSurveySubTag.RemoveAll(o =>
+                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                    && o.SubTag == trvSurveyTag.SelectedNode.Text);
+                G.glb.lstSurveyTagValueOption.RemoveAll(o =>
+                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                    && o.Tag == trvSurveyTag.SelectedNode.Text);
+                trvSurveyTag.Nodes.Remove(trvSurveyTag.SelectedNode);
+                ReIndex(UpperTag);
             }
         }
 
@@ -370,7 +409,7 @@ namespace LifeGame
                 {
                     LoadTagInfo();
                     tsmAddTag.Enabled = true;
-                    tsmEditTag.Enabled = false;
+                    tsmRenameTag.Enabled = false;
                     tsmRemoveTag.Enabled = false;
                     tsmUpTag.Enabled = false;
                     tsmDownTag.Enabled = false;
@@ -380,11 +419,12 @@ namespace LifeGame
                 else
                 {
                     LoadTagInfo(lsbSurvey.SelectedItem.ToString(), trvSurveyTag.SelectedNode.Text);
-                    tsmEditTag.Enabled = true;
+                    tsmRenameTag.Enabled = true;
                     tsmRemoveTag.Enabled = true;
                     tsmUpTag.Enabled = true;
                     tsmDownTag.Enabled = true;
                     tsmIndependentTag.Enabled = true;
+                    // Add
                     if (G.glb.lstSurveyTag.Find(o => 
                         o.SurveyTitle == lsbSurvey.SelectedItem.ToString() 
                         && o.Tag == trvSurveyTag.SelectedNode.Text).TagType == ESurveyTagType.NonBottom)
@@ -394,6 +434,28 @@ namespace LifeGame
                     else
                     {
                         tsmAddTag.Enabled = false;
+                    }
+                    // String2SingleOption
+                    if (G.glb.lstSurveyTag.Find(o =>
+                        o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                        && o.Tag == trvSurveyTag.SelectedNode.Text).TagType == ESurveyTagType.String)
+                    {
+                        tsmString2SingleOption.Enabled = true;
+                    }
+                    else
+                    {
+                        tsmString2SingleOption.Enabled = false;
+                    }
+                    // SingleOption2String
+                    if (G.glb.lstSurveyTag.Find(o =>
+                        o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                        && o.Tag == trvSurveyTag.SelectedNode.Text).TagType == ESurveyTagType.SingleOption)
+                    {
+                        tsmSingleOption2String.Enabled = true;
+                    }
+                    else
+                    {
+                        tsmSingleOption2String.Enabled = false;
                     }
                     if (trvSurveyTag.SelectedNode.PrevNode != null)
                     {
@@ -545,9 +607,178 @@ namespace LifeGame
 
         }
 
-        private void cmsAddLiterature_Click(object sender, EventArgs e)
+        private void tsmString2SingleOption_Click(object sender, EventArgs e)
+        {
+            if (trvSurveyTag.SelectedNode != null)
+            {
+                if (trvSurveyTag.SelectedNode.Text != "(Root)")
+                {
+                    if (G.glb.lstSurveyTag.Find(o =>
+                        o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                        && o.Tag == trvSurveyTag.SelectedNode.Text).TagType == ESurveyTagType.String)
+                    {
+                        G.glb.lstSurveyTag.Find(o =>
+                            o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                            && o.Tag == trvSurveyTag.SelectedNode.Text).TagType = ESurveyTagType.SingleOption;
+                        List<string> existOption = new List<string>();
+                        foreach (RSurveyLiteratureTagValue item in G.glb.lstSurveyLiteratureTagValue.FindAll(o =>
+                            o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                            && o.Tag == trvSurveyTag.SelectedNode.Text).ToList())
+                        {
+                            if (!existOption.Exists(o => o == item.TagValueString))
+                            {
+                                existOption.Add(item.TagValueString);
+                            }
+                        }
+                        foreach (string option in existOption)
+                        {
+                            RSurveyTagValueOption newOption = new RSurveyTagValueOption();
+                            newOption.SurveyTitle = lsbSurvey.SelectedItem.ToString();
+                            newOption.Tag = trvSurveyTag.SelectedNode.Text;
+                            newOption.TagOption = option;
+                            G.glb.lstSurveyTagValueOption.Add(newOption);
+                        }
+                    }
+                    trvSurveyTag.SelectedNode.SelectedImageIndex = 1 + (int)G.glb.lstSurveyTag.Find(o =>
+                        o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                        && o.Tag == trvSurveyTag.SelectedNode.Text).TagType;
+                    trvSurveyTag.SelectedNode.ImageIndex = 1 + (int)G.glb.lstSurveyTag.Find(o =>
+                        o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                        && o.Tag == trvSurveyTag.SelectedNode.Text).TagType;
+                }
+            }
+        }
+
+        private void tsmSingleOption2String_Click(object sender, EventArgs e)
+        {
+            if (trvSurveyTag.SelectedNode != null)
+            {
+                if (trvSurveyTag.SelectedNode.Text != "(Root)") {
+                    if (G.glb.lstSurveyTag.Find(o =>
+                        o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                        && o.Tag == trvSurveyTag.SelectedNode.Text).TagType == ESurveyTagType.SingleOption)
+                    {
+                        G.glb.lstSurveyTag.Find(o =>
+                            o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                            && o.Tag == trvSurveyTag.SelectedNode.Text).TagType = ESurveyTagType.String;
+                        G.glb.lstSurveyTagValueOption.RemoveAll(o =>
+                            o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                            && o.Tag == trvSurveyTag.SelectedNode.Text);
+                        
+                    }
+                    trvSurveyTag.SelectedNode.SelectedImageIndex = 1 + (int)G.glb.lstSurveyTag.Find(o => 
+                        o.SurveyTitle == lsbSurvey.SelectedItem.ToString() 
+                        && o.Tag == trvSurveyTag.SelectedNode.Text).TagType;
+                    trvSurveyTag.SelectedNode.ImageIndex = 1 + (int)G.glb.lstSurveyTag.Find(o => 
+                        o.SurveyTitle == lsbSurvey.SelectedItem.ToString() 
+                        && o.Tag == trvSurveyTag.SelectedNode.Text).TagType;
+                }
+            }
+        }
+
+        private void dgvSurvey_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void tsmViewLiterature_Click(object sender, EventArgs e)
+        {
+            if (dgvSurvey.SelectedCells.Count == 1)
+            {
+                frmInfoLiterature frmInfoLiterature = new frmInfoLiterature(dgvSurvey.CurrentRow.Cells[0].Value.ToString());
+                frmInfoLiterature.Show();
+            }
+        }
+
+        private void tsmViewSurvey_Click(object sender, EventArgs e)
+        {
+            if (dgvSurvey.SelectedCells.Count == 1)
+            {
+                frmInfoLiteratureSurvey frmInfoLiteratureSurvey = new frmInfoLiteratureSurvey(dgvSurvey.CurrentRow.Cells[0].Value.ToString(), lsbSurvey.SelectedItem.ToString());
+                frmInfoLiteratureSurvey.Show();
+            }
+        }
+
+        private void tsmRemoveLiterature_Click(object sender, EventArgs e)
+        {
+            if (dgvSurvey.SelectedCells.Count == 1)
+            {
+                if (G.glb.lstSurveyLiteratureTagValue.Exists(o =>
+                        o.LiteratureTitle == dgvSurvey.CurrentRow.Cells[0].Value.ToString()
+                        && o.SurveyTitle == lsbSurvey.SelectedItem.ToString()))
+                {
+                    DialogResult result = MessageBox.Show("Warning: There are some records for this literature, delete can not be restored!", "Delete", MessageBoxButtons.YesNo);
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            G.glb.lstSurveyLiteratureTagValue.RemoveAll(o =>
+                                o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                                && o.LiteratureTitle == dgvSurvey.CurrentRow.Cells[0].Value.ToString());
+                            G.glb.lstSurveyLiterature.RemoveAll(o =>
+                                o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                                && o.LiteratureTitle == dgvSurvey.CurrentRow.Cells[0].Value.ToString());
+                            break;
+                        case DialogResult.No:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    G.glb.lstSurveyLiterature.RemoveAll(o =>
+                        o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                        && o.LiteratureTitle == dgvSurvey.CurrentRow.Cells[0].Value.ToString());
+                }
+                LoadSurveyLits(lsbSurvey.SelectedItem.ToString());
+            }
+        }
+
+        private void tsmRenameTag_Click(object sender, EventArgs e)
+        {
+            string oldTagName = trvSurveyTag.SelectedNode.Text;
+            string newTagName = Interaction.InputBox("Rename Tag", "Rename Tag", oldTagName, 300, 300);
+            if (G.glb.lstSurveyTag.Exists(o => 
+                o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                && o.Tag == newTagName))
+            {
+                MessageBox.Show("Survey exists!");
+            }
+            else
+            {
+                foreach (RSurveyTag tag in G.glb.lstSurveyTag.FindAll(o =>
+                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                    && o.Tag == oldTagName))
+                {
+                    tag.Tag = newTagName;
+                }
+                foreach (RSurveyLiteratureTagValue litTag in G.glb.lstSurveyLiteratureTagValue.FindAll(o =>
+                   o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                   && o.Tag == oldTagName))
+                {
+                    litTag.Tag = newTagName;
+                }
+                foreach (RSurveySubTag subTag in G.glb.lstSurveySubTag.FindAll(o =>
+                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                    && o.Tag == oldTagName))
+                {
+                    subTag.Tag = newTagName;
+                }
+                foreach (RSurveySubTag subTag in G.glb.lstSurveySubTag.FindAll(o =>
+                   o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                   && o.SubTag == oldTagName))
+                {
+                    subTag.SubTag = newTagName;
+                }
+                foreach (RSurveyTagValueOption tagOption in G.glb.lstSurveyTagValueOption.FindAll(o =>
+                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                    && o.Tag == oldTagName))
+                {
+                    tagOption.Tag = newTagName;
+                }
+            }
+            trvSurveyTag.SelectedNode.Text = newTagName;
+            LoadSurveyLits(lsbSurvey.SelectedItem.ToString());
         }
     }
 }
