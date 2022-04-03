@@ -393,12 +393,15 @@ namespace LifeGame
                 }
             }
         }
-        private void ReIndex(string UpperTask)
+        private void ReIndex(string UpperTag)
         {
-            List<RSurveySubTag> sameLevel = G.glb.lstSurveySubTag.FindAll(o => o.Tag == UpperTask);
+            List<RSurveySubTag> sameLevel = G.glb.lstSurveySubTag.FindAll(o => o.Tag == UpperTag && o.SurveyTitle == lsbSurvey.SelectedItem.ToString());
             foreach (RSurveySubTag subTag in sameLevel)
             {
-                G.glb.lstSurveySubTag.Find(o => o.Tag == UpperTask && o.SubTag == subTag.SubTag).SubTagIndex = trvSurveyTag.Nodes.Find(subTag.SubTag, true).FirstOrDefault().Index;
+                G.glb.lstSurveySubTag.Find(o => 
+                    o.Tag == UpperTag 
+                    && o.SubTag == subTag.SubTag 
+                    && o.SurveyTitle == lsbSurvey.SelectedItem.ToString()).SubTagIndex = trvSurveyTag.Nodes.Find(subTag.SubTag, true).FirstOrDefault().Index;
             }
         }
         private void trvSurveyTag_AfterSelect(object sender, TreeViewEventArgs e)
