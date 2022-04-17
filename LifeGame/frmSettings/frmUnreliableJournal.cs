@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace LifeGame
 {
-    public partial class frmReliableJournal : Form
+    public partial class frmUnreliableJournal : Form
     {
-        public frmReliableJournal()
+        public frmUnreliableJournal()
         {
             InitializeComponent();
         }
 
-        private void frmGoodJournal_Load(object sender, EventArgs e)
+        private void frmBadJournal_Load(object sender, EventArgs e)
         {
             refresh();
         }
@@ -27,12 +27,12 @@ namespace LifeGame
 
         private void refresh()
         {
-            lsbJournalGood.Items.Clear();
+            lsbJournalBad.Items.Clear();
             lsbJournalRemain.Items.Clear();
             List<string> lstAllJournal = new List<string>();
             foreach (CLiterature lit in G.glb.lstLiterature)
             {
-                if (!lstAllJournal.Exists(o=>o == lit.JournalOrConferenceName) && !G.glb.lstBadJournal.Exists(o => o == lit.JournalOrConferenceName))
+                if (!lstAllJournal.Exists(o=>o == lit.JournalOrConferenceName) && !G.glb.lstGoodJournal.Exists(o => o == lit.JournalOrConferenceName))
                 {
                     lstAllJournal.Add(lit.JournalOrConferenceName);
                 }
@@ -40,9 +40,9 @@ namespace LifeGame
             lstAllJournal = lstAllJournal.OrderBy(o => o).ToList();
             foreach (string jour in lstAllJournal)
             {
-                if (G.glb.lstGoodJournal.Exists(o => o == jour))
+                if (G.glb.lstBadJournal.Exists(o => o == jour))
                 {
-                    lsbJournalGood.Items.Add(jour);
+                    lsbJournalBad.Items.Add(jour);
                 }
                 else
                 {
@@ -57,7 +57,7 @@ namespace LifeGame
             {
                 foreach (object selected in lsbJournalRemain.SelectedItems)
                 {
-                    G.glb.lstGoodJournal.Add(selected.ToString());
+                    G.glb.lstBadJournal.Add(selected.ToString());
                 }
             }
             refresh();
@@ -65,11 +65,11 @@ namespace LifeGame
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if (lsbJournalGood.SelectedItems != null)
+            if (lsbJournalBad.SelectedItems != null)
             {
-                foreach(object selected in lsbJournalGood.SelectedItems)
+                foreach(object selected in lsbJournalBad.SelectedItems)
                 {
-                    G.glb.lstGoodJournal.Remove(selected.ToString());
+                    G.glb.lstBadJournal.Remove(selected.ToString());
                 }
             }
             refresh();

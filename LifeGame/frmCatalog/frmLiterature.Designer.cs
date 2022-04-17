@@ -113,6 +113,7 @@
             this.chkNoBad = new System.Windows.Forms.CheckBox();
             this.chkOnlyGood = new System.Windows.Forms.CheckBox();
             this.lblNumFound = new System.Windows.Forms.Label();
+            this.unreliableSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -183,6 +184,7 @@
             // 
             this.settingsSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.goodJournalsToolStripMenuItem,
+            this.unreliableSourceToolStripMenuItem,
             this.toolStripSeparator2,
             this.authorsToolStripMenuItem});
             this.settingsSToolStripMenuItem.Name = "settingsSToolStripMenuItem";
@@ -192,19 +194,19 @@
             // goodJournalsToolStripMenuItem
             // 
             this.goodJournalsToolStripMenuItem.Name = "goodJournalsToolStripMenuItem";
-            this.goodJournalsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.goodJournalsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.goodJournalsToolStripMenuItem.Text = "Reliable Source";
             this.goodJournalsToolStripMenuItem.Click += new System.EventHandler(this.goodJournalsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(151, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // authorsToolStripMenuItem
             // 
             this.authorsToolStripMenuItem.Name = "authorsToolStripMenuItem";
-            this.authorsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.authorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.authorsToolStripMenuItem.Text = "Authors";
             this.authorsToolStripMenuItem.Click += new System.EventHandler(this.authorsToolStripMenuItem_Click);
             // 
@@ -1001,31 +1003,31 @@
             this.tsmAddLiterature,
             this.tsmRemoveLiterature});
             this.cmsLiterature.Name = "cmsLiterature";
-            this.cmsLiterature.Size = new System.Drawing.Size(181, 98);
+            this.cmsLiterature.Size = new System.Drawing.Size(118, 76);
             // 
             // tsmViewLiterature
             // 
             this.tsmViewLiterature.Name = "tsmViewLiterature";
-            this.tsmViewLiterature.Size = new System.Drawing.Size(180, 22);
+            this.tsmViewLiterature.Size = new System.Drawing.Size(117, 22);
             this.tsmViewLiterature.Text = "View";
             this.tsmViewLiterature.Click += new System.EventHandler(this.tsmViewLiterature_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(114, 6);
             // 
             // tsmAddLiterature
             // 
             this.tsmAddLiterature.Name = "tsmAddLiterature";
-            this.tsmAddLiterature.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddLiterature.Size = new System.Drawing.Size(117, 22);
             this.tsmAddLiterature.Text = "Add";
             this.tsmAddLiterature.Click += new System.EventHandler(this.tsmAddLiterature_Click);
             // 
             // tsmRemoveLiterature
             // 
             this.tsmRemoveLiterature.Name = "tsmRemoveLiterature";
-            this.tsmRemoveLiterature.Size = new System.Drawing.Size(180, 22);
+            this.tsmRemoveLiterature.Size = new System.Drawing.Size(117, 22);
             this.tsmRemoveLiterature.Text = "Remove";
             this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
             // 
@@ -1080,6 +1082,13 @@
             this.lblNumFound.Size = new System.Drawing.Size(402, 27);
             this.lblNumFound.TabIndex = 2;
             this.lblNumFound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // unreliableSourceToolStripMenuItem
+            // 
+            this.unreliableSourceToolStripMenuItem.Name = "unreliableSourceToolStripMenuItem";
+            this.unreliableSourceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.unreliableSourceToolStripMenuItem.Text = "Unreliable Source";
+            this.unreliableSourceToolStripMenuItem.Click += new System.EventHandler(this.unreliableSourceToolStripMenuItem_Click);
             // 
             // frmLiterature
             // 
@@ -1220,5 +1229,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem authorsToolStripMenuItem;
         private System.Windows.Forms.Label lblNumFound;
+        private System.Windows.Forms.ToolStripMenuItem unreliableSourceToolStripMenuItem;
     }
 }

@@ -16,6 +16,7 @@ namespace LifeGame
     {
         // Settings
         public List<string> lstGoodJournal = new List<string>();
+        public List<string> lstBadJournal = new List<string>();
 
         // Tasks, Logs and Events
         public List<CTask> lstTask = new List<CTask>();

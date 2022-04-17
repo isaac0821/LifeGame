@@ -119,6 +119,12 @@
     <Compile Include="frmSettings\frmAuthorInfo.Designer.cs">
       <DependentUpon>frmAuthorInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSettings\frmUnreliableJournal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettings\frmUnreliableJournal.Designer.cs">
+      <DependentUpon>frmUnreliableJournal.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSettings\frmReliableJournal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -493,6 +499,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatalog\frmTask.resx">
       <DependentUpon>frmTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettings\frmUnreliableJournal.resx">
+      <DependentUpon>frmUnreliableJournal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettings\frmReliableJournal.resx">
       <DependentUpon>frmReliableJournal.cs</DependentUpon>

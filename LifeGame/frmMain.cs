@@ -48,9 +48,11 @@ namespace LifeGame
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            
             try
             {
                 Deserialize();
+                //G.glb.lstBadJournal = new List<string>();
                 //G.glb.lstSurvey = new List<CSurvey>();
                 //G.glb.lstSurveyTag = new List<RSurveyTag>();
                 //G.glb.lstSurveyTagValueOption = new List<RSurveyTagValueOption>();

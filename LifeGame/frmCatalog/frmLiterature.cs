@@ -237,6 +237,12 @@ namespace LifeGame
                 {
                     starStr = "√";
                 }
+                // If the journal is predatory
+                if (G.glb.lstBadJournal.Exists(o => o == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
+                {
+                    predatoryStr = "√";
+                    predatoryShowFlag = false;
+                }
                 if (G.glb.lstLiterature.Find(o => o.Title == title).PredatoryAlert)
                 {
                     predatoryStr = "√";
@@ -904,6 +910,13 @@ namespace LifeGame
             frmAuthorInfo frmAuthorInfo = new frmAuthorInfo();
             frmAuthorInfo.RefreshLits += new frmAuthorInfo.RefreshLitsHandler(LoadLiteratureList);
             frmAuthorInfo.Show();
+        }
+
+        private void unreliableSourceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUnreliableJournal frmUnreliableJournal = new frmUnreliableJournal();
+            frmUnreliableJournal.RefreshLits += new frmUnreliableJournal.RefreshLitsHandler(LoadLiteratureList);
+            frmUnreliableJournal.Show();
         }
     }
 }
