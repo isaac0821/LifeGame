@@ -35,6 +35,7 @@
             this.tsmExportBib = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.goodJournalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unreliableSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.authorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -57,6 +58,7 @@
             this.clbProject = new System.Windows.Forms.CheckedListBox();
             this.cmsProject = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmRemoveProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.renameProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.btnProjectAll = new System.Windows.Forms.Button();
             this.btnProjectClear = new System.Windows.Forms.Button();
@@ -113,7 +115,6 @@
             this.chkNoBad = new System.Windows.Forms.CheckBox();
             this.chkOnlyGood = new System.Windows.Forms.CheckBox();
             this.lblNumFound = new System.Windows.Forms.Label();
-            this.unreliableSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -194,19 +195,26 @@
             // goodJournalsToolStripMenuItem
             // 
             this.goodJournalsToolStripMenuItem.Name = "goodJournalsToolStripMenuItem";
-            this.goodJournalsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.goodJournalsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.goodJournalsToolStripMenuItem.Text = "Reliable Source";
             this.goodJournalsToolStripMenuItem.Click += new System.EventHandler(this.goodJournalsToolStripMenuItem_Click);
+            // 
+            // unreliableSourceToolStripMenuItem
+            // 
+            this.unreliableSourceToolStripMenuItem.Name = "unreliableSourceToolStripMenuItem";
+            this.unreliableSourceToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.unreliableSourceToolStripMenuItem.Text = "Unreliable Source";
+            this.unreliableSourceToolStripMenuItem.Click += new System.EventHandler(this.unreliableSourceToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(163, 6);
             // 
             // authorsToolStripMenuItem
             // 
             this.authorsToolStripMenuItem.Name = "authorsToolStripMenuItem";
-            this.authorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.authorsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.authorsToolStripMenuItem.Text = "Authors";
             this.authorsToolStripMenuItem.Click += new System.EventHandler(this.authorsToolStripMenuItem_Click);
             // 
@@ -389,6 +397,7 @@
             this.btnTagRefresh.TabIndex = 2;
             this.btnTagRefresh.Text = "Refresh";
             this.btnTagRefresh.UseVisualStyleBackColor = true;
+            this.btnTagRefresh.Click += new System.EventHandler(this.btnTagRefresh_Click);
             // 
             // tpgProject
             // 
@@ -430,9 +439,10 @@
             // cmsProject
             // 
             this.cmsProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmRemoveProject});
+            this.tsmRemoveProject,
+            this.renameProjectToolStripMenuItem});
             this.cmsProject.Name = "cmsProject";
-            this.cmsProject.Size = new System.Drawing.Size(158, 26);
+            this.cmsProject.Size = new System.Drawing.Size(158, 48);
             // 
             // tsmRemoveProject
             // 
@@ -440,6 +450,13 @@
             this.tsmRemoveProject.Size = new System.Drawing.Size(157, 22);
             this.tsmRemoveProject.Text = "Remove Project";
             this.tsmRemoveProject.Click += new System.EventHandler(this.tsmRemoveProject_Click);
+            // 
+            // renameProjectToolStripMenuItem
+            // 
+            this.renameProjectToolStripMenuItem.Name = "renameProjectToolStripMenuItem";
+            this.renameProjectToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.renameProjectToolStripMenuItem.Text = "Rename Project";
+            this.renameProjectToolStripMenuItem.Click += new System.EventHandler(this.renameProjectToolStripMenuItem_Click);
             // 
             // tableLayoutPanel15
             // 
@@ -1083,13 +1100,6 @@
             this.lblNumFound.TabIndex = 2;
             this.lblNumFound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // unreliableSourceToolStripMenuItem
-            // 
-            this.unreliableSourceToolStripMenuItem.Name = "unreliableSourceToolStripMenuItem";
-            this.unreliableSourceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.unreliableSourceToolStripMenuItem.Text = "Unreliable Source";
-            this.unreliableSourceToolStripMenuItem.Click += new System.EventHandler(this.unreliableSourceToolStripMenuItem_Click);
-            // 
             // frmLiterature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1230,5 +1240,6 @@
         private System.Windows.Forms.ToolStripMenuItem authorsToolStripMenuItem;
         private System.Windows.Forms.Label lblNumFound;
         private System.Windows.Forms.ToolStripMenuItem unreliableSourceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renameProjectToolStripMenuItem;
     }
 }
