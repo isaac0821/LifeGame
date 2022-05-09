@@ -117,6 +117,10 @@ namespace LifeGame
                     {
                         surveySubTag.SurveyTitle = newSurveyTitle;
                     }
+                    foreach (RSurveyLiterature surveyLiterature in G.glb.lstSurveyLiterature.FindAll(o => o.SurveyTitle == oldSurveyTitle))
+                    {
+                        surveyLiterature.SurveyTitle = newSurveyTitle;
+                    }
                     foreach (RSurveyTagValueOption surveyTagValueOption in G.glb.lstSurveyTagValueOption.FindAll(o => o.SurveyTitle == oldSurveyTitle))
                     {
                         surveyTagValueOption.SurveyTitle = newSurveyTitle;
@@ -145,6 +149,7 @@ namespace LifeGame
                         G.glb.lstSurveyTag.RemoveAll(o => o.SurveyTitle == selectedSurvey);
                         G.glb.lstSurveyTagValueOption.RemoveAll(o => o.SurveyTitle == selectedSurvey);
                         G.glb.lstSurveySubTag.RemoveAll(o => o.SurveyTitle == selectedSurvey);
+                        G.glb.lstSurveyLiterature.RemoveAll(o => o.SurveyTitle == selectedSurvey);
                         G.glb.lstSurveyLiteratureTagValue.RemoveAll(o => o.SurveyTitle == selectedSurvey);
                         lsbSurvey.Items.Clear();
                         foreach (CSurvey sur in G.glb.lstSurvey)

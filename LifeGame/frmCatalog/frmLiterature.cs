@@ -204,6 +204,9 @@ namespace LifeGame
                         G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstLiteratureInstitution.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstLiteratureCiting.RemoveAll(o => o.Title == removedLit);
+                        G.glb.lstLiteratureOutSource.RemoveAll(o => o.Title == removedLit);
+                        G.glb.lstSurveyLiterature.RemoveAll(o => o.LiteratureTitle == removedLit);
+                        G.glb.lstSurveyLiteratureTagValue.RemoveAll(o => o.LiteratureTitle == removedLit);                        
                         loadedLiteratures.RemoveAll(o => o == removedLit);
                         break;
                     case DialogResult.No:
@@ -689,7 +692,7 @@ namespace LifeGame
                         {
                             if (selectedTags.Exists(o => o == litTag.Tag))
                             {
-                                if (!G.glb.lstLiteratureTag.Exists(o => o.Title == litTag.Title && o.Tag == NewName))
+                                if (!G.glb.lstLiteratureTag.Exists(o => o.Title == litTag.Title && o.Tag == NewName) && !newTags.Exists(o => o.Title == litTag.Title && o.Tag == NewName))
                                 {
                                     RLiteratureTag groupTag = new RLiteratureTag();
                                     groupTag.Title = litTag.Title;
@@ -715,7 +718,7 @@ namespace LifeGame
                 {
                     if (selectedTags.Exists(o => o == litTag.Tag))
                     {
-                        if (!G.glb.lstLiteratureTag.Exists(o => o.Title == litTag.Title && o.Tag == NewName))
+                        if (!G.glb.lstLiteratureTag.Exists(o => o.Title == litTag.Title && o.Tag == NewName) && !newTags.Exists(o => o.Title == litTag.Title && o.Tag == NewName))
                         {
                             RLiteratureTag groupTag = new RLiteratureTag();
                             groupTag.Title = litTag.Title;
@@ -786,6 +789,63 @@ namespace LifeGame
             }
         }
 
+        private void renameProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // 迟早有一天我要把各个字段的名字给统一喽
+            List<string> selectedProjects = new List<string>();
+            if (clbProject.CheckedItems != null)
+            {
+                foreach (var selected in clbProject.CheckedItems)
+                {
+                    string[] sub = selected.ToString().Split('[');
+                    selectedProjects.Add(sub[0]);
+                }
+            }
+            string NewName = Interaction.InputBox("Input New Project Name", "Rename", "Rename Project", 300, 300);
+            List<string> existingProjects = new List<string>();
+            foreach (RLiteratureInCiting litProject in G.glb.lstLiteratureCiting)
+            {
+                if (!existingProjects.Exists(o => o == litProject.TitleOfMyArticle))
+                {
+                    existingProjects.Add(litProject.TitleOfMyArticle);
+                }
+            }
+            if (existingProjects.Exists(o => o == NewName))
+            {
+                DialogResult result = MessageBox.Show("Project '" + NewName + "' exists, do you want to merge into this Project?", "Merge confirm", MessageBoxButtons.YesNo);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        foreach (RLiteratureInCiting litProject in G.glb.lstLiteratureCiting)
+                        {
+                            if (selectedProjects.Exists(o => o == litProject.TitleOfMyArticle) && !G.glb.lstLiteratureCiting.Exists(p => p.TitleOfMyArticle == NewName && p.Title == litProject.Title))
+                            {
+                                litProject.TitleOfMyArticle = NewName;
+                            }
+                        }
+                        LoadTab();
+                        LoadLiteratureList();
+                        break;
+                    case DialogResult.No:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                foreach (RLiteratureInCiting litProject in G.glb.lstLiteratureCiting)
+                {
+                    if (selectedProjects.Exists(o => o == litProject.TitleOfMyArticle) && !G.glb.lstLiteratureCiting.Exists(p => p.TitleOfMyArticle == NewName && p.Title == litProject.Title))
+                    {
+                        litProject.TitleOfMyArticle = NewName;
+                    }
+                }
+                LoadTab();
+                LoadLiteratureList();
+            }
+        }
+
         private void tsmRemoveProject_Click(object sender, EventArgs e)
         {
             List<string> selectedProjects = new List<string>();
@@ -846,6 +906,10 @@ namespace LifeGame
             {
                 G.glb.lstLiteratureTag.Add(item);
             }
+        }
+        private void btnTagRefresh_Click(object sender, EventArgs e)
+        {
+            LoadTab();
         }
 
         private void btnJournalRefresh_Click(object sender, EventArgs e)
