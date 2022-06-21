@@ -28,7 +28,7 @@ namespace LifeGame
             InitializeComponent();
             LoadNoteColor();
             LoadNoteLog();
-            LoadNoteOutsource();            
+            LoadNoteOutsource();
             dtpDate.Value = note.TagTime;
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
@@ -43,7 +43,7 @@ namespace LifeGame
             noteColors = new List<RNoteColor>();
             LoadNoteColor();
             LoadNoteLog();
-            LoadNoteOutsource();            
+            LoadNoteOutsource();
             dtpDate.Value = selectedDate;
             btnSave.Enabled = true;
         }
@@ -66,7 +66,7 @@ namespace LifeGame
             }
             LoadNoteColor();
             LoadNoteLog();
-            LoadNoteOutsource();            
+            LoadNoteOutsource();
             txtTopic.Text = LiteratureTitle;
             dtpDate.Value = DateTime.Today.Date;
             btnSave.Enabled = true;
@@ -97,7 +97,6 @@ namespace LifeGame
                 ListViewItem item = new ListViewItem();
                 item.Text = noteColor.Keyword;
                 item.BackColor = C.GetColor(noteColor.Color);
-                item.Checked = true;
                 lsvColor.Items.Add(item);
             }
         }
@@ -109,21 +108,21 @@ namespace LifeGame
             rootNode.Name = note.Topic;
             LoadChildNoteLog(rootNode, note.Topic);
             trvNote.Nodes.Add(rootNode);
-        }        
+        }
 
         private void LoadChildNoteLog(TreeNode treeNode, string topic)
         {
             // 如果本条NoteLog作为上级NoteLog存在，添加所有的SubLog
             if (noteLogs.Exists(o => o.Log == treeNode.Text && o.Topic == topic))
             {
-                List<RNoteLog> subNoteLog = G.glb.lstNoteLog.FindAll(o => o.Log == treeNode.Text && o.Topic == note.Topic).ToList();
+                List<RNoteLog> subNoteLog = noteLogs.FindAll(o => o.Log == treeNode.Text && o.Topic == note.Topic).ToList();
                 subNoteLog = subNoteLog.OrderBy(o => o.Index).ToList();
                 foreach (RNoteLog sub in subNoteLog)
                 {
                     TreeNode childNode = new TreeNode(sub.SubLog);
                     childNode.Name = sub.SubLog;
                     childNode.BackColor = SystemColors.Window;
-                    foreach (ListViewItem item in lsvColor.CheckedItems)
+                    foreach (ListViewItem item in lsvColor.Items)
                     {
                         if (sub.SubLog.ToUpper().Contains(item.Text.ToUpper()))
                         {
@@ -178,7 +177,7 @@ namespace LifeGame
                             noteLog.Topic = txtTopic.Text;
                             noteLog.TagTime = dtpDate.Value.Date;
                             G.glb.lstNoteLog.Add(noteLog);
-                        }                        
+                        }
                         foreach (RNoteOutsource noteOutsource in noteOutsources)
                         {
                             noteOutsource.Topic = txtTopic.Text;
@@ -247,7 +246,7 @@ namespace LifeGame
         public event DrawLogHandler DrawLog;
 
         private void frmInfoNote_Load(object sender, EventArgs e)
-        { 
+        {
             // Bind Task
             List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.TaskState != ETaskState.Finished && o.TaskState != ETaskState.Aborted).ToList();
             List<string> choices = new List<string>();
@@ -276,7 +275,7 @@ namespace LifeGame
                 TreeNode newNode = new TreeNode(NewLog, 0, 0);
                 newNode.Name = NewLog;
                 newNode.BackColor = SystemColors.Window;
-                foreach (ListViewItem item in lsvColor.CheckedItems)
+                foreach (ListViewItem item in lsvColor.Items)
                 {
                     if (NewLog.ToUpper().Contains(item.Text.ToUpper()))
                     {
@@ -296,7 +295,7 @@ namespace LifeGame
                 trvNote.SelectedNode.Text = newLog;
                 trvNote.SelectedNode.Name = newLog;
                 trvNote.SelectedNode.BackColor = SystemColors.Window;
-                foreach (ListViewItem item in lsvColor.CheckedItems)
+                foreach (ListViewItem item in lsvColor.Items)
                 {
                     if (newLog.ToUpper().Contains(item.Text.ToUpper()))
                     {
@@ -497,7 +496,7 @@ namespace LifeGame
         private void addNoteColor(string Keyword, string Color)
         {
             if (!noteColors.Exists(o => o.Keyword == Keyword))
-            {      
+            {
                 RNoteColor newNoteColor = new RNoteColor();
                 newNoteColor.Topic = txtTopic.Text;
                 newNoteColor.TagTime = dtpDate.Value.Date;
@@ -506,11 +505,12 @@ namespace LifeGame
                 noteColors.Add(newNoteColor);
 
                 ListViewItem item = new ListViewItem();
-                item.Text = Keyword;                
+                item.Text = Keyword;
                 plot C = new plot();
                 item.BackColor = C.GetColor(Color);
                 item.Checked = true;
-                lsvColor.Items.Add(item);                
+                lsvColor.Items.Add(item);
+                SaveNoteLog();
                 LoadNoteLog();
             }
         }
@@ -524,13 +524,9 @@ namespace LifeGame
                     noteColors.RemoveAll(o => o.Keyword == item.Text);
                     lsvColor.Items.Remove(item);
                 }
+                SaveNoteLog();
                 LoadNoteLog();
             }
-        }
-
-        private void lsvColor_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            LoadNoteLog();
         }
     }
 }

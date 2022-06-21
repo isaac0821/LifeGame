@@ -256,7 +256,6 @@
             // 
             // lsvColor
             // 
-            this.lsvColor.CheckBoxes = true;
             this.lsvColor.ContextMenuStrip = this.cmsNoteColor;
             this.lsvColor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsvColor.HideSelection = false;
@@ -266,7 +265,6 @@
             this.lsvColor.TabIndex = 3;
             this.lsvColor.UseCompatibleStateImageBehavior = false;
             this.lsvColor.View = System.Windows.Forms.View.List;
-            this.lsvColor.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lsvColor_ItemChecked);
             // 
             // cmsNoteColor
             // 
