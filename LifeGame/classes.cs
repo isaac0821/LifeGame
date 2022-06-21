@@ -222,6 +222,7 @@ namespace LifeGame
     public class CTask
     {
         public string TaskName;
+        public string TaskDescription;
         public DateTime DeadLine;
         public bool IsBottom;
         public bool IsInfinite;
@@ -456,5 +457,15 @@ namespace LifeGame
         public string SubLog;
         public int Index;
     }
+
+    [Serializable]
+    public class RNoteColor
+    {
+        public string Topic;
+        public DateTime TagTime;
+        public string Keyword;
+        public string Color;
+    }
+
     #endregion
 }

@@ -103,6 +103,7 @@
             this.lsbJournalRemain.FormattingEnabled = true;
             this.lsbJournalRemain.Location = new System.Drawing.Point(3, 26);
             this.lsbJournalRemain.Name = "lsbJournalRemain";
+            this.lsbJournalRemain.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lsbJournalRemain.Size = new System.Drawing.Size(304, 421);
             this.lsbJournalRemain.TabIndex = 1;
             // 
@@ -112,6 +113,7 @@
             this.lsbJournalBad.FormattingEnabled = true;
             this.lsbJournalBad.Location = new System.Drawing.Point(343, 26);
             this.lsbJournalBad.Name = "lsbJournalBad";
+            this.lsbJournalBad.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lsbJournalBad.Size = new System.Drawing.Size(305, 421);
             this.lsbJournalBad.TabIndex = 2;
             // 

@@ -103,6 +103,7 @@
             this.lsbJournalRemain.FormattingEnabled = true;
             this.lsbJournalRemain.Location = new System.Drawing.Point(3, 26);
             this.lsbJournalRemain.Name = "lsbJournalRemain";
+            this.lsbJournalRemain.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lsbJournalRemain.Size = new System.Drawing.Size(304, 421);
             this.lsbJournalRemain.TabIndex = 1;
             // 
@@ -112,6 +113,7 @@
             this.lsbJournalGood.FormattingEnabled = true;
             this.lsbJournalGood.Location = new System.Drawing.Point(343, 26);
             this.lsbJournalGood.Name = "lsbJournalGood";
+            this.lsbJournalGood.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lsbJournalGood.Size = new System.Drawing.Size(305, 421);
             this.lsbJournalGood.TabIndex = 2;
             // 
@@ -137,13 +139,13 @@
             this.label2.Text = "Reliable Journals / Conferences";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // frmGoodJournal
+            // frmReliableJournal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 450);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "frmGoodJournal";
+            this.Name = "frmReliableJournal";
             this.Text = "LifeGame - Reliable Journals / Conferences";
             this.Load += new System.EventHandler(this.frmGoodJournal_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

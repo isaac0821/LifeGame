@@ -694,5 +694,10 @@ namespace LifeGame
         {
             RefreshPtgSubAccount(trvAccount.SelectedNode.Text);
         }
+
+        private void picDebit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

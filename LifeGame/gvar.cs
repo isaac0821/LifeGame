@@ -38,6 +38,7 @@ namespace LifeGame
 
         // Note
         public List<CNote> lstNote = new List<CNote>();
+        public List<RNoteColor> lstNoteColor = new List<RNoteColor>();
         public List<RNoteOutsource> lstNoteOutsource = new List<RNoteOutsource>();
         public List<RNoteLog> lstNoteLog = new List<RNoteLog>();
 

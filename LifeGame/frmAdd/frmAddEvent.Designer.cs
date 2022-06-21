@@ -60,7 +60,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(410, 78);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(312, 78);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // label1
@@ -86,14 +86,14 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(350, 26);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(252, 26);
             this.tableLayoutPanel2.TabIndex = 15;
             // 
             // dtpDate
             // 
             this.dtpDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(252, 3);
+            this.dtpDate.Location = new System.Drawing.Point(154, 3);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(95, 20);
             this.dtpDate.TabIndex = 0;
@@ -112,7 +112,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(350, 26);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(252, 26);
             this.tableLayoutPanel3.TabIndex = 16;
             // 
             // txtEvent
@@ -120,7 +120,7 @@
             this.txtEvent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtEvent.Location = new System.Drawing.Point(3, 3);
             this.txtEvent.Name = "txtEvent";
-            this.txtEvent.Size = new System.Drawing.Size(266, 20);
+            this.txtEvent.Size = new System.Drawing.Size(190, 20);
             this.txtEvent.TabIndex = 13;
             // 
             // cbxEventState
@@ -131,9 +131,9 @@
             "Log Event",
             "Succeed",
             "Failed"});
-            this.cbxEventState.Location = new System.Drawing.Point(275, 3);
+            this.cbxEventState.Location = new System.Drawing.Point(199, 3);
             this.cbxEventState.Name = "cbxEventState";
-            this.cbxEventState.Size = new System.Drawing.Size(72, 21);
+            this.cbxEventState.Size = new System.Drawing.Size(50, 21);
             this.cbxEventState.TabIndex = 14;
             // 
             // tableLayoutPanel5
@@ -151,13 +151,13 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(350, 26);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(252, 26);
             this.tableLayoutPanel5.TabIndex = 17;
             // 
             // btnAdd
             // 
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdd.Location = new System.Drawing.Point(293, 3);
+            this.btnAdd.Location = new System.Drawing.Point(195, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(54, 20);
             this.btnAdd.TabIndex = 5;
@@ -169,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 78);
+            this.ClientSize = new System.Drawing.Size(312, 78);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

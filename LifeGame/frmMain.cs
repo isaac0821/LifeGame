@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Media;
 using System.Windows.Forms;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -52,6 +53,7 @@ namespace LifeGame
             try
             {
                 Deserialize();
+                //G.glb.lstNoteColor = new List<RNoteColor>();
                 //G.glb.lstBadJournal = new List<string>();
                 //G.glb.lstSurvey = new List<CSurvey>();
                 //G.glb.lstSurveyTag = new List<RSurveyTag>();
@@ -356,6 +358,7 @@ namespace LifeGame
                 {
                     double totalHour = (nextAlarmingSchedule.EndTime - nextAlarmingSchedule.StartTime).TotalHours;
                     totalHour = Math.Round(totalHour, 2);
+                    SystemSounds.Beep.Play();
                     string TimePeriod;
                     if (nextAlarmingSchedule.EndTime.Date == DateTime.Today.Date)
                     {
@@ -1338,5 +1341,6 @@ namespace LifeGame
             frmSurvey frmSurvey = new frmSurvey();
             frmSurvey.Show();
         }
+
     }
 }

@@ -13,18 +13,22 @@ namespace LifeGame
 {
     public partial class frmInfoNote : Form
     {
+        private plot C = new plot();
         CNote note = new CNote();
         List<RNoteLog> noteLogs = new List<RNoteLog>();
         List<RNoteOutsource> noteOutsources = new List<RNoteOutsource>();
+        List<RNoteColor> noteColors = new List<RNoteColor>();
         bool RefreshInMain = true;
         public frmInfoNote(CNote info)
         {
             note = info;
             noteLogs = G.glb.lstNoteLog.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             noteOutsources = G.glb.lstNoteOutsource.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
+            noteColors = G.glb.lstNoteColor.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             InitializeComponent();
             LoadNoteLog();
             LoadNoteOutsource();
+            LoadNoteColor();
             dtpDate.Value = note.TagTime;
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
@@ -36,8 +40,10 @@ namespace LifeGame
             note = new CNote();
             noteLogs = new List<RNoteLog>();
             noteOutsources = new List<RNoteOutsource>();
+            noteColors = new List<RNoteColor>();
             LoadNoteLog();
             LoadNoteOutsource();
+            LoadNoteColor();
             dtpDate.Value = selectedDate;
             btnSave.Enabled = true;
         }
@@ -48,6 +54,7 @@ namespace LifeGame
             InitializeComponent();
             note = new CNote();
             noteLogs = new List<RNoteLog>();
+            noteColors = new List<RNoteColor>();
             List<RLiteratureOutSource> litOutSources = G.glb.lstLiteratureOutSource.FindAll(o => o.Title == LiteratureTitle).ToList();
             for (int i = 0; i < litOutSources.Count; i++)
             {
@@ -59,6 +66,7 @@ namespace LifeGame
             }
             LoadNoteLog();
             LoadNoteOutsource();
+            LoadNoteColor();
             txtTopic.Text = LiteratureTitle;
             dtpDate.Value = DateTime.Today.Date;
             btnSave.Enabled = true;
@@ -81,6 +89,18 @@ namespace LifeGame
             }
         }
 
+        private void LoadNoteColor()
+        {
+            lsvColor.Items.Clear();
+            foreach (RNoteColor noteColor in noteColors)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = noteColor.Keyword;
+                item.BackColor = C.GetColor(noteColor.Color);
+                lsvColor.Items.Add(item);
+            }
+        }
+
         private void LoadNoteLog()
         {
             trvNote.Nodes.Clear();
@@ -89,6 +109,8 @@ namespace LifeGame
             LoadChildNoteLog(rootNode, note.Topic);
             trvNote.Nodes.Add(rootNode);
         }
+
+        
 
         private void LoadChildNoteLog(TreeNode treeNode, string topic)
         {
@@ -101,6 +123,14 @@ namespace LifeGame
                 {
                     TreeNode childNode = new TreeNode(sub.SubLog);
                     childNode.Name = sub.SubLog;
+                    childNode.BackColor = SystemColors.Window;
+                    foreach (RNoteColor item in noteColors)
+                    {
+                        if (sub.SubLog.ToUpper().Contains(item.Keyword.ToUpper()))
+                        {
+                            childNode.BackColor = C.GetColor(noteColors.Find(o => o.Keyword == item.Keyword).Color);
+                        }
+                    }
                     LoadChildNoteLog(childNode, note.Topic);
                     treeNode.Nodes.Add(childNode);
                 }
@@ -118,6 +148,7 @@ namespace LifeGame
                     case DialogResult.Yes:
                         G.glb.lstNoteLog.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
                         G.glb.lstNoteOutsource.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
+                        G.glb.lstNoteColor.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
                         foreach (RNoteLog noteLog in noteLogs)
                         {
                             noteLog.Topic = txtTopic.Text;
@@ -129,6 +160,12 @@ namespace LifeGame
                             noteOutsource.Topic = txtTopic.Text;
                             noteOutsource.TagTime = dtpDate.Value.Date;
                             G.glb.lstNoteOutsource.Add(noteOutsource);
+                        }
+                        foreach (RNoteColor noteColor in noteColors)
+                        {
+                            noteColor.Topic = txtTopic.Text;
+                            noteColor.TagTime = dtpDate.Value.Date;
+                            G.glb.lstNoteColor.Add(noteColor);
                         }
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).FinishedNote = chkFinished.Checked;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).LiteratureTitle = txtLiteratureTitle.Text;
@@ -161,6 +198,12 @@ namespace LifeGame
                     noteOutsource.Topic = txtTopic.Text;
                     noteOutsource.TagTime = dtpDate.Value.Date;
                     G.glb.lstNoteOutsource.Add(noteOutsource);
+                }
+                foreach (RNoteColor noteColor in noteColors)
+                {
+                    noteColor.Topic = txtTopic.Text;
+                    noteColor.TagTime = dtpDate.Value.Date;
+                    G.glb.lstNoteColor.Add(noteColor);
                 }
                 if (RefreshInMain)
                 {
@@ -216,10 +259,19 @@ namespace LifeGame
                     newNoteLog.TagTime = dtpDate.Value.Date;
                     newNoteLog.Log = trvNote.SelectedNode.Text;
                     newNoteLog.SubLog = NewLog;
-                    newNoteLog.Index = trvNote.SelectedNode.Nodes.Count;
+                    newNoteLog.Index = trvNote.SelectedNode.Nodes.Count;                    
                     noteLogs.Add(newNoteLog);
+
                     TreeNode newNode = new TreeNode(NewLog, 0, 0);
                     newNode.Name = NewLog;
+                    newNode.BackColor = SystemColors.Window;
+                    foreach (RNoteColor item in noteColors)
+                    {
+                        if (newNoteLog.SubLog.ToUpper().Contains(item.Keyword.ToUpper()))
+                        {
+                            newNode.BackColor = C.GetColor(noteColors.Find(o => o.Keyword == item.Keyword).Color);
+                        }
+                    }
                     trvNote.SelectedNode.Nodes.Add(newNode);
                 }
             }
@@ -244,6 +296,14 @@ namespace LifeGame
                     }
                     trvNote.SelectedNode.Text = newLog;
                     trvNote.SelectedNode.Name = newLog;
+                    trvNote.SelectedNode.BackColor = SystemColors.Window;
+                    foreach (RNoteColor item in noteColors)
+                    {
+                        if (newLog.ToUpper().Contains(item.Keyword.ToUpper()))
+                        {
+                            trvNote.SelectedNode.BackColor = C.GetColor(noteColors.Find(o => o.Keyword == item.Keyword).Color);
+                        }
+                    }
                 }
             }
             btnSave.Enabled = true;
@@ -445,6 +505,46 @@ namespace LifeGame
             SaveNote();
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddNoteColor frmAddNoteColor = new frmAddNoteColor();
+            frmAddNoteColor.SendColorLabel += new frmAddNoteColor.SetColorLabel(addNoteColor);
+            frmAddNoteColor.Show();
+        }
+
+        private void addNoteColor(string Keyword, string Color)
+        {
+            if (!noteColors.Exists(o => o.Keyword == Keyword))
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = Keyword;
+                item.Checked = true;
+                plot C = new plot();
+                item.BackColor = C.GetColor(Color);
+                lsvColor.Items.Add(item);
+                RNoteColor newNoteColor = new RNoteColor();
+                newNoteColor.Topic = txtTopic.Text;
+                newNoteColor.TagTime = dtpDate.Value.Date;
+                newNoteColor.Keyword = Keyword;
+                newNoteColor.Color = Color;
+                noteColors.Add(newNoteColor);
+                LoadNoteLog();
+            }
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lsvColor.SelectedItems != null)
+            {
+                foreach (ListViewItem item in lsvColor.SelectedItems)
+                {
+                    noteColors.RemoveAll(o => o.Keyword == item.Text);
+                    lsvColor.Items.Remove(item);
+                }
+                LoadNoteLog();
+            }
         }
     }
 }
