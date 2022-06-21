@@ -47,32 +47,32 @@
             this.tsmIndependent = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.lsvColor = new System.Windows.Forms.ListView();
+            this.cmsNoteColor = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
+            this.lsbOutsource = new System.Windows.Forms.ListBox();
             this.cmsOutsource = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmOpenOutsource = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAddOutsource = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDeleteOutsource = new System.Windows.Forms.ToolStripMenuItem();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.iglIcon = new System.Windows.Forms.ImageList(this.components);
-            this.cmsNoteColor = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cbxTask = new System.Windows.Forms.ComboBox();
-            this.txtLiteratureTitle = new System.Windows.Forms.TextBox();
-            this.chkFinished = new System.Windows.Forms.CheckBox();
-            this.txtTopic = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.lsbOutsource = new System.Windows.Forms.ListBox();
-            this.lsvColor = new System.Windows.Forms.ListView();
+            this.txtTopic = new System.Windows.Forms.TextBox();
+            this.chkFinished = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtLiteratureTitle = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbxTask = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.iglIcon = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.cmsTrvNote.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.cmsOutsource.SuspendLayout();
             this.cmsNoteColor.SuspendLayout();
+            this.cmsOutsource.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -254,6 +254,42 @@
             this.label1.Text = "Topic";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lsvColor
+            // 
+            this.lsvColor.CheckBoxes = true;
+            this.lsvColor.ContextMenuStrip = this.cmsNoteColor;
+            this.lsvColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsvColor.HideSelection = false;
+            this.lsvColor.Location = new System.Drawing.Point(73, 107);
+            this.lsvColor.Name = "lsvColor";
+            this.lsvColor.Size = new System.Drawing.Size(384, 64);
+            this.lsvColor.TabIndex = 3;
+            this.lsvColor.UseCompatibleStateImageBehavior = false;
+            this.lsvColor.View = System.Windows.Forms.View.List;
+            this.lsvColor.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lsvColor_ItemChecked);
+            // 
+            // cmsNoteColor
+            // 
+            this.cmsNoteColor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.removeToolStripMenuItem});
+            this.cmsNoteColor.Name = "cmsNoteColor";
+            this.cmsNoteColor.Size = new System.Drawing.Size(118, 48);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -264,6 +300,16 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Outsources";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lsbOutsource
+            // 
+            this.lsbOutsource.ContextMenuStrip = this.cmsOutsource;
+            this.lsbOutsource.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsbOutsource.FormattingEnabled = true;
+            this.lsbOutsource.Location = new System.Drawing.Point(73, 81);
+            this.lsbOutsource.Name = "lsbOutsource";
+            this.lsbOutsource.Size = new System.Drawing.Size(384, 20);
+            this.lsbOutsource.TabIndex = 3;
             // 
             // cmsOutsource
             // 
@@ -302,6 +348,43 @@
             this.tsmDeleteOutsource.Text = "Delete";
             this.tsmDeleteOutsource.Click += new System.EventHandler(this.tsmDeleteOutsource_Click);
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
+            this.tableLayoutPanel4.Controls.Add(this.txtTopic, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.chkFinished, 1, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(70, 0);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(390, 26);
+            this.tableLayoutPanel4.TabIndex = 4;
+            // 
+            // txtTopic
+            // 
+            this.txtTopic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTopic.Location = new System.Drawing.Point(3, 3);
+            this.txtTopic.Name = "txtTopic";
+            this.txtTopic.Size = new System.Drawing.Size(311, 20);
+            this.txtTopic.TabIndex = 0;
+            this.txtTopic.TextChanged += new System.EventHandler(this.txtTopic_TextChanged);
+            // 
+            // chkFinished
+            // 
+            this.chkFinished.AutoSize = true;
+            this.chkFinished.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkFinished.Location = new System.Drawing.Point(319, 2);
+            this.chkFinished.Margin = new System.Windows.Forms.Padding(2);
+            this.chkFinished.Name = "chkFinished";
+            this.chkFinished.Size = new System.Drawing.Size(69, 22);
+            this.chkFinished.TabIndex = 1;
+            this.chkFinished.Text = "Finished";
+            this.chkFinished.UseVisualStyleBackColor = true;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -313,6 +396,14 @@
             this.label3.Text = "Literature";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // txtLiteratureTitle
+            // 
+            this.txtLiteratureTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLiteratureTitle.Location = new System.Drawing.Point(73, 55);
+            this.txtLiteratureTitle.Name = "txtLiteratureTitle";
+            this.txtLiteratureTitle.Size = new System.Drawing.Size(384, 20);
+            this.txtLiteratureTitle.TabIndex = 6;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -323,6 +414,27 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Task";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbxTask
+            // 
+            this.cbxTask.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbxTask.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTask.FormattingEnabled = true;
+            this.cbxTask.Location = new System.Drawing.Point(73, 29);
+            this.cbxTask.Name = "cbxTask";
+            this.cbxTask.Size = new System.Drawing.Size(384, 21);
+            this.cbxTask.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(3, 104);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(64, 70);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Keywords";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // iglIcon
             // 
@@ -342,116 +454,6 @@
             this.iglIcon.Images.SetKeyName(11, "iconNoteLogo11.png");
             this.iglIcon.Images.SetKeyName(12, "iconNoteLogo12.png");
             // 
-            // cmsNoteColor
-            // 
-            this.cmsNoteColor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.removeToolStripMenuItem});
-            this.cmsNoteColor.Name = "cmsNoteColor";
-            this.cmsNoteColor.Size = new System.Drawing.Size(181, 70);
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
-            // 
-            // removeToolStripMenuItem
-            // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.removeToolStripMenuItem.Text = "Remove";
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
-            // 
-            // cbxTask
-            // 
-            this.cbxTask.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbxTask.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxTask.FormattingEnabled = true;
-            this.cbxTask.Location = new System.Drawing.Point(73, 29);
-            this.cbxTask.Name = "cbxTask";
-            this.cbxTask.Size = new System.Drawing.Size(384, 21);
-            this.cbxTask.TabIndex = 8;
-            // 
-            // txtLiteratureTitle
-            // 
-            this.txtLiteratureTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLiteratureTitle.Location = new System.Drawing.Point(73, 55);
-            this.txtLiteratureTitle.Name = "txtLiteratureTitle";
-            this.txtLiteratureTitle.Size = new System.Drawing.Size(384, 20);
-            this.txtLiteratureTitle.TabIndex = 6;
-            // 
-            // chkFinished
-            // 
-            this.chkFinished.AutoSize = true;
-            this.chkFinished.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkFinished.Location = new System.Drawing.Point(319, 2);
-            this.chkFinished.Margin = new System.Windows.Forms.Padding(2);
-            this.chkFinished.Name = "chkFinished";
-            this.chkFinished.Size = new System.Drawing.Size(69, 22);
-            this.chkFinished.TabIndex = 1;
-            this.chkFinished.Text = "Finished";
-            this.chkFinished.UseVisualStyleBackColor = true;
-            // 
-            // txtTopic
-            // 
-            this.txtTopic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTopic.Location = new System.Drawing.Point(3, 3);
-            this.txtTopic.Name = "txtTopic";
-            this.txtTopic.Size = new System.Drawing.Size(311, 20);
-            this.txtTopic.TabIndex = 0;
-            this.txtTopic.TextChanged += new System.EventHandler(this.txtTopic_TextChanged);
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
-            this.tableLayoutPanel4.Controls.Add(this.txtTopic, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.chkFinished, 1, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(70, 0);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(390, 26);
-            this.tableLayoutPanel4.TabIndex = 4;
-            // 
-            // lsbOutsource
-            // 
-            this.lsbOutsource.ContextMenuStrip = this.cmsOutsource;
-            this.lsbOutsource.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsbOutsource.FormattingEnabled = true;
-            this.lsbOutsource.Location = new System.Drawing.Point(73, 81);
-            this.lsbOutsource.Name = "lsbOutsource";
-            this.lsbOutsource.Size = new System.Drawing.Size(384, 20);
-            this.lsbOutsource.TabIndex = 3;
-            // 
-            // lsvColor
-            // 
-            this.lsvColor.CheckBoxes = true;
-            this.lsvColor.ContextMenuStrip = this.cmsNoteColor;
-            this.lsvColor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsvColor.Location = new System.Drawing.Point(73, 107);
-            this.lsvColor.Name = "lsvColor";
-            this.lsvColor.Size = new System.Drawing.Size(384, 64);
-            this.lsvColor.TabIndex = 3;
-            this.lsvColor.UseCompatibleStateImageBehavior = false;
-            this.lsvColor.View = System.Windows.Forms.View.List;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 104);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 70);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Keywords";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // frmInfoNote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,8 +470,8 @@
             this.cmsTrvNote.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.cmsOutsource.ResumeLayout(false);
             this.cmsNoteColor.ResumeLayout(false);
+            this.cmsOutsource.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
