@@ -106,6 +106,7 @@ namespace LifeGame
             trvNote.Nodes.Clear();
             TreeNode rootNode = new TreeNode(note.Topic, 0, 0);
             rootNode.Name = note.Topic;
+            rootNode.ExpandAll();
             LoadChildNoteLog(rootNode, note.Topic);
             trvNote.Nodes.Add(rootNode);
         }
@@ -122,6 +123,7 @@ namespace LifeGame
                     TreeNode childNode = new TreeNode(sub.SubLog);
                     childNode.Name = sub.SubLog;
                     childNode.BackColor = SystemColors.Window;
+                    childNode.ExpandAll();
                     foreach (ListViewItem item in lsvColor.Items)
                     {
                         if (sub.SubLog.ToUpper().Contains(item.Text.ToUpper()))

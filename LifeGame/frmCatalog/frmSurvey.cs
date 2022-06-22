@@ -33,6 +33,7 @@ namespace LifeGame
             trvSurveyTag.Nodes.Clear();
             TreeNode rootNode = new TreeNode("(Root)", 0, 0);
             rootNode.Name = "(Root)";
+            rootNode.ExpandAll();
             rootNode.ImageIndex = 0;
             LoadTagInfo();
         }
@@ -43,6 +44,7 @@ namespace LifeGame
             trvSurveyTag.Nodes.Clear();
             TreeNode rootNode = new TreeNode("(Root)", 0, 0);
             rootNode.Name = "(Root)";
+            rootNode.ExpandAll();
             rootNode.ImageIndex = 0;
             trvSurveyTag.Nodes.Add(rootNode);
             LoadChildTagNode(tmpSurveyTitle, rootNode);            
@@ -59,6 +61,7 @@ namespace LifeGame
                 {
                     TreeNode childNode = new TreeNode(subTag.SubTag);
                     childNode.Name = subTag.SubTag;
+                    childNode.ExpandAll();
                     childNode.SelectedImageIndex = 1 + (int)(G.glb.lstSurveyTag.Find(o => o.SurveyTitle == SurveyTitle && o.Tag == subTag.SubTag).TagType);
                     childNode.ImageIndex = 1 + (int)(G.glb.lstSurveyTag.Find(o => o.SurveyTitle == SurveyTitle && o.Tag == subTag.SubTag).TagType);
                     LoadChildTagNode(SurveyTitle, childNode);

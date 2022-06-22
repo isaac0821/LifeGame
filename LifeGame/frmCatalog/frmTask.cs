@@ -42,6 +42,7 @@ namespace LifeGame
             trvTask.Nodes.Clear();
             TreeNode rootNode = new TreeNode("(Root)", 0, 0);
             rootNode.Name = "(Root)";
+            rootNode.ExpandAll();
             LoadChildTaskNode(rootNode);
             RefreshIcon(rootNode);
             trvTask.Nodes.Add(rootNode);
@@ -58,6 +59,7 @@ namespace LifeGame
                 {
                     TreeNode childNode = new TreeNode(subTask.SubTask);
                     childNode.Name = subTask.SubTask;
+                    childNode.ExpandAll();
                     LoadChildTaskNode(childNode);
                     treeNode.Nodes.Add(childNode);
                 }

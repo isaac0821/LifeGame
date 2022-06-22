@@ -34,6 +34,7 @@ namespace LifeGame
             trvAccount.Nodes.Clear();
             TreeNode rootNode = new TreeNode("(Root)", 0, 0);
             rootNode.Name = "(Root)";
+            rootNode.ExpandAll();
             LoadChildAccountNode(rootNode);
             trvAccount.Nodes.Add(rootNode);
         }
@@ -72,6 +73,7 @@ namespace LifeGame
                     }
                     TreeNode childNode = new TreeNode(subAccount.SubAccount, iconIndex, iconIndex);
                     childNode.Name = subAccount.SubAccount;
+                    childNode.ExpandAll();
                     LoadChildAccountNode(childNode);
                     treeNode.Nodes.Add(childNode);
                 }
