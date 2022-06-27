@@ -89,6 +89,12 @@
     <Compile Include="frmAdd\frmAddInstitution.Designer.cs">
       <DependentUpon>frmAddInstitution.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNoteChangeLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoteChangeLabel.Designer.cs">
+      <DependentUpon>frmNoteChangeLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNoteMine\frmInfoLiteratureSurvey.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -418,6 +424,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddInstitution.resx">
       <DependentUpon>frmAddInstitution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoteChangeLabel.resx">
+      <DependentUpon>frmNoteChangeLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurvey.resx">
       <DependentUpon>frmInfoLiteratureSurvey.cs</DependentUpon>

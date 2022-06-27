@@ -96,7 +96,15 @@ namespace LifeGame
             {
                 ListViewItem item = new ListViewItem();
                 item.Text = noteColor.Keyword;
-                item.BackColor = C.GetColor(noteColor.Color);
+                item.BackColor = C.GetColor(noteColor.Color); 
+                if (noteColor.Color == "Red" || noteColor.Color == "Green" || noteColor.Color == "Blue" || noteColor.Color == "Purple" || noteColor.Color == "Brown")
+                {
+                    item.ForeColor = Color.White;
+                }
+                else
+                {
+                    item.ForeColor = Color.Black;
+                }
                 lsvColor.Items.Add(item);
             }
         }
@@ -123,12 +131,22 @@ namespace LifeGame
                     TreeNode childNode = new TreeNode(sub.SubLog);
                     childNode.Name = sub.SubLog;
                     childNode.BackColor = SystemColors.Window;
+                    childNode.ForeColor = Color.Black;
                     childNode.ExpandAll();
                     foreach (ListViewItem item in lsvColor.Items)
                     {
                         if (sub.SubLog.ToUpper().Contains(item.Text.ToUpper()))
                         {
-                            childNode.BackColor = C.GetColor(noteColors.Find(o => o.Keyword == item.Text).Color);
+                            string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
+                            childNode.BackColor = C.GetColor(itemColor);
+                            if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "Purple" || itemColor == "Brown")
+                            {
+                                childNode.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                childNode.ForeColor = Color.Black;
+                            }
                         }
                     }
                     LoadChildNoteLog(childNode, note.Topic);
@@ -277,11 +295,21 @@ namespace LifeGame
                 TreeNode newNode = new TreeNode(NewLog, 0, 0);
                 newNode.Name = NewLog;
                 newNode.BackColor = SystemColors.Window;
+                newNode.ForeColor = Color.Black;
                 foreach (ListViewItem item in lsvColor.Items)
                 {
                     if (NewLog.ToUpper().Contains(item.Text.ToUpper()))
                     {
-                        newNode.BackColor = C.GetColor(noteColors.Find(o => o.Keyword == item.Text).Color);
+                        string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
+                        newNode.BackColor = C.GetColor(itemColor);
+                        if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "Purple" || itemColor == "Brown")
+                        {
+                            newNode.ForeColor = Color.White;
+                        }
+                        else
+                        {
+                            newNode.ForeColor = Color.Black;
+                        }
                     }
                 }
                 trvNote.SelectedNode.Nodes.Add(newNode);
@@ -297,11 +325,21 @@ namespace LifeGame
                 trvNote.SelectedNode.Text = newLog;
                 trvNote.SelectedNode.Name = newLog;
                 trvNote.SelectedNode.BackColor = SystemColors.Window;
+                trvNote.SelectedNode.ForeColor = Color.Black;
                 foreach (ListViewItem item in lsvColor.Items)
                 {
                     if (newLog.ToUpper().Contains(item.Text.ToUpper()))
                     {
-                        trvNote.SelectedNode.BackColor = C.GetColor(noteColors.Find(o => o.Keyword == item.Text).Color);
+                        string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
+                        trvNote.SelectedNode.BackColor = C.GetColor(itemColor);
+                        if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "Purple" || itemColor == "Brown")
+                        {
+                            trvNote.SelectedNode.ForeColor = Color.White;
+                        }
+                        else
+                        {
+                            trvNote.SelectedNode.ForeColor = Color.Black;
+                        }
                     }
                 }
             }
@@ -495,7 +533,7 @@ namespace LifeGame
             frmAddNoteColor.Show();
         }
 
-        private void addNoteColor(string Keyword, string Color)
+        private void addNoteColor(string Keyword, string NoteColor)
         {
             if (!noteColors.Exists(o => o.Keyword == Keyword))
             {
@@ -503,13 +541,21 @@ namespace LifeGame
                 newNoteColor.Topic = txtTopic.Text;
                 newNoteColor.TagTime = dtpDate.Value.Date;
                 newNoteColor.Keyword = Keyword;
-                newNoteColor.Color = Color;
+                newNoteColor.Color = NoteColor;
                 noteColors.Add(newNoteColor);
 
                 ListViewItem item = new ListViewItem();
                 item.Text = Keyword;
                 plot C = new plot();
-                item.BackColor = C.GetColor(Color);
+                item.BackColor = C.GetColor(NoteColor);
+                if (NoteColor == "Red" || NoteColor == "Green" || NoteColor == "Blue" || NoteColor == "Purple" || NoteColor == "Brown")
+                {
+                    item.ForeColor = Color.White;
+                }
+                else
+                {
+                    item.ForeColor = Color.Black;
+                }
                 item.Checked = true;
                 lsvColor.Items.Add(item);
                 SaveNoteLog();
@@ -528,6 +574,82 @@ namespace LifeGame
                 }
                 SaveNoteLog();
                 LoadNoteLog();
+            }
+        }
+
+        private void tsmChangeLabel_Click(object sender, EventArgs e)
+        {
+            if (SelectedNoteLabel != "")
+            {
+                List<string> LabelOptions = new List<string>();
+                foreach (RNoteColor item in noteColors)
+                {
+                    LabelOptions.Add(item.Keyword);
+                }
+                frmNoteChangeLabel frmNoteChangeLabel = new frmNoteChangeLabel(SelectedNoteLabel, LabelOptions);
+                frmNoteChangeLabel.SendNewLabel += new frmNoteChangeLabel.SetNewLabel(changeLabel);
+                frmNoteChangeLabel.Show();
+            }
+        }
+
+        private void changeLabel(string NewLabel)
+        {
+            if (trvNote.SelectedNode.Text.ToUpper().Contains(SelectedNoteLabel.ToUpper()))
+            {
+                trvNote.SelectedNode.Text = trvNote.SelectedNode.Text.Replace(SelectedNoteLabel, NewLabel);
+                trvNote.SelectedNode.BackColor = SystemColors.Window;
+                trvNote.SelectedNode.ForeColor = Color.Black;
+                string itemColor = noteColors.Find(o => o.Keyword == NewLabel).Color;
+                trvNote.SelectedNode.BackColor = C.GetColor(itemColor);
+                if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "Purple" || itemColor == "Brown")
+                {
+                    trvNote.SelectedNode.ForeColor = Color.White;
+                }
+                else
+                {
+                    trvNote.SelectedNode.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        private string SelectedNoteLabel = "";
+        private void trvNote_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (trvNote.SelectedNode.Text == txtTopic.Text)
+            {
+                tsmEdit.Enabled = false;
+                tsmChangeLabel.Enabled = false;
+                tsmUp.Enabled = false;
+                tsmDown.Enabled = false;
+                tsmBelongTo.Enabled = false;
+                tsmIndependent.Enabled = false;
+            }
+            else
+            {
+                tsmEdit.Enabled = true;
+                tsmChangeLabel.Enabled = true;
+                tsmUp.Enabled = true;
+                tsmDown.Enabled = true;
+                tsmBelongTo.Enabled = true;
+                tsmIndependent.Enabled = true;
+            }
+
+            SelectedNoteLabel = "";
+            foreach (ListViewItem item in lsvColor.Items)
+            {
+                if (trvNote.SelectedNode.Text.ToUpper().Contains(item.Text.ToUpper()))
+                {
+                    SelectedNoteLabel = item.Text; 
+                    break;                   
+                }                
+            }
+            if (SelectedNoteLabel != "")
+            {
+                tsmChangeLabel.Enabled = true;
+            }
+            else
+            {
+                tsmChangeLabel.Enabled = false;
             }
         }
     }
