@@ -96,7 +96,7 @@ namespace LifeGame
             {
                 ListViewItem item = new ListViewItem();
                 item.Text = noteColor.Keyword;
-                item.BackColor = C.GetColor(noteColor.Color); 
+                item.BackColor = C.GetColor(noteColor.Color);
                 if (noteColor.Color == "Red" || noteColor.Color == "Green" || noteColor.Color == "Blue" || noteColor.Color == "Purple" || noteColor.Color == "Brown")
                 {
                     item.ForeColor = Color.White;
@@ -135,7 +135,7 @@ namespace LifeGame
                     childNode.ExpandAll();
                     foreach (ListViewItem item in lsvColor.Items)
                     {
-                        if (sub.SubLog.ToUpper().Contains(item.Text.ToUpper()))
+                        if (sub.SubLog.Contains(item.Text))
                         {
                             string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
                             childNode.BackColor = C.GetColor(itemColor);
@@ -298,7 +298,7 @@ namespace LifeGame
                 newNode.ForeColor = Color.Black;
                 foreach (ListViewItem item in lsvColor.Items)
                 {
-                    if (NewLog.ToUpper().Contains(item.Text.ToUpper()))
+                    if (NewLog.Contains(item.Text))
                     {
                         string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
                         newNode.BackColor = C.GetColor(itemColor);
@@ -328,7 +328,7 @@ namespace LifeGame
                 trvNote.SelectedNode.ForeColor = Color.Black;
                 foreach (ListViewItem item in lsvColor.Items)
                 {
-                    if (newLog.ToUpper().Contains(item.Text.ToUpper()))
+                    if (newLog.Contains(item.Text))
                     {
                         string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
                         trvNote.SelectedNode.BackColor = C.GetColor(itemColor);
@@ -352,8 +352,6 @@ namespace LifeGame
             {
                 if (trvNote.SelectedNode.Nodes.Count == 0)
                 {
-                    string UpperNote = trvNote.SelectedNode.Parent.Text;
-                    string NoteName = trvNote.SelectedNode.Text;
                     trvNote.Nodes.Remove(trvNote.SelectedNode);
                 }
                 else
@@ -364,20 +362,10 @@ namespace LifeGame
             btnSave.Enabled = true;
         }
 
-        private void ReIndex(string UpperNote)
-        {
-            List<RNoteLog> sameLevel = noteLogs.FindAll(o => o.Log == UpperNote).ToList();
-            foreach (RNoteLog sub in sameLevel)
-            {
-                noteLogs.Find(o => o.Log == UpperNote && o.SubLog == sub.SubLog).Index = trvNote.Nodes.Find(sub.SubLog, true).FirstOrDefault().Index;
-            }
-        }
-
         private void tsmUp_Click(object sender, EventArgs e)
         {
             if (trvNote.SelectedNode != null)
             {
-                string upperNote = trvNote.SelectedNode.Parent.Text;
                 TreeNode node = trvNote.SelectedNode;
                 TreeNode preNode = node.PrevNode;
                 if (preNode != null)
@@ -402,7 +390,6 @@ namespace LifeGame
         {
             if (trvNote.SelectedNode != null)
             {
-                string upperNote = trvNote.SelectedNode.Parent.Text;
                 TreeNode node = trvNote.SelectedNode;
                 TreeNode nextNode = node.NextNode;
                 if (nextNode != null)
@@ -429,12 +416,9 @@ namespace LifeGame
             {
                 TreeNode node = trvNote.SelectedNode;
                 TreeNode preNode = node.PrevNode;
-                TreeNode parentNode = node.Parent;
                 TreeNode newNode = (TreeNode)node.Clone();
                 if (node.Parent != null && node.PrevNode != null)
                 {
-                    string preNodeName = preNode.Text;
-                    string parentNodeName = parentNode.Text;
                     preNode.Nodes.Insert(preNode.Nodes.Count, newNode);
                     node.Remove();
                     trvNote.SelectedNode = newNode;
@@ -453,13 +437,9 @@ namespace LifeGame
                 TreeNode newNode = (TreeNode)node.Clone();
                 if (node.Parent != null && node.Parent.Parent != null)
                 {
-                    string parentNodeName = parentNode.Text;
-                    string grandparentNodeName = grandparentNode.Text;
                     grandparentNode.Nodes.Insert(parentNode.Index + 1, newNode);
                     node.Remove();
                     trvNote.SelectedNode = newNode;
-                    ReIndex(grandparentNodeName);
-                    ReIndex(parentNodeName);
                 }
             }
             btnSave.Enabled = true;
@@ -594,7 +574,7 @@ namespace LifeGame
 
         private void changeLabel(string NewLabel)
         {
-            if (trvNote.SelectedNode.Text.ToUpper().Contains(SelectedNoteLabel.ToUpper()))
+            if (trvNote.SelectedNode.Text.Contains(SelectedNoteLabel))
             {
                 trvNote.SelectedNode.Text = trvNote.SelectedNode.Text.Replace(SelectedNoteLabel, NewLabel);
                 trvNote.SelectedNode.BackColor = SystemColors.Window;
@@ -637,11 +617,11 @@ namespace LifeGame
             SelectedNoteLabel = "";
             foreach (ListViewItem item in lsvColor.Items)
             {
-                if (trvNote.SelectedNode.Text.ToUpper().Contains(item.Text.ToUpper()))
+                if (trvNote.SelectedNode.Text.Contains(item.Text))
                 {
-                    SelectedNoteLabel = item.Text; 
-                    break;                   
-                }                
+                    SelectedNoteLabel = item.Text;
+                    break;
+                }
             }
             if (SelectedNoteLabel != "")
             {
