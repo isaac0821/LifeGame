@@ -19,12 +19,14 @@ namespace LifeGame
         List<RNoteOutsource> noteOutsources = new List<RNoteOutsource>();
         List<RNoteColor> noteColors = new List<RNoteColor>();
         bool RefreshInMain = true;
+        string topicGUID = "";
         public frmInfoNote(CNote info)
         {
             note = info;
             noteLogs = G.glb.lstNoteLog.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             noteOutsources = G.glb.lstNoteOutsource.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             noteColors = G.glb.lstNoteColor.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
+            topicGUID = info.GUID;
             InitializeComponent();
             LoadNoteColor();
             LoadNoteLog();
@@ -41,6 +43,7 @@ namespace LifeGame
             noteLogs = new List<RNoteLog>();
             noteOutsources = new List<RNoteOutsource>();
             noteColors = new List<RNoteColor>();
+            topicGUID = Guid.NewGuid().ToString();
             LoadNoteColor();
             LoadNoteLog();
             LoadNoteOutsource();
@@ -55,6 +58,7 @@ namespace LifeGame
             note = new CNote();
             noteLogs = new List<RNoteLog>();
             noteColors = new List<RNoteColor>();
+            topicGUID = Guid.NewGuid().ToString();
             List<RLiteratureOutSource> litOutSources = G.glb.lstLiteratureOutSource.FindAll(o => o.Title == LiteratureTitle).ToList();
             for (int i = 0; i < litOutSources.Count; i++)
             {
@@ -113,7 +117,8 @@ namespace LifeGame
         {
             trvNote.Nodes.Clear();
             TreeNode rootNode = new TreeNode(note.Topic, 0, 0);
-            rootNode.Name = note.Topic;
+            rootNode.Name = note.GUID;
+            rootNode.Text = note.Topic;
             rootNode.ExpandAll();
             LoadChildNoteLog(rootNode, note.Topic);
             trvNote.Nodes.Add(rootNode);
@@ -122,14 +127,15 @@ namespace LifeGame
         private void LoadChildNoteLog(TreeNode treeNode, string topic)
         {
             // 如果本条NoteLog作为上级NoteLog存在，添加所有的SubLog
-            if (noteLogs.Exists(o => o.Log == treeNode.Text && o.Topic == topic))
+            if (noteLogs.Exists(o => o.Log == treeNode.Text && o.GUID == treeNode.Name && o.Topic == topic))
             {
-                List<RNoteLog> subNoteLog = noteLogs.FindAll(o => o.Log == treeNode.Text && o.Topic == note.Topic).ToList();
+                List<RNoteLog> subNoteLog = noteLogs.FindAll(o => o.Log == treeNode.Text && o.GUID == treeNode.Name && o.Topic == note.Topic).ToList();
                 subNoteLog = subNoteLog.OrderBy(o => o.Index).ToList();
                 foreach (RNoteLog sub in subNoteLog)
                 {
                     TreeNode childNode = new TreeNode(sub.SubLog);
-                    childNode.Name = sub.SubLog;
+                    childNode.Name = sub.SubGUID;
+                    childNode.Text = sub.SubLog;
                     childNode.BackColor = SystemColors.Window;
                     childNode.ForeColor = Color.Black;
                     childNode.ExpandAll();
@@ -168,9 +174,12 @@ namespace LifeGame
         {
             RNoteLog newNoteLog = new RNoteLog();
             newNoteLog.Topic = txtTopic.Text;
+            newNoteLog.TopicGUID = topicGUID;
             newNoteLog.TagTime = dtpDate.Value.Date;
             newNoteLog.Log = treeNode.Parent.Text;
+            newNoteLog.GUID = treeNode.Parent.Name;
             newNoteLog.SubLog = treeNode.Text;
+            newNoteLog.SubGUID = treeNode.Name;
             newNoteLog.Index = treeNode.Index;
             noteLogs.Add(newNoteLog);
             foreach (TreeNode child in treeNode.Nodes)
@@ -293,7 +302,8 @@ namespace LifeGame
             {
                 string NewLog = Interaction.InputBox("Input new note node", "New Note", "New Note", 300, 300);
                 TreeNode newNode = new TreeNode(NewLog, 0, 0);
-                newNode.Name = NewLog;
+                newNode.Text = NewLog;
+                newNode.Name = Guid.NewGuid().ToString();
                 newNode.BackColor = SystemColors.Window;
                 newNode.ForeColor = Color.Black;
                 foreach (ListViewItem item in lsvColor.Items)
@@ -323,7 +333,6 @@ namespace LifeGame
             {
                 string newLog = Interaction.InputBox("Rename Note", "Rename Note", trvNote.SelectedNode.Text, 300, 300);
                 trvNote.SelectedNode.Text = newLog;
-                trvNote.SelectedNode.Name = newLog;
                 trvNote.SelectedNode.BackColor = SystemColors.Window;
                 trvNote.SelectedNode.ForeColor = Color.Black;
                 foreach (ListViewItem item in lsvColor.Items)
@@ -449,7 +458,7 @@ namespace LifeGame
         {
             note.Topic = txtTopic.Text;
             trvNote.Nodes[0].Text = txtTopic.Text;
-            trvNote.Nodes[0].Name = txtTopic.Text;
+            trvNote.Nodes[0].Name = topicGUID;
         }
 
         private void tsmAddOutsource_Click(object sender, EventArgs e)

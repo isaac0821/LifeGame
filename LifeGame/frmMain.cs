@@ -53,6 +53,30 @@ namespace LifeGame
             try
             {
                 Deserialize();
+                
+                //foreach (CNote note in G.glb.lstNote)
+                //{
+                //    Guid g = Guid.NewGuid();
+                //    note.GUID = g.ToString();
+                //}
+                //foreach (RNoteLog log in G.glb.lstNoteLog)
+                //{
+                //    log.TopicGUID = G.glb.lstNote.Find(o => o.Topic == log.Topic && o.TagTime == log.TagTime).GUID;
+                //    Guid g = Guid.NewGuid();
+                //    log.SubGUID = g.ToString();
+                //}
+                //foreach (RNoteLog log in G.glb.lstNoteLog)
+                //{
+                //    if (log.Log == log.Topic)
+                //    {
+                //        log.GUID = log.TopicGUID;
+                //    }
+                //    else
+                //    {
+                //        log.GUID = G.glb.lstNoteLog.Find(o => o.TopicGUID == log.TopicGUID && log.Log == o.SubLog).SubGUID;
+                //    }
+                //}
+
                 //G.glb.lstNoteColor = new List<RNoteColor>();
                 //G.glb.lstBadJournal = new List<string>();
                 //G.glb.lstSurvey = new List<CSurvey>();

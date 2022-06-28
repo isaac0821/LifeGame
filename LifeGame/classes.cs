@@ -428,6 +428,7 @@ namespace LifeGame
     public class CNote
     {
         public DateTime TagTime;
+        public string GUID;
         public string Topic;
         public string LiteratureTitle;
         public string TaskName;
@@ -452,9 +453,12 @@ namespace LifeGame
     public class RNoteLog
     {
         public string Topic;
+        public string TopicGUID;
         public DateTime TagTime;
-        public string Log;
-        public string SubLog;
+        public string Log;  // 父节点的
+        public string GUID;
+        public string SubLog;  // 自己的
+        public string SubGUID;
         public int Index;
     }
 
