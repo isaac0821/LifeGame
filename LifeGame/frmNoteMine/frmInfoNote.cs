@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
@@ -306,6 +307,8 @@ namespace LifeGame
                 newNode.Name = Guid.NewGuid().ToString();
                 newNode.BackColor = SystemColors.Window;
                 newNode.ForeColor = Color.Black;
+                newNode.ExpandAll();
+                trvNote.SelectedNode.ExpandAll();
                 foreach (ListViewItem item in lsvColor.Items)
                 {
                     if (NewLog.Contains(item.Text))
@@ -325,6 +328,160 @@ namespace LifeGame
                 trvNote.SelectedNode.Nodes.Add(newNode);
             }
             btnSave.Enabled = true;
+        }
+        private void tsmAddBatch_Click(object sender, EventArgs e)
+        {
+            // 考虑之后改成正则表达式
+            if (trvNote.SelectedNode != null)
+            {
+                bool canAddBatch = false;
+                string NewLogBatch = Interaction.InputBox("Input new note node in batch, e.g., xxx_{1-10}_xxx, or xxx_{a,b,c}_xxx, or xxx_{1-10,a,b,c}_xxx", "New Notes", "New Note", 300, 300);
+                // 分离得到大括号内的集合
+                string[] splitLeft = NewLogBatch.Split('{');
+                string beforeBracket = "";
+                string afterBracket = "";
+                List<string> inBracketCollection = new List<string>();
+                if (splitLeft.Length == 2)
+                {
+                    beforeBracket = splitLeft[0];
+                    string[] splitRight = splitLeft[1].Split('}');
+                    if (splitRight.Length == 2)
+                    {
+                        afterBracket = splitRight[1];
+                        // 先被','分割，再被'-'分割
+                        string[] inBracketByComma = splitRight[0].Split(',');
+                        foreach (string item in inBracketByComma)
+                        {
+                            string[] inBrackByHypen = item.Split('-');
+                            if (inBrackByHypen.Length == 1)
+                            {
+                                inBracketCollection.Add(item);
+                                canAddBatch = true;
+                            }
+                            else if (inBrackByHypen.Length == 2)
+                            {
+                                bool batchDetectedFlag = false;
+
+                                // 看看是不是按小写字母增序
+                                if (!batchDetectedFlag)
+                                {
+                                    string[] lowercaseAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+                                    if (lowercaseAlphabet.Contains(inBrackByHypen[0]) && lowercaseAlphabet.Contains(inBrackByHypen[1]))
+                                    {
+                                        int startIndex = -1;
+                                        int endIndex = -1;
+                                        for (int i = 0; i < lowercaseAlphabet.Length; i++)
+                                        {
+                                            if (lowercaseAlphabet[i] == inBrackByHypen[0])
+                                            {
+                                                startIndex = i;
+                                            }
+                                            if (lowercaseAlphabet[i] == inBrackByHypen[1])
+                                            {
+                                                endIndex = i;
+                                            }
+                                        }
+                                        for (int i = startIndex; i < endIndex; i++)
+                                        {
+                                            inBracketCollection.Add(lowercaseAlphabet[i]);
+                                        }
+                                    }
+                                }
+
+                                // 看看是不是按大写字母增序
+                                if (!batchDetectedFlag)
+                                {
+                                    string[] uppercaseAlphabet = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+                                    if (uppercaseAlphabet.Contains(inBrackByHypen[0]) && uppercaseAlphabet.Contains(inBrackByHypen[1]))
+                                    {
+                                        int startIndex = -1;
+                                        int endIndex = -1;
+                                        for (int i = 0; i < uppercaseAlphabet.Length; i++)
+                                        {
+                                            if (uppercaseAlphabet[i] == inBrackByHypen[0])
+                                            {
+                                                startIndex = i;
+                                            }
+                                            if (uppercaseAlphabet[i] == inBrackByHypen[1])
+                                            {
+                                                endIndex = i;
+                                            }
+                                        }
+                                        for (int i = startIndex; i < endIndex; i++)
+                                        {
+                                            inBracketCollection.Add(uppercaseAlphabet[i]);
+                                        }
+                                    }
+                                }
+
+                                // 看看是不是按数字增序
+                                if (!batchDetectedFlag)
+                                {
+                                    if (Regex.IsMatch(inBrackByHypen[0], @"^[0-9]+$") && Regex.IsMatch(inBrackByHypen[1], @"^[0-9]+$"))
+                                    {
+                                        int startIndex = Convert.ToInt32(inBrackByHypen[0]);
+                                        int endIndex = Convert.ToInt32(inBrackByHypen[1]);
+                                        for (int i = startIndex; i < endIndex; i++)
+                                        {
+                                            inBracketCollection.Add(i.ToString());
+                                        }
+                                    }
+                                }
+                                
+                                if (batchDetectedFlag)
+                                {
+                                    canAddBatch = true;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Incorrect format, correct example will be xxx_{1-10}_xxx, or xxx_{a,b,c}_xxx, or xxx_{1-10,a,b,c}_xxx");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrect format, correct example will be xxx_{1-10}_xxx, or xxx_{a,b,c}_xxx, or xxx_{1-10,a,b,c}_xxx");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect format, correct example will be xxx_{1-10}_xxx, or xxx_{a,b,c}_xxx, or xxx_{1-10,a,b,c}_xxx");
+                }
+
+                if (canAddBatch)
+                {
+                    foreach (string inc in inBracketCollection)
+                    {
+                        string NewLog = beforeBracket + inc + afterBracket;
+                        TreeNode newNode = new TreeNode(NewLog, 0, 0);
+                        newNode.Text = NewLog;
+                        newNode.Name = Guid.NewGuid().ToString();
+                        newNode.BackColor = SystemColors.Window;
+                        newNode.ForeColor = Color.Black;
+                        newNode.ExpandAll();
+                        trvNote.SelectedNode.ExpandAll();
+                        foreach (ListViewItem item in lsvColor.Items)
+                        {
+                            if (NewLog.Contains(item.Text))
+                            {
+                                string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
+                                newNode.BackColor = C.GetColor(itemColor);
+                                if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "Purple" || itemColor == "Brown")
+                                {
+                                    newNode.ForeColor = Color.White;
+                                }
+                                else
+                                {
+                                    newNode.ForeColor = Color.Black;
+                                }
+                            }
+                        }
+                        trvNote.SelectedNode.Nodes.Add(newNode);
+                    }
+                    btnSave.Enabled = true;
+                }
+            }
         }
 
         private void tsmEdit_Click(object sender, EventArgs e)
@@ -351,8 +508,8 @@ namespace LifeGame
                         }
                     }
                 }
+                btnSave.Enabled = true;
             }
-            btnSave.Enabled = true;
         }
 
         private void tsmRemove_Click(object sender, EventArgs e)
@@ -362,15 +519,39 @@ namespace LifeGame
                 if (trvNote.SelectedNode.Nodes.Count == 0)
                 {
                     trvNote.Nodes.Remove(trvNote.SelectedNode);
+                    btnSave.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("To be cautious, can not remove note with sub node");
+                }
+            }            
+        }
+
+        private void removeChildrenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null && trvNote.SelectedNode.Nodes.Count > 0)
+            {
+                bool canRemoveFlag = true;
+                foreach (TreeNode child in trvNote.SelectedNode.Nodes)
+                {
+                    if (child.Nodes.Count > 0)
+                    {
+                        canRemoveFlag = false;
+                        break;
+                    }
+                }
+                if (canRemoveFlag)
+                {
+                    trvNote.SelectedNode.Nodes.Clear();
+                    btnSave.Enabled = true;
                 }
                 else
                 {
                     MessageBox.Show("To be cautious, can not remove note with sub node");
                 }
             }
-            btnSave.Enabled = true;
         }
-
         private void tsmUp_Click(object sender, EventArgs e)
         {
             if (trvNote.SelectedNode != null)
@@ -641,5 +822,7 @@ namespace LifeGame
                 tsmChangeLabel.Enabled = false;
             }
         }
+
+
     }
 }

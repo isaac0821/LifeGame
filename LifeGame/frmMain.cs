@@ -333,7 +333,7 @@ namespace LifeGame
             DrawLog();
 
             // 定时保存， 每10分钟
-            autoSaveTimer.Interval = 1000 * 60 * 10;
+            autoSaveTimer.Interval = 1000 * 60 * 30;
             autoSaveTimer.Start();
             autoSaveTimer.Tick += AutoSave;
 
