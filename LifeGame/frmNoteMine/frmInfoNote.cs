@@ -749,40 +749,60 @@ namespace LifeGame
 
         private void tsmChangeLabel_Click(object sender, EventArgs e)
         {
-            if (SelectedNoteLabel != "")
+            string SelectedNoteLabel = "(No Label)";
+            foreach (ListViewItem item in lsvColor.Items)
             {
-                List<string> LabelOptions = new List<string>();
-                foreach (RNoteColor item in noteColors)
+                if (trvNote.SelectedNode.Text.Contains(item.Text))
                 {
-                    LabelOptions.Add(item.Keyword);
+                    SelectedNoteLabel = item.Text;
+                    break;
                 }
-                frmNoteChangeLabel frmNoteChangeLabel = new frmNoteChangeLabel(SelectedNoteLabel, LabelOptions);
-                frmNoteChangeLabel.SendNewLabel += new frmNoteChangeLabel.SetNewLabel(changeLabel);
-                frmNoteChangeLabel.Show();
             }
+            List<string> LabelOptions = new List<string>();
+            foreach (RNoteColor item in noteColors)
+            {
+                LabelOptions.Add(item.Keyword);
+            }
+            frmNoteChangeLabel frmNoteChangeLabel = new frmNoteChangeLabel(SelectedNoteLabel, LabelOptions);
+            frmNoteChangeLabel.SendNewLabel += new frmNoteChangeLabel.SetNewLabel(changeLabel);
+            frmNoteChangeLabel.Show();
         }
 
-        private void changeLabel(string NewLabel)
+        private void changeLabel(string newLabel, bool changeDescendantFlag)
         {
-            if (trvNote.SelectedNode.Text.Contains(SelectedNoteLabel))
+            changeNodeLabel(trvNote.SelectedNode, newLabel, changeDescendantFlag);
+        }
+
+        private void changeNodeLabel(TreeNode node, string newLabel, bool changeDescendant)
+        {
+            foreach (ListViewItem item in lsvColor.Items)
             {
-                trvNote.SelectedNode.Text = trvNote.SelectedNode.Text.Replace(SelectedNoteLabel, NewLabel);
-                trvNote.SelectedNode.BackColor = SystemColors.Window;
-                trvNote.SelectedNode.ForeColor = Color.Black;
-                string itemColor = noteColors.Find(o => o.Keyword == NewLabel).Color;
-                trvNote.SelectedNode.BackColor = C.GetColor(itemColor);
-                if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "Purple" || itemColor == "Brown")
+                if (node.Text.Contains(item.Text))
                 {
-                    trvNote.SelectedNode.ForeColor = Color.White;
+                    node.Text = node.Text.Replace(item.Text, newLabel);
+                    node.BackColor = SystemColors.Window;
+                    node.ForeColor = Color.Black;
+                    string itemColor = noteColors.Find(o => o.Keyword == newLabel).Color;
+                    node.BackColor = C.GetColor(itemColor);
+                    if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "Purple" || itemColor == "Brown")
+                    {
+                        node.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        node.ForeColor = Color.Black;
+                    }
                 }
-                else
+            }
+            if (changeDescendant)
+            {
+                foreach (TreeNode child in node.Nodes)
                 {
-                    trvNote.SelectedNode.ForeColor = Color.Black;
+                    changeNodeLabel(child, newLabel, changeDescendant);
                 }
             }
         }
 
-        private string SelectedNoteLabel = "";
         private void trvNote_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (trvNote.SelectedNode.Text == txtTopic.Text)
@@ -803,26 +823,6 @@ namespace LifeGame
                 tsmBelongTo.Enabled = true;
                 tsmIndependent.Enabled = true;
             }
-
-            SelectedNoteLabel = "";
-            foreach (ListViewItem item in lsvColor.Items)
-            {
-                if (trvNote.SelectedNode.Text.Contains(item.Text))
-                {
-                    SelectedNoteLabel = item.Text;
-                    break;
-                }
-            }
-            if (SelectedNoteLabel != "")
-            {
-                tsmChangeLabel.Enabled = true;
-            }
-            else
-            {
-                tsmChangeLabel.Enabled = false;
-            }
         }
-
-
     }
 }

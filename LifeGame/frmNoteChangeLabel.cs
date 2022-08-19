@@ -21,7 +21,7 @@ namespace LifeGame
             InitializeComponent();
         }
 
-        public delegate void SetNewLabel(string NewLabel);
+        public delegate void SetNewLabel(string newLabel, bool changeDescendantFlag);
         public event SetNewLabel SendNewLabel;
 
         private void frmNoteChangeLabel_Load(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace LifeGame
         {
             if (SendNewLabel != null)
             {
-                SendNewLabel(cbxNewLabel.Text);
+                SendNewLabel(cbxNewLabel.Text, chkDescendant.Checked);
                 Dispose();
             }
         }

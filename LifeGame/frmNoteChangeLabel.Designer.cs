@@ -35,8 +35,11 @@ namespace LifeGame
             this.label2 = new System.Windows.Forms.Label();
             this.cbxNewLabel = new System.Windows.Forms.ComboBox();
             this.lblOldLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
+            this.chkDescendant = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -48,7 +51,7 @@ namespace LifeGame
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.cbxNewLabel, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblOldLabel, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnSave, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -102,16 +105,43 @@ namespace LifeGame
             this.lblOldLabel.Text = "(Old label)";
             this.lblOldLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.72881F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.27119F));
+            this.tableLayoutPanel2.Controls.Add(this.btnSave, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.chkDescendant, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(72, 52);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(236, 29);
+            this.tableLayoutPanel2.TabIndex = 5;
+            // 
             // btnSave
             // 
-            this.btnSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnSave.Location = new System.Drawing.Point(246, 55);
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSave.Location = new System.Drawing.Point(176, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(59, 23);
+            this.btnSave.Size = new System.Drawing.Size(57, 23);
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // chkDescendant
+            // 
+            this.chkDescendant.AutoSize = true;
+            this.chkDescendant.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkDescendant.Location = new System.Drawing.Point(3, 3);
+            this.chkDescendant.Name = "chkDescendant";
+            this.chkDescendant.Size = new System.Drawing.Size(167, 23);
+            this.chkDescendant.TabIndex = 5;
+            this.chkDescendant.Text = "Change Descendant Labels";
+            this.chkDescendant.UseVisualStyleBackColor = true;
             // 
             // frmNoteChangeLabel
             // 
@@ -127,6 +157,8 @@ namespace LifeGame
             this.Load += new System.EventHandler(this.frmNoteChangeLabel_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -139,5 +171,7 @@ namespace LifeGame
         private System.Windows.Forms.ComboBox cbxNewLabel;
         private System.Windows.Forms.Label lblOldLabel;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.CheckBox chkDescendant;
     }
 }
