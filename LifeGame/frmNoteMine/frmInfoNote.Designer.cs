@@ -72,6 +72,9 @@
             this.cbxTask = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.iglIcon = new System.Windows.Forms.ImageList(this.components);
+            this.tsmAddLink = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmGoto = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.cmsTrvNote.SuspendLayout();
@@ -153,6 +156,9 @@
             this.tsmAdd,
             this.tsmAddBatch,
             this.toolStripSeparator3,
+            this.tsmAddLink,
+            this.tsmGoto,
+            this.toolStripSeparator6,
             this.tsmEdit,
             this.tsmChangeLabel,
             this.toolStripSeparator5,
@@ -165,95 +171,95 @@
             this.tsmBelongTo,
             this.tsmIndependent});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(166, 248);
+            this.cmsTrvNote.Size = new System.Drawing.Size(181, 320);
             // 
             // tsmAdd
             // 
             this.tsmAdd.Name = "tsmAdd";
-            this.tsmAdd.Size = new System.Drawing.Size(165, 22);
+            this.tsmAdd.Size = new System.Drawing.Size(180, 22);
             this.tsmAdd.Text = "Add";
             this.tsmAdd.Click += new System.EventHandler(this.tsmAdd_Click);
             // 
             // tsmAddBatch
             // 
             this.tsmAddBatch.Name = "tsmAddBatch";
-            this.tsmAddBatch.Size = new System.Drawing.Size(165, 22);
+            this.tsmAddBatch.Size = new System.Drawing.Size(180, 22);
             this.tsmAddBatch.Text = "Add Batch";
             this.tsmAddBatch.Click += new System.EventHandler(this.tsmAddBatch_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmEdit
             // 
             this.tsmEdit.Name = "tsmEdit";
-            this.tsmEdit.Size = new System.Drawing.Size(165, 22);
+            this.tsmEdit.Size = new System.Drawing.Size(180, 22);
             this.tsmEdit.Text = "Edit";
             this.tsmEdit.Click += new System.EventHandler(this.tsmEdit_Click);
             // 
             // tsmChangeLabel
             // 
             this.tsmChangeLabel.Name = "tsmChangeLabel";
-            this.tsmChangeLabel.Size = new System.Drawing.Size(165, 22);
+            this.tsmChangeLabel.Size = new System.Drawing.Size(180, 22);
             this.tsmChangeLabel.Text = "Change Label";
             this.tsmChangeLabel.Click += new System.EventHandler(this.tsmChangeLabel_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmRemove
             // 
             this.tsmRemove.Name = "tsmRemove";
-            this.tsmRemove.Size = new System.Drawing.Size(165, 22);
+            this.tsmRemove.Size = new System.Drawing.Size(180, 22);
             this.tsmRemove.Text = "Remove";
             this.tsmRemove.Click += new System.EventHandler(this.tsmRemove_Click);
             // 
             // removeChildrenToolStripMenuItem
             // 
             this.removeChildrenToolStripMenuItem.Name = "removeChildrenToolStripMenuItem";
-            this.removeChildrenToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.removeChildrenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.removeChildrenToolStripMenuItem.Text = "Remove Children";
             this.removeChildrenToolStripMenuItem.Click += new System.EventHandler(this.removeChildrenToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmUp
             // 
             this.tsmUp.Name = "tsmUp";
-            this.tsmUp.Size = new System.Drawing.Size(165, 22);
+            this.tsmUp.Size = new System.Drawing.Size(180, 22);
             this.tsmUp.Text = "Up";
             this.tsmUp.Click += new System.EventHandler(this.tsmUp_Click);
             // 
             // tsmDown
             // 
             this.tsmDown.Name = "tsmDown";
-            this.tsmDown.Size = new System.Drawing.Size(165, 22);
+            this.tsmDown.Size = new System.Drawing.Size(180, 22);
             this.tsmDown.Text = "Down";
             this.tsmDown.Click += new System.EventHandler(this.tsmDown_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmBelongTo
             // 
             this.tsmBelongTo.Name = "tsmBelongTo";
-            this.tsmBelongTo.Size = new System.Drawing.Size(165, 22);
+            this.tsmBelongTo.Size = new System.Drawing.Size(180, 22);
             this.tsmBelongTo.Text = "Belong To";
             this.tsmBelongTo.Click += new System.EventHandler(this.tsmBelongTo_Click);
             // 
             // tsmIndependent
             // 
             this.tsmIndependent.Name = "tsmIndependent";
-            this.tsmIndependent.Size = new System.Drawing.Size(165, 22);
+            this.tsmIndependent.Size = new System.Drawing.Size(180, 22);
             this.tsmIndependent.Text = "Independent";
             this.tsmIndependent.Click += new System.EventHandler(this.tsmIndependent_Click);
             // 
@@ -480,19 +486,26 @@
             // 
             this.iglIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iglIcon.ImageStream")));
             this.iglIcon.TransparentColor = System.Drawing.Color.Transparent;
-            this.iglIcon.Images.SetKeyName(0, "iconNoteLogo0.png");
-            this.iglIcon.Images.SetKeyName(1, "iconNoteLogo1.png");
-            this.iglIcon.Images.SetKeyName(2, "iconNoteLogo2.png");
-            this.iglIcon.Images.SetKeyName(3, "iconNoteLogo3.png");
-            this.iglIcon.Images.SetKeyName(4, "iconNoteLogo4.png");
-            this.iglIcon.Images.SetKeyName(5, "iconNoteLogo5.png");
-            this.iglIcon.Images.SetKeyName(6, "iconNoteLogo6.png");
-            this.iglIcon.Images.SetKeyName(7, "iconNoteLogo7.png");
-            this.iglIcon.Images.SetKeyName(8, "iconNoteLogo8.png");
-            this.iglIcon.Images.SetKeyName(9, "iconNoteLogo9.png");
-            this.iglIcon.Images.SetKeyName(10, "iconNoteLogo10.png");
-            this.iglIcon.Images.SetKeyName(11, "iconNoteLogo11.png");
-            this.iglIcon.Images.SetKeyName(12, "iconNoteLogo12.png");
+            this.iglIcon.Images.SetKeyName(0, "iconLink.png");
+            // 
+            // tsmAddLink
+            // 
+            this.tsmAddLink.Name = "tsmAddLink";
+            this.tsmAddLink.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddLink.Text = "Add Link";
+            this.tsmAddLink.Click += new System.EventHandler(this.tsmAddLink_Click);
+            // 
+            // tsmGoto
+            // 
+            this.tsmGoto.Name = "tsmGoto";
+            this.tsmGoto.Size = new System.Drawing.Size(180, 22);
+            this.tsmGoto.Text = "Go to link";
+            this.tsmGoto.Click += new System.EventHandler(this.tsmGoto_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
             // 
             // frmInfoNote
             // 
@@ -562,5 +575,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem removeChildrenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddLink;
+        private System.Windows.Forms.ToolStripMenuItem tsmGoto;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
     }
 }
