@@ -956,5 +956,16 @@ namespace LifeGame
                 }
             }
         }
+
+        private void txtTitle_TextChanged(object sender, EventArgs e)
+        {
+            if (txtTitle.Enabled)
+            {
+                if (G.glb.lstLiterature.Exists(o => o.Title == txtTitle.Text))
+                {
+                    MessageBox.Show("Literature exists!");
+                }
+            }
+        }
     }
 }

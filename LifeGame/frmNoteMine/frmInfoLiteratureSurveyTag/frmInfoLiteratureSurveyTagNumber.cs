@@ -60,7 +60,7 @@ namespace LifeGame
                 value.LiteratureTitle = LiteratureTitle;
                 value.SurveyTitle = SurveyName;
                 value.Tag = TagName;
-                if (System.Text.RegularExpressions.Regex.IsMatch(txtTagValueInteger.Text, "[^0-9]"))
+                if (System.Text.RegularExpressions.Regex.IsMatch(txtTagValueInteger.Text, "^[0-9]*$"))
                 {
                     value.TagValueNumber = Convert.ToInt32(txtTagValueInteger.Text);
                     G.glb.lstSurveyLiteratureTagValue.Add(value);
@@ -72,7 +72,7 @@ namespace LifeGame
             }
             else
             {
-                if (System.Text.RegularExpressions.Regex.IsMatch(txtTagValueInteger.Text, "[^0-9]"))
+                if (System.Text.RegularExpressions.Regex.IsMatch(txtTagValueInteger.Text, "^[0-9]*$"))
                 {
                     G.glb.lstSurveyLiteratureTagValue.Find(o =>
                         o.LiteratureTitle == LiteratureTitle

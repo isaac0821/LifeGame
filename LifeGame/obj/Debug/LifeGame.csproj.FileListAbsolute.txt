@@ -76,3 +76,6 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoLiteratureSurveyTagBoolean.resour
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmUnreliableJournal.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddNoteColor.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmNoteChangeLabel.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddLiterature.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddNote.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmReplaceNote.resources

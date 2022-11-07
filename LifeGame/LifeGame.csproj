@@ -53,6 +53,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes.cs" />
+    <Compile Include="frmAdd\frmAddLiterature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd\frmAddLiterature.Designer.cs">
+      <DependentUpon>frmAddLiterature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdd\frmAddNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd\frmAddNote.Designer.cs">
+      <DependentUpon>frmAddNote.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAdd\frmAddNoteColor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,11 +101,17 @@
     <Compile Include="frmAdd\frmAddInstitution.Designer.cs">
       <DependentUpon>frmAddInstitution.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNoteChangeLabel.cs">
+    <Compile Include="frmAdd\frmNoteChangeLabel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmNoteChangeLabel.Designer.cs">
+    <Compile Include="frmAdd\frmNoteChangeLabel.Designer.cs">
       <DependentUpon>frmNoteChangeLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdd\frmReplaceNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd\frmReplaceNote.Designer.cs">
+      <DependentUpon>frmReplaceNote.cs</DependentUpon>
     </Compile>
     <Compile Include="frmNoteMine\frmInfoLiteratureSurvey.cs">
       <SubType>Form</SubType>
@@ -371,6 +389,12 @@
     <Compile Include="ParseBibTeX.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAdd\frmAddLiterature.resx">
+      <DependentUpon>frmAddLiterature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdd\frmAddNote.resx">
+      <DependentUpon>frmAddNote.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddNoteColor.resx">
       <DependentUpon>frmAddNoteColor.cs</DependentUpon>
     </EmbeddedResource>
@@ -397,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddWorkOut.resx">
       <DependentUpon>frmAddWorkOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdd\frmReplaceNote.resx">
+      <DependentUpon>frmReplaceNote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatalog\frmAccount.resx">
       <DependentUpon>frmAccount.cs</DependentUpon>
@@ -425,7 +452,7 @@
     <EmbeddedResource Include="frmAdd\frmAddInstitution.resx">
       <DependentUpon>frmAddInstitution.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteChangeLabel.resx">
+    <EmbeddedResource Include="frmAdd\frmNoteChangeLabel.resx">
       <DependentUpon>frmNoteChangeLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurvey.resx">
