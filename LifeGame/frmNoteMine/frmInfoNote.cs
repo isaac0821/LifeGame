@@ -158,6 +158,11 @@ namespace LifeGame
                         childNode.ForeColor = Color.Brown;
                         childNode.NodeFont = new Font(Font, FontStyle.Underline);
                     }
+                    if (sub.SubLog.Contains("$NOTE$>"))
+                    {
+                        childNode.ForeColor = Color.DarkGreen;
+                        childNode.NodeFont = new Font(Font, FontStyle.Underline);
+                    }
                     LoadChildNoteLog(childNode, note.Topic);
                     treeNode.Nodes.Add(childNode);
                 }
@@ -1156,6 +1161,130 @@ namespace LifeGame
                 }
             }
             btnSave.Enabled = true;
+        }
+
+        private void btnWrite_Click(object sender, EventArgs e)
+        {
+            List<string> logList = writeByNode(trvNote.Nodes[0], 0);
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(trvNote.Nodes[0].Text + ".txt", false))
+            {
+                foreach (string log in logList)
+                {
+                    file.WriteLine(log);
+                }
+                MessageBox.Show("Write notes to " + txtTopic.Text + ".txt");
+            }
+        }
+
+        private List<string> writeByNode(TreeNode logNode, int level)
+        {
+            List<string> logList = new List<string>();
+            string levelStr = "";
+            for (int i = 0; i < level; i++)
+            {
+                levelStr += "\t";
+            }
+            logList.Add(levelStr + logNode.Text);
+            foreach (TreeNode item in logNode.Nodes)
+            {
+                List<string> childLogList = writeByNode(item, level + 1);
+                logList.AddRange(childLogList);
+            }
+            return logList;
+        }
+
+        private void btnRead_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = false;
+            openFileDialog.Title = "Please select a .txt file.";
+            openFileDialog.Filter = "Text files (*.txt)|*.txt";
+;
+            string openFilePath;
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                openFilePath = openFileDialog.FileName;
+                string[] logList = System.IO.File.ReadAllLines(openFilePath);
+
+                // validate - empty
+                if (logList.Length == 0)
+                {
+                    MessageBox.Show("Emty .txt file.");
+                }
+
+                // validate - title
+                else if (logList[0] != txtTopic.Text)
+                {
+                    MessageBox.Show("Does not match with title");
+                }
+
+                // reconstruct
+                else if (logList.Length > 1)
+                {
+                    trvNote.Nodes.Clear();
+
+                    TreeNode rootNode = new TreeNode(logList[0], 0, 0);
+                    rootNode.Text = logList[0];
+                    rootNode.Name = Guid.NewGuid().ToString();
+                    rootNode.Expand();
+                    trvNote.Nodes.Add(rootNode);
+
+                    List<TreeNode> curTreeNode = new List<TreeNode>();
+                    int curLevel = 0;
+                    curTreeNode.Add(rootNode);
+
+                    for (int i = 1; i < logList.Length; i++)
+                    {
+                        string[] sp = logList[i].Split('\t');
+                        int level = sp.Length - 1;
+                        string log = sp[sp.Length - 1];
+
+                        TreeNode newNode = new TreeNode(log, 0, 0);
+                        newNode.Text = log;
+                        newNode.Name = Guid.NewGuid().ToString();
+                        newNode.Expand();
+                        updateNodeColor(newNode);
+
+                        // 如果和上一行同级别，curTreeNode倒数第二个追加子节点，更新最后一个
+                        if (curLevel == level && level > 0)
+                        {
+                            curTreeNode[curTreeNode.Count - 2].Nodes.Add(newNode);
+                            curTreeNode[curTreeNode.Count - 1] = newNode;
+                        }
+                        // 如果比上一行级别多一，说明是上一行子节点
+                        else if (curLevel + 1 == level)
+                        {
+                            curTreeNode[curTreeNode.Count - 1].Nodes.Add(newNode);
+                            curTreeNode.Add(newNode);
+                        }
+                        // 如果比上一行少，说明回溯了
+                        else if (curLevel > level)
+                        {
+                            curTreeNode[level - 1].Nodes.Add(newNode);
+                            curTreeNode.RemoveRange(level, curTreeNode.Count - level);
+                            curTreeNode.Add(newNode);
+                        }
+                        // 否则，不合法
+                        else
+                        {
+                            MessageBox.Show("Illegal structure");
+                        }
+                        curLevel = level;
+                    }
+                }
+            }
+        }
+
+        private bool validateNote(string[] logList)
+        {
+            List<int> levelList = new List<int>();
+            foreach (string log in logList)
+            {
+                string[] sp = log.Split('\t');
+                levelList.Add(sp.Length - 1);
+            }
+            return true;
         }
     }
 }
