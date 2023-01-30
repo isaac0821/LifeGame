@@ -143,6 +143,12 @@
     <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagBoolean.Designer.cs">
       <DependentUpon>frmInfoLiteratureSurveyTagBoolean.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNoteMine\frmNoteProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoteMine\frmNoteProperties.Designer.cs">
+      <DependentUpon>frmNoteProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSettings\frmAuthorInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -469,6 +475,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagBoolean.resx">
       <DependentUpon>frmInfoLiteratureSurveyTagBoolean.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoteMine\frmNoteProperties.resx">
+      <DependentUpon>frmNoteProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettings\frmAuthorInfo.resx">
       <DependentUpon>frmAuthorInfo.cs</DependentUpon>

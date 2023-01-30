@@ -1387,6 +1387,93 @@ namespace LifeGame
                 }
             }
         }
-    
+
+        private void tsmProperties_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null)
+            {
+                CNoteProperties p = new CNoteProperties();
+                p.NoteType = "NORM";
+                if (trvNote.SelectedNode.Parent == null)
+                {
+                    p.NoteType = "ROOT";
+                }
+                else if (trvNote.SelectedNode.Text.Contains("$LINK$>"))
+                {
+                    p.NoteType = "LINK";
+                }
+                else if (trvNote.SelectedNode.Text.Contains("$NOTE$>"))
+                {
+                    p.NoteType = "NOTE";
+                }
+                else if (trvNote.SelectedNode.Text.Contains("$LITR$>"))
+                {
+                    p.NoteType = "LITR";
+                }
+                p.numChildren = trvNote.SelectedNode.Nodes.Count;
+                foreach (TreeNode item in trvNote.SelectedNode.Nodes)
+                {
+                    if (item.Text.Contains("$LINK$>"))
+                    {
+                        p.numCLinks += 1;
+                    }
+                    else if (item.Text.Contains("$NOTE$>"))
+                    {
+                        p.numCNotes += 1;
+                    }
+                    else if (item.Text.Contains("$LITR$>"))
+                    {
+                        p.numCLitrs += 1;
+                    }
+                }
+                int[] count = nodeProperties(trvNote.SelectedNode);
+                p.numOffsprings = count[0];
+                p.numOLinks = count[1];
+                p.numONotes = count[2];
+                p.numOLitrs = count[3];
+
+                frmNoteProperties frmNoteProperties = new frmNoteProperties(p);
+                frmNoteProperties.Show();
+            }
+        }
+
+        private int[] nodeProperties(TreeNode node)
+        {
+            int[] count = new int[] { 0, 0, 0, 0 };
+            foreach (TreeNode item in node.Nodes)
+            {
+                count[0] += 1;
+                if (item.Text.Contains("$LINK$>"))
+                {
+                    count[1] += 1;
+                }
+                else if (item.Text.Contains("$NOTE$>"))
+                {
+                    count[2] += 1;
+                }
+                else if (item.Text.Contains("$LITR$>"))
+                {
+                    count[3] += 1;
+                }
+                int[] childCount = nodeProperties(item);
+                for (int i = 0; i < childCount.Length; i++)
+                {
+                    count[i] += childCount[i];
+                }
+            }
+            return count;
+        }
+    }
+    public class CNoteProperties
+    {
+        public string NoteType = "";
+        public int numChildren = 0;
+        public int numCLinks = 0;
+        public int numCNotes = 0;
+        public int numCLitrs = 0;
+        public int numOffsprings = 0;
+        public int numOLinks = 0;
+        public int numONotes = 0;
+        public int numOLitrs = 0;
     }
 }

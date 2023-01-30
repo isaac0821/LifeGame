@@ -79,3 +79,4 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmNoteChangeLabel.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddLiterature.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddNote.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmReplaceNote.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmNoteProperties.resources
