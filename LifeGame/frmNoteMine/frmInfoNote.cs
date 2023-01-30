@@ -21,6 +21,7 @@ namespace LifeGame
         List<RNoteColor> noteColors = new List<RNoteColor>();
         bool RefreshInMain = true;
         string topicGUID = "";
+
         public frmInfoNote(CNote info)
         {
             note = info;
@@ -321,7 +322,7 @@ namespace LifeGame
                 {
                     MessageBox.Show("Included illegal sysmbol '$NOTE$>'");
                 }
-                else
+                else if (NewLog != "")
                 {
                     TreeNode newNode = new TreeNode(NewLog, 0, 0);
                     newNode.Text = NewLog;
@@ -332,7 +333,7 @@ namespace LifeGame
                     trvNote.SelectedNode.ExpandAll();
                     foreach (ListViewItem item in lsvColor.Items)
                     {
-                        if (NewLog.Contains(item.Text) 
+                        if (NewLog.Contains(item.Text)
                             && !NewLog.Contains("$LINK$>")
                             && !NewLog.Contains("$LITR$>")
                             && !NewLog.Contains("$NOTE$>"))
@@ -374,7 +375,7 @@ namespace LifeGame
                 {
                     MessageBox.Show("Included illegal sysmbol '$NOTE$>'");
                 }
-                else
+                else if (NewLogBatch != "")
                 {
                     // 分离得到大括号内的集合
                     string[] splitLeft = NewLogBatch.Split('{');
@@ -502,7 +503,7 @@ namespace LifeGame
                             trvNote.SelectedNode.ExpandAll();
                             foreach (ListViewItem item in lsvColor.Items)
                             {
-                                if (NewLog.Contains(item.Text) 
+                                if (NewLog.Contains(item.Text)
                                     && !NewLog.Contains("$LINK$>")
                                     && !NewLog.Contains("$LITR$>")
                                     && !NewLog.Contains("$NOTE$>"))
@@ -532,44 +533,47 @@ namespace LifeGame
             if (trvNote.SelectedNode != null && trvNote.SelectedNode.Parent != null)
             {
                 string newLog = Interaction.InputBox("Rename Note", "Rename Note", trvNote.SelectedNode.Text, 300, 300);
-                trvNote.SelectedNode.Text = newLog;
-                trvNote.SelectedNode.BackColor = SystemColors.Window;
-                trvNote.SelectedNode.ForeColor = Color.Black;
-                foreach (ListViewItem item in lsvColor.Items)
+                if (newLog != "")
                 {
-                    if (newLog.Contains(item.Text) 
-                        && !newLog.Contains("$LINK$>")
-                        && !newLog.Contains("$LITR$>")
-                        && !newLog.Contains("$NOTE$>"))
+                    trvNote.SelectedNode.Text = newLog;
+                    trvNote.SelectedNode.BackColor = SystemColors.Window;
+                    trvNote.SelectedNode.ForeColor = Color.Black;
+                    foreach (ListViewItem item in lsvColor.Items)
                     {
-                        string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
-                        trvNote.SelectedNode.BackColor = C.GetColor(itemColor);
-                        if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
+                        if (newLog.Contains(item.Text)
+                            && !newLog.Contains("$LINK$>")
+                            && !newLog.Contains("$LITR$>")
+                            && !newLog.Contains("$NOTE$>"))
                         {
-                            trvNote.SelectedNode.ForeColor = Color.White;
-                        }
-                        else
-                        {
-                            trvNote.SelectedNode.ForeColor = Color.Black;
+                            string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
+                            trvNote.SelectedNode.BackColor = C.GetColor(itemColor);
+                            if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
+                            {
+                                trvNote.SelectedNode.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                trvNote.SelectedNode.ForeColor = Color.Black;
+                            }
                         }
                     }
+                    if (newLog.Contains("$LINK$>"))
+                    {
+                        trvNote.SelectedNode.ForeColor = Color.Blue;
+                        trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
+                    }
+                    if (newLog.Contains("$LITR$>"))
+                    {
+                        trvNote.SelectedNode.ForeColor = Color.Brown;
+                        trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
+                    }
+                    if (newLog.Contains("$NOTE$>"))
+                    {
+                        trvNote.SelectedNode.ForeColor = Color.DarkGreen;
+                        trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
+                    }
+                    btnSave.Enabled = true;
                 }
-                if (newLog.Contains("$LINK$>"))
-                {
-                    trvNote.SelectedNode.ForeColor = Color.Blue;
-                    trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
-                }
-                if (newLog.Contains("$LITR$>"))
-                {
-                    trvNote.SelectedNode.ForeColor = Color.Brown;
-                    trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
-                }
-                if (newLog.Contains("$NOTE$>"))
-                {
-                    trvNote.SelectedNode.ForeColor = Color.DarkGreen;
-                    trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
-                }
-                btnSave.Enabled = true;
             }
         }
 
@@ -584,7 +588,11 @@ namespace LifeGame
                 }
                 else
                 {
-                    MessageBox.Show("To be cautious, can not remove note with sub node");
+                    if (MessageBox.Show("Confirm to remove.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                    {
+                        trvNote.Nodes.Remove(trvNote.SelectedNode);
+                        btnSave.Enabled = true;
+                    }
                 }
             }
         }
@@ -613,7 +621,7 @@ namespace LifeGame
                 }
             }
         }
-        
+
         private void tsmUp_Click(object sender, EventArgs e)
         {
             if (trvNote.SelectedNode != null)
@@ -839,8 +847,8 @@ namespace LifeGame
         {
             foreach (ListViewItem item in lsvColor.Items)
             {
-                if (node.Text.Contains(item.Text) 
-                    && !node.Text.Contains("$LINK$>") 
+                if (node.Text.Contains(item.Text)
+                    && !node.Text.Contains("$LINK$>")
                     && !node.Text.Contains("$LITR$>")
                     && !node.Text.Contains("$NOTE$>"))
                 {
@@ -885,6 +893,8 @@ namespace LifeGame
 
         private void updateNodeColor(TreeNode node)
         {
+            // 检查是不是存在标签
+            bool labeled = false;
             foreach (ListViewItem item in lsvColor.Items)
             {
                 if (node.Text.Contains(item.Text)
@@ -892,6 +902,7 @@ namespace LifeGame
                     && !node.Text.Contains("$LITR$>")
                     && !node.Text.Contains("$NOTE$>"))
                 {
+                    labeled = true;
                     string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
                     node.BackColor = C.GetColor(itemColor);
                     if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
@@ -919,7 +930,13 @@ namespace LifeGame
                 node.ForeColor = Color.DarkGreen;
                 node.NodeFont = new Font(Font, FontStyle.Underline);
             }
+            if (!labeled)
+            {
+                node.ForeColor = Color.Black;
+                node.BackColor = Color.White;
+            }
         }
+
         private void replaceNodeText(TreeNode node, string oldString, string newString)
         {
             if (node.Text.Contains(oldString))
@@ -933,10 +950,12 @@ namespace LifeGame
                 replaceNodeText(child, oldString, newString);
             }
         }
+
         private void replaceText(string oldString, string newString)
         {
             replaceNodeText(trvNote.SelectedNode, oldString, newString);
         }
+
         private void appendNodeText(TreeNode node, string appString)
         {
             node.Text = node.Text + appString;
@@ -967,6 +986,7 @@ namespace LifeGame
                 tsmDown.Enabled = false;
                 tsmBelongTo.Enabled = false;
                 tsmIndependent.Enabled = false;
+                tsmCopy.Enabled = false;
             }
             else
             {
@@ -976,6 +996,15 @@ namespace LifeGame
                 tsmDown.Enabled = true;
                 tsmBelongTo.Enabled = true;
                 tsmIndependent.Enabled = true;
+                tsmCopy.Enabled = true;
+            }
+            if (copiedNodes.Count == 0)
+            {
+                tsmPaste.Enabled = false;
+            }
+            else
+            {
+                tsmPaste.Enabled = true;
             }
             if (trvNote.SelectedNode.Text.Contains("$LINK$>")
                 || trvNote.SelectedNode.Text.Contains("$LITR$>")
@@ -1022,6 +1051,12 @@ namespace LifeGame
                         frmInfoLiterature frmInfoLiterature = new frmInfoLiterature(selectedPath);
                         frmInfoLiterature.Show();
                     }
+                    else if (G.glb.lstLiterature.Exists(o => o.BibKey == selectedPath))
+                    {
+                        string lit = G.glb.lstLiterature.FirstOrDefault(o => o.BibKey == selectedPath).Title;
+                        frmInfoLiterature frmInfoLiterature = new frmInfoLiterature(lit);
+                        frmInfoLiterature.Show();
+                    }
                     else
                     {
                         MessageBox.Show("Literature does not exist in database");
@@ -1030,7 +1065,7 @@ namespace LifeGame
                 else if (trvNote.SelectedNode.Text.Contains("$NOTE$>"))
                 {
                     string selectedPath = trvNote.SelectedNode.Text.Replace("$NOTE$>", "");
-                    string[] checkNote = selectedPath.Split('@');                    
+                    string[] checkNote = selectedPath.Split('@');
                     DateTime noteDate = new DateTime();
                     string noteTitle = "";
                     bool tryOpenFlag = true;
@@ -1200,7 +1235,7 @@ namespace LifeGame
             openFileDialog.Multiselect = false;
             openFileDialog.Title = "Please select a .txt file.";
             openFileDialog.Filter = "Text files (*.txt)|*.txt";
-;
+            ;
             string openFilePath;
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -1226,8 +1261,9 @@ namespace LifeGame
 
                     TreeNode rootNode = new TreeNode(logList[0], 0, 0);
                     rootNode.Text = logList[0];
-                    rootNode.Name = Guid.NewGuid().ToString();
+                    rootNode.Name = topicGUID;
                     rootNode.Expand();
+
                     trvNote.Nodes.Add(rootNode);
 
                     List<TreeNode> curTreeNode = new List<TreeNode>();
@@ -1286,5 +1322,71 @@ namespace LifeGame
             }
             return true;
         }
+
+        private struct copiedNodeStruct
+        {
+            public string nodeText;
+            public string nodeGUID;
+            public string nodeParentGUID;
+
+            public copiedNodeStruct(string nodeText, string nodeGUID, string nodeParentGUID)
+            {
+                this.nodeText = nodeText;
+                this.nodeGUID = nodeGUID;
+                this.nodeParentGUID = nodeParentGUID;
+            }
+        }
+
+        private List<copiedNodeStruct> copiedNodes = new List<copiedNodeStruct>();
+
+        private void tsmCopy_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null && trvNote.SelectedNode.Parent != null)
+            {
+                copiedNodes.Clear();
+                copyNode(trvNote.SelectedNode);
+                tsmPaste.Enabled = true;
+            }
+        }
+
+        private void copyNode(TreeNode node)
+        {
+            copiedNodes.Add(new copiedNodeStruct(node.Text, node.Name, node.Parent.Name));
+            foreach (TreeNode child in node.Nodes)
+            {
+                copyNode(child);
+            }
+        }
+
+        private void tsmPaste_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null && copiedNodes.Count > 0)
+            {
+                TreeNode newCopiedRoot = new TreeNode();
+                newCopiedRoot.Text = copiedNodes[0].nodeText;
+                pasteNode(newCopiedRoot, copiedNodes[0].nodeGUID);
+                newCopiedRoot.Name = Guid.NewGuid().ToString();
+                updateNodeColor(newCopiedRoot);
+                trvNote.SelectedNode.Nodes.Add(newCopiedRoot);
+                btnSave.Enabled = true;
+            }
+        }
+
+        private void pasteNode(TreeNode node, string nodeGUID)
+        {
+            if (copiedNodes.Exists(o => o.nodeParentGUID == nodeGUID))
+            {
+                foreach (copiedNodeStruct item in copiedNodes.FindAll(o => o.nodeParentGUID == nodeGUID))
+                {
+                    TreeNode newCopiedChild = new TreeNode();
+                    newCopiedChild.Text = item.nodeText;
+                    pasteNode(newCopiedChild, item.nodeGUID);
+                    newCopiedChild.Name = Guid.NewGuid().ToString();
+                    updateNodeColor(newCopiedChild);
+                    node.Nodes.Add(newCopiedChild);
+                }
+            }
+        }
+    
     }
 }

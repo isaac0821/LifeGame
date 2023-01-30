@@ -22,9 +22,13 @@ namespace LifeGame
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (SendReplace != null)
+            if (SendReplace != null && txtOldString.Text != "" && txtOldString.Text != null)
             {
                 SendReplace(txtOldString.Text, txtNewString.Text);
+                Dispose();
+            }
+            else
+            {
                 Dispose();
             }
         }
