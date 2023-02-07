@@ -1393,6 +1393,7 @@ namespace LifeGame
             if (trvNote.SelectedNode != null)
             {
                 CNoteProperties p = new CNoteProperties();
+                p.Note = trvNote.SelectedNode.Text;
                 p.NoteType = "NORM";
                 if (trvNote.SelectedNode.Parent == null)
                 {
@@ -1463,9 +1464,33 @@ namespace LifeGame
             }
             return count;
         }
+
+        private void tsmFold_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null)
+            {
+                foreach (TreeNode item in trvNote.SelectedNode.Nodes)
+                {
+                    item.Collapse(true);
+                }
+            }
+        }
+
+        private void tsmExpand_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null)
+            {
+                trvNote.SelectedNode.ExpandAll();
+                foreach (TreeNode item in trvNote.SelectedNode.Nodes)
+                {
+                    item.ExpandAll();
+                }
+            }
+        }
     }
     public class CNoteProperties
     {
+        public string Note = "";
         public string NoteType = "";
         public int numChildren = 0;
         public int numCLinks = 0;

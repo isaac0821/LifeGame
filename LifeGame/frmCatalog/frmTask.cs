@@ -83,7 +83,7 @@ namespace LifeGame
                     chkFinished.Checked = true;
                 }
                 calculate C = new calculate();
-                lblTaskTimeSpent.Text = Math.Round(C.CalTimeSpentInTask(task.TaskName, G.glb.lstSubTask, G.glb.lstLog),2).ToString() + "h";
+                lblTaskTimeSpent.Text = Math.Round(C.CalTimeSpentInTask(task.TaskName, G.glb.lstSubTask, G.glb.lstLog), 2).ToString() + "h";
                 DateTime? NextTimeMarker = C.FindNextTimeMarker(task.TaskName, G.glb.lstSubTask, G.glb.lstTask);
                 if (NextTimeMarker != null)
                 {
@@ -122,7 +122,7 @@ namespace LifeGame
                 List<CNote> notes = G.glb.lstNote.FindAll(o => C.FindAllHeirTask(taskName, G.glb.lstSubTask).Exists(p => p == o.TaskName));
                 foreach (CNote note in notes)
                 {
-                    lsbTaskNote.Items.Add(note.TagTime.Year.ToString() + "." + note.TagTime.Month.ToString() + "." + note.TagTime.Day.ToString() + " - " + note.Topic);
+                    lsbTaskNote.Items.Add(note.TagTime.Year.ToString() + "." + note.TagTime.Month.ToString() + "." + note.TagTime.Day.ToString() + "@" + note.Topic);
                 }
             }
             else
@@ -135,6 +135,11 @@ namespace LifeGame
                 lsbTaskNote.Items.Clear();
                 dtpNextTimeMarker.Value = DateTime.Today;
                 dtpDeadline.Value = DateTime.Today;
+                lsbTaskNote.Items.Clear();
+                foreach (CNote note in G.glb.lstNote)
+                {
+                    lsbTaskNote.Items.Add(note.TagTime.Year.ToString() + "." + note.TagTime.Month.ToString() + "." + note.TagTime.Day.ToString() + "@" + note.Topic);
+                }
             }
         }
 
@@ -567,23 +572,56 @@ namespace LifeGame
             if (lsbTaskNote.SelectedItem != null)
             {
                 string selectedItemText = lsbTaskNote.SelectedItem.ToString();
-                string[] split = selectedItemText.Split('-');
+                string[] split = selectedItemText.Split('@');
                 string[] datelist = split[0].Split('.');
                 int Year = Convert.ToInt16(datelist[0]);
                 int Month = Convert.ToInt16(datelist[1]);
-                int Day = Convert.ToInt16(datelist[2].Substring(0, datelist[2].Length - 1));
+                int Day = Convert.ToInt16(datelist[2]);
                 DateTime date = new DateTime(Year, Month, Day, 0, 0, 0);
-                split[1] = split[1].Substring(1, split[1].Length - 1);
                 string NoteTopic = "";
                 for (int i = 1; i < split.Length; i++)
                 {
                     NoteTopic += split[i];
-                    NoteTopic += "-";
+                    NoteTopic += "@";
                 }
                 NoteTopic = NoteTopic.Substring(0, NoteTopic.Length - 1);
                 CNote note = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic);
                 plot D = new plot();
                 D.CallInfoNote(note);
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lsbTaskNote.SelectedItem != null)
+            {
+                if (MessageBox.Show("Confirm to remove.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                {
+                    string tmpSelected = lsbTaskNote.SelectedItem.ToString();
+                    string[] tmpSplit = tmpSelected.Split('@');
+                    string[] tmpDate = tmpSplit[0].Split('.');
+                    DateTime noteDate = new DateTime(Convert.ToInt32(tmpDate[0]), Convert.ToInt32(tmpDate[1]), Convert.ToInt32(tmpDate[2]));
+                    string noteTitle = tmpSplit[1];
+
+                    G.glb.lstNote.RemoveAll(o => o.TagTime.Date == noteDate && o.Topic == noteTitle);
+                    G.glb.lstNoteLog.RemoveAll(o => o.TagTime.Date == noteDate && o.Topic == noteTitle);
+                    G.glb.lstNoteOutsource.RemoveAll(o => o.TagTime.Date == noteDate && o.Topic == noteTitle);
+                    G.glb.lstNoteColor.RemoveAll(o => o.TagTime.Date == noteDate && o.Topic == noteTitle);
+
+                    lsbTaskNote.Items.Clear();
+                    if (trvTask.SelectedNode != null)
+                    {
+                        LoadTask(trvTask.SelectedNode.Text);
+                    }
+                }
+            }
+        }
+
+        private void tsmRenameNote_Click(object sender, EventArgs e)
+        {
+            if (lsbTaskNote.SelectedItem != null)
+            {
+                MessageBox.Show("Constructing");
             }
         }
     }

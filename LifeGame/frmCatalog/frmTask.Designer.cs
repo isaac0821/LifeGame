@@ -82,6 +82,9 @@
             this.lsbTaskNote = new System.Windows.Forms.ListBox();
             this.cmsNote = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmRenameNote = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmDeleteNote = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsTask.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -644,16 +647,38 @@
             // cmsNote
             // 
             this.cmsNote.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmOpen});
+            this.tsmOpen,
+            this.toolStripSeparator4,
+            this.tsmRenameNote,
+            this.tsmDeleteNote});
             this.cmsNote.Name = "cmsNote";
-            this.cmsNote.Size = new System.Drawing.Size(104, 26);
+            this.cmsNote.Size = new System.Drawing.Size(181, 98);
             // 
             // tsmOpen
             // 
             this.tsmOpen.Name = "tsmOpen";
-            this.tsmOpen.Size = new System.Drawing.Size(103, 22);
+            this.tsmOpen.Size = new System.Drawing.Size(180, 22);
             this.tsmOpen.Text = "Open";
             this.tsmOpen.Click += new System.EventHandler(this.tsmOpen_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            // 
+            // tsmRenameNote
+            // 
+            this.tsmRenameNote.Name = "tsmRenameNote";
+            this.tsmRenameNote.Size = new System.Drawing.Size(180, 22);
+            this.tsmRenameNote.Text = "Rename";
+            this.tsmRenameNote.Click += new System.EventHandler(this.tsmRenameNote_Click);
+            // 
+            // tsmDeleteNote
+            // 
+            this.tsmDeleteNote.Name = "tsmDeleteNote";
+            this.tsmDeleteNote.Size = new System.Drawing.Size(180, 22);
+            this.tsmDeleteNote.Text = "Delete";
+            this.tsmDeleteNote.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // frmTask
             // 
@@ -753,5 +778,8 @@
         private System.Windows.Forms.PictureBox picGantt;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label lblTaskDescription;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem tsmRenameNote;
+        private System.Windows.Forms.ToolStripMenuItem tsmDeleteNote;
     }
 }
