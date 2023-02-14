@@ -68,6 +68,7 @@
             this.tsmIndependent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmProperties = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSort = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.lsvColor = new System.Windows.Forms.ListView();
@@ -90,6 +91,7 @@
             this.cbxTask = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.iglIcon = new System.Windows.Forms.ImageList(this.components);
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.cmsTrvNote.SuspendLayout();
@@ -203,6 +205,8 @@
             this.toolStripSeparator7,
             this.tsmGoto,
             this.toolStripSeparator6,
+            this.tsmSort,
+            this.toolStripSeparator9,
             this.tsmEdit,
             this.tsmPrepend,
             this.tsmAppend,
@@ -222,7 +226,7 @@
             this.toolStripSeparator5,
             this.tsmProperties});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(166, 486);
+            this.cmsTrvNote.Size = new System.Drawing.Size(166, 514);
             // 
             // tsmAdd
             // 
@@ -423,6 +427,13 @@
             this.tsmProperties.Size = new System.Drawing.Size(165, 22);
             this.tsmProperties.Text = "Properties";
             this.tsmProperties.Click += new System.EventHandler(this.tsmProperties_Click);
+            // 
+            // tsmSort
+            // 
+            this.tsmSort.Name = "tsmSort";
+            this.tsmSort.Size = new System.Drawing.Size(165, 22);
+            this.tsmSort.Text = "Sort";
+            this.tsmSort.Click += new System.EventHandler(this.tsmSort_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -649,6 +660,11 @@
             this.iglIcon.TransparentColor = System.Drawing.Color.Transparent;
             this.iglIcon.Images.SetKeyName(0, "iconLink.png");
             // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(162, 6);
+            // 
             // frmInfoNote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -735,5 +751,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmFold;
         private System.Windows.Forms.ToolStripMenuItem tsmExpand;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem tsmSort;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
     }
 }

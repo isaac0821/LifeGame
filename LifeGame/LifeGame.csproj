@@ -167,6 +167,7 @@
     <Compile Include="frmSettings\frmReliableJournal.Designer.cs">
       <DependentUpon>frmReliableJournal.cs</DependentUpon>
     </Compile>
+    <Compile Include="memory.cs" />
     <Compile Include="names.cs" />
     <Compile Include="plot.cs" />
     <Compile Include="calculate.cs" />

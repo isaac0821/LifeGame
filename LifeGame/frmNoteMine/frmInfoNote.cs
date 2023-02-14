@@ -998,7 +998,7 @@ namespace LifeGame
                 tsmIndependent.Enabled = true;
                 tsmCopy.Enabled = true;
             }
-            if (copiedNodes.Count == 0)
+            if (M.mem.copiedNodes.Count == 0)
             {
                 tsmPaste.Enabled = false;
             }
@@ -1323,27 +1323,11 @@ namespace LifeGame
             return true;
         }
 
-        private struct copiedNodeStruct
-        {
-            public string nodeText;
-            public string nodeGUID;
-            public string nodeParentGUID;
-
-            public copiedNodeStruct(string nodeText, string nodeGUID, string nodeParentGUID)
-            {
-                this.nodeText = nodeText;
-                this.nodeGUID = nodeGUID;
-                this.nodeParentGUID = nodeParentGUID;
-            }
-        }
-
-        private List<copiedNodeStruct> copiedNodes = new List<copiedNodeStruct>();
-
         private void tsmCopy_Click(object sender, EventArgs e)
         {
             if (trvNote.SelectedNode != null && trvNote.SelectedNode.Parent != null)
             {
-                copiedNodes.Clear();
+                M.mem.copiedNodes.Clear();
                 copyNode(trvNote.SelectedNode);
                 tsmPaste.Enabled = true;
             }
@@ -1351,7 +1335,7 @@ namespace LifeGame
 
         private void copyNode(TreeNode node)
         {
-            copiedNodes.Add(new copiedNodeStruct(node.Text, node.Name, node.Parent.Name));
+            M.mem.copiedNodes.Add(new copiedNodeStruct(node.Text, node.Name, node.Parent.Name));
             foreach (TreeNode child in node.Nodes)
             {
                 copyNode(child);
@@ -1360,11 +1344,11 @@ namespace LifeGame
 
         private void tsmPaste_Click(object sender, EventArgs e)
         {
-            if (trvNote.SelectedNode != null && copiedNodes.Count > 0)
+            if (trvNote.SelectedNode != null && M.mem.copiedNodes.Count > 0)
             {
                 TreeNode newCopiedRoot = new TreeNode();
-                newCopiedRoot.Text = copiedNodes[0].nodeText;
-                pasteNode(newCopiedRoot, copiedNodes[0].nodeGUID);
+                newCopiedRoot.Text = M.mem.copiedNodes[0].nodeText;
+                pasteNode(newCopiedRoot, M.mem.copiedNodes[0].nodeGUID);
                 newCopiedRoot.Name = Guid.NewGuid().ToString();
                 updateNodeColor(newCopiedRoot);
                 trvNote.SelectedNode.Nodes.Add(newCopiedRoot);
@@ -1374,9 +1358,9 @@ namespace LifeGame
 
         private void pasteNode(TreeNode node, string nodeGUID)
         {
-            if (copiedNodes.Exists(o => o.nodeParentGUID == nodeGUID))
+            if (M.mem.copiedNodes.Exists(o => o.nodeParentGUID == nodeGUID))
             {
-                foreach (copiedNodeStruct item in copiedNodes.FindAll(o => o.nodeParentGUID == nodeGUID))
+                foreach (copiedNodeStruct item in M.mem.copiedNodes.FindAll(o => o.nodeParentGUID == nodeGUID))
                 {
                     TreeNode newCopiedChild = new TreeNode();
                     newCopiedChild.Text = item.nodeText;
@@ -1484,6 +1468,35 @@ namespace LifeGame
                 foreach (TreeNode item in trvNote.SelectedNode.Nodes)
                 {
                     item.ExpandAll();
+                }
+            }
+        }
+
+        public int TreeNodeCompare(TreeNode x, TreeNode y)
+        {
+            TreeNode tx = x as TreeNode;
+            TreeNode ty = y as TreeNode;
+            return String.Compare(tx.Text, ty.Text);
+        }
+
+        private void tsmSort_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null && 
+                MessageBox.Show("Confirm to sort children nodes.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+            {
+                Comparison<TreeNode> sorterX = new Comparison<TreeNode>(TreeNodeCompare);
+                List<TreeNode> al = new List<TreeNode>();
+
+                foreach (TreeNode tn in trvNote.SelectedNode.Nodes)
+                {
+                    al.Add(tn);
+                }
+                al.Sort(sorterX);
+
+                trvNote.SelectedNode.Nodes.Clear();
+                foreach (TreeNode tn in al)
+                {
+                    trvNote.SelectedNode.Nodes.Add(tn);
                 }
             }
         }
