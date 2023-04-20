@@ -310,19 +310,7 @@ namespace LifeGame
             if (trvNote.SelectedNode != null)
             {
                 string NewLog = Interaction.InputBox("Input new note node", "New Note", "New Note", 300, 300);
-                if (NewLog.Contains("$LINK$>"))
-                {
-                    MessageBox.Show("Included illegal sysmbol '$LINK$>'");
-                }
-                else if (NewLog.Contains("$LITR$>"))
-                {
-                    MessageBox.Show("Included illegal sysmbol '$LITR$>'");
-                }
-                else if (NewLog.Contains("$NOTE$>"))
-                {
-                    MessageBox.Show("Included illegal sysmbol '$NOTE$>'");
-                }
-                else if (NewLog != "")
+                if (NewLog != "")
                 {
                     TreeNode newNode = new TreeNode(NewLog, 0, 0);
                     newNode.Text = NewLog;
@@ -363,19 +351,7 @@ namespace LifeGame
             {
                 bool canAddBatch = false;
                 string NewLogBatch = Interaction.InputBox("Input new note node in batch, e.g., xxx_{1-10}_xxx, or xxx_{a,b,c}_xxx, or xxx_{1-10,a,b,c}_xxx", "New Notes", "New Note", 300, 300);
-                if (NewLogBatch.Contains("$LINK$>"))
-                {
-                    MessageBox.Show("Included illegal sysmbol '$LINK$>'");
-                }
-                else if (NewLogBatch.Contains("$LITR$>"))
-                {
-                    MessageBox.Show("Included illegal sysmbol '$LITR$>'");
-                }
-                else if (NewLogBatch.Contains("$NOTE$>"))
-                {
-                    MessageBox.Show("Included illegal sysmbol '$NOTE$>'");
-                }
-                else if (NewLogBatch != "")
+                if (NewLogBatch != "")
                 {
                     // 分离得到大括号内的集合
                     string[] splitLeft = NewLogBatch.Split('{');
@@ -532,47 +508,10 @@ namespace LifeGame
         {
             if (trvNote.SelectedNode != null && trvNote.SelectedNode.Parent != null)
             {
-                string newLog = Interaction.InputBox("Rename Note", "Rename Note", trvNote.SelectedNode.Text, 300, 300);
-                if (newLog != "")
+                trvNote.LabelEdit = true;
+                if (!trvNote.SelectedNode.IsEditing)
                 {
-                    trvNote.SelectedNode.Text = newLog;
-                    trvNote.SelectedNode.BackColor = SystemColors.Window;
-                    trvNote.SelectedNode.ForeColor = Color.Black;
-                    foreach (ListViewItem item in lsvColor.Items)
-                    {
-                        if (newLog.Contains(item.Text)
-                            && !newLog.Contains("$LINK$>")
-                            && !newLog.Contains("$LITR$>")
-                            && !newLog.Contains("$NOTE$>"))
-                        {
-                            string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
-                            trvNote.SelectedNode.BackColor = C.GetColor(itemColor);
-                            if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
-                            {
-                                trvNote.SelectedNode.ForeColor = Color.White;
-                            }
-                            else
-                            {
-                                trvNote.SelectedNode.ForeColor = Color.Black;
-                            }
-                        }
-                    }
-                    if (newLog.Contains("$LINK$>"))
-                    {
-                        trvNote.SelectedNode.ForeColor = Color.Blue;
-                        trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
-                    }
-                    if (newLog.Contains("$LITR$>"))
-                    {
-                        trvNote.SelectedNode.ForeColor = Color.Brown;
-                        trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
-                    }
-                    if (newLog.Contains("$NOTE$>"))
-                    {
-                        trvNote.SelectedNode.ForeColor = Color.DarkGreen;
-                        trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
-                    }
-                    btnSave.Enabled = true;
+                    trvNote.SelectedNode.BeginEdit();
                 }
             }
         }
@@ -1481,7 +1420,7 @@ namespace LifeGame
 
         private void tsmSort_Click(object sender, EventArgs e)
         {
-            if (trvNote.SelectedNode != null && 
+            if (trvNote.SelectedNode != null &&
                 MessageBox.Show("Confirm to sort children nodes.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
             {
                 Comparison<TreeNode> sorterX = new Comparison<TreeNode>(TreeNodeCompare);
@@ -1499,6 +1438,136 @@ namespace LifeGame
                     trvNote.SelectedNode.Nodes.Add(tn);
                 }
             }
+        }
+
+        private void trvNote_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 新建节点
+            if (e.Control && e.KeyCode == Keys.A)
+            {
+                tsmAdd_Click(trvNote, e);
+            }
+            // 批量新建
+            else if (e.Control && e.KeyCode == Keys.B)
+            {
+                tsmAddBatch_Click(trvNote, e);
+            }
+            // 折叠
+            else if (e.Control && e.KeyCode == Keys.N)
+            {
+                tsmFold_Click(trvNote, e);
+            }
+            // 展开
+            else if (e.Control && e.KeyCode == Keys.M)
+            {
+                tsmExpand_Click(trvNote, e);
+            }
+            // 转到
+            else if (e.Control && e.KeyCode == Keys.G)
+            {
+                tsmGoto_Click(trvNote, e);
+            }
+            // 编辑节点
+            else if (e.Control && e.KeyCode == Keys.E)
+            {
+                tsmEdit_Click(trvNote, e);
+            }
+            // 复制
+            else if (e.Control && e.KeyCode == Keys.C)
+            {
+                tsmCopy_Click(trvNote, e);
+            }
+            // 粘贴
+            else if (e.Control && e.KeyCode == Keys.V)
+            {
+                tsmPaste_Click(trvNote, e);
+            }
+            // 删除
+            else if (e.Control && e.KeyCode == Keys.D)
+            {
+                tsmRemove_Click(trvNote, e);
+            }
+            // 上移
+            else if (e.Control && e.KeyCode == Keys.I)
+            {
+                tsmUp_Click(trvNote, e);
+            }
+            // 下移
+            else if (e.Control && e.KeyCode == Keys.K)
+            {
+                tsmDown_Click(trvNote, e);
+            }
+            // 左移
+            else if (e.Control && e.KeyCode == Keys.L)
+            {
+                tsmBelongTo_Click(trvNote, e);
+            }
+            // 右移
+            else if (e.Control && e.KeyCode == Keys.J)
+            {
+                tsmIndependent_Click(trvNote, e);
+            }
+            // 节点属性
+            else if (e.Control && e.KeyCode == Keys.P)
+            {
+                tsmProperties_Click(trvNote, e);
+            }
+            
+        }
+
+        private void trvNote_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            if (e.Label != null && e.Label.Trim().Length > 0)
+            {
+                string newLog = e.Label.Trim();
+                trvNote.SelectedNode.Text = newLog;
+                trvNote.SelectedNode.BackColor = SystemColors.Window;
+                trvNote.SelectedNode.ForeColor = Color.Black;
+                foreach (ListViewItem item in lsvColor.Items)
+                {
+                    if (newLog.Contains(item.Text)
+                        && !newLog.Contains("$LINK$>")
+                        && !newLog.Contains("$LITR$>")
+                        && !newLog.Contains("$NOTE$>"))
+                    {
+                        string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
+                        trvNote.SelectedNode.BackColor = C.GetColor(itemColor);
+                        if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
+                        {
+                            trvNote.SelectedNode.ForeColor = Color.White;
+                        }
+                        else
+                        {
+                            trvNote.SelectedNode.ForeColor = Color.Black;
+                        }
+                    }
+                }
+                if (newLog.Contains("$LINK$>"))
+                {
+                    trvNote.SelectedNode.ForeColor = Color.Blue;
+                    trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
+                }
+                if (newLog.Contains("$LITR$>"))
+                {
+                    trvNote.SelectedNode.ForeColor = Color.Brown;
+                    trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
+                }
+                if (newLog.Contains("$NOTE$>"))
+                {
+                    trvNote.SelectedNode.ForeColor = Color.DarkGreen;
+                    trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
+                }
+                btnSave.Enabled = true;
+            }
+            else
+            {
+                e.CancelEdit = true;
+            }
+        }
+
+        private void trvNote_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
     public class CNoteProperties

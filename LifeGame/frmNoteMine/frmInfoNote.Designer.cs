@@ -50,6 +50,8 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmGoto = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmSort = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPrepend = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAppend = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +70,6 @@
             this.tsmIndependent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmProperties = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSort = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.lsvColor = new System.Windows.Forms.ListView();
@@ -91,7 +92,6 @@
             this.cbxTask = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.iglIcon = new System.Windows.Forms.ImageList(this.components);
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.cmsTrvNote.SuspendLayout();
@@ -122,10 +122,10 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 5;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
             this.tableLayoutPanel2.Controls.Add(this.dtpDate, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnWrite, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnSave, 4, 0);
@@ -143,17 +143,17 @@
             // 
             this.dtpDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(203, 3);
+            this.dtpDate.Location = new System.Drawing.Point(157, 3);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(99, 20);
+            this.dtpDate.Size = new System.Drawing.Size(113, 20);
             this.dtpDate.TabIndex = 0;
             // 
             // btnWrite
             // 
             this.btnWrite.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnWrite.Location = new System.Drawing.Point(363, 3);
+            this.btnWrite.Location = new System.Drawing.Point(338, 3);
             this.btnWrite.Name = "btnWrite";
-            this.btnWrite.Size = new System.Drawing.Size(49, 20);
+            this.btnWrite.Size = new System.Drawing.Size(53, 20);
             this.btnWrite.TabIndex = 2;
             this.btnWrite.Text = "Write";
             this.btnWrite.UseVisualStyleBackColor = true;
@@ -163,20 +163,20 @@
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(418, 3);
+            this.btnSave.Location = new System.Drawing.Point(397, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(49, 20);
+            this.btnSave.Size = new System.Drawing.Size(70, 20);
             this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Save (&S)";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnRead
             // 
             this.btnRead.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRead.Location = new System.Drawing.Point(308, 3);
+            this.btnRead.Location = new System.Drawing.Point(276, 3);
             this.btnRead.Name = "btnRead";
-            this.btnRead.Size = new System.Drawing.Size(49, 20);
+            this.btnRead.Size = new System.Drawing.Size(56, 20);
             this.btnRead.TabIndex = 3;
             this.btnRead.Text = "Read";
             this.btnRead.UseVisualStyleBackColor = true;
@@ -190,7 +190,10 @@
             this.trvNote.Name = "trvNote";
             this.trvNote.Size = new System.Drawing.Size(464, 337);
             this.trvNote.TabIndex = 0;
+            this.trvNote.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.trvNote_AfterLabelEdit);
             this.trvNote.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvNote_AfterSelect);
+            this.trvNote.KeyDown += new System.Windows.Forms.KeyEventHandler(this.trvNote_KeyDown);
+            this.trvNote.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.trvNote_KeyPress);
             // 
             // cmsTrvNote
             // 
@@ -221,8 +224,8 @@
             this.tsmUp,
             this.tsmDown,
             this.toolStripSeparator2,
-            this.tsmBelongTo,
             this.tsmIndependent,
+            this.tsmBelongTo,
             this.toolStripSeparator5,
             this.tsmProperties});
             this.cmsTrvNote.Name = "cmsTrvNote";
@@ -232,7 +235,7 @@
             // 
             this.tsmAdd.Name = "tsmAdd";
             this.tsmAdd.Size = new System.Drawing.Size(165, 22);
-            this.tsmAdd.Text = "Add...";
+            this.tsmAdd.Text = "Add (&A)...";
             this.tsmAdd.Click += new System.EventHandler(this.tsmAdd_Click);
             // 
             // tsmAddLink
@@ -270,7 +273,7 @@
             // 
             this.tsmAddBatch.Name = "tsmAddBatch";
             this.tsmAddBatch.Size = new System.Drawing.Size(165, 22);
-            this.tsmAddBatch.Text = "Add Batch...";
+            this.tsmAddBatch.Text = "Add Batch (&B)...";
             this.tsmAddBatch.Click += new System.EventHandler(this.tsmAddBatch_Click);
             // 
             // toolStripSeparator3
@@ -282,14 +285,14 @@
             // 
             this.tsmFold.Name = "tsmFold";
             this.tsmFold.Size = new System.Drawing.Size(165, 22);
-            this.tsmFold.Text = "Fold";
+            this.tsmFold.Text = "Fold (&N)";
             this.tsmFold.Click += new System.EventHandler(this.tsmFold_Click);
             // 
             // tsmExpand
             // 
             this.tsmExpand.Name = "tsmExpand";
             this.tsmExpand.Size = new System.Drawing.Size(165, 22);
-            this.tsmExpand.Text = "Expand";
+            this.tsmExpand.Text = "Expand (&M)";
             this.tsmExpand.Click += new System.EventHandler(this.tsmExpand_Click);
             // 
             // toolStripSeparator7
@@ -301,7 +304,7 @@
             // 
             this.tsmGoto.Name = "tsmGoto";
             this.tsmGoto.Size = new System.Drawing.Size(165, 22);
-            this.tsmGoto.Text = "Go to...";
+            this.tsmGoto.Text = "Go to... (&G)";
             this.tsmGoto.Click += new System.EventHandler(this.tsmGoto_Click);
             // 
             // toolStripSeparator6
@@ -309,11 +312,23 @@
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(162, 6);
             // 
+            // tsmSort
+            // 
+            this.tsmSort.Name = "tsmSort";
+            this.tsmSort.Size = new System.Drawing.Size(165, 22);
+            this.tsmSort.Text = "Sort";
+            this.tsmSort.Click += new System.EventHandler(this.tsmSort_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(162, 6);
+            // 
             // tsmEdit
             // 
             this.tsmEdit.Name = "tsmEdit";
             this.tsmEdit.Size = new System.Drawing.Size(165, 22);
-            this.tsmEdit.Text = "Edit...";
+            this.tsmEdit.Text = "Edit (&E)...";
             this.tsmEdit.Click += new System.EventHandler(this.tsmEdit_Click);
             // 
             // tsmPrepend
@@ -353,7 +368,7 @@
             // 
             this.tsmCopy.Name = "tsmCopy";
             this.tsmCopy.Size = new System.Drawing.Size(165, 22);
-            this.tsmCopy.Text = "Copy";
+            this.tsmCopy.Text = "Copy (&C)";
             this.tsmCopy.Click += new System.EventHandler(this.tsmCopy_Click);
             // 
             // tsmPaste
@@ -361,14 +376,14 @@
             this.tsmPaste.Enabled = false;
             this.tsmPaste.Name = "tsmPaste";
             this.tsmPaste.Size = new System.Drawing.Size(165, 22);
-            this.tsmPaste.Text = "Paste";
+            this.tsmPaste.Text = "Paste (&V)";
             this.tsmPaste.Click += new System.EventHandler(this.tsmPaste_Click);
             // 
             // tsmRemove
             // 
             this.tsmRemove.Name = "tsmRemove";
             this.tsmRemove.Size = new System.Drawing.Size(165, 22);
-            this.tsmRemove.Text = "Remove";
+            this.tsmRemove.Text = "Remove (&D)";
             this.tsmRemove.Click += new System.EventHandler(this.tsmRemove_Click);
             // 
             // removeChildrenToolStripMenuItem
@@ -387,14 +402,14 @@
             // 
             this.tsmUp.Name = "tsmUp";
             this.tsmUp.Size = new System.Drawing.Size(165, 22);
-            this.tsmUp.Text = "Up";
+            this.tsmUp.Text = "Up (&I)";
             this.tsmUp.Click += new System.EventHandler(this.tsmUp_Click);
             // 
             // tsmDown
             // 
             this.tsmDown.Name = "tsmDown";
             this.tsmDown.Size = new System.Drawing.Size(165, 22);
-            this.tsmDown.Text = "Down";
+            this.tsmDown.Text = "Down (&K)";
             this.tsmDown.Click += new System.EventHandler(this.tsmDown_Click);
             // 
             // toolStripSeparator2
@@ -406,14 +421,14 @@
             // 
             this.tsmBelongTo.Name = "tsmBelongTo";
             this.tsmBelongTo.Size = new System.Drawing.Size(165, 22);
-            this.tsmBelongTo.Text = "Belong To";
+            this.tsmBelongTo.Text = "Belong To (&L)";
             this.tsmBelongTo.Click += new System.EventHandler(this.tsmBelongTo_Click);
             // 
             // tsmIndependent
             // 
             this.tsmIndependent.Name = "tsmIndependent";
             this.tsmIndependent.Size = new System.Drawing.Size(165, 22);
-            this.tsmIndependent.Text = "Independent";
+            this.tsmIndependent.Text = "Independent (&J)";
             this.tsmIndependent.Click += new System.EventHandler(this.tsmIndependent_Click);
             // 
             // toolStripSeparator5
@@ -427,13 +442,6 @@
             this.tsmProperties.Size = new System.Drawing.Size(165, 22);
             this.tsmProperties.Text = "Properties";
             this.tsmProperties.Click += new System.EventHandler(this.tsmProperties_Click);
-            // 
-            // tsmSort
-            // 
-            this.tsmSort.Name = "tsmSort";
-            this.tsmSort.Size = new System.Drawing.Size(165, 22);
-            this.tsmSort.Text = "Sort";
-            this.tsmSort.Click += new System.EventHandler(this.tsmSort_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -659,11 +667,6 @@
             this.iglIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iglIcon.ImageStream")));
             this.iglIcon.TransparentColor = System.Drawing.Color.Transparent;
             this.iglIcon.Images.SetKeyName(0, "iconLink.png");
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(162, 6);
             // 
             // frmInfoNote
             // 
