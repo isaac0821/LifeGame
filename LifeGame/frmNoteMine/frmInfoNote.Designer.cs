@@ -66,8 +66,8 @@
             this.tsmUp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDown = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmBelongTo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmIndependent = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBelongTo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmProperties = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -417,19 +417,19 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(162, 6);
             // 
-            // tsmBelongTo
-            // 
-            this.tsmBelongTo.Name = "tsmBelongTo";
-            this.tsmBelongTo.Size = new System.Drawing.Size(165, 22);
-            this.tsmBelongTo.Text = "Belong To (&L)";
-            this.tsmBelongTo.Click += new System.EventHandler(this.tsmBelongTo_Click);
-            // 
             // tsmIndependent
             // 
             this.tsmIndependent.Name = "tsmIndependent";
             this.tsmIndependent.Size = new System.Drawing.Size(165, 22);
             this.tsmIndependent.Text = "Independent (&J)";
             this.tsmIndependent.Click += new System.EventHandler(this.tsmIndependent_Click);
+            // 
+            // tsmBelongTo
+            // 
+            this.tsmBelongTo.Name = "tsmBelongTo";
+            this.tsmBelongTo.Size = new System.Drawing.Size(165, 22);
+            this.tsmBelongTo.Text = "Belong To (&L)";
+            this.tsmBelongTo.Click += new System.EventHandler(this.tsmBelongTo_Click);
             // 
             // toolStripSeparator5
             // 

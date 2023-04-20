@@ -309,11 +309,11 @@ namespace LifeGame
         {
             if (trvNote.SelectedNode != null)
             {
-                string NewLog = Interaction.InputBox("Input new note node", "New Note", "New Note", 300, 300);
-                if (NewLog != "")
+                string newLog = Interaction.InputBox("Input new note node", "New Note", "New Note", 300, 300);
+                if (newLog != "")
                 {
-                    TreeNode newNode = new TreeNode(NewLog, 0, 0);
-                    newNode.Text = NewLog;
+                    TreeNode newNode = new TreeNode(newLog, 0, 0);
+                    newNode.Text = newLog;
                     newNode.Name = Guid.NewGuid().ToString();
                     newNode.BackColor = SystemColors.Window;
                     newNode.ForeColor = Color.Black;
@@ -321,10 +321,10 @@ namespace LifeGame
                     trvNote.SelectedNode.ExpandAll();
                     foreach (ListViewItem item in lsvColor.Items)
                     {
-                        if (NewLog.Contains(item.Text)
-                            && !NewLog.Contains("$LINK$>")
-                            && !NewLog.Contains("$LITR$>")
-                            && !NewLog.Contains("$NOTE$>"))
+                        if (newLog.Contains(item.Text)
+                            && !newLog.Contains("$LINK$>")
+                            && !newLog.Contains("$LITR$>")
+                            && !newLog.Contains("$NOTE$>"))
                         {
                             string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
                             newNode.BackColor = C.GetColor(itemColor);
@@ -337,6 +337,21 @@ namespace LifeGame
                                 newNode.ForeColor = Color.Black;
                             }
                         }
+                    }
+                    if (newLog.Contains("$LINK$>"))
+                    {
+                        newNode.ForeColor = Color.Blue;
+                        newNode.NodeFont = new Font(Font, FontStyle.Underline);
+                    }
+                    if (newLog.Contains("$LITR$>"))
+                    {
+                        newNode.ForeColor = Color.Brown;
+                        newNode.NodeFont = new Font(Font, FontStyle.Underline);
+                    }
+                    if (newLog.Contains("$NOTE$>"))
+                    {
+                        newNode.ForeColor = Color.DarkGreen;
+                        newNode.NodeFont = new Font(Font, FontStyle.Underline);
                     }
                     trvNote.SelectedNode.Nodes.Add(newNode);
                 }
