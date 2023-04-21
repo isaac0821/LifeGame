@@ -133,36 +133,44 @@ namespace LifeGame
                     childNode.BackColor = SystemColors.Window;
                     childNode.ForeColor = Color.Black;
                     childNode.ExpandAll();
-                    foreach (ListViewItem item in lsvColor.Items)
+                    if (highlightText != "" && sub.SubLog.Contains(highlightText))
                     {
-                        if (sub.SubLog.Contains(item.Text))
+                        childNode.ForeColor = Color.Black;
+                        childNode.BackColor = Color.OrangeRed;
+                    }
+                    else
+                    {
+                        foreach (ListViewItem item in lsvColor.Items)
                         {
-                            string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
-                            childNode.BackColor = C.GetColor(itemColor);
-                            if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
+                            if (sub.SubLog.Contains(item.Text))
                             {
-                                childNode.ForeColor = Color.White;
-                            }
-                            else
-                            {
-                                childNode.ForeColor = Color.Black;
+                                string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
+                                childNode.BackColor = C.GetColor(itemColor);
+                                if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
+                                {
+                                    childNode.ForeColor = Color.White;
+                                }
+                                else
+                                {
+                                    childNode.ForeColor = Color.Black;
+                                }
                             }
                         }
-                    }
-                    if (sub.SubLog.Contains("$LINK$>"))
-                    {
-                        childNode.ForeColor = Color.Blue;
-                        childNode.NodeFont = new Font(Font, FontStyle.Underline);
-                    }
-                    if (sub.SubLog.Contains("$LITR$>"))
-                    {
-                        childNode.ForeColor = Color.Brown;
-                        childNode.NodeFont = new Font(Font, FontStyle.Underline);
-                    }
-                    if (sub.SubLog.Contains("$NOTE$>"))
-                    {
-                        childNode.ForeColor = Color.DarkGreen;
-                        childNode.NodeFont = new Font(Font, FontStyle.Underline);
+                        if (sub.SubLog.Contains("$LINK$>"))
+                        {
+                            childNode.ForeColor = Color.Blue;
+                            childNode.NodeFont = new Font(Font, FontStyle.Underline);
+                        }
+                        if (sub.SubLog.Contains("$LITR$>"))
+                        {
+                            childNode.ForeColor = Color.Brown;
+                            childNode.NodeFont = new Font(Font, FontStyle.Underline);
+                        }
+                        if (sub.SubLog.Contains("$NOTE$>"))
+                        {
+                            childNode.ForeColor = Color.DarkGreen;
+                            childNode.NodeFont = new Font(Font, FontStyle.Underline);
+                        }
                     }
                     LoadChildNoteLog(childNode, note.Topic);
                     treeNode.Nodes.Add(childNode);
@@ -1583,6 +1591,31 @@ namespace LifeGame
         private void trvNote_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        string highlightText = "";
+        private void btnHighlight_Click(object sender, EventArgs e)
+        {
+            if (txtHighlight.Text.Length > 0)
+            {
+                highlightText = txtHighlight.Text;
+            }
+            else
+            {
+                highlightText = "";
+            }
+            SaveNoteLog();
+            LoadNoteLog();
+        }
+
+        private void txtHighlight_TextChanged(object sender, EventArgs e)
+        {
+            if (txtHighlight.Text.Length == 0)
+            {
+                highlightText = ""; 
+                SaveNoteLog();
+                LoadNoteLog();
+            }
         }
     }
     public class CNoteProperties
