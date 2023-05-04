@@ -122,7 +122,7 @@ namespace LifeGame
                 dtpStatementPeriodEnd.Value.Date);
             curLiabilitiesBalance = currentLiabilities.EndingBalanceDebit - currentLiabilities.EndingBalanceCredit;
             res.lblBalance = Math.Round(curAssetsBalance + curLiabilitiesBalance, 2);
-            
+
             calculate.SBalance balance = C.CalBalance(
                 accountName,
                 G.glb.lstAccount,
@@ -131,7 +131,7 @@ namespace LifeGame
                 G.glb.lstCurrencyRate,
                 dtpStatementPeriodStart.Value.Date,
                 dtpStatementPeriodEnd.Value.Date);
-            res.lblDebitOpening = Math.Round(balance.OpeningBalanceDebit,2);
+            res.lblDebitOpening = Math.Round(balance.OpeningBalanceDebit, 2);
             res.lblCreditOpening = Math.Round(balance.OpeningBalanceCredit, 2);
             res.lblDebitAmount = Math.Round(balance.AmountDebit, 2);
             res.lblCreditAmount = Math.Round(balance.AmountCredit, 2);
@@ -176,7 +176,7 @@ namespace LifeGame
             res.lblFutureDebitEnding = Math.Round(futureBalance.EndingBalanceDebit, 2);
             res.lblFutureCreditEnding = Math.Round(futureBalance.EndingBalanceCredit, 2);
 
-            
+
             return res;
         }
 
@@ -528,7 +528,7 @@ namespace LifeGame
         {
             if (trvAccount.SelectedNode != null && trvAccount.SelectedNode.Text != "(Root)")
             {
-                
+
                 CAccountBalanceDetail balance = LoadAccount(trvAccount.SelectedNode.Text);
                 LoadAccountTransaction(trvAccount.SelectedNode.Text);
 
@@ -692,14 +692,14 @@ namespace LifeGame
             }
         }
 
-        private void frmAccount_Resize(object sender, EventArgs e)
+        private void picDebit_Click(object sender, EventArgs e)
         {
             RefreshPtgSubAccount(trvAccount.SelectedNode.Text);
         }
 
-        private void picDebit_Click(object sender, EventArgs e)
+        private void picCredit_Click(object sender, EventArgs e)
         {
-
+            RefreshPtgSubAccount(trvAccount.SelectedNode.Text);
         }
     }
 }

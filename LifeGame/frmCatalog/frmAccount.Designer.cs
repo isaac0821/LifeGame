@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("(Root)");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("(Root)");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAccount));
             this.stsAccount = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -298,10 +298,10 @@
             this.trvAccount.ImageList = this.iglAccount;
             this.trvAccount.Location = new System.Drawing.Point(3, 16);
             this.trvAccount.Name = "trvAccount";
-            treeNode1.Name = "(Root)";
-            treeNode1.Text = "(Root)";
+            treeNode2.Name = "(Root)";
+            treeNode2.Text = "(Root)";
             this.trvAccount.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.trvAccount.SelectedImageIndex = 0;
             this.trvAccount.Size = new System.Drawing.Size(246, 235);
             this.trvAccount.TabIndex = 0;
@@ -1139,6 +1139,7 @@
             this.picCredit.Size = new System.Drawing.Size(877, 75);
             this.picCredit.TabIndex = 0;
             this.picCredit.TabStop = false;
+            this.picCredit.Click += new System.EventHandler(this.picCredit_Click);
             // 
             // frmAccount
             // 
@@ -1153,7 +1154,6 @@
             this.Name = "frmAccount";
             this.Text = "LifeGame - Account";
             this.Load += new System.EventHandler(this.frmAccount_Load);
-            this.Resize += new System.EventHandler(this.frmAccount_Resize);
             this.stsAccount.ResumeLayout(false);
             this.stsAccount.PerformLayout();
             this.mnsAccount.ResumeLayout(false);

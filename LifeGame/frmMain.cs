@@ -53,7 +53,7 @@ namespace LifeGame
             try
             {
                 Deserialize();
-                
+
                 //foreach (CNote note in G.glb.lstNote)
                 //{
                 //    Guid g = Guid.NewGuid();
@@ -135,31 +135,31 @@ namespace LifeGame
                 //G.glb.lstAccount.Add(new CAccount());
                 //G.glb.lstAccount[0].AccountName = "(Assets)";
                 //G.glb.lstAccount[0].AccountType = EAccountType.Assets;
-                //G.glb.lstAccount[0].Currency = "USD";
+                //G.glb.lstAccount[0].Currency = "RMB";
                 //G.glb.lstAccount[0].ProtectedAccount = true;
                 //G.glb.lstAccount[1].AccountName = "(Gain/Loss on Exchange)";
                 //G.glb.lstAccount[1].AccountType = EAccountType.Assets;
-                //G.glb.lstAccount[1].Currency = "USD";
+                //G.glb.lstAccount[1].Currency = "RMB";
                 //G.glb.lstAccount[1].ProtectedAccount = true;
                 //G.glb.lstAccount[2].AccountName = "(Expense)";
                 //G.glb.lstAccount[2].AccountType = EAccountType.Expense;
-                //G.glb.lstAccount[2].Currency = "USD";
+                //G.glb.lstAccount[2].Currency = "RMB";
                 //G.glb.lstAccount[2].ProtectedAccount = true;
                 //G.glb.lstAccount[3].AccountName = "(Equity)";
                 //G.glb.lstAccount[3].AccountType = EAccountType.Equity;
-                //G.glb.lstAccount[3].Currency = "USD";
+                //G.glb.lstAccount[3].Currency = "RMB";
                 //G.glb.lstAccount[3].ProtectedAccount = true;
                 //G.glb.lstAccount[4].AccountName = "(Openning Balance)";
                 //G.glb.lstAccount[4].AccountType = EAccountType.Equity;
-                //G.glb.lstAccount[4].Currency = "USD";
+                //G.glb.lstAccount[4].Currency = "RMB";
                 //G.glb.lstAccount[4].ProtectedAccount = true;
                 //G.glb.lstAccount[5].AccountName = "(Liability)";
                 //G.glb.lstAccount[5].AccountType = EAccountType.Liability;
-                //G.glb.lstAccount[5].Currency = "USD";
+                //G.glb.lstAccount[5].Currency = "RMB";
                 //G.glb.lstAccount[5].ProtectedAccount = true;
                 //G.glb.lstAccount[6].AccountName = "(Income)";
                 //G.glb.lstAccount[6].AccountType = EAccountType.Income;
-                //G.glb.lstAccount[6].Currency = "USD";
+                //G.glb.lstAccount[6].Currency = "RMB";
                 //G.glb.lstAccount[6].ProtectedAccount = true;
                 //G.glb.lstSubAccount.Clear();
                 //G.glb.lstSubAccount.Add(new RSubAccount());
