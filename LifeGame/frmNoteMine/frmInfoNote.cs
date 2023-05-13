@@ -21,6 +21,7 @@ namespace LifeGame
         List<RNoteColor> noteColors = new List<RNoteColor>();
         bool RefreshInMain = true;
         string topicGUID = "";
+        private bool lockMode = false;
 
         public frmInfoNote(CNote info)
         {
@@ -36,6 +37,23 @@ namespace LifeGame
             dtpDate.Value = note.TagTime;
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
+            lockMode = info.Locked;
+            if (lockMode)
+            {
+                btnRead.Enabled = false;
+                btnWrite.Enabled = false;
+                btnSave.Enabled = false;
+                btnLock.Text = "Unlock";
+                trvNote.Hide();
+            }
+            else
+            {
+                btnRead.Enabled = true;
+                btnWrite.Enabled = true;
+                btnSave.Enabled = true;
+                btnLock.Text = "Lock";
+                trvNote.Show();
+            }
         }
 
         public frmInfoNote(DateTime selectedDate)
@@ -241,6 +259,7 @@ namespace LifeGame
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).TaskName = cbxTask.Text;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).TagTime = dtpDate.Value.Date;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Topic = txtTopic.Text;
+                        G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Locked = lockMode;
                         break;
                     case DialogResult.No:
                         break;
@@ -255,6 +274,7 @@ namespace LifeGame
                 note.LiteratureTitle = txtLiteratureTitle.Text;
                 note.TaskName = cbxTask.Text;
                 note.TagTime = dtpDate.Value.Date;
+                note.Locked = lockMode;
                 G.glb.lstNote.Add(note);
                 SaveNoteLog();
                 foreach (RNoteLog noteLog in noteLogs)
@@ -1615,6 +1635,42 @@ namespace LifeGame
                 highlightText = ""; 
                 SaveNoteLog();
                 LoadNoteLog();
+            }
+        }
+
+        private void CheckPassword(string password)
+        {
+            if (password == "1992Linear?Peng0821")
+            {
+                btnRead.Enabled = true;
+                btnWrite.Enabled = true;
+                btnSave.Enabled = true;
+                btnLock.Text = "Lock";
+                trvNote.Show();
+                lockMode = false;
+            }
+            else
+            {
+                MessageBox.Show("Incorrect Password, access denied");
+            }
+        }
+
+        private void btnLock_Click(object sender, EventArgs e)
+        {
+            if (!lockMode)
+            {
+                btnRead.Enabled = false;
+                btnWrite.Enabled = false;
+                btnSave.Enabled = false;
+                btnLock.Text = "Unlock";
+                trvNote.Hide();
+                lockMode = true;
+            }
+            else
+            {
+                frmNotePassword frmNotePassword = new frmNotePassword();
+                frmNotePassword.SendPassword += new frmNotePassword.GetPassword(CheckPassword);
+                frmNotePassword.Show();
             }
         }
     }

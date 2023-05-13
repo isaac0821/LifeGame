@@ -433,6 +433,7 @@ namespace LifeGame
         public string LiteratureTitle;
         public string TaskName;
         public bool FinishedNote;
+        public bool Locked;
     }
 
     /// <summary>

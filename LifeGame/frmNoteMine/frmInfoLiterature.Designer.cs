@@ -501,50 +501,50 @@
             this.tsmAuthorUp,
             this.tsmAuthorDown});
             this.cmsAuthor.Name = "cmsAuthor";
-            this.cmsAuthor.Size = new System.Drawing.Size(118, 126);
+            this.cmsAuthor.Size = new System.Drawing.Size(181, 148);
             // 
             // tsmAuthorAdd
             // 
             this.tsmAuthorAdd.Name = "tsmAuthorAdd";
-            this.tsmAuthorAdd.Size = new System.Drawing.Size(117, 22);
+            this.tsmAuthorAdd.Size = new System.Drawing.Size(180, 22);
             this.tsmAuthorAdd.Text = "Add";
             this.tsmAuthorAdd.Click += new System.EventHandler(this.tsmAuthorAdd_Click);
             // 
             // tsmAuthorRemove
             // 
             this.tsmAuthorRemove.Name = "tsmAuthorRemove";
-            this.tsmAuthorRemove.Size = new System.Drawing.Size(117, 22);
+            this.tsmAuthorRemove.Size = new System.Drawing.Size(180, 22);
             this.tsmAuthorRemove.Text = "Remove";
             this.tsmAuthorRemove.Click += new System.EventHandler(this.tsmAuthorRemove_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(114, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(114, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmAuthorUp
             // 
             this.tsmAuthorUp.Name = "tsmAuthorUp";
-            this.tsmAuthorUp.Size = new System.Drawing.Size(117, 22);
+            this.tsmAuthorUp.Size = new System.Drawing.Size(180, 22);
             this.tsmAuthorUp.Text = "Up";
             this.tsmAuthorUp.Click += new System.EventHandler(this.tsmAuthorUp_Click);
             // 
             // tsmAuthorDown
             // 
             this.tsmAuthorDown.Name = "tsmAuthorDown";
-            this.tsmAuthorDown.Size = new System.Drawing.Size(117, 22);
+            this.tsmAuthorDown.Size = new System.Drawing.Size(180, 22);
             this.tsmAuthorDown.Text = "Down";
             this.tsmAuthorDown.Click += new System.EventHandler(this.tsmAuthorDown_Click);
             // 
