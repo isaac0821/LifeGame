@@ -23,6 +23,7 @@ namespace LifeGame
         string topicGUID = "";
         private bool lockMode = false;
 
+        // 已经有了note之后打开
         public frmInfoNote(CNote info)
         {
             note = info;
@@ -56,6 +57,7 @@ namespace LifeGame
             }
         }
 
+        // 新建空note
         public frmInfoNote(DateTime selectedDate)
         {
             InitializeComponent();
@@ -71,14 +73,236 @@ namespace LifeGame
             btnSave.Enabled = true;
         }
 
+        // 新建空literature note
         public frmInfoNote(string LiteratureTitle)
         {
             RefreshInMain = false;
             InitializeComponent();
             note = new CNote();
-            noteLogs = new List<RNoteLog>();
-            noteColors = new List<RNoteColor>();
+            note.Topic = LiteratureTitle;            
             topicGUID = Guid.NewGuid().ToString();
+            note.GUID = topicGUID;
+            note.TagTime = DateTime.Today.Date;
+
+            // 加入template
+            CLiterature lit = G.glb.lstLiterature.Find(o => o.Title == LiteratureTitle);
+            List<RLiteratureAuthor> authors = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == LiteratureTitle).ToList();
+
+            noteLogs = new List<RNoteLog>();
+            RNoteLog meta = new RNoteLog();
+            meta.Topic = LiteratureTitle;
+            meta.TopicGUID = topicGUID;
+            meta.Log = LiteratureTitle;
+            meta.GUID = topicGUID;
+            meta.SubLog = "meta";
+            meta.SubGUID = Guid.NewGuid().ToString();
+            meta.TagTime = DateTime.Today.Date;
+            meta.Index = 0;
+            noteLogs.Add(meta);
+
+            RNoteLog litRef = new RNoteLog();
+            litRef.Topic = LiteratureTitle;
+            litRef.TopicGUID = topicGUID;
+            litRef.Log = "meta";
+            litRef.GUID = meta.SubGUID;
+            litRef.SubLog = "$LITR$>" + lit.Title;
+            litRef.SubGUID = Guid.NewGuid().ToString();
+            litRef.TagTime = DateTime.Today.Date;
+            litRef.Index = 0;
+            noteLogs.Add(litRef);
+
+            for (int i = 0; i < authors.Count; i++)
+            {
+                RNoteLog aut = new RNoteLog();
+                aut.Topic = LiteratureTitle;
+                aut.TopicGUID = topicGUID;
+                aut.Log = "meta";
+                aut.GUID = meta.SubGUID;
+                aut.SubLog = "author: " + authors[i].Author;
+                aut.SubGUID = Guid.NewGuid().ToString();
+                aut.TagTime = DateTime.Today.Date;
+                aut.Index = i + 1;
+                noteLogs.Add(aut);
+            }
+
+            RNoteLog jou = new RNoteLog();
+            jou.Topic = LiteratureTitle;
+            jou.TopicGUID = topicGUID;
+            jou.Log = "meta";
+            jou.GUID = meta.SubGUID;
+            if (lit.BibTeX.BibEntry == EBibEntry.Article)
+            {
+                jou.SubLog = "journal: " + lit.JournalOrConferenceName;
+            }
+            else if (lit.BibTeX.BibEntry == EBibEntry.Conference)
+            {
+                jou.SubLog = "conference: " + lit.JournalOrConferenceName;
+            }
+            else
+            {
+                jou.SubLog = "source: " + lit.JournalOrConferenceName;
+            }
+            jou.SubGUID = Guid.NewGuid().ToString();
+            jou.TagTime = DateTime.Today.Date;
+            jou.Index = authors.Count + 1;
+            noteLogs.Add(jou);
+
+            RNoteLog year = new RNoteLog();
+            year.Topic = LiteratureTitle;
+            year.TopicGUID = topicGUID;
+            year.Log = "meta";
+            year.GUID = meta.SubGUID;
+            year.SubLog = "year: " + lit.PublishYear;
+            year.SubGUID = Guid.NewGuid().ToString();
+            year.TagTime = DateTime.Today.Date;
+            year.Index = authors.Count + 2;
+            noteLogs.Add(year);
+
+            RNoteLog QA = new RNoteLog();
+            QA.Topic = LiteratureTitle;
+            QA.TopicGUID = topicGUID;
+            QA.Log = LiteratureTitle;
+            QA.GUID = topicGUID;
+            QA.SubLog = "Q&A";
+            QA.SubGUID = Guid.NewGuid().ToString();
+            QA.TagTime = DateTime.Today.Date;
+            QA.Index = 1;
+            noteLogs.Add(QA);
+
+            RNoteLog keyTakeaway = new RNoteLog();
+            keyTakeaway.Topic = LiteratureTitle;
+            keyTakeaway.TopicGUID = topicGUID;
+            keyTakeaway.Log = LiteratureTitle;
+            keyTakeaway.GUID = topicGUID;
+            keyTakeaway.SubLog = "key take-away";
+            keyTakeaway.SubGUID = Guid.NewGuid().ToString();
+            keyTakeaway.TagTime = DateTime.Today.Date;
+            keyTakeaway.Index = 2;
+            noteLogs.Add(keyTakeaway);
+
+            RNoteLog background = new RNoteLog();
+            background.Topic = LiteratureTitle;
+            background.TopicGUID = topicGUID;
+            background.Log = "key take-away";
+            background.GUID = keyTakeaway.SubGUID;
+            background.SubLog = "background";
+            background.SubGUID = Guid.NewGuid().ToString();
+            background.TagTime = DateTime.Today.Date;
+            background.Index = 0;
+            noteLogs.Add(background);
+
+            RNoteLog contribution = new RNoteLog();
+            contribution.Topic = LiteratureTitle;
+            contribution.TopicGUID = topicGUID;
+            contribution.Log = "key take-away";
+            contribution.GUID = keyTakeaway.SubGUID;
+            contribution.SubLog = "contribution";
+            contribution.SubGUID = Guid.NewGuid().ToString();
+            contribution.TagTime = DateTime.Today.Date;
+            contribution.Index = 1;
+            noteLogs.Add(contribution);
+
+            RNoteLog model = new RNoteLog();
+            model.Topic = LiteratureTitle;
+            model.TopicGUID = topicGUID;
+            model.Log = "key take-away";
+            model.GUID = keyTakeaway.SubGUID;
+            model.SubLog = "model";
+            model.SubGUID = Guid.NewGuid().ToString();
+            model.TagTime = DateTime.Today.Date;
+            model.Index = 2;
+            noteLogs.Add(model);
+
+            RNoteLog solution = new RNoteLog();
+            solution.Topic = LiteratureTitle;
+            solution.TopicGUID = topicGUID;
+            solution.Log = "key take-away";
+            solution.GUID = keyTakeaway.SubGUID;
+            solution.SubLog = "solution approach";
+            solution.SubGUID = Guid.NewGuid().ToString();
+            solution.TagTime = DateTime.Today.Date;
+            solution.Index = 3;
+            noteLogs.Add(solution);
+
+            RNoteLog managerial = new RNoteLog();
+            managerial.Topic = LiteratureTitle;
+            managerial.TopicGUID = topicGUID;
+            managerial.Log = "key take-away";
+            managerial.GUID = keyTakeaway.SubGUID;
+            managerial.SubLog = "managerial insights";
+            managerial.SubGUID = Guid.NewGuid().ToString();
+            managerial.TagTime = DateTime.Today.Date;
+            managerial.Index = 4;
+            noteLogs.Add(managerial);
+
+            RNoteLog general = new RNoteLog();
+            general.Topic = LiteratureTitle;
+            general.TopicGUID = topicGUID;
+            general.Log = "model";
+            general.GUID = model.SubGUID;
+            general.SubLog = "general";
+            general.SubGUID = Guid.NewGuid().ToString();
+            general.TagTime = DateTime.Today.Date;
+            general.Index = 0;
+            noteLogs.Add(general);
+
+            RNoteLog detail = new RNoteLog();
+            detail.Topic = LiteratureTitle;
+            detail.TopicGUID = topicGUID;
+            detail.Log = "model";
+            detail.GUID = model.SubGUID;
+            detail.SubLog = "detail";
+            detail.SubGUID = Guid.NewGuid().ToString();
+            detail.TagTime = DateTime.Today.Date;
+            detail.Index = 1;
+            noteLogs.Add(detail);
+
+            RNoteLog sets = new RNoteLog();
+            sets.Topic = LiteratureTitle;
+            sets.TopicGUID = topicGUID;
+            sets.Log = "detail";
+            sets.GUID = detail.SubGUID;
+            sets.SubLog = "sets and parameters";
+            sets.SubGUID = Guid.NewGuid().ToString();
+            sets.TagTime = DateTime.Today.Date;
+            sets.Index = 0;
+            noteLogs.Add(sets);
+
+            RNoteLog dvs = new RNoteLog();
+            dvs.Topic = LiteratureTitle;
+            dvs.TopicGUID = topicGUID;
+            dvs.Log = "detail";
+            dvs.GUID = detail.SubGUID;
+            dvs.SubLog = "decision variables";
+            dvs.SubGUID = Guid.NewGuid().ToString();
+            dvs.TagTime = DateTime.Today.Date;
+            dvs.Index = 1;
+            noteLogs.Add(dvs);
+
+            RNoteLog cons = new RNoteLog();
+            cons.Topic = LiteratureTitle;
+            cons.TopicGUID = topicGUID;
+            cons.Log = "detail";
+            cons.GUID = detail.SubGUID;
+            cons.SubLog = "constraints";
+            cons.SubGUID = Guid.NewGuid().ToString();
+            cons.TagTime = DateTime.Today.Date;
+            cons.Index = 2;
+            noteLogs.Add(cons);
+
+            RNoteLog obj = new RNoteLog();
+            obj.Topic = LiteratureTitle;
+            obj.TopicGUID = topicGUID;
+            obj.Log = "detail";
+            obj.GUID = detail.SubGUID;
+            obj.SubLog = "objectives";
+            obj.SubGUID = Guid.NewGuid().ToString();
+            obj.TagTime = DateTime.Today.Date;
+            obj.Index = 3;
+            noteLogs.Add(obj);
+
+            noteColors = new List<RNoteColor>();
+            
             List<RLiteratureOutSource> litOutSources = G.glb.lstLiteratureOutSource.FindAll(o => o.Title == LiteratureTitle).ToList();
             for (int i = 0; i < litOutSources.Count; i++)
             {
@@ -88,6 +312,7 @@ namespace LifeGame
                 noteOutsource.Outsourcepath = litOutSources[i].OutsourcePath;
                 noteOutsources.Add(noteOutsource);
             }
+            note.LiteratureTitle = LiteratureTitle;
             LoadNoteColor();
             LoadNoteLog();
             LoadNoteOutsource();

@@ -345,7 +345,15 @@ namespace LifeGame
                             G.glb.lstAuthor.Add(author);
                         }
                     }
-                    RefreshTab();
+                    try
+                    {
+                        // 有可能literature窗口已经关掉了，没法callback
+                        RefreshTab();
+                    }
+                    catch (Exception)
+                    { 
+                        // 下次打开自然会刷新，所以不用catch
+                    }
                     Dispose();
                 }
                 else

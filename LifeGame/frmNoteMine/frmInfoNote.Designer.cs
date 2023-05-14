@@ -119,10 +119,10 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 148F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(543, 543);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(543, 501);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -145,7 +145,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(543, 26);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(543, 24);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // dtpDate
@@ -154,7 +154,7 @@
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDate.Location = new System.Drawing.Point(171, 3);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(113, 20);
+            this.dtpDate.Size = new System.Drawing.Size(113, 21);
             this.dtpDate.TabIndex = 0;
             // 
             // btnWrite
@@ -162,7 +162,7 @@
             this.btnWrite.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnWrite.Location = new System.Drawing.Point(350, 3);
             this.btnWrite.Name = "btnWrite";
-            this.btnWrite.Size = new System.Drawing.Size(54, 20);
+            this.btnWrite.Size = new System.Drawing.Size(54, 18);
             this.btnWrite.TabIndex = 2;
             this.btnWrite.Text = "Write";
             this.btnWrite.UseVisualStyleBackColor = true;
@@ -174,7 +174,7 @@
             this.btnSave.Enabled = false;
             this.btnSave.Location = new System.Drawing.Point(410, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(70, 20);
+            this.btnSave.Size = new System.Drawing.Size(70, 18);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save (&S)";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -185,7 +185,7 @@
             this.btnRead.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnRead.Location = new System.Drawing.Point(290, 3);
             this.btnRead.Name = "btnRead";
-            this.btnRead.Size = new System.Drawing.Size(54, 20);
+            this.btnRead.Size = new System.Drawing.Size(54, 18);
             this.btnRead.TabIndex = 3;
             this.btnRead.Text = "Read";
             this.btnRead.UseVisualStyleBackColor = true;
@@ -195,7 +195,7 @@
             // 
             this.btnLock.Location = new System.Drawing.Point(486, 3);
             this.btnLock.Name = "btnLock";
-            this.btnLock.Size = new System.Drawing.Size(54, 20);
+            this.btnLock.Size = new System.Drawing.Size(54, 18);
             this.btnLock.TabIndex = 4;
             this.btnLock.Text = "Lock";
             this.btnLock.UseVisualStyleBackColor = true;
@@ -205,9 +205,9 @@
             // 
             this.trvNote.ContextMenuStrip = this.cmsTrvNote;
             this.trvNote.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvNote.Location = new System.Drawing.Point(3, 189);
+            this.trvNote.Location = new System.Drawing.Point(3, 175);
             this.trvNote.Name = "trvNote";
-            this.trvNote.Size = new System.Drawing.Size(537, 351);
+            this.trvNote.Size = new System.Drawing.Size(537, 323);
             this.trvNote.TabIndex = 0;
             this.trvNote.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.trvNote_AfterLabelEdit);
             this.trvNote.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvNote_AfterSelect);
@@ -248,12 +248,12 @@
             this.toolStripSeparator5,
             this.tsmProperties});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(166, 514);
+            this.cmsTrvNote.Size = new System.Drawing.Size(176, 514);
             // 
             // tsmAdd
             // 
             this.tsmAdd.Name = "tsmAdd";
-            this.tsmAdd.Size = new System.Drawing.Size(165, 22);
+            this.tsmAdd.Size = new System.Drawing.Size(175, 22);
             this.tsmAdd.Text = "Add (&A)...";
             this.tsmAdd.Click += new System.EventHandler(this.tsmAdd_Click);
             // 
@@ -264,129 +264,129 @@
             this.tsmAddNoteLiterature,
             this.tsmNote});
             this.tsmAddLink.Name = "tsmAddLink";
-            this.tsmAddLink.Size = new System.Drawing.Size(165, 22);
+            this.tsmAddLink.Size = new System.Drawing.Size(175, 22);
             this.tsmAddLink.Text = "Add Link...";
             // 
             // tsmAddNoteOutsource
             // 
             this.tsmAddNoteOutsource.Name = "tsmAddNoteOutsource";
-            this.tsmAddNoteOutsource.Size = new System.Drawing.Size(129, 22);
+            this.tsmAddNoteOutsource.Size = new System.Drawing.Size(136, 22);
             this.tsmAddNoteOutsource.Text = "Outsource";
             this.tsmAddNoteOutsource.Click += new System.EventHandler(this.tsmAddNoteOutsource_Click);
             // 
             // tsmAddNoteLiterature
             // 
             this.tsmAddNoteLiterature.Name = "tsmAddNoteLiterature";
-            this.tsmAddNoteLiterature.Size = new System.Drawing.Size(129, 22);
+            this.tsmAddNoteLiterature.Size = new System.Drawing.Size(136, 22);
             this.tsmAddNoteLiterature.Text = "Literature";
             this.tsmAddNoteLiterature.Click += new System.EventHandler(this.tsmAddNoteLiterature_Click);
             // 
             // tsmNote
             // 
             this.tsmNote.Name = "tsmNote";
-            this.tsmNote.Size = new System.Drawing.Size(129, 22);
+            this.tsmNote.Size = new System.Drawing.Size(136, 22);
             this.tsmNote.Text = "Note";
             this.tsmNote.Click += new System.EventHandler(this.tsmNote_Click);
             // 
             // tsmAddBatch
             // 
             this.tsmAddBatch.Name = "tsmAddBatch";
-            this.tsmAddBatch.Size = new System.Drawing.Size(165, 22);
+            this.tsmAddBatch.Size = new System.Drawing.Size(175, 22);
             this.tsmAddBatch.Text = "Add Batch (&B)...";
             this.tsmAddBatch.Click += new System.EventHandler(this.tsmAddBatch_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(172, 6);
             // 
             // tsmFold
             // 
             this.tsmFold.Name = "tsmFold";
-            this.tsmFold.Size = new System.Drawing.Size(165, 22);
+            this.tsmFold.Size = new System.Drawing.Size(175, 22);
             this.tsmFold.Text = "Fold (&N)";
             this.tsmFold.Click += new System.EventHandler(this.tsmFold_Click);
             // 
             // tsmExpand
             // 
             this.tsmExpand.Name = "tsmExpand";
-            this.tsmExpand.Size = new System.Drawing.Size(165, 22);
+            this.tsmExpand.Size = new System.Drawing.Size(175, 22);
             this.tsmExpand.Text = "Expand (&M)";
             this.tsmExpand.Click += new System.EventHandler(this.tsmExpand_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(172, 6);
             // 
             // tsmGoto
             // 
             this.tsmGoto.Name = "tsmGoto";
-            this.tsmGoto.Size = new System.Drawing.Size(165, 22);
+            this.tsmGoto.Size = new System.Drawing.Size(175, 22);
             this.tsmGoto.Text = "Go to... (&G)";
             this.tsmGoto.Click += new System.EventHandler(this.tsmGoto_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(172, 6);
             // 
             // tsmSort
             // 
             this.tsmSort.Name = "tsmSort";
-            this.tsmSort.Size = new System.Drawing.Size(165, 22);
+            this.tsmSort.Size = new System.Drawing.Size(175, 22);
             this.tsmSort.Text = "Sort";
             this.tsmSort.Click += new System.EventHandler(this.tsmSort_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(172, 6);
             // 
             // tsmEdit
             // 
             this.tsmEdit.Name = "tsmEdit";
-            this.tsmEdit.Size = new System.Drawing.Size(165, 22);
+            this.tsmEdit.Size = new System.Drawing.Size(175, 22);
             this.tsmEdit.Text = "Edit (&E)...";
             this.tsmEdit.Click += new System.EventHandler(this.tsmEdit_Click);
             // 
             // tsmPrepend
             // 
             this.tsmPrepend.Name = "tsmPrepend";
-            this.tsmPrepend.Size = new System.Drawing.Size(165, 22);
+            this.tsmPrepend.Size = new System.Drawing.Size(175, 22);
             this.tsmPrepend.Text = "Prepend...";
             this.tsmPrepend.Click += new System.EventHandler(this.tsmPrepend_Click);
             // 
             // tsmAppend
             // 
             this.tsmAppend.Name = "tsmAppend";
-            this.tsmAppend.Size = new System.Drawing.Size(165, 22);
+            this.tsmAppend.Size = new System.Drawing.Size(175, 22);
             this.tsmAppend.Text = "Append...";
             this.tsmAppend.Click += new System.EventHandler(this.tsmAppend_Click);
             // 
             // tsmReplace
             // 
             this.tsmReplace.Name = "tsmReplace";
-            this.tsmReplace.Size = new System.Drawing.Size(165, 22);
+            this.tsmReplace.Size = new System.Drawing.Size(175, 22);
             this.tsmReplace.Text = "Replace...";
             this.tsmReplace.Click += new System.EventHandler(this.tsmReplace_Click);
             // 
             // tsmChangeLabel
             // 
             this.tsmChangeLabel.Name = "tsmChangeLabel";
-            this.tsmChangeLabel.Size = new System.Drawing.Size(165, 22);
+            this.tsmChangeLabel.Size = new System.Drawing.Size(175, 22);
             this.tsmChangeLabel.Text = "Change Label...";
             this.tsmChangeLabel.Click += new System.EventHandler(this.tsmChangeLabel_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(172, 6);
             // 
             // tsmCopy
             // 
             this.tsmCopy.Name = "tsmCopy";
-            this.tsmCopy.Size = new System.Drawing.Size(165, 22);
+            this.tsmCopy.Size = new System.Drawing.Size(175, 22);
             this.tsmCopy.Text = "Copy (&C)";
             this.tsmCopy.Click += new System.EventHandler(this.tsmCopy_Click);
             // 
@@ -394,71 +394,71 @@
             // 
             this.tsmPaste.Enabled = false;
             this.tsmPaste.Name = "tsmPaste";
-            this.tsmPaste.Size = new System.Drawing.Size(165, 22);
+            this.tsmPaste.Size = new System.Drawing.Size(175, 22);
             this.tsmPaste.Text = "Paste (&V)";
             this.tsmPaste.Click += new System.EventHandler(this.tsmPaste_Click);
             // 
             // tsmRemove
             // 
             this.tsmRemove.Name = "tsmRemove";
-            this.tsmRemove.Size = new System.Drawing.Size(165, 22);
+            this.tsmRemove.Size = new System.Drawing.Size(175, 22);
             this.tsmRemove.Text = "Remove (&D)";
             this.tsmRemove.Click += new System.EventHandler(this.tsmRemove_Click);
             // 
             // removeChildrenToolStripMenuItem
             // 
             this.removeChildrenToolStripMenuItem.Name = "removeChildrenToolStripMenuItem";
-            this.removeChildrenToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.removeChildrenToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.removeChildrenToolStripMenuItem.Text = "Remove Children";
             this.removeChildrenToolStripMenuItem.Click += new System.EventHandler(this.removeChildrenToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(172, 6);
             // 
             // tsmUp
             // 
             this.tsmUp.Name = "tsmUp";
-            this.tsmUp.Size = new System.Drawing.Size(165, 22);
+            this.tsmUp.Size = new System.Drawing.Size(175, 22);
             this.tsmUp.Text = "Up (&I)";
             this.tsmUp.Click += new System.EventHandler(this.tsmUp_Click);
             // 
             // tsmDown
             // 
             this.tsmDown.Name = "tsmDown";
-            this.tsmDown.Size = new System.Drawing.Size(165, 22);
+            this.tsmDown.Size = new System.Drawing.Size(175, 22);
             this.tsmDown.Text = "Down (&K)";
             this.tsmDown.Click += new System.EventHandler(this.tsmDown_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(172, 6);
             // 
             // tsmIndependent
             // 
             this.tsmIndependent.Name = "tsmIndependent";
-            this.tsmIndependent.Size = new System.Drawing.Size(165, 22);
+            this.tsmIndependent.Size = new System.Drawing.Size(175, 22);
             this.tsmIndependent.Text = "Independent (&J)";
             this.tsmIndependent.Click += new System.EventHandler(this.tsmIndependent_Click);
             // 
             // tsmBelongTo
             // 
             this.tsmBelongTo.Name = "tsmBelongTo";
-            this.tsmBelongTo.Size = new System.Drawing.Size(165, 22);
+            this.tsmBelongTo.Size = new System.Drawing.Size(175, 22);
             this.tsmBelongTo.Text = "Belong To (&L)";
             this.tsmBelongTo.Click += new System.EventHandler(this.tsmBelongTo_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(172, 6);
             // 
             // tsmProperties
             // 
             this.tsmProperties.Name = "tsmProperties";
-            this.tsmProperties.Size = new System.Drawing.Size(165, 22);
+            this.tsmProperties.Size = new System.Drawing.Size(175, 22);
             this.tsmProperties.Text = "Properties";
             this.tsmProperties.Click += new System.EventHandler(this.tsmProperties_Click);
             // 
@@ -478,16 +478,16 @@
             this.tableLayoutPanel3.Controls.Add(this.label5, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 4);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 26);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 5;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(543, 160);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(543, 148);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // label1
@@ -496,7 +496,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 26);
+            this.label1.Size = new System.Drawing.Size(64, 24);
             this.label1.TabIndex = 1;
             this.label1.Text = "Topic";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -505,9 +505,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 78);
+            this.label2.Location = new System.Drawing.Point(3, 72);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 26);
+            this.label2.Size = new System.Drawing.Size(64, 24);
             this.label2.TabIndex = 2;
             this.label2.Text = "Outsources";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -517,9 +517,10 @@
             this.lsbOutsource.ContextMenuStrip = this.cmsOutsource;
             this.lsbOutsource.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbOutsource.FormattingEnabled = true;
-            this.lsbOutsource.Location = new System.Drawing.Point(73, 81);
+            this.lsbOutsource.ItemHeight = 12;
+            this.lsbOutsource.Location = new System.Drawing.Point(73, 75);
             this.lsbOutsource.Name = "lsbOutsource";
-            this.lsbOutsource.Size = new System.Drawing.Size(467, 20);
+            this.lsbOutsource.Size = new System.Drawing.Size(467, 18);
             this.lsbOutsource.TabIndex = 3;
             // 
             // cmsOutsource
@@ -531,31 +532,31 @@
             this.tsmAddOutsource,
             this.tsmDeleteOutsource});
             this.cmsOutsource.Name = "cmsOutsource";
-            this.cmsOutsource.Size = new System.Drawing.Size(108, 76);
+            this.cmsOutsource.Size = new System.Drawing.Size(114, 76);
             // 
             // tsmOpenOutsource
             // 
             this.tsmOpenOutsource.Name = "tsmOpenOutsource";
-            this.tsmOpenOutsource.Size = new System.Drawing.Size(107, 22);
+            this.tsmOpenOutsource.Size = new System.Drawing.Size(113, 22);
             this.tsmOpenOutsource.Text = "Open";
             this.tsmOpenOutsource.Click += new System.EventHandler(this.tsmOpenOutsource_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(104, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(110, 6);
             // 
             // tsmAddOutsource
             // 
             this.tsmAddOutsource.Name = "tsmAddOutsource";
-            this.tsmAddOutsource.Size = new System.Drawing.Size(107, 22);
+            this.tsmAddOutsource.Size = new System.Drawing.Size(113, 22);
             this.tsmAddOutsource.Text = "Add";
             this.tsmAddOutsource.Click += new System.EventHandler(this.tsmAddOutsource_Click);
             // 
             // tsmDeleteOutsource
             // 
             this.tsmDeleteOutsource.Name = "tsmDeleteOutsource";
-            this.tsmDeleteOutsource.Size = new System.Drawing.Size(107, 22);
+            this.tsmDeleteOutsource.Size = new System.Drawing.Size(113, 22);
             this.tsmDeleteOutsource.Text = "Delete";
             this.tsmDeleteOutsource.Click += new System.EventHandler(this.tsmDeleteOutsource_Click);
             // 
@@ -572,7 +573,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(473, 26);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(473, 24);
             this.tableLayoutPanel4.TabIndex = 4;
             // 
             // txtTopic
@@ -580,7 +581,7 @@
             this.txtTopic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTopic.Location = new System.Drawing.Point(3, 3);
             this.txtTopic.Name = "txtTopic";
-            this.txtTopic.Size = new System.Drawing.Size(394, 20);
+            this.txtTopic.Size = new System.Drawing.Size(394, 21);
             this.txtTopic.TabIndex = 0;
             this.txtTopic.TextChanged += new System.EventHandler(this.txtTopic_TextChanged);
             // 
@@ -591,7 +592,7 @@
             this.chkFinished.Location = new System.Drawing.Point(402, 2);
             this.chkFinished.Margin = new System.Windows.Forms.Padding(2);
             this.chkFinished.Name = "chkFinished";
-            this.chkFinished.Size = new System.Drawing.Size(69, 22);
+            this.chkFinished.Size = new System.Drawing.Size(69, 20);
             this.chkFinished.TabIndex = 1;
             this.chkFinished.Text = "Finished";
             this.chkFinished.UseVisualStyleBackColor = true;
@@ -600,9 +601,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 52);
+            this.label3.Location = new System.Drawing.Point(3, 48);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 26);
+            this.label3.Size = new System.Drawing.Size(64, 24);
             this.label3.TabIndex = 5;
             this.label3.Text = "Literature";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -610,18 +611,18 @@
             // txtLiteratureTitle
             // 
             this.txtLiteratureTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLiteratureTitle.Location = new System.Drawing.Point(73, 55);
+            this.txtLiteratureTitle.Location = new System.Drawing.Point(73, 51);
             this.txtLiteratureTitle.Name = "txtLiteratureTitle";
-            this.txtLiteratureTitle.Size = new System.Drawing.Size(467, 20);
+            this.txtLiteratureTitle.Size = new System.Drawing.Size(467, 21);
             this.txtLiteratureTitle.TabIndex = 6;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 26);
+            this.label4.Location = new System.Drawing.Point(3, 24);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 26);
+            this.label4.Size = new System.Drawing.Size(64, 24);
             this.label4.TabIndex = 7;
             this.label4.Text = "Task";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -631,18 +632,18 @@
             this.cbxTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbxTask.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxTask.FormattingEnabled = true;
-            this.cbxTask.Location = new System.Drawing.Point(73, 29);
+            this.cbxTask.Location = new System.Drawing.Point(73, 27);
             this.cbxTask.Name = "cbxTask";
-            this.cbxTask.Size = new System.Drawing.Size(467, 21);
+            this.cbxTask.Size = new System.Drawing.Size(467, 20);
             this.cbxTask.TabIndex = 8;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 104);
+            this.label5.Location = new System.Drawing.Point(3, 96);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 56);
+            this.label5.Size = new System.Drawing.Size(64, 52);
             this.label5.TabIndex = 9;
             this.label5.Text = "Keywords";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -655,12 +656,12 @@
             this.tableLayoutPanel5.Controls.Add(this.lsvColor, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(70, 104);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(70, 96);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(473, 56);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(473, 52);
             this.tableLayoutPanel5.TabIndex = 10;
             // 
             // lsvColor
@@ -670,7 +671,7 @@
             this.lsvColor.HideSelection = false;
             this.lsvColor.Location = new System.Drawing.Point(3, 3);
             this.lsvColor.Name = "lsvColor";
-            this.lsvColor.Size = new System.Drawing.Size(374, 50);
+            this.lsvColor.Size = new System.Drawing.Size(374, 46);
             this.lsvColor.TabIndex = 3;
             this.lsvColor.UseCompatibleStateImageBehavior = false;
             this.lsvColor.View = System.Windows.Forms.View.List;
@@ -681,19 +682,19 @@
             this.addToolStripMenuItem,
             this.removeToolStripMenuItem});
             this.cmsNoteColor.Name = "cmsNoteColor";
-            this.cmsNoteColor.Size = new System.Drawing.Size(118, 48);
+            this.cmsNoteColor.Size = new System.Drawing.Size(124, 48);
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
@@ -709,9 +710,9 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(93, 56);
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(93, 52);
             this.tableLayoutPanel6.TabIndex = 4;
             // 
             // txtHighlight
@@ -719,16 +720,16 @@
             this.txtHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtHighlight.Location = new System.Drawing.Point(3, 3);
             this.txtHighlight.Name = "txtHighlight";
-            this.txtHighlight.Size = new System.Drawing.Size(87, 20);
+            this.txtHighlight.Size = new System.Drawing.Size(87, 21);
             this.txtHighlight.TabIndex = 0;
             this.txtHighlight.TextChanged += new System.EventHandler(this.txtHighlight_TextChanged);
             // 
             // btnHighlight
             // 
             this.btnHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnHighlight.Location = new System.Drawing.Point(3, 29);
+            this.btnHighlight.Location = new System.Drawing.Point(3, 27);
             this.btnHighlight.Name = "btnHighlight";
-            this.btnHighlight.Size = new System.Drawing.Size(87, 24);
+            this.btnHighlight.Size = new System.Drawing.Size(87, 22);
             this.btnHighlight.TabIndex = 1;
             this.btnHighlight.Text = "Highlight";
             this.btnHighlight.UseVisualStyleBackColor = true;
@@ -742,9 +743,9 @@
             // 
             // frmInfoNote
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 543);
+            this.ClientSize = new System.Drawing.Size(543, 501);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmInfoNote";
