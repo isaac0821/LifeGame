@@ -17,7 +17,6 @@ namespace LifeGame
         private plot C = new plot();
         CNote note = new CNote();
         List<RNoteLog> noteLogs = new List<RNoteLog>();
-        List<RNoteOutsource> noteOutsources = new List<RNoteOutsource>();
         List<RNoteColor> noteColors = new List<RNoteColor>();
         bool RefreshInMain = true;
         string topicGUID = "";
@@ -28,13 +27,11 @@ namespace LifeGame
         {
             note = info;
             noteLogs = G.glb.lstNoteLog.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
-            noteOutsources = G.glb.lstNoteOutsource.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             noteColors = G.glb.lstNoteColor.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             topicGUID = info.GUID;
             InitializeComponent();
             LoadNoteColor();
             LoadNoteLog();
-            LoadNoteOutsource();
             dtpDate.Value = note.TagTime;
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
@@ -63,12 +60,10 @@ namespace LifeGame
             InitializeComponent();
             note = new CNote();
             noteLogs = new List<RNoteLog>();
-            noteOutsources = new List<RNoteOutsource>();
             noteColors = new List<RNoteColor>();
             topicGUID = Guid.NewGuid().ToString();
             LoadNoteColor();
             LoadNoteLog();
-            LoadNoteOutsource();
             dtpDate.Value = selectedDate;
             btnSave.Enabled = true;
         }
@@ -303,31 +298,72 @@ namespace LifeGame
 
             noteColors = new List<RNoteColor>();
             
-            List<RLiteratureOutSource> litOutSources = G.glb.lstLiteratureOutSource.FindAll(o => o.Title == LiteratureTitle).ToList();
-            for (int i = 0; i < litOutSources.Count; i++)
-            {
-                RNoteOutsource noteOutsource = new RNoteOutsource();
-                noteOutsource.TagTime = DateTime.Today.Date;
-                noteOutsource.Topic = litOutSources[i].Title;
-                noteOutsource.Outsourcepath = litOutSources[i].OutsourcePath;
-                noteOutsources.Add(noteOutsource);
-            }
             note.LiteratureTitle = LiteratureTitle;
             LoadNoteColor();
             LoadNoteLog();
-            LoadNoteOutsource();
             txtTopic.Text = LiteratureTitle;
             dtpDate.Value = DateTime.Today.Date;
             btnSave.Enabled = true;
         }
 
-        private void LoadNoteOutsource()
+        public frmInfoNote(string topic, List<string> lstLiterature)
         {
-            lsbOutsource.Items.Clear();
-            foreach (RNoteOutsource noteOutsource in noteOutsources)
+            RefreshInMain = false;
+            InitializeComponent();
+            note = new CNote();
+            note.Topic = topic;
+            topicGUID = Guid.NewGuid().ToString();
+            note.GUID = topicGUID;
+            note.TagTime = DateTime.Today.Date;
+
+            for (int i = 0; i < lstLiterature.Count; i++)
             {
-                lsbOutsource.Items.Add(noteOutsource.Outsourcepath);
+                RNoteLog lit = new RNoteLog();
+                lit.Topic = topic;
+                lit.TopicGUID = topicGUID;
+                lit.Log = topic;
+                lit.GUID = topicGUID;
+                lit.SubLog = "$LITR$>" + lstLiterature[i];
+                lit.SubGUID = Guid.NewGuid().ToString();
+                lit.TagTime = DateTime.Today.Date;
+                lit.Index = i;
+                noteLogs.Add(lit);
             }
+
+            noteColors = new List<RNoteColor>();
+            RNoteColor unread = new RNoteColor();
+            unread.Topic = topic;
+            unread.Keyword = "[Unread]";
+            unread.Color = "Red";
+            unread.TagTime = DateTime.Today.Date;
+            noteColors.Add(unread);
+
+            RNoteColor reading = new RNoteColor();
+            reading.Topic = topic;
+            reading.Keyword = "[Reading]";
+            reading.Color = "Orange";
+            reading.TagTime = DateTime.Today.Date;
+            noteColors.Add(reading);
+
+            RNoteColor read = new RNoteColor();
+            read.Topic = topic;
+            read.Keyword = "[Read]";
+            read.Color = "Green";
+            read.TagTime = DateTime.Today.Date;
+            noteColors.Add(read);
+
+            RNoteColor revisit = new RNoteColor();
+            revisit.Topic = topic;
+            revisit.Keyword = "[Revisit]";
+            revisit.Color = "Orange";
+            revisit.TagTime = DateTime.Today.Date;
+            noteColors.Add(revisit);
+
+            LoadNoteColor();
+            LoadNoteLog();
+            txtTopic.Text = topic;
+            dtpDate.Value = DateTime.Today.Date;
+            btnSave.Enabled = true;
         }
 
         private void LoadNoteColor()
@@ -458,7 +494,6 @@ namespace LifeGame
                 {
                     case DialogResult.Yes:
                         G.glb.lstNoteLog.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
-                        G.glb.lstNoteOutsource.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
                         G.glb.lstNoteColor.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
                         SaveNoteLog();
                         foreach (RNoteLog noteLog in noteLogs)
@@ -466,12 +501,6 @@ namespace LifeGame
                             noteLog.Topic = txtTopic.Text;
                             noteLog.TagTime = dtpDate.Value.Date;
                             G.glb.lstNoteLog.Add(noteLog);
-                        }
-                        foreach (RNoteOutsource noteOutsource in noteOutsources)
-                        {
-                            noteOutsource.Topic = txtTopic.Text;
-                            noteOutsource.TagTime = dtpDate.Value.Date;
-                            G.glb.lstNoteOutsource.Add(noteOutsource);
                         }
                         foreach (RNoteColor noteColor in noteColors)
                         {
@@ -507,12 +536,6 @@ namespace LifeGame
                     noteLog.Topic = txtTopic.Text;
                     noteLog.TagTime = dtpDate.Value.Date;
                     G.glb.lstNoteLog.Add(noteLog);
-                }
-                foreach (RNoteOutsource noteOutsource in noteOutsources)
-                {
-                    noteOutsource.Topic = txtTopic.Text;
-                    noteOutsource.TagTime = dtpDate.Value.Date;
-                    G.glb.lstNoteOutsource.Add(noteOutsource);
                 }
                 foreach (RNoteColor noteColor in noteColors)
                 {
@@ -917,53 +940,6 @@ namespace LifeGame
             note.Topic = txtTopic.Text;
             trvNote.Nodes[0].Text = txtTopic.Text;
             trvNote.Nodes[0].Name = topicGUID;
-        }
-
-        private void tsmAddOutsource_Click(object sender, EventArgs e)
-        {
-            string newOutsourcePath = Interaction.InputBox("Add outsource", "Add outsource", "Add outsource", 300, 300);
-            RNoteOutsource newNoteOutsource = new RNoteOutsource();
-            newNoteOutsource.Topic = note.Topic;
-            newNoteOutsource.TagTime = dtpDate.Value;
-            newNoteOutsource.Outsourcepath = newOutsourcePath;
-            noteOutsources.Add(newNoteOutsource);
-            LoadNoteOutsource();
-            btnSave.Enabled = true;
-        }
-
-        private void tsmDeleteOutsource_Click(object sender, EventArgs e)
-        {
-            if (lsbOutsource.SelectedItem != null)
-            {
-                noteOutsources.RemoveAll(o => o.Outsourcepath == lsbOutsource.SelectedItem.ToString());
-                LoadNoteOutsource();
-            }
-            btnSave.Enabled = true;
-        }
-
-        private void tsmOpenOutsource_Click(object sender, EventArgs e)
-        {
-            if (lsbOutsource.SelectedItem != null)
-            {
-                string selectedPath = lsbOutsource.SelectedItem.ToString();
-                string[] checkUrl = selectedPath.Split(':');
-                if (checkUrl[0] == "http" || checkUrl[0] == "https")
-                {
-                    System.Diagnostics.Process.Start("chrome.exe", selectedPath);
-                }
-                else
-                {
-                    try
-                    {
-                        System.Diagnostics.Process.Start(selectedPath);
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("File type is not supported.");
-                        throw;
-                    }
-                }
-            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)

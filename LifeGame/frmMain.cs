@@ -229,7 +229,6 @@ namespace LifeGame
 
                 // Note
                 G.glb.lstNote = new List<CNote>();
-                G.glb.lstNoteOutsource = new List<RNoteOutsource>();
                 G.glb.lstNoteLog = new List<RNoteLog>();
 
                 // Literature

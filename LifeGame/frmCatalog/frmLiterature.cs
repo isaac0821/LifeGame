@@ -982,5 +982,36 @@ namespace LifeGame
             frmUnreliableJournal.RefreshLits += new frmUnreliableJournal.RefreshLitsHandler(LoadLiteratureList);
             frmUnreliableJournal.Show();
         }
+
+        private void createNotesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+            if (clbProject.CheckedItems.Count == 1)
+            {
+                List<RLiteratureInCiting> lst = G.glb.lstLiteratureCiting.FindAll(o=>o.TitleOfMyArticle == clbProject.CheckedItems[0].ToString().Split('[')[0]).ToList();
+                List<string> lstTitle = new List<string>();
+                for (int i = 0; i < lst.Count; i++)
+                {
+                    lstTitle.Add(lst[i].Title.ToString());
+                }
+                frmInfoNote frmInfoNote = new frmInfoNote(clbProject.CheckedItems[0].ToString().Split('[')[0], lstTitle);
+                frmInfoNote.Show();
+            }
+        }
+
+        private void createNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (clbTag.CheckedItems.Count == 1)
+            {
+                List<RLiteratureTag> lst = G.glb.lstLiteratureTag.FindAll(o => o.Tag == clbTag.CheckedItems[0].ToString().Split('[')[0]).ToList();
+                List<string> lstTitle = new List<string>();
+                for (int i = 0; i < lst.Count; i++)
+                {
+                    lstTitle.Add(lst[i].Title.ToString());
+                }
+                frmInfoNote frmInfoNote = new frmInfoNote(clbTag.CheckedItems[0].ToString().Split('[')[0], lstTitle);
+                frmInfoNote.Show();
+            }
+        }
     }
 }

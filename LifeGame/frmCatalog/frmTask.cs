@@ -605,7 +605,6 @@ namespace LifeGame
 
                     G.glb.lstNote.RemoveAll(o => o.TagTime.Date == noteDate && o.Topic == noteTitle);
                     G.glb.lstNoteLog.RemoveAll(o => o.TagTime.Date == noteDate && o.Topic == noteTitle);
-                    G.glb.lstNoteOutsource.RemoveAll(o => o.TagTime.Date == noteDate && o.Topic == noteTitle);
                     G.glb.lstNoteColor.RemoveAll(o => o.TagTime.Date == noteDate && o.Topic == noteTitle);
 
                     lsbTaskNote.Items.Clear();

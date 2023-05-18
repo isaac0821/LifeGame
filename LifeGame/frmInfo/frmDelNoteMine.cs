@@ -59,7 +59,6 @@ namespace LifeGame
                             case DialogResult.Yes:
                                 G.glb.lstNote.RemoveAll(o => o.TagTime == curDate && o.Topic == lsbNote.SelectedItem.ToString());
                                 G.glb.lstNoteLog.RemoveAll(o => o.TagTime == curDate && o.Topic == lsbNote.SelectedItem.ToString());
-                                G.glb.lstNoteOutsource.RemoveAll(o => o.TagTime == curDate && o.Topic == lsbNote.SelectedItem.ToString());
                                 break;
                             case DialogResult.No:
                                 break;
