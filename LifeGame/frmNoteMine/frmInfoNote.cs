@@ -1169,7 +1169,6 @@ namespace LifeGame
                 tsmDown.Enabled = false;
                 tsmBelongTo.Enabled = false;
                 tsmIndependent.Enabled = false;
-                tsmCopy.Enabled = false;
             }
             else
             {
@@ -1179,7 +1178,6 @@ namespace LifeGame
                 tsmDown.Enabled = true;
                 tsmBelongTo.Enabled = true;
                 tsmIndependent.Enabled = true;
-                tsmCopy.Enabled = true;
             }
             if (M.mem.copiedNodes.Count == 0)
             {
@@ -1508,7 +1506,7 @@ namespace LifeGame
 
         private void tsmCopy_Click(object sender, EventArgs e)
         {
-            if (trvNote.SelectedNode != null && trvNote.SelectedNode.Parent != null)
+            if (trvNote.SelectedNode != null)
             {
                 M.mem.copiedNodes.Clear();
                 copyNode(trvNote.SelectedNode);
@@ -1518,7 +1516,14 @@ namespace LifeGame
 
         private void copyNode(TreeNode node)
         {
-            M.mem.copiedNodes.Add(new copiedNodeStruct(node.Text, node.Name, node.Parent.Name));
+            if (node.Parent != null)
+            {
+                M.mem.copiedNodes.Add(new copiedNodeStruct(node.Text, node.Name, node.Parent.Name));
+            }
+            else
+            {
+                M.mem.copiedNodes.Add(new copiedNodeStruct(node.Text, node.Name, null));
+            }
             foreach (TreeNode child in node.Nodes)
             {
                 copyNode(child);
@@ -1756,7 +1761,11 @@ namespace LifeGame
             {
                 tsmProperties_Click(trvNote, e);
             }
-            
+            // 保存
+            else if (e.Control && e.KeyCode == Keys.S)
+            {
+                SaveNote();
+            }
         }
 
         private void trvNote_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
