@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace LifeGame
 {
@@ -349,6 +350,11 @@ namespace LifeGame
                     {
                         // 有可能literature窗口已经关掉了，没法callback
                         RefreshTab();
+
+                        FileStream f = new FileStream("data.dat", FileMode.Create);
+                        BinaryFormatter b = new BinaryFormatter();
+                        b.Serialize(f, G.glb);
+                        f.Close();
                     }
                     catch (Exception)
                     { 

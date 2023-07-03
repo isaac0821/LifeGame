@@ -49,6 +49,8 @@
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.createNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.btnTagAll = new System.Windows.Forms.Button();
             this.btnTagClear = new System.Windows.Forms.Button();
@@ -59,6 +61,8 @@
             this.cmsProject = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmRemoveProject = new System.Windows.Forms.ToolStripMenuItem();
             this.renameProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.createNotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.btnProjectAll = new System.Windows.Forms.Button();
             this.btnProjectClear = new System.Windows.Forms.Button();
@@ -115,10 +119,6 @@
             this.chkNoBad = new System.Windows.Forms.CheckBox();
             this.chkOnlyGood = new System.Windows.Forms.CheckBox();
             this.lblNumFound = new System.Windows.Forms.Label();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.createNotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -331,28 +331,40 @@
             this.toolStripSeparator4,
             this.createNoteToolStripMenuItem});
             this.cmsTags.Name = "cmsTags";
-            this.cmsTags.Size = new System.Drawing.Size(181, 120);
+            this.cmsTags.Size = new System.Drawing.Size(150, 98);
             // 
             // renameToolStripMenuItem
             // 
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.renameToolStripMenuItem.Text = "Rename Tag";
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
             // 
             // groupToolStripMenuItem
             // 
             this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            this.groupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.groupToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.groupToolStripMenuItem.Text = "Group";
             this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
             // 
             // removeTagToolStripMenuItem
             // 
             this.removeTagToolStripMenuItem.Name = "removeTagToolStripMenuItem";
-            this.removeTagToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeTagToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.removeTagToolStripMenuItem.Text = "Remove Tag";
             this.removeTagToolStripMenuItem.Click += new System.EventHandler(this.removeTagToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(146, 6);
+            // 
+            // createNoteToolStripMenuItem
+            // 
+            this.createNoteToolStripMenuItem.Name = "createNoteToolStripMenuItem";
+            this.createNoteToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.createNoteToolStripMenuItem.Text = "Create Note";
+            this.createNoteToolStripMenuItem.Click += new System.EventHandler(this.createNoteToolStripMenuItem_Click);
             // 
             // tableLayoutPanel13
             // 
@@ -465,6 +477,18 @@
             this.renameProjectToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.renameProjectToolStripMenuItem.Text = "Rename Project";
             this.renameProjectToolStripMenuItem.Click += new System.EventHandler(this.renameProjectToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(164, 6);
+            // 
+            // createNotesToolStripMenuItem
+            // 
+            this.createNotesToolStripMenuItem.Name = "createNotesToolStripMenuItem";
+            this.createNotesToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.createNotesToolStripMenuItem.Text = "Create Notes";
+            this.createNotesToolStripMenuItem.Click += new System.EventHandler(this.createNotesToolStripMenuItem_Click);
             // 
             // tableLayoutPanel15
             // 
@@ -610,7 +634,7 @@
             this.tpgYear.Location = new System.Drawing.Point(22, 4);
             this.tpgYear.Name = "tpgYear";
             this.tpgYear.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgYear.Size = new System.Drawing.Size(255, 509);
+            this.tpgYear.Size = new System.Drawing.Size(255, 504);
             this.tpgYear.TabIndex = 2;
             this.tpgYear.Text = "Year";
             this.tpgYear.UseVisualStyleBackColor = true;
@@ -627,7 +651,7 @@
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(249, 503);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(249, 498);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // clbYear
@@ -637,7 +661,7 @@
             this.clbYear.FormattingEnabled = true;
             this.clbYear.Location = new System.Drawing.Point(3, 3);
             this.clbYear.Name = "clbYear";
-            this.clbYear.Size = new System.Drawing.Size(243, 468);
+            this.clbYear.Size = new System.Drawing.Size(243, 463);
             this.clbYear.TabIndex = 0;
             // 
             // tableLayoutPanel11
@@ -651,7 +675,7 @@
             this.tableLayoutPanel11.Controls.Add(this.btnYearClear, 3, 0);
             this.tableLayoutPanel11.Controls.Add(this.btnYearRefresh, 0, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 477);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 472);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -697,7 +721,7 @@
             this.tpgInstitution.Location = new System.Drawing.Point(22, 4);
             this.tpgInstitution.Name = "tpgInstitution";
             this.tpgInstitution.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgInstitution.Size = new System.Drawing.Size(255, 509);
+            this.tpgInstitution.Size = new System.Drawing.Size(255, 504);
             this.tpgInstitution.TabIndex = 3;
             this.tpgInstitution.Text = "Institution";
             this.tpgInstitution.UseVisualStyleBackColor = true;
@@ -714,7 +738,7 @@
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(249, 503);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(249, 498);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
             // clbInstitution
@@ -724,7 +748,7 @@
             this.clbInstitution.FormattingEnabled = true;
             this.clbInstitution.Location = new System.Drawing.Point(3, 3);
             this.clbInstitution.Name = "clbInstitution";
-            this.clbInstitution.Size = new System.Drawing.Size(243, 468);
+            this.clbInstitution.Size = new System.Drawing.Size(243, 463);
             this.clbInstitution.TabIndex = 0;
             // 
             // tableLayoutPanel12
@@ -738,7 +762,7 @@
             this.tableLayoutPanel12.Controls.Add(this.btnInsClear, 3, 0);
             this.tableLayoutPanel12.Controls.Add(this.btnInstitutionRefresh, 0, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 477);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 472);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 1;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -784,7 +808,7 @@
             this.tpgJournalConference.Location = new System.Drawing.Point(22, 4);
             this.tpgJournalConference.Name = "tpgJournalConference";
             this.tpgJournalConference.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgJournalConference.Size = new System.Drawing.Size(255, 509);
+            this.tpgJournalConference.Size = new System.Drawing.Size(255, 504);
             this.tpgJournalConference.TabIndex = 4;
             this.tpgJournalConference.Text = "Journal/Conference";
             this.tpgJournalConference.UseVisualStyleBackColor = true;
@@ -801,7 +825,7 @@
             this.tableLayoutPanel8.RowCount = 2;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(249, 503);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(249, 498);
             this.tableLayoutPanel8.TabIndex = 1;
             // 
             // clbJournalConference
@@ -811,7 +835,7 @@
             this.clbJournalConference.FormattingEnabled = true;
             this.clbJournalConference.Location = new System.Drawing.Point(3, 3);
             this.clbJournalConference.Name = "clbJournalConference";
-            this.clbJournalConference.Size = new System.Drawing.Size(243, 468);
+            this.clbJournalConference.Size = new System.Drawing.Size(243, 463);
             this.clbJournalConference.TabIndex = 0;
             // 
             // tableLayoutPanel9
@@ -825,7 +849,7 @@
             this.tableLayoutPanel9.Controls.Add(this.btnJourClear, 3, 0);
             this.tableLayoutPanel9.Controls.Add(this.btnJournalRefresh, 0, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 477);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 472);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1070,7 +1094,7 @@
             this.tableLayoutPanel16.Name = "tableLayoutPanel16";
             this.tableLayoutPanel16.RowCount = 1;
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel16.Size = new System.Drawing.Size(719, 24);
             this.tableLayoutPanel16.TabIndex = 4;
             // 
@@ -1107,30 +1131,6 @@
             this.lblNumFound.Size = new System.Drawing.Size(402, 24);
             this.lblNumFound.TabIndex = 2;
             this.lblNumFound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(164, 6);
-            // 
-            // createNotesToolStripMenuItem
-            // 
-            this.createNotesToolStripMenuItem.Name = "createNotesToolStripMenuItem";
-            this.createNotesToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.createNotesToolStripMenuItem.Text = "Create Notes";
-            this.createNotesToolStripMenuItem.Click += new System.EventHandler(this.createNotesToolStripMenuItem_Click);
-            // 
-            // createNoteToolStripMenuItem
-            // 
-            this.createNoteToolStripMenuItem.Name = "createNoteToolStripMenuItem";
-            this.createNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.createNoteToolStripMenuItem.Text = "Create Note";
-            this.createNoteToolStripMenuItem.Click += new System.EventHandler(this.createNoteToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // frmLiterature
             // 

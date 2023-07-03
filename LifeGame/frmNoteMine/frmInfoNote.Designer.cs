@@ -71,6 +71,7 @@
             this.tsmBelongTo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmProperties = new System.Windows.Forms.ToolStripMenuItem();
+            this.iglIcon = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -89,7 +90,6 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.txtHighlight = new System.Windows.Forms.TextBox();
             this.btnHighlight = new System.Windows.Forms.Button();
-            this.iglIcon = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.cmsTrvNote.SuspendLayout();
@@ -200,6 +200,7 @@
             this.trvNote.Location = new System.Drawing.Point(3, 154);
             this.trvNote.Name = "trvNote";
             this.trvNote.Size = new System.Drawing.Size(537, 344);
+            this.trvNote.StateImageList = this.iglIcon;
             this.trvNote.TabIndex = 0;
             this.trvNote.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.trvNote_AfterLabelEdit);
             this.trvNote.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvNote_AfterSelect);
@@ -454,6 +455,16 @@
             this.tsmProperties.Text = "Properties";
             this.tsmProperties.Click += new System.EventHandler(this.tsmProperties_Click);
             // 
+            // iglIcon
+            // 
+            this.iglIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iglIcon.ImageStream")));
+            this.iglIcon.TransparentColor = System.Drawing.Color.Transparent;
+            this.iglIcon.Images.SetKeyName(0, "Note_DDL.png");
+            this.iglIcon.Images.SetKeyName(1, "Note_Paper.png");
+            this.iglIcon.Images.SetKeyName(2, "Note_Proposal.png");
+            this.iglIcon.Images.SetKeyName(3, "Note_Package.png");
+            this.iglIcon.Images.SetKeyName(4, "Note_Book.png");
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
@@ -664,12 +675,6 @@
             this.btnHighlight.Text = "Highlight";
             this.btnHighlight.UseVisualStyleBackColor = true;
             this.btnHighlight.Click += new System.EventHandler(this.btnHighlight_Click);
-            // 
-            // iglIcon
-            // 
-            this.iglIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iglIcon.ImageStream")));
-            this.iglIcon.TransparentColor = System.Drawing.Color.Transparent;
-            this.iglIcon.Images.SetKeyName(0, "iconLink.png");
             // 
             // frmInfoNote
             // 

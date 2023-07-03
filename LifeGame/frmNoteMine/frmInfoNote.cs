@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Tracing;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using Microsoft.VisualBasic;
 
 namespace LifeGame
@@ -421,7 +425,10 @@ namespace LifeGame
                     {
                         foreach (ListViewItem item in lsvColor.Items)
                         {
-                            if (sub.SubLog.Contains(item.Text))
+                            if (sub.SubLog.Contains(item.Text)
+                                && !sub.SubLog.Contains("$LINK$>")
+                                && !sub.SubLog.Contains("$LITR$>")
+                                && !sub.SubLog.Contains("$NOTE$>"))
                             {
                                 string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
                                 childNode.BackColor = C.GetColor(itemColor);
@@ -440,15 +447,40 @@ namespace LifeGame
                             childNode.ForeColor = Color.Blue;
                             childNode.NodeFont = new Font(Font, FontStyle.Underline);
                         }
-                        if (sub.SubLog.Contains("$LITR$>"))
+                        else if (sub.SubLog.Contains("$LITR$>"))
                         {
                             childNode.ForeColor = Color.Brown;
                             childNode.NodeFont = new Font(Font, FontStyle.Underline);
                         }
-                        if (sub.SubLog.Contains("$NOTE$>"))
+                        else if (sub.SubLog.Contains("$NOTE$>"))
                         {
                             childNode.ForeColor = Color.DarkGreen;
                             childNode.NodeFont = new Font(Font, FontStyle.Underline);
+                        }
+
+                        if (sub.SubLog.Contains("ddl: ") || sub.SubLog.Contains("DDL: "))
+                        {
+                            childNode.StateImageIndex = 0;
+                        }
+                        else if (sub.SubLog.Contains("paper: ") || sub.SubLog.Contains("Paper: "))
+                        {
+                            childNode.StateImageIndex = 1;
+                        }
+                        else if (sub.SubLog.Contains("proposal: ") || sub.SubLog.Contains("Proposal: "))
+                        {
+                            childNode.StateImageIndex = 2;
+                        }
+                        else if (sub.SubLog.Contains("package: ") || sub.SubLog.Contains("Package: "))
+                        {
+                            childNode.StateImageIndex = 3;
+                        }
+                        else if (sub.SubLog.Contains("book: ") || sub.SubLog.Contains("Book: "))
+                        {
+                            childNode.StateImageIndex = 4;
+                        }
+                        else
+                        {
+                            childNode.StateImageIndex = -1;
                         }
                     }
                     LoadChildNoteLog(childNode, note.Topic);
@@ -548,6 +580,11 @@ namespace LifeGame
                     DrawLog();
                 }
             }
+
+            FileStream f = new FileStream("data.dat", FileMode.Create);
+            BinaryFormatter b = new BinaryFormatter();
+            b.Serialize(f, G.glb);
+            f.Close();
         }
 
         private void frmInfoNote_FormClosing(object sender, FormClosingEventArgs e)
@@ -619,16 +656,42 @@ namespace LifeGame
                         newNode.ForeColor = Color.Blue;
                         newNode.NodeFont = new Font(Font, FontStyle.Underline);
                     }
-                    if (newLog.Contains("$LITR$>"))
+                    else if (newLog.Contains("$LITR$>"))
                     {
                         newNode.ForeColor = Color.Brown;
                         newNode.NodeFont = new Font(Font, FontStyle.Underline);
                     }
-                    if (newLog.Contains("$NOTE$>"))
+                    else if (newLog.Contains("$NOTE$>"))
                     {
                         newNode.ForeColor = Color.DarkGreen;
                         newNode.NodeFont = new Font(Font, FontStyle.Underline);
                     }
+
+                    if (newLog.Contains("ddl: ") || newLog.Contains("DDL: "))
+                    {
+                        newNode.StateImageIndex = 0;
+                    }
+                    else if (newLog.Contains("paper: ") || newLog.Contains("Paper: "))
+                    {
+                        newNode.StateImageIndex = 1;
+                    }
+                    else if (newLog.Contains("proposal: ") || newLog.Contains("Proposal: "))
+                    {
+                        newNode.StateImageIndex = 2;
+                    }
+                    else if (newLog.Contains("package: ") || newLog.Contains("Package: "))
+                    {
+                        newNode.StateImageIndex = 3;
+                    }
+                    else if (newLog.Contains("book: ") || newLog.Contains("Book: "))
+                    {
+                        newNode.StateImageIndex = 4;
+                    }
+                    else
+                    {
+                        newNode.StateImageIndex = -1;
+                    }
+
                     trvNote.SelectedNode.Nodes.Add(newNode);
                 }
             }
@@ -760,9 +823,9 @@ namespace LifeGame
                     {
                         foreach (string inc in inBracketCollection)
                         {
-                            string NewLog = beforeBracket + inc + afterBracket;
-                            TreeNode newNode = new TreeNode(NewLog, 0, 0);
-                            newNode.Text = NewLog;
+                            string newLog = beforeBracket + inc + afterBracket;
+                            TreeNode newNode = new TreeNode(newLog, 0, 0);
+                            newNode.Text = newLog;
                             newNode.Name = Guid.NewGuid().ToString();
                             newNode.BackColor = SystemColors.Window;
                             newNode.ForeColor = Color.Black;
@@ -770,10 +833,10 @@ namespace LifeGame
                             trvNote.SelectedNode.ExpandAll();
                             foreach (ListViewItem item in lsvColor.Items)
                             {
-                                if (NewLog.Contains(item.Text)
-                                    && !NewLog.Contains("$LINK$>")
-                                    && !NewLog.Contains("$LITR$>")
-                                    && !NewLog.Contains("$NOTE$>"))
+                                if (newLog.Contains(item.Text)
+                                    && !newLog.Contains("$LINK$>")
+                                    && !newLog.Contains("$LITR$>")
+                                    && !newLog.Contains("$NOTE$>"))
                                 {
                                     string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
                                     newNode.BackColor = C.GetColor(itemColor);
@@ -786,6 +849,47 @@ namespace LifeGame
                                         newNode.ForeColor = Color.Black;
                                     }
                                 }
+                            }
+
+                            if (newLog.Contains("$LINK$>"))
+                            {
+                                newNode.ForeColor = Color.Blue;
+                                newNode.NodeFont = new Font(Font, FontStyle.Underline);
+                            }
+                            else if (newLog.Contains("$LITR$>"))
+                            {
+                                newNode.ForeColor = Color.Brown;
+                                newNode.NodeFont = new Font(Font, FontStyle.Underline);
+                            }
+                            else if (newLog.Contains("$NOTE$>"))
+                            {
+                                newNode.ForeColor = Color.DarkGreen;
+                                newNode.NodeFont = new Font(Font, FontStyle.Underline);
+                            }
+
+                            if (newLog.Contains("ddl: ") || newLog.Contains("DDL: "))
+                            {
+                                newNode.StateImageIndex = 0;
+                            }
+                            else if (newLog.Contains("paper: ") || newLog.Contains("Paper: "))
+                            {
+                                newNode.StateImageIndex = 1;
+                            }
+                            else if (newLog.Contains("proposal: ") || newLog.Contains("Proposal: "))
+                            {
+                                newNode.StateImageIndex = 2;
+                            }
+                            else if (newLog.Contains("package: ") || newLog.Contains("Package: "))
+                            {
+                                newNode.StateImageIndex = 3;
+                            }
+                            else if (newLog.Contains("book: ") || newLog.Contains("Book: "))
+                            {
+                                newNode.StateImageIndex = 4;
+                            }
+                            else
+                            {
+                                newNode.StateImageIndex = -1;
                             }
                             trvNote.SelectedNode.Nodes.Add(newNode);
                         }
@@ -1055,16 +1159,42 @@ namespace LifeGame
                 node.ForeColor = Color.Blue;
                 node.NodeFont = new Font(Font, FontStyle.Underline);
             }
-            if (node.Text.Contains("$LITR$>"))
+            else if (node.Text.Contains("$LITR$>"))
             {
                 node.ForeColor = Color.Brown;
                 node.NodeFont = new Font(Font, FontStyle.Underline);
             }
-            if (node.Text.Contains("$NOTE$>"))
+            else if (node.Text.Contains("$NOTE$>"))
             {
                 node.ForeColor = Color.DarkGreen;
                 node.NodeFont = new Font(Font, FontStyle.Underline);
             }
+
+            if (node.Text.Contains("ddl: ") || node.Text.Contains("DDL: "))
+            {
+                node.StateImageIndex = 0;
+            }
+            else if (node.Text.Contains("paper: ") || node.Text.Contains("Paper: "))
+            {
+                node.StateImageIndex = 1;
+            }
+            else if (node.Text.Contains("proposal: ") || node.Text.Contains("Proposal: "))
+            {
+                node.StateImageIndex = 2;
+            }
+            else if (node.Text.Contains("package: ") || node.Text.Contains("Package: "))
+            {
+                node.StateImageIndex = 3;
+            }
+            else if (node.Text.Contains("book: ") || node.Text.Contains("Book: "))
+            {
+                node.StateImageIndex = 4;
+            }
+            else
+            {
+                node.StateImageIndex = -1;
+            }
+
             if (changeDescendant)
             {
                 foreach (TreeNode child in node.Nodes)
@@ -1103,20 +1233,45 @@ namespace LifeGame
                 node.ForeColor = Color.Blue;
                 node.NodeFont = new Font(Font, FontStyle.Underline);
             }
-            if (node.Text.Contains("$LITR$>"))
+            else if (node.Text.Contains("$LITR$>"))
             {
                 node.ForeColor = Color.Brown;
                 node.NodeFont = new Font(Font, FontStyle.Underline);
             }
-            if (node.Text.Contains("$NOTE$>"))
+            else if (node.Text.Contains("$NOTE$>"))
             {
                 node.ForeColor = Color.DarkGreen;
                 node.NodeFont = new Font(Font, FontStyle.Underline);
             }
-            if (!labeled)
+            else if (!labeled)
             {
                 node.ForeColor = Color.Black;
                 node.BackColor = Color.White;
+            }
+
+            if (node.Text.Contains("ddl: ") || node.Text.Contains("DDL: "))
+            {
+                node.StateImageIndex = 0;
+            }
+            else if (node.Text.Contains("paper: ") || node.Text.Contains("Paper: "))
+            {
+                node.StateImageIndex = 1;
+            }
+            else if (node.Text.Contains("proposal: ") || node.Text.Contains("Proposal: "))
+            {
+                node.StateImageIndex = 2;
+            }
+            else if (node.Text.Contains("package: ") || node.Text.Contains("Package: "))
+            {
+                node.StateImageIndex = 3;
+            }
+            else if (node.Text.Contains("book: ") || node.Text.Contains("Book: "))
+            {
+                node.StateImageIndex = 4;
+            }
+            else
+            {
+                node.StateImageIndex = -1;
             }
         }
 
@@ -1800,16 +1955,42 @@ namespace LifeGame
                     trvNote.SelectedNode.ForeColor = Color.Blue;
                     trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
                 }
-                if (newLog.Contains("$LITR$>"))
+                else if (newLog.Contains("$LITR$>"))
                 {
                     trvNote.SelectedNode.ForeColor = Color.Brown;
                     trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
                 }
-                if (newLog.Contains("$NOTE$>"))
+                else if (newLog.Contains("$NOTE$>"))
                 {
                     trvNote.SelectedNode.ForeColor = Color.DarkGreen;
                     trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
                 }
+
+                if (newLog.Contains("ddl: ") || newLog.Contains("DDL: "))
+                {
+                    trvNote.SelectedNode.StateImageIndex = 0;
+                }
+                else if (newLog.Contains("paper: ") || newLog.Contains("Paper: "))
+                {
+                    trvNote.SelectedNode.StateImageIndex = 1;
+                }
+                else if (newLog.Contains("proposal: ") || newLog.Contains("Proposal: "))
+                {
+                    trvNote.SelectedNode.StateImageIndex = 2;
+                }
+                else if (newLog.Contains("package: ") || newLog.Contains("Package: "))
+                {
+                    trvNote.SelectedNode.StateImageIndex = 3;
+                }
+                else if (newLog.Contains("book: ") || newLog.Contains("Book: "))
+                {
+                    trvNote.SelectedNode.StateImageIndex = 4;
+                }
+                else
+                {
+                    trvNote.SelectedNode.StateImageIndex = -1;
+                }
+
                 btnSave.Enabled = true;
             }
             else

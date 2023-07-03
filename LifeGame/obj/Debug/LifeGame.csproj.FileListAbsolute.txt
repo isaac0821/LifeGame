@@ -18,7 +18,6 @@ C:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddLog.resources
 D:\LifeGame\LifeGame\bin\Debug\LifeGame.exe.config
 D:\LifeGame\LifeGame\bin\Debug\LifeGame.exe
 D:\LifeGame\LifeGame\bin\Debug\LifeGame.pdb
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.csprojAssemblyReference.cache
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAccount.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddLog.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSchedule.resources
@@ -148,3 +147,5 @@ D:\Zoo\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.GenerateResource.cache
 D:\Zoo\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.CoreCompileInputs.cache
 D:\Zoo\LifeGame\LifeGame\obj\Debug\LifeGame.exe
 D:\Zoo\LifeGame\LifeGame\obj\Debug\LifeGame.pdb
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.AssemblyReference.cache
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.SuggestedBindingRedirects.cache
