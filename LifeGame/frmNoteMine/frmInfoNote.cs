@@ -6,6 +6,7 @@ using System.Diagnostics.Tracing;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -401,6 +402,118 @@ namespace LifeGame
             trvNote.Nodes.Add(rootNode);
         }
 
+        private int getLogo(string note)
+        {
+            if (note.Contains("ddl: ") || note.Contains("DDL: "))
+            {
+                return 0;
+            }
+            else if (note.Contains("paper: ") || note.Contains("Paper: "))
+            {
+                return 1;
+            }
+            else if (note.Contains("proposal: ") || note.Contains("Proposal: "))
+            {
+                return 2;
+            }
+            else if (note.Contains("package: ") || note.Contains("Package: "))
+            {
+                return 3;
+            }
+            else if (note.Contains("book: ") || note.Contains("Book: "))
+            {
+                return 4;
+            }
+            else if (note.Contains("horiFund: ") || note.Contains("HoriFund: "))
+            {
+                return 5;
+            }
+            else if (note.Contains("vertFund: ") || note.Contains("VertFund: "))
+            {
+                return 6;
+            }
+            else if (note.Contains("report: ") || note.Contains("Report: "))
+            {
+                return 7;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        private (Color, Color) getColor(string note)
+        {
+            Color BackColor = new Color();
+            Color ForeColor = new Color();
+
+            BackColor = Color.White;
+            foreach (ListViewItem item in lsvColor.Items)
+            {
+                if (note.Contains(item.Text))
+                {
+                    string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
+                    BackColor = C.GetColor(itemColor);
+                    if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
+                    {
+                        ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        ForeColor = Color.Black;
+                    }
+                }
+            }
+            if (note.Contains("$LINK$>"))
+            {
+                ForeColor = Color.Blue;
+            }
+            else if (note.Contains("$LITR$>"))
+            {
+                ForeColor = Color.Brown;
+            }
+            else if (note.Contains("$NOTE$>"))
+            {
+                ForeColor = Color.DarkGreen;
+            }
+
+            if (note.Contains("ddl: ") || note.Contains("DDL: "))
+            {
+                string dateSeg = "";
+                dateSeg = note.Replace("ddl: ", "");
+                dateSeg = dateSeg.Replace("DDL: ", "");
+                string[] dateNote = dateSeg.Split('.');
+                DateTime noteDate = new DateTime();
+                try
+                {
+                    noteDate = new DateTime(Convert.ToInt32(dateNote[0]), Convert.ToInt32(dateNote[1]), Convert.ToInt32(dateNote[2]));
+
+                    if (noteDate - DateTime.Today>= TimeSpan.FromDays(30))
+                    {
+                        BackColor = Color.Green;
+                    }
+                    else if (noteDate - DateTime.Today>= TimeSpan.FromDays(7))
+                    {
+                        BackColor = Color.Yellow;
+                    }
+                    else if (noteDate - DateTime.Today>= TimeSpan.FromDays(3))
+                    {
+                        BackColor = Color.Orange;
+                    }
+                    else if (noteDate - DateTime.Today>= TimeSpan.FromDays(1))
+                    {
+                        BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        BackColor = Color.Gray;
+                    }
+                }
+                catch { }
+            }
+            return (BackColor, ForeColor);
+        }
+
         private void LoadChildNoteLog(TreeNode treeNode, string topic)
         {
             // 如果本条NoteLog作为上级NoteLog存在，添加所有的SubLog
@@ -423,65 +536,12 @@ namespace LifeGame
                     }
                     else
                     {
-                        foreach (ListViewItem item in lsvColor.Items)
+                        (childNode.BackColor, childNode.ForeColor) = getColor(sub.SubLog);
+                        if (sub.SubLog.Contains("$LINK$>") || sub.SubLog.Contains("$LITR$>") || sub.SubLog.Contains("$NOTE$>"))
                         {
-                            if (sub.SubLog.Contains(item.Text)
-                                && !sub.SubLog.Contains("$LINK$>")
-                                && !sub.SubLog.Contains("$LITR$>")
-                                && !sub.SubLog.Contains("$NOTE$>"))
-                            {
-                                string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
-                                childNode.BackColor = C.GetColor(itemColor);
-                                if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
-                                {
-                                    childNode.ForeColor = Color.White;
-                                }
-                                else
-                                {
-                                    childNode.ForeColor = Color.Black;
-                                }
-                            }
-                        }
-                        if (sub.SubLog.Contains("$LINK$>"))
-                        {
-                            childNode.ForeColor = Color.Blue;
                             childNode.NodeFont = new Font(Font, FontStyle.Underline);
                         }
-                        else if (sub.SubLog.Contains("$LITR$>"))
-                        {
-                            childNode.ForeColor = Color.Brown;
-                            childNode.NodeFont = new Font(Font, FontStyle.Underline);
-                        }
-                        else if (sub.SubLog.Contains("$NOTE$>"))
-                        {
-                            childNode.ForeColor = Color.DarkGreen;
-                            childNode.NodeFont = new Font(Font, FontStyle.Underline);
-                        }
-
-                        if (sub.SubLog.Contains("ddl: ") || sub.SubLog.Contains("DDL: "))
-                        {
-                            childNode.StateImageIndex = 0;
-                        }
-                        else if (sub.SubLog.Contains("paper: ") || sub.SubLog.Contains("Paper: "))
-                        {
-                            childNode.StateImageIndex = 1;
-                        }
-                        else if (sub.SubLog.Contains("proposal: ") || sub.SubLog.Contains("Proposal: "))
-                        {
-                            childNode.StateImageIndex = 2;
-                        }
-                        else if (sub.SubLog.Contains("package: ") || sub.SubLog.Contains("Package: "))
-                        {
-                            childNode.StateImageIndex = 3;
-                        }
-                        else if (sub.SubLog.Contains("book: ") || sub.SubLog.Contains("Book: "))
-                        {
-                            childNode.StateImageIndex = 4;
-                        }
-                        else
-                        {
-                            childNode.StateImageIndex = -1;
-                        }
+                        childNode.StateImageIndex = getLogo(sub.SubLog);
                     }
                     LoadChildNoteLog(childNode, note.Topic);
                     treeNode.Nodes.Add(childNode);
@@ -632,65 +692,13 @@ namespace LifeGame
                     newNode.ForeColor = Color.Black;
                     newNode.ExpandAll();
                     trvNote.SelectedNode.ExpandAll();
-                    foreach (ListViewItem item in lsvColor.Items)
-                    {
-                        if (newLog.Contains(item.Text)
-                            && !newLog.Contains("$LINK$>")
-                            && !newLog.Contains("$LITR$>")
-                            && !newLog.Contains("$NOTE$>"))
-                        {
-                            string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
-                            newNode.BackColor = C.GetColor(itemColor);
-                            if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
-                            {
-                                newNode.ForeColor = Color.White;
-                            }
-                            else
-                            {
-                                newNode.ForeColor = Color.Black;
-                            }
-                        }
-                    }
-                    if (newLog.Contains("$LINK$>"))
-                    {
-                        newNode.ForeColor = Color.Blue;
-                        newNode.NodeFont = new Font(Font, FontStyle.Underline);
-                    }
-                    else if (newLog.Contains("$LITR$>"))
-                    {
-                        newNode.ForeColor = Color.Brown;
-                        newNode.NodeFont = new Font(Font, FontStyle.Underline);
-                    }
-                    else if (newLog.Contains("$NOTE$>"))
-                    {
-                        newNode.ForeColor = Color.DarkGreen;
-                        newNode.NodeFont = new Font(Font, FontStyle.Underline);
-                    }
 
-                    if (newLog.Contains("ddl: ") || newLog.Contains("DDL: "))
+                    (newNode.BackColor, newNode.ForeColor) = getColor(newLog);
+                    if (newLog.Contains("$LINK$>") || newLog.Contains("$LITR$>") || newLog.Contains("$NOTE$>"))
                     {
-                        newNode.StateImageIndex = 0;
+                        newNode.NodeFont = new Font(Font, FontStyle.Underline);
                     }
-                    else if (newLog.Contains("paper: ") || newLog.Contains("Paper: "))
-                    {
-                        newNode.StateImageIndex = 1;
-                    }
-                    else if (newLog.Contains("proposal: ") || newLog.Contains("Proposal: "))
-                    {
-                        newNode.StateImageIndex = 2;
-                    }
-                    else if (newLog.Contains("package: ") || newLog.Contains("Package: "))
-                    {
-                        newNode.StateImageIndex = 3;
-                    }
-                    else if (newLog.Contains("book: ") || newLog.Contains("Book: "))
-                    {
-                        newNode.StateImageIndex = 4;
-                    }
-                    else
-                    {
-                        newNode.StateImageIndex = -1;
-                    }
+                    newNode.StateImageIndex = getLogo(newLog);
 
                     trvNote.SelectedNode.Nodes.Add(newNode);
                 }
@@ -831,66 +839,13 @@ namespace LifeGame
                             newNode.ForeColor = Color.Black;
                             newNode.ExpandAll();
                             trvNote.SelectedNode.ExpandAll();
-                            foreach (ListViewItem item in lsvColor.Items)
-                            {
-                                if (newLog.Contains(item.Text)
-                                    && !newLog.Contains("$LINK$>")
-                                    && !newLog.Contains("$LITR$>")
-                                    && !newLog.Contains("$NOTE$>"))
-                                {
-                                    string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
-                                    newNode.BackColor = C.GetColor(itemColor);
-                                    if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
-                                    {
-                                        newNode.ForeColor = Color.White;
-                                    }
-                                    else
-                                    {
-                                        newNode.ForeColor = Color.Black;
-                                    }
-                                }
-                            }
 
-                            if (newLog.Contains("$LINK$>"))
+                            (newNode.BackColor, newNode.ForeColor) = getColor(newLog);
+                            if (newLog.Contains("$LINK$>") || newLog.Contains("$LITR$>") || newLog.Contains("$NOTE$>"))
                             {
-                                newNode.ForeColor = Color.Blue;
                                 newNode.NodeFont = new Font(Font, FontStyle.Underline);
                             }
-                            else if (newLog.Contains("$LITR$>"))
-                            {
-                                newNode.ForeColor = Color.Brown;
-                                newNode.NodeFont = new Font(Font, FontStyle.Underline);
-                            }
-                            else if (newLog.Contains("$NOTE$>"))
-                            {
-                                newNode.ForeColor = Color.DarkGreen;
-                                newNode.NodeFont = new Font(Font, FontStyle.Underline);
-                            }
-
-                            if (newLog.Contains("ddl: ") || newLog.Contains("DDL: "))
-                            {
-                                newNode.StateImageIndex = 0;
-                            }
-                            else if (newLog.Contains("paper: ") || newLog.Contains("Paper: "))
-                            {
-                                newNode.StateImageIndex = 1;
-                            }
-                            else if (newLog.Contains("proposal: ") || newLog.Contains("Proposal: "))
-                            {
-                                newNode.StateImageIndex = 2;
-                            }
-                            else if (newLog.Contains("package: ") || newLog.Contains("Package: "))
-                            {
-                                newNode.StateImageIndex = 3;
-                            }
-                            else if (newLog.Contains("book: ") || newLog.Contains("Book: "))
-                            {
-                                newNode.StateImageIndex = 4;
-                            }
-                            else
-                            {
-                                newNode.StateImageIndex = -1;
-                            }
+                            newNode.StateImageIndex = getLogo(newLog);
                             trvNote.SelectedNode.Nodes.Add(newNode);
                         }
                         btnSave.Enabled = true;
@@ -1132,68 +1087,12 @@ namespace LifeGame
 
         private void changeNodeLabel(TreeNode node, string newLabel, bool changeDescendant)
         {
-            foreach (ListViewItem item in lsvColor.Items)
+            (node.BackColor, node.ForeColor) = getColor(node.Text);
+            if (node.Text.Contains("$LINK$>") || node.Text.Contains("$LITR$>") || node.Text.Contains("$NOTE$>"))
             {
-                if (node.Text.Contains(item.Text)
-                    && !node.Text.Contains("$LINK$>")
-                    && !node.Text.Contains("$LITR$>")
-                    && !node.Text.Contains("$NOTE$>"))
-                {
-                    node.Text = node.Text.Replace(item.Text, newLabel);
-                    node.BackColor = SystemColors.Window;
-                    node.ForeColor = Color.Black;
-                    string itemColor = noteColors.Find(o => o.Keyword == newLabel).Color;
-                    node.BackColor = C.GetColor(itemColor);
-                    if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
-                    {
-                        node.ForeColor = Color.White;
-                    }
-                    else
-                    {
-                        node.ForeColor = Color.Black;
-                    }
-                }
-            }
-            if (node.Text.Contains("$LINK$>"))
-            {
-                node.ForeColor = Color.Blue;
                 node.NodeFont = new Font(Font, FontStyle.Underline);
             }
-            else if (node.Text.Contains("$LITR$>"))
-            {
-                node.ForeColor = Color.Brown;
-                node.NodeFont = new Font(Font, FontStyle.Underline);
-            }
-            else if (node.Text.Contains("$NOTE$>"))
-            {
-                node.ForeColor = Color.DarkGreen;
-                node.NodeFont = new Font(Font, FontStyle.Underline);
-            }
-
-            if (node.Text.Contains("ddl: ") || node.Text.Contains("DDL: "))
-            {
-                node.StateImageIndex = 0;
-            }
-            else if (node.Text.Contains("paper: ") || node.Text.Contains("Paper: "))
-            {
-                node.StateImageIndex = 1;
-            }
-            else if (node.Text.Contains("proposal: ") || node.Text.Contains("Proposal: "))
-            {
-                node.StateImageIndex = 2;
-            }
-            else if (node.Text.Contains("package: ") || node.Text.Contains("Package: "))
-            {
-                node.StateImageIndex = 3;
-            }
-            else if (node.Text.Contains("book: ") || node.Text.Contains("Book: "))
-            {
-                node.StateImageIndex = 4;
-            }
-            else
-            {
-                node.StateImageIndex = -1;
-            }
+            node.StateImageIndex = getLogo(node.Text);
 
             if (changeDescendant)
             {
@@ -1206,73 +1105,12 @@ namespace LifeGame
 
         private void updateNodeColor(TreeNode node)
         {
-            // 检查是不是存在标签
-            bool labeled = false;
-            foreach (ListViewItem item in lsvColor.Items)
+            (node.BackColor, node.ForeColor) = getColor(node.Text);
+            if (node.Text.Contains("$LINK$>") || node.Text.Contains("$LITR$>") || node.Text.Contains("$NOTE$>"))
             {
-                if (node.Text.Contains(item.Text)
-                    && !node.Text.Contains("$LINK$>")
-                    && !node.Text.Contains("$LITR$>")
-                    && !node.Text.Contains("$NOTE$>"))
-                {
-                    labeled = true;
-                    string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
-                    node.BackColor = C.GetColor(itemColor);
-                    if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
-                    {
-                        node.ForeColor = Color.White;
-                    }
-                    else
-                    {
-                        node.ForeColor = Color.Black;
-                    }
-                }
-            }
-            if (node.Text.Contains("$LINK$>"))
-            {
-                node.ForeColor = Color.Blue;
                 node.NodeFont = new Font(Font, FontStyle.Underline);
             }
-            else if (node.Text.Contains("$LITR$>"))
-            {
-                node.ForeColor = Color.Brown;
-                node.NodeFont = new Font(Font, FontStyle.Underline);
-            }
-            else if (node.Text.Contains("$NOTE$>"))
-            {
-                node.ForeColor = Color.DarkGreen;
-                node.NodeFont = new Font(Font, FontStyle.Underline);
-            }
-            else if (!labeled)
-            {
-                node.ForeColor = Color.Black;
-                node.BackColor = Color.White;
-            }
-
-            if (node.Text.Contains("ddl: ") || node.Text.Contains("DDL: "))
-            {
-                node.StateImageIndex = 0;
-            }
-            else if (node.Text.Contains("paper: ") || node.Text.Contains("Paper: "))
-            {
-                node.StateImageIndex = 1;
-            }
-            else if (node.Text.Contains("proposal: ") || node.Text.Contains("Proposal: "))
-            {
-                node.StateImageIndex = 2;
-            }
-            else if (node.Text.Contains("package: ") || node.Text.Contains("Package: "))
-            {
-                node.StateImageIndex = 3;
-            }
-            else if (node.Text.Contains("book: ") || node.Text.Contains("Book: "))
-            {
-                node.StateImageIndex = 4;
-            }
-            else
-            {
-                node.StateImageIndex = -1;
-            }
+            node.StateImageIndex = getLogo(node.Text);
         }
 
         private void replaceNodeText(TreeNode node, string oldString, string newString)
@@ -1443,62 +1281,6 @@ namespace LifeGame
                     }
                 }
             }
-        }
-
-        private void tsmAddNoteOutsource_Click(object sender, EventArgs e)
-        {
-            if (trvNote.SelectedNode != null)
-            {
-                string NewLog = Interaction.InputBox("Input new link note", "New Link", "New Link", 300, 300);
-                TreeNode newNode = new TreeNode(NewLog, 0, 0);
-                newNode.Text = "$LINK$>" + NewLog;
-                newNode.Name = Guid.NewGuid().ToString();
-                newNode.BackColor = SystemColors.Window;
-                newNode.ForeColor = Color.Blue;
-                newNode.NodeFont = new Font(Font, FontStyle.Underline);
-                newNode.ExpandAll();
-                trvNote.SelectedNode.ExpandAll();
-                trvNote.SelectedNode.Nodes.Add(newNode);
-            }
-            btnSave.Enabled = true;
-        }
-
-        private void tsmAddNoteLiterature_Click(object sender, EventArgs e)
-        {
-            // 临时这么弄，晚些时候要换成列表选的那种
-            if (trvNote.SelectedNode != null)
-            {
-                string NewLog = Interaction.InputBox("Input new literature note", "New Link", "New Link", 300, 300);
-                TreeNode newNode = new TreeNode(NewLog, 0, 0);
-                newNode.Text = "$LITR$>" + NewLog;
-                newNode.Name = Guid.NewGuid().ToString();
-                newNode.BackColor = SystemColors.Window;
-                newNode.ForeColor = Color.Brown;
-                newNode.NodeFont = new Font(Font, FontStyle.Underline);
-                newNode.ExpandAll();
-                trvNote.SelectedNode.ExpandAll();
-                trvNote.SelectedNode.Nodes.Add(newNode);
-            }
-            btnSave.Enabled = true;
-        }
-
-        private void tsmNote_Click(object sender, EventArgs e)
-        {
-            // 临时这么弄，晚些时候要换成列表选的那种
-            if (trvNote.SelectedNode != null)
-            {
-                string NewLog = Interaction.InputBox("Input new note link, in a format of 'YYYY.MM.DD@Note_Title'", "New Link", "New Link", 300, 300);
-                TreeNode newNode = new TreeNode(NewLog, 0, 0);
-                newNode.Text = "$NOTE$>" + NewLog;
-                newNode.Name = Guid.NewGuid().ToString();
-                newNode.BackColor = SystemColors.Window;
-                newNode.ForeColor = Color.DarkGreen;
-                newNode.NodeFont = new Font(Font, FontStyle.Underline);
-                newNode.ExpandAll();
-                trvNote.SelectedNode.ExpandAll();
-                trvNote.SelectedNode.Nodes.Add(newNode);
-            }
-            btnSave.Enabled = true;
         }
 
         private void tsmReplace_Click(object sender, EventArgs e)
@@ -1966,31 +1748,7 @@ namespace LifeGame
                     trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
                 }
 
-                if (newLog.Contains("ddl: ") || newLog.Contains("DDL: "))
-                {
-                    trvNote.SelectedNode.StateImageIndex = 0;
-                }
-                else if (newLog.Contains("paper: ") || newLog.Contains("Paper: "))
-                {
-                    trvNote.SelectedNode.StateImageIndex = 1;
-                }
-                else if (newLog.Contains("proposal: ") || newLog.Contains("Proposal: "))
-                {
-                    trvNote.SelectedNode.StateImageIndex = 2;
-                }
-                else if (newLog.Contains("package: ") || newLog.Contains("Package: "))
-                {
-                    trvNote.SelectedNode.StateImageIndex = 3;
-                }
-                else if (newLog.Contains("book: ") || newLog.Contains("Book: "))
-                {
-                    trvNote.SelectedNode.StateImageIndex = 4;
-                }
-                else
-                {
-                    trvNote.SelectedNode.StateImageIndex = -1;
-                }
-
+                trvNote.SelectedNode.StateImageIndex = getLogo(newLog);
                 btnSave.Enabled = true;
             }
             else

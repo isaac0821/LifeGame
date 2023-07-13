@@ -133,13 +133,13 @@ namespace LifeGame
             Authors = Authors.OrderBy(o => o.ItemName).ToList();
             // Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
             Institutions = Institutions.OrderBy(o => o.ItemName).ToList();
-            Institutions = Institutions.OrderByDescending(o => o.ItemCount).ToList();
+            // Institutions = Institutions.OrderByDescending(o => o.ItemCount).ToList();
             Projects = Projects.OrderBy(o => o.ItemName).ToList();
-            Projects = Projects.OrderByDescending(o => o.ItemCount).ToList();
+            // Projects = Projects.OrderByDescending(o => o.ItemCount).ToList();
             Years = Years.OrderByDescending(o => Convert.ToInt16(o.ItemName)).ToList();
-            JournalConferences = JournalConferences.OrderBy(o => o.ItemName).ToList();
             JournalConferences = JournalConferences.OrderByDescending(o => o.ItemCount).ToList();
-
+            JournalConferences = JournalConferences.OrderBy(o => o.ItemName).ToList();
+            
             clbTag.Items.Clear();
             for (int i = 0; i < Tags.Count; i++)
             {
