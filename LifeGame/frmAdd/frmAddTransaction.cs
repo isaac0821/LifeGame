@@ -59,12 +59,15 @@ namespace LifeGame
 
         private void frmAddTransaction_Load(object sender, EventArgs e)
         {
-            List<CAccount> accountsChoics = G.glb.lstAccount.FindAll(o=>o.ProtectedAccount==false).ToList();
-            accountsChoics = accountsChoics.OrderBy(o => o.AccountName).ToList();
+            List<CAccount> accountChoices = G.glb.lstAccount.FindAll(o => o.ProtectedAccount == false).ToList();
+            accountChoices = accountChoices.OrderBy(o => o.AccountName).ToList();
             List<string> choices = new List<string>();
-            foreach (CAccount account in accountsChoics)
+            foreach (CAccount account in accountChoices)
             {
-                choices.Add(account.AccountName);
+                if (!G.glb.lstSubAccount.Exists(o => o.Account == account.AccountName))
+                {
+                    choices.Add(account.AccountName);
+                }
             }
             cbxCredit.DataSource = choices.ToList();
             cbxDebit.DataSource = choices.ToList();

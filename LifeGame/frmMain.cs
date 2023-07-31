@@ -1202,11 +1202,11 @@ namespace LifeGame
                 else if (!chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
                 {
                     Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepSchedule, "allWithSupp");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "allWithSupp");
                 }
                 else if (!chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
                 {
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepSchedule, "all");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "all");
                 }
                 else if (!chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
                 {

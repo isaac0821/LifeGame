@@ -112,7 +112,7 @@
             // stsTask
             // 
             this.stsTask.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.stsTask.Location = new System.Drawing.Point(0, 625);
+            this.stsTask.Location = new System.Drawing.Point(0, 575);
             this.stsTask.Name = "stsTask";
             this.stsTask.Size = new System.Drawing.Size(1233, 22);
             this.stsTask.TabIndex = 1;
@@ -131,14 +131,14 @@
             this.filesFToolStripMenuItem1});
             this.mnsTask.Location = new System.Drawing.Point(0, 0);
             this.mnsTask.Name = "mnsTask";
-            this.mnsTask.Size = new System.Drawing.Size(1233, 24);
+            this.mnsTask.Size = new System.Drawing.Size(1233, 25);
             this.mnsTask.TabIndex = 2;
             this.mnsTask.Text = "menuStrip1";
             // 
             // filesFToolStripMenuItem1
             // 
             this.filesFToolStripMenuItem1.Name = "filesFToolStripMenuItem1";
-            this.filesFToolStripMenuItem1.Size = new System.Drawing.Size(56, 20);
+            this.filesFToolStripMenuItem1.Size = new System.Drawing.Size(59, 21);
             this.filesFToolStripMenuItem1.Text = "Files(&F)";
             // 
             // filesFToolStripMenuItem
@@ -152,13 +152,13 @@
             // addLogToolStripMenuItem
             // 
             this.addLogToolStripMenuItem.Name = "addLogToolStripMenuItem";
-            this.addLogToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.addLogToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.addLogToolStripMenuItem.Text = "Add Log";
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -168,7 +168,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1233, 601);
+            this.splitContainer1.Size = new System.Drawing.Size(1233, 550);
             this.splitContainer1.SplitterDistance = 179;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -182,7 +182,7 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(179, 601);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(179, 550);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // groupBox1
@@ -192,7 +192,7 @@
             this.groupBox1.Location = new System.Drawing.Point(5, 5);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(169, 591);
+            this.groupBox1.Size = new System.Drawing.Size(169, 540);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Task Tree";
@@ -205,10 +205,10 @@
             this.trvTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvTask.ImageIndex = 0;
             this.trvTask.ImageList = this.iglTask;
-            this.trvTask.Location = new System.Drawing.Point(3, 16);
+            this.trvTask.Location = new System.Drawing.Point(3, 17);
             this.trvTask.Name = "trvTask";
             this.trvTask.SelectedImageIndex = 0;
-            this.trvTask.Size = new System.Drawing.Size(163, 572);
+            this.trvTask.Size = new System.Drawing.Size(163, 520);
             this.trvTask.TabIndex = 0;
             this.trvTask.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvTask_AfterSelect);
             // 
@@ -229,83 +229,83 @@
             this.tsmFinished,
             this.tsmAbort});
             this.cmsTask.Name = "cmsTask";
-            this.cmsTask.Size = new System.Drawing.Size(165, 220);
+            this.cmsTask.Size = new System.Drawing.Size(177, 220);
             // 
             // tsmAdd
             // 
             this.tsmAdd.Name = "tsmAdd";
-            this.tsmAdd.Size = new System.Drawing.Size(164, 22);
+            this.tsmAdd.Size = new System.Drawing.Size(176, 22);
             this.tsmAdd.Text = "Add";
             this.tsmAdd.Click += new System.EventHandler(this.tsmAdd_Click);
             // 
             // tsmRename
             // 
             this.tsmRename.Name = "tsmRename";
-            this.tsmRename.Size = new System.Drawing.Size(164, 22);
+            this.tsmRename.Size = new System.Drawing.Size(176, 22);
             this.tsmRename.Text = "Edit(Rename)";
             this.tsmRename.Click += new System.EventHandler(this.tsmRename_Click);
             // 
             // tsmRemove
             // 
             this.tsmRemove.Name = "tsmRemove";
-            this.tsmRemove.Size = new System.Drawing.Size(164, 22);
+            this.tsmRemove.Size = new System.Drawing.Size(176, 22);
             this.tsmRemove.Text = "Remove";
             this.tsmRemove.Click += new System.EventHandler(this.tsmRemove_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
             // 
             // tsmUp
             // 
             this.tsmUp.Name = "tsmUp";
-            this.tsmUp.Size = new System.Drawing.Size(164, 22);
+            this.tsmUp.Size = new System.Drawing.Size(176, 22);
             this.tsmUp.Text = "Up";
             this.tsmUp.Click += new System.EventHandler(this.tsmUp_Click);
             // 
             // tsmDown
             // 
             this.tsmDown.Name = "tsmDown";
-            this.tsmDown.Size = new System.Drawing.Size(164, 22);
+            this.tsmDown.Size = new System.Drawing.Size(176, 22);
             this.tsmDown.Text = "Down";
             this.tsmDown.Click += new System.EventHandler(this.tsmDown_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(161, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(173, 6);
             // 
             // tsmBelongTo
             // 
             this.tsmBelongTo.Name = "tsmBelongTo";
-            this.tsmBelongTo.Size = new System.Drawing.Size(164, 22);
+            this.tsmBelongTo.Size = new System.Drawing.Size(176, 22);
             this.tsmBelongTo.Text = "Belong To";
             this.tsmBelongTo.Click += new System.EventHandler(this.tsmBelongTo_Click);
             // 
             // tsmIndependent
             // 
             this.tsmIndependent.Name = "tsmIndependent";
-            this.tsmIndependent.Size = new System.Drawing.Size(164, 22);
+            this.tsmIndependent.Size = new System.Drawing.Size(176, 22);
             this.tsmIndependent.Text = "Independent";
             this.tsmIndependent.Click += new System.EventHandler(this.tsmIndependent_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(161, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(173, 6);
             // 
             // tsmFinished
             // 
             this.tsmFinished.Name = "tsmFinished";
-            this.tsmFinished.Size = new System.Drawing.Size(164, 22);
+            this.tsmFinished.Size = new System.Drawing.Size(176, 22);
             this.tsmFinished.Text = "Mark As Finished";
             this.tsmFinished.Click += new System.EventHandler(this.tsmFinished_Click);
             // 
             // tsmAbort
             // 
             this.tsmAbort.Name = "tsmAbort";
-            this.tsmAbort.Size = new System.Drawing.Size(164, 22);
+            this.tsmAbort.Size = new System.Drawing.Size(176, 22);
             this.tsmAbort.Text = "Mark As Abort";
             this.tsmAbort.Click += new System.EventHandler(this.tsmAbort_Click);
             // 
@@ -337,8 +337,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tableLayoutPanel4);
-            this.splitContainer2.Size = new System.Drawing.Size(1050, 601);
-            this.splitContainer2.SplitterDistance = 129;
+            this.splitContainer2.Size = new System.Drawing.Size(1050, 550);
+            this.splitContainer2.SplitterDistance = 118;
             this.splitContainer2.TabIndex = 2;
             // 
             // groupBox4
@@ -347,7 +347,7 @@
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1050, 129);
+            this.groupBox4.Size = new System.Drawing.Size(1050, 118);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Gantt Chart";
@@ -356,9 +356,9 @@
             // 
             this.picGantt.BackColor = System.Drawing.Color.White;
             this.picGantt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picGantt.Location = new System.Drawing.Point(3, 16);
+            this.picGantt.Location = new System.Drawing.Point(3, 17);
             this.picGantt.Name = "picGantt";
-            this.picGantt.Size = new System.Drawing.Size(1044, 110);
+            this.picGantt.Size = new System.Drawing.Size(1044, 98);
             this.picGantt.TabIndex = 0;
             this.picGantt.TabStop = false;
             // 
@@ -372,8 +372,8 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1050, 468);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1050, 428);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // tableLayoutPanel7
@@ -388,7 +388,7 @@
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(1044, 462);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(1044, 422);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // groupBox2
@@ -398,7 +398,7 @@
             this.groupBox2.Location = new System.Drawing.Point(5, 5);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(834, 452);
+            this.groupBox2.Size = new System.Drawing.Size(834, 412);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Task Details";
@@ -412,14 +412,14 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblTaskDescription, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(828, 433);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(828, 392);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblTaskTitle
@@ -428,7 +428,7 @@
             this.lblTaskTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTaskTitle.Location = new System.Drawing.Point(3, 0);
             this.lblTaskTitle.Name = "lblTaskTitle";
-            this.lblTaskTitle.Size = new System.Drawing.Size(822, 30);
+            this.lblTaskTitle.Size = new System.Drawing.Size(822, 28);
             this.lblTaskTitle.TabIndex = 0;
             this.lblTaskTitle.Text = "---";
             this.lblTaskTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -447,11 +447,11 @@
             this.colLog,
             this.colDuration});
             this.dgvLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvLog.Location = new System.Drawing.Point(3, 123);
+            this.dgvLog.Location = new System.Drawing.Point(3, 114);
             this.dgvLog.Name = "dgvLog";
             this.dgvLog.ReadOnly = true;
             this.dgvLog.RowTemplate.Height = 23;
-            this.dgvLog.Size = new System.Drawing.Size(822, 307);
+            this.dgvLog.Size = new System.Drawing.Size(822, 275);
             this.dgvLog.TabIndex = 0;
             // 
             // colDate
@@ -502,11 +502,11 @@
             this.tableLayoutPanel3.Controls.Add(this.lblTaskTimeSpent, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.chkFinished, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 93);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 86);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(822, 24);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(822, 22);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // chkBottom
@@ -516,7 +516,7 @@
             this.chkBottom.Enabled = false;
             this.chkBottom.Location = new System.Drawing.Point(3, 3);
             this.chkBottom.Name = "chkBottom";
-            this.chkBottom.Size = new System.Drawing.Size(60, 18);
+            this.chkBottom.Size = new System.Drawing.Size(60, 16);
             this.chkBottom.TabIndex = 0;
             this.chkBottom.Text = "Bottom";
             this.chkBottom.UseVisualStyleBackColor = true;
@@ -528,7 +528,7 @@
             this.chkInfinite.Enabled = false;
             this.chkInfinite.Location = new System.Drawing.Point(760, 3);
             this.chkInfinite.Name = "chkInfinite";
-            this.chkInfinite.Size = new System.Drawing.Size(59, 18);
+            this.chkInfinite.Size = new System.Drawing.Size(59, 16);
             this.chkInfinite.TabIndex = 1;
             this.chkInfinite.Text = "Infinite";
             this.chkInfinite.UseVisualStyleBackColor = true;
@@ -540,7 +540,7 @@
             this.dtpDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDeadline.Location = new System.Drawing.Point(659, 3);
             this.dtpDeadline.Name = "dtpDeadline";
-            this.dtpDeadline.Size = new System.Drawing.Size(95, 20);
+            this.dtpDeadline.Size = new System.Drawing.Size(95, 21);
             this.dtpDeadline.TabIndex = 2;
             // 
             // dtpNextTimeMarker
@@ -550,7 +550,7 @@
             this.dtpNextTimeMarker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpNextTimeMarker.Location = new System.Drawing.Point(493, 3);
             this.dtpNextTimeMarker.Name = "dtpNextTimeMarker";
-            this.dtpNextTimeMarker.Size = new System.Drawing.Size(95, 20);
+            this.dtpNextTimeMarker.Size = new System.Drawing.Size(95, 21);
             this.dtpNextTimeMarker.TabIndex = 3;
             // 
             // label2
@@ -559,7 +559,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(393, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 24);
+            this.label2.Size = new System.Drawing.Size(94, 22);
             this.label2.TabIndex = 4;
             this.label2.Text = "Next Time Marker: ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -570,7 +570,7 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Location = new System.Drawing.Point(594, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 24);
+            this.label3.Size = new System.Drawing.Size(59, 22);
             this.label3.TabIndex = 5;
             this.label3.Text = "Deadline: ";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -582,7 +582,7 @@
             this.label4.Location = new System.Drawing.Point(140, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 24);
+            this.label4.Size = new System.Drawing.Size(95, 22);
             this.label4.TabIndex = 6;
             this.label4.Text = "Total Time Spent: ";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -594,7 +594,7 @@
             this.lblTaskTimeSpent.Location = new System.Drawing.Point(239, 0);
             this.lblTaskTimeSpent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTaskTimeSpent.Name = "lblTaskTimeSpent";
-            this.lblTaskTimeSpent.Size = new System.Drawing.Size(149, 24);
+            this.lblTaskTimeSpent.Size = new System.Drawing.Size(149, 22);
             this.lblTaskTimeSpent.TabIndex = 7;
             this.lblTaskTimeSpent.Text = "999h";
             this.lblTaskTimeSpent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -605,7 +605,7 @@
             this.chkFinished.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkFinished.Location = new System.Drawing.Point(69, 3);
             this.chkFinished.Name = "chkFinished";
-            this.chkFinished.Size = new System.Drawing.Size(66, 18);
+            this.chkFinished.Size = new System.Drawing.Size(66, 16);
             this.chkFinished.TabIndex = 8;
             this.chkFinished.Text = "Finished";
             this.chkFinished.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -615,9 +615,9 @@
             // 
             this.lblTaskDescription.AutoSize = true;
             this.lblTaskDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTaskDescription.Location = new System.Drawing.Point(3, 30);
+            this.lblTaskDescription.Location = new System.Drawing.Point(3, 28);
             this.lblTaskDescription.Name = "lblTaskDescription";
-            this.lblTaskDescription.Size = new System.Drawing.Size(822, 60);
+            this.lblTaskDescription.Size = new System.Drawing.Size(822, 55);
             this.lblTaskDescription.TabIndex = 4;
             this.lblTaskDescription.Text = "(Task Description)";
             this.lblTaskDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -629,7 +629,7 @@
             this.groupBox3.Location = new System.Drawing.Point(849, 5);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(190, 452);
+            this.groupBox3.Size = new System.Drawing.Size(190, 412);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Task Notes";
@@ -639,9 +639,10 @@
             this.lsbTaskNote.ContextMenuStrip = this.cmsNote;
             this.lsbTaskNote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbTaskNote.FormattingEnabled = true;
-            this.lsbTaskNote.Location = new System.Drawing.Point(3, 16);
+            this.lsbTaskNote.ItemHeight = 12;
+            this.lsbTaskNote.Location = new System.Drawing.Point(3, 17);
             this.lsbTaskNote.Name = "lsbTaskNote";
-            this.lsbTaskNote.Size = new System.Drawing.Size(184, 433);
+            this.lsbTaskNote.Size = new System.Drawing.Size(184, 392);
             this.lsbTaskNote.TabIndex = 0;
             // 
             // cmsNote
@@ -652,39 +653,39 @@
             this.tsmRenameNote,
             this.tsmDeleteNote});
             this.cmsNote.Name = "cmsNote";
-            this.cmsNote.Size = new System.Drawing.Size(181, 98);
+            this.cmsNote.Size = new System.Drawing.Size(124, 76);
             // 
             // tsmOpen
             // 
             this.tsmOpen.Name = "tsmOpen";
-            this.tsmOpen.Size = new System.Drawing.Size(180, 22);
+            this.tsmOpen.Size = new System.Drawing.Size(123, 22);
             this.tsmOpen.Text = "Open";
             this.tsmOpen.Click += new System.EventHandler(this.tsmOpen_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(120, 6);
             // 
             // tsmRenameNote
             // 
             this.tsmRenameNote.Name = "tsmRenameNote";
-            this.tsmRenameNote.Size = new System.Drawing.Size(180, 22);
+            this.tsmRenameNote.Size = new System.Drawing.Size(123, 22);
             this.tsmRenameNote.Text = "Rename";
             this.tsmRenameNote.Click += new System.EventHandler(this.tsmRenameNote_Click);
             // 
             // tsmDeleteNote
             // 
             this.tsmDeleteNote.Name = "tsmDeleteNote";
-            this.tsmDeleteNote.Size = new System.Drawing.Size(180, 22);
+            this.tsmDeleteNote.Size = new System.Drawing.Size(123, 22);
             this.tsmDeleteNote.Text = "Delete";
             this.tsmDeleteNote.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // frmTask
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1233, 647);
+            this.ClientSize = new System.Drawing.Size(1233, 597);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.stsTask);
             this.Controls.Add(this.mnsTask);

@@ -63,16 +63,17 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.4918F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.50819F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(279, 305);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(279, 282);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lsbCurrencyA
             // 
             this.lsbCurrencyA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbCurrencyA.FormattingEnabled = true;
-            this.lsbCurrencyA.Location = new System.Drawing.Point(3, 34);
+            this.lsbCurrencyA.ItemHeight = 12;
+            this.lsbCurrencyA.Location = new System.Drawing.Point(3, 32);
             this.lsbCurrencyA.Name = "lsbCurrencyA";
-            this.lsbCurrencyA.Size = new System.Drawing.Size(118, 268);
+            this.lsbCurrencyA.Size = new System.Drawing.Size(118, 247);
             this.lsbCurrencyA.TabIndex = 0;
             this.lsbCurrencyA.SelectedIndexChanged += new System.EventHandler(this.lsbCurrencyA_SelectedIndexChanged);
             // 
@@ -80,9 +81,10 @@
             // 
             this.lsbCurrencyB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbCurrencyB.FormattingEnabled = true;
-            this.lsbCurrencyB.Location = new System.Drawing.Point(158, 34);
+            this.lsbCurrencyB.ItemHeight = 12;
+            this.lsbCurrencyB.Location = new System.Drawing.Point(158, 32);
             this.lsbCurrencyB.Name = "lsbCurrencyB";
-            this.lsbCurrencyB.Size = new System.Drawing.Size(118, 268);
+            this.lsbCurrencyB.Size = new System.Drawing.Size(118, 247);
             this.lsbCurrencyB.TabIndex = 1;
             this.lsbCurrencyB.SelectedIndexChanged += new System.EventHandler(this.lsbCurrencyB_SelectedIndexChanged);
             // 
@@ -90,9 +92,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(127, 31);
+            this.label1.Location = new System.Drawing.Point(127, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 274);
+            this.label1.Size = new System.Drawing.Size(25, 253);
             this.label1.TabIndex = 2;
             this.label1.Text = "=>";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -109,7 +111,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(118, 25);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(118, 23);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // label2
@@ -118,7 +120,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 25);
+            this.label2.Size = new System.Drawing.Size(33, 23);
             this.label2.TabIndex = 0;
             this.label2.Text = "1";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -129,7 +131,7 @@
             this.lblCurrencyA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCurrencyA.Location = new System.Drawing.Point(42, 0);
             this.lblCurrencyA.Name = "lblCurrencyA";
-            this.lblCurrencyA.Size = new System.Drawing.Size(73, 25);
+            this.lblCurrencyA.Size = new System.Drawing.Size(73, 23);
             this.lblCurrencyA.TabIndex = 1;
             this.lblCurrencyA.Text = "---";
             this.lblCurrencyA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -147,7 +149,7 @@
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(118, 25);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(118, 23);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
             // lblCurrencyB
@@ -156,7 +158,7 @@
             this.lblCurrencyB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCurrencyB.Location = new System.Drawing.Point(42, 0);
             this.lblCurrencyB.Name = "lblCurrencyB";
-            this.lblCurrencyB.Size = new System.Drawing.Size(73, 25);
+            this.lblCurrencyB.Size = new System.Drawing.Size(73, 23);
             this.lblCurrencyB.TabIndex = 0;
             this.lblCurrencyB.Text = "---";
             this.lblCurrencyB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -166,7 +168,7 @@
             this.txtRate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtRate.Location = new System.Drawing.Point(3, 3);
             this.txtRate.Name = "txtRate";
-            this.txtRate.Size = new System.Drawing.Size(33, 20);
+            this.txtRate.Size = new System.Drawing.Size(33, 21);
             this.txtRate.TabIndex = 1;
             // 
             // label5
@@ -175,16 +177,16 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Location = new System.Drawing.Point(127, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 31);
+            this.label5.Size = new System.Drawing.Size(25, 29);
             this.label5.TabIndex = 5;
             this.label5.Text = "=";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmCurrencyRate
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(279, 305);
+            this.ClientSize = new System.Drawing.Size(279, 282);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

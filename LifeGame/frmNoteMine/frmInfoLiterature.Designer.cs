@@ -201,8 +201,8 @@
             this.tableLayoutPanel6.ColumnCount = 7;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 447F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 418F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -239,7 +239,7 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Location = new System.Drawing.Point(88, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 24);
+            this.label4.Size = new System.Drawing.Size(130, 24);
             this.label4.TabIndex = 1;
             this.label4.Text = "Journal/Conference";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -267,9 +267,9 @@
             // txtJournalConference
             // 
             this.txtJournalConference.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtJournalConference.Location = new System.Drawing.Point(195, 3);
+            this.txtJournalConference.Location = new System.Drawing.Point(224, 3);
             this.txtJournalConference.Name = "txtJournalConference";
-            this.txtJournalConference.Size = new System.Drawing.Size(441, 21);
+            this.txtJournalConference.Size = new System.Drawing.Size(412, 21);
             this.txtJournalConference.TabIndex = 2;
             this.txtJournalConference.TextChanged += new System.EventHandler(this.txtJournalConference_TextChanged);
             // 
@@ -312,10 +312,10 @@
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.ColumnCount = 5;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 137F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel8.Controls.Add(this.label12, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.btnGoogleScholar, 4, 0);
@@ -337,7 +337,7 @@
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Location = new System.Drawing.Point(3, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(94, 26);
+            this.label12.Size = new System.Drawing.Size(131, 26);
             this.label12.TabIndex = 1;
             this.label12.Text = "In One Sentence";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -357,9 +357,9 @@
             // 
             this.chkStar.AutoSize = true;
             this.chkStar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkStar.Location = new System.Drawing.Point(618, 3);
+            this.chkStar.Location = new System.Drawing.Point(608, 3);
             this.chkStar.Name = "chkStar";
-            this.chkStar.Size = new System.Drawing.Size(48, 20);
+            this.chkStar.Size = new System.Drawing.Size(53, 20);
             this.chkStar.TabIndex = 4;
             this.chkStar.Text = "Star";
             this.chkStar.UseVisualStyleBackColor = true;
@@ -368,9 +368,9 @@
             // txtInOneSentence
             // 
             this.txtInOneSentence.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInOneSentence.Location = new System.Drawing.Point(103, 3);
+            this.txtInOneSentence.Location = new System.Drawing.Point(140, 3);
             this.txtInOneSentence.Name = "txtInOneSentence";
-            this.txtInOneSentence.Size = new System.Drawing.Size(509, 21);
+            this.txtInOneSentence.Size = new System.Drawing.Size(462, 21);
             this.txtInOneSentence.TabIndex = 3;
             this.txtInOneSentence.TextChanged += new System.EventHandler(this.txtInOneSentence_TextChanged);
             // 
@@ -378,9 +378,9 @@
             // 
             this.chkPredatroyAlert.AutoSize = true;
             this.chkPredatroyAlert.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkPredatroyAlert.Location = new System.Drawing.Point(672, 3);
+            this.chkPredatroyAlert.Location = new System.Drawing.Point(667, 3);
             this.chkPredatroyAlert.Name = "chkPredatroyAlert";
-            this.chkPredatroyAlert.Size = new System.Drawing.Size(105, 20);
+            this.chkPredatroyAlert.Size = new System.Drawing.Size(110, 20);
             this.chkPredatroyAlert.TabIndex = 5;
             this.chkPredatroyAlert.Text = "Low Quality Alert";
             this.chkPredatroyAlert.UseVisualStyleBackColor = true;

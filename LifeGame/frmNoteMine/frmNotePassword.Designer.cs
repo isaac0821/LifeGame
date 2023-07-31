@@ -52,28 +52,28 @@ namespace LifeGame
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(286, 83);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(286, 77);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // txtPassword
             // 
             this.txtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPassword.Location = new System.Drawing.Point(23, 44);
+            this.txtPassword.Location = new System.Drawing.Point(23, 41);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(184, 20);
+            this.txtPassword.Size = new System.Drawing.Size(184, 21);
             this.txtPassword.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(23, 15);
+            this.label1.Location = new System.Drawing.Point(23, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(184, 26);
+            this.label1.Size = new System.Drawing.Size(184, 24);
             this.label1.TabIndex = 1;
             this.label1.Text = "Input correct password to unlock";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -81,9 +81,9 @@ namespace LifeGame
             // btnUnlock
             // 
             this.btnUnlock.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnUnlock.Location = new System.Drawing.Point(213, 44);
+            this.btnUnlock.Location = new System.Drawing.Point(213, 41);
             this.btnUnlock.Name = "btnUnlock";
-            this.btnUnlock.Size = new System.Drawing.Size(50, 20);
+            this.btnUnlock.Size = new System.Drawing.Size(50, 18);
             this.btnUnlock.TabIndex = 2;
             this.btnUnlock.Text = "Unlock";
             this.btnUnlock.UseVisualStyleBackColor = true;
@@ -91,9 +91,9 @@ namespace LifeGame
             // 
             // frmNotePassword
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(286, 83);
+            this.ClientSize = new System.Drawing.Size(286, 77);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

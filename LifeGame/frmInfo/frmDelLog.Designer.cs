@@ -46,9 +46,10 @@
             this.lsbLogList.ContextMenuStrip = this.cmsLog;
             this.lsbLogList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbLogList.FormattingEnabled = true;
-            this.lsbLogList.Location = new System.Drawing.Point(3, 33);
+            this.lsbLogList.ItemHeight = 12;
+            this.lsbLogList.Location = new System.Drawing.Point(3, 31);
             this.lsbLogList.Name = "lsbLogList";
-            this.lsbLogList.Size = new System.Drawing.Size(404, 325);
+            this.lsbLogList.Size = new System.Drawing.Size(404, 299);
             this.lsbLogList.TabIndex = 0;
             // 
             // cmsLog
@@ -56,12 +57,12 @@
             this.cmsLog.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem});
             this.cmsLog.Name = "cmsLog";
-            this.cmsLog.Size = new System.Drawing.Size(108, 26);
+            this.cmsLog.Size = new System.Drawing.Size(114, 26);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -75,9 +76,9 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(410, 361);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(410, 333);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -91,7 +92,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(404, 24);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(404, 22);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // dtpDate
@@ -100,14 +101,14 @@
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDate.Location = new System.Drawing.Point(306, 3);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(95, 20);
+            this.dtpDate.Size = new System.Drawing.Size(95, 21);
             this.dtpDate.TabIndex = 0;
             // 
             // frmDelLog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 361);
+            this.ClientSize = new System.Drawing.Size(410, 333);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -56,10 +56,10 @@ namespace LifeGame
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(308, 81);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(308, 75);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -68,7 +68,7 @@ namespace LifeGame
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 26);
+            this.label1.Size = new System.Drawing.Size(66, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Old Label";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -77,9 +77,9 @@ namespace LifeGame
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 26);
+            this.label2.Location = new System.Drawing.Point(3, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 26);
+            this.label2.Size = new System.Drawing.Size(66, 24);
             this.label2.TabIndex = 1;
             this.label2.Text = "New Label";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -89,9 +89,9 @@ namespace LifeGame
             this.cbxNewLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbxNewLabel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxNewLabel.FormattingEnabled = true;
-            this.cbxNewLabel.Location = new System.Drawing.Point(75, 29);
+            this.cbxNewLabel.Location = new System.Drawing.Point(75, 27);
             this.cbxNewLabel.Name = "cbxNewLabel";
-            this.cbxNewLabel.Size = new System.Drawing.Size(230, 21);
+            this.cbxNewLabel.Size = new System.Drawing.Size(230, 20);
             this.cbxNewLabel.TabIndex = 2;
             // 
             // lblOldLabel
@@ -100,7 +100,7 @@ namespace LifeGame
             this.lblOldLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblOldLabel.Location = new System.Drawing.Point(75, 0);
             this.lblOldLabel.Name = "lblOldLabel";
-            this.lblOldLabel.Size = new System.Drawing.Size(230, 26);
+            this.lblOldLabel.Size = new System.Drawing.Size(230, 24);
             this.lblOldLabel.TabIndex = 3;
             this.lblOldLabel.Text = "(Old label)";
             this.lblOldLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -113,20 +113,20 @@ namespace LifeGame
             this.tableLayoutPanel2.Controls.Add(this.btnSave, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.chkDescendant, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(72, 52);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(72, 48);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(236, 29);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(236, 27);
             this.tableLayoutPanel2.TabIndex = 5;
             // 
             // btnSave
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSave.Location = new System.Drawing.Point(176, 3);
+            this.btnSave.Location = new System.Drawing.Point(177, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(57, 23);
+            this.btnSave.Size = new System.Drawing.Size(56, 21);
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -138,16 +138,16 @@ namespace LifeGame
             this.chkDescendant.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkDescendant.Location = new System.Drawing.Point(3, 3);
             this.chkDescendant.Name = "chkDescendant";
-            this.chkDescendant.Size = new System.Drawing.Size(167, 23);
+            this.chkDescendant.Size = new System.Drawing.Size(168, 21);
             this.chkDescendant.TabIndex = 5;
             this.chkDescendant.Text = "Change Descendant Labels";
             this.chkDescendant.UseVisualStyleBackColor = true;
             // 
             // frmNoteChangeLabel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(308, 81);
+            this.ClientSize = new System.Drawing.Size(308, 75);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

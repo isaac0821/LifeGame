@@ -454,7 +454,7 @@ namespace LifeGame
                 {
                     string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
                     BackColor = C.GetColor(itemColor);
-                    if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
+                    if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown" || itemColor == "Purple")
                     {
                         ForeColor = Color.White;
                     }
@@ -475,6 +475,10 @@ namespace LifeGame
             else if (note.Contains("$NOTE$>"))
             {
                 ForeColor = Color.DarkGreen;
+            }
+            else if (note.Contains("$JUMP$>"))
+            {
+                ForeColor = Color.Indigo;
             }
 
             if (note.Contains("ddl: ") || note.Contains("DDL: "))
@@ -1030,7 +1034,7 @@ namespace LifeGame
                 item.Text = Keyword;
                 plot C = new plot();
                 item.BackColor = C.GetColor(NoteColor);
-                if (NoteColor == "Red" || NoteColor == "Green" || NoteColor == "Blue" || NoteColor == "DarkGreen" || NoteColor == "Brown")
+                if (NoteColor == "Red" || NoteColor == "Green" || NoteColor == "Blue" || NoteColor == "DarkGreen" || NoteColor == "Brown" || NoteColor == "Purple")
                 {
                     item.ForeColor = Color.White;
                 }
@@ -1087,6 +1091,13 @@ namespace LifeGame
 
         private void changeNodeLabel(TreeNode node, string newLabel, bool changeDescendant)
         {
+            foreach (ListViewItem item in lsvColor.Items)
+            {
+                if (node.Text.Contains(item.Text))
+                {
+                    node.Text = node.Text.Replace(item.Text, newLabel);
+                }
+            }           
             (node.BackColor, node.ForeColor) = getColor(node.Text);
             if (node.Text.Contains("$LINK$>") || node.Text.Contains("$LITR$>") || node.Text.Contains("$NOTE$>"))
             {
@@ -1182,7 +1193,8 @@ namespace LifeGame
             }
             if (trvNote.SelectedNode.Text.Contains("$LINK$>")
                 || trvNote.SelectedNode.Text.Contains("$LITR$>")
-                || trvNote.SelectedNode.Text.Contains("$NOTE$>"))
+                || trvNote.SelectedNode.Text.Contains("$NOTE$>")
+                || trvNote.SelectedNode.Text.Contains("$JUMP$>"))
             {
                 tsmGoto.Enabled = true;
             }
@@ -1280,7 +1292,31 @@ namespace LifeGame
                         MessageBox.Show("Cannot find record.");
                     }
                 }
+                else if (trvNote.SelectedNode.Text.Contains("$JUMP$>"))
+                {
+                    string selectedText = trvNote.SelectedNode.Text.Replace("$JUMP$>", "");
+                    trvNote.SelectedNode = findByName(trvNote.Nodes[0], selectedText);
+                }
             }
+        }
+
+        private TreeNode findByName(TreeNode treeNode, string nodeText)
+        {
+            if (treeNode.Text == nodeText)
+            {
+                return treeNode;
+            }
+            else
+            {
+                foreach (TreeNode subNode in treeNode.Nodes)
+                {
+                    if (findByName(subNode, nodeText) != null)
+                    {
+                        return findByName(subNode, nodeText);
+                    }
+                }
+            }
+            return null;
         }
 
         private void tsmReplace_Click(object sender, EventArgs e)
@@ -1711,44 +1747,7 @@ namespace LifeGame
             {
                 string newLog = e.Label.Trim();
                 trvNote.SelectedNode.Text = newLog;
-                trvNote.SelectedNode.BackColor = SystemColors.Window;
-                trvNote.SelectedNode.ForeColor = Color.Black;
-                foreach (ListViewItem item in lsvColor.Items)
-                {
-                    if (newLog.Contains(item.Text)
-                        && !newLog.Contains("$LINK$>")
-                        && !newLog.Contains("$LITR$>")
-                        && !newLog.Contains("$NOTE$>"))
-                    {
-                        string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
-                        trvNote.SelectedNode.BackColor = C.GetColor(itemColor);
-                        if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown")
-                        {
-                            trvNote.SelectedNode.ForeColor = Color.White;
-                        }
-                        else
-                        {
-                            trvNote.SelectedNode.ForeColor = Color.Black;
-                        }
-                    }
-                }
-                if (newLog.Contains("$LINK$>"))
-                {
-                    trvNote.SelectedNode.ForeColor = Color.Blue;
-                    trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
-                }
-                else if (newLog.Contains("$LITR$>"))
-                {
-                    trvNote.SelectedNode.ForeColor = Color.Brown;
-                    trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
-                }
-                else if (newLog.Contains("$NOTE$>"))
-                {
-                    trvNote.SelectedNode.ForeColor = Color.DarkGreen;
-                    trvNote.SelectedNode.NodeFont = new Font(Font, FontStyle.Underline);
-                }
-
-                trvNote.SelectedNode.StateImageIndex = getLogo(newLog);
+                updateNodeColor(trvNote.SelectedNode);
                 btnSave.Enabled = true;
             }
             else

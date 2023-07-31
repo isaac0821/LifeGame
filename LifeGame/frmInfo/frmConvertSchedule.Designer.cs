@@ -51,9 +51,9 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(410, 361);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(410, 333);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // lsbSchedule
@@ -61,9 +61,10 @@
             this.lsbSchedule.ContextMenuStrip = this.cmsConvert;
             this.lsbSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbSchedule.FormattingEnabled = true;
-            this.lsbSchedule.Location = new System.Drawing.Point(3, 33);
+            this.lsbSchedule.ItemHeight = 12;
+            this.lsbSchedule.Location = new System.Drawing.Point(3, 31);
             this.lsbSchedule.Name = "lsbSchedule";
-            this.lsbSchedule.Size = new System.Drawing.Size(404, 325);
+            this.lsbSchedule.Size = new System.Drawing.Size(404, 299);
             this.lsbSchedule.TabIndex = 0;
             // 
             // cmsConvert
@@ -72,12 +73,12 @@
             this.cmsConvert.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmConvert});
             this.cmsConvert.Name = "cmsConvert";
-            this.cmsConvert.Size = new System.Drawing.Size(117, 26);
+            this.cmsConvert.Size = new System.Drawing.Size(122, 26);
             // 
             // tsmConvert
             // 
             this.tsmConvert.Name = "tsmConvert";
-            this.tsmConvert.Size = new System.Drawing.Size(116, 22);
+            this.tsmConvert.Size = new System.Drawing.Size(121, 22);
             this.tsmConvert.Text = "Convert";
             this.tsmConvert.Click += new System.EventHandler(this.tsmConvert_Click);
             // 
@@ -92,7 +93,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(404, 24);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(404, 22);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // dtpDate
@@ -101,14 +102,14 @@
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDate.Location = new System.Drawing.Point(306, 3);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(95, 20);
+            this.dtpDate.Size = new System.Drawing.Size(95, 21);
             this.dtpDate.TabIndex = 0;
             // 
             // frmConvertSchedule
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 361);
+            this.ClientSize = new System.Drawing.Size(410, 333);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
