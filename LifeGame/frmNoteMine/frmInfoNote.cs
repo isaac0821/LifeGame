@@ -442,10 +442,11 @@ namespace LifeGame
             }
         }
 
-        private (Color, Color) getColor(string note)
+        private (Color, Color, Font) getColor(string note)
         {
             Color BackColor = new Color();
             Color ForeColor = new Color();
+            Font TextFont = new Font(Font, FontStyle.Regular);
 
             BackColor = Color.White;
             foreach (ListViewItem item in lsvColor.Items)
@@ -467,18 +468,27 @@ namespace LifeGame
             if (note.Contains("$LINK$>"))
             {
                 ForeColor = Color.Blue;
+                TextFont = new Font(Font, FontStyle.Underline);
             }
             else if (note.Contains("$LITR$>"))
             {
                 ForeColor = Color.Brown;
+                TextFont = new Font(Font, FontStyle.Underline);
             }
             else if (note.Contains("$NOTE$>"))
             {
                 ForeColor = Color.DarkGreen;
+                TextFont = new Font(Font, FontStyle.Underline);
             }
             else if (note.Contains("$JUMP$>"))
             {
                 ForeColor = Color.Indigo;
+                TextFont = new Font(Font, FontStyle.Bold);
+            }
+            else if (note.Split('#').Length == 3)
+            {
+                ForeColor = Color.Indigo;
+                TextFont = new Font(Font, FontStyle.Bold);
             }
 
             if (note.Contains("ddl: ") || note.Contains("DDL: "))
@@ -510,12 +520,12 @@ namespace LifeGame
                     }
                     else
                     {
-                        BackColor = Color.Gray;
+                        BackColor = Color.LightGray;
                     }
                 }
                 catch { }
             }
-            return (BackColor, ForeColor);
+            return (BackColor, ForeColor, TextFont);
         }
 
         private void LoadChildNoteLog(TreeNode treeNode, string topic)
@@ -540,11 +550,7 @@ namespace LifeGame
                     }
                     else
                     {
-                        (childNode.BackColor, childNode.ForeColor) = getColor(sub.SubLog);
-                        if (sub.SubLog.Contains("$LINK$>") || sub.SubLog.Contains("$LITR$>") || sub.SubLog.Contains("$NOTE$>"))
-                        {
-                            childNode.NodeFont = new Font(Font, FontStyle.Underline);
-                        }
+                        (childNode.BackColor, childNode.ForeColor, childNode.NodeFont) = getColor(sub.SubLog);
                         childNode.StateImageIndex = getLogo(sub.SubLog);
                     }
                     LoadChildNoteLog(childNode, note.Topic);
@@ -697,11 +703,7 @@ namespace LifeGame
                     newNode.ExpandAll();
                     trvNote.SelectedNode.ExpandAll();
 
-                    (newNode.BackColor, newNode.ForeColor) = getColor(newLog);
-                    if (newLog.Contains("$LINK$>") || newLog.Contains("$LITR$>") || newLog.Contains("$NOTE$>"))
-                    {
-                        newNode.NodeFont = new Font(Font, FontStyle.Underline);
-                    }
+                    (newNode.BackColor, newNode.ForeColor, newNode.NodeFont) = getColor(newLog);
                     newNode.StateImageIndex = getLogo(newLog);
 
                     trvNote.SelectedNode.Nodes.Add(newNode);
@@ -844,11 +846,7 @@ namespace LifeGame
                             newNode.ExpandAll();
                             trvNote.SelectedNode.ExpandAll();
 
-                            (newNode.BackColor, newNode.ForeColor) = getColor(newLog);
-                            if (newLog.Contains("$LINK$>") || newLog.Contains("$LITR$>") || newLog.Contains("$NOTE$>"))
-                            {
-                                newNode.NodeFont = new Font(Font, FontStyle.Underline);
-                            }
+                            (newNode.BackColor, newNode.ForeColor, newNode.NodeFont) = getColor(newLog);
                             newNode.StateImageIndex = getLogo(newLog);
                             trvNote.SelectedNode.Nodes.Add(newNode);
                         }
@@ -1098,11 +1096,7 @@ namespace LifeGame
                     node.Text = node.Text.Replace(item.Text, newLabel);
                 }
             }           
-            (node.BackColor, node.ForeColor) = getColor(node.Text);
-            if (node.Text.Contains("$LINK$>") || node.Text.Contains("$LITR$>") || node.Text.Contains("$NOTE$>"))
-            {
-                node.NodeFont = new Font(Font, FontStyle.Underline);
-            }
+            (node.BackColor, node.ForeColor, node.NodeFont) = getColor(node.Text);
             node.StateImageIndex = getLogo(node.Text);
 
             if (changeDescendant)
@@ -1116,11 +1110,7 @@ namespace LifeGame
 
         private void updateNodeColor(TreeNode node)
         {
-            (node.BackColor, node.ForeColor) = getColor(node.Text);
-            if (node.Text.Contains("$LINK$>") || node.Text.Contains("$LITR$>") || node.Text.Contains("$NOTE$>"))
-            {
-                node.NodeFont = new Font(Font, FontStyle.Underline);
-            }
+            (node.BackColor, node.ForeColor, node.NodeFont) = getColor(node.Text);
             node.StateImageIndex = getLogo(node.Text);
         }
 
@@ -1163,6 +1153,12 @@ namespace LifeGame
             }
         }
 
+        private TreeNode previousSelected = null;
+        private void trvNote_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            previousSelected = trvNote.SelectedNode;
+        }
+
         private void trvNote_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (trvNote.SelectedNode.Text == txtTopic.Text)
@@ -1194,7 +1190,8 @@ namespace LifeGame
             if (trvNote.SelectedNode.Text.Contains("$LINK$>")
                 || trvNote.SelectedNode.Text.Contains("$LITR$>")
                 || trvNote.SelectedNode.Text.Contains("$NOTE$>")
-                || trvNote.SelectedNode.Text.Contains("$JUMP$>"))
+                || trvNote.SelectedNode.Text.Contains("$JUMP$>")
+                || trvNote.SelectedNode.Text.Split('#').Length == 3)
             {
                 tsmGoto.Enabled = true;
             }
@@ -1295,6 +1292,11 @@ namespace LifeGame
                 else if (trvNote.SelectedNode.Text.Contains("$JUMP$>"))
                 {
                     string selectedText = trvNote.SelectedNode.Text.Replace("$JUMP$>", "");
+                    trvNote.SelectedNode = findByName(trvNote.Nodes[0], selectedText);
+                }
+                else if (trvNote.SelectedNode.Text.Split('#').Length == 3)
+                {
+                    string selectedText = trvNote.SelectedNode.Text.Split('#')[1];
                     trvNote.SelectedNode = findByName(trvNote.Nodes[0], selectedText);
                 }
             }
@@ -1464,17 +1466,6 @@ namespace LifeGame
                     }
                 }
             }
-        }
-
-        private bool validateNote(string[] logList)
-        {
-            List<int> levelList = new List<int>();
-            foreach (string log in logList)
-            {
-                string[] sp = log.Split('\t');
-                levelList.Add(sp.Length - 1);
-            }
-            return true;
         }
 
         private void tsmCopy_Click(object sender, EventArgs e)
@@ -1738,6 +1729,11 @@ namespace LifeGame
             else if (e.Control && e.KeyCode == Keys.S)
             {
                 SaveNote();
+            }
+            // 返回
+            else if (e.Control && e.KeyCode == Keys.Q)
+            {
+                trvNote.SelectedNode = previousSelected;
             }
         }
 

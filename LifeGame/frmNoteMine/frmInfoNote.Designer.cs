@@ -199,6 +199,7 @@
             this.trvNote.StateImageList = this.iglIcon;
             this.trvNote.TabIndex = 0;
             this.trvNote.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.trvNote_AfterLabelEdit);
+            this.trvNote.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.trvNote_BeforeSelect);
             this.trvNote.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvNote_AfterSelect);
             this.trvNote.KeyDown += new System.Windows.Forms.KeyEventHandler(this.trvNote_KeyDown);
             this.trvNote.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.trvNote_KeyPress);
