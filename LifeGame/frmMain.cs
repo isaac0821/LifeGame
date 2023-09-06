@@ -1365,5 +1365,38 @@ namespace LifeGame
             frmSurvey.Show();
         }
 
+        private void addDailyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DateTime sendToFrm = SelectedDate;
+            switch (SelectedPicName)
+            {
+                case "picMon":
+                    sendToFrm = SelectedMonday;
+                    break;
+                case "picTue":
+                    sendToFrm = SelectedTuesday;
+                    break;
+                case "picWed":
+                    sendToFrm = SelectedWednesday;
+                    break;
+                case "picThu":
+                    sendToFrm = SelectedThursday;
+                    break;
+                case "picFri":
+                    sendToFrm = SelectedFriday;
+                    break;
+                case "picSat":
+                    sendToFrm = SelectedSaturday;
+                    break;
+                case "picSun":
+                    sendToFrm = SelectedSunday;
+                    break;
+                default:
+                    break;
+            }
+            frmInfoNote frmInfoNote = new frmInfoNote(sendToFrm, true);
+            frmInfoNote.DrawLog += new frmInfoNote.DrawLogHandler(DrawLog);
+            frmInfoNote.Show();
+        }
     }
 }

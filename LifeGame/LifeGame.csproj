@@ -659,6 +659,7 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <None Include="Resources\iconClock.png" />
+    <None Include="Resources\iconDaily.png" />
     <Content Include="Resources\iconSurveyTagBoolean.png" />
     <Content Include="Resources\iconSurveyTagInteger.png" />
     <Content Include="Resources\iconSurveyTagNonBottom.png" />

@@ -23,7 +23,6 @@ namespace LifeGame
         CNote note = new CNote();
         List<RNoteLog> noteLogs = new List<RNoteLog>();
         List<RNoteColor> noteColors = new List<RNoteColor>();
-        bool RefreshInMain = true;
         string topicGUID = "";
         private bool lockMode = false;
 
@@ -73,10 +72,148 @@ namespace LifeGame
             btnSave.Enabled = true;
         }
 
+        public frmInfoNote(DateTime selectedDate, bool DiaryFlag)
+        {
+            InitializeComponent();
+            note = new CNote();
+            note.Topic = "Daily Report";
+            topicGUID = Guid.NewGuid().ToString();
+            note.GUID = topicGUID;
+            note.TagTime = DateTime.Today.Date;
+
+            // 加入template
+            noteColors = new List<RNoteColor>();
+            RNoteColor impEmgH = new RNoteColor();
+            impEmgH.Topic = note.Topic;
+            impEmgH.Keyword = "[Important + Emergency + Heavy]";
+            impEmgH.Color = "Red";
+            impEmgH.TagTime = DateTime.Today.Date;
+            noteColors.Add(impEmgH);
+
+            RNoteColor norEmgH = new RNoteColor();
+            norEmgH.Topic = note.Topic;
+            norEmgH.Keyword = "[Normal + Emergency + Heavy]";
+            norEmgH.Color = "Yellow";
+            norEmgH.TagTime = DateTime.Today.Date;
+            noteColors.Add(norEmgH);
+
+            RNoteColor impCanWaitH = new RNoteColor();
+            impCanWaitH.Topic = note.Topic;
+            impCanWaitH.Keyword = "[Important + CanWait + Heavy]";
+            impCanWaitH.Color = "Orange";
+            impCanWaitH.TagTime = DateTime.Today.Date;
+            noteColors.Add(impCanWaitH);
+
+            RNoteColor norCanWaitH = new RNoteColor();
+            norCanWaitH.Topic = note.Topic;
+            norCanWaitH.Keyword = "[Normal + CanWait + Heavy]";
+            norCanWaitH.Color = "Green";
+            norCanWaitH.TagTime = DateTime.Today.Date;
+            noteColors.Add(norCanWaitH);
+
+            RNoteColor impEmgL = new RNoteColor();
+            impEmgL.Topic = note.Topic;
+            impEmgL.Keyword = "[Important + Emergency + Light]";
+            impEmgL.Color = "Red";
+            impEmgL.TagTime = DateTime.Today.Date;
+            noteColors.Add(impEmgL);
+
+            RNoteColor norEmgL = new RNoteColor();
+            norEmgL.Topic = note.Topic;
+            norEmgL.Keyword = "[Normal + Emergency + Light]";
+            norEmgL.Color = "Orange";
+            norEmgL.TagTime = DateTime.Today.Date;
+            noteColors.Add(norEmgL);
+
+            RNoteColor impCanWaitL = new RNoteColor();
+            impCanWaitL.Topic = note.Topic;
+            impCanWaitL.Keyword = "[Important + CanWait + Light]";
+            impCanWaitL.Color = "Red";
+            impCanWaitL.TagTime = DateTime.Today.Date;
+            noteColors.Add(impCanWaitL);
+
+            RNoteColor norCanWaitL = new RNoteColor();
+            norCanWaitL.Topic = note.Topic;
+            norCanWaitL.Keyword = "[Normal + CanWait + Light]";
+            norCanWaitL.Color = "Green";
+            norCanWaitL.TagTime = DateTime.Today.Date;
+            noteColors.Add(norCanWaitL);
+
+            RNoteColor planning = new RNoteColor();
+            planning.Topic = note.Topic;
+            planning.Keyword = "[Planning]";
+            planning.Color = "Cyan";
+            planning.TagTime = DateTime.Today.Date;
+            noteColors.Add(planning);
+
+            RNoteColor mapped = new RNoteColor();
+            mapped.Topic = note.Topic;
+            mapped.Keyword = "[Mapped]";
+            mapped.Color = "Red";
+            mapped.TagTime = DateTime.Today.Date;
+            noteColors.Add(mapped);
+
+            RNoteColor done = new RNoteColor();
+            done.Topic = note.Topic;
+            done.Keyword = "[Done]";
+            done.Color = "Green";
+            done.TagTime = DateTime.Today.Date;
+            noteColors.Add(done);
+
+            noteLogs = new List<RNoteLog>();
+            RNoteLog bure = new RNoteLog();
+            bure.Topic = note.Topic;
+            bure.TopicGUID = topicGUID;
+            bure.Log = note.Topic;
+            bure.GUID = topicGUID;
+            bure.SubLog = "Bureaucracy";
+            bure.SubGUID = Guid.NewGuid().ToString();
+            bure.TagTime = DateTime.Today.Date;
+            bure.Index = 0;
+            noteLogs.Add(bure);
+
+            RNoteLog social = new RNoteLog();
+            social.Topic = note.Topic;
+            social.TopicGUID = topicGUID;
+            social.Log = note.Topic;
+            social.GUID = topicGUID;
+            social.SubLog = "Social";
+            social.SubGUID = Guid.NewGuid().ToString();
+            social.TagTime = DateTime.Today.Date;
+            social.Index = 1;
+            noteLogs.Add(social);
+
+            RNoteLog project = new RNoteLog();
+            project.Topic = note.Topic;
+            project.TopicGUID = topicGUID;
+            project.Log = note.Topic;
+            project.GUID = topicGUID;
+            project.SubLog = "Project";
+            project.SubGUID = Guid.NewGuid().ToString();
+            project.TagTime = DateTime.Today.Date;
+            project.Index = 2;
+            noteLogs.Add(project);
+
+            RNoteLog research = new RNoteLog();
+            research.Topic = note.Topic;
+            research.TopicGUID = topicGUID;
+            research.Log = note.Topic;
+            research.GUID = topicGUID;
+            research.SubLog = "Research";
+            research.SubGUID = Guid.NewGuid().ToString();
+            research.TagTime = DateTime.Today.Date;
+            research.Index = 3;
+            noteLogs.Add(research);
+
+            LoadNoteColor();
+            LoadNoteLog();
+            dtpDate.Value = selectedDate;
+            btnSave.Enabled = true;
+        }
+
         // 新建空literature note
         public frmInfoNote(string LiteratureTitle)
         {
-            RefreshInMain = false;
             InitializeComponent();
             note = new CNote();
             note.Topic = LiteratureTitle;            
@@ -313,7 +450,6 @@ namespace LifeGame
 
         public frmInfoNote(string topic, List<string> lstLiterature)
         {
-            RefreshInMain = false;
             InitializeComponent();
             note = new CNote();
             note.Topic = topic;
@@ -485,6 +621,16 @@ namespace LifeGame
                 ForeColor = Color.Indigo;
                 TextFont = new Font(Font, FontStyle.Bold);
             }
+            else if (note.Contains("$SCHL$>"))
+            {
+                ForeColor = Color.OrangeRed;
+                TextFont = new Font(Font, FontStyle.Underline);
+            }
+            else if (note.Contains("$RECO$>"))
+            {
+                ForeColor = Color.Orchid;
+                TextFont = new Font(Font, FontStyle.Underline);
+            }
             else if (note.Split('#').Length == 3)
             {
                 ForeColor = Color.Indigo;
@@ -645,10 +791,11 @@ namespace LifeGame
                     noteColor.TagTime = dtpDate.Value.Date;
                     G.glb.lstNoteColor.Add(noteColor);
                 }
-                if (RefreshInMain)
+                try
                 {
                     DrawLog();
                 }
+                catch { }
             }
 
             FileStream f = new FileStream("data.dat", FileMode.Create);
@@ -1010,7 +1157,17 @@ namespace LifeGame
             btnSave.Enabled = false;
         }
 
-        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmAddTag_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmRemoveTag_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmAddColor_Click(object sender, EventArgs e)
         {
             frmAddNoteColor frmAddNoteColor = new frmAddNoteColor();
             frmAddNoteColor.SendColorLabel += new frmAddNoteColor.SetColorLabel(addNoteColor);
@@ -1047,7 +1204,7 @@ namespace LifeGame
             }
         }
 
-        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmRemoveColor_Click(object sender, EventArgs e)
         {
             if (lsvColor.SelectedItems != null)
             {
@@ -1198,6 +1355,22 @@ namespace LifeGame
             else
             {
                 tsmGoto.Enabled = false;
+            }
+            if (trvNote.SelectedNode.Text.Contains("$SCHL$>"))
+            {
+                tsmConvertToSchedule.Enabled = true;
+            }
+            else
+            {
+                tsmConvertToSchedule.Enabled = false;
+            }
+            if (trvNote.SelectedNode.Text.Contains("$RECO$>"))
+            {
+                tsmConvertToLog.Enabled = true;
+            }
+            else
+            {
+                tsmConvertToLog.Enabled = false;
             }
         }
 
@@ -1815,6 +1988,224 @@ namespace LifeGame
                 frmNotePassword frmNotePassword = new frmNotePassword();
                 frmNotePassword.SendPassword += new frmNotePassword.GetPassword(CheckPassword);
                 frmNotePassword.Show();
+            }
+        }
+
+        private void tsmConvertToSchedule_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null && trvNote.SelectedNode.Text.Contains("$SCHL$>"))
+            {
+                try
+                {
+                    string sch = trvNote.SelectedNode.Text.Replace("$SCHL$>", "");
+                    string[] sp = sch.Split('@');
+                    if (sp.Length < 3)
+                    {
+                        MessageBox.Show("Incorrect input format. Correct format is as follows: $SCHL$>HH:MM:SS-HH:MM:SS(+1)@ScheduleName@Color[@TaskName@Where@With]");
+                    }
+                    else
+                    {
+                        // Time
+                        bool addOneDayFlag = sp[0].Contains("(+1)");
+                        if (addOneDayFlag)
+                        {
+                            sp[0] = sp[0].Replace("(+1)", "");
+                        }
+                        string[] schTimeStr = sp[0].Split('-');
+                        string[] schStartStr = schTimeStr[0].Split(':');
+                        string[] schEndStr = schTimeStr[1].Split(':');
+                        DateTime StartTime = new DateTime(
+                            Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
+                            Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), Convert.ToInt32(schStartStr[2]));
+                        DateTime EndTime = new DateTime(
+                            Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
+                            Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), Convert.ToInt32(schEndStr[2]));
+                        if (addOneDayFlag)
+                        {
+                            EndTime += new TimeSpan(1, 0, 0, 0);
+                        }
+                        // Log Name
+                        string LogName = sp[1];
+                        // Color
+                        string Color = sp[2];
+                        // Location
+                        string Location = "";
+                        if (sp.Length >= 4)
+                        {
+                            Location = sp[3];
+                        }
+                        // With
+                        string WithWho = "";
+                        if (sp.Length >= 5)
+                        {
+                            WithWho = sp[4];
+                        }
+                        // Task
+                        string ContributionToTask = "";
+                        if (sp.Length >= 6 && G.glb.lstTask.Exists(o => o.TaskName == sp[5]))
+                        {
+                            ContributionToTask = sp[5];
+                        }
+
+                        // 判断是否能添加日程
+                        bool CanAddScheduleFlag = true;
+                        bool ReplaceExistFlag = false;
+
+                        if (G.glb.lstSleepSchedule.Exists(o => (o.GoToBedTime <= StartTime && o.GetUpTime >= StartTime) || (o.GoToBedTime >= StartTime && o.GoToBedTime <= EndTime)))
+                        {
+                            MessageBox.Show("Overlapped with sleep time, please check");
+                            CanAddScheduleFlag = false;
+                        }
+                        if (CanAddScheduleFlag && G.glb.lstSchedule.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
+                        {
+                            DialogResult result = MessageBox.Show("Already have logs at that time, Do you replace?", "Log", MessageBoxButtons.YesNo);
+                            switch (result)
+                            {
+                                case DialogResult.Yes:
+                                    ReplaceExistFlag = true;
+                                    break;
+                                case DialogResult.No:
+                                    CanAddScheduleFlag = false;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+
+                        if (ReplaceExistFlag)
+                        {
+                            G.glb.lstSchedule.RemoveAll(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime));
+                        }
+
+                        if (CanAddScheduleFlag)
+                        {
+                            CLog newSchedule = new CLog();
+                            newSchedule.LogName = LogName;
+                            newSchedule.StartTime = StartTime;
+                            newSchedule.EndTime = EndTime;
+                            newSchedule.Location = Location;
+                            newSchedule.WithWho = WithWho;
+                            newSchedule.ContributionToTask = ContributionToTask;
+                            newSchedule.Color = Color;
+                            newSchedule.Alarm = true;
+                            newSchedule.AlarmTime = StartTime - new TimeSpan(0, Convert.ToInt16(5), 0);
+                            G.glb.lstSchedule.Add(newSchedule);                            
+                        }
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Incorrect input format. Correct format is as follows: $SCHL$>YYYY.MM.DD@HH:MM:SS-HH:MM:SS(+1)@ScheduleName@Color[@TaskName@Where@With]");
+                }
+            }
+        }
+
+        private void tsmConvertToLog_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null && trvNote.SelectedNode.Text.Contains("$RECO$>"))
+            {
+                try
+                {
+                    string sch = trvNote.SelectedNode.Text.Replace("$RECO$>", "");
+                    string[] sp = sch.Split('@');
+                    if (sp.Length < 3)
+                    {
+                        MessageBox.Show("Incorrect input format. Correct format is as follows: $RECO$>HH:MM:SS-HH:MM:SS(+1)@ScheduleName@Color[@TaskName@Where@With]");
+                    }
+                    else
+                    {
+                        // Time
+                        bool addOneDayFlag = sp[0].Contains("(+1)");
+                        if (addOneDayFlag)
+                        {
+                            sp[0] = sp[0].Replace("(+1)", "");
+                        }
+                        string[] schTimeStr = sp[0].Split('-');
+                        string[] schStartStr = schTimeStr[0].Split(':');
+                        string[] schEndStr = schTimeStr[1].Split(':');
+                        DateTime StartTime = new DateTime(
+                            Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
+                            Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), Convert.ToInt32(schStartStr[2]));
+                        DateTime EndTime = new DateTime(
+                            Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
+                            Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), Convert.ToInt32(schEndStr[2]));
+                        if (addOneDayFlag)
+                        {
+                            EndTime += new TimeSpan(1, 0, 0, 0);
+                        }
+                        // Log Name
+                        string LogName = sp[1];
+                        // Color
+                        string Color = sp[2];
+                        // Location
+                        string Location = "";
+                        if (sp.Length >= 4)
+                        {
+                            Location = sp[3];
+                        }
+                        // With
+                        string WithWho = "";
+                        if (sp.Length >= 5)
+                        {
+                            WithWho = sp[4];
+                        }
+                        // Task
+                        string ContributionToTask = "";
+                        if (sp.Length >= 6 && G.glb.lstTask.Exists(o => o.TaskName == sp[5]))
+                        {
+                            ContributionToTask = sp[5];
+                        }
+
+                        // 判断是否能添加日程
+                        bool CanAddScheduleFlag = true;
+                        bool ReplaceExistFlag = false;
+
+                        if (G.glb.lstSleepLog.Exists(o => (o.GoToBedTime <= StartTime && o.GetUpTime >= StartTime) || (o.GoToBedTime >= StartTime && o.GoToBedTime <= EndTime)))
+                        {
+                            MessageBox.Show("Overlapped with sleep time, please check");
+                            CanAddScheduleFlag = false;
+                        }
+                        if (CanAddScheduleFlag && G.glb.lstLog.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
+                        {
+                            DialogResult result = MessageBox.Show("Already have logs at that time, Do you replace?", "Log", MessageBoxButtons.YesNo);
+                            switch (result)
+                            {
+                                case DialogResult.Yes:
+                                    ReplaceExistFlag = true;
+                                    break;
+                                case DialogResult.No:
+                                    CanAddScheduleFlag = false;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+
+                        if (ReplaceExistFlag)
+                        {
+                            G.glb.lstLog.RemoveAll(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime));
+                        }
+
+                        if (CanAddScheduleFlag)
+                        {
+                            CLog newSchedule = new CLog();
+                            newSchedule.LogName = LogName;
+                            newSchedule.StartTime = StartTime;
+                            newSchedule.EndTime = EndTime;
+                            newSchedule.Location = Location;
+                            newSchedule.WithWho = WithWho;
+                            newSchedule.ContributionToTask = ContributionToTask;
+                            newSchedule.Color = Color;
+                            newSchedule.Alarm = true;
+                            newSchedule.AlarmTime = StartTime - new TimeSpan(0, Convert.ToInt16(5), 0);
+                            G.glb.lstLog.Add(newSchedule);
+                        }
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Incorrect input format. Correct format is as follows: $RECO$>YYYY.MM.DD@HH:MM:SS-HH:MM:SS(+1)@ScheduleName@Color[@TaskName@Where@With]");
+                }
             }
         }
     }

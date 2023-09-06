@@ -472,5 +472,13 @@ namespace LifeGame
         public string Color;
     }
 
+    [Serializable]
+    public class RNoteTag
+    {
+        public string Topic;
+        public DateTime TagTime;
+        public string Tag;
+    }
+
     #endregion
 }

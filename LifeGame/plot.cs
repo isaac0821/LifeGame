@@ -127,10 +127,6 @@ namespace LifeGame
             }
         }
 
-        private void ShowDesc(string desc)
-        {
-            MessageBox.Show(desc);
-        }
 
         /// <summary>
         /// 绘制计划图或日志图 Done: 01/03/2019
@@ -473,20 +469,27 @@ namespace LifeGame
             {
                 lstPicEvent.Add(new PictureBox());
                 CNote note = lstNote[i];
-                if (lstNote[i].FinishedNote)
+                if (lstNote[i].Topic == "Daily Report")
                 {
-                    if (lstNote[i].LiteratureTitle != "")
-                    {
-                        lstPicEvent[i + acc].Image = icon.iconLiterature;
-                    }
-                    else
-                    {
-                        lstPicEvent[i + acc].Image = icon.iconNote;
-                    }
+                    lstPicEvent[i + acc].Image = icon.iconDaily;
                 }
                 else
                 {
-                    lstPicEvent[i + acc].Image = icon.iconWorkingNote;
+                    if (lstNote[i].FinishedNote)
+                    {
+                        if (lstNote[i].LiteratureTitle != "")
+                        {
+                            lstPicEvent[i + acc].Image = icon.iconLiterature;
+                        }
+                        else
+                        {
+                            lstPicEvent[i + acc].Image = icon.iconNote;
+                        }
+                    }
+                    else
+                    {
+                        lstPicEvent[i + acc].Image = icon.iconWorkingNote;
+                    }
                 }
                 lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;

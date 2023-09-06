@@ -837,6 +837,7 @@
             this.MinimizeBox = false;
             this.Name = "frmInfoLiterature";
             this.Text = "LifeGame - Literature Detail";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddLiterature_FormClosing);
             this.Load += new System.EventHandler(this.frmInfoLiterature_Load);
             this.tableLayoutPanel4.ResumeLayout(false);
