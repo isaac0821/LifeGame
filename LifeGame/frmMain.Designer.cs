@@ -69,6 +69,7 @@
             this.tsmAddMedicine = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddNoteMine = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddNote = new System.Windows.Forms.ToolStripMenuItem();
+            this.addDailyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmDeleteSchedule = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDeleteSingleSchedule = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,7 +96,6 @@
             this.chkShowSchedule = new System.Windows.Forms.CheckBox();
             this.chkShowLog = new System.Windows.Forms.CheckBox();
             this.chkMine = new System.Windows.Forms.CheckBox();
-            this.addDailyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMain.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -376,7 +376,7 @@
             this.tsmDeleteInfoMine,
             this.tsmDeleteNoteMine});
             this.cmsMain.Name = "cmsMain";
-            this.cmsMain.Size = new System.Drawing.Size(193, 270);
+            this.cmsMain.Size = new System.Drawing.Size(193, 248);
             this.cmsMain.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMain_Opening);
             // 
             // tsmAddSleepSchedule
@@ -508,9 +508,16 @@
             // tsmAddNote
             // 
             this.tsmAddNote.Name = "tsmAddNote";
-            this.tsmAddNote.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddNote.Size = new System.Drawing.Size(133, 22);
             this.tsmAddNote.Text = "Add Note";
             this.tsmAddNote.Click += new System.EventHandler(this.tsmAddNote_Click);
+            // 
+            // addDailyToolStripMenuItem
+            // 
+            this.addDailyToolStripMenuItem.Name = "addDailyToolStripMenuItem";
+            this.addDailyToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.addDailyToolStripMenuItem.Text = "Add Daily";
+            this.addDailyToolStripMenuItem.Click += new System.EventHandler(this.addDailyToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -798,13 +805,6 @@
             this.chkMine.Text = "Show Mine";
             this.chkMine.UseVisualStyleBackColor = true;
             this.chkMine.CheckedChanged += new System.EventHandler(this.chkMoney_CheckedChanged);
-            // 
-            // addDailyToolStripMenuItem
-            // 
-            this.addDailyToolStripMenuItem.Name = "addDailyToolStripMenuItem";
-            this.addDailyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addDailyToolStripMenuItem.Text = "Add Daily";
-            this.addDailyToolStripMenuItem.Click += new System.EventHandler(this.addDailyToolStripMenuItem_Click);
             // 
             // frmMain
             // 

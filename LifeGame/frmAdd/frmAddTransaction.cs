@@ -35,6 +35,11 @@ namespace LifeGame
                 MessageBox.Show("Amount incomplete");
                 CanSaveFlag = false;
             }
+            if (G.glb.lstTransaction.Exists(o => o.TagTime == curDate && o.Summary == txtSummary.Text))
+            {
+                MessageBox.Show("Transaction exists");
+                CanSaveFlag = false;
+            }
 
             if (CanSaveFlag)
             {

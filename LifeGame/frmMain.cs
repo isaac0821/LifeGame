@@ -53,8 +53,7 @@ namespace LifeGame
             try
             {
                 Deserialize();
-
-                //foreach (CNote note in G.glb.lstNote)
+                // G.glb.lstNoteTag = new List<RNoteTag>();
                 //{
                 //    Guid g = Guid.NewGuid();
                 //    note.GUID = g.ToString();
@@ -70,6 +69,8 @@ namespace LifeGame
                 //    if (log.Log == log.Topic)
                 //    {
                 //        log.GUID = log.TopicGUID;
+
+                //foreach (CNote note in G.glb.lstNote)
                 //    }
                 //    else
                 //    {

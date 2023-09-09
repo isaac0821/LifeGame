@@ -49,6 +49,7 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmConvertToSchedule = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmConvertToLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmConvertToTransaction = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmSort = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
@@ -117,7 +118,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 175F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 178F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(543, 656);
             this.tableLayoutPanel1.TabIndex = 0;
@@ -202,9 +203,9 @@
             // 
             this.trvNote.ContextMenuStrip = this.cmsTrvNote;
             this.trvNote.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvNote.Location = new System.Drawing.Point(3, 202);
+            this.trvNote.Location = new System.Drawing.Point(3, 205);
             this.trvNote.Name = "trvNote";
-            this.trvNote.Size = new System.Drawing.Size(537, 451);
+            this.trvNote.Size = new System.Drawing.Size(537, 448);
             this.trvNote.StateImageList = this.iglIcon;
             this.trvNote.TabIndex = 0;
             this.trvNote.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.trvNote_AfterLabelEdit);
@@ -227,6 +228,7 @@
             this.toolStripSeparator6,
             this.tsmConvertToSchedule,
             this.tsmConvertToLog,
+            this.tsmConvertToTransaction,
             this.toolStripSeparator4,
             this.tsmSort,
             this.toolStripSeparator9,
@@ -249,133 +251,140 @@
             this.toolStripSeparator5,
             this.tsmProperties});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(197, 564);
+            this.cmsTrvNote.Size = new System.Drawing.Size(212, 564);
             // 
             // tsmAdd
             // 
             this.tsmAdd.Name = "tsmAdd";
-            this.tsmAdd.Size = new System.Drawing.Size(196, 22);
+            this.tsmAdd.Size = new System.Drawing.Size(211, 22);
             this.tsmAdd.Text = "Add (&A)...";
             this.tsmAdd.Click += new System.EventHandler(this.tsmAdd_Click);
             // 
             // tsmAddBatch
             // 
             this.tsmAddBatch.Name = "tsmAddBatch";
-            this.tsmAddBatch.Size = new System.Drawing.Size(196, 22);
+            this.tsmAddBatch.Size = new System.Drawing.Size(211, 22);
             this.tsmAddBatch.Text = "Add Batch (&B)...";
             this.tsmAddBatch.Click += new System.EventHandler(this.tsmAddBatch_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(193, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(208, 6);
             // 
             // tsmFold
             // 
             this.tsmFold.Name = "tsmFold";
-            this.tsmFold.Size = new System.Drawing.Size(196, 22);
+            this.tsmFold.Size = new System.Drawing.Size(211, 22);
             this.tsmFold.Text = "Fold (&N)";
             this.tsmFold.Click += new System.EventHandler(this.tsmFold_Click);
             // 
             // tsmExpand
             // 
             this.tsmExpand.Name = "tsmExpand";
-            this.tsmExpand.Size = new System.Drawing.Size(196, 22);
+            this.tsmExpand.Size = new System.Drawing.Size(211, 22);
             this.tsmExpand.Text = "Expand (&M)";
             this.tsmExpand.Click += new System.EventHandler(this.tsmExpand_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(193, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(208, 6);
             // 
             // tsmGoto
             // 
             this.tsmGoto.Name = "tsmGoto";
-            this.tsmGoto.Size = new System.Drawing.Size(196, 22);
+            this.tsmGoto.Size = new System.Drawing.Size(211, 22);
             this.tsmGoto.Text = "Go to... (&G)";
             this.tsmGoto.Click += new System.EventHandler(this.tsmGoto_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(193, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(208, 6);
             // 
             // tsmConvertToSchedule
             // 
             this.tsmConvertToSchedule.Name = "tsmConvertToSchedule";
-            this.tsmConvertToSchedule.Size = new System.Drawing.Size(196, 22);
+            this.tsmConvertToSchedule.Size = new System.Drawing.Size(211, 22);
             this.tsmConvertToSchedule.Text = "Convert To Schedule";
             this.tsmConvertToSchedule.Click += new System.EventHandler(this.tsmConvertToSchedule_Click);
             // 
             // tsmConvertToLog
             // 
             this.tsmConvertToLog.Name = "tsmConvertToLog";
-            this.tsmConvertToLog.Size = new System.Drawing.Size(196, 22);
+            this.tsmConvertToLog.Size = new System.Drawing.Size(211, 22);
             this.tsmConvertToLog.Text = "Convert To Log";
             this.tsmConvertToLog.Click += new System.EventHandler(this.tsmConvertToLog_Click);
+            // 
+            // tsmConvertToTransaction
+            // 
+            this.tsmConvertToTransaction.Name = "tsmConvertToTransaction";
+            this.tsmConvertToTransaction.Size = new System.Drawing.Size(211, 22);
+            this.tsmConvertToTransaction.Text = "Convert To Transaction";
+            this.tsmConvertToTransaction.Click += new System.EventHandler(this.tsmConvertToTransaction_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(193, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(208, 6);
             // 
             // tsmSort
             // 
             this.tsmSort.Name = "tsmSort";
-            this.tsmSort.Size = new System.Drawing.Size(196, 22);
+            this.tsmSort.Size = new System.Drawing.Size(211, 22);
             this.tsmSort.Text = "Sort";
             this.tsmSort.Click += new System.EventHandler(this.tsmSort_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(193, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(208, 6);
             // 
             // tsmEdit
             // 
             this.tsmEdit.Name = "tsmEdit";
-            this.tsmEdit.Size = new System.Drawing.Size(196, 22);
+            this.tsmEdit.Size = new System.Drawing.Size(211, 22);
             this.tsmEdit.Text = "Edit (&E)...";
             this.tsmEdit.Click += new System.EventHandler(this.tsmEdit_Click);
             // 
             // tsmPrepend
             // 
             this.tsmPrepend.Name = "tsmPrepend";
-            this.tsmPrepend.Size = new System.Drawing.Size(196, 22);
+            this.tsmPrepend.Size = new System.Drawing.Size(211, 22);
             this.tsmPrepend.Text = "Prepend...";
             this.tsmPrepend.Click += new System.EventHandler(this.tsmPrepend_Click);
             // 
             // tsmAppend
             // 
             this.tsmAppend.Name = "tsmAppend";
-            this.tsmAppend.Size = new System.Drawing.Size(196, 22);
+            this.tsmAppend.Size = new System.Drawing.Size(211, 22);
             this.tsmAppend.Text = "Append...";
             this.tsmAppend.Click += new System.EventHandler(this.tsmAppend_Click);
             // 
             // tsmReplace
             // 
             this.tsmReplace.Name = "tsmReplace";
-            this.tsmReplace.Size = new System.Drawing.Size(196, 22);
+            this.tsmReplace.Size = new System.Drawing.Size(211, 22);
             this.tsmReplace.Text = "Replace...";
             this.tsmReplace.Click += new System.EventHandler(this.tsmReplace_Click);
             // 
             // tsmChangeLabel
             // 
             this.tsmChangeLabel.Name = "tsmChangeLabel";
-            this.tsmChangeLabel.Size = new System.Drawing.Size(196, 22);
+            this.tsmChangeLabel.Size = new System.Drawing.Size(211, 22);
             this.tsmChangeLabel.Text = "Change Label...";
             this.tsmChangeLabel.Click += new System.EventHandler(this.tsmChangeLabel_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(193, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(208, 6);
             // 
             // tsmCopy
             // 
             this.tsmCopy.Name = "tsmCopy";
-            this.tsmCopy.Size = new System.Drawing.Size(196, 22);
+            this.tsmCopy.Size = new System.Drawing.Size(211, 22);
             this.tsmCopy.Text = "Copy (&C)";
             this.tsmCopy.Click += new System.EventHandler(this.tsmCopy_Click);
             // 
@@ -383,71 +392,71 @@
             // 
             this.tsmPaste.Enabled = false;
             this.tsmPaste.Name = "tsmPaste";
-            this.tsmPaste.Size = new System.Drawing.Size(196, 22);
+            this.tsmPaste.Size = new System.Drawing.Size(211, 22);
             this.tsmPaste.Text = "Paste (&V)";
             this.tsmPaste.Click += new System.EventHandler(this.tsmPaste_Click);
             // 
             // tsmRemove
             // 
             this.tsmRemove.Name = "tsmRemove";
-            this.tsmRemove.Size = new System.Drawing.Size(196, 22);
+            this.tsmRemove.Size = new System.Drawing.Size(211, 22);
             this.tsmRemove.Text = "Remove (&D)";
             this.tsmRemove.Click += new System.EventHandler(this.tsmRemove_Click);
             // 
             // removeChildrenToolStripMenuItem
             // 
             this.removeChildrenToolStripMenuItem.Name = "removeChildrenToolStripMenuItem";
-            this.removeChildrenToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.removeChildrenToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.removeChildrenToolStripMenuItem.Text = "Remove Children";
             this.removeChildrenToolStripMenuItem.Click += new System.EventHandler(this.removeChildrenToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(193, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(208, 6);
             // 
             // tsmUp
             // 
             this.tsmUp.Name = "tsmUp";
-            this.tsmUp.Size = new System.Drawing.Size(196, 22);
+            this.tsmUp.Size = new System.Drawing.Size(211, 22);
             this.tsmUp.Text = "Up (&I)";
             this.tsmUp.Click += new System.EventHandler(this.tsmUp_Click);
             // 
             // tsmDown
             // 
             this.tsmDown.Name = "tsmDown";
-            this.tsmDown.Size = new System.Drawing.Size(196, 22);
+            this.tsmDown.Size = new System.Drawing.Size(211, 22);
             this.tsmDown.Text = "Down (&K)";
             this.tsmDown.Click += new System.EventHandler(this.tsmDown_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(193, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(208, 6);
             // 
             // tsmIndependent
             // 
             this.tsmIndependent.Name = "tsmIndependent";
-            this.tsmIndependent.Size = new System.Drawing.Size(196, 22);
+            this.tsmIndependent.Size = new System.Drawing.Size(211, 22);
             this.tsmIndependent.Text = "Independent (&J)";
             this.tsmIndependent.Click += new System.EventHandler(this.tsmIndependent_Click);
             // 
             // tsmBelongTo
             // 
             this.tsmBelongTo.Name = "tsmBelongTo";
-            this.tsmBelongTo.Size = new System.Drawing.Size(196, 22);
+            this.tsmBelongTo.Size = new System.Drawing.Size(211, 22);
             this.tsmBelongTo.Text = "Belong To (&L)";
             this.tsmBelongTo.Click += new System.EventHandler(this.tsmBelongTo_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(193, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(208, 6);
             // 
             // tsmProperties
             // 
             this.tsmProperties.Name = "tsmProperties";
-            this.tsmProperties.Size = new System.Drawing.Size(196, 22);
+            this.tsmProperties.Size = new System.Drawing.Size(211, 22);
             this.tsmProperties.Text = "Properties";
             this.tsmProperties.Click += new System.EventHandler(this.tsmProperties_Click);
             // 
@@ -490,7 +499,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(543, 175);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(543, 178);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // label1
@@ -585,7 +594,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 120);
+            this.label5.Location = new System.Drawing.Point(3, 123);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 55);
             this.label5.TabIndex = 9;
@@ -600,7 +609,7 @@
             this.tableLayoutPanel5.Controls.Add(this.lsvColor, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(89, 120);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(89, 123);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
@@ -685,20 +694,22 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(3, 72);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 48);
+            this.label2.Size = new System.Drawing.Size(83, 51);
             this.label2.TabIndex = 11;
             this.label2.Text = "Tag";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lsvTag
             // 
+            this.lsvTag.ContextMenuStrip = this.cmsNoteTag;
             this.lsvTag.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsvTag.HideSelection = false;
             this.lsvTag.Location = new System.Drawing.Point(92, 75);
             this.lsvTag.Name = "lsvTag";
-            this.lsvTag.Size = new System.Drawing.Size(448, 42);
+            this.lsvTag.Size = new System.Drawing.Size(448, 45);
             this.lsvTag.TabIndex = 12;
             this.lsvTag.UseCompatibleStateImageBehavior = false;
+            this.lsvTag.View = System.Windows.Forms.View.List;
             // 
             // cmsNoteTag
             // 
@@ -815,5 +826,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmConvertToSchedule;
         private System.Windows.Forms.ToolStripMenuItem tsmConvertToLog;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem tsmConvertToTransaction;
     }
 }

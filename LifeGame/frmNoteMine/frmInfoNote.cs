@@ -23,6 +23,7 @@ namespace LifeGame
         CNote note = new CNote();
         List<RNoteLog> noteLogs = new List<RNoteLog>();
         List<RNoteColor> noteColors = new List<RNoteColor>();
+        List<RNoteTag> noteTags = new List<RNoteTag>();
         string topicGUID = "";
         private bool lockMode = false;
 
@@ -32,8 +33,11 @@ namespace LifeGame
             note = info;
             noteLogs = G.glb.lstNoteLog.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             noteColors = G.glb.lstNoteColor.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
+            noteTags = G.glb.lstNoteTag.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             topicGUID = info.GUID;
             InitializeComponent();
+
+            LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
             dtpDate.Value = note.TagTime;
@@ -65,7 +69,10 @@ namespace LifeGame
             note = new CNote();
             noteLogs = new List<RNoteLog>();
             noteColors = new List<RNoteColor>();
+            noteTags = new List<RNoteTag>();
             topicGUID = Guid.NewGuid().ToString();
+
+            LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
             dtpDate.Value = selectedDate;
@@ -80,6 +87,14 @@ namespace LifeGame
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
+
+            // 默认tag
+            noteTags = new List<RNoteTag>();
+            RNoteTag dr = new RNoteTag();
+            dr.TagTime = DateTime.Today.Date;
+            dr.Topic = note.Topic;
+            dr.Tag = "Daily Report";
+            noteTags.Add(dr);
 
             // 加入template
             noteColors = new List<RNoteColor>();
@@ -205,6 +220,18 @@ namespace LifeGame
             research.Index = 3;
             noteLogs.Add(research);
 
+            RNoteLog transaction = new RNoteLog();
+            transaction.Topic = note.Topic;
+            transaction.TopicGUID = topicGUID;
+            transaction.Log = note.Topic;
+            transaction.GUID = topicGUID;
+            transaction.SubLog = "Transaction";
+            transaction.SubGUID = Guid.NewGuid().ToString();
+            transaction.TagTime = DateTime.Today.Date;
+            transaction.Index = 4;
+            noteLogs.Add(transaction);
+
+            LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
             dtpDate.Value = selectedDate;
@@ -216,10 +243,18 @@ namespace LifeGame
         {
             InitializeComponent();
             note = new CNote();
-            note.Topic = LiteratureTitle;            
+            note.Topic = LiteratureTitle;
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
+
+            // 默认tag
+            noteTags = new List<RNoteTag>();
+            RNoteTag dr = new RNoteTag();
+            dr.TagTime = DateTime.Today.Date;
+            dr.Topic = note.Topic;
+            dr.Tag = "Literature";
+            noteTags.Add(dr);
 
             // 加入template
             CLiterature lit = G.glb.lstLiterature.Find(o => o.Title == LiteratureTitle);
@@ -439,8 +474,9 @@ namespace LifeGame
             noteLogs.Add(obj);
 
             noteColors = new List<RNoteColor>();
-            
+
             note.LiteratureTitle = LiteratureTitle;
+            LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
             txtTopic.Text = LiteratureTitle;
@@ -457,6 +493,14 @@ namespace LifeGame
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
 
+            // 默认tag
+            noteTags = new List<RNoteTag>();
+            RNoteTag dr = new RNoteTag();
+            dr.TagTime = DateTime.Today.Date;
+            dr.Topic = note.Topic;
+            dr.Tag = "Review";
+            noteTags.Add(dr);
+            
             for (int i = 0; i < lstLiterature.Count; i++)
             {
                 RNoteLog lit = new RNoteLog();
@@ -500,11 +544,23 @@ namespace LifeGame
             revisit.TagTime = DateTime.Today.Date;
             noteColors.Add(revisit);
 
+            LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
             txtTopic.Text = topic;
             dtpDate.Value = DateTime.Today.Date;
             btnSave.Enabled = true;
+        }
+        
+        private void LoadNoteTag()
+        {
+            lsvTag.Items.Clear();
+            foreach (RNoteTag noteTag in noteTags)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = noteTag.Tag;
+                lsvTag.Items.Add(item);
+            }
         }
 
         private void LoadNoteColor()
@@ -623,12 +679,44 @@ namespace LifeGame
             }
             else if (note.Contains("$SCHL$>"))
             {
-                ForeColor = Color.OrangeRed;
+                ForeColor = Color.Orange;
                 TextFont = new Font(Font, FontStyle.Underline);
             }
             else if (note.Contains("$RECO$>"))
             {
                 ForeColor = Color.Orchid;
+                TextFont = new Font(Font, FontStyle.Underline);
+            }
+            else if (note.Contains("$TRSA$>"))
+            {
+                Color transactionColor = Color.Gray;
+                try
+                {
+                    string transactionSeg = note.Replace("$TRSA$>", "");
+                    transactionSeg = transactionSeg.Replace("=>", "@");
+                    string[] transactionNote = transactionSeg.Split('@');
+                    string accountFrom = transactionNote[2];
+                    string accountTo = transactionNote[3];
+                    if (G.glb.lstAccount.Exists(o => o.AccountName == accountFrom) && G.glb.lstAccount.Exists(o => o.AccountName == accountTo))
+                    {
+                        // 如果To账目是支出账目，表示这是支出
+                        if (G.glb.lstAccount.Find(o => o.AccountName == accountTo).AccountType == EAccountType.Expense)
+                        {
+                            transactionColor = Color.Red;
+                        }
+                        // 如果From账目是收入账目，表示这是收入
+                        else if (G.glb.lstAccount.Find(o => o.AccountName == accountFrom).AccountType == EAccountType.Income)
+                        {
+                            transactionColor = Color.Green;
+                        }
+                        else
+                        {
+                            transactionColor = Color.Navy;
+                        }
+                    }
+                }
+                catch { }
+                ForeColor = transactionColor;
                 TextFont = new Font(Font, FontStyle.Underline);
             }
             else if (note.Split('#').Length == 3)
@@ -648,19 +736,19 @@ namespace LifeGame
                 {
                     noteDate = new DateTime(Convert.ToInt32(dateNote[0]), Convert.ToInt32(dateNote[1]), Convert.ToInt32(dateNote[2]));
 
-                    if (noteDate - DateTime.Today>= TimeSpan.FromDays(30))
+                    if (noteDate - DateTime.Today >= TimeSpan.FromDays(30))
                     {
                         BackColor = Color.Green;
                     }
-                    else if (noteDate - DateTime.Today>= TimeSpan.FromDays(7))
+                    else if (noteDate - DateTime.Today >= TimeSpan.FromDays(7))
                     {
                         BackColor = Color.Yellow;
                     }
-                    else if (noteDate - DateTime.Today>= TimeSpan.FromDays(3))
+                    else if (noteDate - DateTime.Today >= TimeSpan.FromDays(3))
                     {
                         BackColor = Color.Orange;
                     }
-                    else if (noteDate - DateTime.Today>= TimeSpan.FromDays(1))
+                    else if (noteDate - DateTime.Today >= TimeSpan.FromDays(0))
                     {
                         BackColor = Color.Red;
                     }
@@ -743,6 +831,7 @@ namespace LifeGame
                     case DialogResult.Yes:
                         G.glb.lstNoteLog.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
                         G.glb.lstNoteColor.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
+                        G.glb.lstNoteTag.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
                         SaveNoteLog();
                         foreach (RNoteLog noteLog in noteLogs)
                         {
@@ -755,6 +844,12 @@ namespace LifeGame
                             noteColor.Topic = txtTopic.Text;
                             noteColor.TagTime = dtpDate.Value.Date;
                             G.glb.lstNoteColor.Add(noteColor);
+                        }
+                        foreach (RNoteTag noteTag in noteTags)
+                        {
+                            noteTag.Topic = txtTopic.Text;
+                            noteTag.TagTime = dtpDate.Value.Date;
+                            G.glb.lstNoteTag.Add(noteTag);
                         }
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).FinishedNote = chkFinished.Checked;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).LiteratureTitle = txtLiteratureTitle.Text;
@@ -790,6 +885,12 @@ namespace LifeGame
                     noteColor.Topic = txtTopic.Text;
                     noteColor.TagTime = dtpDate.Value.Date;
                     G.glb.lstNoteColor.Add(noteColor);
+                }
+                foreach (RNoteTag noteTag in noteTags)
+                {
+                    noteTag.Topic = txtTopic.Text;
+                    noteTag.TagTime = dtpDate.Value.Date;
+                    G.glb.lstNoteTag.Add(noteTag);
                 }
                 try
                 {
@@ -1159,12 +1260,32 @@ namespace LifeGame
 
         private void tsmAddTag_Click(object sender, EventArgs e)
         {
-
+            string NewTag = Interaction.InputBox("Add Tag to Note", "New Tag", "", 300, 300);
+            if (!noteTags.Exists(o => o.Tag == NewTag))
+            {
+                RNoteTag noteTag = new RNoteTag();
+                noteTag.TagTime = dtpDate.Value.Date;
+                noteTag.Topic = txtTopic.Text;
+                noteTag.Tag = NewTag;
+                noteTags.Add(noteTag);
+                lsvTag.Items.Add(NewTag);
+            }
+            else
+            {
+                MessageBox.Show("Tag exists.");
+            }
         }
 
         private void tsmRemoveTag_Click(object sender, EventArgs e)
         {
-
+            if (lsvTag.SelectedItems != null)
+            {
+                foreach (ListViewItem item in lsvTag.SelectedItems)
+                {
+                    noteTags.RemoveAll(o=>o.Tag == item.Text);
+                    lsvTag.Items.Remove(item);
+                }
+            }
         }
 
         private void tsmAddColor_Click(object sender, EventArgs e)
@@ -1252,7 +1373,7 @@ namespace LifeGame
                 {
                     node.Text = node.Text.Replace(item.Text, newLabel);
                 }
-            }           
+            }
             (node.BackColor, node.ForeColor, node.NodeFont) = getColor(node.Text);
             node.StateImageIndex = getLogo(node.Text);
 
@@ -1371,6 +1492,14 @@ namespace LifeGame
             else
             {
                 tsmConvertToLog.Enabled = false;
+            }
+            if (trvNote.SelectedNode.Text.Contains("$TRSA$>"))
+            {
+                tsmConvertToTransaction.Enabled = true;
+            }
+            else
+            {
+                tsmConvertToTransaction.Enabled = false;
             }
         }
 
@@ -1949,7 +2078,7 @@ namespace LifeGame
         {
             if (txtHighlight.Text.Length == 0)
             {
-                highlightText = ""; 
+                highlightText = "";
                 SaveNoteLog();
                 LoadNoteLog();
             }
@@ -2089,7 +2218,7 @@ namespace LifeGame
                             newSchedule.Color = Color;
                             newSchedule.Alarm = true;
                             newSchedule.AlarmTime = StartTime - new TimeSpan(0, Convert.ToInt16(5), 0);
-                            G.glb.lstSchedule.Add(newSchedule);                            
+                            G.glb.lstSchedule.Add(newSchedule);
                         }
                     }
                 }
@@ -2205,6 +2334,53 @@ namespace LifeGame
                 catch
                 {
                     MessageBox.Show("Incorrect input format. Correct format is as follows: $RECO$>YYYY.MM.DD@HH:MM:SS-HH:MM:SS(+1)@ScheduleName@Color[@TaskName@Where@With]");
+                }
+            }
+        }
+
+        private void tsmConvertToTransaction_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null && trvNote.SelectedNode.Text.Contains("$TRSA$>"))
+            {
+                try
+                {
+                    string transactionSeg = trvNote.SelectedNode.Text.Replace("$TRSA$>", "");
+                    transactionSeg = transactionSeg.Replace("=>", "@");
+                    string[] transactionNote = transactionSeg.Split('@');
+                    string accountFrom = transactionNote[2];
+                    string accountTo = transactionNote[3];
+
+                    bool CanSaveFlag = true;
+                    if (G.glb.lstTransaction.Exists(o => o.TagTime == dtpDate.Value.Date && o.Summary == transactionNote[0]))
+                    {
+                        CanSaveFlag = false;
+                    }
+
+                    if (CanSaveFlag)
+                    {
+                        CTransaction newTransaction = new CTransaction();
+                        newTransaction.TagTime = dtpDate.Value.Date;
+                        newTransaction.Summary = transactionNote[0];
+                        newTransaction.CreditAccount = transactionNote[2];
+                        newTransaction.CreditAmount = Convert.ToDouble(transactionNote[1]);
+                        newTransaction.CreditCurrency = G.glb.lstAccount.Find(o => o.AccountName == transactionNote[2]).Currency;
+                        newTransaction.DebitAccount = transactionNote[3];
+                        newTransaction.DebitAmount = Convert.ToDouble(transactionNote[1]);
+                        newTransaction.DebitCurrency = G.glb.lstAccount.Find(o => o.AccountName == transactionNote[3]).Currency;
+                        calculate C = new calculate();
+                        newTransaction.IconType = C.MoneyInOrOut(
+                            G.glb.lstAccount.Find(o => o.AccountName == transactionNote[3]).AccountType,
+                            G.glb.lstAccount.Find(o => o.AccountName == transactionNote[2]).AccountType);
+                        G.glb.lstTransaction.Add(newTransaction);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Transaction already exist.");
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Incorrect input format. Correct format is as follows: $TRSA$>Transaction Summary@Price@Credit Account=>Debit Account");
                 }
             }
         }
