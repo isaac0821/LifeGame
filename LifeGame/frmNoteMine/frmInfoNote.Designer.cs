@@ -464,14 +464,21 @@
             // 
             this.iglIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iglIcon.ImageStream")));
             this.iglIcon.TransparentColor = System.Drawing.Color.Transparent;
-            this.iglIcon.Images.SetKeyName(0, "Note_DDL.png");
-            this.iglIcon.Images.SetKeyName(1, "Note_Paper.png");
-            this.iglIcon.Images.SetKeyName(2, "Note_Proposal.png");
-            this.iglIcon.Images.SetKeyName(3, "Note_Package.png");
-            this.iglIcon.Images.SetKeyName(4, "Note_Book.png");
-            this.iglIcon.Images.SetKeyName(5, "Note_HoriFund.png");
-            this.iglIcon.Images.SetKeyName(6, "Note_VertFund.png");
-            this.iglIcon.Images.SetKeyName(7, "Note_Report.png");
+            this.iglIcon.Images.SetKeyName(0, "Link_Link_Avail.png");
+            this.iglIcon.Images.SetKeyName(1, "Link_Link_Unavail.png");
+            this.iglIcon.Images.SetKeyName(2, "Link_Note_Avail.png");
+            this.iglIcon.Images.SetKeyName(3, "Link_Note_Unavail.png");
+            this.iglIcon.Images.SetKeyName(4, "Link_Jump_Avail.png");
+            this.iglIcon.Images.SetKeyName(5, "Link_Jump_Unavail.png");
+            this.iglIcon.Images.SetKeyName(6, "Link_Litr_Avail.png");
+            this.iglIcon.Images.SetKeyName(7, "Link_Litr_Unavail.png");
+            this.iglIcon.Images.SetKeyName(8, "Link_Schl_Avail.png");
+            this.iglIcon.Images.SetKeyName(9, "Link_Schl_Unavail.png");
+            this.iglIcon.Images.SetKeyName(10, "Link_Recd_Avail.png");
+            this.iglIcon.Images.SetKeyName(11, "Link_Recd_Unavail.png");
+            this.iglIcon.Images.SetKeyName(12, "Link_Trsa_Avail.png");
+            this.iglIcon.Images.SetKeyName(13, "Link_Trsa_Unavail.png");
+            this.iglIcon.Images.SetKeyName(14, "Note_DDL.png");
             // 
             // tableLayoutPanel3
             // 

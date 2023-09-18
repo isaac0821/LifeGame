@@ -994,6 +994,7 @@ namespace LifeGame
                 {
                     lstTitle.Add(lst[i].Title.ToString());
                 }
+
                 frmInfoNote frmInfoNote = new frmInfoNote(clbProject.CheckedItems[0].ToString().Split('[')[0], lstTitle);
                 frmInfoNote.Show();
             }

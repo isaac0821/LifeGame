@@ -14,6 +14,7 @@ namespace LifeGame
     public class TempMemory
     {
         public List<copiedNodeStruct> copiedNodes = new List<copiedNodeStruct>();
+        public List<frmInfoNote> activeNoteWindows = new List<frmInfoNote>();
     }
 
     public struct copiedNodeStruct
