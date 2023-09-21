@@ -746,10 +746,10 @@ namespace LifeGame
                     string[] schStartStr = schTimeStr[0].Split(':');
                     string[] schEndStr = schTimeStr[1].Split(':');
                     DateTime StartTime = new DateTime(
-                        Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
+                        Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
                         Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), Convert.ToInt32(schStartStr[2]));
                     DateTime EndTime = new DateTime(
-                        Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
+                        Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
                         Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), Convert.ToInt32(schEndStr[2]));
                     if (addOneDayFlag)
                     {
@@ -795,13 +795,13 @@ namespace LifeGame
                     }
                 }
             }
-            else if (noteText.Contains("$RECD$>"))
+            else if (noteText.Contains("$RECO$>"))
             {
-                string sch = noteText.Replace("$RECD$>", "");
+                string sch = noteText.Replace("$RECO$>", "");
                 string[] sp = sch.Split('@');
                 if (sp.Length < 3)
                 {
-                    return 9;
+                    return 11;
                 }
                 else
                 {
@@ -815,10 +815,10 @@ namespace LifeGame
                     string[] schStartStr = schTimeStr[0].Split(':');
                     string[] schEndStr = schTimeStr[1].Split(':');
                     DateTime StartTime = new DateTime(
-                        Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
+                        Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
                         Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), Convert.ToInt32(schStartStr[2]));
                     DateTime EndTime = new DateTime(
-                        Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
+                        Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
                         Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), Convert.ToInt32(schEndStr[2]));
                     if (addOneDayFlag)
                     {
@@ -873,7 +873,7 @@ namespace LifeGame
                     string[] transactionNote = transactionSeg.Split('@');
                     string accountFrom = transactionNote[2];
                     string accountTo = transactionNote[3];
-                    if (G.glb.lstTransaction.Exists(o => o.TagTime == dtpDate.Value.Date && o.Summary == transactionNote[0]))
+                    if (G.glb.lstTransaction.Exists(o => o.TagTime == note.TagTime && o.Summary == transactionNote[0]))
                     {
                         return 12;
                     }

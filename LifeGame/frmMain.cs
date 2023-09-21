@@ -10,6 +10,7 @@ using System.IO;
 using System.Media;
 using System.Windows.Forms;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Diagnostics;
 
 namespace LifeGame
 {

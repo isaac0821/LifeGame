@@ -189,7 +189,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 25);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1189, 669);
             this.tableLayoutPanel1.TabIndex = 2;
@@ -230,13 +230,13 @@
             this.tblMain.Controls.Add(this.lblDDLSat, 6, 0);
             this.tblMain.Controls.Add(this.lblDDLSun, 7, 0);
             this.tblMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblMain.Location = new System.Drawing.Point(3, 33);
+            this.tblMain.Location = new System.Drawing.Point(3, 36);
             this.tblMain.Name = "tblMain";
             this.tblMain.RowCount = 3;
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblMain.Size = new System.Drawing.Size(1183, 633);
+            this.tblMain.Size = new System.Drawing.Size(1183, 630);
             this.tblMain.TabIndex = 0;
             // 
             // btnNextDate
@@ -244,7 +244,7 @@
             this.btnNextDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnNextDate.Location = new System.Drawing.Point(1139, 77);
             this.btnNextDate.Name = "btnNextDate";
-            this.btnNextDate.Size = new System.Drawing.Size(41, 553);
+            this.btnNextDate.Size = new System.Drawing.Size(41, 550);
             this.btnNextDate.TabIndex = 2;
             this.btnNextDate.Text = ">";
             this.btnNextDate.UseVisualStyleBackColor = true;
@@ -255,7 +255,7 @@
             this.btnPreDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPreDate.Location = new System.Drawing.Point(3, 77);
             this.btnPreDate.Name = "btnPreDate";
-            this.btnPreDate.Size = new System.Drawing.Size(24, 553);
+            this.btnPreDate.Size = new System.Drawing.Size(24, 550);
             this.btnPreDate.TabIndex = 1;
             this.btnPreDate.Text = "<";
             this.btnPreDate.UseVisualStyleBackColor = true;
@@ -352,7 +352,7 @@
             this.picMon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picMon.Location = new System.Drawing.Point(33, 77);
             this.picMon.Name = "picMon";
-            this.picMon.Size = new System.Drawing.Size(152, 553);
+            this.picMon.Size = new System.Drawing.Size(152, 550);
             this.picMon.TabIndex = 0;
             this.picMon.TabStop = false;
             this.picMon.Click += new System.EventHandler(this.picMon_Click);
@@ -580,7 +580,7 @@
             this.picTue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picTue.Location = new System.Drawing.Point(191, 77);
             this.picTue.Name = "picTue";
-            this.picTue.Size = new System.Drawing.Size(152, 553);
+            this.picTue.Size = new System.Drawing.Size(152, 550);
             this.picTue.TabIndex = 0;
             this.picTue.TabStop = false;
             this.picTue.Click += new System.EventHandler(this.picTue_Click);
@@ -592,7 +592,7 @@
             this.picWed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picWed.Location = new System.Drawing.Point(349, 77);
             this.picWed.Name = "picWed";
-            this.picWed.Size = new System.Drawing.Size(152, 553);
+            this.picWed.Size = new System.Drawing.Size(152, 550);
             this.picWed.TabIndex = 0;
             this.picWed.TabStop = false;
             this.picWed.Click += new System.EventHandler(this.picWed_Click);
@@ -604,7 +604,7 @@
             this.picThu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picThu.Location = new System.Drawing.Point(507, 77);
             this.picThu.Name = "picThu";
-            this.picThu.Size = new System.Drawing.Size(152, 553);
+            this.picThu.Size = new System.Drawing.Size(152, 550);
             this.picThu.TabIndex = 0;
             this.picThu.TabStop = false;
             this.picThu.Click += new System.EventHandler(this.picThu_Click);
@@ -616,7 +616,7 @@
             this.picFri.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picFri.Location = new System.Drawing.Point(665, 77);
             this.picFri.Name = "picFri";
-            this.picFri.Size = new System.Drawing.Size(152, 553);
+            this.picFri.Size = new System.Drawing.Size(152, 550);
             this.picFri.TabIndex = 0;
             this.picFri.TabStop = false;
             this.picFri.Click += new System.EventHandler(this.picFri_Click);
@@ -628,7 +628,7 @@
             this.picSat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picSat.Location = new System.Drawing.Point(823, 77);
             this.picSat.Name = "picSat";
-            this.picSat.Size = new System.Drawing.Size(152, 553);
+            this.picSat.Size = new System.Drawing.Size(152, 550);
             this.picSat.TabIndex = 0;
             this.picSat.TabStop = false;
             this.picSat.Click += new System.EventHandler(this.picSat_Click);
@@ -640,7 +640,7 @@
             this.picSun.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picSun.Location = new System.Drawing.Point(981, 77);
             this.picSun.Name = "picSun";
-            this.picSun.Size = new System.Drawing.Size(152, 553);
+            this.picSun.Size = new System.Drawing.Size(152, 550);
             this.picSun.TabIndex = 0;
             this.picSun.TabStop = false;
             this.picSun.Click += new System.EventHandler(this.picSun_Click);
@@ -753,7 +753,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1183, 24);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1183, 27);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // dtpDate
@@ -774,7 +774,7 @@
             this.chkShowSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkShowSchedule.Location = new System.Drawing.Point(3, 3);
             this.chkShowSchedule.Name = "chkShowSchedule";
-            this.chkShowSchedule.Size = new System.Drawing.Size(107, 18);
+            this.chkShowSchedule.Size = new System.Drawing.Size(107, 21);
             this.chkShowSchedule.TabIndex = 3;
             this.chkShowSchedule.Text = "Show Schedule";
             this.chkShowSchedule.UseVisualStyleBackColor = true;
@@ -786,7 +786,7 @@
             this.chkShowLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkShowLog.Location = new System.Drawing.Point(116, 3);
             this.chkShowLog.Name = "chkShowLog";
-            this.chkShowLog.Size = new System.Drawing.Size(81, 18);
+            this.chkShowLog.Size = new System.Drawing.Size(81, 21);
             this.chkShowLog.TabIndex = 4;
             this.chkShowLog.Text = "Show Log";
             this.chkShowLog.UseVisualStyleBackColor = true;
@@ -800,7 +800,7 @@
             this.chkMine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkMine.Location = new System.Drawing.Point(203, 3);
             this.chkMine.Name = "chkMine";
-            this.chkMine.Size = new System.Drawing.Size(82, 18);
+            this.chkMine.Size = new System.Drawing.Size(82, 21);
             this.chkMine.TabIndex = 5;
             this.chkMine.Text = "Show Mine";
             this.chkMine.UseVisualStyleBackColor = true;
