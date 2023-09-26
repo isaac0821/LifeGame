@@ -736,61 +736,68 @@ namespace LifeGame
                 }
                 else
                 {
-                    // Time
-                    bool addOneDayFlag = sp[0].Contains("(+1)");
-                    if (addOneDayFlag)
-                    {
-                        sp[0] = sp[0].Replace("(+1)", "");
-                    }
-                    string[] schTimeStr = sp[0].Split('-');
-                    string[] schStartStr = schTimeStr[0].Split(':');
-                    string[] schEndStr = schTimeStr[1].Split(':');
-                    DateTime StartTime = new DateTime(
-                        Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
-                        Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), Convert.ToInt32(schStartStr[2]));
-                    DateTime EndTime = new DateTime(
-                        Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
-                        Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), Convert.ToInt32(schEndStr[2]));
-                    if (addOneDayFlag)
-                    {
-                        EndTime += new TimeSpan(1, 0, 0, 0);
-                    }
-                    // Log Name
-                    string LogName = sp[1];
-                    // Color
-                    string Color = sp[2];
-                    // Location
-                    string Location = "";
-                    if (sp.Length >= 4)
-                    {
-                        Location = sp[3];
-                    }
-                    // With
-                    string WithWho = "";
-                    if (sp.Length >= 5)
-                    {
-                        WithWho = sp[4];
-                    }
-                    // Task
-                    string ContributionToTask = "";
-                    if (sp.Length >= 6 && G.glb.lstTask.Exists(o => o.TaskName == sp[5]))
-                    {
-                        ContributionToTask = sp[5];
-                    }
+                    try
+                    {   
+                        // Log Name
+                        string LogName = sp[0];
+                        // Time
+                        bool addOneDayFlag = sp[1].Contains("(+1)");
+                        if (addOneDayFlag)
+                        {
+                            sp[1] = sp[1].Replace("(+1)", "");
+                        }
+                        string[] schTimeStr = sp[1].Split('-');
+                        string[] schStartStr = schTimeStr[0].Split(':');
+                        string[] schEndStr = schTimeStr[1].Split(':');
+                        DateTime StartTime = new DateTime(
+                            Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
+                            Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), 0);
+                        DateTime EndTime = new DateTime(
+                            Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
+                            Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), 0);
+                        if (addOneDayFlag)
+                        {
+                            EndTime += new TimeSpan(1, 0, 0, 0);
+                        }
+                        // Color
+                        string Color = sp[2];
+                        // Location
+                        string Location = "";
+                        if (sp.Length >= 4)
+                        {
+                            Location = sp[3];
+                        }
+                        // With
+                        string WithWho = "";
+                        if (sp.Length >= 5)
+                        {
+                            WithWho = sp[4];
+                        }
+                        // Task
+                        string ContributionToTask = "";
+                        if (sp.Length >= 6 && G.glb.lstTask.Exists(o => o.TaskName == sp[5]))
+                        {
+                            ContributionToTask = sp[5];
+                        }
 
-                    if (G.glb.lstSchedule.Exists(o =>
-                        o.LogName == LogName
-                        && o.StartTime == StartTime
-                        && o.EndTime == EndTime
-                        && o.Location == Location
-                        && o.WithWho == WithWho
-                        && o.ContributionToTask == ContributionToTask
-                        && o.Color == Color))
-                    {
-                        return 8;
+                        if (G.glb.lstSchedule.Exists(o =>
+                            o.LogName == LogName
+                            && o.StartTime == StartTime
+                            && o.EndTime == EndTime
+                            && o.Location == Location
+                            && o.WithWho == WithWho
+                            && o.ContributionToTask == ContributionToTask
+                            && o.Color == Color))
+                        {
+                            return 8;
+                        }
+                        else
+                        {
+                            return 9;
+                        }
                     }
-                    else
-                    {
+                    catch 
+                    { 
                         return 9;
                     }
                 }
@@ -805,60 +812,67 @@ namespace LifeGame
                 }
                 else
                 {
-                    // Time
-                    bool addOneDayFlag = sp[0].Contains("(+1)");
-                    if (addOneDayFlag)
+                    try
                     {
-                        sp[0] = sp[0].Replace("(+1)", "");
-                    }
-                    string[] schTimeStr = sp[0].Split('-');
-                    string[] schStartStr = schTimeStr[0].Split(':');
-                    string[] schEndStr = schTimeStr[1].Split(':');
-                    DateTime StartTime = new DateTime(
-                        Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
-                        Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), Convert.ToInt32(schStartStr[2]));
-                    DateTime EndTime = new DateTime(
-                        Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
-                        Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), Convert.ToInt32(schEndStr[2]));
-                    if (addOneDayFlag)
-                    {
-                        EndTime += new TimeSpan(1, 0, 0, 0);
-                    }
-                    // Log Name
-                    string LogName = sp[1];
-                    // Color
-                    string Color = sp[2];
-                    // Location
-                    string Location = "";
-                    if (sp.Length >= 4)
-                    {
-                        Location = sp[3];
-                    }
-                    // With
-                    string WithWho = "";
-                    if (sp.Length >= 5)
-                    {
-                        WithWho = sp[4];
-                    }
-                    // Task
-                    string ContributionToTask = "";
-                    if (sp.Length >= 6 && G.glb.lstTask.Exists(o => o.TaskName == sp[5]))
-                    {
-                        ContributionToTask = sp[5];
-                    }
+                        // Log Name
+                        string LogName = sp[0];
+                        // Time
+                        bool addOneDayFlag = sp[1].Contains("(+1)");
+                        if (addOneDayFlag)
+                        {
+                            sp[1] = sp[1].Replace("(+1)", "");
+                        }
+                        string[] schTimeStr = sp[1].Split('-');
+                        string[] schStartStr = schTimeStr[0].Split(':');
+                        string[] schEndStr = schTimeStr[1].Split(':');
+                        DateTime StartTime = new DateTime(
+                            Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
+                            Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), 0);
+                        DateTime EndTime = new DateTime(
+                            Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
+                            Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), 0);
+                        if (addOneDayFlag)
+                        {
+                            EndTime += new TimeSpan(1, 0, 0, 0);
+                        }
+                        // Color
+                        string Color = sp[2];
+                        // Location
+                        string Location = "";
+                        if (sp.Length >= 4)
+                        {
+                            Location = sp[3];
+                        }
+                        // With
+                        string WithWho = "";
+                        if (sp.Length >= 5)
+                        {
+                            WithWho = sp[4];
+                        }
+                        // Task
+                        string ContributionToTask = "";
+                        if (sp.Length >= 6 && G.glb.lstTask.Exists(o => o.TaskName == sp[5]))
+                        {
+                            ContributionToTask = sp[5];
+                        }
 
-                    if (G.glb.lstLog.Exists(o =>
-                        o.LogName == LogName
-                        && o.StartTime == StartTime
-                        && o.EndTime == EndTime
-                        && o.Location == Location
-                        && o.WithWho == WithWho
-                        && o.ContributionToTask == ContributionToTask
-                        && o.Color == Color))
-                    {
-                        return 10;
+                        if (G.glb.lstLog.Exists(o =>
+                            o.LogName == LogName
+                            && o.StartTime == StartTime
+                            && o.EndTime == EndTime
+                            && o.Location == Location
+                            && o.WithWho == WithWho
+                            && o.ContributionToTask == ContributionToTask
+                            && o.Color == Color))
+                        {
+                            return 10;
+                        }
+                        else
+                        {
+                            return 11;
+                        }
                     }
-                    else
+                    catch
                     {
                         return 11;
                     }
@@ -2381,31 +2395,31 @@ namespace LifeGame
                     string[] sp = sch.Split('@');
                     if (sp.Length < 3)
                     {
-                        MessageBox.Show("Incorrect input format. Correct format is as follows: $SCHL$>HH:MM:SS-HH:MM:SS(+1)@ScheduleName@Color[@TaskName@Where@With]");
+                        MessageBox.Show("Incorrect input format. Correct format is as follows: $SCHL$>ScheduleName@HH:MM-HH:MM(+1)@Color[@TaskName@Where@With]");
                     }
                     else
                     {
+                        // Log Name
+                        string LogName = sp[0];
                         // Time
-                        bool addOneDayFlag = sp[0].Contains("(+1)");
+                        bool addOneDayFlag = sp[1].Contains("(+1)");
                         if (addOneDayFlag)
                         {
-                            sp[0] = sp[0].Replace("(+1)", "");
+                            sp[1] = sp[1].Replace("(+1)", "");
                         }
-                        string[] schTimeStr = sp[0].Split('-');
+                        string[] schTimeStr = sp[1].Split('-');
                         string[] schStartStr = schTimeStr[0].Split(':');
                         string[] schEndStr = schTimeStr[1].Split(':');
                         DateTime StartTime = new DateTime(
                             Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
-                            Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), Convert.ToInt32(schStartStr[2]));
+                            Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), 0);
                         DateTime EndTime = new DateTime(
                             Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
-                            Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), Convert.ToInt32(schEndStr[2]));
+                            Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), 0);
                         if (addOneDayFlag)
                         {
                             EndTime += new TimeSpan(1, 0, 0, 0);
-                        }
-                        // Log Name
-                        string LogName = sp[1];
+                        }                        
                         // Color
                         string Color = sp[2];
                         // Location
@@ -2491,31 +2505,31 @@ namespace LifeGame
                     string[] sp = sch.Split('@');
                     if (sp.Length < 3)
                     {
-                        MessageBox.Show("Incorrect input format. Correct format is as follows: $RECO$>HH:MM:SS-HH:MM:SS(+1)@ScheduleName@Color[@TaskName@Where@With]");
+                        MessageBox.Show("Incorrect input format. Correct format is as follows: $RECO$>ScheduleName@HH:MM-HH:MM(+1)@Color[@TaskName@Where@With]");
                     }
                     else
-                    {
+                    {    
+                        // Log Name
+                        string LogName = sp[0];
                         // Time
-                        bool addOneDayFlag = sp[0].Contains("(+1)");
+                        bool addOneDayFlag = sp[1].Contains("(+1)");
                         if (addOneDayFlag)
                         {
-                            sp[0] = sp[0].Replace("(+1)", "");
+                            sp[1] = sp[1].Replace("(+1)", "");
                         }
-                        string[] schTimeStr = sp[0].Split('-');
+                        string[] schTimeStr = sp[1].Split('-');
                         string[] schStartStr = schTimeStr[0].Split(':');
                         string[] schEndStr = schTimeStr[1].Split(':');
                         DateTime StartTime = new DateTime(
                             Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
-                            Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), Convert.ToInt32(schStartStr[2]));
+                            Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), 0);
                         DateTime EndTime = new DateTime(
                             Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
-                            Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), Convert.ToInt32(schEndStr[2]));
+                            Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), 0);
                         if (addOneDayFlag)
                         {
                             EndTime += new TimeSpan(1, 0, 0, 0);
                         }
-                        // Log Name
-                        string LogName = sp[1];
                         // Color
                         string Color = sp[2];
                         // Location
