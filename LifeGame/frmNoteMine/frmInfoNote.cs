@@ -1032,6 +1032,11 @@ namespace LifeGame
                 }
                 catch { }
             }
+            else if (note.Contains("modified: ") || note.Contains("Modified: ") || note.Contains("MODIFIED: "))
+            {
+                BackColor = Color.Pink;
+                TextFont = new Font(Font, FontStyle.Bold);
+            }
             return (BackColor, ForeColor, TextFont);
         }
 
@@ -1063,6 +1068,35 @@ namespace LifeGame
                     LoadChildNoteLog(childNode, note.Topic);
                     treeNode.Nodes.Add(childNode);
                 }
+            }
+        }
+
+        private void UpdateModifiedTime(TreeNode node)
+        {
+            DateTime now = DateTime.Now;
+            foreach (TreeNode sub in node.Nodes)
+            {
+                if (sub.Text.Contains("modified: "))
+                {
+                    sub.Text = "modified: " + now.ToString("F");
+                }
+                else if (sub.Text.Contains("Modified: "))
+                {
+                    sub.Text = "Modified: " + now.ToString("F");
+                }
+                else if (sub.Text.Contains("MODIFIED: "))
+                {
+                    sub.Text = "MODIFIED: " + now.ToString("F");
+                }
+            }
+        }
+
+        private void UpdateModifiedNodeTime(TreeNode node)
+        {
+            UpdateModifiedTime(node);
+            if (node.Parent != null)
+            {
+                UpdateModifiedNodeTime(node.Parent);
             }
         }
 
@@ -1205,6 +1239,7 @@ namespace LifeGame
                     newNode.StateImageIndex = getLogo(newLog);
 
                     trvNote.SelectedNode.Nodes.Add(newNode);
+                    UpdateModifiedNodeTime(trvNote.SelectedNode);
                 }
             }
             btnSave.Enabled = true;
@@ -1348,6 +1383,7 @@ namespace LifeGame
                             newNode.StateImageIndex = getLogo(newLog);
                             trvNote.SelectedNode.Nodes.Add(newNode);
                         }
+                        UpdateModifiedNodeTime(trvNote.SelectedNode);
                         btnSave.Enabled = true;
                     }
                 }
@@ -1359,6 +1395,7 @@ namespace LifeGame
             if (trvNote.SelectedNode != null && trvNote.SelectedNode.Parent != null)
             {
                 trvNote.LabelEdit = true;
+                UpdateModifiedNodeTime(trvNote.SelectedNode);
                 if (!trvNote.SelectedNode.IsEditing)
                 {
                     trvNote.SelectedNode.BeginEdit();
@@ -1370,18 +1407,10 @@ namespace LifeGame
         {
             if (trvNote.SelectedNode != null && trvNote.SelectedNode.Parent != null)
             {
-                if (trvNote.SelectedNode.Nodes.Count == 0)
+                if (MessageBox.Show("Confirm to remove.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {
                     trvNote.Nodes.Remove(trvNote.SelectedNode);
                     btnSave.Enabled = true;
-                }
-                else
-                {
-                    if (MessageBox.Show("Confirm to remove.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
-                    {
-                        trvNote.Nodes.Remove(trvNote.SelectedNode);
-                        btnSave.Enabled = true;
-                    }
                 }
             }
         }
@@ -2246,6 +2275,9 @@ namespace LifeGame
             else if (e.Control && e.KeyCode == Keys.G)
             {
                 tsmGoto_Click(trvNote, e);
+                tsmConvertToSchedule_Click(trvNote, e);
+                tsmConvertToLog_Click(trvNote, e);
+                tsmConvertToTransaction_Click(trvNote, e);
             }
             // 编辑节点
             else if (e.Control && e.KeyCode == Keys.E)
