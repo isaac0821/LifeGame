@@ -96,6 +96,8 @@
             this.chkShowSchedule = new System.Windows.Forms.CheckBox();
             this.chkShowLog = new System.Windows.Forms.CheckBox();
             this.chkMine = new System.Windows.Forms.CheckBox();
+            this.toolTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCountDown = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMain.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -115,7 +117,8 @@
             // 
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewVToolStripMenuItem});
+            this.viewVToolStripMenuItem,
+            this.toolTToolStripMenuItem});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
             this.mnsMain.Size = new System.Drawing.Size(1189, 25);
@@ -806,6 +809,21 @@
             this.chkMine.UseVisualStyleBackColor = true;
             this.chkMine.CheckedChanged += new System.EventHandler(this.chkMoney_CheckedChanged);
             // 
+            // toolTToolStripMenuItem
+            // 
+            this.toolTToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmCountDown});
+            this.toolTToolStripMenuItem.Name = "toolTToolStripMenuItem";
+            this.toolTToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
+            this.toolTToolStripMenuItem.Text = "Tool(&T)";
+            // 
+            // tsmCountDown
+            // 
+            this.tsmCountDown.Name = "tsmCountDown";
+            this.tsmCountDown.Size = new System.Drawing.Size(180, 22);
+            this.tsmCountDown.Text = "CountDown";
+            this.tsmCountDown.Click += new System.EventHandler(this.tsmCountDown_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -914,6 +932,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmConvertSchedule;
         private System.Windows.Forms.ToolStripMenuItem surveyVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addDailyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolTToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmCountDown;
     }
 }
 

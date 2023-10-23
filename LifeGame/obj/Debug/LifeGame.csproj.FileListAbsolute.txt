@@ -150,3 +150,4 @@ D:\Zoo\LifeGame\LifeGame\obj\Debug\LifeGame.pdb
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.AssemblyReference.cache
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.SuggestedBindingRedirects.cache
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmCatalog.frmNote.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmCountDown.resources

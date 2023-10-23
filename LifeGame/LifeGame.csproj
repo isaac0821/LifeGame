@@ -123,6 +123,12 @@
     <Compile Include="frmCatalog\frmNote.Designer.cs">
       <DependentUpon>frmNote.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCountDown.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCountDown.designer.cs">
+      <DependentUpon>frmCountDown.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNoteMine\frmInfoLiteratureSurvey.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -379,10 +385,10 @@
     <Compile Include="frmInfo\frmInfoLog.Designer.cs">
       <DependentUpon>frmInfoLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="frmCatalog\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
+    <Compile Include="frmCatalog\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="frmInfoMine\frmInfoMedicine.cs">
@@ -481,6 +487,9 @@
     <EmbeddedResource Include="frmCatalog\frmNote.resx">
       <DependentUpon>frmNote.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCountDown.resx">
+      <DependentUpon>frmCountDown.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurvey.resx">
       <DependentUpon>frmInfoLiteratureSurvey.cs</DependentUpon>
     </EmbeddedResource>
@@ -571,7 +580,7 @@
     <EmbeddedResource Include="frmInfo\frmInfoLog.resx">
       <DependentUpon>frmInfoLog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
+    <EmbeddedResource Include="frmCatalog\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatalog\frmTask.resx">

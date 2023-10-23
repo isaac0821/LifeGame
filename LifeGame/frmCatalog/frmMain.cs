@@ -1400,5 +1400,11 @@ namespace LifeGame
             frmInfoNote.DrawLog += new frmInfoNote.DrawLogHandler(DrawLog);
             frmInfoNote.Show();
         }
+
+        private void tsmCountDown_Click(object sender, EventArgs e)
+        {
+            frmCountDown frmCountDown = new frmCountDown();
+            frmCountDown.Show();
+        }
     }
 }

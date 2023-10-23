@@ -130,8 +130,9 @@ namespace LifeGame
 
             Tags = Tags.OrderBy(o => o.ItemName).ToList();
             // Tags = Tags.OrderByDescending(o => o.ItemCount).ToList();
-            Authors = Authors.OrderBy(o => o.ItemName).ToList();
-            // Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
+            // Authors = Authors.OrderBy(o => o.ItemName).ToList();
+            // Authors = Authors.OrderBy(o => o.ItemName).ToList();
+            Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
             Institutions = Institutions.OrderBy(o => o.ItemName).ToList();
             // Institutions = Institutions.OrderByDescending(o => o.ItemCount).ToList();
             Projects = Projects.OrderBy(o => o.ItemName).ToList();
@@ -1012,6 +1013,46 @@ namespace LifeGame
                 }
                 frmInfoNote frmInfoNote = new frmInfoNote(clbTag.CheckedItems[0].ToString().Split('[')[0], lstTitle);
                 frmInfoNote.Show();
+            }
+        }
+
+        private void AddTag2MultipleLiterature(string strTag)
+        {
+            if (dgvLiterature.SelectedRows.Count >= 1)
+            {
+                DialogResult result = MessageBox.Show("Do you confirm to add tag to all selected literature.", "Add Tag", MessageBoxButtons.YesNo);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        foreach (DataGridViewRow row in dgvLiterature.SelectedRows)
+                        {
+                            // MessageBox.Show(row.Cells[1].Value.ToString());
+                            if (!G.glb.lstLiteratureTag.Exists(o => o.Title == row.Cells[1].Value.ToString() && o.Tag == strTag))
+                            {
+                                RLiteratureTag newTag = new RLiteratureTag();
+                                newTag.Title = row.Cells[1].Value.ToString();
+                                newTag.Tag = strTag;
+                                G.glb.lstLiteratureTag.Add(newTag);
+                                G.glb.lstLiteratureTag.RemoveAll(o => o.Title == row.Cells[1].Value.ToString() && o.Tag == "(default)");
+                            }
+                        }
+                        LoadLiteratureList(); 
+                        LoadTab();
+                        break;
+                    case DialogResult.No:
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        private void addTag2Multi_Click(object sender, EventArgs e)
+        {
+            if (dgvLiterature.SelectedRows.Count >= 1) 
+            {
+                frmAddTag frmAddTag = new frmAddTag();
+                frmAddTag.SendTag += new frmAddTag.GetTag(AddTag2MultipleLiterature);
+                frmAddTag.Show();
             }
         }
     }
