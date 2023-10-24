@@ -235,7 +235,7 @@ namespace LifeGame
                 picMap.Controls.Add(picSleep);
                 lblSleep.Text = SleepTime + "\n" + "Sleep";
                 lblSleep.Dock = DockStyle.Fill;
-                lblSleep.Click += (e, a) => CallInfoLog(SleepTime, "Sleep", "", "", "", picSleep.BackColor, false);
+                lblSleep.Click += (e, a) => CallInfoLog(SleepTime, "Sleep", "", "", picSleep.BackColor, false);
                 picSleep.Controls.Add(lblSleep);
             }
 
@@ -258,7 +258,7 @@ namespace LifeGame
                     picMap.Controls.Add(picSleepYesterday);
                     lblSleepYesterday.Text = SleepTime + "\n" + "Sleep";
                     lblSleepYesterday.Dock = DockStyle.Fill;
-                    lblSleepYesterday.Click += (e, a) => CallInfoLog("", "Sleep", "", "", "", picSleepYesterday.BackColor, false);
+                    lblSleepYesterday.Click += (e, a) => CallInfoLog("", "Sleep", "", "", picSleepYesterday.BackColor, false);
                     picSleepYesterday.Controls.Add(lblSleepYesterday);
                 }
             }
@@ -277,7 +277,7 @@ namespace LifeGame
                 string LogName = yesterdayLogs[i].LogName;
                 string Location = yesterdayLogs[i].Location;
                 string WithWho = yesterdayLogs[i].WithWho;
-                string TaskName = yesterdayLogs[i].ContributionToTask;
+                // string TaskName = yesterdayLogs[i].ContributionToTask;
                 bool IsAlarm = yesterdayLogs[i].Alarm;
                 Color backColor = GetColor(yesterdayLogs[i].Color);
                 lstPicLog[i].Width = width;
@@ -289,7 +289,7 @@ namespace LifeGame
                 lstLblLog[i].Text = TimePeriod + "\n" + LogName + "\n" + Location + "\n" + WithWho;
                 lstLblLog[i].Dock = DockStyle.Fill;
                 lstLblLog[i].ForeColor = Color.FromArgb(255 - backColor.R, 255 - backColor.G, 255 - backColor.B);
-                lstLblLog[i].Click += (e, a) => CallInfoLog(TimePeriod, LogName, Location, WithWho, TaskName, backColor, IsAlarm);
+                lstLblLog[i].Click += (e, a) => CallInfoLog(TimePeriod, LogName, Location, WithWho, backColor, IsAlarm);
                 lstPicLog[i].Controls.Add(lstLblLog[i]);
             }
 
@@ -315,7 +315,7 @@ namespace LifeGame
                 string LogName = todayLogs[i].LogName;
                 string Location = todayLogs[i].Location;
                 string WithWho = todayLogs[i].WithWho;
-                string TaskName = todayLogs[i].ContributionToTask;
+                // string TaskName = todayLogs[i].ContributionToTask;
                 bool IsAlarm = todayLogs[i].Alarm;
                 Color backColor = GetColor(todayLogs[i].Color);
                 lstPicLog[i + yesterdayLogs.Count].Width = width;
@@ -327,7 +327,7 @@ namespace LifeGame
                 lstLblLog[i + yesterdayLogs.Count].Text = TimePeriod + "\n" + LogName + "\n" + Location + "\n" + WithWho;
                 lstLblLog[i + yesterdayLogs.Count].Dock = DockStyle.Fill;
                 lstLblLog[i + yesterdayLogs.Count].ForeColor = Color.FromArgb(255 - backColor.R, 255 - backColor.G, 255 - backColor.B);
-                lstLblLog[i + yesterdayLogs.Count].Click += (e, a) => CallInfoLog(TimePeriod, LogName, Location, WithWho, TaskName, backColor, IsAlarm);
+                lstLblLog[i + yesterdayLogs.Count].Click += (e, a) => CallInfoLog(TimePeriod, LogName, Location, WithWho, backColor, IsAlarm);
                 lstPicLog[i + yesterdayLogs.Count].Controls.Add(lstLblLog[i + yesterdayLogs.Count]);
             }
 
@@ -346,8 +346,6 @@ namespace LifeGame
             PictureBox picMap,
             DateTime date,
             List<CEvent> events,
-            List<CWorkOut> workOuts,
-            List<CMedicine> medicines,
             List<CTransaction> transactions,
             List<CTransaction> budgets,
             List<CNote> notes)
@@ -355,8 +353,6 @@ namespace LifeGame
             int left = picMap.Width - 27 > 0 ? picMap.Width - 27 : 0;
             List<PictureBox> lstPicEvent = new List<PictureBox>();
             List<CEvent> lstEvent = events.FindAll(o => o.TagTime.Date == date).ToList();
-            List<CWorkOut> lstWorkOut = workOuts.FindAll(o => o.TagTime.Date == date).ToList();
-            List<CMedicine> lstMedicine = medicines.FindAll(o => o.TagTime.Date == date).ToList();
             List<CTransaction> lstTransaction = transactions.FindAll(o => o.TagTime.Date == date).ToList();
             List<CTransaction> lstBudget = budgets.FindAll(o => o.TagTime.Date == date).ToList();
             List<CNote> lstNote = notes.FindAll(o => o.TagTime.Date == date).ToList();
@@ -385,32 +381,6 @@ namespace LifeGame
                 picMap.Controls.Add(lstPicEvent[i]);
             }
             acc = acc + lstEvent.Count;
-            for (int i = 0; i < lstWorkOut.Count; i++)
-            {
-                lstPicEvent.Add(new PictureBox());
-                CWorkOut workOut = lstWorkOut[i];
-                lstPicEvent[i + acc].Image = icon.iconFitness;
-                lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
-                lstPicEvent[i + acc].Left = left;
-                lstPicEvent[i + acc].Width = 24;
-                lstPicEvent[i + acc].Height = 24;
-                lstPicEvent[i + acc].Click += (e, a) => CallInfoWorkOut(workOut);
-                picMap.Controls.Add(lstPicEvent[i + acc]);
-            }
-            acc = acc + lstWorkOut.Count;
-            for (int i = 0; i < lstMedicine.Count; i++)
-            {
-                lstPicEvent.Add(new PictureBox());
-                CMedicine medicine = lstMedicine[i];
-                lstPicEvent[i + acc].Image = icon.iconHealth;
-                lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
-                lstPicEvent[i + acc].Left = left;
-                lstPicEvent[i + acc].Width = 24;
-                lstPicEvent[i + acc].Height = 24;
-                lstPicEvent[i + acc].Click += (e, a) => CallInfoMedicine(medicine);
-                picMap.Controls.Add(lstPicEvent[i + acc]);
-            }
-            acc = acc + lstMedicine.Count;
             for (int i = 0; i < lstTransaction.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
@@ -501,28 +471,17 @@ namespace LifeGame
             acc = acc + lstNote.Count;
         }
 
-        public void CallInfoLog(string Timeperiod, string LogName, string Location, string WithWho, string TaskName, Color color, bool IsAlarm)
+        public void CallInfoLog(string Timeperiod, string LogName, string Location, string WithWho, Color color, bool IsAlarm)
         {
-            frmInfoLog frmInfoLog = new frmInfoLog(Timeperiod, LogName, Location, WithWho, TaskName, color, IsAlarm);
+            frmInfoLog frmInfoLog = new frmInfoLog(Timeperiod, LogName, Location, WithWho, color, IsAlarm);
             frmInfoLog.ShowDialog();
         }
 
-        public void CallInfoDDL(string InfoDDL)
-        {
-            frmInfoDDL frmInfoDDL = new frmInfoDDL(InfoDDL);
-            frmInfoDDL.ShowDialog();
-        }
 
         public void CallInfoEvent(CEvent info)
         {
             frmInfoEvent frmInfoEvent = new frmInfoEvent(info);
             frmInfoEvent.Show();
-        }
-
-        public void CallInfoMedicine(CMedicine info)
-        {
-            frmInfoMedicine frmInfoMedicine = new frmInfoMedicine(info);
-            frmInfoMedicine.Show();
         }
 
         public void CallInfoNote(CNote info)
@@ -549,10 +508,5 @@ namespace LifeGame
             frmInfoBudget.Show();
         }
 
-        public void CallInfoWorkOut(CWorkOut info)
-        {
-            frmInfoWorkOut frmInfoWorkOut = new frmInfoWorkOut(info);
-            frmInfoWorkOut.Show();
-        }
     }
 }

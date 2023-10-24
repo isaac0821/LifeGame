@@ -135,7 +135,6 @@ namespace LifeGame
                             newSchedule.EndTime = EndTime;
                             newSchedule.Location = txtWhere.Text;
                             newSchedule.WithWho = txtWith.Text;
-                            newSchedule.ContributionToTask = cbxTask.Text;
                             newSchedule.Color = cbxColor.Text;
                             newSchedule.Alarm = chkAlarm.Checked;
                             newSchedule.AlarmTime = StartTime - new TimeSpan(0, Convert.ToInt16(txtMinsAhead.Text), 0);
@@ -150,15 +149,7 @@ namespace LifeGame
 
         private void frmAddSchedule_Load(object sender, EventArgs e)
         {
-            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.IsBottom && o.TaskState != ETaskState.Finished && o.TaskState != ETaskState.Aborted).ToList();
-            List<string> choices = new List<string>();
-            choices.Add("");
-            foreach (CTask task in taskChoices)
-            {
-                choices.Add(task.TaskName);
-            }
-            choices = choices.OrderBy(o => o).ToList();
-            cbxTask.DataSource = choices;
+
             cbxColor.SelectedIndex = 0;
         }
 
@@ -171,14 +162,6 @@ namespace LifeGame
             else
             {
                 txtMinsAhead.Enabled = false;
-            }
-        }
-
-        private void cbxTask_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (txtSchedule.Text == "")
-            {
-                txtSchedule.Text = cbxTask.Text;
             }
         }
     }

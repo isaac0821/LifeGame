@@ -226,8 +226,6 @@ namespace LifeGame
                 G.glb.lstEvent = new List<CEvent>();
                 G.glb.lstSleepSchedule = new List<CSleep>();
                 G.glb.lstSleepLog = new List<CSleep>();
-                G.glb.lstWorkOut = new List<CWorkOut>();
-                G.glb.lstMedicine = new List<CMedicine>();
 
                 // Note
                 G.glb.lstNote = new List<CNote>();
@@ -242,8 +240,8 @@ namespace LifeGame
                 G.glb.lstLiteratureOutSource = new List<RLiteratureOutSource>();
 
                 // Task and Log
-                G.glb.lstTask = new List<CTask>();
-                G.glb.lstSubTask = new List<RSubTask>();
+                // G.glb.lstTask = new List<CTask>();
+                // G.glb.lstSubTask = new List<RSubTask>();
                 G.glb.lstSchedule = new List<CLog>();
                 G.glb.lstLog = new List<CLog>();
 
@@ -396,11 +394,10 @@ namespace LifeGame
                     string LogName = nextAlarmingSchedule.LogName;
                     string Location = nextAlarmingSchedule.Location;
                     string WithWho = nextAlarmingSchedule.WithWho;
-                    string TaskName = nextAlarmingSchedule.ContributionToTask;
                     bool IsAlarm = nextAlarmingSchedule.Alarm;
                     plot p = new plot();
                     Color backColor = p.GetColor(nextAlarmingSchedule.Color);
-                    frmInfoLog frmInfoLog = new frmInfoLog(TimePeriod, LogName, Location, WithWho, TaskName, backColor, IsAlarm, false);
+                    frmInfoLog frmInfoLog = new frmInfoLog(TimePeriod, LogName, Location, WithWho, backColor, IsAlarm, false);
                     frmInfoLog.Show();
                 }
             }
@@ -425,12 +422,6 @@ namespace LifeGame
                     e.Cancel = true;
                     break;
             }
-        }
-
-        private void taskTToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmTask frmTask = new frmTask();
-            frmTask.Show();
         }
 
         private void moneyMToolStripMenuItem_Click(object sender, EventArgs e)
@@ -973,74 +964,6 @@ namespace LifeGame
             frmAddBudget.Show();
         }
 
-        private void tsmAddWorkOut_Click(object sender, EventArgs e)
-        {
-            DateTime sendToFrm = SelectedDate;
-            switch (SelectedPicName)
-            {
-                case "picMon":
-                    sendToFrm = SelectedMonday;
-                    break;
-                case "picTue":
-                    sendToFrm = SelectedTuesday;
-                    break;
-                case "picWed":
-                    sendToFrm = SelectedWednesday;
-                    break;
-                case "picThu":
-                    sendToFrm = SelectedThursday;
-                    break;
-                case "picFri":
-                    sendToFrm = SelectedFriday;
-                    break;
-                case "picSat":
-                    sendToFrm = SelectedSaturday;
-                    break;
-                case "picSun":
-                    sendToFrm = SelectedSunday;
-                    break;
-                default:
-                    break;
-            }
-            frmAddWorkOut frmAddWorkOut = new frmAddWorkOut(sendToFrm);
-            frmAddWorkOut.DrawLog += new frmAddWorkOut.DrawLogHandler(DrawLog);
-            frmAddWorkOut.Show();
-        }
-
-        private void tsmAddMedicine_Click(object sender, EventArgs e)
-        {
-            DateTime sendToFrm = SelectedDate;
-            switch (SelectedPicName)
-            {
-                case "picMon":
-                    sendToFrm = SelectedMonday;
-                    break;
-                case "picTue":
-                    sendToFrm = SelectedTuesday;
-                    break;
-                case "picWed":
-                    sendToFrm = SelectedWednesday;
-                    break;
-                case "picThu":
-                    sendToFrm = SelectedThursday;
-                    break;
-                case "picFri":
-                    sendToFrm = SelectedFriday;
-                    break;
-                case "picSat":
-                    sendToFrm = SelectedSaturday;
-                    break;
-                case "picSun":
-                    sendToFrm = SelectedSunday;
-                    break;
-                default:
-                    break;
-            }
-            frmAddMedicine frmAddMedicine = new frmAddMedicine(sendToFrm);
-            frmAddMedicine.DrawLog += new frmAddMedicine.DrawLogHandler(DrawLog);
-            frmAddMedicine.Show();
-        }
-
         private void tsmAddNote_Click(object sender, EventArgs e)
         {
             DateTime sendToFrm = SelectedDate;
@@ -1111,22 +1034,6 @@ namespace LifeGame
             dtpDate.Value = SelectedDate;
         }
 
-        private void LoadLblDaily(Label lbl, DateTime date)
-        {
-            lbl.Text = "";
-            string whole = "";
-            List<CTask> taskDeadline = G.glb.lstTask.FindAll(o => o.DeadLine.Date == date.Date).ToList();
-            foreach (CTask task in taskDeadline)
-            {
-                whole += "Deadline: " + task.TaskName + "\n";
-            }
-            if (taskDeadline.Count > 0)
-            {
-                whole = whole.Substring(0, whole.Length - 1);
-            }
-            lbl.Text = whole;
-        }
-
         public void DrawToday()
         {
             plot Draw = new plot();
@@ -1183,7 +1090,7 @@ namespace LifeGame
             {
                 if (chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
                 {
-                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
                     Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "leftWithSupp");
                     Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "rightWithSupp");
                 }
@@ -1194,7 +1101,7 @@ namespace LifeGame
                 }
                 else if (chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
                 {
-                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
                     Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "allWithSupp");
                 }
                 else if (chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
@@ -1203,7 +1110,7 @@ namespace LifeGame
                 }
                 else if (!chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
                 {
-                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
                     Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "allWithSupp");
                 }
                 else if (!chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
@@ -1212,7 +1119,7 @@ namespace LifeGame
                 }
                 else if (!chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
                 {
-                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
                 }
                 else if (!chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
                 {
@@ -1224,14 +1131,6 @@ namespace LifeGame
         public void DrawLog()
         {
             plot Draw = new plot();
-            LoadLblDaily(lblDDLMon, SelectedMonday);
-            LoadLblDaily(lblDDLTue, SelectedTuesday);
-            LoadLblDaily(lblDDLWed, SelectedWednesday);
-            LoadLblDaily(lblDDLThu, SelectedThursday);
-            LoadLblDaily(lblDDLFri, SelectedFriday);
-            LoadLblDaily(lblDDLSat, SelectedSaturday);
-            LoadLblDaily(lblDDLSun, SelectedSunday);
-
             picMon.Controls.Clear();
             picTue.Controls.Clear();
             picWed.Controls.Clear();
@@ -1303,49 +1202,13 @@ namespace LifeGame
         private void DrawEvent()
         {
             plot Draw = new plot();
-            Draw.DrawEventController(picMon, SelectedMonday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawEventController(picTue, SelectedTuesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawEventController(picWed, SelectedWednesday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawEventController(picThu, SelectedThursday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawEventController(picFri, SelectedFriday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawEventController(picSat, SelectedSaturday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawEventController(picSun, SelectedSunday, G.glb.lstEvent, G.glb.lstWorkOut, G.glb.lstMedicine, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-        }
-
-        private void lblDDLMon_Click(object sender, EventArgs e)
-        {
-            plot D = new plot();
-            D.CallInfoDDL(lblDDLMon.Text);
-        }
-        private void lblDDLTue_Click(object sender, EventArgs e)
-        {
-            plot D = new plot();
-            D.CallInfoDDL(lblDDLTue.Text);
-        }
-        private void lblDDLWed_Click(object sender, EventArgs e)
-        {
-            plot D = new plot();
-            D.CallInfoDDL(lblDDLWed.Text);
-        }
-        private void lblDDLThu_Click(object sender, EventArgs e)
-        {
-            plot D = new plot();
-            D.CallInfoDDL(lblDDLThu.Text);
-        }
-        private void lblDDLFri_Click(object sender, EventArgs e)
-        {
-            plot D = new plot();
-            D.CallInfoDDL(lblDDLFri.Text);
-        }
-        private void lblDDLSat_Click(object sender, EventArgs e)
-        {
-            plot D = new plot();
-            D.CallInfoDDL(lblDDLSat.Text);
-        }
-        private void lblDDLSun_Click(object sender, EventArgs e)
-        {
-            plot D = new plot();
-            D.CallInfoDDL(lblDDLSun.Text);
+            Draw.DrawEventController(picMon, SelectedMonday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawEventController(picTue, SelectedTuesday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawEventController(picWed, SelectedWednesday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawEventController(picThu, SelectedThursday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawEventController(picFri, SelectedFriday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawEventController(picSat, SelectedSaturday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawEventController(picSun, SelectedSunday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
         }
 
         private void chkShowSchedule_CheckedChanged(object sender, EventArgs e)
@@ -1405,6 +1268,15 @@ namespace LifeGame
         {
             frmCountDown frmCountDown = new frmCountDown();
             frmCountDown.Show();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (txtSearchNote.Text.Length > 0)
+            {
+                frmSearchNote frmSearchNote = new frmSearchNote(txtSearchNote.Text);
+                frmSearchNote.Show();
+            }
         }
     }
 }

@@ -19,15 +19,15 @@ namespace LifeGame
         public List<string> lstBadJournal = new List<string>();
 
         // Tasks, Logs and Events
-        public List<CTask> lstTask = new List<CTask>();
-        public List<RSubTask> lstSubTask = new List<RSubTask>();
+        // public List<CTask> lstTask = new List<CTask>();
+        // public List<RSubTask> lstSubTask = new List<RSubTask>();
         public List<CLog> lstSchedule = new List<CLog>();
         public List<CLog> lstLog = new List<CLog>();
         public List<CEvent> lstEvent = new List<CEvent>();
         public List<CSleep> lstSleepSchedule = new List<CSleep>();
         public List<CSleep> lstSleepLog = new List<CSleep>();
-        public List<CWorkOut> lstWorkOut = new List<CWorkOut>();
-        public List<CMedicine> lstMedicine = new List<CMedicine>();
+        // public List<CWorkOut> lstWorkOut = new List<CWorkOut>();
+        // public List<CMedicine> lstMedicine = new List<CMedicine>();
 
         // Finiance
         public List<CTransaction> lstTransaction = new List<CTransaction>();
@@ -39,9 +39,8 @@ namespace LifeGame
         // Note
         public List<CNote> lstNote = new List<CNote>();
         public List<RNoteColor> lstNoteColor = new List<RNoteColor>();
-        public List<RNoteOutsource> lstNoteOutsource = new List<RNoteOutsource>();
         public List<RNoteLog> lstNoteLog = new List<RNoteLog>();
-        public List<RNoteTag> lstNoteTag = new List<RNoteTag>();
+        // public List<RNoteTag> lstNoteTag = new List<RNoteTag>();
 
         // Literature
         public List<CLiterature> lstLiterature = new List<CLiterature>();

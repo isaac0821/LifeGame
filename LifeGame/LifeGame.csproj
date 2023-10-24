@@ -63,12 +63,6 @@
     <Compile Include="frmAdd\frmAddLiterature.Designer.cs">
       <DependentUpon>frmAddLiterature.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAdd\frmAddNote.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddNote.Designer.cs">
-      <DependentUpon>frmAddNote.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmAdd\frmAddNoteColor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,17 +111,17 @@
     <Compile Include="frmAdd\frmReplaceNote.Designer.cs">
       <DependentUpon>frmReplaceNote.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCatalog\frmNote.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCatalog\frmNote.Designer.cs">
-      <DependentUpon>frmNote.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmCountDown.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCountDown.designer.cs">
       <DependentUpon>frmCountDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInfo\frmSearchNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfo\frmSearchNote.Designer.cs">
+      <DependentUpon>frmSearchNote.cs</DependentUpon>
     </Compile>
     <Compile Include="frmNoteMine\frmInfoLiteratureSurvey.cs">
       <SubType>Form</SubType>
@@ -199,23 +193,11 @@
     <Compile Include="frmAdd\frmAddEvent.Designer.cs">
       <DependentUpon>frmAddEvent.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAdd\frmAddMedicine.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddMedicine.Designer.cs">
-      <DependentUpon>frmAddMedicine.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmAdd\frmAddBudget.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAdd\frmAddBudget.Designer.cs">
       <DependentUpon>frmAddBudget.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddWorkOut.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddWorkOut.Designer.cs">
-      <DependentUpon>frmAddWorkOut.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatalog\frmSurvey.cs">
       <SubType>Form</SubType>
@@ -265,12 +247,6 @@
     <Compile Include="frmAdd\frmAddSleepLog.Designer.cs">
       <DependentUpon>frmAddSleepLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAdd\frmAddTask.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddTask.Designer.cs">
-      <DependentUpon>frmAddTask.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmAdd\frmAddTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,12 +282,6 @@
     </Compile>
     <Compile Include="frmInfoMine\frmInfoEvent.Designer.cs">
       <DependentUpon>frmInfoEvent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmInfoMine\frmInfoWorkOut.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfoMine\frmInfoWorkOut.Designer.cs">
-      <DependentUpon>frmInfoWorkOut.cs</DependentUpon>
     </Compile>
     <Compile Include="frmInfo\frmDelInfoMine.cs">
       <SubType>Form</SubType>
@@ -391,18 +361,6 @@
     <Compile Include="frmCatalog\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInfoMine\frmInfoMedicine.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfoMine\frmInfoMedicine.Designer.cs">
-      <DependentUpon>frmInfoMedicine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmCatalog\frmTask.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCatalog\frmTask.Designer.cs">
-      <DependentUpon>frmTask.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmInfoMine\frmInfoTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -420,9 +378,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAdd\frmAddLiterature.resx">
       <DependentUpon>frmAddLiterature.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddNote.resx">
-      <DependentUpon>frmAddNote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddNoteColor.resx">
       <DependentUpon>frmAddNoteColor.cs</DependentUpon>
@@ -442,14 +397,8 @@
     <EmbeddedResource Include="frmAdd\frmAddAuthor.resx">
       <DependentUpon>frmAddAuthor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddMedicine.resx">
-      <DependentUpon>frmAddMedicine.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddBudget.resx">
       <DependentUpon>frmAddBudget.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddWorkOut.resx">
-      <DependentUpon>frmAddWorkOut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmReplaceNote.resx">
       <DependentUpon>frmReplaceNote.cs</DependentUpon>
@@ -472,9 +421,6 @@
     <EmbeddedResource Include="frmAdd\frmAddSleepLog.resx">
       <DependentUpon>frmAddSleepLog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddTask.resx">
-      <DependentUpon>frmAddTask.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddTransaction.resx">
       <DependentUpon>frmAddTransaction.cs</DependentUpon>
     </EmbeddedResource>
@@ -484,11 +430,11 @@
     <EmbeddedResource Include="frmAdd\frmNoteChangeLabel.resx">
       <DependentUpon>frmNoteChangeLabel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCatalog\frmNote.resx">
-      <DependentUpon>frmNote.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmCountDown.resx">
       <DependentUpon>frmCountDown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfo\frmSearchNote.resx">
+      <DependentUpon>frmSearchNote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurvey.resx">
       <DependentUpon>frmInfoLiteratureSurvey.cs</DependentUpon>
@@ -538,14 +484,8 @@
     <EmbeddedResource Include="frmInfo\frmDelNoteMine.resx">
       <DependentUpon>frmDelNoteMine.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmInfoMine\frmInfoMedicine.resx">
-      <DependentUpon>frmInfoMedicine.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmInfoMine\frmInfoTransaction.resx">
       <DependentUpon>frmInfoTransaction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfoMine\frmInfoWorkOut.resx">
-      <DependentUpon>frmInfoWorkOut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfo\frmInfoDDL.resx">
       <DependentUpon>frmInfoDDL.cs</DependentUpon>
@@ -582,9 +522,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatalog\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmCatalog\frmTask.resx">
-      <DependentUpon>frmTask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettings\frmUnreliableJournal.resx">
       <DependentUpon>frmUnreliableJournal.cs</DependentUpon>

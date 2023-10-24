@@ -32,10 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.viewVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.taskTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moneyMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.literatureLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.surveyVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCountDown = new System.Windows.Forms.ToolStripMenuItem();
             this.stsMain = new System.Windows.Forms.StatusStrip();
             this.tslVersionNumber = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -84,20 +85,13 @@
             this.picFri = new System.Windows.Forms.PictureBox();
             this.picSat = new System.Windows.Forms.PictureBox();
             this.picSun = new System.Windows.Forms.PictureBox();
-            this.lblDDLMon = new System.Windows.Forms.Label();
-            this.lblDDLTue = new System.Windows.Forms.Label();
-            this.lblDDLWed = new System.Windows.Forms.Label();
-            this.lblDDLThu = new System.Windows.Forms.Label();
-            this.lblDDLFri = new System.Windows.Forms.Label();
-            this.lblDDLSat = new System.Windows.Forms.Label();
-            this.lblDDLSun = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.chkShowSchedule = new System.Windows.Forms.CheckBox();
             this.chkShowLog = new System.Windows.Forms.CheckBox();
             this.chkMine = new System.Windows.Forms.CheckBox();
-            this.toolTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCountDown = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtSearchNote = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.mnsMain.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -128,20 +122,12 @@
             // viewVToolStripMenuItem
             // 
             this.viewVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.taskTToolStripMenuItem,
             this.moneyMToolStripMenuItem,
             this.literatureLToolStripMenuItem,
             this.surveyVToolStripMenuItem});
             this.viewVToolStripMenuItem.Name = "viewVToolStripMenuItem";
             this.viewVToolStripMenuItem.Size = new System.Drawing.Size(63, 21);
             this.viewVToolStripMenuItem.Text = "View(&V)";
-            // 
-            // taskTToolStripMenuItem
-            // 
-            this.taskTToolStripMenuItem.Name = "taskTToolStripMenuItem";
-            this.taskTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.taskTToolStripMenuItem.Text = "Task(&T)";
-            this.taskTToolStripMenuItem.Click += new System.EventHandler(this.taskTToolStripMenuItem_Click);
             // 
             // moneyMToolStripMenuItem
             // 
@@ -163,6 +149,21 @@
             this.surveyVToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.surveyVToolStripMenuItem.Text = "Survey(&V)";
             this.surveyVToolStripMenuItem.Click += new System.EventHandler(this.surveyVToolStripMenuItem_Click);
+            // 
+            // toolTToolStripMenuItem
+            // 
+            this.toolTToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmCountDown});
+            this.toolTToolStripMenuItem.Name = "toolTToolStripMenuItem";
+            this.toolTToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
+            this.toolTToolStripMenuItem.Text = "Tool(&T)";
+            // 
+            // tsmCountDown
+            // 
+            this.tsmCountDown.Name = "tsmCountDown";
+            this.tsmCountDown.Size = new System.Drawing.Size(143, 22);
+            this.tsmCountDown.Text = "CountDown";
+            this.tsmCountDown.Click += new System.EventHandler(this.tsmCountDown_Click);
             // 
             // stsMain
             // 
@@ -209,34 +210,26 @@
             this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.tblMain.Controls.Add(this.btnNextDate, 8, 2);
-            this.tblMain.Controls.Add(this.btnPreDate, 0, 2);
-            this.tblMain.Controls.Add(this.lblMonday, 1, 1);
-            this.tblMain.Controls.Add(this.lblTuesday, 2, 1);
-            this.tblMain.Controls.Add(this.lblWednesday, 3, 1);
-            this.tblMain.Controls.Add(this.lblThursday, 4, 1);
-            this.tblMain.Controls.Add(this.lblFriday, 5, 1);
-            this.tblMain.Controls.Add(this.lblSaturday, 6, 1);
-            this.tblMain.Controls.Add(this.lblSunday, 7, 1);
-            this.tblMain.Controls.Add(this.picMon, 1, 2);
-            this.tblMain.Controls.Add(this.picTue, 2, 2);
-            this.tblMain.Controls.Add(this.picWed, 3, 2);
-            this.tblMain.Controls.Add(this.picThu, 4, 2);
-            this.tblMain.Controls.Add(this.picFri, 5, 2);
-            this.tblMain.Controls.Add(this.picSat, 6, 2);
-            this.tblMain.Controls.Add(this.picSun, 7, 2);
-            this.tblMain.Controls.Add(this.lblDDLMon, 1, 0);
-            this.tblMain.Controls.Add(this.lblDDLTue, 2, 0);
-            this.tblMain.Controls.Add(this.lblDDLWed, 3, 0);
-            this.tblMain.Controls.Add(this.lblDDLThu, 4, 0);
-            this.tblMain.Controls.Add(this.lblDDLFri, 5, 0);
-            this.tblMain.Controls.Add(this.lblDDLSat, 6, 0);
-            this.tblMain.Controls.Add(this.lblDDLSun, 7, 0);
+            this.tblMain.Controls.Add(this.btnNextDate, 8, 1);
+            this.tblMain.Controls.Add(this.btnPreDate, 0, 1);
+            this.tblMain.Controls.Add(this.lblMonday, 1, 0);
+            this.tblMain.Controls.Add(this.lblTuesday, 2, 0);
+            this.tblMain.Controls.Add(this.lblWednesday, 3, 0);
+            this.tblMain.Controls.Add(this.lblThursday, 4, 0);
+            this.tblMain.Controls.Add(this.lblFriday, 5, 0);
+            this.tblMain.Controls.Add(this.lblSaturday, 6, 0);
+            this.tblMain.Controls.Add(this.lblSunday, 7, 0);
+            this.tblMain.Controls.Add(this.picMon, 1, 1);
+            this.tblMain.Controls.Add(this.picTue, 2, 1);
+            this.tblMain.Controls.Add(this.picWed, 3, 1);
+            this.tblMain.Controls.Add(this.picThu, 4, 1);
+            this.tblMain.Controls.Add(this.picFri, 5, 1);
+            this.tblMain.Controls.Add(this.picSat, 6, 1);
+            this.tblMain.Controls.Add(this.picSun, 7, 1);
             this.tblMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblMain.Location = new System.Drawing.Point(3, 36);
             this.tblMain.Name = "tblMain";
-            this.tblMain.RowCount = 3;
-            this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tblMain.RowCount = 2;
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblMain.Size = new System.Drawing.Size(1183, 630);
@@ -245,9 +238,9 @@
             // btnNextDate
             // 
             this.btnNextDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNextDate.Location = new System.Drawing.Point(1139, 77);
+            this.btnNextDate.Location = new System.Drawing.Point(1139, 22);
             this.btnNextDate.Name = "btnNextDate";
-            this.btnNextDate.Size = new System.Drawing.Size(41, 550);
+            this.btnNextDate.Size = new System.Drawing.Size(41, 605);
             this.btnNextDate.TabIndex = 2;
             this.btnNextDate.Text = ">";
             this.btnNextDate.UseVisualStyleBackColor = true;
@@ -256,9 +249,9 @@
             // btnPreDate
             // 
             this.btnPreDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPreDate.Location = new System.Drawing.Point(3, 77);
+            this.btnPreDate.Location = new System.Drawing.Point(3, 22);
             this.btnPreDate.Name = "btnPreDate";
-            this.btnPreDate.Size = new System.Drawing.Size(24, 550);
+            this.btnPreDate.Size = new System.Drawing.Size(24, 605);
             this.btnPreDate.TabIndex = 1;
             this.btnPreDate.Text = "<";
             this.btnPreDate.UseVisualStyleBackColor = true;
@@ -269,7 +262,7 @@
             this.lblMonday.AutoSize = true;
             this.lblMonday.BackColor = System.Drawing.Color.Silver;
             this.lblMonday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMonday.Location = new System.Drawing.Point(33, 55);
+            this.lblMonday.Location = new System.Drawing.Point(33, 0);
             this.lblMonday.Name = "lblMonday";
             this.lblMonday.Size = new System.Drawing.Size(152, 19);
             this.lblMonday.TabIndex = 14;
@@ -281,7 +274,7 @@
             this.lblTuesday.AutoSize = true;
             this.lblTuesday.BackColor = System.Drawing.Color.Silver;
             this.lblTuesday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTuesday.Location = new System.Drawing.Point(191, 55);
+            this.lblTuesday.Location = new System.Drawing.Point(191, 0);
             this.lblTuesday.Name = "lblTuesday";
             this.lblTuesday.Size = new System.Drawing.Size(152, 19);
             this.lblTuesday.TabIndex = 15;
@@ -293,7 +286,7 @@
             this.lblWednesday.AutoSize = true;
             this.lblWednesday.BackColor = System.Drawing.Color.Silver;
             this.lblWednesday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWednesday.Location = new System.Drawing.Point(349, 55);
+            this.lblWednesday.Location = new System.Drawing.Point(349, 0);
             this.lblWednesday.Name = "lblWednesday";
             this.lblWednesday.Size = new System.Drawing.Size(152, 19);
             this.lblWednesday.TabIndex = 16;
@@ -305,7 +298,7 @@
             this.lblThursday.AutoSize = true;
             this.lblThursday.BackColor = System.Drawing.Color.Silver;
             this.lblThursday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblThursday.Location = new System.Drawing.Point(507, 55);
+            this.lblThursday.Location = new System.Drawing.Point(507, 0);
             this.lblThursday.Name = "lblThursday";
             this.lblThursday.Size = new System.Drawing.Size(152, 19);
             this.lblThursday.TabIndex = 17;
@@ -317,7 +310,7 @@
             this.lblFriday.AutoSize = true;
             this.lblFriday.BackColor = System.Drawing.Color.Silver;
             this.lblFriday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFriday.Location = new System.Drawing.Point(665, 55);
+            this.lblFriday.Location = new System.Drawing.Point(665, 0);
             this.lblFriday.Name = "lblFriday";
             this.lblFriday.Size = new System.Drawing.Size(152, 19);
             this.lblFriday.TabIndex = 18;
@@ -329,7 +322,7 @@
             this.lblSaturday.AutoSize = true;
             this.lblSaturday.BackColor = System.Drawing.Color.Silver;
             this.lblSaturday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSaturday.Location = new System.Drawing.Point(823, 55);
+            this.lblSaturday.Location = new System.Drawing.Point(823, 0);
             this.lblSaturday.Name = "lblSaturday";
             this.lblSaturday.Size = new System.Drawing.Size(152, 19);
             this.lblSaturday.TabIndex = 19;
@@ -341,7 +334,7 @@
             this.lblSunday.AutoSize = true;
             this.lblSunday.BackColor = System.Drawing.Color.Silver;
             this.lblSunday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSunday.Location = new System.Drawing.Point(981, 55);
+            this.lblSunday.Location = new System.Drawing.Point(981, 0);
             this.lblSunday.Name = "lblSunday";
             this.lblSunday.Size = new System.Drawing.Size(152, 19);
             this.lblSunday.TabIndex = 20;
@@ -353,9 +346,9 @@
             this.picMon.BackColor = System.Drawing.Color.White;
             this.picMon.ContextMenuStrip = this.cmsMain;
             this.picMon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picMon.Location = new System.Drawing.Point(33, 77);
+            this.picMon.Location = new System.Drawing.Point(33, 22);
             this.picMon.Name = "picMon";
-            this.picMon.Size = new System.Drawing.Size(152, 550);
+            this.picMon.Size = new System.Drawing.Size(152, 605);
             this.picMon.TabIndex = 0;
             this.picMon.TabStop = false;
             this.picMon.Click += new System.EventHandler(this.picMon_Click);
@@ -490,14 +483,12 @@
             this.tsmAddWorkOut.Name = "tsmAddWorkOut";
             this.tsmAddWorkOut.Size = new System.Drawing.Size(171, 22);
             this.tsmAddWorkOut.Text = "Add Work Out";
-            this.tsmAddWorkOut.Click += new System.EventHandler(this.tsmAddWorkOut_Click);
             // 
             // tsmAddMedicine
             // 
             this.tsmAddMedicine.Name = "tsmAddMedicine";
             this.tsmAddMedicine.Size = new System.Drawing.Size(171, 22);
             this.tsmAddMedicine.Text = "Add Medicine";
-            this.tsmAddMedicine.Click += new System.EventHandler(this.tsmAddMedicine_Click);
             // 
             // tsmAddNoteMine
             // 
@@ -581,9 +572,9 @@
             this.picTue.BackColor = System.Drawing.Color.White;
             this.picTue.ContextMenuStrip = this.cmsMain;
             this.picTue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picTue.Location = new System.Drawing.Point(191, 77);
+            this.picTue.Location = new System.Drawing.Point(191, 22);
             this.picTue.Name = "picTue";
-            this.picTue.Size = new System.Drawing.Size(152, 550);
+            this.picTue.Size = new System.Drawing.Size(152, 605);
             this.picTue.TabIndex = 0;
             this.picTue.TabStop = false;
             this.picTue.Click += new System.EventHandler(this.picTue_Click);
@@ -593,9 +584,9 @@
             this.picWed.BackColor = System.Drawing.Color.White;
             this.picWed.ContextMenuStrip = this.cmsMain;
             this.picWed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picWed.Location = new System.Drawing.Point(349, 77);
+            this.picWed.Location = new System.Drawing.Point(349, 22);
             this.picWed.Name = "picWed";
-            this.picWed.Size = new System.Drawing.Size(152, 550);
+            this.picWed.Size = new System.Drawing.Size(152, 605);
             this.picWed.TabIndex = 0;
             this.picWed.TabStop = false;
             this.picWed.Click += new System.EventHandler(this.picWed_Click);
@@ -605,9 +596,9 @@
             this.picThu.BackColor = System.Drawing.Color.White;
             this.picThu.ContextMenuStrip = this.cmsMain;
             this.picThu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picThu.Location = new System.Drawing.Point(507, 77);
+            this.picThu.Location = new System.Drawing.Point(507, 22);
             this.picThu.Name = "picThu";
-            this.picThu.Size = new System.Drawing.Size(152, 550);
+            this.picThu.Size = new System.Drawing.Size(152, 605);
             this.picThu.TabIndex = 0;
             this.picThu.TabStop = false;
             this.picThu.Click += new System.EventHandler(this.picThu_Click);
@@ -617,9 +608,9 @@
             this.picFri.BackColor = System.Drawing.Color.White;
             this.picFri.ContextMenuStrip = this.cmsMain;
             this.picFri.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picFri.Location = new System.Drawing.Point(665, 77);
+            this.picFri.Location = new System.Drawing.Point(665, 22);
             this.picFri.Name = "picFri";
-            this.picFri.Size = new System.Drawing.Size(152, 550);
+            this.picFri.Size = new System.Drawing.Size(152, 605);
             this.picFri.TabIndex = 0;
             this.picFri.TabStop = false;
             this.picFri.Click += new System.EventHandler(this.picFri_Click);
@@ -629,9 +620,9 @@
             this.picSat.BackColor = System.Drawing.Color.White;
             this.picSat.ContextMenuStrip = this.cmsMain;
             this.picSat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picSat.Location = new System.Drawing.Point(823, 77);
+            this.picSat.Location = new System.Drawing.Point(823, 22);
             this.picSat.Name = "picSat";
-            this.picSat.Size = new System.Drawing.Size(152, 550);
+            this.picSat.Size = new System.Drawing.Size(152, 605);
             this.picSat.TabIndex = 0;
             this.picSat.TabStop = false;
             this.picSat.Click += new System.EventHandler(this.picSat_Click);
@@ -641,116 +632,29 @@
             this.picSun.BackColor = System.Drawing.Color.White;
             this.picSun.ContextMenuStrip = this.cmsMain;
             this.picSun.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picSun.Location = new System.Drawing.Point(981, 77);
+            this.picSun.Location = new System.Drawing.Point(981, 22);
             this.picSun.Name = "picSun";
-            this.picSun.Size = new System.Drawing.Size(152, 550);
+            this.picSun.Size = new System.Drawing.Size(152, 605);
             this.picSun.TabIndex = 0;
             this.picSun.TabStop = false;
             this.picSun.Click += new System.EventHandler(this.picSun_Click);
             // 
-            // lblDDLMon
-            // 
-            this.lblDDLMon.AutoSize = true;
-            this.lblDDLMon.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblDDLMon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLMon.Location = new System.Drawing.Point(33, 3);
-            this.lblDDLMon.Margin = new System.Windows.Forms.Padding(3);
-            this.lblDDLMon.Name = "lblDDLMon";
-            this.lblDDLMon.Size = new System.Drawing.Size(152, 49);
-            this.lblDDLMon.TabIndex = 21;
-            this.lblDDLMon.Text = "ddl";
-            this.lblDDLMon.Click += new System.EventHandler(this.lblDDLMon_Click);
-            // 
-            // lblDDLTue
-            // 
-            this.lblDDLTue.AutoSize = true;
-            this.lblDDLTue.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblDDLTue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLTue.Location = new System.Drawing.Point(191, 3);
-            this.lblDDLTue.Margin = new System.Windows.Forms.Padding(3);
-            this.lblDDLTue.Name = "lblDDLTue";
-            this.lblDDLTue.Size = new System.Drawing.Size(152, 49);
-            this.lblDDLTue.TabIndex = 22;
-            this.lblDDLTue.Text = "ddl";
-            this.lblDDLTue.Click += new System.EventHandler(this.lblDDLTue_Click);
-            // 
-            // lblDDLWed
-            // 
-            this.lblDDLWed.AutoSize = true;
-            this.lblDDLWed.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblDDLWed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLWed.Location = new System.Drawing.Point(349, 3);
-            this.lblDDLWed.Margin = new System.Windows.Forms.Padding(3);
-            this.lblDDLWed.Name = "lblDDLWed";
-            this.lblDDLWed.Size = new System.Drawing.Size(152, 49);
-            this.lblDDLWed.TabIndex = 23;
-            this.lblDDLWed.Text = "ddl";
-            this.lblDDLWed.Click += new System.EventHandler(this.lblDDLWed_Click);
-            // 
-            // lblDDLThu
-            // 
-            this.lblDDLThu.AutoSize = true;
-            this.lblDDLThu.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblDDLThu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLThu.Location = new System.Drawing.Point(507, 3);
-            this.lblDDLThu.Margin = new System.Windows.Forms.Padding(3);
-            this.lblDDLThu.Name = "lblDDLThu";
-            this.lblDDLThu.Size = new System.Drawing.Size(152, 49);
-            this.lblDDLThu.TabIndex = 24;
-            this.lblDDLThu.Text = "ddl";
-            this.lblDDLThu.Click += new System.EventHandler(this.lblDDLThu_Click);
-            // 
-            // lblDDLFri
-            // 
-            this.lblDDLFri.AutoSize = true;
-            this.lblDDLFri.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblDDLFri.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLFri.Location = new System.Drawing.Point(665, 3);
-            this.lblDDLFri.Margin = new System.Windows.Forms.Padding(3);
-            this.lblDDLFri.Name = "lblDDLFri";
-            this.lblDDLFri.Size = new System.Drawing.Size(152, 49);
-            this.lblDDLFri.TabIndex = 25;
-            this.lblDDLFri.Text = "ddl";
-            this.lblDDLFri.Click += new System.EventHandler(this.lblDDLFri_Click);
-            // 
-            // lblDDLSat
-            // 
-            this.lblDDLSat.AutoSize = true;
-            this.lblDDLSat.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblDDLSat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLSat.Location = new System.Drawing.Point(823, 3);
-            this.lblDDLSat.Margin = new System.Windows.Forms.Padding(3);
-            this.lblDDLSat.Name = "lblDDLSat";
-            this.lblDDLSat.Size = new System.Drawing.Size(152, 49);
-            this.lblDDLSat.TabIndex = 26;
-            this.lblDDLSat.Text = "ddl";
-            this.lblDDLSat.Click += new System.EventHandler(this.lblDDLSat_Click);
-            // 
-            // lblDDLSun
-            // 
-            this.lblDDLSun.AutoSize = true;
-            this.lblDDLSun.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblDDLSun.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDDLSun.Location = new System.Drawing.Point(981, 3);
-            this.lblDDLSun.Margin = new System.Windows.Forms.Padding(3);
-            this.lblDDLSun.Name = "lblDDLSun";
-            this.lblDDLSun.Size = new System.Drawing.Size(152, 49);
-            this.lblDDLSun.TabIndex = 27;
-            this.lblDDLSun.Text = "ddl";
-            this.lblDDLSun.Click += new System.EventHandler(this.lblDDLSun_Click);
-            // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 5;
+            this.tableLayoutPanel3.ColumnCount = 7;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
-            this.tableLayoutPanel3.Controls.Add(this.dtpDate, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dtpDate, 6, 0);
             this.tableLayoutPanel3.Controls.Add(this.chkShowSchedule, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.chkShowLog, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.chkMine, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtSearchNote, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnSearch, 5, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -809,20 +713,23 @@
             this.chkMine.UseVisualStyleBackColor = true;
             this.chkMine.CheckedChanged += new System.EventHandler(this.chkMoney_CheckedChanged);
             // 
-            // toolTToolStripMenuItem
+            // txtSearchNote
             // 
-            this.toolTToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmCountDown});
-            this.toolTToolStripMenuItem.Name = "toolTToolStripMenuItem";
-            this.toolTToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
-            this.toolTToolStripMenuItem.Text = "Tool(&T)";
+            this.txtSearchNote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearchNote.Location = new System.Drawing.Point(876, 3);
+            this.txtSearchNote.Name = "txtSearchNote";
+            this.txtSearchNote.Size = new System.Drawing.Size(145, 21);
+            this.txtSearchNote.TabIndex = 6;
             // 
-            // tsmCountDown
+            // btnSearch
             // 
-            this.tsmCountDown.Name = "tsmCountDown";
-            this.tsmCountDown.Size = new System.Drawing.Size(180, 22);
-            this.tsmCountDown.Text = "CountDown";
-            this.tsmCountDown.Click += new System.EventHandler(this.tsmCountDown_Click);
+            this.btnSearch.Location = new System.Drawing.Point(1027, 3);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(51, 21);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // frmMain
             // 
@@ -876,7 +783,6 @@
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.Button btnPreDate;
         private System.Windows.Forms.Button btnNextDate;
-        private System.Windows.Forms.ToolStripMenuItem taskTToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem moneyMToolStripMenuItem;
         private System.Windows.Forms.Label lblMonday;
         private System.Windows.Forms.Label lblTuesday;
@@ -902,13 +808,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmAddSleepLog;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem tsmAddInfoMine;
-        private System.Windows.Forms.Label lblDDLMon;
-        private System.Windows.Forms.Label lblDDLTue;
-        private System.Windows.Forms.Label lblDDLWed;
-        private System.Windows.Forms.Label lblDDLThu;
-        private System.Windows.Forms.Label lblDDLFri;
-        private System.Windows.Forms.Label lblDDLSat;
-        private System.Windows.Forms.Label lblDDLSun;
         private System.Windows.Forms.CheckBox chkMine;
         private System.Windows.Forms.ToolStripMenuItem literatureLToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
@@ -934,6 +833,8 @@
         private System.Windows.Forms.ToolStripMenuItem addDailyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolTToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmCountDown;
+        private System.Windows.Forms.TextBox txtSearchNote;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
 

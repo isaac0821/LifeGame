@@ -23,7 +23,7 @@ namespace LifeGame
         CNote note = new CNote();
         List<RNoteLog> noteLogs = new List<RNoteLog>();
         List<RNoteColor> noteColors = new List<RNoteColor>();
-        List<RNoteTag> noteTags = new List<RNoteTag>();
+        // List<RNoteTag> noteTags = new List<RNoteTag>();
         string topicGUID = "";
         private bool lockMode = false;
 
@@ -33,7 +33,7 @@ namespace LifeGame
             note = info;
             noteLogs = G.glb.lstNoteLog.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             noteColors = G.glb.lstNoteColor.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
-            noteTags = G.glb.lstNoteTag.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
+            // noteTags = G.glb.lstNoteTag.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             topicGUID = info.GUID;
             InitializeComponent();
 
@@ -69,12 +69,12 @@ namespace LifeGame
             note = new CNote();
             noteLogs = new List<RNoteLog>();
             noteColors = new List<RNoteColor>();
-            noteTags = new List<RNoteTag>();
+            // noteTags = new List<RNoteTag>();
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
 
-            LoadNoteTag();
+            // LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
             dtpDate.Value = selectedDate;
@@ -91,12 +91,12 @@ namespace LifeGame
             note.TagTime = DateTime.Today.Date;
 
             // 默认tag
-            noteTags = new List<RNoteTag>();
-            RNoteTag dr = new RNoteTag();
-            dr.TagTime = DateTime.Today.Date;
-            dr.Topic = note.Topic;
-            dr.Tag = "Daily Report";
-            noteTags.Add(dr);
+            // noteTags = new List<RNoteTag>();
+            // RNoteTag dr = new RNoteTag();
+            // dr.TagTime = DateTime.Today.Date;
+            // dr.Topic = note.Topic;
+            // dr.Tag = "Daily Report";
+            // noteTags.Add(dr);
 
             // 加入template
             noteColors = new List<RNoteColor>();
@@ -233,7 +233,7 @@ namespace LifeGame
             transaction.Index = 4;
             noteLogs.Add(transaction);
 
-            LoadNoteTag();
+            // LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
             dtpDate.Value = selectedDate;
@@ -251,12 +251,12 @@ namespace LifeGame
             note.TagTime = DateTime.Today.Date;
 
             // 默认tag
-            noteTags = new List<RNoteTag>();
-            RNoteTag dr = new RNoteTag();
-            dr.TagTime = DateTime.Today.Date;
-            dr.Topic = note.Topic;
-            dr.Tag = "Literature";
-            noteTags.Add(dr);
+            //  noteTags = new List<RNoteTag>();
+            // RNoteTag dr = new RNoteTag();
+            // dr.TagTime = DateTime.Today.Date;
+            // dr.Topic = note.Topic;
+            // dr.Tag = "Literature";
+            // noteTags.Add(dr);
 
             // 加入template
             CLiterature lit = G.glb.lstLiterature.Find(o => o.Title == LiteratureTitle);
@@ -478,7 +478,7 @@ namespace LifeGame
             noteColors = new List<RNoteColor>();
 
             note.LiteratureTitle = LiteratureTitle;
-            LoadNoteTag();
+            // LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
             txtTopic.Text = LiteratureTitle;
@@ -496,12 +496,12 @@ namespace LifeGame
             note.TagTime = DateTime.Today.Date;
 
             // 默认tag
-            noteTags = new List<RNoteTag>();
-            RNoteTag dr = new RNoteTag();
-            dr.TagTime = DateTime.Today.Date;
-            dr.Topic = note.Topic;
-            dr.Tag = "Review";
-            noteTags.Add(dr);
+            // noteTags = new List<RNoteTag>();
+            // RNoteTag dr = new RNoteTag();
+            // dr.TagTime = DateTime.Today.Date;
+            // dr.Topic = note.Topic;
+            // dr.Tag = "Review";
+            // noteTags.Add(dr);
             
             for (int i = 0; i < lstLiterature.Count; i++)
             {
@@ -546,7 +546,7 @@ namespace LifeGame
             revisit.TagTime = DateTime.Today.Date;
             noteColors.Add(revisit);
 
-            LoadNoteTag();
+            // LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
             txtTopic.Text = topic;
@@ -556,13 +556,13 @@ namespace LifeGame
         
         private void LoadNoteTag()
         {
-            lsvTag.Items.Clear();
-            foreach (RNoteTag noteTag in noteTags)
-            {
-                ListViewItem item = new ListViewItem();
-                item.Text = noteTag.Tag;
-                lsvTag.Items.Add(item);
-            }
+            //lsvTag.Items.Clear();
+            //foreach (RNoteTag noteTag in noteTags)
+            //{
+            //    ListViewItem item = new ListViewItem();
+            //    item.Text = noteTag.Tag;
+            //    lsvTag.Items.Add(item);
+            //}
         }
 
         private void LoadNoteColor()
@@ -773,12 +773,6 @@ namespace LifeGame
                         {
                             WithWho = sp[4];
                         }
-                        // Task
-                        string ContributionToTask = "";
-                        if (sp.Length >= 6 && G.glb.lstTask.Exists(o => o.TaskName == sp[5]))
-                        {
-                            ContributionToTask = sp[5];
-                        }
 
                         if (G.glb.lstSchedule.Exists(o =>
                             o.LogName == LogName
@@ -786,7 +780,6 @@ namespace LifeGame
                             && o.EndTime == EndTime
                             && o.Location == Location
                             && o.WithWho == WithWho
-                            && o.ContributionToTask == ContributionToTask
                             && o.Color == Color))
                         {
                             return 8;
@@ -849,12 +842,6 @@ namespace LifeGame
                         {
                             WithWho = sp[4];
                         }
-                        // Task
-                        string ContributionToTask = "";
-                        if (sp.Length >= 6 && G.glb.lstTask.Exists(o => o.TaskName == sp[5]))
-                        {
-                            ContributionToTask = sp[5];
-                        }
 
                         if (G.glb.lstLog.Exists(o =>
                             o.LogName == LogName
@@ -862,7 +849,6 @@ namespace LifeGame
                             && o.EndTime == EndTime
                             && o.Location == Location
                             && o.WithWho == WithWho
-                            && o.ContributionToTask == ContributionToTask
                             && o.Color == Color))
                         {
                             return 10;
@@ -1078,15 +1064,15 @@ namespace LifeGame
             {
                 if (sub.Text.Contains("modified: "))
                 {
-                    sub.Text = "modified: " + now.ToString("F");
+                    sub.Text = "modified: " + now.ToString("F");break;
                 }
                 else if (sub.Text.Contains("Modified: "))
                 {
-                    sub.Text = "Modified: " + now.ToString("F");
+                    sub.Text = "Modified: " + now.ToString("F");break;
                 }
                 else if (sub.Text.Contains("MODIFIED: "))
                 {
-                    sub.Text = "MODIFIED: " + now.ToString("F");
+                    sub.Text = "MODIFIED: " + now.ToString("F");break;
                 }
             }
         }
@@ -1135,7 +1121,7 @@ namespace LifeGame
                 case DialogResult.Yes:
                     G.glb.lstNoteLog.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
                     G.glb.lstNoteColor.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
-                    G.glb.lstNoteTag.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
+                    // G.glb.lstNoteTag.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
                     SaveNoteLog();
                     foreach (RNoteLog noteLog in noteLogs)
                     {
@@ -1149,17 +1135,16 @@ namespace LifeGame
                         noteColor.TagTime = dtpDate.Value.Date;
                         G.glb.lstNoteColor.Add(noteColor);
                     }
-                    foreach (RNoteTag noteTag in noteTags)
-                    {
-                        noteTag.Topic = txtTopic.Text;
-                        noteTag.TagTime = dtpDate.Value.Date;
-                        G.glb.lstNoteTag.Add(noteTag);
-                    }
+                    //foreach (RNoteTag noteTag in noteTags)
+                    //{
+                    //    noteTag.Topic = txtTopic.Text;
+                    //    noteTag.TagTime = dtpDate.Value.Date;
+                    //    G.glb.lstNoteTag.Add(noteTag);
+                    //}
                     if (G.glb.lstNote.Exists(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date))
                     {
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).FinishedNote = chkFinished.Checked;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).LiteratureTitle = txtLiteratureTitle.Text;
-                        G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).TaskName = cbxTask.Text;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).TagTime = dtpDate.Value.Date;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Topic = txtTopic.Text;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Locked = lockMode;
@@ -1170,7 +1155,6 @@ namespace LifeGame
                         newNote.Topic = txtTopic.Text;
                         newNote.FinishedNote = chkFinished.Checked;
                         newNote.LiteratureTitle = txtLiteratureTitle.Text;
-                        newNote.TaskName = cbxTask.Text;
                         newNote.TagTime = dtpDate.Value.Date;
                         newNote.Locked = lockMode;
                         newNote.GUID = topicGUID;
@@ -1200,22 +1184,10 @@ namespace LifeGame
 
         private void frmInfoNote_Load(object sender, EventArgs e)
         {
-            // Bind Task
-            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.TaskState != ETaskState.Finished && o.TaskState != ETaskState.Aborted).ToList();
-            List<string> choices = new List<string>();
-            choices.Add("");
-            foreach (CTask task in taskChoices)
-            {
-                choices.Add(task.TaskName);
-            }
-            choices = choices.OrderBy(o => o).ToList();
-            cbxTask.DataSource = choices;
-
             if (note.Topic != null)
             {
                 txtTopic.Text = note.Topic;
                 txtLiteratureTitle.Text = note.LiteratureTitle;
-                cbxTask.Text = note.TaskName;
                 chkFinished.Checked = note.FinishedNote;
             }
         }
@@ -1409,6 +1381,7 @@ namespace LifeGame
             {
                 if (MessageBox.Show("Confirm to remove.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {
+                    UpdateModifiedNodeTime(trvNote.SelectedNode.Parent);
                     trvNote.Nodes.Remove(trvNote.SelectedNode);
                     btnSave.Enabled = true;
                 }
@@ -1430,6 +1403,7 @@ namespace LifeGame
                 }
                 if (canRemoveFlag)
                 {
+                    UpdateModifiedNodeTime(trvNote.SelectedNode);
                     trvNote.SelectedNode.Nodes.Clear();
                     btnSave.Enabled = true;
                 }
@@ -1459,6 +1433,7 @@ namespace LifeGame
                     }
                     node.Remove();
                     trvNote.SelectedNode = newNode;
+                    UpdateModifiedNodeTime(trvNote.SelectedNode);
                 }
             }
             btnSave.Enabled = true;
@@ -1483,6 +1458,7 @@ namespace LifeGame
                     }
                     node.Remove();
                     trvNote.SelectedNode = newNode;
+                    UpdateModifiedNodeTime(trvNote.SelectedNode);
                 }
             }
             btnSave.Enabled = true;
@@ -1500,6 +1476,7 @@ namespace LifeGame
                     preNode.Nodes.Insert(preNode.Nodes.Count, newNode);
                     node.Remove();
                     trvNote.SelectedNode = newNode;
+                    UpdateModifiedNodeTime(trvNote.SelectedNode);
                 }
             }
             btnSave.Enabled = true;
@@ -1518,6 +1495,7 @@ namespace LifeGame
                     grandparentNode.Nodes.Insert(parentNode.Index + 1, newNode);
                     node.Remove();
                     trvNote.SelectedNode = newNode;
+                    UpdateModifiedNodeTime(trvNote.SelectedNode);
                 }
             }
             btnSave.Enabled = true;
@@ -1540,10 +1518,10 @@ namespace LifeGame
             {
                 item.Topic = txtTopic.Text;
             }
-            foreach (RNoteTag item in noteTags)
-            {
-                item.Topic = txtTopic.Text;
-            }
+            //foreach (RNoteTag item in noteTags)
+            //{
+            //    item.Topic = txtTopic.Text;
+            //}
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -1553,35 +1531,35 @@ namespace LifeGame
             btnSave.Enabled = false;
         }
 
-        private void tsmAddTag_Click(object sender, EventArgs e)
-        {
-            string NewTag = Interaction.InputBox("Add Tag to Note", "New Tag", "", 300, 300);
-            if (!noteTags.Exists(o => o.Tag == NewTag))
-            {
-                RNoteTag noteTag = new RNoteTag();
-                noteTag.TagTime = dtpDate.Value.Date;
-                noteTag.Topic = txtTopic.Text;
-                noteTag.Tag = NewTag;
-                noteTags.Add(noteTag);
-                lsvTag.Items.Add(NewTag);
-            }
-            else
-            {
-                MessageBox.Show("Tag exists.");
-            }
-        }
+        //private void tsmAddTag_Click(object sender, EventArgs e)
+        //{
+        //    string NewTag = Interaction.InputBox("Add Tag to Note", "New Tag", "", 300, 300);
+        //    if (!noteTags.Exists(o => o.Tag == NewTag))
+        //    {
+        //        RNoteTag noteTag = new RNoteTag();
+        //        noteTag.TagTime = dtpDate.Value.Date;
+        //        noteTag.Topic = txtTopic.Text;
+        //        noteTag.Tag = NewTag;
+        //        noteTags.Add(noteTag);
+        //        lsvTag.Items.Add(NewTag);
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Tag exists.");
+        //    }
+        //}
 
-        private void tsmRemoveTag_Click(object sender, EventArgs e)
-        {
-            if (lsvTag.SelectedItems != null)
-            {
-                foreach (ListViewItem item in lsvTag.SelectedItems)
-                {
-                    noteTags.RemoveAll(o=>o.Tag == item.Text);
-                    lsvTag.Items.Remove(item);
-                }
-            }
-        }
+        //private void tsmRemoveTag_Click(object sender, EventArgs e)
+        //{
+        //    if (lsvTag.SelectedItems != null)
+        //    {
+        //        foreach (ListViewItem item in lsvTag.SelectedItems)
+        //        {
+        //            noteTags.RemoveAll(o=>o.Tag == item.Text);
+        //            lsvTag.Items.Remove(item);
+        //        }
+        //    }
+        //}
 
         private void tsmAddColor_Click(object sender, EventArgs e)
         {
@@ -2466,12 +2444,6 @@ namespace LifeGame
                         {
                             WithWho = sp[4];
                         }
-                        // Task
-                        string ContributionToTask = "";
-                        if (sp.Length >= 6 && G.glb.lstTask.Exists(o => o.TaskName == sp[5]))
-                        {
-                            ContributionToTask = sp[5];
-                        }
 
                         // 判断是否能添加日程
                         bool CanAddScheduleFlag = true;
@@ -2511,7 +2483,6 @@ namespace LifeGame
                             newSchedule.EndTime = EndTime;
                             newSchedule.Location = Location;
                             newSchedule.WithWho = WithWho;
-                            newSchedule.ContributionToTask = ContributionToTask;
                             newSchedule.Color = Color;
                             newSchedule.Alarm = true;
                             newSchedule.AlarmTime = StartTime - new TimeSpan(0, Convert.ToInt16(5), 0);
@@ -2576,12 +2547,6 @@ namespace LifeGame
                         {
                             WithWho = sp[4];
                         }
-                        // Task
-                        string ContributionToTask = "";
-                        if (sp.Length >= 6 && G.glb.lstTask.Exists(o => o.TaskName == sp[5]))
-                        {
-                            ContributionToTask = sp[5];
-                        }
 
                         // 判断是否能添加日程
                         bool CanAddScheduleFlag = true;
@@ -2621,7 +2586,6 @@ namespace LifeGame
                             newSchedule.EndTime = EndTime;
                             newSchedule.Location = Location;
                             newSchedule.WithWho = WithWho;
-                            newSchedule.ContributionToTask = ContributionToTask;
                             newSchedule.Color = Color;
                             newSchedule.Alarm = true;
                             newSchedule.AlarmTime = StartTime - new TimeSpan(0, Convert.ToInt16(5), 0);

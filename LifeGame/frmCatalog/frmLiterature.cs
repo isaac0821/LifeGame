@@ -332,7 +332,7 @@ namespace LifeGame
 
         private void LoadLiteratureList(string SearchText)
         {
-            List<string> ShownTitle = new List<string>();            
+            List<string> ShownTitle = new List<string>();
             foreach (CLiterature literature in G.glb.lstLiterature)
             {
                 // Find literature with the search text in its title

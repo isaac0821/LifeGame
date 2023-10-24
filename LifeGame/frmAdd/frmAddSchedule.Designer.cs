@@ -57,12 +57,10 @@
             this.chkAlarm = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtMinsAhead = new System.Windows.Forms.TextBox();
-            this.cbxTask = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.txtWhere = new System.Windows.Forms.TextBox();
             this.txtWith = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -84,15 +82,12 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.cbxTask, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
@@ -100,7 +95,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(410, 168);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(410, 146);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -367,12 +362,12 @@
             this.tableLayoutPanel5.Controls.Add(this.btnAdd, 4, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel7, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(60, 144);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(60, 120);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(350, 24);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(350, 26);
             this.tableLayoutPanel5.TabIndex = 10;
             // 
             // cbxColor
@@ -401,7 +396,7 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Location = new System.Drawing.Point(165, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 24);
+            this.label5.Size = new System.Drawing.Size(45, 26);
             this.label5.TabIndex = 2;
             this.label5.Text = "Color";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -411,7 +406,7 @@
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdd.Location = new System.Drawing.Point(293, 3);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(54, 18);
+            this.btnAdd.Size = new System.Drawing.Size(54, 20);
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -468,17 +463,6 @@
             this.txtMinsAhead.TabIndex = 2;
             this.txtMinsAhead.Text = "5";
             // 
-            // cbxTask
-            // 
-            this.cbxTask.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbxTask.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxTask.FormattingEnabled = true;
-            this.cbxTask.Location = new System.Drawing.Point(63, 123);
-            this.cbxTask.Name = "cbxTask";
-            this.cbxTask.Size = new System.Drawing.Size(344, 20);
-            this.cbxTask.TabIndex = 11;
-            this.cbxTask.SelectedIndexChanged += new System.EventHandler(this.cbxTask_SelectedIndexChanged);
-            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 3;
@@ -525,22 +509,11 @@
             this.label8.Text = "With";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(3, 120);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 24);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Task";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // frmAddSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 168);
+            this.ClientSize = new System.Drawing.Size(410, 146);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -592,12 +565,10 @@
         private System.Windows.Forms.ComboBox cbxColor;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.ComboBox cbxTask;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.TextBox txtWhere;
         private System.Windows.Forms.TextBox txtWith;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.CheckBox chkAlarm;
         private System.Windows.Forms.Label label4;

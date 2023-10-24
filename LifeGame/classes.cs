@@ -216,7 +216,7 @@ namespace LifeGame
 
     #region 任务系统
     /// <summary>
-    /// 任务
+    /// 任务（已废弃）
     /// </summary>
     [Serializable]
     public class CTask
@@ -239,7 +239,7 @@ namespace LifeGame
     }
 
     /// <summary>
-    /// 任务与子任务关系
+    /// 任务与子任务关系（已废弃）
     /// </summary>
     [Serializable]
     public class RSubTask
@@ -258,7 +258,6 @@ namespace LifeGame
         public string LogName;
         public DateTime StartTime;
         public DateTime EndTime;
-        public string ContributionToTask;
         public string Location;
         public string WithWho;
         public string Color;
@@ -431,13 +430,12 @@ namespace LifeGame
         public string GUID;
         public string Topic;
         public string LiteratureTitle;
-        public string TaskName;
         public bool FinishedNote;
         public bool Locked;
     }
 
     /// <summary>
-    /// 笔记的外部链接路径
+    /// 笔记的外部链接路径（已废弃）
     /// </summary>
     [Serializable]
     public class RNoteOutsource

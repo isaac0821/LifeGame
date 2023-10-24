@@ -14,14 +14,13 @@ namespace LifeGame
     {
         Timer timer = new Timer();
         bool AutoClose = true;
-        public frmInfoLog(string TimePeriod, string LogName, string Location, string WithWho, string TaskName, Color color, bool IsAlarm, bool autoClose)
+        public frmInfoLog(string TimePeriod, string LogName, string Location, string WithWho, Color color, bool IsAlarm, bool autoClose)
         {
             InitializeComponent();
             lblTimePeriod.Text = TimePeriod;
             lblLogName.Text = LogName;
             lblLocation.Text = Location;
             lblWithWho.Text = WithWho;
-            lblTask.Text = TaskName;
             tlpLogInfo.BackColor = color;
             Color contri = new Color();
             contri = Color.FromArgb(255 - color.R, 255 - color.G, 255 - color.B);
@@ -29,7 +28,6 @@ namespace LifeGame
             lblLogName.ForeColor = contri;
             lblLocation.ForeColor = contri;
             lblWithWho.ForeColor = contri;
-            lblTask.ForeColor = contri;
             AutoClose = autoClose;
             if (IsAlarm)
             {
@@ -43,14 +41,13 @@ namespace LifeGame
             }
         }
         
-        public frmInfoLog(string TimePeriod, string LogName, string Location, string WithWho, string TaskName, Color color, bool IsAlarm)
+        public frmInfoLog(string TimePeriod, string LogName, string Location, string WithWho,  Color color, bool IsAlarm)
         {
             InitializeComponent();
             lblTimePeriod.Text = TimePeriod;
             lblLogName.Text = LogName;
             lblLocation.Text = Location;
             lblWithWho.Text = WithWho;
-            lblTask.Text = TaskName;
             tlpLogInfo.BackColor = color;
             Color contri = new Color();
             contri = Color.FromArgb(255 - color.R, 255 - color.G, 255 - color.B);
@@ -58,7 +55,6 @@ namespace LifeGame
             lblLogName.ForeColor = contri;
             lblLocation.ForeColor = contri;
             lblWithWho.ForeColor = contri;
-            lblTask.ForeColor = contri;
             if (IsAlarm)
             {
                 picClock.Image = icon.iconClock;

@@ -75,7 +75,6 @@ namespace LifeGame
                 newLog.EndTime = EndTime;
                 newLog.Location = txtWhere.Text;
                 newLog.WithWho = txtWith.Text;
-                newLog.ContributionToTask = cbxTask.Text;
                 newLog.Color = cbxColor.Text;
                 G.glb.lstLog.Add(newLog);
                 DrawLog();
@@ -86,15 +85,6 @@ namespace LifeGame
         private void frmAddLog_Load(object sender, EventArgs e)
         {
             dtpDate.Value = curDate;
-            List<CTask> taskChoices = G.glb.lstTask.FindAll(o => o.IsBottom && o.TaskState != ETaskState.Finished && o.TaskState != ETaskState.Aborted).ToList();
-            List<string> choices = new List<string>();
-            choices.Add("");
-            foreach (CTask task in taskChoices)
-            {
-                choices.Add(task.TaskName);
-            }
-            choices = choices.OrderBy(o => o).ToList();
-            cbxTask.DataSource = choices;
             cbxColor.SelectedIndex = 0;
         }
 

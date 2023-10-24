@@ -28,8 +28,6 @@ namespace LifeGame
             LoadEvents();
             LoadTransaction();
             LoadBudget();
-            LoadWorkOut();
-            LoadMedicine();
         }
 
         private void LoadEvents()
@@ -59,26 +57,6 @@ namespace LifeGame
             foreach (CTransaction tranDues in transactionDues)
             {
                 lsbBudget.Items.Add(tranDues.Summary);
-            }
-        }
-
-        private void LoadWorkOut()
-        {
-            lsbWorkOut.Items.Clear();
-            List<CWorkOut> workOuts = G.glb.lstWorkOut.FindAll(o => o.TagTime == curDate).ToList();
-            foreach (CWorkOut workOut in workOuts)
-            {
-                lsbWorkOut.Items.Add(workOut.WorkOutType);
-            }
-        }
-
-        private void LoadMedicine()
-        {
-            lsbMedicine.Items.Clear();
-            List<CMedicine> medicines = G.glb.lstMedicine.FindAll(o => o.TagTime == curDate).ToList();
-            foreach (CMedicine medicine in medicines)
-            {
-                lsbMedicine.Items.Add(medicine.MedicineName);
             }
         }
 
@@ -116,20 +94,6 @@ namespace LifeGame
                     {
                         G.glb.lstBudget.RemoveAll(o => o.TagTime == curDate && o.Summary == lsbBudget.SelectedItem.ToString());
                         LoadBudget();
-                    }
-                    break;
-                case "lsbWorkOut":
-                    if (lsbWorkOut.SelectedItems!=null)
-                    {
-                        G.glb.lstWorkOut.RemoveAll(o => o.TagTime == curDate && o.WorkOutType == lsbWorkOut.SelectedItem.ToString());
-                        LoadWorkOut();
-                    }
-                    break;
-                case "lsbMedicine":
-                    if (lsbMedicine.SelectedItems!=null)
-                    {
-                        G.glb.lstMedicine.RemoveAll(o => o.TagTime == curDate && o.MedicineName == lsbMedicine.SelectedItem.ToString());
-                        LoadMedicine();
                     }
                     break;
                 default:

@@ -22,14 +22,12 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAccount.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddLog.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSchedule.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmMain.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmTask.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.Properties.Resources.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.GenerateResource.cache
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.CoreCompileInputs.cache
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.exe
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.pdb
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.icon.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddTask.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddTransaction.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSleepSchedule.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSleepLog.resources
@@ -37,15 +35,11 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmLiterature.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmDelLog.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddAccount.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoEvent.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoMedicine.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoTransaction.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoWorkOut.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoNote.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoDDL.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoLog.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddEvent.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddMedicine.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddWorkOut.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmDelInfoMine.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmCurrencyRate.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmDelNoteMine.resources
@@ -76,7 +70,6 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmUnreliableJournal.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddNoteColor.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmNoteChangeLabel.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddLiterature.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddNote.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmReplaceNote.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmNoteProperties.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmNotePassword.resources
@@ -149,5 +142,5 @@ D:\Zoo\LifeGame\LifeGame\obj\Debug\LifeGame.exe
 D:\Zoo\LifeGame\LifeGame\obj\Debug\LifeGame.pdb
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.AssemblyReference.cache
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.csproj.SuggestedBindingRedirects.cache
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmCatalog.frmNote.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmCountDown.resources
+D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmSearchNote.resources
