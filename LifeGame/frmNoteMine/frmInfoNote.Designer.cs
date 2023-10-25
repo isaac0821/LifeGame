@@ -670,18 +670,18 @@
             this.tsmAddTag,
             this.tsmRemoveTag});
             this.cmsNoteTag.Name = "cmsNoteTag";
-            this.cmsNoteTag.Size = new System.Drawing.Size(181, 70);
+            this.cmsNoteTag.Size = new System.Drawing.Size(124, 48);
             // 
             // tsmAddTag
             // 
             this.tsmAddTag.Name = "tsmAddTag";
-            this.tsmAddTag.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddTag.Size = new System.Drawing.Size(123, 22);
             this.tsmAddTag.Text = "Add";
             // 
             // tsmRemoveTag
             // 
             this.tsmRemoveTag.Name = "tsmRemoveTag";
-            this.tsmRemoveTag.Size = new System.Drawing.Size(180, 22);
+            this.tsmRemoveTag.Size = new System.Drawing.Size(123, 22);
             this.tsmRemoveTag.Text = "Remove";
             // 
             // frmInfoNote

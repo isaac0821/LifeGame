@@ -42,10 +42,6 @@
             this.lsbTransaction = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.lsbBudget = new System.Windows.Forms.ListBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.lsbWorkOut = new System.Windows.Forms.ListBox();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.lsbMedicine = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -53,8 +49,6 @@
             this.cmsDelete.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -100,8 +94,6 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 31);
             this.tabControl1.Name = "tabControl1";
@@ -153,7 +145,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(396, 274);
+            this.tabPage2.Size = new System.Drawing.Size(396, 273);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Transaction";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -166,7 +158,7 @@
             this.lsbTransaction.ItemHeight = 12;
             this.lsbTransaction.Location = new System.Drawing.Point(3, 3);
             this.lsbTransaction.Name = "lsbTransaction";
-            this.lsbTransaction.Size = new System.Drawing.Size(390, 268);
+            this.lsbTransaction.Size = new System.Drawing.Size(390, 267);
             this.lsbTransaction.TabIndex = 0;
             // 
             // tabPage3
@@ -175,7 +167,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(396, 274);
+            this.tabPage3.Size = new System.Drawing.Size(396, 273);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Budget";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -188,52 +180,8 @@
             this.lsbBudget.ItemHeight = 12;
             this.lsbBudget.Location = new System.Drawing.Point(3, 3);
             this.lsbBudget.Name = "lsbBudget";
-            this.lsbBudget.Size = new System.Drawing.Size(390, 268);
+            this.lsbBudget.Size = new System.Drawing.Size(390, 267);
             this.lsbBudget.TabIndex = 0;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.lsbWorkOut);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(396, 274);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Work Out";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // lsbWorkOut
-            // 
-            this.lsbWorkOut.ContextMenuStrip = this.cmsDelete;
-            this.lsbWorkOut.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsbWorkOut.FormattingEnabled = true;
-            this.lsbWorkOut.ItemHeight = 12;
-            this.lsbWorkOut.Location = new System.Drawing.Point(3, 3);
-            this.lsbWorkOut.Name = "lsbWorkOut";
-            this.lsbWorkOut.Size = new System.Drawing.Size(390, 268);
-            this.lsbWorkOut.TabIndex = 0;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.lsbMedicine);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(396, 274);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Medicine";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // lsbMedicine
-            // 
-            this.lsbMedicine.ContextMenuStrip = this.cmsDelete;
-            this.lsbMedicine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsbMedicine.FormattingEnabled = true;
-            this.lsbMedicine.ItemHeight = 12;
-            this.lsbMedicine.Location = new System.Drawing.Point(3, 3);
-            this.lsbMedicine.Name = "lsbMedicine";
-            this.lsbMedicine.Size = new System.Drawing.Size(390, 268);
-            this.lsbMedicine.TabIndex = 0;
             // 
             // frmDelInfoMine
             // 
@@ -256,8 +204,6 @@
             this.cmsDelete.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -272,12 +218,8 @@
         private System.Windows.Forms.ListBox lsbEvent;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.ListBox lsbTransaction;
         private System.Windows.Forms.ListBox lsbBudget;
-        private System.Windows.Forms.ListBox lsbWorkOut;
-        private System.Windows.Forms.ListBox lsbMedicine;
         private System.Windows.Forms.ContextMenuStrip cmsDelete;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }

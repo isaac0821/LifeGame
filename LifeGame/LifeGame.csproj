@@ -289,12 +289,6 @@
     <Compile Include="frmInfo\frmDelInfoMine.Designer.cs">
       <DependentUpon>frmDelInfoMine.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInfo\frmInfoDDL.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfo\frmInfoDDL.Designer.cs">
-      <DependentUpon>frmInfoDDL.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmInfo\frmDelLog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -486,9 +480,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfoMine\frmInfoTransaction.resx">
       <DependentUpon>frmInfoTransaction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfo\frmInfoDDL.resx">
-      <DependentUpon>frmInfoDDL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfo\frmDelLog.resx">
       <DependentUpon>frmDelLog.cs</DependentUpon>

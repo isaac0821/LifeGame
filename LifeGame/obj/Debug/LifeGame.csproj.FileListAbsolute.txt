@@ -37,7 +37,6 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddAccount.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoEvent.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoTransaction.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoNote.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoDDL.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoLog.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddEvent.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmDelInfoMine.resources

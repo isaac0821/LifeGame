@@ -62,7 +62,11 @@ namespace LifeGame
 
         private void frmDelInfoMine_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DrawLog();
+            try
+            {
+                DrawLog();
+            }
+            catch { }
         }
 
         string SelectedCat = "";

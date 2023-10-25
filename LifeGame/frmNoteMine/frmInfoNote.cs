@@ -37,6 +37,8 @@ namespace LifeGame
             topicGUID = info.GUID;
             InitializeComponent();
 
+            this.Text = "LifeGame - Note - " + info.Topic;
+
             LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
@@ -74,6 +76,8 @@ namespace LifeGame
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
 
+            this.Text = "LifeGame - Note - (New)";
+
             // LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
@@ -89,6 +93,8 @@ namespace LifeGame
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
+
+            this.Text = "LifeGame - Note - " + note.Topic;
 
             // 默认tag
             // noteTags = new List<RNoteTag>();
@@ -249,6 +255,8 @@ namespace LifeGame
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
+
+            this.Text = "LifeGame - Note - " + note.Topic;
 
             // 默认tag
             //  noteTags = new List<RNoteTag>();
@@ -495,6 +503,8 @@ namespace LifeGame
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
 
+            this.Text = "LifeGame - Note - " + note.Topic;
+
             // 默认tag
             // noteTags = new List<RNoteTag>();
             // RNoteTag dr = new RNoteTag();
@@ -502,7 +512,7 @@ namespace LifeGame
             // dr.Topic = note.Topic;
             // dr.Tag = "Review";
             // noteTags.Add(dr);
-            
+
             for (int i = 0; i < lstLiterature.Count; i++)
             {
                 RNoteLog lit = new RNoteLog();
@@ -1506,6 +1516,7 @@ namespace LifeGame
             note.Topic = txtTopic.Text;
             trvNote.Nodes[0].Text = txtTopic.Text;
             trvNote.Nodes[0].Name = topicGUID;
+            this.Text = "LifeGame - Note - " + note.Topic;
             foreach (RNoteLog item in noteLogs)
             {
                 item.Topic = txtTopic.Text;
@@ -1518,10 +1529,6 @@ namespace LifeGame
             {
                 item.Topic = txtTopic.Text;
             }
-            //foreach (RNoteTag item in noteTags)
-            //{
-            //    item.Topic = txtTopic.Text;
-            //}
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -1530,36 +1537,6 @@ namespace LifeGame
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
         }
-
-        //private void tsmAddTag_Click(object sender, EventArgs e)
-        //{
-        //    string NewTag = Interaction.InputBox("Add Tag to Note", "New Tag", "", 300, 300);
-        //    if (!noteTags.Exists(o => o.Tag == NewTag))
-        //    {
-        //        RNoteTag noteTag = new RNoteTag();
-        //        noteTag.TagTime = dtpDate.Value.Date;
-        //        noteTag.Topic = txtTopic.Text;
-        //        noteTag.Tag = NewTag;
-        //        noteTags.Add(noteTag);
-        //        lsvTag.Items.Add(NewTag);
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Tag exists.");
-        //    }
-        //}
-
-        //private void tsmRemoveTag_Click(object sender, EventArgs e)
-        //{
-        //    if (lsvTag.SelectedItems != null)
-        //    {
-        //        foreach (ListViewItem item in lsvTag.SelectedItems)
-        //        {
-        //            noteTags.RemoveAll(o=>o.Tag == item.Text);
-        //            lsvTag.Items.Remove(item);
-        //        }
-        //    }
-        //}
 
         private void tsmAddColor_Click(object sender, EventArgs e)
         {

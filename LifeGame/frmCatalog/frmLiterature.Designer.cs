@@ -1056,43 +1056,43 @@
             this.toolStripSeparator5,
             this.addTag2Multi});
             this.cmsLiterature.Name = "cmsLiterature";
-            this.cmsLiterature.Size = new System.Drawing.Size(127, 104);
+            this.cmsLiterature.Size = new System.Drawing.Size(181, 126);
             // 
             // tsmViewLiterature
             // 
             this.tsmViewLiterature.Name = "tsmViewLiterature";
-            this.tsmViewLiterature.Size = new System.Drawing.Size(126, 22);
+            this.tsmViewLiterature.Size = new System.Drawing.Size(180, 22);
             this.tsmViewLiterature.Text = "View";
             this.tsmViewLiterature.Click += new System.EventHandler(this.tsmViewLiterature_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(123, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmAddLiterature
             // 
             this.tsmAddLiterature.Name = "tsmAddLiterature";
-            this.tsmAddLiterature.Size = new System.Drawing.Size(126, 22);
+            this.tsmAddLiterature.Size = new System.Drawing.Size(180, 22);
             this.tsmAddLiterature.Text = "Add";
             this.tsmAddLiterature.Click += new System.EventHandler(this.tsmAddLiterature_Click);
             // 
             // tsmRemoveLiterature
             // 
             this.tsmRemoveLiterature.Name = "tsmRemoveLiterature";
-            this.tsmRemoveLiterature.Size = new System.Drawing.Size(126, 22);
+            this.tsmRemoveLiterature.Size = new System.Drawing.Size(180, 22);
             this.tsmRemoveLiterature.Text = "Remove";
             this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(123, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // addTag2Multi
             // 
             this.addTag2Multi.Name = "addTag2Multi";
-            this.addTag2Multi.Size = new System.Drawing.Size(126, 22);
+            this.addTag2Multi.Size = new System.Drawing.Size(180, 22);
             this.addTag2Multi.Text = "Add Tag";
             this.addTag2Multi.Click += new System.EventHandler(this.addTag2Multi_Click);
             // 

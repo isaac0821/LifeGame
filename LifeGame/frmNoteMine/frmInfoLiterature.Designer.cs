@@ -686,24 +686,24 @@
             this.toolStripSeparator3,
             this.tsmNewNote});
             this.cmsNote.Name = "cmsNote";
-            this.cmsNote.Size = new System.Drawing.Size(181, 76);
+            this.cmsNote.Size = new System.Drawing.Size(109, 54);
             // 
             // tsmOpen
             // 
             this.tsmOpen.Name = "tsmOpen";
-            this.tsmOpen.Size = new System.Drawing.Size(180, 22);
+            this.tsmOpen.Size = new System.Drawing.Size(108, 22);
             this.tsmOpen.Text = "Open";
             this.tsmOpen.Click += new System.EventHandler(this.tsmOpen_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(105, 6);
             // 
             // tsmNewNote
             // 
             this.tsmNewNote.Name = "tsmNewNote";
-            this.tsmNewNote.Size = new System.Drawing.Size(180, 22);
+            this.tsmNewNote.Size = new System.Drawing.Size(108, 22);
             this.tsmNewNote.Text = "New";
             this.tsmNewNote.Click += new System.EventHandler(this.tsmNewNote_Click);
             // 
