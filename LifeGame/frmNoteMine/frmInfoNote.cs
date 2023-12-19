@@ -2625,6 +2625,18 @@ namespace LifeGame
                 }
             }
         }
+
+        private void chkShow_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkShow.Checked)
+            {
+                tblNote.RowStyles[1].Height = 0;
+            }
+            else
+            {
+                tblNote.RowStyles[1].Height = 112;
+            }
+        }
     }
     public class CNoteProperties
     {

@@ -449,13 +449,13 @@ namespace LifeGame
                     SelectedFriday = SelectedDate.Date.AddDays(-2);
                     SelectedSaturday = SelectedDate.Date.AddDays(-1);
                     SelectedSunday = SelectedDate.Date.AddDays(0);
-                    lblMonday.Text = SelectedMonday.ToLongDateString();
-                    lblTuesday.Text = SelectedTuesday.ToLongDateString();
-                    lblWednesday.Text = SelectedWednesday.ToLongDateString();
-                    lblThursday.Text = SelectedThursday.ToLongDateString();
-                    lblFriday.Text = SelectedFriday.ToLongDateString();
-                    lblSaturday.Text = SelectedSaturday.ToLongDateString();
-                    lblSunday.Text = SelectedSunday.ToLongDateString();
+                    lblMonday.Text = SelectedMonday.ToShortDateString();
+                    lblTuesday.Text = SelectedTuesday.ToShortDateString();
+                    lblWednesday.Text = SelectedWednesday.ToShortDateString();
+                    lblThursday.Text = SelectedThursday.ToShortDateString();
+                    lblFriday.Text = SelectedFriday.ToShortDateString();
+                    lblSaturday.Text = SelectedSaturday.ToShortDateString();
+                    lblSunday.Text = SelectedSunday.ToShortDateString();
                     break;
                 case DayOfWeek.Monday:
                     SelectedMonday = SelectedDate.Date.AddDays(0);
@@ -465,13 +465,13 @@ namespace LifeGame
                     SelectedFriday = SelectedDate.Date.AddDays(4);
                     SelectedSaturday = SelectedDate.Date.AddDays(5);
                     SelectedSunday = SelectedDate.Date.AddDays(6);
-                    lblMonday.Text = SelectedMonday.ToLongDateString();
-                    lblTuesday.Text = SelectedTuesday.ToLongDateString();
-                    lblWednesday.Text = SelectedWednesday.ToLongDateString();
-                    lblThursday.Text = SelectedThursday.ToLongDateString();
-                    lblFriday.Text = SelectedFriday.ToLongDateString();
-                    lblSaturday.Text = SelectedSaturday.ToLongDateString();
-                    lblSunday.Text = SelectedSunday.ToLongDateString();
+                    lblMonday.Text = SelectedMonday.ToShortDateString();
+                    lblTuesday.Text = SelectedTuesday.ToShortDateString();
+                    lblWednesday.Text = SelectedWednesday.ToShortDateString();
+                    lblThursday.Text = SelectedThursday.ToShortDateString();
+                    lblFriday.Text = SelectedFriday.ToShortDateString();
+                    lblSaturday.Text = SelectedSaturday.ToShortDateString();
+                    lblSunday.Text = SelectedSunday.ToShortDateString();
                     break;
                 case DayOfWeek.Tuesday:
                     SelectedMonday = SelectedDate.Date.AddDays(-1);
@@ -481,13 +481,13 @@ namespace LifeGame
                     SelectedFriday = SelectedDate.Date.AddDays(3);
                     SelectedSaturday = SelectedDate.Date.AddDays(4);
                     SelectedSunday = SelectedDate.Date.AddDays(5);
-                    lblMonday.Text = SelectedMonday.ToLongDateString();
-                    lblTuesday.Text = SelectedTuesday.ToLongDateString();
-                    lblWednesday.Text = SelectedWednesday.ToLongDateString();
-                    lblThursday.Text = SelectedThursday.ToLongDateString();
-                    lblFriday.Text = SelectedFriday.ToLongDateString();
-                    lblSaturday.Text = SelectedSaturday.ToLongDateString();
-                    lblSunday.Text = SelectedSunday.ToLongDateString();
+                    lblMonday.Text = SelectedMonday.ToShortDateString();
+                    lblTuesday.Text = SelectedTuesday.ToShortDateString();
+                    lblWednesday.Text = SelectedWednesday.ToShortDateString();
+                    lblThursday.Text = SelectedThursday.ToShortDateString();
+                    lblFriday.Text = SelectedFriday.ToShortDateString();
+                    lblSaturday.Text = SelectedSaturday.ToShortDateString();
+                    lblSunday.Text = SelectedSunday.ToShortDateString();
                     break;
                 case DayOfWeek.Wednesday:
                     SelectedMonday = SelectedDate.Date.AddDays(-2);
@@ -497,13 +497,13 @@ namespace LifeGame
                     SelectedFriday = SelectedDate.Date.AddDays(2);
                     SelectedSaturday = SelectedDate.Date.AddDays(3);
                     SelectedSunday = SelectedDate.Date.AddDays(4);
-                    lblMonday.Text = SelectedMonday.ToLongDateString();
-                    lblTuesday.Text = SelectedTuesday.ToLongDateString();
-                    lblWednesday.Text = SelectedWednesday.ToLongDateString();
-                    lblThursday.Text = SelectedThursday.ToLongDateString();
-                    lblFriday.Text = SelectedFriday.ToLongDateString();
-                    lblSaturday.Text = SelectedSaturday.ToLongDateString();
-                    lblSunday.Text = SelectedSunday.ToLongDateString();
+                    lblMonday.Text = SelectedMonday.ToShortDateString();
+                    lblTuesday.Text = SelectedTuesday.ToShortDateString();
+                    lblWednesday.Text = SelectedWednesday.ToShortDateString();
+                    lblThursday.Text = SelectedThursday.ToShortDateString();
+                    lblFriday.Text = SelectedFriday.ToShortDateString();
+                    lblSaturday.Text = SelectedSaturday.ToShortDateString();
+                    lblSunday.Text = SelectedSunday.ToShortDateString();
                     break;
                 case DayOfWeek.Thursday:
                     SelectedMonday = SelectedDate.Date.AddDays(-3);
@@ -513,13 +513,13 @@ namespace LifeGame
                     SelectedFriday = SelectedDate.Date.AddDays(1);
                     SelectedSaturday = SelectedDate.Date.AddDays(2);
                     SelectedSunday = SelectedDate.Date.AddDays(3);
-                    lblMonday.Text = SelectedMonday.ToLongDateString();
-                    lblTuesday.Text = SelectedTuesday.ToLongDateString();
-                    lblWednesday.Text = SelectedWednesday.ToLongDateString();
-                    lblThursday.Text = SelectedThursday.ToLongDateString();
-                    lblFriday.Text = SelectedFriday.ToLongDateString();
-                    lblSaturday.Text = SelectedSaturday.ToLongDateString();
-                    lblSunday.Text = SelectedSunday.ToLongDateString();
+                    lblMonday.Text = SelectedMonday.ToShortDateString();
+                    lblTuesday.Text = SelectedTuesday.ToShortDateString();
+                    lblWednesday.Text = SelectedWednesday.ToShortDateString();
+                    lblThursday.Text = SelectedThursday.ToShortDateString();
+                    lblFriday.Text = SelectedFriday.ToShortDateString();
+                    lblSaturday.Text = SelectedSaturday.ToShortDateString();
+                    lblSunday.Text = SelectedSunday.ToShortDateString();
                     break;
                 case DayOfWeek.Friday:
                     SelectedMonday = SelectedDate.Date.AddDays(-4);
@@ -529,13 +529,13 @@ namespace LifeGame
                     SelectedFriday = SelectedDate.Date.AddDays(0);
                     SelectedSaturday = SelectedDate.Date.AddDays(1);
                     SelectedSunday = SelectedDate.Date.AddDays(2);
-                    lblMonday.Text = SelectedMonday.ToLongDateString();
-                    lblTuesday.Text = SelectedTuesday.ToLongDateString();
-                    lblWednesday.Text = SelectedWednesday.ToLongDateString();
-                    lblThursday.Text = SelectedThursday.ToLongDateString();
-                    lblFriday.Text = SelectedFriday.ToLongDateString();
-                    lblSaturday.Text = SelectedSaturday.ToLongDateString();
-                    lblSunday.Text = SelectedSunday.ToLongDateString();
+                    lblMonday.Text = SelectedMonday.ToShortDateString();
+                    lblTuesday.Text = SelectedTuesday.ToShortDateString();
+                    lblWednesday.Text = SelectedWednesday.ToShortDateString();
+                    lblThursday.Text = SelectedThursday.ToShortDateString();
+                    lblFriday.Text = SelectedFriday.ToShortDateString();
+                    lblSaturday.Text = SelectedSaturday.ToShortDateString();
+                    lblSunday.Text = SelectedSunday.ToShortDateString();
                     break;
                 case DayOfWeek.Saturday:
                     SelectedMonday = SelectedDate.Date.AddDays(-5);
@@ -545,13 +545,13 @@ namespace LifeGame
                     SelectedFriday = SelectedDate.Date.AddDays(-1);
                     SelectedSaturday = SelectedDate.Date.AddDays(0);
                     SelectedSunday = SelectedDate.Date.AddDays(1);
-                    lblMonday.Text = SelectedMonday.ToLongDateString();
-                    lblTuesday.Text = SelectedTuesday.ToLongDateString();
-                    lblWednesday.Text = SelectedWednesday.ToLongDateString();
-                    lblThursday.Text = SelectedThursday.ToLongDateString();
-                    lblFriday.Text = SelectedFriday.ToLongDateString();
-                    lblSaturday.Text = SelectedSaturday.ToLongDateString();
-                    lblSunday.Text = SelectedSunday.ToLongDateString();
+                    lblMonday.Text = SelectedMonday.ToShortDateString();
+                    lblTuesday.Text = SelectedTuesday.ToShortDateString();
+                    lblWednesday.Text = SelectedWednesday.ToShortDateString();
+                    lblThursday.Text = SelectedThursday.ToShortDateString();
+                    lblFriday.Text = SelectedFriday.ToShortDateString();
+                    lblSaturday.Text = SelectedSaturday.ToShortDateString();
+                    lblSunday.Text = SelectedSunday.ToShortDateString();
                     break;
                 default:
                     break;
