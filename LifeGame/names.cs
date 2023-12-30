@@ -86,29 +86,6 @@ namespace LifeGame
             }
             if (!chnLastName(lastName))
             {
-                initialed += splitName[0].ToCharArray()[0];
-                initialed += ". ";
-                initialed += splitName[splitName.Count() - 1];
-            }
-            else
-            {
-                initialed = name;
-            }
-            return initialed;
-        }
-
-        public string processLastName(string name)
-        {
-            string initialed = "";
-            string[] splitName = name.Split(' ');
-
-            string lastName = splitName[splitName.Count() - 1];
-            if (lastName == "")
-            {
-                return "(No-last-Name)";
-            }
-            if (!chnLastName(lastName))
-            {
                 initialed += splitName[splitName.Count() - 1];
                 initialed += ", ";
                 initialed += splitName[0].ToCharArray()[0];

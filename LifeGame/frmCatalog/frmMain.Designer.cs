@@ -36,7 +36,9 @@
             this.literatureLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.surveyVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCountDown = new System.Windows.Forms.ToolStripMenuItem();
+            this.addBatchInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddBatchTransactions = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddBatchLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.stsMain = new System.Windows.Forms.StatusStrip();
             this.tslVersionNumber = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -153,17 +155,34 @@
             // toolTToolStripMenuItem
             // 
             this.toolTToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmCountDown});
+            this.addBatchInfoToolStripMenuItem});
             this.toolTToolStripMenuItem.Name = "toolTToolStripMenuItem";
             this.toolTToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.toolTToolStripMenuItem.Text = "Tool(&T)";
             // 
-            // tsmCountDown
+            // addBatchInfoToolStripMenuItem
             // 
-            this.tsmCountDown.Name = "tsmCountDown";
-            this.tsmCountDown.Size = new System.Drawing.Size(138, 22);
-            this.tsmCountDown.Text = "CountDown";
-            this.tsmCountDown.Click += new System.EventHandler(this.tsmCountDown_Click);
+            this.addBatchInfoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmAddBatchTransactions,
+            this.tsmAddBatchLiterature});
+            this.addBatchInfoToolStripMenuItem.Name = "addBatchInfoToolStripMenuItem";
+            this.addBatchInfoToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.addBatchInfoToolStripMenuItem.Text = "Add Batch Info";
+            // 
+            // tsmAddBatchTransactions
+            // 
+            this.tsmAddBatchTransactions.Name = "tsmAddBatchTransactions";
+            this.tsmAddBatchTransactions.Size = new System.Drawing.Size(139, 22);
+            this.tsmAddBatchTransactions.Text = "Transactions";
+            this.tsmAddBatchTransactions.Visible = false;
+            this.tsmAddBatchTransactions.Click += new System.EventHandler(this.tsmAddBatchTransactions_Click);
+            // 
+            // tsmAddBatchLiterature
+            // 
+            this.tsmAddBatchLiterature.Name = "tsmAddBatchLiterature";
+            this.tsmAddBatchLiterature.Size = new System.Drawing.Size(139, 22);
+            this.tsmAddBatchLiterature.Text = "Literature";
+            this.tsmAddBatchLiterature.Click += new System.EventHandler(this.tsmAddBatchLiterature_Click);
             // 
             // stsMain
             // 
@@ -832,9 +851,11 @@
         private System.Windows.Forms.ToolStripMenuItem surveyVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addDailyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolTToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tsmCountDown;
         private System.Windows.Forms.TextBox txtSearchNote;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.ToolStripMenuItem addBatchInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddBatchTransactions;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddBatchLiterature;
     }
 }
 

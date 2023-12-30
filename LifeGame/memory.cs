@@ -9,12 +9,12 @@ namespace LifeGame
     public static class M
     {
         public static TempMemory mem = new TempMemory();
+        public static List<frmInfoNote> notesOpened = new List<frmInfoNote>();
     }
 
     public class TempMemory
     {
         public List<copiedNodeStruct> copiedNodes = new List<copiedNodeStruct>();
-        public List<frmInfoNote> activeNoteWindows = new List<frmInfoNote>();
     }
 
     public struct copiedNodeStruct

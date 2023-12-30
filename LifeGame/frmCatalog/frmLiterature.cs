@@ -13,7 +13,7 @@ namespace LifeGame
         List<CItem> Tags = new List<CItem>();
         List<CItem> Authors = new List<CItem>();
         List<CItem> Years = new List<CItem>();
-        List<CItem> Institutions = new List<CItem>();
+        //List<CItem> Institutions = new List<CItem>();
         List<CItem> JournalConferences = new List<CItem>();
         List<CItem> Projects = new List<CItem>();
 
@@ -45,7 +45,7 @@ namespace LifeGame
             Tags = new List<CItem>();
             Authors = new List<CItem>();
             Years = new List<CItem>();
-            Institutions = new List<CItem>();
+            //Institutions = new List<CItem>();
             JournalConferences = new List<CItem>();
             Projects = new List<CItem>();
             foreach (CLiterature literature in G.glb.lstLiterature)
@@ -69,29 +69,29 @@ namespace LifeGame
                 names names = new names();
                 foreach (RLiteratureAuthor author in lstAuthor)
                 {
-                    if (Authors.Exists(o => o.ItemName == names.processLastName(author.Author)))
+                    if (Authors.Exists(o => o.ItemName == names.processName(author.Author)))
                     {
-                        Authors[Authors.FindIndex(o => o.ItemName == names.processLastName(author.Author))].ItemCount += 1;
+                        Authors[Authors.FindIndex(o => o.ItemName == names.processName(author.Author))].ItemCount += 1;
                     }
                     else
                     {
-                        Authors.Add(new CItem(names.processLastName(author.Author), 1));
+                        Authors.Add(new CItem(names.processName(author.Author), 1));
                     }
                 }
 
                 // By Institute
-                List<RLiteratureInstitution> lstInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == literature.Title).ToList();
-                foreach (RLiteratureInstitution insitution in lstInstitution)
-                {
-                    if (Institutions.Exists(o => o.ItemName == insitution.Institution))
-                    {
-                        Institutions[Institutions.FindIndex(o => o.ItemName == insitution.Institution)].ItemCount += 1;
-                    }
-                    else
-                    {
-                        Institutions.Add(new CItem(insitution.Institution, 1));
-                    }
-                }
+                //List<RLiteratureInstitution> lstInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == literature.Title).ToList();
+                //foreach (RLiteratureInstitution insitution in lstInstitution)
+                //{
+                //    if (Institutions.Exists(o => o.ItemName == insitution.Institution))
+                //    {
+                //        Institutions[Institutions.FindIndex(o => o.ItemName == insitution.Institution)].ItemCount += 1;
+                //    }
+                //    else
+                //    {
+                //        Institutions.Add(new CItem(insitution.Institution, 1));
+                //    }
+                //}
 
                 // By Project (Citing)
                 List<RLiteratureInCiting> lstCiting = G.glb.lstLiteratureCiting.FindAll(o => o.Title == literature.Title).ToList();
@@ -133,7 +133,7 @@ namespace LifeGame
             // Authors = Authors.OrderBy(o => o.ItemName).ToList();
             // Authors = Authors.OrderBy(o => o.ItemName).ToList();
             Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
-            Institutions = Institutions.OrderBy(o => o.ItemName).ToList();
+            //Institutions = Institutions.OrderBy(o => o.ItemName).ToList();
             // Institutions = Institutions.OrderByDescending(o => o.ItemCount).ToList();
             Projects = Projects.OrderBy(o => o.ItemName).ToList();
             // Projects = Projects.OrderByDescending(o => o.ItemCount).ToList();
@@ -156,11 +156,11 @@ namespace LifeGame
             {
                 clbYear.Items.Add(Years[i].ItemName + "[" + Years[i].ItemCount + "]");
             }
-            clbInstitution.Items.Clear();
-            for (int i = 0; i < Institutions.Count; i++)
-            {
-                clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]");
-            }
+            //clbInstitution.Items.Clear();
+            //for (int i = 0; i < Institutions.Count; i++)
+            //{
+            //    clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]");
+            //}
             clbJournalConference.Items.Clear();
             for (int i = 0; i < JournalConferences.Count; i++)
             {
@@ -203,11 +203,9 @@ namespace LifeGame
                         G.glb.lstLiterature.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstLiteratureTag.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == removedLit);
-                        G.glb.lstLiteratureInstitution.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstLiteratureCiting.RemoveAll(o => o.Title == removedLit);
-                        G.glb.lstLiteratureOutSource.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstSurveyLiterature.RemoveAll(o => o.LiteratureTitle == removedLit);
-                        G.glb.lstSurveyLiteratureTagValue.RemoveAll(o => o.LiteratureTitle == removedLit);                        
+                        G.glb.lstSurveyLiteratureTagValue.RemoveAll(o => o.LiteratureTitle == removedLit);
                         loadedLiteratures.RemoveAll(o => o == removedLit);
                         break;
                     case DialogResult.No:
@@ -254,12 +252,6 @@ namespace LifeGame
                 }
                 // If the journal is reliable
                 if (G.glb.lstGoodJournal.Exists(o => o == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
-                {
-                    goodJourStr = "√";
-                    goodJourShowFlag = true;
-                }
-                // If first author is reliable
-                if (G.glb.lstAuthor.Find(o => o.Author == G.glb.lstLiteratureAuthor.Find(p => p.Title == title && p.Rank == 0).Author).IsReliable)
                 {
                     goodJourStr = "√";
                     goodJourShowFlag = true;
@@ -332,7 +324,7 @@ namespace LifeGame
 
         private void LoadLiteratureList(string SearchText)
         {
-            List<string> ShownTitle = new List<string>();
+            List<string> ShownTitle = new List<string>();            
             foreach (CLiterature literature in G.glb.lstLiterature)
             {
                 // Find literature with the search text in its title
@@ -344,19 +336,27 @@ namespace LifeGame
                 if (literature.BibKey.ToUpper().Contains(SearchText.ToUpper()))
                 {
                     ShownTitle.Add(literature.Title);
-                }
+                }                
             }
             // Find literature with the search text as the author name
-            foreach (CAuthor author in G.glb.lstAuthor)
+            List<string> AuthorNames = new List<string>();
+            foreach (RLiteratureAuthor litAuthors in G.glb.lstLiteratureAuthor)
             {
-                if (author.Author.ToUpper().Contains(SearchText.ToUpper()))
+                if (!AuthorNames.Contains(litAuthors.Author))
                 {
-                    foreach (RLiteratureAuthor literatureAuthor in G.glb.lstLiteratureAuthor.FindAll(o => o.Author == author.Author))
+                    AuthorNames.Add(litAuthors.Author);
+                }
+            }
+            foreach (string author in AuthorNames)
+            {
+                if (author.ToUpper().Contains(SearchText.ToUpper()))
+                {
+                    foreach (RLiteratureAuthor literatureAuthor in G.glb.lstLiteratureAuthor.FindAll(o => o.Author == author))
                     {
                         ShownTitle.Add(literatureAuthor.Title);
                     }
                 }
-            }           
+            }
 
             ShownTitle = ShownTitle.Distinct().ToList();
             loadedLiteratures = ShownTitle;
@@ -367,7 +367,7 @@ namespace LifeGame
         {
             List<string> chosenTag = new List<string>();
             List<string> chosenAuthor = new List<string>();
-            List<string> chosenInstitution = new List<string>();
+            //List<string> chosenInstitution = new List<string>();
             List<int> chosenYear = new List<int>();
             List<string> chosenJournalConference = new List<string>();
             List<string> chosenProject = new List<string>();
@@ -380,10 +380,10 @@ namespace LifeGame
             {
                 chosenAuthor.Add(clbAuthor.CheckedItems[i].ToString().Split('[').First());
             }
-            for (int i = 0; i < clbInstitution.CheckedItems.Count; i++)
-            {
-                chosenInstitution.Add(clbInstitution.CheckedItems[i].ToString().Split('[').First());
-            }
+            //for (int i = 0; i < clbInstitution.CheckedItems.Count; i++)
+            //{
+            //    chosenInstitution.Add(clbInstitution.CheckedItems[i].ToString().Split('[').First());
+            //}
             for (int i = 0; i < clbYear.CheckedItems.Count; i++)
             {
                 chosenYear.Add(Convert.ToInt16(clbYear.CheckedItems[i].ToString().Split('[').First()));
@@ -413,14 +413,14 @@ namespace LifeGame
                     ShownTitle.Add(literature.Title);
                 }
                 names names = new names();
-                if (chosenAuthor.Exists(o => G.glb.lstLiteratureAuthor.Exists(p => p.Title == literature.Title && names.processLastName(p.Author) == o)))
+                if (chosenAuthor.Exists(o => G.glb.lstLiteratureAuthor.Exists(p => p.Title == literature.Title && names.processName(p.Author) == o)))
                 {
                     ShownTitle.Add(literature.Title);
                 }
-                if (chosenInstitution.Exists(o => G.glb.lstLiteratureInstitution.Exists(p => p.Title == literature.Title && p.Institution == o)))
-                {
-                    ShownTitle.Add(literature.Title);
-                }
+                //if (chosenInstitution.Exists(o => G.glb.lstLiteratureInstitution.Exists(p => p.Title == literature.Title && p.Institution == o)))
+                //{
+                //    ShownTitle.Add(literature.Title);
+                //}
                 if (chosenProject.Exists(o => G.glb.lstLiteratureCiting.Exists(p => p.Title == literature.Title && p.TitleOfMyArticle == o)))
                 {
                     ShownTitle.Add(literature.Title);
@@ -499,25 +499,25 @@ namespace LifeGame
             LoadLiteratureList();
         }
 
-        private void btnInsAll_Click(object sender, EventArgs e)
-        {
-            clbInstitution.Items.Clear();
-            for (int i = 0; i < Institutions.Count; i++)
-            {
-                clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]", true);
-            }
-            LoadLiteratureList();
-        }
+        //private void btnInsAll_Click(object sender, EventArgs e)
+        //{
+        //    clbInstitution.Items.Clear();
+        //    for (int i = 0; i < Institutions.Count; i++)
+        //    {
+        //        clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]", true);
+        //    }
+        //    LoadLiteratureList();
+        //}
 
-        private void btnInsClear_Click(object sender, EventArgs e)
-        {
-            clbInstitution.Items.Clear();
-            for (int i = 0; i < Institutions.Count; i++)
-            {
-                clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]", false);
-            }
-            LoadLiteratureList();
-        }
+        //private void btnInsClear_Click(object sender, EventArgs e)
+        //{
+        //    clbInstitution.Items.Clear();
+        //    for (int i = 0; i < Institutions.Count; i++)
+        //    {
+        //        clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]", false);
+        //    }
+        //    LoadLiteratureList();
+        //}
 
         private void btnJourAll_Click(object sender, EventArgs e)
         {
@@ -933,10 +933,10 @@ namespace LifeGame
             LoadTab();
         }
 
-        private void btnInstitutionRefresh_Click(object sender, EventArgs e)
-        {
-            LoadTab();
-        }
+        //private void btnInstitutionRefresh_Click(object sender, EventArgs e)
+        //{
+        //    LoadTab();
+        //}
 
         private void goodJournalsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -968,13 +968,6 @@ namespace LifeGame
                     0);
                 e.Handled = true;
             }
-        }
-
-        private void authorsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmAuthorInfo frmAuthorInfo = new frmAuthorInfo();
-            frmAuthorInfo.RefreshLits += new frmAuthorInfo.RefreshLitsHandler(LoadLiteratureList);
-            frmAuthorInfo.Show();
         }
 
         private void unreliableSourceToolStripMenuItem_Click(object sender, EventArgs e)

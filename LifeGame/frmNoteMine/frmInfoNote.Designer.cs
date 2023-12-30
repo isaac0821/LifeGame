@@ -72,6 +72,8 @@
             this.tsmBelongTo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmProperties = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmRenameNote = new System.Windows.Forms.ToolStripMenuItem();
             this.iglIcon = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -261,9 +263,11 @@
             this.tsmIndependent,
             this.tsmBelongTo,
             this.toolStripSeparator5,
-            this.tsmProperties});
+            this.tsmProperties,
+            this.toolStripSeparator10,
+            this.tsmRenameNote});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(195, 564);
+            this.cmsTrvNote.Size = new System.Drawing.Size(195, 592);
             // 
             // tsmAdd
             // 
@@ -420,7 +424,7 @@
             this.removeChildrenToolStripMenuItem.Name = "removeChildrenToolStripMenuItem";
             this.removeChildrenToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.removeChildrenToolStripMenuItem.Text = "Remove Children";
-            this.removeChildrenToolStripMenuItem.Click += new System.EventHandler(this.removeChildrenToolStripMenuItem_Click);
+            this.removeChildrenToolStripMenuItem.Click += new System.EventHandler(this.tsmRemoveChildren_Click);
             // 
             // toolStripSeparator1
             // 
@@ -471,6 +475,18 @@
             this.tsmProperties.Size = new System.Drawing.Size(194, 22);
             this.tsmProperties.Text = "Properties";
             this.tsmProperties.Click += new System.EventHandler(this.tsmProperties_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(191, 6);
+            // 
+            // tsmRenameNote
+            // 
+            this.tsmRenameNote.Name = "tsmRenameNote";
+            this.tsmRenameNote.Size = new System.Drawing.Size(194, 22);
+            this.tsmRenameNote.Text = "Rename Note";
+            this.tsmRenameNote.Click += new System.EventHandler(this.tsmRenameNote_Click);
             // 
             // iglIcon
             // 
@@ -795,5 +811,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem tsmConvertToTransaction;
         private System.Windows.Forms.CheckBox chkShow;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem tsmRenameNote;
     }
 }

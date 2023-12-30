@@ -47,10 +47,10 @@ namespace LifeGame
         public List<RLiteratureAuthor> lstLiteratureAuthor = new List<RLiteratureAuthor>();
         public List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
         public List<RLiteratureInCiting> lstLiteratureCiting = new List<RLiteratureInCiting>();
-        public List<RLiteratureInstitution> lstLiteratureInstitution = new List<RLiteratureInstitution>();
-        public List<RLiteratureOutSource> lstLiteratureOutSource = new List<RLiteratureOutSource>();
-        public List<CAuthor> lstAuthor = new List<CAuthor>();
-        public List<RAuthorAffiliation> lstAuthorAffiliation = new List<RAuthorAffiliation>();
+        //public List<RLiteratureInstitution> lstLiteratureInstitution = new List<RLiteratureInstitution>();
+        //public List<RLiteratureOutSource> lstLiteratureOutSource = new List<RLiteratureOutSource>();
+        //public List<CAuthor> lstAuthor = new List<CAuthor>();
+        //public List<RAuthorAffiliation> lstAuthorAffiliation = new List<RAuthorAffiliation>();
 
         // Survey
         public List<CSurvey> lstSurvey = new List<CSurvey>();

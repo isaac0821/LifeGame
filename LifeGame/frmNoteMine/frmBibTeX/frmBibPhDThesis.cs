@@ -21,7 +21,7 @@ namespace LifeGame
             InitializeComponent();
         }
 
-        public frmBibPhDThesis(CLiterature inputLiterature, RLiteratureAuthor inputAuthor, RLiteratureInstitution inputSchool)
+        public frmBibPhDThesis(CLiterature inputLiterature, RLiteratureAuthor inputAuthor)
         {
             InitializeComponent();
             bibTeX.BibEntry = EBibEntry.Phdthesis;
@@ -64,8 +64,8 @@ namespace LifeGame
 
             if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Booktitle == "" || inputLiterature.BibTeX.Booktitle == null)
             {
-                txtBibSchool.Text = inputSchool.Institution;
-                bibTeX.School = inputSchool.Institution;
+                txtBibSchool.Text = "";
+                bibTeX.School = "";
             }
             else
             {

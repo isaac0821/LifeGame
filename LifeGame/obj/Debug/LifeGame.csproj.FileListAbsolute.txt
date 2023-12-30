@@ -53,9 +53,7 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibConference.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibMasterThesis.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibUnpublished.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmSurvey.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAuthorInfo.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmReliableJournal.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddInstitution.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddAuthor.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddTag.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSurveyTag.resources

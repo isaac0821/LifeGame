@@ -11,6 +11,7 @@ using System.Media;
 using System.Windows.Forms;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Diagnostics;
+using Microsoft.VisualBasic;
 
 namespace LifeGame
 {
@@ -236,8 +237,8 @@ namespace LifeGame
                 G.glb.lstLiteratureAuthor = new List<RLiteratureAuthor>();
                 G.glb.lstLiteratureTag = new List<RLiteratureTag>();
                 G.glb.lstLiteratureCiting = new List<RLiteratureInCiting>();
-                G.glb.lstLiteratureInstitution = new List<RLiteratureInstitution>();
-                G.glb.lstLiteratureOutSource = new List<RLiteratureOutSource>();
+                //G.glb.lstLiteratureInstitution = new List<RLiteratureInstitution>();
+                // G.glb.lstLiteratureOutSource = new List<RLiteratureOutSource>();
 
                 // Task and Log
                 // G.glb.lstTask = new List<CTask>();
@@ -1276,6 +1277,131 @@ namespace LifeGame
             {
                 frmSearchNote frmSearchNote = new frmSearchNote(txtSearchNote.Text);
                 frmSearchNote.Show();
+            }
+        }
+
+        private void tsmAddBatchLiterature_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = false;
+            openFileDialog.Title = "Please select a .txt file.";
+            openFileDialog.Filter = "Text files (*.txt)|*.txt";
+
+            string openFilePath;
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                openFilePath = openFileDialog.FileName;
+                string[] logList = System.IO.File.ReadAllLines(openFilePath);
+                int succeedNum = 0;
+                for (int i = 0; i < logList.Length; i++)
+                {
+                    try
+                    {
+                        string[] sp = logList[i].Split('.');
+                        string authors = sp[0].Trim();
+                        string literature = sp[1].Trim();
+                        string journal = sp[2].Trim();
+                        int year = Convert.ToInt32(sp[3].Trim());
+                        string bibType = sp[4].Trim().Trim('[').Trim(']');
+
+                        if (!G.glb.lstLiterature.Exists(o => o.Title == literature))
+                        {
+
+                            CLiterature newLiterature = new CLiterature();
+                            newLiterature.Title = literature;
+                            newLiterature.PublishYear = year;
+                            newLiterature.JournalOrConferenceName = journal;
+                            newLiterature.InOneSentence = "";
+                            newLiterature.DateAdded = DateTime.Today;
+                            newLiterature.DateModified = DateTime.Today;
+                            newLiterature.Star = false;
+
+                            if (G.glb.lstBadJournal.Contains(journal))
+                            {
+                                newLiterature.PredatoryAlert = true;
+                            }
+                            else
+                            {
+                                newLiterature.PredatoryAlert = false;
+                            }
+
+                            string[] authorList = authors.Split(',');
+                            List<RLiteratureAuthor> newLiteratureAuthors = new List<RLiteratureAuthor>();
+                            for (int au = 0; au < authorList.Length; au++)
+                            {
+                                RLiteratureAuthor newAuthor = new RLiteratureAuthor();
+                                newAuthor.Title = literature;
+                                newAuthor.Author = authorList[au].Trim();
+                                newAuthor.Rank = au;
+                                newLiteratureAuthors.Add(newAuthor);
+                            }
+                            string[] firstAuthor = authorList[0].Split(' ');
+                            string firstAuthorLastName = firstAuthor[firstAuthor.Length - 1].Trim();
+                            newLiterature.BibKey = firstAuthorLastName + year.ToString();
+
+                            CBibTeX literatureBib = new CBibTeX();
+                            if (bibType == "C")
+                            {
+                                literatureBib.BibEntry = EBibEntry.Conference;
+                                literatureBib.Booktitle = journal;
+                            }
+                            else if (bibType == "J")
+                            {
+                                literatureBib.BibEntry = EBibEntry.Article;
+                                literatureBib.Journal = journal;
+                            }
+                            else if (bibType == "D")
+                            {
+                                literatureBib.BibEntry = EBibEntry.Phdthesis;
+                                literatureBib.Booktitle = journal;
+                            }
+                            else
+                            {
+                                literatureBib.BibEntry = EBibEntry.Unpublished;
+                                literatureBib.Note = journal;
+                            }
+                            literatureBib.BibKey = firstAuthorLastName + year.ToString();
+                            literatureBib.Title = literature;
+                            
+                            literatureBib.Year = year.ToString();
+                            ParseBibTeX ParseBib = new ParseBibTeX();
+                            literatureBib.Author = ParseBib.GetAuthor(newLiteratureAuthors);
+                            newLiterature.BibTeX = literatureBib;
+
+                            RLiteratureTag newLiteratureTag = new RLiteratureTag();
+                            newLiteratureTag.Title = literature;
+                            newLiteratureTag.Tag = "(default)";
+
+                            G.glb.lstLiterature.Add(newLiterature);
+                            G.glb.lstLiteratureAuthor.AddRange(newLiteratureAuthors);
+                            G.glb.lstLiteratureTag.Add(newLiteratureTag);
+                            succeedNum += 1;
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Failed: " + logList[i]);
+                    }
+                }
+                if (succeedNum > 0)
+                {
+                    MessageBox.Show("In total " + succeedNum.ToString() + " literature added.");
+                }
+            }
+        }
+
+        private void tsmAddBatchTransactions_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = false;
+            openFileDialog.Title = "Please select a .txt file.";
+            openFileDialog.Filter = "Text files (*.txt)|*.txt";
+
+            string openFilePath;
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                openFilePath = openFileDialog.FileName;
+                string[] logList = System.IO.File.ReadAllLines(openFilePath);
             }
         }
     }

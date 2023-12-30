@@ -20,7 +20,7 @@ namespace LifeGame
     public partial class frmInfoNote : Form
     {
         private plot C = new plot();
-        CNote note = new CNote();
+        public CNote note = new CNote();
         List<RNoteLog> noteLogs = new List<RNoteLog>();
         List<RNoteColor> noteColors = new List<RNoteColor>();
         // List<RNoteTag> noteTags = new List<RNoteTag>();
@@ -105,63 +105,6 @@ namespace LifeGame
             // noteTags.Add(dr);
 
             // 加入template
-            noteColors = new List<RNoteColor>();
-            RNoteColor impEmgH = new RNoteColor();
-            impEmgH.Topic = note.Topic;
-            impEmgH.Keyword = "[Important + Emergency + Heavy]";
-            impEmgH.Color = "Red";
-            impEmgH.TagTime = DateTime.Today.Date;
-            noteColors.Add(impEmgH);
-
-            RNoteColor norEmgH = new RNoteColor();
-            norEmgH.Topic = note.Topic;
-            norEmgH.Keyword = "[Normal + Emergency + Heavy]";
-            norEmgH.Color = "Yellow";
-            norEmgH.TagTime = DateTime.Today.Date;
-            noteColors.Add(norEmgH);
-
-            RNoteColor impCanWaitH = new RNoteColor();
-            impCanWaitH.Topic = note.Topic;
-            impCanWaitH.Keyword = "[Important + CanWait + Heavy]";
-            impCanWaitH.Color = "Orange";
-            impCanWaitH.TagTime = DateTime.Today.Date;
-            noteColors.Add(impCanWaitH);
-
-            RNoteColor norCanWaitH = new RNoteColor();
-            norCanWaitH.Topic = note.Topic;
-            norCanWaitH.Keyword = "[Normal + CanWait + Heavy]";
-            norCanWaitH.Color = "Green";
-            norCanWaitH.TagTime = DateTime.Today.Date;
-            noteColors.Add(norCanWaitH);
-
-            RNoteColor impEmgL = new RNoteColor();
-            impEmgL.Topic = note.Topic;
-            impEmgL.Keyword = "[Important + Emergency + Light]";
-            impEmgL.Color = "Red";
-            impEmgL.TagTime = DateTime.Today.Date;
-            noteColors.Add(impEmgL);
-
-            RNoteColor norEmgL = new RNoteColor();
-            norEmgL.Topic = note.Topic;
-            norEmgL.Keyword = "[Normal + Emergency + Light]";
-            norEmgL.Color = "Orange";
-            norEmgL.TagTime = DateTime.Today.Date;
-            noteColors.Add(norEmgL);
-
-            RNoteColor impCanWaitL = new RNoteColor();
-            impCanWaitL.Topic = note.Topic;
-            impCanWaitL.Keyword = "[Important + CanWait + Light]";
-            impCanWaitL.Color = "Red";
-            impCanWaitL.TagTime = DateTime.Today.Date;
-            noteColors.Add(impCanWaitL);
-
-            RNoteColor norCanWaitL = new RNoteColor();
-            norCanWaitL.Topic = note.Topic;
-            norCanWaitL.Keyword = "[Normal + CanWait + Light]";
-            norCanWaitL.Color = "Green";
-            norCanWaitL.TagTime = DateTime.Today.Date;
-            noteColors.Add(norCanWaitL);
-
             RNoteColor planning = new RNoteColor();
             planning.Topic = note.Topic;
             planning.Keyword = "[Planning]";
@@ -1185,6 +1128,7 @@ namespace LifeGame
 
         private void frmInfoNote_FormClosing(object sender, FormClosingEventArgs e)
         {
+            M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
             SaveNote();
             Dispose();
         }
@@ -1199,6 +1143,7 @@ namespace LifeGame
                 txtTopic.Text = note.Topic;
                 txtLiteratureTitle.Text = note.LiteratureTitle;
                 chkFinished.Checked = note.FinishedNote;
+                chkShow.Checked = false;
             }
         }
 
@@ -1398,7 +1343,7 @@ namespace LifeGame
             }
         }
 
-        private void removeChildrenToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmRemoveChildren_Click(object sender, EventArgs e)
         {
             if (trvNote.SelectedNode != null && trvNote.SelectedNode.Nodes.Count > 0)
             {
@@ -1689,7 +1634,7 @@ namespace LifeGame
 
         private void trvNote_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (trvNote.SelectedNode.Text == txtTopic.Text)
+            if (trvNote.SelectedNode.Parent == null)
             {
                 tsmEdit.Enabled = false;
                 tsmChangeLabel.Enabled = false;
@@ -1697,6 +1642,7 @@ namespace LifeGame
                 tsmDown.Enabled = false;
                 tsmBelongTo.Enabled = false;
                 tsmIndependent.Enabled = false;
+                tsmRenameNote.Enabled = true;
             }
             else
             {
@@ -1706,7 +1652,9 @@ namespace LifeGame
                 tsmDown.Enabled = true;
                 tsmBelongTo.Enabled = true;
                 tsmIndependent.Enabled = true;
+                tsmRenameNote.Enabled = false;
             }
+
             if (M.mem.copiedNodes.Count == 0)
             {
                 tsmPaste.Enabled = false;
@@ -1831,9 +1779,18 @@ namespace LifeGame
                         }
                     }
                     if (tryOpenFlag && G.glb.lstNote.Exists(o => o.TagTime == noteDate && o.Topic == noteTitle))
-                    {
-                        frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.TagTime == noteDate && o.Topic == noteTitle));
-                        frmInfoNote.Show();
+                    {                        
+                        if (M.notesOpened.Exists(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate))
+                        {
+                            M.notesOpened.Find(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate).Show();
+                            M.notesOpened.Find(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate).BringToFront();
+                        }
+                        else
+                        {
+                            frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.TagTime == noteDate && o.Topic == noteTitle));
+                            M.notesOpened.Add(frmInfoNote);
+                            frmInfoNote.Show();
+                        }                        
                     }
                     else
                     {
@@ -1942,7 +1899,7 @@ namespace LifeGame
             openFileDialog.Multiselect = false;
             openFileDialog.Title = "Please select a .txt file.";
             openFileDialog.Filter = "Text files (*.txt)|*.txt";
-            ;
+            
             string openFilePath;
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -2636,6 +2593,76 @@ namespace LifeGame
             {
                 tblNote.RowStyles[1].Height = 112;
             }
+        }
+
+        private void tsmRenameNote_Click(object sender, EventArgs e)
+        {
+            string newLog = Interaction.InputBox("Input new note name", "New Note Name", note.Topic, 300, 300);
+            if (newLog != "" && newLog != note.Topic)
+            {
+                // First check if such name is exist
+                if (G.glb.lstNote.Exists(o => o.Topic == newLog && o.TagTime == note.TagTime))
+                {
+                    MessageBox.Show("Note exists!");
+                }
+                else
+                {
+                    // 先把当前窗口的东西变了
+                    this.Text = "LifeGame - Note - " + newLog;
+                    string oldTopic = txtTopic.Text;
+                    txtTopic.Text = newLog;
+                    trvNote.Nodes[0].Text = newLog;                   
+
+                    // 把G.glb里的信息更新了
+                    foreach (RNoteColor item in G.glb.lstNoteColor.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
+                    {
+                        item.Topic = newLog;
+                    }
+
+                    foreach (RNoteLog item in G.glb.lstNoteLog.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
+                    {
+                        item.Topic = newLog;
+                    }
+
+                    foreach(CNote item in G.glb.lstNote.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
+                    {
+                        item.Topic = newLog;
+                    }
+
+                    // 把G.glb里带有该note的引用信息更新了
+                    foreach(RNoteLog item in G.glb.lstNoteLog.FindAll(o => o.Log.Contains("$NOTE$>") && o.Log.Contains(oldTopic)))
+                    {
+                        item.Log = item.Log.Replace(oldTopic, newLog);
+                    }
+                    foreach (RNoteLog item in G.glb.lstNoteLog.FindAll(o => o.SubLog.Contains("$NOTE$>") && o.SubLog.Contains(oldTopic)))
+                    {
+                        item.SubLog = item.SubLog.Replace(oldTopic, newLog);
+                    }
+
+                    // 把打开的Note的条目更新了
+                    // 暂时不好改，先搁置着...
+
+                    // 把note里的信息更新了
+                    foreach (RNoteColor item in noteColors)
+                    {
+                        item.Topic = newLog;
+                    }
+
+                    foreach(RNoteLog item in noteLogs)
+                    {
+                        item.Topic = newLog;
+                    }
+
+                    note.Topic = newLog;
+
+                    LoadNoteLog();
+                }
+            }
+        }
+    
+        private void updateNoteName(string oldTopic, string newTopic)
+        {
+
         }
     }
     public class CNoteProperties

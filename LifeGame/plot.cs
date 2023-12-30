@@ -443,18 +443,15 @@ namespace LifeGame
                 {
                     lstPicEvent[i + acc].Image = icon.iconDaily;
                 }
+                else if (lstNote[i].LiteratureTitle != "")
+                {
+                    lstPicEvent[i + acc].Image = icon.iconLiterature;
+                }
                 else
                 {
                     if (lstNote[i].FinishedNote)
                     {
-                        if (lstNote[i].LiteratureTitle != "")
-                        {
-                            lstPicEvent[i + acc].Image = icon.iconLiterature;
-                        }
-                        else
-                        {
-                            lstPicEvent[i + acc].Image = icon.iconNote;
-                        }
+                        lstPicEvent[i + acc].Image = icon.iconNote;
                     }
                     else
                     {
@@ -485,9 +482,22 @@ namespace LifeGame
         }
 
         public void CallInfoNote(CNote info)
-        {  
-            frmInfoNote frmInfoNote = new frmInfoNote(info);
-            frmInfoNote.Show();
+        {
+            //frmInfoNote frmInfoNote = new frmInfoNote(info);
+            //frmInfoNote.Show();
+
+
+            if (M.notesOpened.Exists(o => o.note.Topic == info.Topic && o.note.TagTime == info.TagTime.Date))
+            {
+                M.notesOpened.Find(o => o.note.Topic == info.Topic && o.note.TagTime == info.TagTime.Date).Show();
+                M.notesOpened.Find(o => o.note.Topic == info.Topic && o.note.TagTime == info.TagTime.Date).BringToFront();
+            }
+            else
+            {
+                frmInfoNote frmInfoNote = new frmInfoNote(info);
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
+            }
         }
 
         public void CallInfoNoteAddNew(string LiteratureTitle)

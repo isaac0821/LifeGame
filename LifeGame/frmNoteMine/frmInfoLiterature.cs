@@ -24,9 +24,8 @@ namespace LifeGame
         List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
         List<RLiteratureInstitution> lstLiteratureInstitution = new List<RLiteratureInstitution>();
         List<RLiteratureInCiting> lstLiteratureInCiting = new List<RLiteratureInCiting>();
-        List<RLiteratureOutSource> lstLiteratureOutsource = new List<RLiteratureOutSource>();
+        // List<RLiteratureOutSource> lstLiteratureOutsource = new List<RLiteratureOutSource>();
         List<RSurveyLiterature> lstSurveyLiterature = new List<RSurveyLiterature>();
-        List<CNote> lstNote = new List<CNote>();
         CBibTeX literatureBib = new CBibTeX();
         public frmInfoLiterature(string LiteratureTitle)
         {
@@ -35,10 +34,7 @@ namespace LifeGame
             lstLiteratureAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
             InOneSentence = literature.InOneSentence;
-            lstLiteratureInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureInCiting = G.glb.lstLiteratureCiting.FindAll(o => o.Title == LiteratureTitle).ToList();
-            lstLiteratureOutsource = G.glb.lstLiteratureOutSource.FindAll(o => o.Title == LiteratureTitle).ToList();
-            lstNote = G.glb.lstNote.FindAll(o => o.LiteratureTitle == LiteratureTitle).ToList();
             lstSurveyLiterature = G.glb.lstSurveyLiterature.FindAll(o => o.LiteratureTitle == LiteratureTitle).ToList();
             literatureBib = literature.BibTeX;
             InitializeComponent();
@@ -109,9 +105,6 @@ namespace LifeGame
             txtBibKey.Text = "";
             lsbAuthor.Items.Clear();
             lsbTag.Items.Clear();
-            lsbOutSource.Items.Clear();
-            lsbInstitution.Items.Clear();
-            lsbNote.Items.Clear();
             lsbInCiting.Items.Clear();
             lsbSurvey.Items.Clear();
             chkStar.Checked = false;
@@ -142,25 +135,10 @@ namespace LifeGame
             {
                 lsbTag.Items.Add(tag.Tag);
             }
-            lsbOutSource.Items.Clear();
-            foreach (RLiteratureOutSource outSource in lstLiteratureOutsource)
-            {
-                lsbOutSource.Items.Add(outSource.OutsourcePath);
-            }
-            lsbInstitution.Items.Clear();
-            foreach (RLiteratureInstitution institution in lstLiteratureInstitution)
-            {
-                lsbInstitution.Items.Add(institution.Institution);
-            }
             lsbInCiting.Items.Clear();
             foreach (RLiteratureInCiting cited in lstLiteratureInCiting)
             {
                 lsbInCiting.Items.Add(cited.TitleOfMyArticle);
-            }
-            lsbNote.Items.Clear();
-            foreach (CNote note in lstNote)
-            {
-                lsbNote.Items.Add(note.TagTime.Year.ToString() + "." + note.TagTime.Month.ToString() + "." + note.TagTime.Day.ToString() + " - " + note.Topic);
             }
             foreach (RSurveyLiterature survey in lstSurveyLiterature)
             {
@@ -229,15 +207,6 @@ namespace LifeGame
                 {
                     EntirelyEmptyFlag = false;
                 }
-                if (lsbInstitution.Items.Count == 0)
-                {
-                    MessageBox.Show("Add institution");
-                    CanSaveFlag = false;
-                }
-                else
-                {
-                    EntirelyEmptyFlag = false;
-                }
                 if (CanSaveFlag)
                 {
                     // 如果本来没有这篇文献，说明是新增文献，否则是删改文献
@@ -259,17 +228,9 @@ namespace LifeGame
                         {
                             author.Title = txtTitle.Text;
                         }
-                        foreach (RLiteratureOutSource outSource in lstLiteratureOutsource)
-                        {
-                            outSource.Title = txtTitle.Text;
-                        }
                         foreach (RLiteratureTag tag in lstLiteratureTag)
                         {
                             tag.Title = txtTitle.Text;
-                        }
-                        foreach (RLiteratureInstitution institution in lstLiteratureInstitution)
-                        {
-                            institution.Title = txtTitle.Text;
                         }
                         foreach (RLiteratureInCiting inCiting in lstLiteratureInCiting)
                         {
@@ -288,8 +249,6 @@ namespace LifeGame
                         G.glb.lstLiterature.Add(newLiterature);
                         G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
                         G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
-                        G.glb.lstLiteratureOutSource.AddRange(lstLiteratureOutsource);
-                        G.glb.lstLiteratureInstitution.AddRange(lstLiteratureInstitution);
                         G.glb.lstLiteratureCiting.AddRange(lstLiteratureInCiting);
                         G.glb.lstSurveyLiterature.AddRange(lstSurveyLiterature);
                     }
@@ -311,41 +270,18 @@ namespace LifeGame
                         {
                             tag.Title = txtTitle.Text;
                         }
-                        foreach (RLiteratureOutSource outSource in lstLiteratureOutsource)
-                        {
-                            outSource.Title = txtTitle.Text;
-                        }
-                        foreach (RLiteratureInstitution institution in lstLiteratureInstitution)
-                        {
-                            institution.Title = txtTitle.Text;
-                        }
                         foreach (RLiteratureInCiting inCiting in lstLiteratureInCiting)
                         {
                             inCiting.Title = txtTitle.Text;
                         }
                         G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == txtTitle.Text);
                         G.glb.lstLiteratureTag.RemoveAll(o => o.Title == txtTitle.Text);
-                        G.glb.lstLiteratureOutSource.RemoveAll(o => o.Title == txtTitle.Text);
-                        G.glb.lstLiteratureInstitution.RemoveAll(o => o.Title == txtTitle.Text);
                         G.glb.lstLiteratureCiting.RemoveAll(o => o.Title == txtTitle.Text);
                         G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
                         G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
-                        G.glb.lstLiteratureOutSource.AddRange(lstLiteratureOutsource);
-                        G.glb.lstLiteratureInstitution.AddRange(lstLiteratureInstitution);
                         G.glb.lstLiteratureCiting.AddRange(lstLiteratureInCiting);
                     }
 
-                    foreach (object item in lsbAuthor.Items)
-                    {
-                        if (!G.glb.lstAuthor.Exists(o => o.Author == item.ToString()))
-                        {
-                            CAuthor author = new CAuthor();
-                            author.Author = item.ToString();
-                            author.IsReliable = false;
-                            author.PrimeAffiliation = "";
-                            G.glb.lstAuthor.Add(author);
-                        }
-                    }
                     try
                     {
                         // 有可能literature窗口已经关掉了，没法callback
@@ -357,7 +293,7 @@ namespace LifeGame
                         f.Close();
                     }
                     catch (Exception)
-                    { 
+                    {
                         // 下次打开自然会刷新，所以不用catch
                     }
                     Dispose();
@@ -378,16 +314,6 @@ namespace LifeGame
             SelectedAttri = (sender as ContextMenuStrip).SourceControl.Name;
         }
 
-        private void GetInstitution(string strInstitution)
-        {
-            if (!lsbInstitution.Items.Contains(strInstitution))
-            {
-                RLiteratureInstitution newInstitution = new RLiteratureInstitution();
-                newInstitution.Institution = strInstitution;
-                lstLiteratureInstitution.Add(newInstitution);
-                lsbInstitution.Items.Add(strInstitution);
-            }
-        }
         private void GetTag(string strTag)
         {
             if (!lsbTag.Items.Contains(strTag))
@@ -408,16 +334,6 @@ namespace LifeGame
                     frmAddTag frmAddTag = new frmAddTag();
                     frmAddTag.SendTag += new frmAddTag.GetTag(GetTag);
                     frmAddTag.Show();
-                    break;
-                case "lsbInstitution":
-                    List<string> authors = new List<string>();
-                    foreach (object item in lsbAuthor.Items)
-                    {
-                        authors.Add(item.ToString());
-                    }
-                    frmAddInstitution frmAddInstitution = new frmAddInstitution(authors);
-                    frmAddInstitution.SendInstitution += new frmAddInstitution.GetInstitution(GetInstitution);
-                    frmAddInstitution.Show();
                     break;
                 case "lsbInCiting":
                     string strInCiting = Interaction.InputBox("Literature InCiting", "Literature InCiting", "Literature InCiting", 300, 300);
@@ -447,17 +363,6 @@ namespace LifeGame
                         lsbTag.Items.Add(Tag.Tag);
                     }
                     break;
-                case "lsbInstitution":
-                    if (lsbInstitution.SelectedItem != null)
-                    {
-                        lstLiteratureInstitution.RemoveAll(o => o.Institution == lsbInstitution.SelectedItem.ToString());
-                    }
-                    lsbInstitution.Items.Clear();
-                    foreach (RLiteratureInstitution Institution in lstLiteratureInstitution)
-                    {
-                        lsbInstitution.Items.Add(Institution.Institution);
-                    }
-                    break;
                 case "lsbInCiting":
                     if (lsbInCiting.SelectedItem != null)
                     {
@@ -472,38 +377,6 @@ namespace LifeGame
                 default:
                     break;
             }
-        }
-
-        private void tsmOpen_Click(object sender, EventArgs e)
-        {
-            if (lsbNote.SelectedItem != null)
-            {
-                string selectedItemText = lsbNote.SelectedItem.ToString();
-                string[] split = selectedItemText.Split('-');
-                string[] datelist = split[0].Split('.');
-                int Year = Convert.ToInt16(datelist[0]);
-                int Month = Convert.ToInt16(datelist[1]);
-                int Day = Convert.ToInt16(datelist[2].Substring(0, datelist[2].Length - 1));
-                DateTime date = new DateTime(Year, Month, Day, 0, 0, 0);
-                split[1] = split[1].Substring(1, split[1].Length - 1);
-                string NoteTopic = "";
-                for (int i = 1; i < split.Length; i++)
-                {
-                    NoteTopic += split[i];
-                    NoteTopic += "-";
-                }
-                NoteTopic = NoteTopic.Substring(0, NoteTopic.Length - 1);
-                CNote note = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic);
-                plot D = new plot();
-                D.CallInfoNote(note);
-            }
-        }
-
-        private void tsmNewNote_Click(object sender, EventArgs e)
-        {
-            modifiedFlag = true;
-            plot D = new plot();
-            D.CallInfoNoteAddNew(txtTitle.Text);
         }
 
         private void GetBibKey()
@@ -525,11 +398,6 @@ namespace LifeGame
             newAuthor.Rank = lsbAuthor.Items.Count;
             lstLiteratureAuthor.Add(newAuthor);
             lsbAuthor.Items.Add(strAuthor);
-            if (G.glb.lstAuthor.Exists(o => o.Author == strAuthor))
-            {
-                string PrimeInstitution = G.glb.lstAuthor.Find(o => o.Author == strAuthor).PrimeAffiliation;
-                GetInstitution(PrimeInstitution);
-            }
             GetBibKey();
         }
 
@@ -596,58 +464,6 @@ namespace LifeGame
             GetBibKey();
         }
 
-        private void tsmOpenOutSource_Click(object sender, EventArgs e)
-        {
-            if (lsbOutSource.SelectedItem != null)
-            {
-                string selectedPath = lsbOutSource.SelectedItem.ToString();
-                string[] checkUrl = selectedPath.Split(':');
-                if (checkUrl[0] == "http" || checkUrl[0] == "https")
-                {
-                    System.Diagnostics.Process.Start("chrome.exe", selectedPath);
-                }
-                else
-                {
-                    try
-                    {
-                        System.Diagnostics.Process.Start(selectedPath);
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("File type is not supported.");
-                    }
-                }
-            }
-        }
-
-        private void tsmAddOutSource_Click(object sender, EventArgs e)
-        {
-            modifiedFlag = true;
-            string tmpPath = txtTitle.Text + ".pdf";
-            tmpPath = tmpPath.Replace(":", "-");
-            tmpPath = "D:\\literature\\" + tmpPath;
-            string strOutsource = Interaction.InputBox("Literature Link", "Literature Link", tmpPath, 300, 300);
-            RLiteratureOutSource newOutSource = new RLiteratureOutSource();
-            newOutSource.Title = txtTitle.Text;
-            newOutSource.OutsourcePath = strOutsource;
-            lstLiteratureOutsource.Add(newOutSource);
-            lsbOutSource.Items.Add(strOutsource);
-        }
-
-        private void DeleteOutSource_Click(object sender, EventArgs e)
-        {
-            modifiedFlag = true;
-            if (lsbOutSource.SelectedItem != null)
-            {
-                lstLiteratureOutsource.RemoveAll(o => o.OutsourcePath == lsbOutSource.SelectedItem.ToString());
-            }
-            lsbOutSource.Items.Clear();
-            for (int i = 0; i < lstLiteratureOutsource.Count; i++)
-            {
-                lsbOutSource.Items.Add(lstLiteratureOutsource[i].OutsourcePath);
-            }
-        }
-
         private void btnBibTeX_Click(object sender, EventArgs e)
         {
             // First, create a temp literature log, use it to generate BibTeX
@@ -685,13 +501,6 @@ namespace LifeGame
                 tmpAuthor.Rank = i;
                 tmpAuthorList.Add(tmpAuthor);
             }
-            List<RLiteratureInstitution> tmpInstitutionList = new List<RLiteratureInstitution>();
-            for (int i = 0; i < lsbInstitution.Items.Count; i++)
-            {
-                RLiteratureInstitution tmpInstitution = new RLiteratureInstitution();
-                tmpInstitution.Institution = lsbInstitution.Items[i].ToString();
-                tmpInstitutionList.Add(tmpInstitution);
-            }
 
             switch (cbxBibEntryType.Text)
             {
@@ -710,16 +519,7 @@ namespace LifeGame
                     {
                         tmpMasterAuthor.Author = "";
                     }
-                    RLiteratureInstitution tmpMasterInstitution = new RLiteratureInstitution();
-                    if (tmpInstitutionList.Count > 0)
-                    {
-                        tmpMasterInstitution = tmpInstitutionList[0];
-                    }
-                    else
-                    {
-                        tmpMasterInstitution.Institution = "";
-                    }
-                    frmBibMasterThesis frmBibMasterThesis = new frmBibMasterThesis(tmpLiterature, tmpMasterAuthor, tmpMasterInstitution);
+                    frmBibMasterThesis frmBibMasterThesis = new frmBibMasterThesis(tmpLiterature, tmpMasterAuthor);
                     frmBibMasterThesis.BuildBibTeX += new frmBibMasterThesis.BuildBibTeXHandler(ParseBibTeXText);
                     frmBibMasterThesis.Show();
                     break;
@@ -733,16 +533,7 @@ namespace LifeGame
                     {
                         tmpPhDAuthor.Author = "";
                     }
-                    RLiteratureInstitution tmpPhDInstitution = new RLiteratureInstitution();
-                    if (tmpInstitutionList.Count > 0)
-                    {
-                        tmpPhDInstitution = tmpInstitutionList[0];
-                    }
-                    else
-                    {
-                        tmpPhDInstitution.Institution = "";
-                    }
-                    frmBibPhDThesis frmBibPhDThesis = new frmBibPhDThesis(tmpLiterature, tmpPhDAuthor, tmpPhDInstitution);
+                    frmBibPhDThesis frmBibPhDThesis = new frmBibPhDThesis(tmpLiterature, tmpPhDAuthor);
                     frmBibPhDThesis.BuildBibTeX += new frmBibPhDThesis.BuildBibTeXHandler(ParseBibTeXText);
                     frmBibPhDThesis.Show();
                     break;
@@ -800,18 +591,6 @@ namespace LifeGame
             //}
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (lsbAuthor.SelectedItem != null)
-            {
-                if (G.glb.lstAuthor.Exists(o => o.Author == lsbAuthor.SelectedItem.ToString()))
-                {
-                    frmAuthorInfo frmAuthorInfo = new frmAuthorInfo(lsbAuthor.SelectedItem.ToString());
-                    frmAuthorInfo.Show();
-                }
-            }
-        }
-
         private void txtJournalConference_TextChanged(object sender, EventArgs e)
         {
             modifiedFlag = true;
@@ -841,7 +620,7 @@ namespace LifeGame
         {
             if (lsbSurvey.SelectedItem != null)
             {
-                if (G.glb.lstSurveyLiterature.Exists(o => 
+                if (G.glb.lstSurveyLiterature.Exists(o =>
                     o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
                     && o.LiteratureTitle == txtTitle.Text))
                 {
@@ -898,7 +677,6 @@ namespace LifeGame
             }
         }
 
-
         private void tsmRemoveSurvey_Click(object sender, EventArgs e)
         {
             if (lsbSurvey.SelectedItem != null)
@@ -915,7 +693,7 @@ namespace LifeGame
                 else
                 {
                     // 如果已经有数据， 跳出确认框确认下，否则直接删
-                    if (G.glb.lstSurveyLiteratureTagValue.Exists(o => 
+                    if (G.glb.lstSurveyLiteratureTagValue.Exists(o =>
                         o.LiteratureTitle == txtTitle.Text
                         && o.SurveyTitle == lsbSurvey.SelectedItem.ToString()))
                     {
@@ -923,12 +701,12 @@ namespace LifeGame
                         switch (result)
                         {
                             case DialogResult.Yes:
-                                G.glb.lstSurveyLiteratureTagValue.RemoveAll(o => 
+                                G.glb.lstSurveyLiteratureTagValue.RemoveAll(o =>
                                     o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
-                                    && o.LiteratureTitle == txtTitle.Text); 
+                                    && o.LiteratureTitle == txtTitle.Text);
                                 G.glb.lstSurveyLiterature.RemoveAll(o =>
                                     o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
-                                    && o.LiteratureTitle == txtTitle.Text);                                
+                                    && o.LiteratureTitle == txtTitle.Text);
                                 lsbSurvey.Items.Clear();
                                 foreach (RSurveyLiterature item in G.glb.lstSurveyLiterature)
                                 {
@@ -979,6 +757,43 @@ namespace LifeGame
                 {
                     MessageBox.Show("Literature exists!");
                 }
+            }
+        }
+
+        private void btnFullText_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = "D:\\Literature\\" + txtTitle.Text + ".pdf";
+                path = path.Replace(":", "-");
+                System.Diagnostics.Process.Start(path);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Cannot find full text in 'D:\\Literature\\'.");
+            }
+        }
+
+        private void btnNote_Click(object sender, EventArgs e)
+        {
+            if (G.glb.lstNote.Exists(o => o.LiteratureTitle == txtTitle.Text))
+            {
+                if (M.notesOpened.Exists(o => o.note.LiteratureTitle == txtTitle.Text))
+                {
+                    M.notesOpened.Find(o => o.note.LiteratureTitle == txtTitle.Text).Show();
+                    M.notesOpened.Find(o => o.note.LiteratureTitle == txtTitle.Text).BringToFront();
+                }
+                else
+                {
+                    frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.LiteratureTitle == txtTitle.Text));
+                    M.notesOpened.Add(frmInfoNote);
+                    frmInfoNote.Show();
+                }
+            }
+            else
+            {
+                frmInfoNote frmInfoNote = new frmInfoNote(txtTitle.Text);
+                frmInfoNote.Show();
             }
         }
     }
