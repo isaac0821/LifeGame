@@ -19,12 +19,8 @@ namespace LifeGame
         bool modifiedFlag = false;
 
         CLiterature literature = new CLiterature();
-        string InOneSentence = "";
         List<RLiteratureAuthor> lstLiteratureAuthor = new List<RLiteratureAuthor>();
         List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
-        List<RLiteratureInstitution> lstLiteratureInstitution = new List<RLiteratureInstitution>();
-        List<RLiteratureInCiting> lstLiteratureInCiting = new List<RLiteratureInCiting>();
-        // List<RLiteratureOutSource> lstLiteratureOutsource = new List<RLiteratureOutSource>();
         List<RSurveyLiterature> lstSurveyLiterature = new List<RSurveyLiterature>();
         CBibTeX literatureBib = new CBibTeX();
         public frmInfoLiterature(string LiteratureTitle)
@@ -33,8 +29,6 @@ namespace LifeGame
             lstLiteratureTag = G.glb.lstLiteratureTag.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
-            InOneSentence = literature.InOneSentence;
-            lstLiteratureInCiting = G.glb.lstLiteratureCiting.FindAll(o => o.Title == LiteratureTitle).ToList();
             lstSurveyLiterature = G.glb.lstSurveyLiterature.FindAll(o => o.LiteratureTitle == LiteratureTitle).ToList();
             literatureBib = literature.BibTeX;
             InitializeComponent();
@@ -100,12 +94,11 @@ namespace LifeGame
             txtTitle.Enabled = true;
             txtTitle.Text = "";
             txtYear.Text = "";
-            txtJournalConference.Text = "";
+            cbxJournalConference.Text = "";
             txtInOneSentence.Text = "";
             txtBibKey.Text = "";
             lsbAuthor.Items.Clear();
             lsbTag.Items.Clear();
-            lsbInCiting.Items.Clear();
             lsbSurvey.Items.Clear();
             chkStar.Checked = false;
         }
@@ -115,7 +108,7 @@ namespace LifeGame
             txtTitle.Enabled = false;
             txtTitle.Text = literature.Title;
             txtYear.Text = literature.PublishYear.ToString();
-            txtJournalConference.Text = literature.JournalOrConferenceName;
+            cbxJournalConference.Text = literature.JournalOrConferenceName;
             txtInOneSentence.Text = literature.InOneSentence;
             txtBibKey.Text = literature.BibKey;
             chkStar.Checked = literature.Star;
@@ -134,11 +127,6 @@ namespace LifeGame
             foreach (RLiteratureTag tag in lstLiteratureTag)
             {
                 lsbTag.Items.Add(tag.Tag);
-            }
-            lsbInCiting.Items.Clear();
-            foreach (RLiteratureInCiting cited in lstLiteratureInCiting)
-            {
-                lsbInCiting.Items.Add(cited.TitleOfMyArticle);
             }
             foreach (RSurveyLiterature survey in lstSurveyLiterature)
             {
@@ -180,7 +168,7 @@ namespace LifeGame
                 {
                     EntirelyEmptyFlag = false;
                 }
-                if (txtJournalConference.Text == "")
+                if (cbxJournalConference.Text == "")
                 {
                     MessageBox.Show("Journal/Conference Name is missing");
                     CanSaveFlag = false;
@@ -215,7 +203,7 @@ namespace LifeGame
                         CLiterature newLiterature = new CLiterature();
                         newLiterature.Title = txtTitle.Text;
                         newLiterature.PublishYear = Convert.ToInt32(txtYear.Text);
-                        newLiterature.JournalOrConferenceName = txtJournalConference.Text;
+                        newLiterature.JournalOrConferenceName = cbxJournalConference.Text;
                         newLiterature.InOneSentence = txtInOneSentence.Text;
                         newLiterature.BibKey = txtBibKey.Text;
                         newLiterature.BibTeX = literatureBib;
@@ -232,10 +220,6 @@ namespace LifeGame
                         {
                             tag.Title = txtTitle.Text;
                         }
-                        foreach (RLiteratureInCiting inCiting in lstLiteratureInCiting)
-                        {
-                            inCiting.Title = txtTitle.Text;
-                        }
                         foreach (RSurveyLiterature surveyLiterature in lstSurveyLiterature)
                         {
                             surveyLiterature.LiteratureTitle = txtTitle.Text;
@@ -249,13 +233,12 @@ namespace LifeGame
                         G.glb.lstLiterature.Add(newLiterature);
                         G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
                         G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
-                        G.glb.lstLiteratureCiting.AddRange(lstLiteratureInCiting);
                         G.glb.lstSurveyLiterature.AddRange(lstSurveyLiterature);
                     }
                     else
                     {
                         G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PublishYear = Convert.ToInt32(txtYear.Text);
-                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).JournalOrConferenceName = txtJournalConference.Text;
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).JournalOrConferenceName = cbxJournalConference.Text;
                         G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).InOneSentence = txtInOneSentence.Text;
                         G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibKey = txtBibKey.Text;
                         G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibTeX = literatureBib;
@@ -270,16 +253,10 @@ namespace LifeGame
                         {
                             tag.Title = txtTitle.Text;
                         }
-                        foreach (RLiteratureInCiting inCiting in lstLiteratureInCiting)
-                        {
-                            inCiting.Title = txtTitle.Text;
-                        }
                         G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == txtTitle.Text);
                         G.glb.lstLiteratureTag.RemoveAll(o => o.Title == txtTitle.Text);
-                        G.glb.lstLiteratureCiting.RemoveAll(o => o.Title == txtTitle.Text);
                         G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
                         G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
-                        G.glb.lstLiteratureCiting.AddRange(lstLiteratureInCiting);
                     }
 
                     try
@@ -336,11 +313,11 @@ namespace LifeGame
                     frmAddTag.Show();
                     break;
                 case "lsbInCiting":
-                    string strInCiting = Interaction.InputBox("Literature InCiting", "Literature InCiting", "Literature InCiting", 300, 300);
-                    RLiteratureInCiting newInCiting = new RLiteratureInCiting();
-                    newInCiting.TitleOfMyArticle = strInCiting;
-                    lstLiteratureInCiting.Add(newInCiting);
-                    lsbInCiting.Items.Add(strInCiting);
+                    //string strInCiting = Interaction.InputBox("Literature InCiting", "Literature InCiting", "Literature InCiting", 300, 300);
+                    //RLiteratureInCiting newInCiting = new RLiteratureInCiting();
+                    //newInCiting.TitleOfMyArticle = strInCiting;
+                    //lstLiteratureInCiting.Add(newInCiting);
+                    //lsbInCiting.Items.Add(strInCiting);
                     break;
                 default:
                     break;
@@ -364,15 +341,15 @@ namespace LifeGame
                     }
                     break;
                 case "lsbInCiting":
-                    if (lsbInCiting.SelectedItem != null)
-                    {
-                        lstLiteratureInCiting.RemoveAll(o => o.TitleOfMyArticle == lsbInCiting.SelectedItem.ToString());
-                    }
-                    lsbInCiting.Items.Clear();
-                    foreach (RLiteratureInCiting InCiting in lstLiteratureInCiting)
-                    {
-                        lsbInCiting.Items.Add(InCiting.TitleOfMyArticle);
-                    }
+                    //if (lsbInCiting.SelectedItem != null)
+                    //{
+                    //    lstLiteratureInCiting.RemoveAll(o => o.TitleOfMyArticle == lsbInCiting.SelectedItem.ToString());
+                    //}
+                    //lsbInCiting.Items.Clear();
+                    //foreach (RLiteratureInCiting InCiting in lstLiteratureInCiting)
+                    //{
+                    //    lsbInCiting.Items.Add(InCiting.TitleOfMyArticle);
+                    //}
                     break;
                 default:
                     break;
@@ -472,7 +449,7 @@ namespace LifeGame
             CLiterature tmpLiterature = new CLiterature();
             tmpLiterature.Title = txtTitle.Text;
             tmpLiterature.BibKey = txtBibKey.Text;
-            tmpLiterature.JournalOrConferenceName = txtJournalConference.Text;
+            tmpLiterature.JournalOrConferenceName = cbxJournalConference.Text;
             tmpLiterature.BibTeX = literatureBib;
             modifiedFlag = true;
 
@@ -570,6 +547,29 @@ namespace LifeGame
             {
                 this.ActiveControl = txtTitle;
             }
+            // Check if corresponded note exists
+            if (G.glb.lstNote.Exists(o => o.LiteratureTitle == txtTitle.Text))
+            {
+                btnNote.Text = "Note*";
+            }
+            else
+            {
+                btnNote.Text = "Note";
+            }
+            List<string> journalList = new List<string>();
+            foreach (CLiterature lit in G.glb.lstLiterature)
+            {
+                if (!journalList.Exists(o => o == lit.JournalOrConferenceName))
+                {
+                    journalList.Add(lit.JournalOrConferenceName);
+                }
+            }
+            journalList.Sort();
+            foreach (string jour in journalList)
+            {
+                cbxJournalConference.Items.Add(jour);
+            }
+
             //靠！！气死了，白写了，谷歌学术会检查是不是机器人...咋绕过去呢...
             //try
             //{
@@ -591,7 +591,7 @@ namespace LifeGame
             //}
         }
 
-        private void txtJournalConference_TextChanged(object sender, EventArgs e)
+        private void cbxJournalConference_TextChanged(object sender, EventArgs e)
         {
             modifiedFlag = true;
         }
@@ -764,8 +764,9 @@ namespace LifeGame
         {
             try
             {
-                string path = "D:\\Literature\\" + txtTitle.Text + ".pdf";
+                string path = "Literature\\" + txtTitle.Text + ".pdf";
                 path = path.Replace(":", "-");
+                path = "D:\\" + path;
                 System.Diagnostics.Process.Start(path);
             }
             catch (Exception)
@@ -794,6 +795,18 @@ namespace LifeGame
             {
                 frmInfoNote frmInfoNote = new frmInfoNote(txtTitle.Text);
                 frmInfoNote.Show();
+            }
+        }
+
+        private void frmInfoLiterature_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.T)
+            {
+                tsmAttriAdd_Click(lsbTag, e);
+            }
+            else if (e.Control && e.KeyCode == Keys.A)
+            {
+                tsmAuthorAdd_Click(lsbAuthor, e);
             }
         }
     }

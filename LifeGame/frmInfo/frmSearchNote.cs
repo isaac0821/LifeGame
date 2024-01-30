@@ -33,24 +33,31 @@ namespace LifeGame
         {
             if (lsbNote.SelectedItem != null)
             {
-                string selectedItemText = lsbNote.SelectedItem.ToString();
-                string[] split = selectedItemText.Split('-');
-                string[] datelist = split[0].Split('.');
-                int Year = Convert.ToInt16(datelist[0]);
-                int Month = Convert.ToInt16(datelist[1]);
-                int Day = Convert.ToInt16(datelist[2].Substring(0, datelist[2].Length - 1));
-                DateTime date = new DateTime(Year, Month, Day, 0, 0, 0);
-                split[1] = split[1].Substring(1, split[1].Length - 1);
-                string NoteTopic = "";
-                for (int i = 1; i < split.Length; i++)
+                try
                 {
-                    NoteTopic += split[i];
-                    NoteTopic += "-";
+                    string selectedItemText = lsbNote.SelectedItem.ToString();
+                    string[] split = selectedItemText.Split('-');
+                    string[] datelist = split[0].Split('.');
+                    int Year = Convert.ToInt16(datelist[0]);
+                    int Month = Convert.ToInt16(datelist[1]);
+                    int Day = Convert.ToInt16(datelist[2].Substring(0, datelist[2].Length - 1));
+                    DateTime date = new DateTime(Year, Month, Day, 0, 0, 0);
+                    split[1] = split[1].Substring(1, split[1].Length - 1);
+                    string NoteTopic = "";
+                    for (int i = 1; i < split.Length; i++)
+                    {
+                        NoteTopic += split[i];
+                        NoteTopic += "-";
+                    }
+                    NoteTopic = NoteTopic.Substring(0, NoteTopic.Length - 1);
+                    CNote note = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic);
+                    plot D = new plot();
+                    D.CallInfoNote(note);
                 }
-                NoteTopic = NoteTopic.Substring(0, NoteTopic.Length - 1);
-                CNote note = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic);
-                plot D = new plot();
-                D.CallInfoNote(note);
+                catch
+                {
+                    MessageBox.Show("Cannot find note.");
+                }
             }
         }
     }

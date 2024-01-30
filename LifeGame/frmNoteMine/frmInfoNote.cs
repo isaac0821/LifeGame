@@ -506,7 +506,7 @@ namespace LifeGame
             dtpDate.Value = DateTime.Today.Date;
             btnSave.Enabled = true;
         }
-        
+
         private void LoadNoteTag()
         {
             //lsvTag.Items.Clear();
@@ -544,7 +544,7 @@ namespace LifeGame
             TreeNode rootNode = new TreeNode(note.Topic, 0, 0);
             rootNode.Name = note.GUID;
             rootNode.Text = note.Topic;
-            rootNode.ExpandAll();
+            rootNode.Expand();
             LoadChildNoteLog(rootNode, note.Topic);
             trvNote.Nodes.Add(rootNode);
         }
@@ -690,7 +690,7 @@ namespace LifeGame
                 else
                 {
                     try
-                    {   
+                    {
                         // Log Name
                         string LogName = sp[0];
                         // Time
@@ -742,8 +742,8 @@ namespace LifeGame
                             return 9;
                         }
                     }
-                    catch 
-                    { 
+                    catch
+                    {
                         return 9;
                     }
                 }
@@ -993,7 +993,7 @@ namespace LifeGame
                     childNode.Text = sub.SubLog;
                     childNode.BackColor = SystemColors.Window;
                     childNode.ForeColor = Color.Black;
-                    childNode.ExpandAll();
+                    childNode.Expand();
                     childNode.StateImageIndex = getLogo(sub.SubLog);
                     if (highlightText != "" && sub.SubLog.Contains(highlightText))
                     {
@@ -1002,7 +1002,7 @@ namespace LifeGame
                     }
                     else
                     {
-                        (childNode.BackColor, childNode.ForeColor, childNode.NodeFont) = getColor(sub.SubLog);                        
+                        (childNode.BackColor, childNode.ForeColor, childNode.NodeFont) = getColor(sub.SubLog);
                     }
                     LoadChildNoteLog(childNode, note.Topic);
                     treeNode.Nodes.Add(childNode);
@@ -1017,15 +1017,15 @@ namespace LifeGame
             {
                 if (sub.Text.Contains("modified: "))
                 {
-                    sub.Text = "modified: " + now.ToString("F");break;
+                    sub.Text = "modified: " + now.ToString("F"); break;
                 }
                 else if (sub.Text.Contains("Modified: "))
                 {
-                    sub.Text = "Modified: " + now.ToString("F");break;
+                    sub.Text = "Modified: " + now.ToString("F"); break;
                 }
                 else if (sub.Text.Contains("MODIFIED: "))
                 {
-                    sub.Text = "MODIFIED: " + now.ToString("F");break;
+                    sub.Text = "MODIFIED: " + now.ToString("F"); break;
                 }
             }
         }
@@ -1074,7 +1074,6 @@ namespace LifeGame
                 case DialogResult.Yes:
                     G.glb.lstNoteLog.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
                     G.glb.lstNoteColor.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
-                    // G.glb.lstNoteTag.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
                     SaveNoteLog();
                     foreach (RNoteLog noteLog in noteLogs)
                     {
@@ -1088,12 +1087,6 @@ namespace LifeGame
                         noteColor.TagTime = dtpDate.Value.Date;
                         G.glb.lstNoteColor.Add(noteColor);
                     }
-                    //foreach (RNoteTag noteTag in noteTags)
-                    //{
-                    //    noteTag.Topic = txtTopic.Text;
-                    //    noteTag.TagTime = dtpDate.Value.Date;
-                    //    G.glb.lstNoteTag.Add(noteTag);
-                    //}
                     if (G.glb.lstNote.Exists(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date))
                     {
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).FinishedNote = chkFinished.Checked;
@@ -1779,7 +1772,7 @@ namespace LifeGame
                         }
                     }
                     if (tryOpenFlag && G.glb.lstNote.Exists(o => o.TagTime == noteDate && o.Topic == noteTitle))
-                    {                        
+                    {
                         if (M.notesOpened.Exists(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate))
                         {
                             M.notesOpened.Find(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate).Show();
@@ -1790,7 +1783,7 @@ namespace LifeGame
                             frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.TagTime == noteDate && o.Topic == noteTitle));
                             M.notesOpened.Add(frmInfoNote);
                             frmInfoNote.Show();
-                        }                        
+                        }
                     }
                     else
                     {
@@ -1899,7 +1892,7 @@ namespace LifeGame
             openFileDialog.Multiselect = false;
             openFileDialog.Title = "Please select a .txt file.";
             openFileDialog.Filter = "Text files (*.txt)|*.txt";
-            
+
             string openFilePath;
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -2363,7 +2356,7 @@ namespace LifeGame
                         if (addOneDayFlag)
                         {
                             EndTime += new TimeSpan(1, 0, 0, 0);
-                        }                        
+                        }
                         // Color
                         string Color = sp[2];
                         // Location
@@ -2445,7 +2438,7 @@ namespace LifeGame
                         MessageBox.Show("Incorrect input format. Correct format is as follows: $RECO$>ScheduleName@HH:MM-HH:MM(+1)@Color[@TaskName@Where@With]");
                     }
                     else
-                    {    
+                    {
                         // Log Name
                         string LogName = sp[0];
                         // Time
@@ -2611,7 +2604,7 @@ namespace LifeGame
                     this.Text = "LifeGame - Note - " + newLog;
                     string oldTopic = txtTopic.Text;
                     txtTopic.Text = newLog;
-                    trvNote.Nodes[0].Text = newLog;                   
+                    trvNote.Nodes[0].Text = newLog;
 
                     // 把G.glb里的信息更新了
                     foreach (RNoteColor item in G.glb.lstNoteColor.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
@@ -2624,13 +2617,13 @@ namespace LifeGame
                         item.Topic = newLog;
                     }
 
-                    foreach(CNote item in G.glb.lstNote.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
+                    foreach (CNote item in G.glb.lstNote.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
                     {
                         item.Topic = newLog;
                     }
 
                     // 把G.glb里带有该note的引用信息更新了
-                    foreach(RNoteLog item in G.glb.lstNoteLog.FindAll(o => o.Log.Contains("$NOTE$>") && o.Log.Contains(oldTopic)))
+                    foreach (RNoteLog item in G.glb.lstNoteLog.FindAll(o => o.Log.Contains("$NOTE$>") && o.Log.Contains(oldTopic)))
                     {
                         item.Log = item.Log.Replace(oldTopic, newLog);
                     }
@@ -2638,6 +2631,7 @@ namespace LifeGame
                     {
                         item.SubLog = item.SubLog.Replace(oldTopic, newLog);
                     }
+                    
 
                     // 把打开的Note的条目更新了
                     // 暂时不好改，先搁置着...
@@ -2648,9 +2642,17 @@ namespace LifeGame
                         item.Topic = newLog;
                     }
 
-                    foreach(RNoteLog item in noteLogs)
+                    foreach (RNoteLog item in noteLogs)
                     {
                         item.Topic = newLog;
+                        if (item.Log == oldTopic)
+                        {
+                            item.Log = newLog;
+                        }
+                        if (item.SubLog == oldTopic)
+                        {
+                            item.SubLog = newLog;
+                        }
                     }
 
                     note.Topic = newLog;
@@ -2659,12 +2661,8 @@ namespace LifeGame
                 }
             }
         }
-    
-        private void updateNoteName(string oldTopic, string newTopic)
-        {
-
-        }
     }
+
     public class CNoteProperties
     {
         public string Note = "";

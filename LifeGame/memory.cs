@@ -9,7 +9,9 @@ namespace LifeGame
     public static class M
     {
         public static TempMemory mem = new TempMemory();
+        // 单例模式的窗口
         public static List<frmInfoNote> notesOpened = new List<frmInfoNote>();
+        public static List<frmLiterature> literatureOpened = new List<frmLiterature>();
     }
 
     public class TempMemory

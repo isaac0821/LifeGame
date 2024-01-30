@@ -80,6 +80,38 @@ namespace LifeGame
                 //    }
                 //}
 
+                //G.glb.lstLiteratureTagType = new List<CLiteratureTag>();
+                //G.glb.lstSubLiteratureTag = new List<RSubLiteratureTag>();
+
+                //string rootGUID = Guid.NewGuid().ToString();
+                //CLiteratureTag rootTag = new CLiteratureTag();
+                //rootTag.GUID = rootGUID;
+                //rootTag.Tag = "(Root)";
+                //G.glb.lstLiteratureTagType.Add(rootTag);
+
+                //List<string> lstTag = new List<string>();
+                //foreach (RLiteratureTag item in G.glb.lstLiteratureTag)
+                //{
+                //    if (!lstTag.Exists(o => o == item.Tag))
+                //    {
+                //        lstTag.Add(item.Tag);
+                //    }
+                //}
+                //foreach (string item in lstTag)
+                //{
+                //    CLiteratureTag newTag = new CLiteratureTag();
+                //    newTag.Tag = item;
+                //    newTag.GUID = Guid.NewGuid().ToString();
+                //    G.glb.lstLiteratureTagType.Add(newTag);
+
+                //    RSubLiteratureTag newSubTag = new RSubLiteratureTag();
+                //    newSubTag.Tag = "(Root)";
+                //    newSubTag.GUID = rootGUID;
+                //    newSubTag.SubTag = item;
+                //    newSubTag.SubGUID = Guid.NewGuid().ToString();
+                //    G.glb.lstSubLiteratureTag.Add(newSubTag);
+                //}
+
                 //G.glb.lstNoteColor = new List<RNoteColor>();
                 //G.glb.lstBadJournal = new List<string>();
                 //G.glb.lstSurvey = new List<CSurvey>();
@@ -236,13 +268,8 @@ namespace LifeGame
                 G.glb.lstLiterature = new List<CLiterature>();
                 G.glb.lstLiteratureAuthor = new List<RLiteratureAuthor>();
                 G.glb.lstLiteratureTag = new List<RLiteratureTag>();
-                G.glb.lstLiteratureCiting = new List<RLiteratureInCiting>();
-                //G.glb.lstLiteratureInstitution = new List<RLiteratureInstitution>();
-                // G.glb.lstLiteratureOutSource = new List<RLiteratureOutSource>();
 
                 // Task and Log
-                // G.glb.lstTask = new List<CTask>();
-                // G.glb.lstSubTask = new List<RSubTask>();
                 G.glb.lstSchedule = new List<CLog>();
                 G.glb.lstLog = new List<CLog>();
 
@@ -1265,18 +1292,25 @@ namespace LifeGame
             frmInfoNote.Show();
         }
 
-        private void tsmCountDown_Click(object sender, EventArgs e)
-        {
-            frmCountDown frmCountDown = new frmCountDown();
-            frmCountDown.Show();
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (txtSearchNote.Text.Length > 0)
             {
-                frmSearchNote frmSearchNote = new frmSearchNote(txtSearchNote.Text);
-                frmSearchNote.Show();
+                List<CNote> notes = G.glb.lstNote.FindAll(o => o.Topic.ToUpper().Contains(txtSearchNote.Text.ToUpper()));
+                if (notes.Count == 0)
+                {
+                    MessageBox.Show("No record!");
+                }
+                else if (notes.Count == 1)
+                {
+                    plot D = new plot();
+                    D.CallInfoNote(notes[0]);
+                }
+                else
+                {
+                    frmSearchNote frmSearchNote = new frmSearchNote(txtSearchNote.Text);
+                    frmSearchNote.Show();
+                }                
             }
         }
 
@@ -1297,7 +1331,7 @@ namespace LifeGame
                 {
                     try
                     {
-                        string[] sp = logList[i].Split('.');
+                        string[] sp = logList[i].Split(';');
                         string authors = sp[0].Trim();
                         string literature = sp[1].Trim();
                         string journal = sp[2].Trim();
@@ -1370,17 +1404,21 @@ namespace LifeGame
 
                             RLiteratureTag newLiteratureTag = new RLiteratureTag();
                             newLiteratureTag.Title = literature;
-                            newLiteratureTag.Tag = "(default)";
+                            newLiteratureTag.Tag = "(Root)";
 
                             G.glb.lstLiterature.Add(newLiterature);
                             G.glb.lstLiteratureAuthor.AddRange(newLiteratureAuthors);
                             G.glb.lstLiteratureTag.Add(newLiteratureTag);
                             succeedNum += 1;
                         }
+                        else
+                        {
+                            MessageBox.Show("Failed: " + logList[i] + " exists!");
+                        }
                     }
                     catch
                     {
-                        MessageBox.Show("Failed: " + logList[i]);
+                        MessageBox.Show("Failed: " + logList[i] + " is illegal!");
                     }
                 }
                 if (succeedNum > 0)
@@ -1402,6 +1440,63 @@ namespace LifeGame
             {
                 openFilePath = openFileDialog.FileName;
                 string[] logList = System.IO.File.ReadAllLines(openFilePath);
+                int succeedNum = 0;
+                for (int i = 0; i < logList.Length; i++)
+                {
+                    try
+                    {
+                        string[] sp = logList[i].Split(';');
+                        string dateStr = sp[0].Trim();
+                        string recordStr = sp[1].Trim();
+                        double number = Convert.ToDouble(sp[2].Trim());
+                        string creditAcc = sp[3].Trim();
+                        string debitAcc = sp[4].Trim();
+
+                        CTransaction tmpTransaction = new CTransaction();
+                        tmpTransaction.CreditAccount = creditAcc;
+                        tmpTransaction.CreditCurrency = "RMB";
+                        tmpTransaction.CreditAmount = number;
+                        tmpTransaction.DebitAccount = debitAcc;
+                        tmpTransaction.DebitCurrency = "RMB";
+                        tmpTransaction.DebitAmount = number;
+                        tmpTransaction.Summary = recordStr;
+                        tmpTransaction.TagTime = DateTime.Parse(dateStr).Date;
+                        calculate C = new calculate();
+                        tmpTransaction.IconType = C.MoneyInOrOut(
+                            G.glb.lstAccount.Find(o => o.AccountName == debitAcc).AccountType,
+                            G.glb.lstAccount.Find(o => o.AccountName == creditAcc).AccountType);
+
+                        if (!G.glb.lstTransaction.Exists(o => o.TagTime == tmpTransaction.TagTime
+                            && o.CreditAccount == tmpTransaction.CreditAccount
+                            && o.CreditCurrency == tmpTransaction.CreditCurrency
+                            && o.CreditAmount == tmpTransaction.CreditAmount
+                            && o.DebitAccount == tmpTransaction.DebitAccount
+                            && o.DebitCurrency == tmpTransaction.DebitCurrency
+                            && o.DebitAmount == tmpTransaction.DebitAmount
+                            && o.Summary == tmpTransaction.Summary
+                            && o.IconType == tmpTransaction.IconType))
+                        {
+                            // 添加对应的Transaction记录
+                            G.glb.lstTransaction.Add(tmpTransaction);
+
+                            // 在Daily Report里添加记录
+
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed: " + logList[i] + " exists!");
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Failed: " + logList[i] + " is illegal!");
+                    }
+                }
+                if (succeedNum > 0)
+                {
+                    MessageBox.Show("Intotal " + succeedNum.ToString() + " transaction record added."); 
+                }
             }
         }
     }

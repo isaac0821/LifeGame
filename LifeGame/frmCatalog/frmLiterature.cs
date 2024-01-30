@@ -5,19 +5,20 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Drawing;
 
 namespace LifeGame
 {
     public partial class frmLiterature : Form
     {
+        //记录tag结构，随时需要更新
+        List<CLiteratureTag> lstTags = new List<CLiteratureTag>();
+        List<RSubLiteratureTag> lstSubTags = new List<RSubLiteratureTag>();
+
+        //记录数量
         List<CItem> Tags = new List<CItem>();
         List<CItem> Authors = new List<CItem>();
-        List<CItem> Years = new List<CItem>();
-        //List<CItem> Institutions = new List<CItem>();
         List<CItem> JournalConferences = new List<CItem>();
-        List<CItem> Projects = new List<CItem>();
-
-        List<string> loadedLiteratures = new List<string>();
 
         public frmLiterature()
         {
@@ -26,6 +27,8 @@ namespace LifeGame
 
         private void frmLiterature_Load(object sender, EventArgs e)
         {
+            lstTags = G.glb.lstLiteratureTagType.ToList();
+            lstSubTags = G.glb.lstSubLiteratureTag.ToList();
             LoadTab();
         }
 
@@ -43,135 +46,40 @@ namespace LifeGame
         private void LoadTab()
         {
             Tags = new List<CItem>();
-            Authors = new List<CItem>();
-            Years = new List<CItem>();
-            //Institutions = new List<CItem>();
-            JournalConferences = new List<CItem>();
-            Projects = new List<CItem>();
             foreach (CLiterature literature in G.glb.lstLiterature)
             {
                 // By Tag
                 List<RLiteratureTag> lstTag = G.glb.lstLiteratureTag.FindAll(o => o.Title == literature.Title).ToList();
                 foreach (RLiteratureTag tag in lstTag)
                 {
+                    Tags.Add(new CItem(tag.Tag, 0));
+                }
+
+                foreach (RLiteratureTag tag in lstTag)
+                {
                     if (Tags.Exists(o => o.ItemName == tag.Tag))
                     {
                         Tags[Tags.FindIndex(o => o.ItemName == tag.Tag)].ItemCount += 1;
                     }
-                    else
+
+                    if (!lstTags.Exists(o => o.Tag == tag.Tag))
                     {
-                        Tags.Add(new CItem(tag.Tag, 1));
+                        CLiteratureTag newTag = new CLiteratureTag();
+                        newTag.Tag = tag.Tag;
+                        newTag.GUID = Guid.NewGuid().ToString();
+                        lstTags.Add(newTag);
+
+                        RSubLiteratureTag newSubTag = new RSubLiteratureTag();
+                        newSubTag.Tag = "(Root)";
+                        newSubTag.GUID = G.glb.lstLiteratureTagType.Find(o => o.Tag == "(Root)").GUID;
+                        newSubTag.SubTag = tag.Tag;
+                        newSubTag.SubGUID = newTag.GUID;
+                        lstSubTags.Add(newSubTag);
                     }
                 }
-
-                // By Authors
-                List<RLiteratureAuthor> lstAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == literature.Title).ToList();
-                names names = new names();
-                foreach (RLiteratureAuthor author in lstAuthor)
-                {
-                    if (Authors.Exists(o => o.ItemName == names.processName(author.Author)))
-                    {
-                        Authors[Authors.FindIndex(o => o.ItemName == names.processName(author.Author))].ItemCount += 1;
-                    }
-                    else
-                    {
-                        Authors.Add(new CItem(names.processName(author.Author), 1));
-                    }
-                }
-
-                // By Institute
-                //List<RLiteratureInstitution> lstInstitution = G.glb.lstLiteratureInstitution.FindAll(o => o.Title == literature.Title).ToList();
-                //foreach (RLiteratureInstitution insitution in lstInstitution)
-                //{
-                //    if (Institutions.Exists(o => o.ItemName == insitution.Institution))
-                //    {
-                //        Institutions[Institutions.FindIndex(o => o.ItemName == insitution.Institution)].ItemCount += 1;
-                //    }
-                //    else
-                //    {
-                //        Institutions.Add(new CItem(insitution.Institution, 1));
-                //    }
-                //}
-
-                // By Project (Citing)
-                List<RLiteratureInCiting> lstCiting = G.glb.lstLiteratureCiting.FindAll(o => o.Title == literature.Title).ToList();
-                foreach (RLiteratureInCiting citing in lstCiting)
-                {
-                    if (Projects.Exists(o => o.ItemName == citing.TitleOfMyArticle))
-                    {
-                        Projects[Projects.FindIndex(o => o.ItemName == citing.TitleOfMyArticle)].ItemCount += 1;
-                    }
-                    else
-                    {
-                        Projects.Add(new CItem(citing.TitleOfMyArticle, 1));
-                    }
-                }
-
-                // By Year
-                if (Years.Exists(o => o.ItemName == literature.PublishYear.ToString()))
-                {
-                    Years[Years.FindIndex(o => o.ItemName == literature.PublishYear.ToString())].ItemCount += 1;
-                }
-                else
-                {
-                    Years.Add(new CItem(literature.PublishYear.ToString(), 1));
-                }
-
-                // By Journal/Conference
-                if (JournalConferences.Exists(o => o.ItemName == literature.JournalOrConferenceName))
-                {
-                    JournalConferences[JournalConferences.FindIndex(o => o.ItemName == literature.JournalOrConferenceName)].ItemCount += 1;
-                }
-                else
-                {
-                    JournalConferences.Add(new CItem(literature.JournalOrConferenceName, 1));
-                }
             }
-
-            Tags = Tags.OrderBy(o => o.ItemName).ToList();
-            // Tags = Tags.OrderByDescending(o => o.ItemCount).ToList();
-            // Authors = Authors.OrderBy(o => o.ItemName).ToList();
-            // Authors = Authors.OrderBy(o => o.ItemName).ToList();
-            Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
-            //Institutions = Institutions.OrderBy(o => o.ItemName).ToList();
-            // Institutions = Institutions.OrderByDescending(o => o.ItemCount).ToList();
-            Projects = Projects.OrderBy(o => o.ItemName).ToList();
-            // Projects = Projects.OrderByDescending(o => o.ItemCount).ToList();
-            Years = Years.OrderByDescending(o => Convert.ToInt16(o.ItemName)).ToList();
-            JournalConferences = JournalConferences.OrderByDescending(o => o.ItemCount).ToList();
-            JournalConferences = JournalConferences.OrderBy(o => o.ItemName).ToList();
-            
-            clbTag.Items.Clear();
-            for (int i = 0; i < Tags.Count; i++)
-            {
-                clbTag.Items.Add(Tags[i].ItemName + "[" + Tags[i].ItemCount + "]");
-            }
-            clbAuthor.Items.Clear();
-            for (int i = 0; i < Authors.Count; i++)
-            {
-                clbAuthor.Items.Add(Authors[i].ItemName + "[" + Authors[i].ItemCount + "]");
-            }
-            clbYear.Items.Clear();
-            for (int i = 0; i < Years.Count; i++)
-            {
-                clbYear.Items.Add(Years[i].ItemName + "[" + Years[i].ItemCount + "]");
-            }
-            //clbInstitution.Items.Clear();
-            //for (int i = 0; i < Institutions.Count; i++)
-            //{
-            //    clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]");
-            //}
-            clbJournalConference.Items.Clear();
-            for (int i = 0; i < JournalConferences.Count; i++)
-            {
-                clbJournalConference.Items.Add(JournalConferences[i].ItemName + "[" + JournalConferences[i].ItemCount + "]");
-            }
-            clbProject.Items.Clear();
-            for (int i = 0; i < Projects.Count; i++)
-            {
-                clbProject.Items.Add(Projects[i].ItemName + "[" + Projects[i].ItemCount + "]");
-            }
-            LoadLiteratureList(loadedLiteratures);
+            LoadTag();
+            LoadLiteratureList();
         }
 
         private void tsmAddLiterature_Click(object sender, EventArgs e)
@@ -203,10 +111,8 @@ namespace LifeGame
                         G.glb.lstLiterature.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstLiteratureTag.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == removedLit);
-                        G.glb.lstLiteratureCiting.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstSurveyLiterature.RemoveAll(o => o.LiteratureTitle == removedLit);
                         G.glb.lstSurveyLiteratureTagValue.RemoveAll(o => o.LiteratureTitle == removedLit);
-                        loadedLiteratures.RemoveAll(o => o == removedLit);
                         break;
                     case DialogResult.No:
                         break;
@@ -324,7 +230,7 @@ namespace LifeGame
 
         private void LoadLiteratureList(string SearchText)
         {
-            List<string> ShownTitle = new List<string>();            
+            List<string> ShownTitle = new List<string>();
             foreach (CLiterature literature in G.glb.lstLiterature)
             {
                 // Find literature with the search text in its title
@@ -336,7 +242,7 @@ namespace LifeGame
                 if (literature.BibKey.ToUpper().Contains(SearchText.ToUpper()))
                 {
                     ShownTitle.Add(literature.Title);
-                }                
+                }
             }
             // Find literature with the search text as the author name
             List<string> AuthorNames = new List<string>();
@@ -359,76 +265,216 @@ namespace LifeGame
             }
 
             ShownTitle = ShownTitle.Distinct().ToList();
-            loadedLiteratures = ShownTitle;
-            LoadLiteratureList(loadedLiteratures);
+            LoadLiteratureList(ShownTitle);
         }
 
         private void LoadLiteratureList()
         {
-            List<string> chosenTag = new List<string>();
-            List<string> chosenAuthor = new List<string>();
-            //List<string> chosenInstitution = new List<string>();
-            List<int> chosenYear = new List<int>();
-            List<string> chosenJournalConference = new List<string>();
-            List<string> chosenProject = new List<string>();
-
-            for (int i = 0; i < clbTag.CheckedItems.Count; i++)
-            {
-                chosenTag.Add(clbTag.CheckedItems[i].ToString().Split('[').First());
-            }
-            for (int i = 0; i < clbAuthor.CheckedItems.Count; i++)
-            {
-                chosenAuthor.Add(clbAuthor.CheckedItems[i].ToString().Split('[').First());
-            }
-            //for (int i = 0; i < clbInstitution.CheckedItems.Count; i++)
-            //{
-            //    chosenInstitution.Add(clbInstitution.CheckedItems[i].ToString().Split('[').First());
-            //}
-            for (int i = 0; i < clbYear.CheckedItems.Count; i++)
-            {
-                chosenYear.Add(Convert.ToInt16(clbYear.CheckedItems[i].ToString().Split('[').First()));
-            }
-            for (int i = 0; i < clbJournalConference.CheckedItems.Count; i++)
-            {
-                chosenJournalConference.Add(clbJournalConference.CheckedItems[i].ToString().Split('[').First());
-            }
-            for (int i = 0; i < clbProject.CheckedItems.Count; i++)
-            {
-                chosenProject.Add(clbProject.CheckedItems[i].ToString().Split('[').First());
-            }
-
             List<string> ShownTitle = new List<string>();
+
+            int startYear = Convert.ToInt32(txtStartYear.Text);
+            int endYear = Convert.ToInt32(txtEndYear.Text);
+
+            ChooseTag();
+
+            List<string> chosenAuthors = new List<string>();
+            for (int i = 0; i < clbAuthor.Items.Count; i++)
+            {
+                if (clbAuthor.CheckedItems.Contains(clbAuthor.Items[i]))
+                {
+                    chosenAuthors.Add(clbAuthor.Items[i].ToString().Split('[')[0]);
+                }
+            }
+            List<string> chosenJourConf = new List<string>();
+            for (int i = 0; i < clbJournalConference.Items.Count; i++)
+            {
+                if (clbJournalConference.CheckedItems.Contains(clbJournalConference.Items[i]))
+                {
+                    chosenJourConf.Add(clbJournalConference.Items[i].ToString().Split('[')[0]);
+                }
+            }
+
             foreach (CLiterature literature in G.glb.lstLiterature)
             {
-                if (chosenYear.Exists(o => o == literature.PublishYear))
-                {
-                    ShownTitle.Add(literature.Title);
-                }
-                if (chosenJournalConference.Exists(o => o == literature.JournalOrConferenceName))
-                {
-                    ShownTitle.Add(literature.Title);
-                }
-                if (chosenTag.Exists(o => G.glb.lstLiteratureTag.Exists(p => p.Title == literature.Title && p.Tag == o)))
-                {
-                    ShownTitle.Add(literature.Title);
-                }
-                names names = new names();
-                if (chosenAuthor.Exists(o => G.glb.lstLiteratureAuthor.Exists(p => p.Title == literature.Title && names.processName(p.Author) == o)))
-                {
-                    ShownTitle.Add(literature.Title);
-                }
-                //if (chosenInstitution.Exists(o => G.glb.lstLiteratureInstitution.Exists(p => p.Title == literature.Title && p.Institution == o)))
-                //{
-                //    ShownTitle.Add(literature.Title);
-                //}
-                if (chosenProject.Exists(o => G.glb.lstLiteratureCiting.Exists(p => p.Title == literature.Title && p.TitleOfMyArticle == o)))
+                if (startYear <= literature.PublishYear
+                    && literature.PublishYear <= endYear
+                    && chosenAuthors.Exists(o => G.glb.lstLiteratureAuthor.Exists(p => p.Title == literature.Title && names.processName(p.Author) == o))
+                    && chosenTags.Exists(o => G.glb.lstLiteratureTag.Exists(p => p.Title == literature.Title && p.Tag == o))
+                    && chosenJourConf.Exists(o => o == literature.JournalOrConferenceName))
                 {
                     ShownTitle.Add(literature.Title);
                 }
             }
             ShownTitle = ShownTitle.Distinct().ToList();
-            loadedLiteratures = ShownTitle;
-            LoadLiteratureList(loadedLiteratures);
+            LoadLiteratureList(ShownTitle);
+        }
+
+        private void LoadTag()
+        {
+            trvTag.Nodes.Clear();
+            TreeNode rootNode = new TreeNode("(Root)");
+            rootNode.Checked = false;
+            rootNode.Name = G.glb.lstLiteratureTagType.Find(o => o.Tag == "(Root)").GUID;
+            int tagNum = 0;
+            if (Tags.Exists(o => o.ItemName == "(Root)"))
+            {
+                tagNum = Tags.Find(o => o.ItemName == "(Root)").ItemCount;
+            }
+            rootNode.Text = "(Root)" + "[" + tagNum.ToString() + "]";
+            rootNode.Expand();
+            LoadChildTag(rootNode, "(Root)");
+            trvTag.Nodes.Add(rootNode);
+        }
+
+        private void LoadChildTag(TreeNode treeNode, string tag)
+        {
+            if (lstSubTags.Exists(o => o.Tag == tag && o.GUID == treeNode.Name))
+            {
+                List<RSubLiteratureTag> subTag = lstSubTags.FindAll(o => o.Tag == tag && o.GUID == treeNode.Name);
+                subTag = subTag.OrderBy(o => o.Index).ToList();
+
+                foreach (RSubLiteratureTag sub in subTag)
+                {
+                    TreeNode childNode = new TreeNode(sub.SubTag);
+                    childNode.Checked = false;
+                    childNode.Name = sub.SubGUID;
+                    int tagNum = 0;
+                    if (Tags.Exists(o => o.ItemName == sub.SubTag))
+                    {
+                        tagNum = Tags.Find(o => o.ItemName == sub.SubTag).ItemCount;
+                    }
+                    childNode.Text = sub.SubTag + "[" + tagNum.ToString() + "]";
+                    childNode.Expand();
+                    LoadChildTag(childNode, sub.SubTag);
+                    treeNode.Nodes.Add(childNode);
+                }
+            }
+        }
+
+        List<string> chosenTags = new List<string>();
+        private void ChooseTag()
+        {
+            chosenTags.Clear();
+            if (trvTag.Nodes[0].Checked)
+            {
+                chosenTags.Add("(Root)");
+            }
+            foreach (TreeNode child in trvTag.Nodes[0].Nodes)
+            {
+                ChooseSubTag(child);
+            }
+        }
+
+        private void ChooseSubTag(TreeNode treeNode)
+        {
+            if (treeNode.Checked)
+            {
+                chosenTags.Add(treeNode.Text.Split('[')[0]);
+            }
+            foreach (TreeNode child in treeNode.Nodes)
+            {
+                ChooseSubTag(child);
+            }
+        }
+
+        private void UpdateAuthorJours()
+        {
+            List<string> taggedLiteratures = new List<string>();
+            foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
+            {
+                if (chosenTags.Exists(o => o == litTag.Tag)
+                    && !taggedLiteratures.Exists(o => o == litTag.Title))
+                {
+                    taggedLiteratures.Add(litTag.Title);
+                }
+            }
+            Authors = new List<CItem>();
+            JournalConferences = new List<CItem>();
+            foreach (string literature in taggedLiteratures)
+            {
+                // By Authors
+                List<RLiteratureAuthor> lstAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == literature).ToList();
+                names names = new names();
+                foreach (RLiteratureAuthor author in lstAuthor)
+                {
+                    if (Authors.Exists(o => o.ItemName == names.processName(author.Author)))
+                    {
+                        Authors[Authors.FindIndex(o => o.ItemName == names.processName(author.Author))].ItemCount += 1;
+                    }
+                    else
+                    {
+                        Authors.Add(new CItem(names.processName(author.Author), 1));
+                    }
+                }
+                // By Journal/Conference
+                if (JournalConferences.Exists(o => o.ItemName == G.glb.lstLiterature.Find(p => p.Title == literature).JournalOrConferenceName))
+                {
+                    JournalConferences[JournalConferences.FindIndex(o => o.ItemName == G.glb.lstLiterature.Find(p => p.Title == literature).JournalOrConferenceName)].ItemCount += 1;
+                }
+                else
+                {
+                    JournalConferences.Add(new CItem(G.glb.lstLiterature.Find(p => p.Title == literature).JournalOrConferenceName, 1));
+                }
+            }
+            Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
+            Authors = Authors.OrderBy(o => o.ItemName).ToList();
+            JournalConferences = JournalConferences.OrderByDescending(o => o.ItemCount).ToList();
+            JournalConferences = JournalConferences.OrderBy(o => o.ItemName).ToList();
+            clbAuthor.Items.Clear();
+            foreach (CItem author in Authors)
+            {
+                clbAuthor.Items.Add(author.ItemName + "[" + author.ItemCount.ToString() + "]", true);
+            }
+            clbJournalConference.Items.Clear();
+            foreach (CItem jourConf in JournalConferences)
+            {
+                clbJournalConference.Items.Add(jourConf.ItemName + "[" + jourConf.ItemCount.ToString() + "]", true);
+            }
+        }
+
+        // 在tag树结构变化时保存，保存到窗体内记录
+        private void SaveTag()
+        {
+            lstTags = new List<CLiteratureTag>();
+            lstSubTags = new List<RSubLiteratureTag>();
+            CLiteratureTag rootTag = new CLiteratureTag();
+            rootTag.Tag = "(Root)";
+            rootTag.GUID = trvTag.Nodes[0].Name;
+            lstTags.Add(rootTag);
+            foreach (TreeNode child in trvTag.Nodes[0].Nodes)
+            {
+                SaveSubTag(child);
+            }
+            G.glb.lstLiteratureTagType.Clear();
+            G.glb.lstSubLiteratureTag.Clear();
+            foreach (CLiteratureTag item in lstTags)
+            {
+                G.glb.lstLiteratureTagType.Add(item);
+            }
+            foreach (RSubLiteratureTag item in lstSubTags)
+            {
+                G.glb.lstSubLiteratureTag.Add(item);
+            }
+        }
+
+        private void SaveSubTag(TreeNode treeNode)
+        {
+            CLiteratureTag subTag = new CLiteratureTag();
+            subTag.Tag = treeNode.Text.Split('[')[0];
+            subTag.GUID = treeNode.Name;
+            lstTags.Add(subTag);
+
+            RSubLiteratureTag newSubTag = new RSubLiteratureTag();
+            newSubTag.Tag = treeNode.Parent.Text.Split('[')[0];
+            newSubTag.GUID = treeNode.Parent.Name;
+            newSubTag.SubTag = treeNode.Text.Split('[')[0];
+            newSubTag.SubGUID = treeNode.Name;
+            newSubTag.Index = treeNode.Index;
+            lstSubTags.Add(newSubTag);
+            foreach (TreeNode child in treeNode.Nodes)
+            {
+                SaveSubTag(child);
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -439,126 +485,6 @@ namespace LifeGame
             }
         }
 
-        private void btnTagAll_Click(object sender, EventArgs e)
-        {
-            clbTag.Items.Clear();
-            for (int i = 0; i < Tags.Count; i++)
-            {
-                clbTag.Items.Add(Tags[i].ItemName + "[" + Tags[i].ItemCount + "]", true);
-            }
-            LoadLiteratureList();
-        }
-
-        private void btnTagClear_Click(object sender, EventArgs e)
-        {
-            clbTag.Items.Clear();
-            for (int i = 0; i < Tags.Count; i++)
-            {
-                clbTag.Items.Add(Tags[i].ItemName + "[" + Tags[i].ItemCount + "]", false);
-            }
-            LoadLiteratureList();
-        }
-
-        private void btnAuthorAll_Click(object sender, EventArgs e)
-        {
-            clbAuthor.Items.Clear();
-            for (int i = 0; i < Authors.Count; i++)
-            {
-                clbAuthor.Items.Add(Authors[i].ItemName + "[" + Authors[i].ItemCount + "]", true);
-            }
-            LoadLiteratureList();
-        }
-
-        private void btnAuthorClear_Click(object sender, EventArgs e)
-        {
-            clbAuthor.Items.Clear();
-            for (int i = 0; i < Authors.Count; i++)
-            {
-                clbAuthor.Items.Add(Authors[i].ItemName + "[" + Authors[i].ItemCount + "]", false);
-            }
-            LoadLiteratureList();
-        }
-
-        private void btnYearAll_Click(object sender, EventArgs e)
-        {
-            clbYear.Items.Clear();
-            for (int i = 0; i < Years.Count; i++)
-            {
-                clbYear.Items.Add(Years[i].ItemName + "[" + Years[i].ItemCount + "]", true);
-            }
-            LoadLiteratureList();
-        }
-
-        private void btnYearClear_Click(object sender, EventArgs e)
-        {
-            clbYear.Items.Clear();
-            for (int i = 0; i < Years.Count; i++)
-            {
-                clbYear.Items.Add(Years[i].ItemName + "[" + Years[i].ItemCount + "]", false);
-            }
-            LoadLiteratureList();
-        }
-
-        //private void btnInsAll_Click(object sender, EventArgs e)
-        //{
-        //    clbInstitution.Items.Clear();
-        //    for (int i = 0; i < Institutions.Count; i++)
-        //    {
-        //        clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]", true);
-        //    }
-        //    LoadLiteratureList();
-        //}
-
-        //private void btnInsClear_Click(object sender, EventArgs e)
-        //{
-        //    clbInstitution.Items.Clear();
-        //    for (int i = 0; i < Institutions.Count; i++)
-        //    {
-        //        clbInstitution.Items.Add(Institutions[i].ItemName + "[" + Institutions[i].ItemCount + "]", false);
-        //    }
-        //    LoadLiteratureList();
-        //}
-
-        private void btnJourAll_Click(object sender, EventArgs e)
-        {
-            clbJournalConference.Items.Clear();
-            for (int i = 0; i < JournalConferences.Count; i++)
-            {
-                clbJournalConference.Items.Add(JournalConferences[i].ItemName + "[" + JournalConferences[i].ItemCount + "]", true);
-            }
-            LoadLiteratureList();
-        }
-
-        private void btnJourClear_Click(object sender, EventArgs e)
-        {
-            clbJournalConference.Items.Clear();
-            for (int i = 0; i < JournalConferences.Count; i++)
-            {
-                clbJournalConference.Items.Add(JournalConferences[i].ItemName + "[" + JournalConferences[i].ItemCount + "]", false);
-            }
-            LoadLiteratureList();
-        }
-
-        private void btnProjectAll_Click(object sender, EventArgs e)
-        {
-            clbProject.Items.Clear();
-            for (int i = 0; i < Projects.Count; i++)
-            {
-                clbProject.Items.Add(Projects[i].ItemName + "[" + Projects[i].ItemCount + "]", true);
-            }
-            LoadLiteratureList();
-        }
-
-        private void btnProjectClear_Click(object sender, EventArgs e)
-        {
-            clbProject.Items.Clear();
-            for (int i = 0; i < Projects.Count; i++)
-            {
-                clbProject.Items.Add(Projects[i].ItemName + "[" + Projects[i].ItemCount + "]", false);
-            }
-            LoadLiteratureList();
-        }
-
         private void btnFilter_Click(object sender, EventArgs e)
         {
             LoadLiteratureList();
@@ -566,13 +492,13 @@ namespace LifeGame
 
         private void tsmExportBib_Click(object sender, EventArgs e)
         {
-            string strProject = Interaction.InputBox("Project", "Project", "Project", 300, 300);
-            List<RLiteratureInCiting> lstLiterature = G.glb.lstLiteratureCiting.FindAll(o => o.TitleOfMyArticle == strProject);
+            string strTag = Interaction.InputBox("Tag", "Project", "Project", 300, 300);
+            List<RLiteratureTag> lstLiterature = G.glb.lstLiteratureTag.FindAll(o => o.Tag == strTag);
             List<CLiterature> lstLitsToBeExported = new List<CLiterature>();
 
             string bib = "";
 
-            foreach (RLiteratureInCiting lit in lstLiterature)
+            foreach (RLiteratureTag lit in lstLiterature)
             {
                 lstLitsToBeExported.Add(G.glb.lstLiterature.Find(o => o.Title == lit.Title));
             }
@@ -620,323 +546,8 @@ namespace LifeGame
                 bib += bibLog + "\n\n";
             }
 
-            System.IO.File.WriteAllText(@"D:\" + strProject + "Bib.bib", bib);
+            System.IO.File.WriteAllText(@"D:\" + strTag + "Bib.bib", bib);
         }
-
-        private void removeTagToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<string> selectedTags = new List<string>();
-            if (clbTag.CheckedItems != null)
-            {
-                foreach (var selected in clbTag.CheckedItems)
-                {
-                    string[] sub = selected.ToString().Split('[');
-                    selectedTags.Add(sub[0]);
-                }
-                DialogResult result = MessageBox.Show("Do you want to remove these tags? Literature without tag will add a new tag called '(default)'", "Remove confirm", MessageBoxButtons.YesNo);
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        foreach (string tag in selectedTags)
-                        {
-                            G.glb.lstLiteratureTag.RemoveAll(o => o.Tag == tag);
-                        }
-                        foreach (CLiterature lit in G.glb.lstLiterature)
-                        {
-                            if (!G.glb.lstLiteratureTag.Exists(o => o.Title == lit.Title))
-                            {
-                                RLiteratureTag defaultTag = new RLiteratureTag();
-                                defaultTag.Title = lit.Title;
-                                defaultTag.Tag = "(default)";
-                                G.glb.lstLiteratureTag.Add(defaultTag);
-                            }
-                        }
-                        LoadTab();
-                        LoadLiteratureList();
-                        break;
-                    case DialogResult.No:
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        private void groupToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<string> selectedTags = new List<string>();
-            if (clbTag.CheckedItems != null)
-            {
-                foreach (var selected in clbTag.CheckedItems)
-                {
-                    string[] sub = selected.ToString().Split('[');
-                    selectedTags.Add(sub[0]);
-                }
-            }
-            string NewName = Interaction.InputBox("Input Group Tag Name", "Rename", "Rename Tag", 300, 300);
-            List<string> existingTags = new List<string>();
-            foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
-            {
-                if (!existingTags.Exists(o => o == litTag.Tag))
-                {
-                    existingTags.Add(litTag.Tag);
-                }
-            }
-            if (existingTags.Exists(o => o == NewName))
-            {
-                DialogResult result = MessageBox.Show("Tag '" + NewName + "' exists, do you want to add this tag?", "Group confirm", MessageBoxButtons.YesNo);
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        List<RLiteratureTag> newTags = new List<RLiteratureTag>();
-                        foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
-                        {
-                            if (selectedTags.Exists(o => o == litTag.Tag))
-                            {
-                                if (!G.glb.lstLiteratureTag.Exists(o => o.Title == litTag.Title && o.Tag == NewName) && !newTags.Exists(o => o.Title == litTag.Title && o.Tag == NewName))
-                                {
-                                    RLiteratureTag groupTag = new RLiteratureTag();
-                                    groupTag.Title = litTag.Title;
-                                    groupTag.Tag = NewName;
-                                    newTags.Add(groupTag);
-                                }
-                            }
-                        }
-                        G.glb.lstLiteratureTag.AddRange(newTags);
-                        LoadTab();
-                        LoadLiteratureList();
-                        break;
-                    case DialogResult.No:
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                List<RLiteratureTag> newTags = new List<RLiteratureTag>();
-                foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
-                {
-                    if (selectedTags.Exists(o => o == litTag.Tag))
-                    {
-                        if (!G.glb.lstLiteratureTag.Exists(o => o.Title == litTag.Title && o.Tag == NewName) && !newTags.Exists(o => o.Title == litTag.Title && o.Tag == NewName))
-                        {
-                            RLiteratureTag groupTag = new RLiteratureTag();
-                            groupTag.Title = litTag.Title;
-                            groupTag.Tag = NewName;
-                            newTags.Add(groupTag);
-                        }
-                    }
-                }
-                G.glb.lstLiteratureTag.AddRange(newTags);
-                LoadTab();
-                LoadLiteratureList();
-            }
-        }
-
-        private void renameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<string> selectedTags = new List<string>();
-            if (clbTag.CheckedItems != null)
-            {
-                foreach (var selected in clbTag.CheckedItems)
-                {
-                    string[] sub = selected.ToString().Split('[');
-                    selectedTags.Add(sub[0]);
-                }
-            }
-            string NewName = Interaction.InputBox("Input New Tag Name", "Rename", "Rename Tag", 300, 300);
-            List<string> existingTags = new List<string>();
-            foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
-            {
-                if (!existingTags.Exists(o => o == litTag.Tag))
-                {
-                    existingTags.Add(litTag.Tag);
-                }
-            }
-            if (existingTags.Exists(o => o == NewName))
-            {
-                DialogResult result = MessageBox.Show("Tag '" + NewName + "' exists, do you want to merge into this tag?", "Merge confirm", MessageBoxButtons.YesNo);
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
-                        {
-                            if (selectedTags.Exists(o => o == litTag.Tag) && !G.glb.lstLiteratureTag.Exists(p => p.Tag == NewName && p.Title == litTag.Title))
-                            {
-                                litTag.Tag = NewName;
-                            }
-                        }
-                        LoadTab();
-                        LoadLiteratureList();
-                        break;
-                    case DialogResult.No:
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
-                {
-                    if (selectedTags.Exists(o => o == litTag.Tag) && !G.glb.lstLiteratureTag.Exists(p => p.Tag == NewName && p.Title == litTag.Title))
-                    {
-                        litTag.Tag = NewName;
-                    }
-                }
-                LoadTab();
-                LoadLiteratureList();
-            }
-        }
-
-        private void renameProjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // 迟早有一天我要把各个字段的名字给统一喽
-            List<string> selectedProjects = new List<string>();
-            if (clbProject.CheckedItems != null)
-            {
-                foreach (var selected in clbProject.CheckedItems)
-                {
-                    string[] sub = selected.ToString().Split('[');
-                    selectedProjects.Add(sub[0]);
-                }
-            }
-            string NewName = Interaction.InputBox("Input New Project Name", "Rename", "Rename Project", 300, 300);
-            List<string> existingProjects = new List<string>();
-            foreach (RLiteratureInCiting litProject in G.glb.lstLiteratureCiting)
-            {
-                if (!existingProjects.Exists(o => o == litProject.TitleOfMyArticle))
-                {
-                    existingProjects.Add(litProject.TitleOfMyArticle);
-                }
-            }
-            if (existingProjects.Exists(o => o == NewName))
-            {
-                DialogResult result = MessageBox.Show("Project '" + NewName + "' exists, do you want to merge into this Project?", "Merge confirm", MessageBoxButtons.YesNo);
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        foreach (RLiteratureInCiting litProject in G.glb.lstLiteratureCiting)
-                        {
-                            if (selectedProjects.Exists(o => o == litProject.TitleOfMyArticle) && !G.glb.lstLiteratureCiting.Exists(p => p.TitleOfMyArticle == NewName && p.Title == litProject.Title))
-                            {
-                                litProject.TitleOfMyArticle = NewName;
-                            }
-                        }
-                        LoadTab();
-                        LoadLiteratureList();
-                        break;
-                    case DialogResult.No:
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                foreach (RLiteratureInCiting litProject in G.glb.lstLiteratureCiting)
-                {
-                    if (selectedProjects.Exists(o => o == litProject.TitleOfMyArticle) && !G.glb.lstLiteratureCiting.Exists(p => p.TitleOfMyArticle == NewName && p.Title == litProject.Title))
-                    {
-                        litProject.TitleOfMyArticle = NewName;
-                    }
-                }
-                LoadTab();
-                LoadLiteratureList();
-            }
-        }
-
-        private void tsmRemoveProject_Click(object sender, EventArgs e)
-        {
-            List<string> selectedProjects = new List<string>();
-            if (clbProject.CheckedItems != null)
-            {
-                foreach (var selected in clbProject.CheckedItems)
-                {
-                    string[] sub = selected.ToString().Split('[');
-                    selectedProjects.Add(sub[0]);
-                }
-            }
-            if (selectedProjects.Count > 0)
-            {
-                string projectList = "";
-                if (selectedProjects.Count > 1)
-                {
-                    foreach (string proj in selectedProjects)
-                    {
-                        projectList += proj + "; ";
-                    }
-                    projectList = projectList.Remove(projectList.Length - 2, 2);
-                }
-                else
-                {
-                    projectList = selectedProjects[0];
-                }
-                DialogResult result = MessageBox.Show("Do you confirm to remove the following project(s):" + projectList + "? This process cannot be recovered.", "Clear Schedule", MessageBoxButtons.YesNo);
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        foreach (string proj in selectedProjects)
-                        {
-                            G.glb.lstLiteratureCiting.RemoveAll(o => o.TitleOfMyArticle == proj);
-                        }
-                        break;
-                    case DialogResult.No:
-                        break;
-                    default:
-                        break;
-                }
-                LoadTab();
-                LoadLiteratureList();
-            }
-        }
-
-        private void RemoveDuplicatedTags()
-        {
-            List<RLiteratureTag> noDupTags = new List<RLiteratureTag>();
-            foreach (RLiteratureTag item in G.glb.lstLiteratureTag)
-            {
-                if (!noDupTags.Exists(o => o.Title == item.Title && o.Tag == item.Tag))
-                {
-                    noDupTags.Add(item);
-                }
-            }
-            G.glb.lstLiteratureTag.Clear();
-            foreach (RLiteratureTag item in noDupTags)
-            {
-                G.glb.lstLiteratureTag.Add(item);
-            }
-        }
-        private void btnTagRefresh_Click(object sender, EventArgs e)
-        {
-            LoadTab();
-        }
-
-        private void btnJournalRefresh_Click(object sender, EventArgs e)
-        {
-            LoadTab();
-        }
-
-        private void btnProjectRefresh_Click(object sender, EventArgs e)
-        {
-            LoadTab();
-        }
-
-        private void btnAuthorRefresh_Click(object sender, EventArgs e)
-        {
-            LoadTab();
-        }
-
-        private void btnYearRefresh_Click(object sender, EventArgs e)
-        {
-            LoadTab();
-        }
-
-        //private void btnInstitutionRefresh_Click(object sender, EventArgs e)
-        //{
-        //    LoadTab();
-        //}
 
         private void goodJournalsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -977,75 +588,370 @@ namespace LifeGame
             frmUnreliableJournal.Show();
         }
 
-        private void createNotesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-            if (clbProject.CheckedItems.Count == 1)
-            {
-                List<RLiteratureInCiting> lst = G.glb.lstLiteratureCiting.FindAll(o=>o.TitleOfMyArticle == clbProject.CheckedItems[0].ToString().Split('[')[0]).ToList();
-                List<string> lstTitle = new List<string>();
-                for (int i = 0; i < lst.Count; i++)
-                {
-                    lstTitle.Add(lst[i].Title.ToString());
-                }
-
-                frmInfoNote frmInfoNote = new frmInfoNote(clbProject.CheckedItems[0].ToString().Split('[')[0], lstTitle);
-                frmInfoNote.Show();
-            }
-        }
-
-        private void createNoteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (clbTag.CheckedItems.Count == 1)
-            {
-                List<RLiteratureTag> lst = G.glb.lstLiteratureTag.FindAll(o => o.Tag == clbTag.CheckedItems[0].ToString().Split('[')[0]).ToList();
-                List<string> lstTitle = new List<string>();
-                for (int i = 0; i < lst.Count; i++)
-                {
-                    lstTitle.Add(lst[i].Title.ToString());
-                }
-                frmInfoNote frmInfoNote = new frmInfoNote(clbTag.CheckedItems[0].ToString().Split('[')[0], lstTitle);
-                frmInfoNote.Show();
-            }
-        }
-
         private void AddTag2MultipleLiterature(string strTag)
         {
-            if (dgvLiterature.SelectedRows.Count >= 1)
+            if (dgvLiterature.SelectedRows.Count >= 1
+                && MessageBox.Show("Do you confirm to add tag to all selected literature.", "Add Tag", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                DialogResult result = MessageBox.Show("Do you confirm to add tag to all selected literature.", "Add Tag", MessageBoxButtons.YesNo);
-                switch (result)
+                foreach (DataGridViewRow row in dgvLiterature.SelectedRows)
                 {
-                    case DialogResult.Yes:
-                        foreach (DataGridViewRow row in dgvLiterature.SelectedRows)
-                        {
-                            // MessageBox.Show(row.Cells[1].Value.ToString());
-                            if (!G.glb.lstLiteratureTag.Exists(o => o.Title == row.Cells[1].Value.ToString() && o.Tag == strTag))
-                            {
-                                RLiteratureTag newTag = new RLiteratureTag();
-                                newTag.Title = row.Cells[1].Value.ToString();
-                                newTag.Tag = strTag;
-                                G.glb.lstLiteratureTag.Add(newTag);
-                                G.glb.lstLiteratureTag.RemoveAll(o => o.Title == row.Cells[1].Value.ToString() && o.Tag == "(default)");
-                            }
-                        }
-                        LoadLiteratureList(); 
-                        LoadTab();
-                        break;
-                    case DialogResult.No:
-                        break;
-                    default:
-                        break;
+                    // MessageBox.Show(row.Cells[1].Value.ToString());
+                    if (!G.glb.lstLiteratureTag.Exists(o => o.Title == row.Cells[1].Value.ToString() && o.Tag == strTag))
+                    {
+                        RLiteratureTag newTag = new RLiteratureTag();
+                        newTag.Title = row.Cells[1].Value.ToString();
+                        newTag.Tag = strTag;
+                        G.glb.lstLiteratureTag.Add(newTag);
+                        G.glb.lstLiteratureTag.RemoveAll(o => o.Title == row.Cells[1].Value.ToString() && o.Tag == "(Root)");
+                    }
                 }
+                LoadTab();
             }
         }
+
         private void addTag2Multi_Click(object sender, EventArgs e)
         {
-            if (dgvLiterature.SelectedRows.Count >= 1) 
+            if (dgvLiterature.SelectedRows.Count >= 1)
             {
                 frmAddTag frmAddTag = new frmAddTag();
                 frmAddTag.SendTag += new frmAddTag.GetTag(AddTag2MultipleLiterature);
                 frmAddTag.Show();
+            }
+        }
+
+        private void tsmAdd_Click(object sender, EventArgs e)
+        {
+            if (trvTag.SelectedNode != null)
+            {
+                string newTag = Interaction.InputBox("Input a new tag", "New Tag", "New Tag", 300, 300);
+                if (newTag != "")
+                {
+                    if (!lstTags.Exists(o => o.Tag == newTag))
+                    {
+                        TreeNode newNode = new TreeNode(newTag, 0, 0);
+                        newNode.Text = newTag + ("[0]");
+                        newNode.Name = Guid.NewGuid().ToString();
+                        newNode.ExpandAll();
+                        trvTag.SelectedNode.ExpandAll();
+                        trvTag.SelectedNode.Nodes.Add(newNode);
+
+                        CLiteratureTag newTagType = new CLiteratureTag ();
+                        newTagType.Tag = newTag;
+                        newTagType.GUID = newNode.Name;
+                        lstTags.Add(newTagType);
+
+                        RSubLiteratureTag newSubTag = new RSubLiteratureTag ();
+                        newSubTag.Tag = trvTag.SelectedNode.Text.Split('[')[0];
+                        newSubTag.GUID = trvTag.SelectedNode.Name;
+                        newSubTag.SubTag = newTag;
+                        newSubTag.SubGUID = newNode.Name;
+                        lstSubTags.Add(newSubTag);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tag exists!");
+                    }
+                }
+            }
+        }
+
+        private void tsmFold_Click(object sender, EventArgs e)
+        {
+            if (trvTag.SelectedNode != null)
+            {
+                foreach (TreeNode item in trvTag.SelectedNode.Nodes)
+                {
+                    item.Collapse(true);
+                }
+            }
+        }
+
+        private void tsmExpand_Click(object sender, EventArgs e)
+        {
+            if (trvTag.SelectedNode != null)
+            {
+                trvTag.SelectedNode.ExpandAll();
+                foreach (TreeNode item in trvTag.SelectedNode.Nodes)
+                {
+                    item.ExpandAll();
+                }
+            }
+        }
+
+        public int TreeNodeCompare(TreeNode x, TreeNode y)
+        {
+            TreeNode tx = x as TreeNode;
+            TreeNode ty = y as TreeNode;
+            return String.Compare(tx.Text, ty.Text);
+        }
+
+        private void tsmSort_Click(object sender, EventArgs e)
+        {
+            if (trvTag.SelectedNode != null &&
+                MessageBox.Show("Confirm to sort children nodes.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+            {
+                Comparison<TreeNode> sorterX = new Comparison<TreeNode>(TreeNodeCompare);
+                List<TreeNode> al = new List<TreeNode>();
+
+                foreach (TreeNode tn in trvTag.SelectedNode.Nodes)
+                {
+                    al.Add(tn);
+                }
+                al.Sort(sorterX);
+
+                trvTag.SelectedNode.Nodes.Clear();
+                foreach (TreeNode tn in al)
+                {
+                    trvTag.SelectedNode.Nodes.Add(tn);
+                }
+                SaveTag();
+            }
+        }
+
+        private void tsmRemoveTag_Click(object sender, EventArgs e)
+        {
+            if (trvTag.SelectedNode != null &&
+                trvTag.SelectedNode.Nodes.Count == 0 &&
+                MessageBox.Show("Do you want to remove these tags? Literature without tag will add a new tag called '(default)'", "Remove confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                SaveTag();
+                string selectedTag = trvTag.SelectedNode.Text.Split('[')[0];
+                G.glb.lstLiteratureTag.RemoveAll(o => o.Tag == selectedTag);
+                foreach (CLiterature lit in G.glb.lstLiterature)
+                {
+                    if (!G.glb.lstLiteratureTag.Exists(o => o.Title == lit.Title))
+                    {
+                        RLiteratureTag defaultTag = new RLiteratureTag();
+                        defaultTag.Title = lit.Title;
+                        defaultTag.Tag = "(Root)";
+                        G.glb.lstLiteratureTag.Add(defaultTag);
+                    }
+                }
+                trvTag.Nodes.Remove(trvTag.SelectedNode);
+                lstTags.RemoveAll(o => o.Tag == selectedTag);
+                lstSubTags.RemoveAll(o => o.SubTag == selectedTag);
+                LoadTab();
+            }
+        }
+
+        private void tsmEditTag_Click(object sender, EventArgs e)
+        {
+            string selectedTag = "";
+            if (trvTag.SelectedNode != null)
+            {
+                SaveTag();
+                selectedTag = trvTag.SelectedNode.Text.Split('[')[0];
+                string NewName = Interaction.InputBox("Input New Tag Name", "Rename", "Rename Tag", 300, 300);
+                if (G.glb.lstLiteratureTagType.Exists(o => o.Tag == NewName))
+                {
+                    DialogResult result = MessageBox.Show("Tag '" + NewName + "' exists, do you want to merge into this tag?", "Merge confirm", MessageBoxButtons.YesNo);
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
+                            {
+                                if (selectedTag == litTag.Tag && !G.glb.lstLiteratureTag.Exists(p => p.Tag == NewName && p.Title == litTag.Title))
+                                {
+                                    litTag.Tag = NewName;
+                                }
+                            }
+                            LoadTab();
+                            break;
+                        case DialogResult.No:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
+                    {
+                        if (selectedTag == litTag.Tag && !G.glb.lstLiteratureTag.Exists(p => p.Tag == NewName && p.Title == litTag.Title))
+                        {
+                            litTag.Tag = NewName;
+                        }
+                    }
+                    LoadTab();
+                }
+            }
+        }
+
+        private void tsmUp_Click(object sender, EventArgs e)
+        {
+            if (trvTag.SelectedNode != null)
+            {
+                TreeNode node = trvTag.SelectedNode;
+                TreeNode preNode = node.PrevNode;
+                if (preNode != null)
+                {
+                    TreeNode newNode = (TreeNode)node.Clone();
+                    if (node.Parent == null)
+                    {
+                        trvTag.Nodes.Insert(preNode.Index, newNode);
+                    }
+                    else
+                    {
+                        node.Parent.Nodes.Insert(preNode.Index, newNode);
+                    }
+                    node.Remove();
+                    trvTag.SelectedNode = newNode;
+                }
+                SaveTag();
+            }
+        }
+
+        private void tsmDown_Click(object sender, EventArgs e)
+        {
+            if (trvTag.SelectedNode != null)
+            {
+                TreeNode node = trvTag.SelectedNode;
+                TreeNode nextNode = node.NextNode;
+                if (nextNode != null)
+                {
+                    TreeNode newNode = (TreeNode)node.Clone();
+                    if (node.Parent == null)
+                    {
+                        trvTag.Nodes.Insert(nextNode.Index + 1, newNode);
+                    }
+                    else
+                    {
+                        node.Parent.Nodes.Insert(nextNode.Index + 1, newNode);
+                    }
+                    node.Remove();
+                    trvTag.SelectedNode = newNode;
+                }
+                SaveTag();
+            }
+        }
+
+        private void tsmIndependent_Click(object sender, EventArgs e)
+        {
+            if (trvTag.SelectedNode != null)
+            {
+                TreeNode node = trvTag.SelectedNode;
+                TreeNode parentNode = node.Parent;
+                TreeNode grandparentNode = node.Parent.Parent;
+                TreeNode newNode = (TreeNode)node.Clone();
+                if (node.Parent != null && node.Parent.Parent != null)
+                {
+                    grandparentNode.Nodes.Insert(parentNode.Index + 1, newNode);
+                    node.Remove();
+                    trvTag.SelectedNode = newNode;
+                }
+                SaveTag();
+            }
+        }
+
+        private void tsmBelongTo_Click(object sender, EventArgs e)
+        {
+            if (trvTag.SelectedNode != null && trvTag.SelectedNode.Parent != null)
+            {
+                TreeNode node = trvTag.SelectedNode;
+                TreeNode preNode = node.PrevNode;
+                TreeNode newNode = (TreeNode)node.Clone();
+                if (node.Parent != null && node.PrevNode != null)
+                {
+                    preNode.Nodes.Insert(preNode.Nodes.Count, newNode);
+                    node.Remove();
+                    trvTag.SelectedNode = newNode;
+                }
+                SaveTag();
+            }
+        }
+
+        private void tsmCreateNote_Click(object sender, EventArgs e)
+        {
+            if (trvTag.SelectedNode != null)
+            {
+                List<RLiteratureTag> lst = G.glb.lstLiteratureTag.FindAll(o => o.Tag == trvTag.SelectedNode.Text.Split('[')[0]).ToList();
+                List<string> lstTitle = new List<string>();
+                for (int i = 0; i < lst.Count; i++)
+                {
+                    lstTitle.Add(lst[i].Title.ToString());
+                }
+                frmInfoNote frmInfoNote = new frmInfoNote(trvTag.SelectedNode.Text.Split('[')[0], lstTitle);
+                frmInfoNote.Show();
+            }
+        }
+
+        private void frmLiterature_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            M.literatureOpened.Clear();
+            SaveTag();
+            Dispose();
+        }
+
+        private void trvTag_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            ChooseTag();
+            UpdateAuthorJours();
+        }
+
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clbAuthor.Items.Clear();
+            foreach (CItem author in Authors)
+            {
+                clbAuthor.Items.Add(author.ItemName + "[" + author.ItemCount.ToString() + "]", false);
+            }
+        }
+
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clbAuthor.Items.Clear();
+            foreach (CItem author in Authors)
+            {
+                clbAuthor.Items.Add(author.ItemName + "[" + author.ItemCount.ToString() + "]", false);
+            }
+        }
+
+        private void clearToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            clbJournalConference.Items.Clear();
+            foreach (CItem jourConf in JournalConferences)
+            {
+                clbJournalConference.Items.Add(jourConf.ItemName + "[" + jourConf.ItemCount.ToString() + "]", false);
+            }
+        }
+
+        private void allToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clbJournalConference.Items.Clear();
+            foreach (CItem jourConf in JournalConferences)
+            {
+                clbJournalConference.Items.Add(jourConf.ItemName + "[" + jourConf.ItemCount.ToString() + "]", false);
+            }
+        }
+
+        private void trvTag_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (trvTag.SelectedNode.Parent == null)
+            {
+                tsmEditTag.Enabled = false;
+                tsmRemoveTag.Enabled = false;
+                tsmCreateNote.Enabled = false;
+                tsmUp.Enabled = false;
+                tsmDown.Enabled = false;
+                tsmIndependent.Enabled = false;
+                tsmBelongTo.Enabled = false;
+            }
+            else
+            {
+                tsmEditTag.Enabled = true;
+                if (trvTag.SelectedNode.Nodes.Count > 0)
+                {
+                    tsmRemoveTag.Enabled = false;
+                }
+                else
+                {
+                    tsmRemoveTag.Enabled = true;
+                }
+                tsmCreateNote.Enabled = true;
+                tsmUp.Enabled = true;
+                tsmDown.Enabled = true;
+                tsmIndependent.Enabled = true;
+                tsmBelongTo.Enabled = true;
             }
         }
     }

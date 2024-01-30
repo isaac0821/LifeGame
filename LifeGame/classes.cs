@@ -75,14 +75,39 @@ namespace LifeGame
         public string Year;
     }
 
-    /// <summary>
-    /// 自己引用的参考文献
-    /// </summary>
     [Serializable]
     public class RLiteratureInCiting
     {
         public string Title;
         public string TitleOfMyArticle;
+    }
+
+    [Serializable]
+    public class CLiteratureTag
+    {
+        public string Tag;
+        public string GUID;
+    }
+
+    [Serializable]
+    public class RSubLiteratureTag
+    {
+        public string Tag;
+        public string GUID;
+        public string SubTag;
+        public string SubGUID;
+        public int Index;
+    }
+
+    [Serializable]
+    public class CJournalConf
+    {
+        public string JournalConf;
+        public string AbbrName;
+        public string Publisher;
+        public bool IsImportant;
+        public bool IsPredatory;
+        public string Desc;
     }
 
     /// <summary>

@@ -8,11 +8,11 @@ namespace LifeGame
 {
     public class names
     {
-        List<string> chnConsonantList = new List<string> {
+        public static List<string> chnConsonantList = new List<string> {
             "b", "p", "m", "f", "d", "t", "n", "l",
             "g", "k", "h", "j", "q", "x",
             "zh", "ch", "sh", "r", "z", "c", "s", "y", "w" };
-        List<string> chnVowelList = new List<string> {
+        public static List<string> chnVowelList = new List<string> {
             "a", "o", "e", "i", "u", "v",
             "ao", "ai", "an", "ang",
             "ou", "ong",
@@ -21,7 +21,7 @@ namespace LifeGame
             "ua", "uai", "uan", "uang", "ue", "uei", "uen", "ueng", "ui", "uo", "un",
             "van", "ve", "vn"};
 
-        public bool chnLastName(string LastName)
+        public static bool chnLastName(string LastName)
         {
             bool chnNameFlag = false;
 
@@ -74,7 +74,7 @@ namespace LifeGame
             return chnNameFlag;
         }
 
-        public string processName(string name)
+        public static string processName(string name)
         {
             string initialed = "";
             string[] splitName = name.Split(' ');
