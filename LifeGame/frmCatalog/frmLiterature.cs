@@ -314,7 +314,7 @@ namespace LifeGame
             trvTag.Nodes.Clear();
             TreeNode rootNode = new TreeNode("(Root)");
             rootNode.Checked = false;
-            rootNode.Name = G.glb.lstLiteratureTagType.Find(o => o.Tag == "(Root)").GUID;
+            rootNode.Name = lstTags.Find(o => o.Tag == "(Root)").GUID;
             int tagNum = 0;
             if (Tags.Exists(o => o.ItemName == "(Root)"))
             {
@@ -416,8 +416,8 @@ namespace LifeGame
                     JournalConferences.Add(new CItem(G.glb.lstLiterature.Find(p => p.Title == literature).JournalOrConferenceName, 1));
                 }
             }
-            Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
             Authors = Authors.OrderBy(o => o.ItemName).ToList();
+            Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();            
             JournalConferences = JournalConferences.OrderByDescending(o => o.ItemCount).ToList();
             JournalConferences = JournalConferences.OrderBy(o => o.ItemName).ToList();
             clbAuthor.Items.Clear();
@@ -487,6 +487,11 @@ namespace LifeGame
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
+            if (clbAuthor.Items.Count == 0 || clbJournalConference.Items.Count == 0)
+            {
+                ChooseTag();
+                UpdateAuthorJours();
+            }
             LoadLiteratureList();
         }
 
@@ -709,9 +714,8 @@ namespace LifeGame
         }
 
         private void tsmRemoveTag_Click(object sender, EventArgs e)
-        {
+        {            
             if (trvTag.SelectedNode != null &&
-                trvTag.SelectedNode.Nodes.Count == 0 &&
                 MessageBox.Show("Do you want to remove these tags? Literature without tag will add a new tag called '(default)'", "Remove confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 SaveTag();
@@ -727,9 +731,13 @@ namespace LifeGame
                         G.glb.lstLiteratureTag.Add(defaultTag);
                     }
                 }
-                trvTag.Nodes.Remove(trvTag.SelectedNode);
-                lstTags.RemoveAll(o => o.Tag == selectedTag);
-                lstSubTags.RemoveAll(o => o.SubTag == selectedTag);
+                // 只能移除子节点的tag
+                if (trvTag.SelectedNode.Nodes.Count == 0)
+                {
+                    trvTag.Nodes.Remove(trvTag.SelectedNode);
+                    lstTags.RemoveAll(o => o.Tag == selectedTag);
+                    lstSubTags.RemoveAll(o => o.SubTag == selectedTag);
+                }
                 LoadTab();
             }
         }
@@ -741,36 +749,42 @@ namespace LifeGame
             {
                 SaveTag();
                 selectedTag = trvTag.SelectedNode.Text.Split('[')[0];
-                string NewName = Interaction.InputBox("Input New Tag Name", "Rename", "Rename Tag", 300, 300);
-                if (G.glb.lstLiteratureTagType.Exists(o => o.Tag == NewName))
-                {
-                    DialogResult result = MessageBox.Show("Tag '" + NewName + "' exists, do you want to merge into this tag?", "Merge confirm", MessageBoxButtons.YesNo);
-                    switch (result)
-                    {
-                        case DialogResult.Yes:
-                            foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
-                            {
-                                if (selectedTag == litTag.Tag && !G.glb.lstLiteratureTag.Exists(p => p.Tag == NewName && p.Title == litTag.Title))
-                                {
-                                    litTag.Tag = NewName;
-                                }
-                            }
-                            LoadTab();
-                            break;
-                        case DialogResult.No:
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else
+                string newTag = Interaction.InputBox("Input New Tag Name", "Rename", "Rename Tag", 300, 300);
+                if ((lstTags.Exists(o => o.Tag == newTag)
+                    && MessageBox.Show("Tag '" + newTag + "' exists, do you want to merge into this tag?", "Merge confirm", MessageBoxButtons.YesNo) == DialogResult.Yes))
                 {
                     foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
                     {
-                        if (selectedTag == litTag.Tag && !G.glb.lstLiteratureTag.Exists(p => p.Tag == NewName && p.Title == litTag.Title))
+                        if (selectedTag == litTag.Tag && !G.glb.lstLiteratureTag.Exists(p => p.Tag == newTag && p.Title == litTag.Title))
                         {
-                            litTag.Tag = NewName;
+                            litTag.Tag = newTag;
                         }
+                    }
+                    if (trvTag.SelectedNode.Nodes.Count == 0)
+                    {
+                        trvTag.Nodes.Remove(trvTag.SelectedNode);
+                        lstTags.RemoveAll(o => o.Tag == selectedTag);
+                        lstSubTags.RemoveAll(o => o.SubTag == selectedTag);
+                    }
+                    LoadTab();
+                }
+                else if (!lstTags.Exists(o => o.Tag == newTag))
+                {
+                    foreach (RLiteratureTag litTag in G.glb.lstLiteratureTag)
+                    {
+                        if (selectedTag == litTag.Tag && !G.glb.lstLiteratureTag.Exists(p => p.Tag == newTag && p.Title == litTag.Title))
+                        {
+                            litTag.Tag = newTag;
+                        }
+                    }
+                    lstTags.Find(o => o.Tag ==  selectedTag).Tag = newTag;
+                    foreach (RSubLiteratureTag item in lstSubTags.FindAll(o => o.Tag == selectedTag))
+                    {
+                        item.Tag = newTag;
+                    }
+                    foreach (RSubLiteratureTag item in lstSubTags.FindAll(o => o.SubTag == selectedTag))
+                    {
+                        item.SubTag = newTag;
                     }
                     LoadTab();
                 }
@@ -884,8 +898,27 @@ namespace LifeGame
 
         private void trvTag_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            ChooseTag();
-            UpdateAuthorJours();
+            if (e.Action != TreeViewAction.Unknown)
+            {
+                if (e.Node.Nodes.Count > 0)
+                {
+                    CheckAllChildNodes(e.Node, e.Node.Checked);
+                }
+            }
+        }
+
+        // Updates all child tree nodes recursively.
+        private void CheckAllChildNodes(TreeNode treeNode, bool nodeChecked)
+        {
+            foreach (TreeNode node in treeNode.Nodes)
+            {
+                node.Checked = nodeChecked;
+                if (node.Nodes.Count > 0)
+                {
+                    // If the current node has child nodes, call the CheckAllChildsNodes method recursively.
+                    CheckAllChildNodes(node, nodeChecked);
+                }
+            }
         }
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
@@ -939,20 +972,73 @@ namespace LifeGame
             else
             {
                 tsmEditTag.Enabled = true;
-                if (trvTag.SelectedNode.Nodes.Count > 0)
-                {
-                    tsmRemoveTag.Enabled = false;
-                }
-                else
-                {
-                    tsmRemoveTag.Enabled = true;
-                }
+                tsmRemoveTag.Enabled = true;
                 tsmCreateNote.Enabled = true;
                 tsmUp.Enabled = true;
                 tsmDown.Enabled = true;
                 tsmIndependent.Enabled = true;
                 tsmBelongTo.Enabled = true;
             }
+        }
+
+        private void btnAuthorAndJournal_Click(object sender, EventArgs e)
+        {
+            ChooseTag();
+            UpdateAuthorJours();
+        }
+
+        private void trvTag_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 新建节点
+            if (e.Control && e.KeyCode == Keys.A)
+            {
+                tsmAdd_Click(trvTag, e);
+            }
+            // 折叠
+            else if (e.Control && e.KeyCode == Keys.N)
+            {
+                tsmFold_Click(trvTag, e);
+            }
+            // 展开
+            else if (e.Control && e.KeyCode == Keys.M)
+            {
+                tsmExpand_Click(trvTag, e);
+            }
+            // 编辑节点
+            else if (e.Control && e.KeyCode == Keys.E)
+            {
+                tsmEditTag_Click(trvTag, e);
+            }
+            // 删除
+            else if (e.Control && e.KeyCode == Keys.D)
+            {
+                tsmRemoveTag_Click(trvTag, e);
+            }
+            // 上移
+            else if (e.Control && e.KeyCode == Keys.I)
+            {
+                tsmUp_Click(trvTag, e);
+            }
+            // 下移
+            else if (e.Control && e.KeyCode == Keys.K)
+            {
+                tsmDown_Click(trvTag, e);
+            }
+            // 左移
+            else if (e.Control && e.KeyCode == Keys.L)
+            {
+                tsmBelongTo_Click(trvTag, e);
+            }
+            // 右移
+            else if (e.Control && e.KeyCode == Keys.J)
+            {
+                tsmIndependent_Click(trvTag, e);
+            }
+        }
+
+        private void trvTag_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

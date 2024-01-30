@@ -71,6 +71,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtStartYear = new System.Windows.Forms.TextBox();
             this.txtEndYear = new System.Windows.Forms.TextBox();
+            this.btnAuthorAndJournal = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvLiterature = new System.Windows.Forms.DataGridView();
@@ -292,6 +293,8 @@
             this.trvTag.TabIndex = 2;
             this.trvTag.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.trvTag_AfterCheck);
             this.trvTag.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvTag_AfterSelect);
+            this.trvTag.KeyDown += new System.Windows.Forms.KeyEventHandler(this.trvTag_KeyDown);
+            this.trvTag.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.trvTag_KeyPress);
             // 
             // cmsTags
             // 
@@ -448,16 +451,18 @@
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.ColumnCount = 5;
+            this.tableLayoutPanel4.ColumnCount = 6;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
             this.tableLayoutPanel4.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.label2, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.txtStartYear, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.txtEndYear, 4, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnAuthorAndJournal, 5, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 34);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -470,9 +475,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(87, 0);
+            this.label1.Location = new System.Drawing.Point(11, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 25);
+            this.label1.Size = new System.Drawing.Size(30, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "From";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -481,9 +486,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(170, 0);
+            this.label2.Location = new System.Drawing.Point(86, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 25);
+            this.label2.Size = new System.Drawing.Size(16, 25);
             this.label2.TabIndex = 1;
             this.label2.Text = "to";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -491,20 +496,32 @@
             // txtStartYear
             // 
             this.txtStartYear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtStartYear.Location = new System.Drawing.Point(127, 3);
+            this.txtStartYear.Location = new System.Drawing.Point(47, 3);
             this.txtStartYear.Name = "txtStartYear";
-            this.txtStartYear.Size = new System.Drawing.Size(37, 20);
+            this.txtStartYear.Size = new System.Drawing.Size(33, 20);
             this.txtStartYear.TabIndex = 2;
             this.txtStartYear.Text = "1900";
             // 
             // txtEndYear
             // 
             this.txtEndYear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtEndYear.Location = new System.Drawing.Point(200, 3);
+            this.txtEndYear.Location = new System.Drawing.Point(108, 3);
             this.txtEndYear.Name = "txtEndYear";
-            this.txtEndYear.Size = new System.Drawing.Size(40, 20);
+            this.txtEndYear.Size = new System.Drawing.Size(33, 20);
             this.txtEndYear.TabIndex = 3;
             this.txtEndYear.Text = "9999";
+            // 
+            // btnAuthorAndJournal
+            // 
+            this.btnAuthorAndJournal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAuthorAndJournal.Location = new System.Drawing.Point(144, 1);
+            this.btnAuthorAndJournal.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.btnAuthorAndJournal.Name = "btnAuthorAndJournal";
+            this.btnAuthorAndJournal.Size = new System.Drawing.Size(99, 23);
+            this.btnAuthorAndJournal.TabIndex = 4;
+            this.btnAuthorAndJournal.Text = "Authors/Journal";
+            this.btnAuthorAndJournal.UseVisualStyleBackColor = true;
+            this.btnAuthorAndJournal.Click += new System.EventHandler(this.btnAuthorAndJournal_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -971,5 +988,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmTagSelectAll;
         private System.Windows.Forms.ToolStripMenuItem tsmTagClear;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.Button btnAuthorAndJournal;
     }
 }
