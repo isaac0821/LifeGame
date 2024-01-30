@@ -905,6 +905,8 @@ namespace LifeGame
                     CheckAllChildNodes(e.Node, e.Node.Checked);
                 }
             }
+            clbAuthor.Items.Clear();
+            clbJournalConference.Items.Clear();
         }
 
         // Updates all child tree nodes recursively.
@@ -954,30 +956,6 @@ namespace LifeGame
             foreach (CItem jourConf in JournalConferences)
             {
                 clbJournalConference.Items.Add(jourConf.ItemName + "[" + jourConf.ItemCount.ToString() + "]", false);
-            }
-        }
-
-        private void trvTag_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (trvTag.SelectedNode.Parent == null)
-            {
-                tsmEditTag.Enabled = false;
-                tsmRemoveTag.Enabled = false;
-                tsmCreateNote.Enabled = false;
-                tsmUp.Enabled = false;
-                tsmDown.Enabled = false;
-                tsmIndependent.Enabled = false;
-                tsmBelongTo.Enabled = false;
-            }
-            else
-            {
-                tsmEditTag.Enabled = true;
-                tsmRemoveTag.Enabled = true;
-                tsmCreateNote.Enabled = true;
-                tsmUp.Enabled = true;
-                tsmDown.Enabled = true;
-                tsmIndependent.Enabled = true;
-                tsmBelongTo.Enabled = true;
             }
         }
 
@@ -1039,6 +1017,11 @@ namespace LifeGame
         private void trvTag_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void trvTag_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
         }
     }
 }
