@@ -76,23 +76,6 @@
             this.btnSearchInResult = new System.Windows.Forms.Button();
             this.txtSearchInRes = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dgvLiterature = new System.Windows.Forms.DataGridView();
-            this.Star = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLitType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGoodJournal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPredatory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmsLiterature = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmViewLiterature = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmAddLiterature = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.addTag2Multi = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.chkNoBad = new System.Windows.Forms.CheckBox();
             this.chkOnlyGood = new System.Windows.Forms.CheckBox();
@@ -112,6 +95,40 @@
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgvLiterature = new System.Windows.Forms.DataGridView();
+            this.Star = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLitType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGoodJournal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPredatory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmsLiterature = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmViewLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmAddLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.addTag2Multi = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmAddToTempLitsArea = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.clbTempLitsArea = new System.Windows.Forms.CheckedListBox();
+            this.cmsTempLitsArea = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmTempSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmTempClearSelection = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmTempSort = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmTempClear = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRemoveSelected = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmReplaceMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddToMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddSelectedToMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -124,15 +141,21 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).BeginInit();
-            this.cmsLiterature.SuspendLayout();
             this.tableLayoutPanel16.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.cmsJournal.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.cmsAuthor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).BeginInit();
+            this.cmsLiterature.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.cmsTempLitsArea.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnsMain
@@ -574,9 +597,9 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.groupBox2, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel16, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.splitContainer2, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -586,150 +609,6 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 189F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(727, 648);
             this.tableLayoutPanel3.TabIndex = 2;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dgvLiterature);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(6, 38);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(715, 415);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Literature List";
-            // 
-            // dgvLiterature
-            // 
-            this.dgvLiterature.AllowUserToAddRows = false;
-            this.dgvLiterature.AllowUserToDeleteRows = false;
-            this.dgvLiterature.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvLiterature.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvLiterature.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLiterature.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Star,
-            this.colTitle,
-            this.colYear,
-            this.colLitType,
-            this.colGoodJournal,
-            this.colPredatory,
-            this.addDate,
-            this.lastModifyDate});
-            this.dgvLiterature.ContextMenuStrip = this.cmsLiterature;
-            this.dgvLiterature.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvLiterature.Location = new System.Drawing.Point(3, 16);
-            this.dgvLiterature.Name = "dgvLiterature";
-            this.dgvLiterature.ReadOnly = true;
-            this.dgvLiterature.Size = new System.Drawing.Size(709, 396);
-            this.dgvLiterature.TabIndex = 1;
-            this.dgvLiterature.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dgvLiterature_SortCompare);
-            // 
-            // Star
-            // 
-            this.Star.HeaderText = "Star";
-            this.Star.Name = "Star";
-            this.Star.ReadOnly = true;
-            this.Star.Width = 40;
-            // 
-            // colTitle
-            // 
-            this.colTitle.HeaderText = "Title";
-            this.colTitle.Name = "colTitle";
-            this.colTitle.ReadOnly = true;
-            this.colTitle.Width = 600;
-            // 
-            // colYear
-            // 
-            this.colYear.HeaderText = "Year";
-            this.colYear.Name = "colYear";
-            this.colYear.ReadOnly = true;
-            this.colYear.Width = 45;
-            // 
-            // colLitType
-            // 
-            this.colLitType.HeaderText = "Type";
-            this.colLitType.Name = "colLitType";
-            this.colLitType.ReadOnly = true;
-            this.colLitType.Width = 45;
-            // 
-            // colGoodJournal
-            // 
-            this.colGoodJournal.HeaderText = "Good Source";
-            this.colGoodJournal.Name = "colGoodJournal";
-            this.colGoodJournal.ReadOnly = true;
-            this.colGoodJournal.Width = 95;
-            // 
-            // colPredatory
-            // 
-            this.colPredatory.HeaderText = "Low Quality";
-            this.colPredatory.Name = "colPredatory";
-            this.colPredatory.ReadOnly = true;
-            this.colPredatory.Width = 95;
-            // 
-            // addDate
-            // 
-            this.addDate.HeaderText = "Added Date";
-            this.addDate.Name = "addDate";
-            this.addDate.ReadOnly = true;
-            this.addDate.Width = 120;
-            // 
-            // lastModifyDate
-            // 
-            this.lastModifyDate.HeaderText = "Latest Modification";
-            this.lastModifyDate.Name = "lastModifyDate";
-            this.lastModifyDate.ReadOnly = true;
-            this.lastModifyDate.Width = 120;
-            // 
-            // cmsLiterature
-            // 
-            this.cmsLiterature.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsLiterature.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmViewLiterature,
-            this.toolStripSeparator1,
-            this.tsmAddLiterature,
-            this.tsmRemoveLiterature,
-            this.toolStripSeparator5,
-            this.addTag2Multi});
-            this.cmsLiterature.Name = "cmsLiterature";
-            this.cmsLiterature.Size = new System.Drawing.Size(118, 104);
-            // 
-            // tsmViewLiterature
-            // 
-            this.tsmViewLiterature.Name = "tsmViewLiterature";
-            this.tsmViewLiterature.Size = new System.Drawing.Size(117, 22);
-            this.tsmViewLiterature.Text = "View";
-            this.tsmViewLiterature.Click += new System.EventHandler(this.tsmViewLiterature_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(114, 6);
-            // 
-            // tsmAddLiterature
-            // 
-            this.tsmAddLiterature.Name = "tsmAddLiterature";
-            this.tsmAddLiterature.Size = new System.Drawing.Size(117, 22);
-            this.tsmAddLiterature.Text = "Add";
-            this.tsmAddLiterature.Click += new System.EventHandler(this.tsmAddLiterature_Click);
-            // 
-            // tsmRemoveLiterature
-            // 
-            this.tsmRemoveLiterature.Name = "tsmRemoveLiterature";
-            this.tsmRemoveLiterature.Size = new System.Drawing.Size(117, 22);
-            this.tsmRemoveLiterature.Text = "Remove";
-            this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(114, 6);
-            // 
-            // addTag2Multi
-            // 
-            this.addTag2Multi.Name = "addTag2Multi";
-            this.addTag2Multi.Size = new System.Drawing.Size(117, 22);
-            this.addTag2Multi.Text = "Add Tag";
-            this.addTag2Multi.Click += new System.EventHandler(this.addTag2Multi_Click);
             // 
             // tableLayoutPanel16
             // 
@@ -914,6 +793,291 @@
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 35);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.groupBox2);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.groupBox5);
+            this.splitContainer2.Size = new System.Drawing.Size(721, 421);
+            this.splitContainer2.SplitterDistance = 462;
+            this.splitContainer2.TabIndex = 6;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgvLiterature);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(9);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(462, 421);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Main Lits Area";
+            // 
+            // dgvLiterature
+            // 
+            this.dgvLiterature.AllowUserToAddRows = false;
+            this.dgvLiterature.AllowUserToDeleteRows = false;
+            this.dgvLiterature.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvLiterature.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvLiterature.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLiterature.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Star,
+            this.colTitle,
+            this.colYear,
+            this.colLitType,
+            this.colGoodJournal,
+            this.colPredatory,
+            this.addDate,
+            this.lastModifyDate});
+            this.dgvLiterature.ContextMenuStrip = this.cmsLiterature;
+            this.dgvLiterature.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvLiterature.Location = new System.Drawing.Point(3, 16);
+            this.dgvLiterature.Name = "dgvLiterature";
+            this.dgvLiterature.ReadOnly = true;
+            this.dgvLiterature.Size = new System.Drawing.Size(456, 402);
+            this.dgvLiterature.TabIndex = 1;
+            this.dgvLiterature.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dgvLiterature_SortCompare);
+            // 
+            // Star
+            // 
+            this.Star.HeaderText = "Star";
+            this.Star.Name = "Star";
+            this.Star.ReadOnly = true;
+            this.Star.Width = 40;
+            // 
+            // colTitle
+            // 
+            this.colTitle.HeaderText = "Title";
+            this.colTitle.Name = "colTitle";
+            this.colTitle.ReadOnly = true;
+            this.colTitle.Width = 600;
+            // 
+            // colYear
+            // 
+            this.colYear.HeaderText = "Year";
+            this.colYear.Name = "colYear";
+            this.colYear.ReadOnly = true;
+            this.colYear.Width = 45;
+            // 
+            // colLitType
+            // 
+            this.colLitType.HeaderText = "Type";
+            this.colLitType.Name = "colLitType";
+            this.colLitType.ReadOnly = true;
+            this.colLitType.Width = 45;
+            // 
+            // colGoodJournal
+            // 
+            this.colGoodJournal.HeaderText = "Good Source";
+            this.colGoodJournal.Name = "colGoodJournal";
+            this.colGoodJournal.ReadOnly = true;
+            this.colGoodJournal.Width = 95;
+            // 
+            // colPredatory
+            // 
+            this.colPredatory.HeaderText = "Low Quality";
+            this.colPredatory.Name = "colPredatory";
+            this.colPredatory.ReadOnly = true;
+            this.colPredatory.Width = 95;
+            // 
+            // addDate
+            // 
+            this.addDate.HeaderText = "Added Date";
+            this.addDate.Name = "addDate";
+            this.addDate.ReadOnly = true;
+            this.addDate.Width = 120;
+            // 
+            // lastModifyDate
+            // 
+            this.lastModifyDate.HeaderText = "Latest Modification";
+            this.lastModifyDate.Name = "lastModifyDate";
+            this.lastModifyDate.ReadOnly = true;
+            this.lastModifyDate.Width = 120;
+            // 
+            // cmsLiterature
+            // 
+            this.cmsLiterature.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsLiterature.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmViewLiterature,
+            this.toolStripSeparator1,
+            this.tsmAddLiterature,
+            this.tsmRemoveLiterature,
+            this.toolStripSeparator5,
+            this.addTag2Multi,
+            this.toolStripSeparator12,
+            this.tsmAddToTempLitsArea});
+            this.cmsLiterature.Name = "cmsLiterature";
+            this.cmsLiterature.Size = new System.Drawing.Size(191, 154);
+            // 
+            // tsmViewLiterature
+            // 
+            this.tsmViewLiterature.Name = "tsmViewLiterature";
+            this.tsmViewLiterature.Size = new System.Drawing.Size(190, 22);
+            this.tsmViewLiterature.Text = "View";
+            this.tsmViewLiterature.Click += new System.EventHandler(this.tsmViewLiterature_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(187, 6);
+            // 
+            // tsmAddLiterature
+            // 
+            this.tsmAddLiterature.Name = "tsmAddLiterature";
+            this.tsmAddLiterature.Size = new System.Drawing.Size(190, 22);
+            this.tsmAddLiterature.Text = "Add";
+            this.tsmAddLiterature.Click += new System.EventHandler(this.tsmAddLiterature_Click);
+            // 
+            // tsmRemoveLiterature
+            // 
+            this.tsmRemoveLiterature.Name = "tsmRemoveLiterature";
+            this.tsmRemoveLiterature.Size = new System.Drawing.Size(190, 22);
+            this.tsmRemoveLiterature.Text = "Remove";
+            this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(187, 6);
+            // 
+            // addTag2Multi
+            // 
+            this.addTag2Multi.Name = "addTag2Multi";
+            this.addTag2Multi.Size = new System.Drawing.Size(190, 22);
+            this.addTag2Multi.Text = "Add Tag";
+            this.addTag2Multi.Click += new System.EventHandler(this.addTag2Multi_Click);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(187, 6);
+            // 
+            // tsmAddToTempLitsArea
+            // 
+            this.tsmAddToTempLitsArea.Name = "tsmAddToTempLitsArea";
+            this.tsmAddToTempLitsArea.Size = new System.Drawing.Size(190, 22);
+            this.tsmAddToTempLitsArea.Text = "Add to Temp Lits Area";
+            this.tsmAddToTempLitsArea.Click += new System.EventHandler(this.tsmAddToTempLitsArea_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.clbTempLitsArea);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox5.Location = new System.Drawing.Point(0, 0);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(9);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(255, 421);
+            this.groupBox5.TabIndex = 0;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Temp Lits Area";
+            // 
+            // clbTempLitsArea
+            // 
+            this.clbTempLitsArea.ContextMenuStrip = this.cmsTempLitsArea;
+            this.clbTempLitsArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clbTempLitsArea.FormattingEnabled = true;
+            this.clbTempLitsArea.Location = new System.Drawing.Point(3, 16);
+            this.clbTempLitsArea.Name = "clbTempLitsArea";
+            this.clbTempLitsArea.Size = new System.Drawing.Size(249, 402);
+            this.clbTempLitsArea.TabIndex = 0;
+            // 
+            // cmsTempLitsArea
+            // 
+            this.cmsTempLitsArea.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmTempSelectAll,
+            this.tsmTempClearSelection,
+            this.toolStripSeparator15,
+            this.tsmTempSort,
+            this.toolStripSeparator14,
+            this.tsmTempClear,
+            this.tsmRemoveSelected,
+            this.toolStripSeparator13,
+            this.tsmReplaceMainLitsArea,
+            this.tsmAddToMainLitsArea,
+            this.tsmAddSelectedToMainLitsArea});
+            this.cmsTempLitsArea.Name = "cmsTempLitsArea";
+            this.cmsTempLitsArea.Size = new System.Drawing.Size(236, 198);
+            // 
+            // tsmTempSelectAll
+            // 
+            this.tsmTempSelectAll.Name = "tsmTempSelectAll";
+            this.tsmTempSelectAll.Size = new System.Drawing.Size(235, 22);
+            this.tsmTempSelectAll.Text = "Select All";
+            this.tsmTempSelectAll.Click += new System.EventHandler(this.tsmTempSelectAll_Click);
+            // 
+            // tsmTempClearSelection
+            // 
+            this.tsmTempClearSelection.Name = "tsmTempClearSelection";
+            this.tsmTempClearSelection.Size = new System.Drawing.Size(235, 22);
+            this.tsmTempClearSelection.Text = "Clear Selection";
+            this.tsmTempClearSelection.Click += new System.EventHandler(this.tsmTempClearSelection_Click);
+            // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            this.toolStripSeparator15.Size = new System.Drawing.Size(232, 6);
+            // 
+            // tsmTempSort
+            // 
+            this.tsmTempSort.Name = "tsmTempSort";
+            this.tsmTempSort.Size = new System.Drawing.Size(235, 22);
+            this.tsmTempSort.Text = "Sort";
+            this.tsmTempSort.Click += new System.EventHandler(this.tsmTempSort_Click);
+            // 
+            // toolStripSeparator14
+            // 
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            this.toolStripSeparator14.Size = new System.Drawing.Size(232, 6);
+            // 
+            // tsmTempClear
+            // 
+            this.tsmTempClear.Name = "tsmTempClear";
+            this.tsmTempClear.Size = new System.Drawing.Size(235, 22);
+            this.tsmTempClear.Text = "Clear";
+            this.tsmTempClear.Click += new System.EventHandler(this.tsmTempClear_Click);
+            // 
+            // tsmRemoveSelected
+            // 
+            this.tsmRemoveSelected.Name = "tsmRemoveSelected";
+            this.tsmRemoveSelected.Size = new System.Drawing.Size(235, 22);
+            this.tsmRemoveSelected.Text = "Remove Selected";
+            this.tsmRemoveSelected.Click += new System.EventHandler(this.tsmRemoveSelected_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(232, 6);
+            // 
+            // tsmReplaceMainLitsArea
+            // 
+            this.tsmReplaceMainLitsArea.Name = "tsmReplaceMainLitsArea";
+            this.tsmReplaceMainLitsArea.Size = new System.Drawing.Size(235, 22);
+            this.tsmReplaceMainLitsArea.Text = "Replace Main Lits Area";
+            this.tsmReplaceMainLitsArea.Click += new System.EventHandler(this.tsmReplaceMainLitsArea_Click);
+            // 
+            // tsmAddToMainLitsArea
+            // 
+            this.tsmAddToMainLitsArea.Name = "tsmAddToMainLitsArea";
+            this.tsmAddToMainLitsArea.Size = new System.Drawing.Size(235, 22);
+            this.tsmAddToMainLitsArea.Text = "Add All to Main Lits Area";
+            this.tsmAddToMainLitsArea.Click += new System.EventHandler(this.tsmAddToMainLitsArea_Click);
+            // 
+            // tsmAddSelectedToMainLitsArea
+            // 
+            this.tsmAddSelectedToMainLitsArea.Name = "tsmAddSelectedToMainLitsArea";
+            this.tsmAddSelectedToMainLitsArea.Size = new System.Drawing.Size(235, 22);
+            this.tsmAddSelectedToMainLitsArea.Text = "Add Selected to Main Lits Area";
+            this.tsmAddSelectedToMainLitsArea.Click += new System.EventHandler(this.tsmAddSelectedToMainLitsArea_Click);
+            // 
             // frmLiterature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -943,9 +1107,6 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).EndInit();
-            this.cmsLiterature.ResumeLayout(false);
             this.tableLayoutPanel16.ResumeLayout(false);
             this.tableLayoutPanel16.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -953,6 +1114,15 @@
             this.cmsJournal.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.cmsAuthor.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).EndInit();
+            this.cmsLiterature.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.cmsTempLitsArea.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1041,5 +1211,22 @@
         private System.Windows.Forms.ComboBox cbxMode;
         private System.Windows.Forms.Button btnSearchInResult;
         private System.Windows.Forms.TextBox txtSearchInRes;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.CheckedListBox clbTempLitsArea;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddToTempLitsArea;
+        private System.Windows.Forms.ContextMenuStrip cmsTempLitsArea;
+        private System.Windows.Forms.ToolStripMenuItem tsmTempSort;
+        private System.Windows.Forms.ToolStripMenuItem tsmTempSelectAll;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+        private System.Windows.Forms.ToolStripMenuItem tsmTempClearSelection;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+        private System.Windows.Forms.ToolStripMenuItem tsmTempClear;
+        private System.Windows.Forms.ToolStripMenuItem tsmRemoveSelected;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
+        private System.Windows.Forms.ToolStripMenuItem tsmReplaceMainLitsArea;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddToMainLitsArea;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddSelectedToMainLitsArea;
     }
 }

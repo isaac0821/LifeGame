@@ -134,21 +134,21 @@
             // moneyMToolStripMenuItem
             // 
             this.moneyMToolStripMenuItem.Name = "moneyMToolStripMenuItem";
-            this.moneyMToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.moneyMToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.moneyMToolStripMenuItem.Text = "Money(&M)";
             this.moneyMToolStripMenuItem.Click += new System.EventHandler(this.moneyMToolStripMenuItem_Click);
             // 
             // literatureLToolStripMenuItem
             // 
             this.literatureLToolStripMenuItem.Name = "literatureLToolStripMenuItem";
-            this.literatureLToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.literatureLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.literatureLToolStripMenuItem.Text = "Literature(&L)";
             this.literatureLToolStripMenuItem.Click += new System.EventHandler(this.literatureLToolStripMenuItem_Click);
             // 
             // surveyVToolStripMenuItem
             // 
             this.surveyVToolStripMenuItem.Name = "surveyVToolStripMenuItem";
-            this.surveyVToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.surveyVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.surveyVToolStripMenuItem.Text = "Survey(&V)";
             this.surveyVToolStripMenuItem.Click += new System.EventHandler(this.surveyVToolStripMenuItem_Click);
             // 

@@ -16,6 +16,7 @@ namespace LifeGame
         List<RSubLiteratureTag> lstSubTags = new List<RSubLiteratureTag>();
 
         List<string> shownLits = new List<string>();
+        List<string> tempLits = new List<string>();
 
         //记录数量
         List<CItem> Tags = new List<CItem>();
@@ -111,6 +112,15 @@ namespace LifeGame
                 {
                     case DialogResult.Yes:
                         string removedLit = dgvLiterature.CurrentRow.Cells[1].Value.ToString();
+                        if (tempLits.Contains(removedLit))
+                        {
+                            tempLits.RemoveAll(o => o == removedLit);
+                            clbTempLitsArea.Items.Clear();
+                            foreach (string item in tempLits)
+                            {
+                                clbTempLitsArea.Items.Add(item, false);
+                            }
+                        }
                         G.glb.lstLiterature.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstLiteratureTag.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == removedLit);
@@ -470,7 +480,7 @@ namespace LifeGame
                 }
             }
             Authors = Authors.OrderBy(o => o.ItemName).ToList();
-            Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();            
+            Authors = Authors.OrderByDescending(o => o.ItemCount).ToList();
             JournalConferences = JournalConferences.OrderByDescending(o => o.ItemCount).ToList();
             JournalConferences = JournalConferences.OrderBy(o => o.ItemName).ToList();
             clbAuthor.Items.Clear();
@@ -693,12 +703,12 @@ namespace LifeGame
                         trvTag.SelectedNode.ExpandAll();
                         trvTag.SelectedNode.Nodes.Add(newNode);
 
-                        CLiteratureTag newTagType = new CLiteratureTag ();
+                        CLiteratureTag newTagType = new CLiteratureTag();
                         newTagType.Tag = newTag;
                         newTagType.GUID = newNode.Name;
                         lstTags.Add(newTagType);
 
-                        RSubLiteratureTag newSubTag = new RSubLiteratureTag ();
+                        RSubLiteratureTag newSubTag = new RSubLiteratureTag();
                         newSubTag.Tag = trvTag.SelectedNode.Text.Split('[')[0];
                         newSubTag.GUID = trvTag.SelectedNode.Name;
                         newSubTag.SubTag = newTag;
@@ -767,7 +777,7 @@ namespace LifeGame
         }
 
         private void tsmRemoveTag_Click(object sender, EventArgs e)
-        {            
+        {
             if (trvTag.SelectedNode != null &&
                 MessageBox.Show("Do you want to remove these tags? Literature without tag will add a new tag called '(default)'", "Remove confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
@@ -830,7 +840,7 @@ namespace LifeGame
                             litTag.Tag = newTag;
                         }
                     }
-                    lstTags.Find(o => o.Tag ==  selectedTag).Tag = newTag;
+                    lstTags.Find(o => o.Tag == selectedTag).Tag = newTag;
                     foreach (RSubLiteratureTag item in lstSubTags.FindAll(o => o.Tag == selectedTag))
                     {
                         item.Tag = newTag;
@@ -990,7 +1000,7 @@ namespace LifeGame
             clbAuthor.Items.Clear();
             foreach (CItem author in Authors)
             {
-                clbAuthor.Items.Add(author.ItemName + "[" + author.ItemCount.ToString() + "]", false);
+                clbAuthor.Items.Add(author.ItemName + "[" + author.ItemCount.ToString() + "]", true);
             }
         }
 
@@ -1008,7 +1018,7 @@ namespace LifeGame
             clbJournalConference.Items.Clear();
             foreach (CItem jourConf in JournalConferences)
             {
-                clbJournalConference.Items.Add(jourConf.ItemName + "[" + jourConf.ItemCount.ToString() + "]", false);
+                clbJournalConference.Items.Add(jourConf.ItemName + "[" + jourConf.ItemCount.ToString() + "]", true);
             }
         }
 
@@ -1077,5 +1087,98 @@ namespace LifeGame
 
         }
 
+        private void tsmAddToTempLitsArea_Click(object sender, EventArgs e)
+        {
+            if (dgvLiterature.SelectedRows.Count >= 1)
+            {
+                for (int i = 0; i < dgvLiterature.SelectedRows.Count; i++)
+                {
+                    if (!tempLits.Contains(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString()))
+                    {
+                        tempLits.Add(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString());
+                    }
+                }
+                updateTempLitArea();
+            }
+        }
+
+        private void updateTempLitArea()
+        {
+            clbTempLitsArea.Items.Clear();
+            foreach (string item in tempLits)
+            {
+                clbTempLitsArea.Items.Add(item);
+            }
+        }
+
+        private void tsmTempSelectAll_Click(object sender, EventArgs e)
+        {
+            clbTempLitsArea.Items.Clear();
+            foreach (string item in tempLits)
+            {
+                clbTempLitsArea.Items.Add(item, true);
+            }
+        }
+
+        private void tsmTempClearSelection_Click(object sender, EventArgs e)
+        {
+            clbTempLitsArea.Items.Clear();
+            foreach (string item in tempLits)
+            {
+                clbTempLitsArea.Items.Add(item, false);
+            }
+        }
+
+        private void tsmTempSort_Click(object sender, EventArgs e)
+        {
+            clbTempLitsArea.Items.Clear();
+            tempLits.Sort();
+            foreach (string item in tempLits)
+            {
+                clbTempLitsArea.Items.Add(item, false);
+            }
+        }
+
+        private void tsmTempClear_Click(object sender, EventArgs e)
+        {
+            tempLits.Clear();
+            clbTempLitsArea.Items.Clear();
+        }
+
+        private void tsmRemoveSelected_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < clbTempLitsArea.CheckedItems.Count; i++)
+            {
+                tempLits.RemoveAll(o => o == clbTempLitsArea.CheckedItems[i].ToString());
+            }
+            clbTempLitsArea.Items.Clear();
+            foreach (string item in tempLits)
+            {
+                clbTempLitsArea.Items.Add(item, false);
+            }
+        }
+
+        private void tsmReplaceMainLitsArea_Click(object sender, EventArgs e)
+        {
+            shownLits = tempLits.ToList();
+            LoadLiteratureList(shownLits);
+        }
+
+        private void tsmAddToMainLitsArea_Click(object sender, EventArgs e)
+        {
+            shownLits.AddRange(tempLits.ToList());
+            shownLits = shownLits.Distinct().ToList();
+            LoadLiteratureList(shownLits);
+        }
+
+        private void tsmAddSelectedToMainLitsArea_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < clbTempLitsArea.CheckedItems.Count; i++)
+            {
+                shownLits.Add(clbTempLitsArea.CheckedItems[i].ToString());
+            }
+            shownLits = shownLits.Distinct().ToList();
+            LoadLiteratureList(shownLits);
+        }
     }
 }

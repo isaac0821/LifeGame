@@ -460,8 +460,17 @@ namespace LifeGame
 
         private void literatureLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmLiterature frmLiterature = new frmLiterature();
-            frmLiterature.Show();
+            if (M.literatureOpened.Count != 0)
+            {
+                M.literatureOpened[0].Show();
+                M.literatureOpened[0].BringToFront();
+            }
+            else
+            {
+                frmLiterature frmLiterature = new frmLiterature();
+                M.literatureOpened.Add(frmLiterature);
+                frmLiterature.Show();
+            }
         }
 
         private void dtpDate_ValueChanged(object sender, EventArgs e)
