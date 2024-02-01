@@ -42,7 +42,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnFilter = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.trvTag = new System.Windows.Forms.TreeView();
             this.cmsTags = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -67,11 +66,15 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmCreateNote = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtStartYear = new System.Windows.Forms.TextBox();
+            this.btnFilter = new System.Windows.Forms.Button();
             this.txtEndYear = new System.Windows.Forms.TextBox();
             this.btnAuthorAndJournal = new System.Windows.Forms.Button();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbxMode = new System.Windows.Forms.ComboBox();
+            this.btnSearchInResult = new System.Windows.Forms.Button();
+            this.txtSearchInRes = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvLiterature = new System.Windows.Forms.DataGridView();
@@ -119,6 +122,7 @@
             this.groupBox1.SuspendLayout();
             this.cmsTags.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).BeginInit();
@@ -199,7 +203,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel3);
             this.splitContainer1.Size = new System.Drawing.Size(1022, 648);
-            this.splitContainer1.SplitterDistance = 255;
+            this.splitContainer1.SplitterDistance = 291;
             this.splitContainer1.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -207,41 +211,42 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(249, 642);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(285, 642);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel2.Controls.Add(this.btnSearch, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtSearch, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnFilter, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(243, 25);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(279, 25);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(141, 0);
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSearch.Location = new System.Drawing.Point(228, 0);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(0);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(51, 23);
+            this.btnSearch.Size = new System.Drawing.Size(51, 25);
             this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -250,29 +255,19 @@
             // txtSearch
             // 
             this.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSearch.Location = new System.Drawing.Point(3, 3);
+            this.txtSearch.Location = new System.Drawing.Point(0, 0);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(0);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(135, 20);
+            this.txtSearch.Size = new System.Drawing.Size(228, 20);
             this.txtSearch.TabIndex = 4;
-            // 
-            // btnFilter
-            // 
-            this.btnFilter.Location = new System.Drawing.Point(192, 0);
-            this.btnFilter.Margin = new System.Windows.Forms.Padding(0);
-            this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(51, 23);
-            this.btnFilter.TabIndex = 5;
-            this.btnFilter.Text = "Filter";
-            this.btnFilter.UseVisualStyleBackColor = true;
-            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.trvTag);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 65);
+            this.groupBox1.Location = new System.Drawing.Point(3, 96);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(243, 574);
+            this.groupBox1.Size = new System.Drawing.Size(279, 543);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tags";
@@ -289,7 +284,7 @@
             treeNode1.Text = "(Root)";
             this.trvTag.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
-            this.trvTag.Size = new System.Drawing.Size(237, 555);
+            this.trvTag.Size = new System.Drawing.Size(273, 524);
             this.trvTag.TabIndex = 2;
             this.trvTag.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.trvTag_AfterCheck);
             this.trvTag.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvTag_AfterSelect);
@@ -453,75 +448,127 @@
             // 
             this.tableLayoutPanel4.ColumnCount = 6;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
-            this.tableLayoutPanel4.Controls.Add(this.label1, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label2, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.txtStartYear, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.txtEndYear, 4, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnAuthorAndJournal, 5, 0);
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel4.Controls.Add(this.label2, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.txtStartYear, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnFilter, 5, 0);
+            this.tableLayoutPanel4.Controls.Add(this.txtEndYear, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnAuthorAndJournal, 4, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 34);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 65);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(243, 25);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(279, 25);
             this.tableLayoutPanel4.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(11, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "From";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(86, 0);
+            this.label2.Location = new System.Drawing.Point(89, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(16, 25);
+            this.label2.Size = new System.Drawing.Size(9, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "to";
+            this.label2.Text = "-";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtStartYear
             // 
             this.txtStartYear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtStartYear.Location = new System.Drawing.Point(47, 3);
+            this.txtStartYear.Location = new System.Drawing.Point(51, 3);
             this.txtStartYear.Name = "txtStartYear";
-            this.txtStartYear.Size = new System.Drawing.Size(33, 20);
+            this.txtStartYear.Size = new System.Drawing.Size(32, 20);
             this.txtStartYear.TabIndex = 2;
             this.txtStartYear.Text = "1900";
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFilter.Location = new System.Drawing.Point(239, 0);
+            this.btnFilter.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(40, 25);
+            this.btnFilter.TabIndex = 5;
+            this.btnFilter.Text = "Filter";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // txtEndYear
             // 
             this.txtEndYear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtEndYear.Location = new System.Drawing.Point(108, 3);
+            this.txtEndYear.Location = new System.Drawing.Point(104, 3);
             this.txtEndYear.Name = "txtEndYear";
-            this.txtEndYear.Size = new System.Drawing.Size(33, 20);
+            this.txtEndYear.Size = new System.Drawing.Size(32, 20);
             this.txtEndYear.TabIndex = 3;
             this.txtEndYear.Text = "9999";
             // 
             // btnAuthorAndJournal
             // 
             this.btnAuthorAndJournal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAuthorAndJournal.Location = new System.Drawing.Point(144, 1);
-            this.btnAuthorAndJournal.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.btnAuthorAndJournal.Location = new System.Drawing.Point(139, 0);
+            this.btnAuthorAndJournal.Margin = new System.Windows.Forms.Padding(0);
             this.btnAuthorAndJournal.Name = "btnAuthorAndJournal";
-            this.btnAuthorAndJournal.Size = new System.Drawing.Size(99, 23);
+            this.btnAuthorAndJournal.Size = new System.Drawing.Size(100, 25);
             this.btnAuthorAndJournal.TabIndex = 4;
             this.btnAuthorAndJournal.Text = "Authors/Journal";
             this.btnAuthorAndJournal.UseVisualStyleBackColor = true;
             this.btnAuthorAndJournal.Click += new System.EventHandler(this.btnAuthorAndJournal_Click);
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 3;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
+            this.tableLayoutPanel6.Controls.Add(this.cbxMode, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.btnSearchInResult, 2, 0);
+            this.tableLayoutPanel6.Controls.Add(this.txtSearchInRes, 1, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 34);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(279, 25);
+            this.tableLayoutPanel6.TabIndex = 7;
+            // 
+            // cbxMode
+            // 
+            this.cbxMode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbxMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxMode.FormattingEnabled = true;
+            this.cbxMode.Items.AddRange(new object[] {
+            "AND",
+            "NOT",
+            "OR"});
+            this.cbxMode.Location = new System.Drawing.Point(3, 3);
+            this.cbxMode.Name = "cbxMode";
+            this.cbxMode.Size = new System.Drawing.Size(53, 21);
+            this.cbxMode.TabIndex = 0;
+            // 
+            // btnSearchInResult
+            // 
+            this.btnSearchInResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSearchInResult.Location = new System.Drawing.Point(182, 0);
+            this.btnSearchInResult.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSearchInResult.Name = "btnSearchInResult";
+            this.btnSearchInResult.Size = new System.Drawing.Size(97, 25);
+            this.btnSearchInResult.TabIndex = 1;
+            this.btnSearchInResult.Text = "Search In Res.";
+            this.btnSearchInResult.UseVisualStyleBackColor = true;
+            this.btnSearchInResult.Click += new System.EventHandler(this.btnSearchInResult_Click);
+            // 
+            // txtSearchInRes
+            // 
+            this.txtSearchInRes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearchInRes.Location = new System.Drawing.Point(62, 3);
+            this.txtSearchInRes.Name = "txtSearchInRes";
+            this.txtSearchInRes.Size = new System.Drawing.Size(117, 20);
+            this.txtSearchInRes.TabIndex = 2;
             // 
             // tableLayoutPanel3
             // 
@@ -537,7 +584,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 189F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(763, 648);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(727, 648);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // groupBox2
@@ -547,7 +594,7 @@
             this.groupBox2.Location = new System.Drawing.Point(6, 38);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(751, 415);
+            this.groupBox2.Size = new System.Drawing.Size(715, 415);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Literature List";
@@ -573,7 +620,7 @@
             this.dgvLiterature.Location = new System.Drawing.Point(3, 16);
             this.dgvLiterature.Name = "dgvLiterature";
             this.dgvLiterature.ReadOnly = true;
-            this.dgvLiterature.Size = new System.Drawing.Size(745, 396);
+            this.dgvLiterature.Size = new System.Drawing.Size(709, 396);
             this.dgvLiterature.TabIndex = 1;
             this.dgvLiterature.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dgvLiterature_SortCompare);
             // 
@@ -700,14 +747,14 @@
             this.tableLayoutPanel16.RowCount = 1;
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel16.Size = new System.Drawing.Size(757, 26);
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(721, 26);
             this.tableLayoutPanel16.TabIndex = 4;
             // 
             // chkNoBad
             // 
             this.chkNoBad.AutoSize = true;
             this.chkNoBad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkNoBad.Location = new System.Drawing.Point(585, 3);
+            this.chkNoBad.Location = new System.Drawing.Point(549, 3);
             this.chkNoBad.Name = "chkNoBad";
             this.chkNoBad.Size = new System.Drawing.Size(149, 20);
             this.chkNoBad.TabIndex = 0;
@@ -719,7 +766,7 @@
             // 
             this.chkOnlyGood.AutoSize = true;
             this.chkOnlyGood.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkOnlyGood.Location = new System.Drawing.Point(429, 3);
+            this.chkOnlyGood.Location = new System.Drawing.Point(393, 3);
             this.chkOnlyGood.Name = "chkOnlyGood";
             this.chkOnlyGood.Size = new System.Drawing.Size(150, 20);
             this.chkOnlyGood.TabIndex = 1;
@@ -733,7 +780,7 @@
             this.lblNumFound.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNumFound.Location = new System.Drawing.Point(3, 0);
             this.lblNumFound.Name = "lblNumFound";
-            this.lblNumFound.Size = new System.Drawing.Size(420, 26);
+            this.lblNumFound.Size = new System.Drawing.Size(384, 26);
             this.lblNumFound.TabIndex = 2;
             this.lblNumFound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -749,16 +796,16 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(757, 183);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(721, 183);
             this.tableLayoutPanel5.TabIndex = 5;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.clbJournalConference);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(381, 3);
+            this.groupBox4.Location = new System.Drawing.Point(363, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(373, 177);
+            this.groupBox4.Size = new System.Drawing.Size(355, 177);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Journals/Conferences";
@@ -771,7 +818,7 @@
             this.clbJournalConference.FormattingEnabled = true;
             this.clbJournalConference.Location = new System.Drawing.Point(3, 16);
             this.clbJournalConference.Name = "clbJournalConference";
-            this.clbJournalConference.Size = new System.Drawing.Size(367, 158);
+            this.clbJournalConference.Size = new System.Drawing.Size(349, 158);
             this.clbJournalConference.TabIndex = 0;
             // 
             // cmsJournal
@@ -822,7 +869,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(372, 177);
+            this.groupBox3.Size = new System.Drawing.Size(354, 177);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Authors";
@@ -836,7 +883,7 @@
             this.clbAuthor.Location = new System.Drawing.Point(3, 16);
             this.clbAuthor.MultiColumn = true;
             this.clbAuthor.Name = "clbAuthor";
-            this.clbAuthor.Size = new System.Drawing.Size(366, 158);
+            this.clbAuthor.Size = new System.Drawing.Size(348, 158);
             this.clbAuthor.TabIndex = 0;
             // 
             // cmsAuthor
@@ -893,6 +940,8 @@
             this.cmsTags.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).EndInit();
@@ -968,7 +1017,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtStartYear;
         private System.Windows.Forms.TextBox txtEndYear;
@@ -989,5 +1037,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmTagClear;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.Button btnAuthorAndJournal;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.ComboBox cbxMode;
+        private System.Windows.Forms.Button btnSearchInResult;
+        private System.Windows.Forms.TextBox txtSearchInRes;
     }
 }

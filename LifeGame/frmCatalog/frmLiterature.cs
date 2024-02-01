@@ -15,6 +15,8 @@ namespace LifeGame
         List<CLiteratureTag> lstTags = new List<CLiteratureTag>();
         List<RSubLiteratureTag> lstSubTags = new List<RSubLiteratureTag>();
 
+        List<string> shownLits = new List<string>();
+
         //记录数量
         List<CItem> Tags = new List<CItem>();
         List<CItem> Authors = new List<CItem>();
@@ -29,6 +31,7 @@ namespace LifeGame
         {
             lstTags = G.glb.lstLiteratureTagType.ToList();
             lstSubTags = G.glb.lstSubLiteratureTag.ToList();
+            cbxMode.Text = "AND";
             LoadTab();
         }
 
@@ -121,6 +124,91 @@ namespace LifeGame
                 }
             }
             LoadTab();
+        }
+
+        private void btnSearchInResult_Click(object sender, EventArgs e)
+        {
+            if (cbxMode.Text == "AND")
+            {
+                if (shownLits.Count > 0 && txtSearchInRes.Text != "")
+                {
+                    List<string> newLitList = searchByText(txtSearchInRes.Text);
+                    List<string> oriLitList = shownLits.ToList();
+
+                    List<string> bothLitList = new List<string>();
+                    foreach (string lit in oriLitList)
+                    {
+                        if (newLitList.Exists(o => o == lit))
+                        {
+                            bothLitList.Add(lit);
+                        }
+                    }
+                    shownLits = bothLitList.ToList();
+                    shownLits = shownLits.Distinct().ToList();
+                    LoadLiteratureList(shownLits);
+                }
+            }
+            else if (cbxMode.Text == "OR")
+            {
+                if (shownLits.Count > 0 && txtSearchInRes.Text != "")
+                {
+                    List<string> newLitList = searchByText(txtSearchInRes.Text);
+                    shownLits.AddRange(newLitList);
+                    shownLits = shownLits.Distinct().ToList();
+                    LoadLiteratureList(shownLits);
+                }
+            }
+            else if (cbxMode.Text == "NOT")
+            {
+                if (shownLits.Count > 0 && txtSearchInRes.Text != "")
+                {
+                    List<string> newLitList = searchByText(txtSearchInRes.Text);
+                    foreach (string item in newLitList)
+                    {
+                        shownLits.RemoveAll(o => o == item);
+                    }
+                    shownLits = shownLits.Distinct().ToList();
+                    LoadLiteratureList(shownLits);
+                }
+            }
+        }
+
+        private List<string> searchByText(string SearchText)
+        {
+            List<string> searched = new List<string>();
+            foreach (CLiterature literature in G.glb.lstLiterature)
+            {
+                // Find literature with the search text in its title
+                if (literature.Title.ToUpper().Contains(SearchText.ToUpper()))
+                {
+                    searched.Add(literature.Title);
+                }
+                // Find literature with the search text as part of the bibtex
+                if (literature.BibKey.ToUpper().Contains(SearchText.ToUpper()))
+                {
+                    searched.Add(literature.Title);
+                }
+            }
+            // Find literature with the search text as the author name
+            List<string> AuthorNames = new List<string>();
+            foreach (RLiteratureAuthor litAuthors in G.glb.lstLiteratureAuthor)
+            {
+                if (!AuthorNames.Contains(litAuthors.Author))
+                {
+                    AuthorNames.Add(litAuthors.Author);
+                }
+            }
+            foreach (string author in AuthorNames)
+            {
+                if (author.ToUpper().Contains(SearchText.ToUpper()))
+                {
+                    foreach (RLiteratureAuthor literatureAuthor in G.glb.lstLiteratureAuthor.FindAll(o => o.Author == author))
+                    {
+                        searched.Add(literatureAuthor.Title);
+                    }
+                }
+            }
+            return searched;
         }
 
         private void LoadLiteratureList(List<string> loadedLits)
@@ -230,48 +318,13 @@ namespace LifeGame
 
         private void LoadLiteratureList(string SearchText)
         {
-            List<string> ShownTitle = new List<string>();
-            foreach (CLiterature literature in G.glb.lstLiterature)
-            {
-                // Find literature with the search text in its title
-                if (literature.Title.ToUpper().Contains(SearchText.ToUpper()))
-                {
-                    ShownTitle.Add(literature.Title);
-                }
-                // Find literature with the search text as part of the bibtex
-                if (literature.BibKey.ToUpper().Contains(SearchText.ToUpper()))
-                {
-                    ShownTitle.Add(literature.Title);
-                }
-            }
-            // Find literature with the search text as the author name
-            List<string> AuthorNames = new List<string>();
-            foreach (RLiteratureAuthor litAuthors in G.glb.lstLiteratureAuthor)
-            {
-                if (!AuthorNames.Contains(litAuthors.Author))
-                {
-                    AuthorNames.Add(litAuthors.Author);
-                }
-            }
-            foreach (string author in AuthorNames)
-            {
-                if (author.ToUpper().Contains(SearchText.ToUpper()))
-                {
-                    foreach (RLiteratureAuthor literatureAuthor in G.glb.lstLiteratureAuthor.FindAll(o => o.Author == author))
-                    {
-                        ShownTitle.Add(literatureAuthor.Title);
-                    }
-                }
-            }
-
-            ShownTitle = ShownTitle.Distinct().ToList();
-            LoadLiteratureList(ShownTitle);
+            shownLits = searchByText(SearchText).Distinct().ToList();
+            LoadLiteratureList(shownLits);
         }
 
         private void LoadLiteratureList()
         {
-            List<string> ShownTitle = new List<string>();
-
+            shownLits.Clear();
             int startYear = Convert.ToInt32(txtStartYear.Text);
             int endYear = Convert.ToInt32(txtEndYear.Text);
 
@@ -302,11 +355,11 @@ namespace LifeGame
                     && chosenTags.Exists(o => G.glb.lstLiteratureTag.Exists(p => p.Title == literature.Title && p.Tag == o))
                     && chosenJourConf.Exists(o => o == literature.JournalOrConferenceName))
                 {
-                    ShownTitle.Add(literature.Title);
+                    shownLits.Add(literature.Title);
                 }
             }
-            ShownTitle = ShownTitle.Distinct().ToList();
-            LoadLiteratureList(ShownTitle);
+            shownLits = shownLits.Distinct().ToList();
+            LoadLiteratureList(shownLits);
         }
 
         private void LoadTag()
@@ -1023,5 +1076,6 @@ namespace LifeGame
         {
 
         }
+
     }
 }
