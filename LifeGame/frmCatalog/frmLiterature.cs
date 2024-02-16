@@ -16,7 +16,8 @@ namespace LifeGame
         List<RSubLiteratureTag> lstSubTags = new List<RSubLiteratureTag>();
 
         List<string> shownLits = new List<string>();
-        List<string> tempLits = new List<string>();
+        List<string> tempLitsA = new List<string>();
+        List<string> tempLitsB = new List<string>();
 
         //记录数量
         List<CItem> Tags = new List<CItem>();
@@ -83,7 +84,7 @@ namespace LifeGame
                 }
             }
             LoadTag();
-            LoadLiteratureList();
+            LoadLiteratureList(shownLits);
         }
 
         private void tsmAddLiterature_Click(object sender, EventArgs e)
@@ -112,13 +113,22 @@ namespace LifeGame
                 {
                     case DialogResult.Yes:
                         string removedLit = dgvLiterature.CurrentRow.Cells[1].Value.ToString();
-                        if (tempLits.Contains(removedLit))
+                        if (tempLitsA.Contains(removedLit))
                         {
-                            tempLits.RemoveAll(o => o == removedLit);
-                            clbTempLitsArea.Items.Clear();
-                            foreach (string item in tempLits)
+                            tempLitsA.RemoveAll(o => o == removedLit);
+                            clbTempLitsAreaA.Items.Clear();
+                            foreach (string item in tempLitsA)
                             {
-                                clbTempLitsArea.Items.Add(item, false);
+                                clbTempLitsAreaA.Items.Add(item, false);
+                            }
+                        }
+                        if (tempLitsB.Contains(removedLit))
+                        {
+                            tempLitsB.RemoveAll(o => o == removedLit);
+                            clbTempLitsAreaB.Items.Clear();
+                            foreach (string item in tempLitsB)
+                            {
+                                clbTempLitsAreaB.Items.Add(item, false);
                             }
                         }
                         G.glb.lstLiterature.RemoveAll(o => o.Title == removedLit);
@@ -227,102 +237,105 @@ namespace LifeGame
             dgvLiterature.ShowCellToolTips = true;
             foreach (string title in loadedLits)
             {
-                DateTime addedDate = new DateTime();
-                DateTime lastModifyDate = new DateTime();
-                addedDate = G.glb.lstLiterature.Find(o => o.Title == title).DateAdded;
-                lastModifyDate = G.glb.lstLiterature.Find(o => o.Title == title).DateModified;
-                string starStr = "";
-                string predatoryStr = "";
-                bool predatoryShowFlag = true; // true if we want to show it
-                string goodJourStr = "";
-                bool goodJourShowFlag = false;  // true if we want to show it
-                bool showFlag = true;
-                string litType = "";
-                int year = G.glb.lstLiterature.Find(o => o.Title == title).PublishYear;
-                if (G.glb.lstLiterature.Find(o => o.Title == title).Star)
+                if (G.glb.lstLiterature.Exists(o => o.Title == title))
                 {
-                    starStr = "√";
-                }
-                // If the journal is predatory
-                if (G.glb.lstBadJournal.Exists(o => o == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
-                {
-                    predatoryStr = "√";
-                    predatoryShowFlag = false;
-                }
-                if (G.glb.lstLiterature.Find(o => o.Title == title).PredatoryAlert)
-                {
-                    predatoryStr = "√";
-                    predatoryShowFlag = false;
-                }
-                // If the journal is reliable
-                if (G.glb.lstGoodJournal.Exists(o => o == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
-                {
-                    goodJourStr = "√";
-                    goodJourShowFlag = true;
-                }
-                // Only if chkOnlyGood is checked and goodJournalShowFlag is not true, don't show it.
-                if (chkOnlyGood.Checked && !goodJourShowFlag)
-                {
-                    showFlag = false;
-                }
-                if (showFlag)
-                {
-                    // For those showing lits, if chkNoBad is checked and the journal could be bad, don't show it.
-                    if (chkNoBad.Checked && !predatoryShowFlag)
+                    DateTime addedDate = new DateTime();
+                    DateTime lastModifyDate = new DateTime();
+                    addedDate = G.glb.lstLiterature.Find(o => o.Title == title).DateAdded;
+                    lastModifyDate = G.glb.lstLiterature.Find(o => o.Title == title).DateModified;
+                    string starStr = "";
+                    string predatoryStr = "";
+                    bool predatoryShowFlag = true; // true if we want to show it
+                    string goodJourStr = "";
+                    bool goodJourShowFlag = false;  // true if we want to show it
+                    bool showFlag = true;
+                    string litType = "";
+                    int year = G.glb.lstLiterature.Find(o => o.Title == title).PublishYear;
+                    if (G.glb.lstLiterature.Find(o => o.Title == title).Star)
+                    {
+                        starStr = "√";
+                    }
+                    // If the journal is predatory
+                    if (G.glb.lstBadJournal.Exists(o => o == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
+                    {
+                        predatoryStr = "√";
+                        predatoryShowFlag = false;
+                    }
+                    if (G.glb.lstLiterature.Find(o => o.Title == title).PredatoryAlert)
+                    {
+                        predatoryStr = "√";
+                        predatoryShowFlag = false;
+                    }
+                    // If the journal is reliable
+                    if (G.glb.lstGoodJournal.Exists(o => o == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
+                    {
+                        goodJourStr = "√";
+                        goodJourShowFlag = true;
+                    }
+                    // Only if chkOnlyGood is checked and goodJournalShowFlag is not true, don't show it.
+                    if (chkOnlyGood.Checked && !goodJourShowFlag)
                     {
                         showFlag = false;
                     }
+                    if (showFlag)
+                    {
+                        // For those showing lits, if chkNoBad is checked and the journal could be bad, don't show it.
+                        if (chkNoBad.Checked && !predatoryShowFlag)
+                        {
+                            showFlag = false;
+                        }
+                    }
+                    switch (G.glb.lstLiterature.Find(o => o.Title == title).BibTeX.BibEntry)
+                    {
+                        case EBibEntry.Article:
+                            litType = "J";
+                            break;
+                        case EBibEntry.Book:
+                            litType = "M";
+                            break;
+                        case EBibEntry.Booklet:
+                            litType = "M";
+                            break;
+                        case EBibEntry.Conference:
+                            litType = "C";
+                            break;
+                        case EBibEntry.Inbook:
+                            litType = "M";
+                            break;
+                        case EBibEntry.Incollection:
+                            litType = "A";
+                            break;
+                        case EBibEntry.Manual:
+                            litType = "M";
+                            break;
+                        case EBibEntry.Mastersthesis:
+                            litType = "D";
+                            break;
+                        case EBibEntry.Misc:
+                            litType = "M";
+                            break;
+                        case EBibEntry.Phdthesis:
+                            litType = "D";
+                            break;
+                        case EBibEntry.Proceedings:
+                            litType = "C";
+                            break;
+                        case EBibEntry.Techreport:
+                            litType = "R";
+                            break;
+                        case EBibEntry.Unpublished:
+                            litType = "M";
+                            break;
+                        default:
+                            break;
+                    }
+                    if (showFlag)
+                    {
+                        dgvLiterature.Rows.Add(starStr, title, Convert.ToString(year), litType, goodJourStr, predatoryStr, addedDate.ToString("yyyy/MM/dd"), lastModifyDate.ToString("yyyy/MM/dd"));
+                        dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].Cells[1].ToolTipText = G.glb.lstLiterature.Find(o => o.Title == title).InOneSentence;
+                    }
+                    lblNumFound.Text = Convert.ToString(dgvLiterature.Rows.Count) + " result(s) found";
                 }
-                switch (G.glb.lstLiterature.Find(o => o.Title == title).BibTeX.BibEntry)
-                {
-                    case EBibEntry.Article:
-                        litType = "J";
-                        break;
-                    case EBibEntry.Book:
-                        litType = "M";
-                        break;
-                    case EBibEntry.Booklet:
-                        litType = "M";
-                        break;
-                    case EBibEntry.Conference:
-                        litType = "C";
-                        break;
-                    case EBibEntry.Inbook:
-                        litType = "M";
-                        break;
-                    case EBibEntry.Incollection:
-                        litType = "A";
-                        break;
-                    case EBibEntry.Manual:
-                        litType = "M";
-                        break;
-                    case EBibEntry.Mastersthesis:
-                        litType = "D";
-                        break;
-                    case EBibEntry.Misc:
-                        litType = "M";
-                        break;
-                    case EBibEntry.Phdthesis:
-                        litType = "D";
-                        break;
-                    case EBibEntry.Proceedings:
-                        litType = "C";
-                        break;
-                    case EBibEntry.Techreport:
-                        litType = "R";
-                        break;
-                    case EBibEntry.Unpublished:
-                        litType = "M";
-                        break;
-                    default:
-                        break;
-                }
-                if (showFlag)
-                {
-                    dgvLiterature.Rows.Add(starStr, title, Convert.ToString(year), litType, goodJourStr, predatoryStr, addedDate.ToString("yyyy/MM/dd"), lastModifyDate.ToString("yyyy/MM/dd"));
-                    dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].Cells[1].ToolTipText = G.glb.lstLiterature.Find(o => o.Title == title).InOneSentence;
-                }
-                lblNumFound.Text = Convert.ToString(dgvLiterature.Rows.Count) + " result(s) found";
             }
         }
 
@@ -677,12 +690,44 @@ namespace LifeGame
             }
         }
 
+        private void RemoveTagFromMultipleLiterature(string strTag)
+        {
+            if (dgvLiterature.SelectedRows.Count >= 1
+                && MessageBox.Show("Do you confirm to remove tag from all selected literature.", "Remove Tag", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                foreach (DataGridViewRow row in dgvLiterature.SelectedRows)
+                {
+                    G.glb.lstLiteratureTag.RemoveAll(o => o.Title == row.Cells[1].Value.ToString() && o.Tag == strTag);
+                    foreach (CLiterature lit in G.glb.lstLiterature)
+                    {
+                        if (!G.glb.lstLiteratureTag.Exists(o => o.Title == lit.Title))
+                        {
+                            RLiteratureTag defaultTag = new RLiteratureTag();
+                            defaultTag.Title = lit.Title;
+                            defaultTag.Tag = "(Root)";
+                            G.glb.lstLiteratureTag.Add(defaultTag);
+                        }
+                    }
+                }
+                LoadTab();
+            }
+        }
+
         private void addTag2Multi_Click(object sender, EventArgs e)
         {
             if (dgvLiterature.SelectedRows.Count >= 1)
             {
                 frmAddTag frmAddTag = new frmAddTag();
                 frmAddTag.SendTag += new frmAddTag.GetTag(AddTag2MultipleLiterature);
+                frmAddTag.Show();
+            }
+        }
+        private void tsmRemoveTagFromMulti_Click(object sender, EventArgs e)
+        {
+            if (dgvLiterature.SelectedRows.Count >= 1)
+            {
+                frmAddTag frmAddTag = new frmAddTag();
+                frmAddTag.SendTag += new frmAddTag.GetTag(RemoveTagFromMultipleLiterature);
                 frmAddTag.Show();
             }
         }
@@ -1087,98 +1132,301 @@ namespace LifeGame
 
         }
 
-        private void tsmAddToTempLitsArea_Click(object sender, EventArgs e)
+        private void updateTempLitAreaA()
         {
-            if (dgvLiterature.SelectedRows.Count >= 1)
+            clbTempLitsAreaA.Items.Clear();
+            foreach (string item in tempLitsA)
             {
-                for (int i = 0; i < dgvLiterature.SelectedRows.Count; i++)
-                {
-                    if (!tempLits.Contains(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString()))
-                    {
-                        tempLits.Add(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString());
-                    }
-                }
-                updateTempLitArea();
+                clbTempLitsAreaA.Items.Add(item);
             }
         }
-
-        private void updateTempLitArea()
+        private void updateTempLitAreaB()
         {
-            clbTempLitsArea.Items.Clear();
-            foreach (string item in tempLits)
+            clbTempLitsAreaB.Items.Clear();
+            foreach (string item in tempLitsB)
             {
-                clbTempLitsArea.Items.Add(item);
+                clbTempLitsAreaB.Items.Add(item);
             }
         }
 
         private void tsmTempSelectAll_Click(object sender, EventArgs e)
         {
-            clbTempLitsArea.Items.Clear();
-            foreach (string item in tempLits)
+            switch (SelectedAttri)
             {
-                clbTempLitsArea.Items.Add(item, true);
+                case "clbTempLitsAreaA":
+                    clbTempLitsAreaA.Items.Clear();
+                    foreach (string item in tempLitsA)
+                    {
+                        clbTempLitsAreaA.Items.Add(item, true);
+                    }
+                    break;
+                case "clbTempLitsAreaB":
+                    clbTempLitsAreaB.Items.Clear();
+                    foreach (string item in tempLitsB)
+                    {
+                        clbTempLitsAreaB.Items.Add(item, true);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
         private void tsmTempClearSelection_Click(object sender, EventArgs e)
         {
-            clbTempLitsArea.Items.Clear();
-            foreach (string item in tempLits)
+            switch (SelectedAttri)
             {
-                clbTempLitsArea.Items.Add(item, false);
+                case "clbTempLitsAreaA":
+                    clbTempLitsAreaA.Items.Clear();
+                    foreach (string item in tempLitsA)
+                    {
+                        clbTempLitsAreaA.Items.Add(item, false);
+                    }
+                    break;
+                case "clbTempLitsAreaB":
+                    clbTempLitsAreaB.Items.Clear();
+                    foreach (string item in tempLitsB)
+                    {
+                        clbTempLitsAreaB.Items.Add(item, false);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
         private void tsmTempSort_Click(object sender, EventArgs e)
         {
-            clbTempLitsArea.Items.Clear();
-            tempLits.Sort();
-            foreach (string item in tempLits)
+            switch (SelectedAttri)
             {
-                clbTempLitsArea.Items.Add(item, false);
+                case "clbTempLitsAreaA":
+                    clbTempLitsAreaA.Items.Clear();
+                    tempLitsA.Sort();
+                    foreach (string item in tempLitsA)
+                    {
+                        clbTempLitsAreaA.Items.Add(item, false);
+                    }
+                    break;
+                case "clbTempLitsAreaB":
+                    clbTempLitsAreaB.Items.Clear();
+                    tempLitsA.Sort();
+                    foreach (string item in tempLitsB)
+                    {
+                        clbTempLitsAreaB.Items.Add(item, false);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
         private void tsmTempClear_Click(object sender, EventArgs e)
         {
-            tempLits.Clear();
-            clbTempLitsArea.Items.Clear();
+            switch (SelectedAttri)
+            {
+                case "clbTempLitsAreaA":
+                    tempLitsA.Clear();
+                    clbTempLitsAreaA.Items.Clear();
+                    break;
+                case "clbTempLitsAreaB":
+                    tempLitsB.Clear();
+                    clbTempLitsAreaB.Items.Clear();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void tsmRemoveSelected_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < clbTempLitsArea.CheckedItems.Count; i++)
+            switch (SelectedAttri)
             {
-                tempLits.RemoveAll(o => o == clbTempLitsArea.CheckedItems[i].ToString());
-            }
-            clbTempLitsArea.Items.Clear();
-            foreach (string item in tempLits)
-            {
-                clbTempLitsArea.Items.Add(item, false);
+                case "clbTempLitsAreaA":
+                    for (int i = 0; i < clbTempLitsAreaA.CheckedItems.Count; i++)
+                    {
+                        tempLitsA.RemoveAll(o => o == clbTempLitsAreaA.CheckedItems[i].ToString());
+                    }
+                    clbTempLitsAreaA.Items.Clear();
+                    foreach (string item in tempLitsA)
+                    {
+                        clbTempLitsAreaA.Items.Add(item, false);
+                    }
+                    break;
+                case "clbTempLitsAreaB":
+                    for (int i = 0; i < clbTempLitsAreaB.CheckedItems.Count; i++)
+                    {
+                        tempLitsB.RemoveAll(o => o == clbTempLitsAreaB.CheckedItems[i].ToString());
+                    }
+                    clbTempLitsAreaB.Items.Clear();
+                    foreach (string item in tempLitsB)
+                    {
+                        clbTempLitsAreaB.Items.Add(item, false);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
         private void tsmReplaceMainLitsArea_Click(object sender, EventArgs e)
         {
-            shownLits = tempLits.ToList();
-            LoadLiteratureList(shownLits);
+            switch (SelectedAttri)
+            {
+                case "clbTempLitsAreaA":
+                    shownLits = tempLitsA.ToList();
+                    LoadLiteratureList(shownLits);
+                    break;
+                case "clbTempLitsAreaB":
+                    shownLits = tempLitsB.ToList();
+                    LoadLiteratureList(shownLits);
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void tsmAddToMainLitsArea_Click(object sender, EventArgs e)
         {
-            shownLits.AddRange(tempLits.ToList());
-            shownLits = shownLits.Distinct().ToList();
-            LoadLiteratureList(shownLits);
+            switch (SelectedAttri)
+            {
+                case "clbTempLitsAreaA":
+                    shownLits.AddRange(tempLitsA.ToList());
+                    shownLits = shownLits.Distinct().ToList();
+                    LoadLiteratureList(shownLits);
+                    break;
+                case "clbTempLitsAreaB":
+                    shownLits.AddRange(tempLitsB.ToList());
+                    shownLits = shownLits.Distinct().ToList();
+                    LoadLiteratureList(shownLits);
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void tsmAddSelectedToMainLitsArea_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < clbTempLitsArea.CheckedItems.Count; i++)
+            switch (SelectedAttri)
             {
-                shownLits.Add(clbTempLitsArea.CheckedItems[i].ToString());
+                case "clbTempLitsAreaA":
+                    for (int i = 0; i < clbTempLitsAreaA.CheckedItems.Count; i++)
+                    {
+                        shownLits.Add(clbTempLitsAreaA.CheckedItems[i].ToString());
+                    }
+                    shownLits = shownLits.Distinct().ToList();
+                    LoadLiteratureList(shownLits);
+                    break;
+                case "clbTempLitsAreaB":
+                    for (int i = 0; i < clbTempLitsAreaB.CheckedItems.Count; i++)
+                    {
+                        shownLits.Add(clbTempLitsAreaB.CheckedItems[i].ToString());
+                    }
+                    shownLits = shownLits.Distinct().ToList();
+                    LoadLiteratureList(shownLits);
+                    break;
+                default:
+                    break;
             }
-            shownLits = shownLits.Distinct().ToList();
-            LoadLiteratureList(shownLits);
+        }
+
+        private string SelectedAttri = "";
+        private void cmsTempLitsArea_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SelectedAttri = (sender as ContextMenuStrip).SourceControl.Name;
+        }
+
+        private void tsmAddToAreaA_Click(object sender, EventArgs e)
+        {
+            if (dgvLiterature.SelectedRows.Count >= 1)
+            {
+                for (int i = 0; i < dgvLiterature.SelectedRows.Count; i++)
+                {
+                    if (!tempLitsA.Contains(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString()))
+                    {
+                        tempLitsA.Add(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString());
+                    }
+                }
+                updateTempLitAreaA();
+            }
+        }
+
+        private void tsmAddToAreaB_Click(object sender, EventArgs e)
+        {
+            if (dgvLiterature.SelectedRows.Count >= 1)
+            {
+                for (int i = 0; i < dgvLiterature.SelectedRows.Count; i++)
+                {
+                    if (!tempLitsB.Contains(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString()))
+                    {
+                        tempLitsB.Add(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString());
+                    }
+                }
+                updateTempLitAreaB();
+            }
+        }
+
+        private void copyNode(TreeNode node)
+        {
+            if (node.Parent != null)
+            {
+                M.mem.copiedNodes.Add(new copiedNodeStruct(node.Text, node.Name, node.Parent.Name));
+            }
+            else
+            {
+                M.mem.copiedNodes.Add(new copiedNodeStruct(node.Text, node.Name, null));
+            }
+            foreach (TreeNode child in node.Nodes)
+            {
+                copyNode(child);
+            }
+        }
+
+        private void tsmCopyToNote(object sender, EventArgs e)
+        {
+            if (dgvLiterature.SelectedCells.Count == 1)
+            {
+                string litName = dgvLiterature.CurrentRow.Cells[1].Value.ToString();
+                TreeNode litNode = new TreeNode();
+                litNode.Text = "$LITR$>" + litName;
+                litNode.Name = Guid.NewGuid().ToString();
+                litNode.ForeColor = Color.Brown;
+                litNode.NodeFont = new Font(Font, FontStyle.Underline);
+
+                TreeNode jourNode = new TreeNode();
+                jourNode.Text = "jourConf: " + G.glb.lstLiterature.Find(o => o.Title == litName).JournalOrConferenceName;
+                jourNode.Name = Guid.NewGuid().ToString();
+                litNode.Nodes.Add(jourNode);
+
+                if (G.glb.lstNote.Exists(o => o.LiteratureTitle == litName))
+                {
+                    TreeNode noteNode = new TreeNode();
+                    noteNode.Text = "$NOTE$>" + G.glb.lstNote.Find(o => o.LiteratureTitle == litName).TagTime.Date.ToString("yyyy.MM.dd") + "@" + litName;
+                    noteNode.Name = Guid.NewGuid().ToString();
+                    litNode.Nodes.Add(noteNode);
+                }
+
+                if (G.glb.lstLiterature.Find(o => o.Title == litName).InOneSentence != "")
+                {
+                    string[] descs = G.glb.lstLiterature.Find(o => o.Title == litName).InOneSentence.Split('\n');
+                    foreach (string desc in descs)
+                    {
+                        TreeNode descNode = new TreeNode();
+                        if (desc.Contains(':'))
+                        {
+                            descNode.Text = desc;
+                        }
+                        else
+                        {
+                            descNode.Text = "desc: " + desc;
+                        }
+                        descNode.Name = Guid.NewGuid().ToString();
+                        litNode.Nodes.Add(descNode);
+                    }
+                }
+
+                M.mem.copiedNodes.Clear();
+                copyNode(litNode);
+            }
         }
     }
 }

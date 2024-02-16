@@ -15,6 +15,7 @@ namespace LifeGame
         public frmNoteProperties(CNoteProperties noteProperties)
         {
             InitializeComponent();
+            lblCharCount.Text = noteProperties.numChar.ToString();
             lblNoteType.Text = noteProperties.NoteType;
             lblNumChildren.Text = noteProperties.numChildren.ToString();
             lblNumCLinks.Text = noteProperties.numCLinks.ToString();

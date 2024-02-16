@@ -72,13 +72,13 @@ namespace LifeGame
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(332, 232);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(332, 251);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -87,7 +87,7 @@ namespace LifeGame
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 24);
+            this.label1.Size = new System.Drawing.Size(72, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Survey";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -96,9 +96,9 @@ namespace LifeGame
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 24);
+            this.label2.Location = new System.Drawing.Point(3, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 24);
+            this.label2.Size = new System.Drawing.Size(72, 26);
             this.label2.TabIndex = 1;
             this.label2.Text = "Tag Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -107,9 +107,9 @@ namespace LifeGame
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 48);
+            this.label3.Location = new System.Drawing.Point(3, 52);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 24);
+            this.label3.Size = new System.Drawing.Size(72, 26);
             this.label3.TabIndex = 2;
             this.label3.Text = "Tag Type";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -118,9 +118,9 @@ namespace LifeGame
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 72);
+            this.label4.Location = new System.Drawing.Point(3, 78);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 24);
+            this.label4.Size = new System.Drawing.Size(72, 26);
             this.label4.TabIndex = 3;
             this.label4.Text = "Is Bottom";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -129,9 +129,9 @@ namespace LifeGame
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 96);
+            this.label5.Location = new System.Drawing.Point(3, 104);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 112);
+            this.label5.Size = new System.Drawing.Size(72, 121);
             this.label5.TabIndex = 4;
             this.label5.Text = "Options";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -142,7 +142,7 @@ namespace LifeGame
             this.lblSurveyName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblSurveyName.Location = new System.Drawing.Point(81, 0);
             this.lblSurveyName.Name = "lblSurveyName";
-            this.lblSurveyName.Size = new System.Drawing.Size(248, 24);
+            this.lblSurveyName.Size = new System.Drawing.Size(248, 26);
             this.lblSurveyName.TabIndex = 5;
             this.lblSurveyName.Text = "(Survey Name)";
             this.lblSurveyName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -150,9 +150,9 @@ namespace LifeGame
             // txtTagName
             // 
             this.txtTagName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTagName.Location = new System.Drawing.Point(81, 27);
+            this.txtTagName.Location = new System.Drawing.Point(81, 29);
             this.txtTagName.Name = "txtTagName";
-            this.txtTagName.Size = new System.Drawing.Size(248, 21);
+            this.txtTagName.Size = new System.Drawing.Size(248, 20);
             this.txtTagName.TabIndex = 6;
             // 
             // cmbTagType
@@ -166,9 +166,9 @@ namespace LifeGame
             "SingleOption",
             "String",
             "Number"});
-            this.cmbTagType.Location = new System.Drawing.Point(81, 51);
+            this.cmbTagType.Location = new System.Drawing.Point(81, 55);
             this.cmbTagType.Name = "cmbTagType";
-            this.cmbTagType.Size = new System.Drawing.Size(248, 20);
+            this.cmbTagType.Size = new System.Drawing.Size(248, 21);
             this.cmbTagType.TabIndex = 7;
             this.cmbTagType.SelectedIndexChanged += new System.EventHandler(this.cmbTagType_SelectedIndexChanged);
             // 
@@ -177,9 +177,9 @@ namespace LifeGame
             this.chkIsBottom.AutoSize = true;
             this.chkIsBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkIsBottom.Enabled = false;
-            this.chkIsBottom.Location = new System.Drawing.Point(81, 75);
+            this.chkIsBottom.Location = new System.Drawing.Point(81, 81);
             this.chkIsBottom.Name = "chkIsBottom";
-            this.chkIsBottom.Size = new System.Drawing.Size(248, 18);
+            this.chkIsBottom.Size = new System.Drawing.Size(248, 20);
             this.chkIsBottom.TabIndex = 8;
             this.chkIsBottom.Text = "Is Bottom";
             this.chkIsBottom.UseVisualStyleBackColor = true;
@@ -190,10 +190,9 @@ namespace LifeGame
             this.lsbOption.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbOption.Enabled = false;
             this.lsbOption.FormattingEnabled = true;
-            this.lsbOption.ItemHeight = 12;
-            this.lsbOption.Location = new System.Drawing.Point(81, 99);
+            this.lsbOption.Location = new System.Drawing.Point(81, 107);
             this.lsbOption.Name = "lsbOption";
-            this.lsbOption.Size = new System.Drawing.Size(248, 106);
+            this.lsbOption.Size = new System.Drawing.Size(248, 115);
             this.lsbOption.TabIndex = 9;
             // 
             // cmsOptionList
@@ -202,19 +201,19 @@ namespace LifeGame
             this.addToolStripMenuItem,
             this.removeToolStripMenuItem});
             this.cmsOptionList.Name = "cmsOptionList";
-            this.cmsOptionList.Size = new System.Drawing.Size(124, 48);
+            this.cmsOptionList.Size = new System.Drawing.Size(118, 48);
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
@@ -225,19 +224,19 @@ namespace LifeGame
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.08696F));
             this.tableLayoutPanel2.Controls.Add(this.btnSave, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(78, 208);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(78, 225);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(254, 24);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(254, 26);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(190, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(61, 18);
+            this.btnSave.Size = new System.Drawing.Size(61, 20);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -245,9 +244,9 @@ namespace LifeGame
             // 
             // frmAddSurveyTag
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(332, 232);
+            this.ClientSize = new System.Drawing.Size(332, 251);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

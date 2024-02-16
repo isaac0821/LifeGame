@@ -2065,33 +2065,50 @@ namespace LifeGame
                     }
                 }
                 int[] count = nodeProperties(trvNote.SelectedNode);
-                p.numOffsprings = count[0];
-                p.numOLinks = count[1];
-                p.numONotes = count[2];
-                p.numOLitrs = count[3];
+                p.numChar = count[0] + wordCount(trvNote.SelectedNode.Text);
+                p.numOffsprings = count[1];
+                p.numOLinks = count[2];
+                p.numONotes = count[3];
+                p.numOLitrs = count[4];
 
                 frmNoteProperties frmNoteProperties = new frmNoteProperties(p);
                 frmNoteProperties.Show();
             }
         }
 
+        private int wordCount(string str)
+        {
+            int count = 0;
+
+            int countEnglish = 0;
+            countEnglish = Regex.Matches(str, @"[A-Za-z0-9][A-Za-z0-9\-.]*").Count;
+
+            int countChinese = 0;
+            countChinese = Regex.Matches(str, @"[\u4E00-\u9FA5]").Count;
+
+            count = countEnglish + countChinese;
+
+            return count;
+        }
+
         private int[] nodeProperties(TreeNode node)
         {
-            int[] count = new int[] { 0, 0, 0, 0 };
+            int[] count = new int[] { 0, 0, 0, 0, 0 };
             foreach (TreeNode item in node.Nodes)
             {
-                count[0] += 1;
+                count[0] += wordCount(node.Text);
+                count[1] += 1;
                 if (item.Text.Contains("$LINK$>"))
-                {
-                    count[1] += 1;
-                }
-                else if (item.Text.Contains("$NOTE$>"))
                 {
                     count[2] += 1;
                 }
-                else if (item.Text.Contains("$LITR$>"))
+                else if (item.Text.Contains("$NOTE$>"))
                 {
                     count[3] += 1;
+                }
+                else if (item.Text.Contains("$LITR$>"))
+                {
+                    count[4] += 1;
                 }
                 int[] childCount = nodeProperties(item);
                 for (int i = 0; i < childCount.Length; i++)
@@ -2667,6 +2684,7 @@ namespace LifeGame
     {
         public string Note = "";
         public string NoteType = "";
+        public int numChar = 0;
         public int numChildren = 0;
         public int numCLinks = 0;
         public int numCNotes = 0;

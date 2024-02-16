@@ -80,21 +80,7 @@
             this.chkNoBad = new System.Windows.Forms.CheckBox();
             this.chkOnlyGood = new System.Windows.Forms.CheckBox();
             this.lblNumFound = new System.Windows.Forms.Label();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.clbJournalConference = new System.Windows.Forms.CheckedListBox();
-            this.cmsJournal = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allJournalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allConferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.clearToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.clbAuthor = new System.Windows.Forms.CheckedListBox();
-            this.cmsAuthor = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvLiterature = new System.Windows.Forms.DataGridView();
@@ -113,10 +99,15 @@
             this.tsmRemoveLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.addTag2Multi = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRemoveTagFromMulti = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAddToTempLitsArea = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddToAreaA = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddToAreaB = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.clbTempLitsArea = new System.Windows.Forms.CheckedListBox();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.clbTempLitsAreaA = new System.Windows.Forms.CheckedListBox();
             this.cmsTempLitsArea = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmTempSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmTempClearSelection = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,6 +120,22 @@
             this.tsmReplaceMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddToMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddSelectedToMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
+            this.clbTempLitsAreaB = new System.Windows.Forms.CheckedListBox();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.clbAuthor = new System.Windows.Forms.CheckedListBox();
+            this.cmsAuthor = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.clbJournalConference = new System.Windows.Forms.CheckedListBox();
+            this.cmsJournal = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allJournalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allConferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.clearToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -142,11 +149,10 @@
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel16.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.cmsJournal.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.cmsAuthor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -155,7 +161,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).BeginInit();
             this.cmsLiterature.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.cmsTempLitsArea.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.cmsAuthor.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.cmsJournal.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnsMain
@@ -598,15 +613,13 @@
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel16, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.splitContainer2, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.splitContainer3, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 189F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(727, 648);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
@@ -625,7 +638,6 @@
             this.tableLayoutPanel16.Name = "tableLayoutPanel16";
             this.tableLayoutPanel16.RowCount = 1;
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel16.Size = new System.Drawing.Size(721, 26);
             this.tableLayoutPanel16.TabIndex = 4;
             // 
@@ -663,140 +675,28 @@
             this.lblNumFound.TabIndex = 2;
             this.lblNumFound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // tableLayoutPanel5
+            // splitContainer3
             // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.groupBox4, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.groupBox3, 0, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 462);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(721, 183);
-            this.tableLayoutPanel5.TabIndex = 5;
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(3, 35);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // groupBox4
+            // splitContainer3.Panel1
             // 
-            this.groupBox4.Controls.Add(this.clbJournalConference);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(363, 3);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(355, 177);
-            this.groupBox4.TabIndex = 5;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Journals/Conferences";
+            this.splitContainer3.Panel1.Controls.Add(this.splitContainer2);
             // 
-            // clbJournalConference
+            // splitContainer3.Panel2
             // 
-            this.clbJournalConference.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.clbJournalConference.ContextMenuStrip = this.cmsJournal;
-            this.clbJournalConference.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clbJournalConference.FormattingEnabled = true;
-            this.clbJournalConference.Location = new System.Drawing.Point(3, 16);
-            this.clbJournalConference.Name = "clbJournalConference";
-            this.clbJournalConference.Size = new System.Drawing.Size(349, 158);
-            this.clbJournalConference.TabIndex = 0;
-            // 
-            // cmsJournal
-            // 
-            this.cmsJournal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.allToolStripMenuItem,
-            this.allJournalToolStripMenuItem,
-            this.allConferencesToolStripMenuItem,
-            this.toolStripSeparator9,
-            this.clearToolStripMenuItem1});
-            this.cmsJournal.Name = "cmsJournal";
-            this.cmsJournal.Size = new System.Drawing.Size(192, 98);
-            // 
-            // allToolStripMenuItem
-            // 
-            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.allToolStripMenuItem.Text = "Select All";
-            this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
-            // 
-            // allJournalToolStripMenuItem
-            // 
-            this.allJournalToolStripMenuItem.Name = "allJournalToolStripMenuItem";
-            this.allJournalToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.allJournalToolStripMenuItem.Text = "Select All Journals";
-            // 
-            // allConferencesToolStripMenuItem
-            // 
-            this.allConferencesToolStripMenuItem.Name = "allConferencesToolStripMenuItem";
-            this.allConferencesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.allConferencesToolStripMenuItem.Text = "Select All Conferences";
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(188, 6);
-            // 
-            // clearToolStripMenuItem1
-            // 
-            this.clearToolStripMenuItem1.Name = "clearToolStripMenuItem1";
-            this.clearToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
-            this.clearToolStripMenuItem1.Text = "Clear";
-            this.clearToolStripMenuItem1.Click += new System.EventHandler(this.clearToolStripMenuItem1_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.clbAuthor);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(354, 177);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Authors";
-            // 
-            // clbAuthor
-            // 
-            this.clbAuthor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.clbAuthor.ContextMenuStrip = this.cmsAuthor;
-            this.clbAuthor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clbAuthor.FormattingEnabled = true;
-            this.clbAuthor.Location = new System.Drawing.Point(3, 16);
-            this.clbAuthor.MultiColumn = true;
-            this.clbAuthor.Name = "clbAuthor";
-            this.clbAuthor.Size = new System.Drawing.Size(348, 158);
-            this.clbAuthor.TabIndex = 0;
-            // 
-            // cmsAuthor
-            // 
-            this.cmsAuthor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectAllToolStripMenuItem,
-            this.toolStripSeparator10,
-            this.clearToolStripMenuItem});
-            this.cmsAuthor.Name = "cmsAuthor";
-            this.cmsAuthor.Size = new System.Drawing.Size(123, 54);
-            // 
-            // selectAllToolStripMenuItem
-            // 
-            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.selectAllToolStripMenuItem.Text = "Select All";
-            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(119, 6);
-            // 
-            // clearToolStripMenuItem
-            // 
-            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.clearToolStripMenuItem.Text = "Clear";
-            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+            this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
+            this.splitContainer3.Size = new System.Drawing.Size(721, 610);
+            this.splitContainer3.SplitterDistance = 424;
+            this.splitContainer3.TabIndex = 5;
             // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 35);
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -806,7 +706,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.groupBox5);
-            this.splitContainer2.Size = new System.Drawing.Size(721, 421);
+            this.splitContainer2.Size = new System.Drawing.Size(721, 424);
             this.splitContainer2.SplitterDistance = 462;
             this.splitContainer2.TabIndex = 6;
             // 
@@ -817,7 +717,7 @@
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(9);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(462, 421);
+            this.groupBox2.Size = new System.Drawing.Size(462, 424);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Main Lits Area";
@@ -843,7 +743,7 @@
             this.dgvLiterature.Location = new System.Drawing.Point(3, 16);
             this.dgvLiterature.Name = "dgvLiterature";
             this.dgvLiterature.ReadOnly = true;
-            this.dgvLiterature.Size = new System.Drawing.Size(456, 402);
+            this.dgvLiterature.Size = new System.Drawing.Size(456, 405);
             this.dgvLiterature.TabIndex = 1;
             this.dgvLiterature.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dgvLiterature_SortCompare);
             // 
@@ -913,82 +813,130 @@
             this.tsmRemoveLiterature,
             this.toolStripSeparator5,
             this.addTag2Multi,
+            this.tsmRemoveTagFromMulti,
             this.toolStripSeparator12,
-            this.tsmAddToTempLitsArea});
+            this.tsmAddToTempLitsArea,
+            this.copyToNoteToolStripMenuItem});
             this.cmsLiterature.Name = "cmsLiterature";
-            this.cmsLiterature.Size = new System.Drawing.Size(191, 154);
+            this.cmsLiterature.Size = new System.Drawing.Size(146, 176);
             // 
             // tsmViewLiterature
             // 
             this.tsmViewLiterature.Name = "tsmViewLiterature";
-            this.tsmViewLiterature.Size = new System.Drawing.Size(190, 22);
+            this.tsmViewLiterature.Size = new System.Drawing.Size(145, 22);
             this.tsmViewLiterature.Text = "View";
             this.tsmViewLiterature.Click += new System.EventHandler(this.tsmViewLiterature_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(187, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(142, 6);
             // 
             // tsmAddLiterature
             // 
             this.tsmAddLiterature.Name = "tsmAddLiterature";
-            this.tsmAddLiterature.Size = new System.Drawing.Size(190, 22);
+            this.tsmAddLiterature.Size = new System.Drawing.Size(145, 22);
             this.tsmAddLiterature.Text = "Add";
             this.tsmAddLiterature.Click += new System.EventHandler(this.tsmAddLiterature_Click);
             // 
             // tsmRemoveLiterature
             // 
             this.tsmRemoveLiterature.Name = "tsmRemoveLiterature";
-            this.tsmRemoveLiterature.Size = new System.Drawing.Size(190, 22);
+            this.tsmRemoveLiterature.Size = new System.Drawing.Size(145, 22);
             this.tsmRemoveLiterature.Text = "Remove";
             this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(187, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(142, 6);
             // 
             // addTag2Multi
             // 
             this.addTag2Multi.Name = "addTag2Multi";
-            this.addTag2Multi.Size = new System.Drawing.Size(190, 22);
+            this.addTag2Multi.Size = new System.Drawing.Size(145, 22);
             this.addTag2Multi.Text = "Add Tag";
             this.addTag2Multi.Click += new System.EventHandler(this.addTag2Multi_Click);
+            // 
+            // tsmRemoveTagFromMulti
+            // 
+            this.tsmRemoveTagFromMulti.Name = "tsmRemoveTagFromMulti";
+            this.tsmRemoveTagFromMulti.Size = new System.Drawing.Size(145, 22);
+            this.tsmRemoveTagFromMulti.Text = "Remove Tag";
+            this.tsmRemoveTagFromMulti.Click += new System.EventHandler(this.tsmRemoveTagFromMulti_Click);
             // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(187, 6);
+            this.toolStripSeparator12.Size = new System.Drawing.Size(142, 6);
             // 
             // tsmAddToTempLitsArea
             // 
+            this.tsmAddToTempLitsArea.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmAddToAreaA,
+            this.tsmAddToAreaB});
             this.tsmAddToTempLitsArea.Name = "tsmAddToTempLitsArea";
-            this.tsmAddToTempLitsArea.Size = new System.Drawing.Size(190, 22);
-            this.tsmAddToTempLitsArea.Text = "Add to Temp Lits Area";
-            this.tsmAddToTempLitsArea.Click += new System.EventHandler(this.tsmAddToTempLitsArea_Click);
+            this.tsmAddToTempLitsArea.Size = new System.Drawing.Size(145, 22);
+            this.tsmAddToTempLitsArea.Text = "Add to Temp";
+            // 
+            // tsmAddToAreaA
+            // 
+            this.tsmAddToAreaA.Name = "tsmAddToAreaA";
+            this.tsmAddToAreaA.Size = new System.Drawing.Size(109, 22);
+            this.tsmAddToAreaA.Text = "Area A";
+            this.tsmAddToAreaA.Click += new System.EventHandler(this.tsmAddToAreaA_Click);
+            // 
+            // tsmAddToAreaB
+            // 
+            this.tsmAddToAreaB.Name = "tsmAddToAreaB";
+            this.tsmAddToAreaB.Size = new System.Drawing.Size(109, 22);
+            this.tsmAddToAreaB.Text = "Area B";
+            this.tsmAddToAreaB.Click += new System.EventHandler(this.tsmAddToAreaB_Click);
+            // 
+            // copyToNoteToolStripMenuItem
+            // 
+            this.copyToNoteToolStripMenuItem.Name = "copyToNoteToolStripMenuItem";
+            this.copyToNoteToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.copyToNoteToolStripMenuItem.Text = "Copy to Note";
+            this.copyToNoteToolStripMenuItem.Click += new System.EventHandler(this.tsmCopyToNote);
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.clbTempLitsArea);
+            this.groupBox5.Controls.Add(this.tableLayoutPanel7);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(9);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(255, 421);
+            this.groupBox5.Size = new System.Drawing.Size(255, 424);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Temp Lits Area";
             // 
-            // clbTempLitsArea
+            // tableLayoutPanel7
             // 
-            this.clbTempLitsArea.ContextMenuStrip = this.cmsTempLitsArea;
-            this.clbTempLitsArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clbTempLitsArea.FormattingEnabled = true;
-            this.clbTempLitsArea.Location = new System.Drawing.Point(3, 16);
-            this.clbTempLitsArea.Name = "clbTempLitsArea";
-            this.clbTempLitsArea.Size = new System.Drawing.Size(249, 402);
-            this.clbTempLitsArea.TabIndex = 0;
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.clbTempLitsAreaA, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.clbTempLitsAreaB, 0, 1);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 2;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(249, 405);
+            this.tableLayoutPanel7.TabIndex = 0;
+            // 
+            // clbTempLitsAreaA
+            // 
+            this.clbTempLitsAreaA.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.clbTempLitsAreaA.ContextMenuStrip = this.cmsTempLitsArea;
+            this.clbTempLitsAreaA.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clbTempLitsAreaA.FormattingEnabled = true;
+            this.clbTempLitsAreaA.Location = new System.Drawing.Point(3, 3);
+            this.clbTempLitsAreaA.Name = "clbTempLitsAreaA";
+            this.clbTempLitsAreaA.Size = new System.Drawing.Size(243, 196);
+            this.clbTempLitsAreaA.TabIndex = 0;
             // 
             // cmsTempLitsArea
             // 
@@ -1006,6 +954,7 @@
             this.tsmAddSelectedToMainLitsArea});
             this.cmsTempLitsArea.Name = "cmsTempLitsArea";
             this.cmsTempLitsArea.Size = new System.Drawing.Size(236, 198);
+            this.cmsTempLitsArea.Opening += new System.ComponentModel.CancelEventHandler(this.cmsTempLitsArea_Opening);
             // 
             // tsmTempSelectAll
             // 
@@ -1078,6 +1027,149 @@
             this.tsmAddSelectedToMainLitsArea.Text = "Add Selected to Main Lits Area";
             this.tsmAddSelectedToMainLitsArea.Click += new System.EventHandler(this.tsmAddSelectedToMainLitsArea_Click);
             // 
+            // clbTempLitsAreaB
+            // 
+            this.clbTempLitsAreaB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.clbTempLitsAreaB.ContextMenuStrip = this.cmsTempLitsArea;
+            this.clbTempLitsAreaB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clbTempLitsAreaB.FormattingEnabled = true;
+            this.clbTempLitsAreaB.Location = new System.Drawing.Point(3, 205);
+            this.clbTempLitsAreaB.Name = "clbTempLitsAreaB";
+            this.clbTempLitsAreaB.Size = new System.Drawing.Size(243, 197);
+            this.clbTempLitsAreaB.TabIndex = 1;
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Name = "splitContainer4";
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.groupBox3);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.groupBox4);
+            this.splitContainer4.Size = new System.Drawing.Size(721, 182);
+            this.splitContainer4.SplitterDistance = 348;
+            this.splitContainer4.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.clbAuthor);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(0, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(348, 182);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Authors";
+            // 
+            // clbAuthor
+            // 
+            this.clbAuthor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.clbAuthor.ContextMenuStrip = this.cmsAuthor;
+            this.clbAuthor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clbAuthor.FormattingEnabled = true;
+            this.clbAuthor.Location = new System.Drawing.Point(3, 16);
+            this.clbAuthor.MultiColumn = true;
+            this.clbAuthor.Name = "clbAuthor";
+            this.clbAuthor.Size = new System.Drawing.Size(342, 163);
+            this.clbAuthor.TabIndex = 0;
+            // 
+            // cmsAuthor
+            // 
+            this.cmsAuthor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectAllToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.clearToolStripMenuItem});
+            this.cmsAuthor.Name = "cmsAuthor";
+            this.cmsAuthor.Size = new System.Drawing.Size(123, 54);
+            // 
+            // selectAllToolStripMenuItem
+            // 
+            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.selectAllToolStripMenuItem.Text = "Select All";
+            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(119, 6);
+            // 
+            // clearToolStripMenuItem
+            // 
+            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.clearToolStripMenuItem.Text = "Clear";
+            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.clbJournalConference);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(369, 182);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Journals/Conferences";
+            // 
+            // clbJournalConference
+            // 
+            this.clbJournalConference.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.clbJournalConference.ContextMenuStrip = this.cmsJournal;
+            this.clbJournalConference.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clbJournalConference.FormattingEnabled = true;
+            this.clbJournalConference.Location = new System.Drawing.Point(3, 16);
+            this.clbJournalConference.Name = "clbJournalConference";
+            this.clbJournalConference.Size = new System.Drawing.Size(363, 163);
+            this.clbJournalConference.TabIndex = 0;
+            // 
+            // cmsJournal
+            // 
+            this.cmsJournal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allToolStripMenuItem,
+            this.allJournalToolStripMenuItem,
+            this.allConferencesToolStripMenuItem,
+            this.toolStripSeparator9,
+            this.clearToolStripMenuItem1});
+            this.cmsJournal.Name = "cmsJournal";
+            this.cmsJournal.Size = new System.Drawing.Size(192, 98);
+            // 
+            // allToolStripMenuItem
+            // 
+            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.allToolStripMenuItem.Text = "Select All";
+            this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
+            // 
+            // allJournalToolStripMenuItem
+            // 
+            this.allJournalToolStripMenuItem.Name = "allJournalToolStripMenuItem";
+            this.allJournalToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.allJournalToolStripMenuItem.Text = "Select All Journals";
+            // 
+            // allConferencesToolStripMenuItem
+            // 
+            this.allConferencesToolStripMenuItem.Name = "allConferencesToolStripMenuItem";
+            this.allConferencesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.allConferencesToolStripMenuItem.Text = "Select All Conferences";
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(188, 6);
+            // 
+            // clearToolStripMenuItem1
+            // 
+            this.clearToolStripMenuItem1.Name = "clearToolStripMenuItem1";
+            this.clearToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
+            this.clearToolStripMenuItem1.Text = "Clear";
+            this.clearToolStripMenuItem1.Click += new System.EventHandler(this.clearToolStripMenuItem1_Click);
+            // 
             // frmLiterature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1109,11 +1201,10 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel16.ResumeLayout(false);
             this.tableLayoutPanel16.PerformLayout();
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.cmsJournal.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.cmsAuthor.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -1122,7 +1213,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).EndInit();
             this.cmsLiterature.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
             this.cmsTempLitsArea.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.cmsAuthor.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.cmsJournal.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1202,7 +1302,6 @@
         private System.Windows.Forms.ToolStripMenuItem allConferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.ToolStripMenuItem tsmTagSelectAll;
         private System.Windows.Forms.ToolStripMenuItem tsmTagClear;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
@@ -1213,7 +1312,7 @@
         private System.Windows.Forms.TextBox txtSearchInRes;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.CheckedListBox clbTempLitsArea;
+        private System.Windows.Forms.CheckedListBox clbTempLitsAreaA;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripMenuItem tsmAddToTempLitsArea;
         private System.Windows.Forms.ContextMenuStrip cmsTempLitsArea;
@@ -1228,5 +1327,13 @@
         private System.Windows.Forms.ToolStripMenuItem tsmReplaceMainLitsArea;
         private System.Windows.Forms.ToolStripMenuItem tsmAddToMainLitsArea;
         private System.Windows.Forms.ToolStripMenuItem tsmAddSelectedToMainLitsArea;
+        private System.Windows.Forms.ToolStripMenuItem tsmRemoveTagFromMulti;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.CheckedListBox clbTempLitsAreaB;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddToAreaA;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddToAreaB;
+        private System.Windows.Forms.ToolStripMenuItem copyToNoteToolStripMenuItem;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.SplitContainer splitContainer4;
     }
 }

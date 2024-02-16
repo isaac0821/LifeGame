@@ -362,20 +362,20 @@
             this.tsmAttriAdd,
             this.tsmAttriRemove});
             this.cmsAttri.Name = "cmsAttri";
-            this.cmsAttri.Size = new System.Drawing.Size(118, 48);
+            this.cmsAttri.Size = new System.Drawing.Size(181, 70);
             this.cmsAttri.Opening += new System.ComponentModel.CancelEventHandler(this.cmsAttri_Opening);
             // 
             // tsmAttriAdd
             // 
             this.tsmAttriAdd.Name = "tsmAttriAdd";
-            this.tsmAttriAdd.Size = new System.Drawing.Size(117, 22);
+            this.tsmAttriAdd.Size = new System.Drawing.Size(180, 22);
             this.tsmAttriAdd.Text = "Add(&T)";
             this.tsmAttriAdd.Click += new System.EventHandler(this.tsmAttriAdd_Click);
             // 
             // tsmAttriRemove
             // 
             this.tsmAttriRemove.Name = "tsmAttriRemove";
-            this.tsmAttriRemove.Size = new System.Drawing.Size(117, 22);
+            this.tsmAttriRemove.Size = new System.Drawing.Size(180, 22);
             this.tsmAttriRemove.Text = "Remove";
             this.tsmAttriRemove.Click += new System.EventHandler(this.tsmAttriRemove_Click);
             // 

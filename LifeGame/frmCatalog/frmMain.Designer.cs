@@ -134,21 +134,21 @@
             // moneyMToolStripMenuItem
             // 
             this.moneyMToolStripMenuItem.Name = "moneyMToolStripMenuItem";
-            this.moneyMToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.moneyMToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.moneyMToolStripMenuItem.Text = "Money(&M)";
             this.moneyMToolStripMenuItem.Click += new System.EventHandler(this.moneyMToolStripMenuItem_Click);
             // 
             // literatureLToolStripMenuItem
             // 
             this.literatureLToolStripMenuItem.Name = "literatureLToolStripMenuItem";
-            this.literatureLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.literatureLToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.literatureLToolStripMenuItem.Text = "Literature(&L)";
             this.literatureLToolStripMenuItem.Click += new System.EventHandler(this.literatureLToolStripMenuItem_Click);
             // 
             // surveyVToolStripMenuItem
             // 
             this.surveyVToolStripMenuItem.Name = "surveyVToolStripMenuItem";
-            this.surveyVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.surveyVToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.surveyVToolStripMenuItem.Text = "Survey(&V)";
             this.surveyVToolStripMenuItem.Click += new System.EventHandler(this.surveyVToolStripMenuItem_Click);
             // 
@@ -391,32 +391,32 @@
             this.tsmDeleteInfoMine,
             this.tsmDeleteNoteMine});
             this.cmsMain.Name = "cmsMain";
-            this.cmsMain.Size = new System.Drawing.Size(179, 248);
+            this.cmsMain.Size = new System.Drawing.Size(181, 270);
             this.cmsMain.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMain_Opening);
             // 
             // tsmAddSleepSchedule
             // 
             this.tsmAddSleepSchedule.Name = "tsmAddSleepSchedule";
-            this.tsmAddSleepSchedule.Size = new System.Drawing.Size(178, 22);
+            this.tsmAddSleepSchedule.Size = new System.Drawing.Size(180, 22);
             this.tsmAddSleepSchedule.Text = "Add Sleep Schedule";
             this.tsmAddSleepSchedule.Click += new System.EventHandler(this.tsmAddSleepSchedule_Click);
             // 
             // tsmAddSleepLog
             // 
             this.tsmAddSleepLog.Name = "tsmAddSleepLog";
-            this.tsmAddSleepLog.Size = new System.Drawing.Size(178, 22);
+            this.tsmAddSleepLog.Size = new System.Drawing.Size(180, 22);
             this.tsmAddSleepLog.Text = "Add Sleep Log";
             this.tsmAddSleepLog.Click += new System.EventHandler(this.tsmAddSleepLog_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmAddSchedule
             // 
             this.tsmAddSchedule.Name = "tsmAddSchedule";
-            this.tsmAddSchedule.Size = new System.Drawing.Size(178, 22);
+            this.tsmAddSchedule.Size = new System.Drawing.Size(180, 22);
             this.tsmAddSchedule.Text = "Add Schedule";
             this.tsmAddSchedule.Click += new System.EventHandler(this.tsmAddSchedule_Click);
             // 
@@ -426,7 +426,7 @@
             this.tsmAddNewLog,
             this.tsmConvertSchedule});
             this.tsmAddLog.Name = "tsmAddLog";
-            this.tsmAddLog.Size = new System.Drawing.Size(178, 22);
+            this.tsmAddLog.Size = new System.Drawing.Size(180, 22);
             this.tsmAddLog.Text = "Add Log";
             // 
             // tsmAddNewLog
@@ -446,7 +446,7 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmAddInfoMine
             // 
@@ -457,7 +457,7 @@
             this.tsmAddWorkOut,
             this.tsmAddMedicine});
             this.tsmAddInfoMine.Name = "tsmAddInfoMine";
-            this.tsmAddInfoMine.Size = new System.Drawing.Size(178, 22);
+            this.tsmAddInfoMine.Size = new System.Drawing.Size(180, 22);
             this.tsmAddInfoMine.Text = "Add Info Mine";
             // 
             // tsmAddEvent
@@ -515,7 +515,7 @@
             this.tsmAddNote,
             this.addDailyToolStripMenuItem});
             this.tsmAddNoteMine.Name = "tsmAddNoteMine";
-            this.tsmAddNoteMine.Size = new System.Drawing.Size(178, 22);
+            this.tsmAddNoteMine.Size = new System.Drawing.Size(180, 22);
             this.tsmAddNoteMine.Text = "Add Note Mine";
             // 
             // tsmAddNote
@@ -535,7 +535,7 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmDeleteSchedule
             // 
@@ -543,7 +543,7 @@
             this.tsmDeleteSingleSchedule,
             this.tsmClearSchedule});
             this.tsmDeleteSchedule.Name = "tsmDeleteSchedule";
-            this.tsmDeleteSchedule.Size = new System.Drawing.Size(178, 22);
+            this.tsmDeleteSchedule.Size = new System.Drawing.Size(180, 22);
             this.tsmDeleteSchedule.Text = "Delete Schedule";
             // 
             // tsmDeleteSingleSchedule
@@ -563,26 +563,26 @@
             // tsmDeleteLog
             // 
             this.tsmDeleteLog.Name = "tsmDeleteLog";
-            this.tsmDeleteLog.Size = new System.Drawing.Size(178, 22);
+            this.tsmDeleteLog.Size = new System.Drawing.Size(180, 22);
             this.tsmDeleteLog.Text = "Delete Log";
             this.tsmDeleteLog.Click += new System.EventHandler(this.tsmDeleteLog_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmDeleteInfoMine
             // 
             this.tsmDeleteInfoMine.Name = "tsmDeleteInfoMine";
-            this.tsmDeleteInfoMine.Size = new System.Drawing.Size(178, 22);
+            this.tsmDeleteInfoMine.Size = new System.Drawing.Size(180, 22);
             this.tsmDeleteInfoMine.Text = "Delete Info Mine";
             this.tsmDeleteInfoMine.Click += new System.EventHandler(this.tsmDeleteInfoMine_Click);
             // 
             // tsmDeleteNoteMine
             // 
             this.tsmDeleteNoteMine.Name = "tsmDeleteNoteMine";
-            this.tsmDeleteNoteMine.Size = new System.Drawing.Size(178, 22);
+            this.tsmDeleteNoteMine.Size = new System.Drawing.Size(180, 22);
             this.tsmDeleteNoteMine.Text = "Delete Note Mine";
             this.tsmDeleteNoteMine.Click += new System.EventHandler(this.tsmDeleteNoteMine_Click);
             // 

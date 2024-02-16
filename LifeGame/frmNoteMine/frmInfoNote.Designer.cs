@@ -267,7 +267,7 @@
             this.toolStripSeparator10,
             this.tsmRenameNote});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(195, 592);
+            this.cmsTrvNote.Size = new System.Drawing.Size(195, 614);
             // 
             // tsmAdd
             // 

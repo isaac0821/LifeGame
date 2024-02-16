@@ -51,6 +51,8 @@ namespace LifeGame
             this.lblNumOLinks = new System.Windows.Forms.Label();
             this.lblNumONotes = new System.Windows.Forms.Label();
             this.lblNumOLitrs = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lblCharCount = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,28 +63,31 @@ namespace LifeGame
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.64815F));
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.lblNoteType, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblNumChildren, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblNumCLinks, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lblNumCNotes, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lblNumCLitrs, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.lblNumOffsprings, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.lblNumOLinks, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.lblNumONotes, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.lblNumOLitrs, 1, 9);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.lblNoteType, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblNumChildren, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lblNumCLinks, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lblNumCNotes, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lblNumCLitrs, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblNumOffsprings, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.lblNumOLinks, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.lblNumONotes, 1, 9);
+            this.tableLayoutPanel1.Controls.Add(this.lblNumOLitrs, 1, 10);
+            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblCharCount, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
+            this.tableLayoutPanel1.RowCount = 11;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -93,7 +98,7 @@ namespace LifeGame
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(216, 253);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(216, 278);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label2
@@ -122,7 +127,7 @@ namespace LifeGame
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 25);
+            this.label3.Location = new System.Drawing.Point(3, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 25);
             this.label3.TabIndex = 2;
@@ -133,7 +138,7 @@ namespace LifeGame
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 50);
+            this.label4.Location = new System.Drawing.Point(3, 75);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(133, 25);
             this.label4.TabIndex = 3;
@@ -144,7 +149,7 @@ namespace LifeGame
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 75);
+            this.label5.Location = new System.Drawing.Point(3, 100);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(133, 25);
             this.label5.TabIndex = 4;
@@ -155,7 +160,7 @@ namespace LifeGame
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(3, 100);
+            this.label6.Location = new System.Drawing.Point(3, 125);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(133, 25);
             this.label6.TabIndex = 5;
@@ -166,7 +171,7 @@ namespace LifeGame
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(3, 125);
+            this.label7.Location = new System.Drawing.Point(3, 150);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(133, 25);
             this.label7.TabIndex = 6;
@@ -177,7 +182,7 @@ namespace LifeGame
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(3, 150);
+            this.label8.Location = new System.Drawing.Point(3, 175);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(133, 25);
             this.label8.TabIndex = 7;
@@ -188,7 +193,7 @@ namespace LifeGame
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(3, 175);
+            this.label9.Location = new System.Drawing.Point(3, 200);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(133, 25);
             this.label9.TabIndex = 8;
@@ -199,7 +204,7 @@ namespace LifeGame
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(3, 200);
+            this.label10.Location = new System.Drawing.Point(3, 225);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(133, 25);
             this.label10.TabIndex = 9;
@@ -210,7 +215,7 @@ namespace LifeGame
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 225);
+            this.label11.Location = new System.Drawing.Point(3, 250);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(133, 28);
             this.label11.TabIndex = 10;
@@ -221,7 +226,7 @@ namespace LifeGame
             // 
             this.lblNoteType.AutoSize = true;
             this.lblNoteType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNoteType.Location = new System.Drawing.Point(142, 25);
+            this.lblNoteType.Location = new System.Drawing.Point(142, 50);
             this.lblNoteType.Name = "lblNoteType";
             this.lblNoteType.Size = new System.Drawing.Size(71, 25);
             this.lblNoteType.TabIndex = 11;
@@ -231,7 +236,7 @@ namespace LifeGame
             // 
             this.lblNumChildren.AutoSize = true;
             this.lblNumChildren.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNumChildren.Location = new System.Drawing.Point(142, 50);
+            this.lblNumChildren.Location = new System.Drawing.Point(142, 75);
             this.lblNumChildren.Name = "lblNumChildren";
             this.lblNumChildren.Size = new System.Drawing.Size(71, 25);
             this.lblNumChildren.TabIndex = 12;
@@ -241,7 +246,7 @@ namespace LifeGame
             // 
             this.lblNumCLinks.AutoSize = true;
             this.lblNumCLinks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNumCLinks.Location = new System.Drawing.Point(142, 75);
+            this.lblNumCLinks.Location = new System.Drawing.Point(142, 100);
             this.lblNumCLinks.Name = "lblNumCLinks";
             this.lblNumCLinks.Size = new System.Drawing.Size(71, 25);
             this.lblNumCLinks.TabIndex = 13;
@@ -251,7 +256,7 @@ namespace LifeGame
             // 
             this.lblNumCNotes.AutoSize = true;
             this.lblNumCNotes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNumCNotes.Location = new System.Drawing.Point(142, 100);
+            this.lblNumCNotes.Location = new System.Drawing.Point(142, 125);
             this.lblNumCNotes.Name = "lblNumCNotes";
             this.lblNumCNotes.Size = new System.Drawing.Size(71, 25);
             this.lblNumCNotes.TabIndex = 14;
@@ -261,7 +266,7 @@ namespace LifeGame
             // 
             this.lblNumCLitrs.AutoSize = true;
             this.lblNumCLitrs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNumCLitrs.Location = new System.Drawing.Point(142, 125);
+            this.lblNumCLitrs.Location = new System.Drawing.Point(142, 150);
             this.lblNumCLitrs.Name = "lblNumCLitrs";
             this.lblNumCLitrs.Size = new System.Drawing.Size(71, 25);
             this.lblNumCLitrs.TabIndex = 15;
@@ -271,7 +276,7 @@ namespace LifeGame
             // 
             this.lblNumOffsprings.AutoSize = true;
             this.lblNumOffsprings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNumOffsprings.Location = new System.Drawing.Point(142, 150);
+            this.lblNumOffsprings.Location = new System.Drawing.Point(142, 175);
             this.lblNumOffsprings.Name = "lblNumOffsprings";
             this.lblNumOffsprings.Size = new System.Drawing.Size(71, 25);
             this.lblNumOffsprings.TabIndex = 16;
@@ -281,7 +286,7 @@ namespace LifeGame
             // 
             this.lblNumOLinks.AutoSize = true;
             this.lblNumOLinks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNumOLinks.Location = new System.Drawing.Point(142, 175);
+            this.lblNumOLinks.Location = new System.Drawing.Point(142, 200);
             this.lblNumOLinks.Name = "lblNumOLinks";
             this.lblNumOLinks.Size = new System.Drawing.Size(71, 25);
             this.lblNumOLinks.TabIndex = 17;
@@ -291,7 +296,7 @@ namespace LifeGame
             // 
             this.lblNumONotes.AutoSize = true;
             this.lblNumONotes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNumONotes.Location = new System.Drawing.Point(142, 200);
+            this.lblNumONotes.Location = new System.Drawing.Point(142, 225);
             this.lblNumONotes.Name = "lblNumONotes";
             this.lblNumONotes.Size = new System.Drawing.Size(71, 25);
             this.lblNumONotes.TabIndex = 18;
@@ -301,17 +306,38 @@ namespace LifeGame
             // 
             this.lblNumOLitrs.AutoSize = true;
             this.lblNumOLitrs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNumOLitrs.Location = new System.Drawing.Point(142, 225);
+            this.lblNumOLitrs.Location = new System.Drawing.Point(142, 250);
             this.lblNumOLitrs.Name = "lblNumOLitrs";
             this.lblNumOLitrs.Size = new System.Drawing.Size(71, 28);
             this.lblNumOLitrs.TabIndex = 19;
             this.lblNumOLitrs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label12.Location = new System.Drawing.Point(3, 25);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(133, 25);
+            this.label12.TabIndex = 20;
+            this.label12.Text = "Char Count";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblCharCount
+            // 
+            this.lblCharCount.AutoSize = true;
+            this.lblCharCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblCharCount.Location = new System.Drawing.Point(142, 25);
+            this.lblCharCount.Name = "lblCharCount";
+            this.lblCharCount.Size = new System.Drawing.Size(71, 25);
+            this.lblCharCount.TabIndex = 22;
+            this.lblCharCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmNoteProperties
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(216, 253);
+            this.ClientSize = new System.Drawing.Size(216, 278);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -347,5 +373,7 @@ namespace LifeGame
         private System.Windows.Forms.Label lblNumOLinks;
         private System.Windows.Forms.Label lblNumONotes;
         private System.Windows.Forms.Label lblNumOLitrs;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblCharCount;
     }
 }
