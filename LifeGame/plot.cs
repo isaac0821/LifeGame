@@ -494,16 +494,19 @@ namespace LifeGame
             }
             else
             {
-                frmInfoNote frmInfoNote = new frmInfoNote(info);
-                M.notesOpened.Add(frmInfoNote);
-                frmInfoNote.Show();
+                if (info.LiteratureTitle == "" || info.LiteratureTitle == null)
+                {
+                    frmInfoNote frmInfoNote = new frmInfoNote(info);
+                    M.notesOpened.Add(frmInfoNote);
+                    frmInfoNote.Show();
+                }
+                else
+                {
+                    frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.Title == info.LiteratureTitle));
+                    M.notesOpened.Add(frmInfoNote);
+                    frmInfoNote.Show();
+                }
             }
-        }
-
-        public void CallInfoNoteAddNew(string LiteratureTitle)
-        {
-            frmInfoNote frmInfoNote = new frmInfoNote(LiteratureTitle);
-            frmInfoNote.Show();
         }
 
         public void CallInfoTransaction(CTransaction info)

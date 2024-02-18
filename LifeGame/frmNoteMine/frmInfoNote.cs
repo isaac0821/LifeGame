@@ -19,13 +19,28 @@ namespace LifeGame
 {
     public partial class frmInfoNote : Form
     {
+        bool modifiedFlag = false;
+
         private plot C = new plot();
         public CNote note = new CNote();
         List<RNoteLog> noteLogs = new List<RNoteLog>();
         List<RNoteColor> noteColors = new List<RNoteColor>();
-        // List<RNoteTag> noteTags = new List<RNoteTag>();
         string topicGUID = "";
         private bool lockMode = false;
+
+        CLiterature literature = new CLiterature();
+        List<RLiteratureAuthor> lstLiteratureAuthor = new List<RLiteratureAuthor>();
+        List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
+        List<RSurveyLiterature> lstSurveyLiterature = new List<RSurveyLiterature>();
+        CBibTeX literatureBib = new CBibTeX();
+
+        public enum ENoteType : int
+        {
+            Note = 0,
+            DailyReport = 1,
+            Literature = 2
+        }
+        public ENoteType noteType = ENoteType.Note;
 
         // 已经有了note之后打开
         public frmInfoNote(CNote info)
@@ -33,13 +48,23 @@ namespace LifeGame
             note = info;
             noteLogs = G.glb.lstNoteLog.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             noteColors = G.glb.lstNoteColor.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
-            // noteTags = G.glb.lstNoteTag.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             topicGUID = info.GUID;
+
             InitializeComponent();
+
+            noteType = ENoteType.Note;
+
+            tblNote.RowStyles[1].Height = 0;
+            tblNote.RowStyles[2].Height = 0;
+            tblNote.RowStyles[3].Height = 0;
+            tblNote.RowStyles[4].Height = 0;
+            tblNote.RowStyles[5].Height = 0;
+            tblNote.RowStyles[6].Height = 0;
+
+            chkShow.Checked = false;
 
             this.Text = "LifeGame - Note - " + info.Topic;
 
-            LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
             dtpDate.Value = note.TagTime;
@@ -64,21 +89,179 @@ namespace LifeGame
             }
         }
 
-        // 新建空note
-        public frmInfoNote(DateTime selectedDate)
+        public frmInfoNote(CLiterature lit)
+        {
+            literature = lit;
+            string litTitle = lit.Title;
+            lstLiteratureTag = G.glb.lstLiteratureTag.FindAll(o => o.Title == litTitle).ToList();
+            lstLiteratureAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == litTitle).ToList();
+            lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
+            lstSurveyLiterature = G.glb.lstSurveyLiterature.FindAll(o => o.LiteratureTitle == litTitle).ToList();
+            literatureBib = literature.BibTeX;
+            
+            InitializeComponent();
+
+            noteType = ENoteType.Literature;
+
+            tblNote.RowStyles[1].Height = 0;
+            tblNote.RowStyles[2].Height = 26;
+            tblNote.RowStyles[3].Height = 26;
+            tblNote.RowStyles[4].Height = 26;
+            tblNote.RowStyles[5].Height = 120;
+            tblNote.RowStyles[6].Height = 62;
+
+            chkShow.Checked = true;
+
+            CNote info = G.glb.lstNote.Find(o => o.LiteratureTitle == lit.Title);
+            note = info;
+            noteLogs = G.glb.lstNoteLog.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
+            noteColors = G.glb.lstNoteColor.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
+            topicGUID = info.GUID;            
+
+            this.Text = "LifeGame - Literature - " + lit.Title;
+                        
+            LoadNoteColor();
+            LoadNoteLog();
+            LoadLiterature();
+
+            if (txtTitle.Enabled)
+            {
+                this.ActiveControl = txtTitle;
+            }
+            List<string> journalList = new List<string>();
+            foreach (CLiterature l in G.glb.lstLiterature)
+            {
+                if (!journalList.Exists(o => o == l.JournalOrConferenceName))
+                {
+                    journalList.Add(l.JournalOrConferenceName);
+                }
+            }
+            journalList.Sort();
+            foreach (string jour in journalList)
+            {
+                cbxJournalConference.Items.Add(jour);
+            }
+
+            //靠！！气死了，白写了，谷歌学术会检查是不是机器人...咋绕过去呢...
+            //try
+            //{
+            //    string url = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C33&q=" + txtTitle.Text.Replace(" ", "+") + "&btnG=";
+            //    WebRequest request = WebRequest.Create(url);
+            //    WebResponse response = request.GetResponse();
+            //    StreamReader reader = new StreamReader(response.GetResponseStream());
+            //    string htmlStr = reader.ReadToEnd();
+            //    reader.Close();
+            //    response.Close();
+            //    Regex citation = new Regex(@"(Cited)\s(by)\s[0-9]*");
+            //    bool cite = citation.IsMatch(htmlStr);
+            //    Match m = citation.Match(htmlStr);
+            //    lblCited.Text = m.ToString();
+            //}
+            //catch (Exception)
+            //{
+            //    lblCited.Text = "NaN";
+            //}
+
+            dtpDate.Value = note.TagTime;
+            txtTopic.Enabled = false;
+            btnSave.Enabled = false;
+            lockMode = info.Locked;
+            if (lockMode)
+            {
+                btnRead.Enabled = false;
+                btnWrite.Enabled = false;
+                btnSave.Enabled = false;
+                btnLock.Text = "Unlock";
+                trvNote.Hide();
+            }
+            else
+            {
+                btnRead.Enabled = true;
+                btnWrite.Enabled = true;
+                btnSave.Enabled = true;
+                btnLock.Text = "Lock";
+                trvNote.Show();
+            }
+        }
+
+        // 新建空Literature
+        public frmInfoNote()
         {
             InitializeComponent();
+
+            noteType = ENoteType.Literature;
+
+            tblNote.RowStyles[1].Height = 0;
+            tblNote.RowStyles[2].Height = 26;
+            tblNote.RowStyles[3].Height = 26;
+            tblNote.RowStyles[4].Height = 26;
+            tblNote.RowStyles[5].Height = 120;
+            tblNote.RowStyles[6].Height = 62;
+
+            chkShow.Checked = true;
+
             note = new CNote();
             noteLogs = new List<RNoteLog>();
             noteColors = new List<RNoteColor>();
-            // noteTags = new List<RNoteTag>();
+
+            literature = new CLiterature();
+            lstLiteratureAuthor = new List<RLiteratureAuthor>();
+            lstLiteratureTag = new List<RLiteratureTag>();
+            lstSurveyLiterature = new List<RSurveyLiterature>();
+            literatureBib = new CBibTeX();
+
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
 
+            List<string> journalList = new List<string>();
+            foreach (CLiterature l in G.glb.lstLiterature)
+            {
+                if (!journalList.Exists(o => o == l.JournalOrConferenceName))
+                {
+                    journalList.Add(l.JournalOrConferenceName);
+                }
+            }
+            journalList.Sort();
+            foreach (string jour in journalList)
+            {
+                cbxJournalConference.Items.Add(jour);
+            }
+
+            this.Text = "LifeGame - Literature - (New)";
+
+            LoadNoteColor();
+            LoadNoteLog();
+            dtpDate.Value = DateTime.Today.Date;
+            btnSave.Enabled = true;
+        }
+
+        // 新建空note
+        public frmInfoNote(DateTime selectedDate)
+        {
+            InitializeComponent();
+
+            noteType = ENoteType.Note;
+
+            tblNote.RowStyles[1].Height = 26;
+            tblNote.RowStyles[2].Height = 0;
+            tblNote.RowStyles[3].Height = 0;
+            tblNote.RowStyles[4].Height = 0;
+            tblNote.RowStyles[5].Height = 0;
+            tblNote.RowStyles[6].Height = 62;
+
+            chkShow.Checked = true;
+
+            note = new CNote();
+            noteLogs = new List<RNoteLog>();
+            noteColors = new List<RNoteColor>();
+
+            topicGUID = Guid.NewGuid().ToString();
+            note.GUID = topicGUID;
+            note.TagTime = selectedDate;
+
             this.Text = "LifeGame - Note - (New)";
 
-            // LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
             dtpDate.Value = selectedDate;
@@ -88,21 +271,26 @@ namespace LifeGame
         public frmInfoNote(DateTime selectedDate, bool DiaryFlag)
         {
             InitializeComponent();
+
             note = new CNote();
             note.Topic = "Daily Report";
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
 
-            this.Text = "LifeGame - Note - " + note.Topic;
+            // 暂时不区分，以后加专用Note
+            noteType = ENoteType.Note;
 
-            // 默认tag
-            // noteTags = new List<RNoteTag>();
-            // RNoteTag dr = new RNoteTag();
-            // dr.TagTime = DateTime.Today.Date;
-            // dr.Topic = note.Topic;
-            // dr.Tag = "Daily Report";
-            // noteTags.Add(dr);
+            tblNote.RowStyles[1].Height = 0;
+            tblNote.RowStyles[2].Height = 0;
+            tblNote.RowStyles[3].Height = 0;
+            tblNote.RowStyles[4].Height = 0;
+            tblNote.RowStyles[5].Height = 0;
+            tblNote.RowStyles[6].Height = 0;
+
+            chkShow.Checked = false;
+
+            this.Text = "LifeGame - Daily Report";
 
             // 加入template
             RNoteColor planning = new RNoteColor();
@@ -182,279 +370,34 @@ namespace LifeGame
             transaction.Index = 4;
             noteLogs.Add(transaction);
 
-            // LoadNoteTag();
             LoadNoteColor();
             LoadNoteLog();
             dtpDate.Value = selectedDate;
             btnSave.Enabled = true;
         }
 
-        // 新建空literature note
-        public frmInfoNote(string LiteratureTitle)
-        {
-            InitializeComponent();
-            note = new CNote();
-            note.Topic = LiteratureTitle;
-            topicGUID = Guid.NewGuid().ToString();
-            note.GUID = topicGUID;
-            note.TagTime = DateTime.Today.Date;
-
-            this.Text = "LifeGame - Note - " + note.Topic;
-
-            // 默认tag
-            //  noteTags = new List<RNoteTag>();
-            // RNoteTag dr = new RNoteTag();
-            // dr.TagTime = DateTime.Today.Date;
-            // dr.Topic = note.Topic;
-            // dr.Tag = "Literature";
-            // noteTags.Add(dr);
-
-            // 加入template
-            CLiterature lit = G.glb.lstLiterature.Find(o => o.Title == LiteratureTitle);
-            List<RLiteratureAuthor> authors = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == LiteratureTitle).ToList();
-
-            noteLogs = new List<RNoteLog>();
-            RNoteLog meta = new RNoteLog();
-            meta.Topic = LiteratureTitle;
-            meta.TopicGUID = topicGUID;
-            meta.Log = LiteratureTitle;
-            meta.GUID = topicGUID;
-            meta.SubLog = "meta";
-            meta.SubGUID = Guid.NewGuid().ToString();
-            meta.TagTime = DateTime.Today.Date;
-            meta.Index = 0;
-            noteLogs.Add(meta);
-
-            RNoteLog litRef = new RNoteLog();
-            litRef.Topic = LiteratureTitle;
-            litRef.TopicGUID = topicGUID;
-            litRef.Log = "meta";
-            litRef.GUID = meta.SubGUID;
-            litRef.SubLog = "$LITR$>" + lit.Title;
-            litRef.SubGUID = Guid.NewGuid().ToString();
-            litRef.TagTime = DateTime.Today.Date;
-            litRef.Index = 0;
-            noteLogs.Add(litRef);
-
-            for (int i = 0; i < authors.Count; i++)
-            {
-                RNoteLog aut = new RNoteLog();
-                aut.Topic = LiteratureTitle;
-                aut.TopicGUID = topicGUID;
-                aut.Log = "meta";
-                aut.GUID = meta.SubGUID;
-                aut.SubLog = "author: " + authors[i].Author;
-                aut.SubGUID = Guid.NewGuid().ToString();
-                aut.TagTime = DateTime.Today.Date;
-                aut.Index = i + 1;
-                noteLogs.Add(aut);
-            }
-
-            RNoteLog jou = new RNoteLog();
-            jou.Topic = LiteratureTitle;
-            jou.TopicGUID = topicGUID;
-            jou.Log = "meta";
-            jou.GUID = meta.SubGUID;
-            if (lit.BibTeX.BibEntry == EBibEntry.Article)
-            {
-                jou.SubLog = "journal: " + lit.JournalOrConferenceName;
-            }
-            else if (lit.BibTeX.BibEntry == EBibEntry.Conference)
-            {
-                jou.SubLog = "conference: " + lit.JournalOrConferenceName;
-            }
-            else
-            {
-                jou.SubLog = "source: " + lit.JournalOrConferenceName;
-            }
-            jou.SubGUID = Guid.NewGuid().ToString();
-            jou.TagTime = DateTime.Today.Date;
-            jou.Index = authors.Count + 1;
-            noteLogs.Add(jou);
-
-            RNoteLog year = new RNoteLog();
-            year.Topic = LiteratureTitle;
-            year.TopicGUID = topicGUID;
-            year.Log = "meta";
-            year.GUID = meta.SubGUID;
-            year.SubLog = "year: " + lit.PublishYear;
-            year.SubGUID = Guid.NewGuid().ToString();
-            year.TagTime = DateTime.Today.Date;
-            year.Index = authors.Count + 2;
-            noteLogs.Add(year);
-
-            RNoteLog QA = new RNoteLog();
-            QA.Topic = LiteratureTitle;
-            QA.TopicGUID = topicGUID;
-            QA.Log = LiteratureTitle;
-            QA.GUID = topicGUID;
-            QA.SubLog = "Q&A";
-            QA.SubGUID = Guid.NewGuid().ToString();
-            QA.TagTime = DateTime.Today.Date;
-            QA.Index = 1;
-            noteLogs.Add(QA);
-
-            RNoteLog keyTakeaway = new RNoteLog();
-            keyTakeaway.Topic = LiteratureTitle;
-            keyTakeaway.TopicGUID = topicGUID;
-            keyTakeaway.Log = LiteratureTitle;
-            keyTakeaway.GUID = topicGUID;
-            keyTakeaway.SubLog = "key take-away";
-            keyTakeaway.SubGUID = Guid.NewGuid().ToString();
-            keyTakeaway.TagTime = DateTime.Today.Date;
-            keyTakeaway.Index = 2;
-            noteLogs.Add(keyTakeaway);
-
-            RNoteLog background = new RNoteLog();
-            background.Topic = LiteratureTitle;
-            background.TopicGUID = topicGUID;
-            background.Log = "key take-away";
-            background.GUID = keyTakeaway.SubGUID;
-            background.SubLog = "background";
-            background.SubGUID = Guid.NewGuid().ToString();
-            background.TagTime = DateTime.Today.Date;
-            background.Index = 0;
-            noteLogs.Add(background);
-
-            RNoteLog contribution = new RNoteLog();
-            contribution.Topic = LiteratureTitle;
-            contribution.TopicGUID = topicGUID;
-            contribution.Log = "key take-away";
-            contribution.GUID = keyTakeaway.SubGUID;
-            contribution.SubLog = "contribution";
-            contribution.SubGUID = Guid.NewGuid().ToString();
-            contribution.TagTime = DateTime.Today.Date;
-            contribution.Index = 1;
-            noteLogs.Add(contribution);
-
-            RNoteLog model = new RNoteLog();
-            model.Topic = LiteratureTitle;
-            model.TopicGUID = topicGUID;
-            model.Log = "key take-away";
-            model.GUID = keyTakeaway.SubGUID;
-            model.SubLog = "model";
-            model.SubGUID = Guid.NewGuid().ToString();
-            model.TagTime = DateTime.Today.Date;
-            model.Index = 2;
-            noteLogs.Add(model);
-
-            RNoteLog solution = new RNoteLog();
-            solution.Topic = LiteratureTitle;
-            solution.TopicGUID = topicGUID;
-            solution.Log = "key take-away";
-            solution.GUID = keyTakeaway.SubGUID;
-            solution.SubLog = "solution approach";
-            solution.SubGUID = Guid.NewGuid().ToString();
-            solution.TagTime = DateTime.Today.Date;
-            solution.Index = 3;
-            noteLogs.Add(solution);
-
-            RNoteLog managerial = new RNoteLog();
-            managerial.Topic = LiteratureTitle;
-            managerial.TopicGUID = topicGUID;
-            managerial.Log = "key take-away";
-            managerial.GUID = keyTakeaway.SubGUID;
-            managerial.SubLog = "managerial insights";
-            managerial.SubGUID = Guid.NewGuid().ToString();
-            managerial.TagTime = DateTime.Today.Date;
-            managerial.Index = 4;
-            noteLogs.Add(managerial);
-
-            RNoteLog general = new RNoteLog();
-            general.Topic = LiteratureTitle;
-            general.TopicGUID = topicGUID;
-            general.Log = "model";
-            general.GUID = model.SubGUID;
-            general.SubLog = "general";
-            general.SubGUID = Guid.NewGuid().ToString();
-            general.TagTime = DateTime.Today.Date;
-            general.Index = 0;
-            noteLogs.Add(general);
-
-            RNoteLog detail = new RNoteLog();
-            detail.Topic = LiteratureTitle;
-            detail.TopicGUID = topicGUID;
-            detail.Log = "model";
-            detail.GUID = model.SubGUID;
-            detail.SubLog = "detail";
-            detail.SubGUID = Guid.NewGuid().ToString();
-            detail.TagTime = DateTime.Today.Date;
-            detail.Index = 1;
-            noteLogs.Add(detail);
-
-            RNoteLog sets = new RNoteLog();
-            sets.Topic = LiteratureTitle;
-            sets.TopicGUID = topicGUID;
-            sets.Log = "detail";
-            sets.GUID = detail.SubGUID;
-            sets.SubLog = "sets and parameters";
-            sets.SubGUID = Guid.NewGuid().ToString();
-            sets.TagTime = DateTime.Today.Date;
-            sets.Index = 0;
-            noteLogs.Add(sets);
-
-            RNoteLog dvs = new RNoteLog();
-            dvs.Topic = LiteratureTitle;
-            dvs.TopicGUID = topicGUID;
-            dvs.Log = "detail";
-            dvs.GUID = detail.SubGUID;
-            dvs.SubLog = "decision variables";
-            dvs.SubGUID = Guid.NewGuid().ToString();
-            dvs.TagTime = DateTime.Today.Date;
-            dvs.Index = 1;
-            noteLogs.Add(dvs);
-
-            RNoteLog cons = new RNoteLog();
-            cons.Topic = LiteratureTitle;
-            cons.TopicGUID = topicGUID;
-            cons.Log = "detail";
-            cons.GUID = detail.SubGUID;
-            cons.SubLog = "constraints";
-            cons.SubGUID = Guid.NewGuid().ToString();
-            cons.TagTime = DateTime.Today.Date;
-            cons.Index = 2;
-            noteLogs.Add(cons);
-
-            RNoteLog obj = new RNoteLog();
-            obj.Topic = LiteratureTitle;
-            obj.TopicGUID = topicGUID;
-            obj.Log = "detail";
-            obj.GUID = detail.SubGUID;
-            obj.SubLog = "objectives";
-            obj.SubGUID = Guid.NewGuid().ToString();
-            obj.TagTime = DateTime.Today.Date;
-            obj.Index = 3;
-            noteLogs.Add(obj);
-
-            noteColors = new List<RNoteColor>();
-
-            note.LiteratureTitle = LiteratureTitle;
-            // LoadNoteTag();
-            LoadNoteColor();
-            LoadNoteLog();
-            txtTopic.Text = LiteratureTitle;
-            dtpDate.Value = DateTime.Today.Date;
-            btnSave.Enabled = true;
-        }
-
         public frmInfoNote(string topic, List<string> lstLiterature)
         {
             InitializeComponent();
+
             note = new CNote();
             note.Topic = topic;
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
 
-            this.Text = "LifeGame - Note - " + note.Topic;
+            noteType = ENoteType.Note;
 
-            // 默认tag
-            // noteTags = new List<RNoteTag>();
-            // RNoteTag dr = new RNoteTag();
-            // dr.TagTime = DateTime.Today.Date;
-            // dr.Topic = note.Topic;
-            // dr.Tag = "Review";
-            // noteTags.Add(dr);
+            tblNote.RowStyles[1].Height = 26;
+            tblNote.RowStyles[2].Height = 0;
+            tblNote.RowStyles[3].Height = 0;
+            tblNote.RowStyles[4].Height = 0;
+            tblNote.RowStyles[5].Height = 0;
+            tblNote.RowStyles[6].Height = 62;
+
+            chkShow.Checked = true;
+
+            this.Text = "LifeGame - Note - " + note.Topic;
 
             for (int i = 0; i < lstLiterature.Count; i++)
             {
@@ -507,17 +450,6 @@ namespace LifeGame
             btnSave.Enabled = true;
         }
 
-        private void LoadNoteTag()
-        {
-            //lsvTag.Items.Clear();
-            //foreach (RNoteTag noteTag in noteTags)
-            //{
-            //    ListViewItem item = new ListViewItem();
-            //    item.Text = noteTag.Tag;
-            //    lsvTag.Items.Add(item);
-            //}
-        }
-
         private void LoadNoteColor()
         {
             lsvColor.Items.Clear();
@@ -555,42 +487,6 @@ namespace LifeGame
             {
                 return 14;
             }
-            //else if (noteText.Contains("paper: ") || noteText.Contains("Paper: "))
-            //{
-            //    return 1;
-            //}
-            //else if (noteText.Contains("proposal: ") || noteText.Contains("Proposal: "))
-            //{
-            //    return 2;
-            //}
-            //else if (noteText.Contains("package: ") || noteText.Contains("Package: "))
-            //{
-            //    return 3;
-            //}
-            //else if (noteText.Contains("book: ") || noteText.Contains("Book: "))
-            //{
-            //    return 4;
-            //}
-            //else if (noteText.Contains("horiFund: ") || noteText.Contains("HoriFund: "))
-            //{
-            //    return 5;
-            //}
-            //else if (noteText.Contains("vertFund: ") || noteText.Contains("VertFund: "))
-            //{
-            //    return 6;
-            //}
-            //else if (noteText.Contains("report: ") || noteText.Contains("Report: "))
-            //{
-            //    return 7;
-            //}
-            //else if (noteText.Contains("review: ") || noteText.Contains("Review: "))
-            //{
-            //    return 8;
-            //}
-            //else if (noteText.Contains("material: ") || noteText.Contains("Material: "))
-            //{
-            //    return 9;
-            //}
             else if (noteText.Contains("$LINK$>"))
             {
                 string selectedPath = noteText.Replace("$LINK$>", "");
@@ -1066,6 +962,132 @@ namespace LifeGame
             }
         }
 
+        private void SaveLiterature()
+        {
+            bool CanSaveFlag = true;
+            if (modifiedFlag)
+            {
+                if (txtTitle.Text == "")
+                {
+                    MessageBox.Show("Title is missing.");
+                    CanSaveFlag = false;
+                }
+                if (G.glb.lstLiterature.Exists(o => o.Title == txtTitle.Text) && txtTitle.Enabled == true)
+                {
+                    MessageBox.Show("Literature exists.");
+                    CanSaveFlag = false;
+                }
+                if (G.glb.lstLiterature.Exists(o => o.BibKey != "" && o.BibKey == txtBibKey.Text && o.Title != txtTitle.Text))
+                {
+                    MessageBox.Show("Bibkey exists.");
+                    CanSaveFlag = false;
+                }
+                if (txtYear.Text == "")
+                {
+                    MessageBox.Show("Publish year is missing");
+                    CanSaveFlag = false;
+                }
+                if (cbxJournalConference.Text == "")
+                {
+                    MessageBox.Show("Journal/Conference Name is missing");
+                    CanSaveFlag = false;
+                }
+                if (lsbAuthor.Items.Count == 0)
+                {
+                    MessageBox.Show("Add author");
+                    CanSaveFlag = false;
+                }
+                if (lsbTag.Items.Count == 0)
+                {
+                    MessageBox.Show("Add tag");
+                    CanSaveFlag = false;
+                }
+                if (CanSaveFlag)
+                {
+                    // 如果本来没有这篇文献，说明是新增文献，否则是删改文献
+                    if (!G.glb.lstLiterature.Exists(o => o.Title == txtTitle.Text))
+                    {
+                        CLiterature newLiterature = new CLiterature();
+                        newLiterature.Title = txtTitle.Text;
+                        newLiterature.PublishYear = Convert.ToInt32(txtYear.Text);
+                        newLiterature.JournalOrConferenceName = cbxJournalConference.Text;
+                        newLiterature.BibKey = txtBibKey.Text;
+                        newLiterature.BibTeX = literatureBib;
+                        newLiterature.DateAdded = DateTime.Today;
+                        newLiterature.DateModified = DateTime.Today;
+                        newLiterature.Star = chkStar.Checked;
+                        newLiterature.PredatoryAlert = chkPredatroyAlert.Checked;
+
+                        foreach (RLiteratureAuthor author in lstLiteratureAuthor)
+                        {
+                            author.Title = txtTitle.Text;
+                        }
+                        foreach (RLiteratureTag tag in lstLiteratureTag)
+                        {
+                            tag.Title = txtTitle.Text;
+                        }
+                        foreach (RSurveyLiterature surveyLiterature in lstSurveyLiterature)
+                        {
+                            surveyLiterature.LiteratureTitle = txtTitle.Text;
+                            if (!G.glb.lstSurvey.Exists(o => o.SurveyTitle == surveyLiterature.SurveyTitle))
+                            {
+                                CSurvey survey = new CSurvey();
+                                survey.SurveyTitle = surveyLiterature.SurveyTitle;
+                                G.glb.lstSurvey.Add(survey);
+                            }
+                        }
+                        G.glb.lstLiterature.Add(newLiterature);
+                        G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
+                        G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
+                        G.glb.lstSurveyLiterature.AddRange(lstSurveyLiterature);
+                    }
+                    else
+                    {
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PublishYear = Convert.ToInt32(txtYear.Text);
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).JournalOrConferenceName = cbxJournalConference.Text;
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibKey = txtBibKey.Text;
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibTeX = literatureBib;
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).DateModified = DateTime.Today;
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Star = chkStar.Checked;
+                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PredatoryAlert = chkPredatroyAlert.Checked;
+                        foreach (RLiteratureAuthor author in lstLiteratureAuthor)
+                        {
+                            author.Title = txtTitle.Text;
+                        }
+                        foreach (RLiteratureTag tag in lstLiteratureTag)
+                        {
+                            tag.Title = txtTitle.Text;
+                        }
+                        G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == txtTitle.Text);
+                        G.glb.lstLiteratureTag.RemoveAll(o => o.Title == txtTitle.Text);
+                        G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
+                        G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
+                    }
+                    modifiedFlag = false;
+                    try
+                    {
+                        // 有可能literature窗口已经关掉了，没法callback
+                        RefreshTab();
+
+                        FileStream f = new FileStream("data.dat", FileMode.Create);
+                        BinaryFormatter b = new BinaryFormatter();
+                        b.Serialize(f, G.glb);
+                        f.Close();
+                    }
+                    catch (Exception)
+                    {
+                        // 下次打开自然会刷新，所以不用catch
+                    }
+                    txtTitle.Enabled = false;
+                    SaveNote();
+                }
+                else
+                {
+                    MessageBox.Show("Missing information, not saved yet.");
+                }
+            }
+        }
+
         private void SaveNote()
         {
             DialogResult result = MessageBox.Show("Wanna save?", "Saving", MessageBoxButtons.YesNo);
@@ -1089,19 +1111,17 @@ namespace LifeGame
                     }
                     if (G.glb.lstNote.Exists(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date))
                     {
-                        G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).FinishedNote = chkFinished.Checked;
-                        G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).LiteratureTitle = txtLiteratureTitle.Text;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).TagTime = dtpDate.Value.Date;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Topic = txtTopic.Text;
+                        G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).LiteratureTitle = txtTitle.Text;
                         G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Locked = lockMode;
                     }
                     else
                     {
                         CNote newNote = new CNote();
                         newNote.Topic = txtTopic.Text;
-                        newNote.FinishedNote = chkFinished.Checked;
-                        newNote.LiteratureTitle = txtLiteratureTitle.Text;
                         newNote.TagTime = dtpDate.Value.Date;
+                        newNote.LiteratureTitle = txtTitle.Text;
                         newNote.Locked = lockMode;
                         newNote.GUID = topicGUID;
                         G.glb.lstNote.Add(newNote);
@@ -1122,7 +1142,15 @@ namespace LifeGame
         private void frmInfoNote_FormClosing(object sender, FormClosingEventArgs e)
         {
             M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
-            SaveNote();
+            
+            if (noteType == ENoteType.Note)
+            {
+                SaveNote();
+            }
+            if (noteType == ENoteType.Literature)
+            {
+                SaveLiterature();
+            }
             Dispose();
         }
 
@@ -1131,11 +1159,9 @@ namespace LifeGame
 
         private void frmInfoNote_Load(object sender, EventArgs e)
         {
-            if (note.Topic != null)
+            if (note.Topic != null && note.LiteratureTitle == "")
             {
                 txtTopic.Text = note.Topic;
-                txtLiteratureTitle.Text = note.LiteratureTitle;
-                chkFinished.Checked = note.FinishedNote;
                 chkShow.Checked = false;
             }
         }
@@ -1454,7 +1480,14 @@ namespace LifeGame
             note.Topic = txtTopic.Text;
             trvNote.Nodes[0].Text = txtTopic.Text;
             trvNote.Nodes[0].Name = topicGUID;
-            this.Text = "LifeGame - Note - " + note.Topic;
+            if (noteType == ENoteType.Note)
+            {
+                this.Text = "LifeGame - Note - " + txtTopic.Text;
+            }
+            else if (noteType == ENoteType.Literature)
+            {
+                this.Text = "LifeGame - Literature - " + txtTopic.Text;
+            }
             foreach (RNoteLog item in noteLogs)
             {
                 item.Topic = txtTopic.Text;
@@ -1471,7 +1504,14 @@ namespace LifeGame
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SaveNote();
+            if (noteType == ENoteType.Note)
+            {
+                SaveNote();
+            }
+            if (noteType == ENoteType.Literature)
+            {
+                SaveLiterature();
+            }
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
         }
@@ -1723,14 +1763,17 @@ namespace LifeGame
                     string selectedPath = trvNote.SelectedNode.Text.Replace("$LITR$>", "");
                     if (G.glb.lstLiterature.Exists(o => o.Title == selectedPath))
                     {
-                        frmInfoLiterature frmInfoLiterature = new frmInfoLiterature(selectedPath);
-                        frmInfoLiterature.Show();
-                    }
-                    else if (G.glb.lstLiterature.Exists(o => o.BibKey == selectedPath))
-                    {
-                        string lit = G.glb.lstLiterature.FirstOrDefault(o => o.BibKey == selectedPath).Title;
-                        frmInfoLiterature frmInfoLiterature = new frmInfoLiterature(lit);
-                        frmInfoLiterature.Show();
+                        if (M.notesOpened.Exists(o => o.note.LiteratureTitle == selectedPath))
+                        {
+                            M.notesOpened.Find(o => o.note.LiteratureTitle == selectedPath).Show();
+                            M.notesOpened.Find(o => o.note.LiteratureTitle == selectedPath).BringToFront();
+                        }
+                        else
+                        {
+                            frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.Title == selectedPath));
+                            M.notesOpened.Add(frmInfoNote);
+                            frmInfoNote.Show();
+                        }
                     }
                     else
                     {
@@ -2249,7 +2292,14 @@ namespace LifeGame
             // 保存
             else if (e.Control && e.KeyCode == Keys.S)
             {
-                SaveNote();
+                if (noteType == ENoteType.Note)
+                {
+                    SaveNote();
+                }
+                if (noteType == ENoteType.Literature)
+                {
+                    SaveLiterature();
+                }
             }
             // 返回
             else if (e.Control && e.KeyCode == Keys.Q)
@@ -2598,10 +2648,32 @@ namespace LifeGame
             if (!chkShow.Checked)
             {
                 tblNote.RowStyles[1].Height = 0;
+                tblNote.RowStyles[2].Height = 0;
+                tblNote.RowStyles[3].Height = 0;
+                tblNote.RowStyles[4].Height = 0;
+                tblNote.RowStyles[5].Height = 0;
+                tblNote.RowStyles[6].Height = 0;
             }
             else
             {
-                tblNote.RowStyles[1].Height = 112;
+                if (noteType == ENoteType.Note)
+                {
+                    tblNote.RowStyles[1].Height = 26;
+                    tblNote.RowStyles[2].Height = 0;
+                    tblNote.RowStyles[3].Height = 0;
+                    tblNote.RowStyles[4].Height = 0;
+                    tblNote.RowStyles[5].Height = 0;
+                    tblNote.RowStyles[6].Height = 62;
+                }
+                else if (noteType == ENoteType.Literature)
+                {
+                    tblNote.RowStyles[1].Height = 0;
+                    tblNote.RowStyles[2].Height = 26;
+                    tblNote.RowStyles[3].Height = 26;
+                    tblNote.RowStyles[4].Height = 26;
+                    tblNote.RowStyles[5].Height = 120;
+                    tblNote.RowStyles[6].Height = 62;
+                }
             }
         }
 
@@ -2648,7 +2720,7 @@ namespace LifeGame
                     {
                         item.SubLog = item.SubLog.Replace(oldTopic, newLog);
                     }
-                    
+
 
                     // 把打开的Note的条目更新了
                     // 暂时不好改，先搁置着...
@@ -2678,6 +2750,563 @@ namespace LifeGame
                 }
             }
         }
+
+        public delegate void RefreshTabHandler();
+        public event RefreshTabHandler RefreshTab;
+
+        ParseBibTeX ParseBib = new ParseBibTeX();
+        private void ParseBibTeXText(CBibTeX bib)
+        {
+            switch (bib.BibEntry)
+            {
+                case EBibEntry.Article:
+                    txtBibRef.Text = ParseBib.ParseBibTeXArticle(bib, literature.DateAdded, literature.DateModified);
+                    break;
+                case EBibEntry.Book:
+                    break;
+                case EBibEntry.Booklet:
+                    break;
+                case EBibEntry.Conference:
+                    txtBibRef.Text = ParseBib.ParseBibTeXConference(bib, literature.DateAdded, literature.DateModified);
+                    break;
+                case EBibEntry.Inbook:
+                    break;
+                case EBibEntry.Incollection:
+                    break;
+                case EBibEntry.Manual:
+                    break;
+                case EBibEntry.Mastersthesis:
+                    txtBibRef.Text = ParseBib.ParseBibTeXMastersthesis(bib, literature.DateAdded, literature.DateModified);
+                    break;
+                case EBibEntry.Misc:
+                    break;
+                case EBibEntry.Phdthesis:
+                    txtBibRef.Text = ParseBib.ParseBibTeXPhdthesis(bib, literature.DateAdded, literature.DateModified);
+                    break;
+                case EBibEntry.Proceedings:
+                    break;
+                case EBibEntry.Techreport:
+                    break;
+                case EBibEntry.Unpublished:
+                    txtBibRef.Text = ParseBib.ParseBibTeXUnpublished(bib, literature.DateAdded, literature.DateModified);
+                    break;
+                default:
+                    break;
+            }
+            literatureBib = bib;
+            literature.DateModified = DateTime.Today;
+        }
+
+        private void LoadLiterature()
+        {
+            txtTitle.Enabled = false;
+            txtTitle.Text = literature.Title;
+            txtTopic.Text = literature.Title;
+            txtYear.Text = literature.PublishYear.ToString();
+            cbxJournalConference.Text = literature.JournalOrConferenceName;
+            txtBibKey.Text = literature.BibKey;
+            chkStar.Checked = literature.Star;
+            chkPredatroyAlert.Checked = literature.PredatoryAlert;
+            if (literature.BibTeX != null)
+            {
+                cbxBibEntryType.Text = literature.BibTeX.BibEntry.ToString();
+                ParseBibTeXText(literature.BibTeX);
+            }
+            lsbAuthor.Items.Clear();
+            foreach (RLiteratureAuthor author in lstLiteratureAuthor)
+            {
+                lsbAuthor.Items.Add(author.Author);
+            }
+            lsbTag.Items.Clear();
+            foreach (RLiteratureTag tag in lstLiteratureTag)
+            {
+                lsbTag.Items.Add(tag.Tag);
+            }
+            foreach (RSurveyLiterature survey in lstSurveyLiterature)
+            {
+                lsbSurvey.Items.Add(survey.SurveyTitle);
+            }
+        }
+
+        private string SelectedAttri = "";
+        private void cmsAttri_Opening(object sender, CancelEventArgs e)
+        {
+            SelectedAttri = (sender as ContextMenuStrip).SourceControl.Name;
+        }
+
+        private void GetTag(string strTag)
+        {
+            if (!lsbTag.Items.Contains(strTag))
+            {
+                RLiteratureTag newTag = new RLiteratureTag();
+                newTag.Tag = strTag;
+                lstLiteratureTag.Add(newTag);
+                lsbTag.Items.Add(strTag);
+            }
+        }
+
+        private void tsmAttriAdd_Click(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+            switch (SelectedAttri)
+            {
+                case "lsbTag":
+                    frmAddTag frmAddTag = new frmAddTag();
+                    frmAddTag.SendTag += new frmAddTag.GetTag(GetTag);
+                    frmAddTag.Show();
+                    break;
+                case "lsbInCiting":
+                    //string strInCiting = Interaction.InputBox("Literature InCiting", "Literature InCiting", "Literature InCiting", 300, 300);
+                    //RLiteratureInCiting newInCiting = new RLiteratureInCiting();
+                    //newInCiting.TitleOfMyArticle = strInCiting;
+                    //lstLiteratureInCiting.Add(newInCiting);
+                    //lsbInCiting.Items.Add(strInCiting);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void tsmAttriRemove_Click(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+            switch (SelectedAttri)
+            {
+                case "lsbTag":
+                    if (lsbTag.SelectedItem != null)
+                    {
+                        lstLiteratureTag.RemoveAll(o => o.Tag == lsbTag.SelectedItem.ToString());
+                    }
+                    lsbTag.Items.Clear();
+                    foreach (RLiteratureTag Tag in lstLiteratureTag)
+                    {
+                        lsbTag.Items.Add(Tag.Tag);
+                    }
+                    break;
+                case "lsbInCiting":
+                    //if (lsbInCiting.SelectedItem != null)
+                    //{
+                    //    lstLiteratureInCiting.RemoveAll(o => o.TitleOfMyArticle == lsbInCiting.SelectedItem.ToString());
+                    //}
+                    //lsbInCiting.Items.Clear();
+                    //foreach (RLiteratureInCiting InCiting in lstLiteratureInCiting)
+                    //{
+                    //    lsbInCiting.Items.Add(InCiting.TitleOfMyArticle);
+                    //}
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void GetBibKey()
+        {
+            string bibKey = "";
+            if (lsbAuthor.Items.Count > 0)
+            {
+                string firstAuthor = lsbAuthor.Items[0].ToString();
+                string[] firstAuthorNameSplit = firstAuthor.Split(" ".ToCharArray());
+                bibKey = firstAuthorNameSplit[firstAuthorNameSplit.Length - 1] + txtYear.Text;
+            }
+            txtBibKey.Text = bibKey;
+        }
+
+        private void GetAuthor(string strAuthor)
+        {
+            RLiteratureAuthor newAuthor = new RLiteratureAuthor();
+            newAuthor.Author = strAuthor;
+            newAuthor.Rank = lsbAuthor.Items.Count;
+            lstLiteratureAuthor.Add(newAuthor);
+            lsbAuthor.Items.Add(strAuthor);
+            GetBibKey();
+        }
+
+        private void tsmAuthorAdd_Click(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+            frmAddAuthor frmAddAuthor = new frmAddAuthor();
+            frmAddAuthor.SendAuthor += new frmAddAuthor.GetAuthor(GetAuthor);
+            frmAddAuthor.Show();
+        }
+
+        private void tsmAuthorRemove_Click(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+            if (lsbAuthor.SelectedItem != null)
+            {
+                lstLiteratureAuthor.RemoveAll(o => o.Author == lsbAuthor.SelectedItem.ToString());
+            }
+            lsbAuthor.Items.Clear();
+            lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
+            for (int i = 0; i < lstLiteratureAuthor.Count; i++)
+            {
+                lsbAuthor.Items.Add(lstLiteratureAuthor[i].Author);
+                lstLiteratureAuthor[i].Rank = i;
+            }
+            GetBibKey();
+        }
+
+        private void tsmAuthorUp_Click(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+            if (lsbAuthor.SelectedItem != null)
+            {
+                if (lsbAuthor.SelectedIndex > 0)
+                {
+                    int selectedIndex = lsbAuthor.SelectedIndex;
+                    string itemSelected = lsbAuthor.SelectedItem.ToString();
+                    lsbAuthor.Items.RemoveAt(selectedIndex);
+                    lsbAuthor.Items.Insert(selectedIndex - 1, itemSelected);
+                    lstLiteratureAuthor[selectedIndex].Rank = selectedIndex - 1;
+                    lstLiteratureAuthor[selectedIndex - 1].Rank = selectedIndex;
+                    lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
+                }
+            }
+            GetBibKey();
+        }
+
+        private void tsmAuthorDown_Click(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+            if (lsbAuthor.SelectedItem != null)
+            {
+                if (lsbAuthor.SelectedIndex < lsbAuthor.Items.Count - 1)
+                {
+                    int selectedIndex = lsbAuthor.SelectedIndex;
+                    string itemSelected = lsbAuthor.SelectedItem.ToString();
+                    lsbAuthor.Items.RemoveAt(selectedIndex);
+                    lsbAuthor.Items.Insert(selectedIndex + 1, itemSelected);
+                    lstLiteratureAuthor[selectedIndex].Rank = selectedIndex + 1;
+                    lstLiteratureAuthor[selectedIndex + 1].Rank = selectedIndex;
+                    lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
+                }
+            }
+            GetBibKey();
+        }
+
+        private void btnBibTeX_Click(object sender, EventArgs e)
+        {
+            // First, create a temp literature log, use it to generate BibTeX
+            // So that we don't need to care if the BibTeX is generated for new literature log or existing literature log
+            // Anyway, BibTeX is just a set of attribution and eventually become a string
+            CLiterature tmpLiterature = new CLiterature();
+            tmpLiterature.Title = txtTitle.Text;
+            tmpLiterature.BibKey = txtBibKey.Text;
+            tmpLiterature.JournalOrConferenceName = cbxJournalConference.Text;
+            tmpLiterature.BibTeX = literatureBib;
+            modifiedFlag = true;
+
+            if (txtTitle.Enabled == false)
+            {
+                tmpLiterature.DateAdded = G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).DateAdded;
+            }
+            else
+            {
+                tmpLiterature.DateAdded = DateTime.Today;
+            }
+            tmpLiterature.DateModified = DateTime.Today;
+            if (txtYear.Text == "")
+            {
+                tmpLiterature.PublishYear = 9999;
+            }
+            else
+            {
+                tmpLiterature.PublishYear = Convert.ToInt32(txtYear.Text);
+            }
+            List<RLiteratureAuthor> tmpAuthorList = new List<RLiteratureAuthor>();
+            for (int i = 0; i < lsbAuthor.Items.Count; i++)
+            {
+                RLiteratureAuthor tmpAuthor = new RLiteratureAuthor();
+                tmpAuthor.Author = lsbAuthor.Items[i].ToString();
+                tmpAuthor.Rank = i;
+                tmpAuthorList.Add(tmpAuthor);
+            }
+
+            switch (cbxBibEntryType.Text)
+            {
+                case "Article":
+                    frmBibArticle frmBibArticle = new frmBibArticle(tmpLiterature, tmpAuthorList);
+                    frmBibArticle.BuildBibTeX += new frmBibArticle.BuildBibTeXHandler(ParseBibTeXText);
+                    frmBibArticle.Show();
+                    break;
+                case "Mastersthesis":
+                    RLiteratureAuthor tmpMasterAuthor = new RLiteratureAuthor();
+                    if (tmpAuthorList.Count > 0)
+                    {
+                        tmpMasterAuthor = tmpAuthorList[0];
+                    }
+                    else
+                    {
+                        tmpMasterAuthor.Author = "";
+                    }
+                    frmBibMasterThesis frmBibMasterThesis = new frmBibMasterThesis(tmpLiterature, tmpMasterAuthor);
+                    frmBibMasterThesis.BuildBibTeX += new frmBibMasterThesis.BuildBibTeXHandler(ParseBibTeXText);
+                    frmBibMasterThesis.Show();
+                    break;
+                case "Phdthesis":
+                    RLiteratureAuthor tmpPhDAuthor = new RLiteratureAuthor();
+                    if (tmpAuthorList.Count > 0)
+                    {
+                        tmpPhDAuthor = tmpAuthorList[0];
+                    }
+                    else
+                    {
+                        tmpPhDAuthor.Author = "";
+                    }
+                    frmBibPhDThesis frmBibPhDThesis = new frmBibPhDThesis(tmpLiterature, tmpPhDAuthor);
+                    frmBibPhDThesis.BuildBibTeX += new frmBibPhDThesis.BuildBibTeXHandler(ParseBibTeXText);
+                    frmBibPhDThesis.Show();
+                    break;
+                case "Conference":
+                    frmBibConference frmBibConference = new frmBibConference(tmpLiterature, tmpAuthorList);
+                    frmBibConference.BuildBibTeX += new frmBibConference.BuildBibTeXHandler(ParseBibTeXText);
+                    frmBibConference.Show();
+                    break;
+                case "Unpublished":
+                    frmBibUnpublished frmBibUnpublished = new frmBibUnpublished(tmpLiterature, tmpAuthorList);
+                    frmBibUnpublished.BuildBibTeX += new frmBibUnpublished.BuildBibTeXHandler(ParseBibTeXText);
+                    frmBibUnpublished.Show();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void txtYear_TextChanged(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+            GetBibKey();
+        }
+
+        private void btnGoogleScholar_Click(object sender, EventArgs e)
+        {
+            string url = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C33&q=" + txtTitle.Text.Replace(" ", "+") + "&btnG=";
+            System.Diagnostics.Process.Start("chrome.exe", url);
+        }
+
+        private void frmInfoLiterature_Load(object sender, EventArgs e)
+        {
+            if (txtTitle.Enabled)
+            {
+                this.ActiveControl = txtTitle;
+            }
+            List<string> journalList = new List<string>();
+            foreach (CLiterature lit in G.glb.lstLiterature)
+            {
+                if (!journalList.Exists(o => o == lit.JournalOrConferenceName))
+                {
+                    journalList.Add(lit.JournalOrConferenceName);
+                }
+            }
+            journalList.Sort();
+            foreach (string jour in journalList)
+            {
+                cbxJournalConference.Items.Add(jour);
+            }
+
+            //靠！！气死了，白写了，谷歌学术会检查是不是机器人...咋绕过去呢...
+            //try
+            //{
+            //    string url = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C33&q=" + txtTitle.Text.Replace(" ", "+") + "&btnG=";
+            //    WebRequest request = WebRequest.Create(url);
+            //    WebResponse response = request.GetResponse();
+            //    StreamReader reader = new StreamReader(response.GetResponseStream());
+            //    string htmlStr = reader.ReadToEnd();
+            //    reader.Close();
+            //    response.Close();
+            //    Regex citation = new Regex(@"(Cited)\s(by)\s[0-9]*");
+            //    bool cite = citation.IsMatch(htmlStr);
+            //    Match m = citation.Match(htmlStr);
+            //    lblCited.Text = m.ToString();
+            //}
+            //catch (Exception)
+            //{
+            //    lblCited.Text = "NaN";
+            //}
+        }
+
+        private void cbxJournalConference_TextChanged(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+        }
+
+        private void cbxBibEntryType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+        }
+
+        private void chkStar_CheckedChanged(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+        }
+
+        private void chkPredatroyAlert_CheckedChanged(object sender, EventArgs e)
+        {
+            modifiedFlag = true;
+        }
+
+        private void tsmOpenSurvey_Click(object sender, EventArgs e)
+        {
+            if (lsbSurvey.SelectedItem != null)
+            {
+                if (G.glb.lstSurveyLiterature.Exists(o =>
+                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                    && o.LiteratureTitle == txtTitle.Text))
+                {
+                    frmInfoLiteratureSurvey frmInfoLiteratureSurvey = new frmInfoLiteratureSurvey(txtTitle.Text, lsbSurvey.SelectedItem.ToString());
+                    frmInfoLiteratureSurvey.Show();
+                }
+            }
+        }
+
+        private void tsmAddSurvey_Click(object sender, EventArgs e)
+        {
+            frmAddSurveyLiterature frmAddSurveyLiterature = new frmAddSurveyLiterature(txtTitle.Text);
+            frmAddSurveyLiterature.SendSurvey += new frmAddSurveyLiterature.GetSurvey(GetSurvey);
+            frmAddSurveyLiterature.Show();
+        }
+
+        private void GetSurvey(string strSurvey)
+        {
+            // 如果文献标题可编辑，先暂存到缓存区，否则直接操作存储区
+            if (txtTitle.Enabled == true)
+            {
+                if (!lstSurveyLiterature.Exists(o => o.SurveyTitle == strSurvey))
+                {
+                    RSurveyLiterature newSurveyLiterature = new RSurveyLiterature();
+                    newSurveyLiterature.SurveyTitle = strSurvey;
+                    lstSurveyLiterature.Add(newSurveyLiterature);
+                    lsbSurvey.Items.Add(strSurvey);
+                }
+                else
+                {
+                    MessageBox.Show("Already included in survey");
+                }
+            }
+            else
+            {
+                if (!G.glb.lstSurvey.Exists(o => o.SurveyTitle == strSurvey))
+                {
+                    CSurvey survey = new CSurvey();
+                    survey.SurveyTitle = strSurvey;
+                    G.glb.lstSurvey.Add(survey);
+                }
+                if (!G.glb.lstSurveyLiterature.Exists(o => o.LiteratureTitle == txtTitle.Text && o.SurveyTitle == strSurvey))
+                {
+                    RSurveyLiterature newSurveyLiterature = new RSurveyLiterature();
+                    newSurveyLiterature.LiteratureTitle = txtTitle.Text;
+                    newSurveyLiterature.SurveyTitle = strSurvey;
+                    G.glb.lstSurveyLiterature.Add(newSurveyLiterature);
+                    lsbSurvey.Items.Add(strSurvey);
+                }
+                else
+                {
+                    MessageBox.Show("Already included in survey");
+                }
+            }
+        }
+
+        private void tsmRemoveSurvey_Click(object sender, EventArgs e)
+        {
+            if (lsbSurvey.SelectedItem != null)
+            {
+                if (txtTitle.Enabled == true)
+                {
+                    lstSurveyLiterature.RemoveAll(o => o.SurveyTitle == lsbSurvey.SelectedItem.ToString());
+                    lsbSurvey.Items.Clear();
+                    foreach (RSurveyLiterature item in lstSurveyLiterature)
+                    {
+                        lsbSurvey.Items.Add(item.SurveyTitle);
+                    }
+                }
+                else
+                {
+                    // 如果已经有数据， 跳出确认框确认下，否则直接删
+                    if (G.glb.lstSurveyLiteratureTagValue.Exists(o =>
+                        o.LiteratureTitle == txtTitle.Text
+                        && o.SurveyTitle == lsbSurvey.SelectedItem.ToString()))
+                    {
+                        DialogResult result = MessageBox.Show("Warning: There are some records for this literature, delete can not be restored!", "Delete", MessageBoxButtons.YesNo);
+                        switch (result)
+                        {
+                            case DialogResult.Yes:
+                                G.glb.lstSurveyLiteratureTagValue.RemoveAll(o =>
+                                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                                    && o.LiteratureTitle == txtTitle.Text);
+                                G.glb.lstSurveyLiterature.RemoveAll(o =>
+                                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                                    && o.LiteratureTitle == txtTitle.Text);
+                                lsbSurvey.Items.Clear();
+                                foreach (RSurveyLiterature item in G.glb.lstSurveyLiterature)
+                                {
+                                    lsbSurvey.Items.Add(item.SurveyTitle);
+                                }
+                                break;
+                            case DialogResult.No:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        G.glb.lstSurveyLiterature.RemoveAll(o =>
+                            o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
+                            && o.LiteratureTitle == txtTitle.Text);
+                        lsbSurvey.Items.Clear();
+                        foreach (RSurveyLiterature item in G.glb.lstSurveyLiterature)
+                        {
+                            lsbSurvey.Items.Add(item.SurveyTitle);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void lsbSurvey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tsmOpenSurvey.Enabled = false;
+            if (lsbSurvey.SelectedItem != null)
+            {
+                if (G.glb.lstSurveyLiterature.Exists(o =>
+                    o.LiteratureTitle == txtTitle.Text
+                    && o.SurveyTitle == lsbSurvey.SelectedItem.ToString())
+                    && txtTitle.Enabled == false)
+                {
+                    tsmOpenSurvey.Enabled = true;
+                }
+            }
+        }
+
+        private void txtTitle_TextChanged(object sender, EventArgs e)
+        {
+            if (txtTitle.Enabled)
+            {
+                if (G.glb.lstLiterature.Exists(o => o.Title == txtTitle.Text))
+                {
+                    MessageBox.Show("Literature exists!");
+                }
+                txtTopic.Text = txtTitle.Text;
+                modifiedFlag = true;
+            }
+        }
+
+        private void btnFullText_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = "Literature\\" + txtTitle.Text + ".pdf";
+                path = path.Replace(":", "-");
+                path = "D:\\" + path;
+                System.Diagnostics.Process.Start(path);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Cannot find full text in 'D:\\Literature\\'.");
+            }
+        }
+
+
     }
 
     public class CNoteProperties

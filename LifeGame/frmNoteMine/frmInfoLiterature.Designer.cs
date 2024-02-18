@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInfoLiterature));
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tblNote = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,16 +43,14 @@
             this.chkPredatroyAlert = new System.Windows.Forms.CheckBox();
             this.txtBibKey = new System.Windows.Forms.TextBox();
             this.btnFullText = new System.Windows.Forms.Button();
-            this.btnNote = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.txtBibRef = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lsbTag = new System.Windows.Forms.ListBox();
-            this.cmsAttri = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmAttriAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAttriRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.lsbSurvey = new System.Windows.Forms.ListBox();
+            this.cmsSurvey = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmOpenSurvey = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmAddSurvey = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRemoveSurvey = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lsbAuthor = new System.Windows.Forms.ListBox();
             this.cmsAuthor = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -61,55 +59,63 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAuthorUp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAuthorDown = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.lsbSurvey = new System.Windows.Forms.ListBox();
-            this.cmsSurvey = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmOpenSurvey = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmAddSurvey = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRemoveSurvey = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtInOneSentence = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lsbTag = new System.Windows.Forms.ListBox();
+            this.cmsAttri = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmAttriAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAttriRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.txtBibRef = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.cbxJournalConference = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnBibTeX = new System.Windows.Forms.Button();
             this.cbxBibEntryType = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel4.SuspendLayout();
+            this.trvNote = new System.Windows.Forms.TreeView();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.chkShow = new System.Windows.Forms.CheckBox();
+            this.btnRead = new System.Windows.Forms.Button();
+            this.btnWrite = new System.Windows.Forms.Button();
+            this.tblNote.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.cmsAttri.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.cmsAuthor.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.cmsSurvey.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.cmsAuthor.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.cmsAttri.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel4
+            // tblNote
             // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel8, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel1, 0, 3);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel9, 0, 1);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 4;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(670, 378);
-            this.tableLayoutPanel4.TabIndex = 3;
+            this.tblNote.ColumnCount = 1;
+            this.tblNote.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblNote.Controls.Add(this.tableLayoutPanel5, 0, 1);
+            this.tblNote.Controls.Add(this.tableLayoutPanel8, 0, 3);
+            this.tblNote.Controls.Add(this.tableLayoutPanel1, 0, 4);
+            this.tblNote.Controls.Add(this.tableLayoutPanel9, 0, 2);
+            this.tblNote.Controls.Add(this.trvNote, 0, 5);
+            this.tblNote.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tblNote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblNote.Location = new System.Drawing.Point(0, 0);
+            this.tblNote.Name = "tblNote";
+            this.tblNote.RowCount = 6;
+            this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblNote.Size = new System.Drawing.Size(554, 711);
+            this.tblNote.TabIndex = 3;
             // 
             // tableLayoutPanel5
             // 
@@ -119,12 +125,12 @@
             this.tableLayoutPanel5.Controls.Add(this.txtTitle, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 26);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(670, 26);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(554, 26);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // txtTitle
@@ -133,9 +139,8 @@
             this.txtTitle.Location = new System.Drawing.Point(38, 3);
             this.txtTitle.Multiline = true;
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(629, 20);
+            this.txtTitle.Size = new System.Drawing.Size(513, 20);
             this.txtTitle.TabIndex = 0;
-            this.txtTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
             // 
             // label2
@@ -151,7 +156,7 @@
             // 
             // tableLayoutPanel8
             // 
-            this.tableLayoutPanel8.ColumnCount = 10;
+            this.tableLayoutPanel8.ColumnCount = 9;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -159,25 +164,23 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
             this.tableLayoutPanel8.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.btnGoogleScholar, 5, 0);
             this.tableLayoutPanel8.Controls.Add(this.chkStar, 3, 0);
-            this.tableLayoutPanel8.Controls.Add(this.label1, 8, 0);
+            this.tableLayoutPanel8.Controls.Add(this.label1, 7, 0);
             this.tableLayoutPanel8.Controls.Add(this.txtYear, 1, 0);
             this.tableLayoutPanel8.Controls.Add(this.chkPredatroyAlert, 4, 0);
-            this.tableLayoutPanel8.Controls.Add(this.txtBibKey, 9, 0);
+            this.tableLayoutPanel8.Controls.Add(this.txtBibKey, 8, 0);
             this.tableLayoutPanel8.Controls.Add(this.btnFullText, 6, 0);
-            this.tableLayoutPanel8.Controls.Add(this.btnNote, 7, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 52);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 78);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(670, 26);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(554, 26);
             this.tableLayoutPanel8.TabIndex = 3;
             // 
             // label3
@@ -194,7 +197,7 @@
             // btnGoogleScholar
             // 
             this.btnGoogleScholar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGoogleScholar.Location = new System.Drawing.Point(296, 3);
+            this.btnGoogleScholar.Location = new System.Drawing.Point(244, 3);
             this.btnGoogleScholar.Name = "btnGoogleScholar";
             this.btnGoogleScholar.Size = new System.Drawing.Size(94, 20);
             this.btnGoogleScholar.TabIndex = 2;
@@ -206,7 +209,7 @@
             // 
             this.chkStar.AutoSize = true;
             this.chkStar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkStar.Location = new System.Drawing.Point(147, 3);
+            this.chkStar.Location = new System.Drawing.Point(95, 3);
             this.chkStar.Name = "chkStar";
             this.chkStar.Size = new System.Drawing.Size(52, 20);
             this.chkStar.TabIndex = 4;
@@ -218,7 +221,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(528, 0);
+            this.label1.Location = new System.Drawing.Point(412, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 26);
             this.label1.TabIndex = 2;
@@ -238,7 +241,7 @@
             // 
             this.chkPredatroyAlert.AutoSize = true;
             this.chkPredatroyAlert.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkPredatroyAlert.Location = new System.Drawing.Point(205, 3);
+            this.chkPredatroyAlert.Location = new System.Drawing.Point(153, 3);
             this.chkPredatroyAlert.Name = "chkPredatroyAlert";
             this.chkPredatroyAlert.Size = new System.Drawing.Size(85, 20);
             this.chkPredatroyAlert.TabIndex = 5;
@@ -249,7 +252,7 @@
             // txtBibKey
             // 
             this.txtBibKey.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBibKey.Location = new System.Drawing.Point(580, 3);
+            this.txtBibKey.Location = new System.Drawing.Point(464, 3);
             this.txtBibKey.Name = "txtBibKey";
             this.txtBibKey.Size = new System.Drawing.Size(87, 20);
             this.txtBibKey.TabIndex = 8;
@@ -257,7 +260,7 @@
             // btnFullText
             // 
             this.btnFullText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFullText.Location = new System.Drawing.Point(396, 3);
+            this.btnFullText.Location = new System.Drawing.Point(344, 3);
             this.btnFullText.Name = "btnFullText";
             this.btnFullText.Size = new System.Drawing.Size(62, 20);
             this.btnFullText.TabIndex = 6;
@@ -265,129 +268,93 @@
             this.btnFullText.UseVisualStyleBackColor = true;
             this.btnFullText.Click += new System.EventHandler(this.btnFullText_Click);
             // 
-            // btnNote
-            // 
-            this.btnNote.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNote.Location = new System.Drawing.Point(464, 3);
-            this.btnNote.Name = "btnNote";
-            this.btnNote.Size = new System.Drawing.Size(58, 20);
-            this.btnNote.TabIndex = 7;
-            this.btnNote.Text = "Note";
-            this.btnNote.UseVisualStyleBackColor = true;
-            this.btnNote.Click += new System.EventHandler(this.btnNote_Click);
-            // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.groupBox7, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.81865F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.81865F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.81865F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.81865F));
+            this.tableLayoutPanel1.Controls.Add(this.groupBox8, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox7, 3, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 81);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 107);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(664, 294);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(548, 114);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
-            // groupBox7
+            // groupBox8
             // 
-            this.groupBox7.Controls.Add(this.txtBibRef);
-            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox7.Location = new System.Drawing.Point(445, 3);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(216, 288);
-            this.groupBox7.TabIndex = 0;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "BibTeX";
+            this.groupBox8.Controls.Add(this.lsbSurvey);
+            this.groupBox8.Location = new System.Drawing.Point(276, 2);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox8.Size = new System.Drawing.Size(133, 110);
+            this.groupBox8.TabIndex = 1;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Survey / Review";
             // 
-            // txtBibRef
+            // lsbSurvey
             // 
-            this.txtBibRef.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBibRef.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBibRef.Location = new System.Drawing.Point(3, 16);
-            this.txtBibRef.Multiline = true;
-            this.txtBibRef.Name = "txtBibRef";
-            this.txtBibRef.Size = new System.Drawing.Size(210, 269);
-            this.txtBibRef.TabIndex = 0;
+            this.lsbSurvey.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lsbSurvey.ContextMenuStrip = this.cmsSurvey;
+            this.lsbSurvey.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsbSurvey.FormattingEnabled = true;
+            this.lsbSurvey.Location = new System.Drawing.Point(2, 15);
+            this.lsbSurvey.Name = "lsbSurvey";
+            this.lsbSurvey.Size = new System.Drawing.Size(129, 93);
+            this.lsbSurvey.TabIndex = 0;
+            this.lsbSurvey.SelectedIndexChanged += new System.EventHandler(this.lsbSurvey_SelectedIndexChanged);
             // 
-            // tableLayoutPanel2
+            // cmsSurvey
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.groupBox2, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.groupBox8, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.groupBox3, 1, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(442, 294);
-            this.tableLayoutPanel2.TabIndex = 9;
+            this.cmsSurvey.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmOpenSurvey,
+            this.toolStripSeparator5,
+            this.tsmAddSurvey,
+            this.tsmRemoveSurvey});
+            this.cmsSurvey.Name = "cmsSurvey";
+            this.cmsSurvey.Size = new System.Drawing.Size(118, 76);
             // 
-            // groupBox1
+            // tsmOpenSurvey
             // 
-            this.groupBox1.Controls.Add(this.lsbTag);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(2, 2);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(217, 143);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tag";
+            this.tsmOpenSurvey.Name = "tsmOpenSurvey";
+            this.tsmOpenSurvey.Size = new System.Drawing.Size(117, 22);
+            this.tsmOpenSurvey.Text = "Open";
+            this.tsmOpenSurvey.Click += new System.EventHandler(this.tsmOpenSurvey_Click);
             // 
-            // lsbTag
+            // toolStripSeparator5
             // 
-            this.lsbTag.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lsbTag.ContextMenuStrip = this.cmsAttri;
-            this.lsbTag.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsbTag.FormattingEnabled = true;
-            this.lsbTag.Location = new System.Drawing.Point(2, 15);
-            this.lsbTag.Name = "lsbTag";
-            this.lsbTag.Size = new System.Drawing.Size(213, 126);
-            this.lsbTag.TabIndex = 5;
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(114, 6);
             // 
-            // cmsAttri
+            // tsmAddSurvey
             // 
-            this.cmsAttri.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsAttri.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmAttriAdd,
-            this.tsmAttriRemove});
-            this.cmsAttri.Name = "cmsAttri";
-            this.cmsAttri.Size = new System.Drawing.Size(181, 70);
-            this.cmsAttri.Opening += new System.ComponentModel.CancelEventHandler(this.cmsAttri_Opening);
+            this.tsmAddSurvey.Name = "tsmAddSurvey";
+            this.tsmAddSurvey.Size = new System.Drawing.Size(117, 22);
+            this.tsmAddSurvey.Text = "Add";
+            this.tsmAddSurvey.Click += new System.EventHandler(this.tsmAddSurvey_Click);
             // 
-            // tsmAttriAdd
+            // tsmRemoveSurvey
             // 
-            this.tsmAttriAdd.Name = "tsmAttriAdd";
-            this.tsmAttriAdd.Size = new System.Drawing.Size(180, 22);
-            this.tsmAttriAdd.Text = "Add(&T)";
-            this.tsmAttriAdd.Click += new System.EventHandler(this.tsmAttriAdd_Click);
-            // 
-            // tsmAttriRemove
-            // 
-            this.tsmAttriRemove.Name = "tsmAttriRemove";
-            this.tsmAttriRemove.Size = new System.Drawing.Size(180, 22);
-            this.tsmAttriRemove.Text = "Remove";
-            this.tsmAttriRemove.Click += new System.EventHandler(this.tsmAttriRemove_Click);
+            this.tsmRemoveSurvey.Name = "tsmRemoveSurvey";
+            this.tsmRemoveSurvey.Size = new System.Drawing.Size(117, 22);
+            this.tsmRemoveSurvey.Text = "Remove";
+            this.tsmRemoveSurvey.Click += new System.EventHandler(this.tsmRemoveSurvey_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lsbAuthor);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(2, 149);
+            this.groupBox2.Location = new System.Drawing.Point(139, 2);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(217, 143);
+            this.groupBox2.Size = new System.Drawing.Size(133, 110);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Author";
@@ -400,7 +367,7 @@
             this.lsbAuthor.FormattingEnabled = true;
             this.lsbAuthor.Location = new System.Drawing.Point(2, 15);
             this.lsbAuthor.Name = "lsbAuthor";
-            this.lsbAuthor.Size = new System.Drawing.Size(213, 126);
+            this.lsbAuthor.Size = new System.Drawing.Size(129, 93);
             this.lsbAuthor.TabIndex = 6;
             // 
             // cmsAuthor
@@ -448,86 +415,74 @@
             this.tsmAuthorDown.Text = "Down";
             this.tsmAuthorDown.Click += new System.EventHandler(this.tsmAuthorDown_Click);
             // 
-            // groupBox8
+            // groupBox1
             // 
-            this.groupBox8.Controls.Add(this.lsbSurvey);
-            this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox8.Location = new System.Drawing.Point(224, 3);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(215, 141);
-            this.groupBox8.TabIndex = 1;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Survey / Review";
+            this.groupBox1.Controls.Add(this.lsbTag);
+            this.groupBox1.Location = new System.Drawing.Point(2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(133, 110);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tag";
             // 
-            // lsbSurvey
+            // lsbTag
             // 
-            this.lsbSurvey.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lsbSurvey.ContextMenuStrip = this.cmsSurvey;
-            this.lsbSurvey.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsbSurvey.FormattingEnabled = true;
-            this.lsbSurvey.Location = new System.Drawing.Point(3, 16);
-            this.lsbSurvey.Name = "lsbSurvey";
-            this.lsbSurvey.Size = new System.Drawing.Size(209, 122);
-            this.lsbSurvey.TabIndex = 0;
-            this.lsbSurvey.SelectedIndexChanged += new System.EventHandler(this.lsbSurvey_SelectedIndexChanged);
+            this.lsbTag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lsbTag.ContextMenuStrip = this.cmsAttri;
+            this.lsbTag.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsbTag.FormattingEnabled = true;
+            this.lsbTag.Location = new System.Drawing.Point(2, 15);
+            this.lsbTag.Name = "lsbTag";
+            this.lsbTag.Size = new System.Drawing.Size(129, 93);
+            this.lsbTag.TabIndex = 5;
             // 
-            // cmsSurvey
+            // cmsAttri
             // 
-            this.cmsSurvey.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmOpenSurvey,
-            this.toolStripSeparator5,
-            this.tsmAddSurvey,
-            this.tsmRemoveSurvey});
-            this.cmsSurvey.Name = "cmsSurvey";
-            this.cmsSurvey.Size = new System.Drawing.Size(118, 76);
+            this.cmsAttri.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsAttri.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmAttriAdd,
+            this.tsmAttriRemove});
+            this.cmsAttri.Name = "cmsAttri";
+            this.cmsAttri.Size = new System.Drawing.Size(118, 48);
+            this.cmsAttri.Opening += new System.ComponentModel.CancelEventHandler(this.cmsAttri_Opening);
             // 
-            // tsmOpenSurvey
+            // tsmAttriAdd
             // 
-            this.tsmOpenSurvey.Name = "tsmOpenSurvey";
-            this.tsmOpenSurvey.Size = new System.Drawing.Size(117, 22);
-            this.tsmOpenSurvey.Text = "Open";
-            this.tsmOpenSurvey.Click += new System.EventHandler(this.tsmOpenSurvey_Click);
+            this.tsmAttriAdd.Name = "tsmAttriAdd";
+            this.tsmAttriAdd.Size = new System.Drawing.Size(117, 22);
+            this.tsmAttriAdd.Text = "Add(&T)";
+            this.tsmAttriAdd.Click += new System.EventHandler(this.tsmAttriAdd_Click);
             // 
-            // toolStripSeparator5
+            // tsmAttriRemove
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(114, 6);
+            this.tsmAttriRemove.Name = "tsmAttriRemove";
+            this.tsmAttriRemove.Size = new System.Drawing.Size(117, 22);
+            this.tsmAttriRemove.Text = "Remove";
+            this.tsmAttriRemove.Click += new System.EventHandler(this.tsmAttriRemove_Click);
             // 
-            // tsmAddSurvey
+            // groupBox7
             // 
-            this.tsmAddSurvey.Name = "tsmAddSurvey";
-            this.tsmAddSurvey.Size = new System.Drawing.Size(117, 22);
-            this.tsmAddSurvey.Text = "Add";
-            this.tsmAddSurvey.Click += new System.EventHandler(this.tsmAddSurvey_Click);
+            this.groupBox7.Controls.Add(this.txtBibRef);
+            this.groupBox7.Location = new System.Drawing.Point(413, 2);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox7.Size = new System.Drawing.Size(133, 110);
+            this.groupBox7.TabIndex = 0;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "BibTeX";
             // 
-            // tsmRemoveSurvey
+            // txtBibRef
             // 
-            this.tsmRemoveSurvey.Name = "tsmRemoveSurvey";
-            this.tsmRemoveSurvey.Size = new System.Drawing.Size(117, 22);
-            this.tsmRemoveSurvey.Text = "Remove";
-            this.tsmRemoveSurvey.Click += new System.EventHandler(this.tsmRemoveSurvey_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.txtInOneSentence);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(224, 150);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(215, 141);
-            this.groupBox3.TabIndex = 9;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Description";
-            // 
-            // txtInOneSentence
-            // 
-            this.txtInOneSentence.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtInOneSentence.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtInOneSentence.Location = new System.Drawing.Point(3, 16);
-            this.txtInOneSentence.Multiline = true;
-            this.txtInOneSentence.Name = "txtInOneSentence";
-            this.txtInOneSentence.Size = new System.Drawing.Size(209, 122);
-            this.txtInOneSentence.TabIndex = 3;
-            this.txtInOneSentence.TextChanged += new System.EventHandler(this.txtInOneSentence_TextChanged);
+            this.txtBibRef.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBibRef.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBibRef.Location = new System.Drawing.Point(2, 15);
+            this.txtBibRef.Multiline = true;
+            this.txtBibRef.Name = "txtBibRef";
+            this.txtBibRef.Size = new System.Drawing.Size(129, 93);
+            this.txtBibRef.TabIndex = 0;
             // 
             // tableLayoutPanel9
             // 
@@ -543,12 +498,12 @@
             this.tableLayoutPanel9.Controls.Add(this.btnBibTeX, 4, 0);
             this.tableLayoutPanel9.Controls.Add(this.cbxBibEntryType, 3, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 26);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 52);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(670, 26);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(554, 26);
             this.tableLayoutPanel9.TabIndex = 5;
             // 
             // label4
@@ -568,7 +523,7 @@
             this.cbxJournalConference.FormattingEnabled = true;
             this.cbxJournalConference.Location = new System.Drawing.Point(82, 3);
             this.cbxJournalConference.Name = "cbxJournalConference";
-            this.cbxJournalConference.Size = new System.Drawing.Size(400, 21);
+            this.cbxJournalConference.Size = new System.Drawing.Size(284, 21);
             this.cbxJournalConference.TabIndex = 2;
             this.cbxJournalConference.TextChanged += new System.EventHandler(this.cbxJournalConference_TextChanged);
             // 
@@ -576,7 +531,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(488, 0);
+            this.label5.Location = new System.Drawing.Point(372, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 26);
             this.label5.TabIndex = 2;
@@ -586,7 +541,7 @@
             // btnBibTeX
             // 
             this.btnBibTeX.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnBibTeX.Location = new System.Drawing.Point(611, 3);
+            this.btnBibTeX.Location = new System.Drawing.Point(495, 3);
             this.btnBibTeX.Name = "btnBibTeX";
             this.btnBibTeX.Size = new System.Drawing.Size(56, 20);
             this.btnBibTeX.TabIndex = 7;
@@ -613,18 +568,90 @@
             "Proceedings",
             "Techreport",
             "Unpublished"});
-            this.cbxBibEntryType.Location = new System.Drawing.Point(544, 3);
+            this.cbxBibEntryType.Location = new System.Drawing.Point(428, 3);
             this.cbxBibEntryType.Name = "cbxBibEntryType";
             this.cbxBibEntryType.Size = new System.Drawing.Size(61, 21);
             this.cbxBibEntryType.TabIndex = 6;
             this.cbxBibEntryType.SelectedIndexChanged += new System.EventHandler(this.cbxBibEntryType_SelectedIndexChanged);
             // 
+            // trvNote
+            // 
+            this.trvNote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvNote.Location = new System.Drawing.Point(3, 227);
+            this.trvNote.Name = "trvNote";
+            this.trvNote.Size = new System.Drawing.Size(548, 481);
+            this.trvNote.TabIndex = 6;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
+            this.tableLayoutPanel2.Controls.Add(this.btnSave, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.chkShow, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnRead, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnWrite, 2, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(554, 26);
+            this.tableLayoutPanel2.TabIndex = 7;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSave.Location = new System.Drawing.Point(488, 3);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(63, 20);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "Save(&S)";
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // chkShow
+            // 
+            this.chkShow.AutoSize = true;
+            this.chkShow.Checked = true;
+            this.chkShow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkShow.Location = new System.Drawing.Point(3, 3);
+            this.chkShow.Name = "chkShow";
+            this.chkShow.Size = new System.Drawing.Size(365, 20);
+            this.chkShow.TabIndex = 1;
+            this.chkShow.Text = "Expand heads";
+            this.chkShow.UseVisualStyleBackColor = true;
+            this.chkShow.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
+            // 
+            // btnRead
+            // 
+            this.btnRead.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRead.Location = new System.Drawing.Point(374, 3);
+            this.btnRead.Name = "btnRead";
+            this.btnRead.Size = new System.Drawing.Size(53, 20);
+            this.btnRead.TabIndex = 2;
+            this.btnRead.Text = "Read";
+            this.btnRead.UseVisualStyleBackColor = true;
+            // 
+            // btnWrite
+            // 
+            this.btnWrite.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnWrite.Location = new System.Drawing.Point(433, 3);
+            this.btnWrite.Name = "btnWrite";
+            this.btnWrite.Size = new System.Drawing.Size(49, 20);
+            this.btnWrite.TabIndex = 3;
+            this.btnWrite.Text = "Write";
+            this.btnWrite.UseVisualStyleBackColor = true;
+            // 
             // frmInfoLiterature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 378);
-            this.Controls.Add(this.tableLayoutPanel4);
+            this.ClientSize = new System.Drawing.Size(554, 711);
+            this.Controls.Add(this.tblNote);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -633,33 +660,31 @@
             this.Text = "LifeGame - Literature Detail";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddLiterature_FormClosing);
             this.Load += new System.EventHandler(this.frmInfoLiterature_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInfoLiterature_KeyDown);
-            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tblNote.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.cmsAttri.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.cmsAuthor.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.cmsSurvey.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.cmsAuthor.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.cmsAttri.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.TableLayoutPanel tblNote;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label label2;
@@ -669,7 +694,6 @@
         private System.Windows.Forms.ListBox lsbTag;
         private System.Windows.Forms.ListBox lsbAuthor;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.TextBox txtInOneSentence;
         private System.Windows.Forms.ContextMenuStrip cmsAttri;
         private System.Windows.Forms.ToolStripMenuItem tsmAttriAdd;
         private System.Windows.Forms.ToolStripMenuItem tsmAttriRemove;
@@ -694,7 +718,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmOpenSurvey;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.Button btnFullText;
-        private System.Windows.Forms.Button btnNote;
         private System.Windows.Forms.ContextMenuStrip cmsAuthor;
         private System.Windows.Forms.ToolStripMenuItem tsmAuthorAdd;
         private System.Windows.Forms.ToolStripMenuItem tsmAuthorRemove;
@@ -703,7 +726,11 @@
         private System.Windows.Forms.ToolStripMenuItem tsmAuthorDown;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.ComboBox cbxJournalConference;
+        private System.Windows.Forms.TreeView trvNote;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.CheckBox chkShow;
+        private System.Windows.Forms.Button btnRead;
+        private System.Windows.Forms.Button btnWrite;
     }
 }

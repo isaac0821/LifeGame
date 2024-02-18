@@ -23,6 +23,7 @@ namespace LifeGame
         List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
         List<RSurveyLiterature> lstSurveyLiterature = new List<RSurveyLiterature>();
         CBibTeX literatureBib = new CBibTeX();
+
         public frmInfoLiterature(string LiteratureTitle)
         {
             literature = G.glb.lstLiterature.Find(o => o.Title == LiteratureTitle);
@@ -42,98 +43,7 @@ namespace LifeGame
             NewLiterature();
             modifiedFlag = false;
         }
-
-        public delegate void RefreshTabHandler();
-        public event RefreshTabHandler RefreshTab;
-
-        ParseBibTeX ParseBib = new ParseBibTeX();
-        private void ParseBibTeXText(CBibTeX bib)
-        {
-            switch (bib.BibEntry)
-            {
-                case EBibEntry.Article:
-                    txtBibRef.Text = ParseBib.ParseBibTeXArticle(bib, literature.DateAdded, literature.DateModified);
-                    break;
-                case EBibEntry.Book:
-                    break;
-                case EBibEntry.Booklet:
-                    break;
-                case EBibEntry.Conference:
-                    txtBibRef.Text = ParseBib.ParseBibTeXConference(bib, literature.DateAdded, literature.DateModified);
-                    break;
-                case EBibEntry.Inbook:
-                    break;
-                case EBibEntry.Incollection:
-                    break;
-                case EBibEntry.Manual:
-                    break;
-                case EBibEntry.Mastersthesis:
-                    txtBibRef.Text = ParseBib.ParseBibTeXMastersthesis(bib, literature.DateAdded, literature.DateModified);
-                    break;
-                case EBibEntry.Misc:
-                    break;
-                case EBibEntry.Phdthesis:
-                    txtBibRef.Text = ParseBib.ParseBibTeXPhdthesis(bib, literature.DateAdded, literature.DateModified);
-                    break;
-                case EBibEntry.Proceedings:
-                    break;
-                case EBibEntry.Techreport:
-                    break;
-                case EBibEntry.Unpublished:
-                    txtBibRef.Text = ParseBib.ParseBibTeXUnpublished(bib, literature.DateAdded, literature.DateModified);
-                    break;
-                default:
-                    break;
-            }
-            literatureBib = bib;
-            literature.DateModified = DateTime.Today;
-        }
-
-        private void NewLiterature()
-        {
-            txtTitle.Enabled = true;
-            txtTitle.Text = "";
-            txtYear.Text = "";
-            cbxJournalConference.Text = "";
-            txtInOneSentence.Text = "";
-            txtBibKey.Text = "";
-            lsbAuthor.Items.Clear();
-            lsbTag.Items.Clear();
-            lsbSurvey.Items.Clear();
-            chkStar.Checked = false;
-        }
-
-        private void LoadLiterature()
-        {
-            txtTitle.Enabled = false;
-            txtTitle.Text = literature.Title;
-            txtYear.Text = literature.PublishYear.ToString();
-            cbxJournalConference.Text = literature.JournalOrConferenceName;
-            txtInOneSentence.Text = literature.InOneSentence;
-            txtBibKey.Text = literature.BibKey;
-            chkStar.Checked = literature.Star;
-            chkPredatroyAlert.Checked = literature.PredatoryAlert;
-            if (literature.BibTeX != null)
-            {
-                cbxBibEntryType.Text = literature.BibTeX.BibEntry.ToString();
-                ParseBibTeXText(literature.BibTeX);
-            }
-            lsbAuthor.Items.Clear();
-            foreach (RLiteratureAuthor author in lstLiteratureAuthor)
-            {
-                lsbAuthor.Items.Add(author.Author);
-            }
-            lsbTag.Items.Clear();
-            foreach (RLiteratureTag tag in lstLiteratureTag)
-            {
-                lsbTag.Items.Add(tag.Tag);
-            }
-            foreach (RSurveyLiterature survey in lstSurveyLiterature)
-            {
-                lsbSurvey.Items.Add(survey.SurveyTitle);
-            }
-        }
-
+       
         private void frmAddLiterature_FormClosing(object sender, FormClosingEventArgs e)
         {
             bool CanSaveFlag = true;
@@ -204,7 +114,6 @@ namespace LifeGame
                         newLiterature.Title = txtTitle.Text;
                         newLiterature.PublishYear = Convert.ToInt32(txtYear.Text);
                         newLiterature.JournalOrConferenceName = cbxJournalConference.Text;
-                        newLiterature.InOneSentence = txtInOneSentence.Text;
                         newLiterature.BibKey = txtBibKey.Text;
                         newLiterature.BibTeX = literatureBib;
                         newLiterature.DateAdded = DateTime.Today;
@@ -239,7 +148,6 @@ namespace LifeGame
                     {
                         G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PublishYear = Convert.ToInt32(txtYear.Text);
                         G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).JournalOrConferenceName = cbxJournalConference.Text;
-                        G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).InOneSentence = txtInOneSentence.Text;
                         G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibKey = txtBibKey.Text;
                         G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibTeX = literatureBib;
                         G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).DateModified = DateTime.Today;
@@ -285,6 +193,95 @@ namespace LifeGame
             }
         }
 
+        public delegate void RefreshTabHandler();
+        public event RefreshTabHandler RefreshTab;
+
+        ParseBibTeX ParseBib = new ParseBibTeX();
+        private void ParseBibTeXText(CBibTeX bib)
+        {
+            switch (bib.BibEntry)
+            {
+                case EBibEntry.Article:
+                    txtBibRef.Text = ParseBib.ParseBibTeXArticle(bib, literature.DateAdded, literature.DateModified);
+                    break;
+                case EBibEntry.Book:
+                    break;
+                case EBibEntry.Booklet:
+                    break;
+                case EBibEntry.Conference:
+                    txtBibRef.Text = ParseBib.ParseBibTeXConference(bib, literature.DateAdded, literature.DateModified);
+                    break;
+                case EBibEntry.Inbook:
+                    break;
+                case EBibEntry.Incollection:
+                    break;
+                case EBibEntry.Manual:
+                    break;
+                case EBibEntry.Mastersthesis:
+                    txtBibRef.Text = ParseBib.ParseBibTeXMastersthesis(bib, literature.DateAdded, literature.DateModified);
+                    break;
+                case EBibEntry.Misc:
+                    break;
+                case EBibEntry.Phdthesis:
+                    txtBibRef.Text = ParseBib.ParseBibTeXPhdthesis(bib, literature.DateAdded, literature.DateModified);
+                    break;
+                case EBibEntry.Proceedings:
+                    break;
+                case EBibEntry.Techreport:
+                    break;
+                case EBibEntry.Unpublished:
+                    txtBibRef.Text = ParseBib.ParseBibTeXUnpublished(bib, literature.DateAdded, literature.DateModified);
+                    break;
+                default:
+                    break;
+            }
+            literatureBib = bib;
+            literature.DateModified = DateTime.Today;
+        }
+
+        private void NewLiterature()
+        {
+            txtTitle.Enabled = true;
+            txtTitle.Text = "";
+            txtYear.Text = "";
+            cbxJournalConference.Text = "";
+            txtBibKey.Text = "";
+            lsbAuthor.Items.Clear();
+            lsbTag.Items.Clear();
+            lsbSurvey.Items.Clear();
+            chkStar.Checked = false;
+        }
+
+        private void LoadLiterature()
+        {
+            txtTitle.Enabled = false;
+            txtTitle.Text = literature.Title;
+            txtYear.Text = literature.PublishYear.ToString();
+            cbxJournalConference.Text = literature.JournalOrConferenceName;
+            txtBibKey.Text = literature.BibKey;
+            chkStar.Checked = literature.Star;
+            chkPredatroyAlert.Checked = literature.PredatoryAlert;
+            if (literature.BibTeX != null)
+            {
+                cbxBibEntryType.Text = literature.BibTeX.BibEntry.ToString();
+                ParseBibTeXText(literature.BibTeX);
+            }
+            lsbAuthor.Items.Clear();
+            foreach (RLiteratureAuthor author in lstLiteratureAuthor)
+            {
+                lsbAuthor.Items.Add(author.Author);
+            }
+            lsbTag.Items.Clear();
+            foreach (RLiteratureTag tag in lstLiteratureTag)
+            {
+                lsbTag.Items.Add(tag.Tag);
+            }
+            foreach (RSurveyLiterature survey in lstSurveyLiterature)
+            {
+                lsbSurvey.Items.Add(survey.SurveyTitle);
+            }
+        }
+ 
         private string SelectedAttri = "";
         private void cmsAttri_Opening(object sender, CancelEventArgs e)
         {
@@ -547,15 +544,6 @@ namespace LifeGame
             {
                 this.ActiveControl = txtTitle;
             }
-            // Check if corresponded note exists
-            if (G.glb.lstNote.Exists(o => o.LiteratureTitle == txtTitle.Text))
-            {
-                btnNote.Text = "Note*";
-            }
-            else
-            {
-                btnNote.Text = "Note";
-            }
             List<string> journalList = new List<string>();
             foreach (CLiterature lit in G.glb.lstLiterature)
             {
@@ -775,38 +763,21 @@ namespace LifeGame
             }
         }
 
-        private void btnNote_Click(object sender, EventArgs e)
+        private void chkShow_CheckedChanged(object sender, EventArgs e)
         {
-            if (G.glb.lstNote.Exists(o => o.LiteratureTitle == txtTitle.Text))
+            if (!chkShow.Checked)
             {
-                if (M.notesOpened.Exists(o => o.note.LiteratureTitle == txtTitle.Text))
-                {
-                    M.notesOpened.Find(o => o.note.LiteratureTitle == txtTitle.Text).Show();
-                    M.notesOpened.Find(o => o.note.LiteratureTitle == txtTitle.Text).BringToFront();
-                }
-                else
-                {
-                    frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.LiteratureTitle == txtTitle.Text));
-                    M.notesOpened.Add(frmInfoNote);
-                    frmInfoNote.Show();
-                }
+                tblNote.RowStyles[1].Height = 0;
+                tblNote.RowStyles[2].Height = 0;
+                tblNote.RowStyles[3].Height = 0;
+                tblNote.RowStyles[4].Height = 0;
             }
             else
             {
-                frmInfoNote frmInfoNote = new frmInfoNote(txtTitle.Text);
-                frmInfoNote.Show();
-            }
-        }
-
-        private void frmInfoLiterature_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.T)
-            {
-                tsmAttriAdd_Click(lsbTag, e);
-            }
-            else if (e.Control && e.KeyCode == Keys.A)
-            {
-                tsmAuthorAdd_Click(lsbAuthor, e);
+                tblNote.RowStyles[1].Height = 26;
+                tblNote.RowStyles[2].Height = 26;
+                tblNote.RowStyles[3].Height = 26;
+                tblNote.RowStyles[4].Height = 120;
             }
         }
     }

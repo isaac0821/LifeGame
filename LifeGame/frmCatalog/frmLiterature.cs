@@ -89,18 +89,31 @@ namespace LifeGame
 
         private void tsmAddLiterature_Click(object sender, EventArgs e)
         {
-            frmInfoLiterature frmInfoLiterature = new frmInfoLiterature();
-            frmInfoLiterature.RefreshTab += new frmInfoLiterature.RefreshTabHandler(LoadTab);
-            frmInfoLiterature.Show();
+            //frmInfoLiterature frmInfoLiterature = new frmInfoLiterature();
+            //frmInfoLiterature.RefreshTab += new frmInfoLiterature.RefreshTabHandler(LoadTab);
+            //frmInfoLiterature.Show();
+
+            frmInfoNote frmInfoNote = new frmInfoNote();
+            frmInfoNote.RefreshTab += new frmInfoNote.RefreshTabHandler(LoadTab);
+            frmInfoNote.Show();
         }
 
         private void tsmViewLiterature_Click(object sender, EventArgs e)
         {
             if (dgvLiterature.SelectedCells.Count == 1)
             {
-                frmInfoLiterature frmInfoLiterature = new frmInfoLiterature(dgvLiterature.CurrentRow.Cells[1].Value.ToString());
-                frmInfoLiterature.RefreshTab += new frmInfoLiterature.RefreshTabHandler(LoadTab);
-                frmInfoLiterature.Show();
+                if (M.notesOpened.Exists(o => o.note.LiteratureTitle == dgvLiterature.CurrentRow.Cells[1].Value.ToString()))
+                {
+                    M.notesOpened.Find(o => o.note.LiteratureTitle == dgvLiterature.CurrentRow.Cells[1].Value.ToString()).Show();
+                    M.notesOpened.Find(o => o.note.LiteratureTitle == dgvLiterature.CurrentRow.Cells[1].Value.ToString()).BringToFront();
+                }
+                else
+                {
+                    frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.Title == dgvLiterature.CurrentRow.Cells[1].Value.ToString()));
+                    frmInfoNote.RefreshTab += new frmInfoNote.RefreshTabHandler(LoadTab);
+                    M.notesOpened.Add(frmInfoNote);
+                    frmInfoNote.Show();
+                }
             }
         }
 

@@ -55,202 +55,42 @@ namespace LifeGame
             try
             {
                 Deserialize();
-                // G.glb.lstNoteTag = new List<RNoteTag>();
-                //{
-                //    Guid g = Guid.NewGuid();
-                //    note.GUID = g.ToString();
-                //}
-                //foreach (RNoteLog log in G.glb.lstNoteLog)
-                //{
-                //    log.TopicGUID = G.glb.lstNote.Find(o => o.Topic == log.Topic && o.TagTime == log.TagTime).GUID;
-                //    Guid g = Guid.NewGuid();
-                //    log.SubGUID = g.ToString();
-                //}
-                //foreach (RNoteLog log in G.glb.lstNoteLog)
-                //{
-                //    if (log.Log == log.Topic)
-                //    {
-                //        log.GUID = log.TopicGUID;
 
-                //foreach (CNote note in G.glb.lstNote)
-                //    }
-                //    else
-                //    {
-                //        log.GUID = G.glb.lstNoteLog.Find(o => o.TopicGUID == log.TopicGUID && log.Log == o.SubLog).SubGUID;
-                //    }
-                //}
+                foreach (CLiterature item in G.glb.lstLiterature)
+                {
+                    if (!G.glb.lstNote.Exists(o => o.LiteratureTitle == item.Title))
+                    {
+                        string topicGUID = Guid.NewGuid().ToString();
+                        CNote note = new CNote();
+                        note.LiteratureTitle = item.Title;
+                        note.TagTime = item.DateAdded.Date;
+                        note.GUID = topicGUID;
+                        note.Topic = item.Title;
+                        G.glb.lstNote.Add(note);
 
-                //G.glb.lstLiteratureTagType = new List<CLiteratureTag>();
-                //G.glb.lstSubLiteratureTag = new List<RSubLiteratureTag>();
+                        RNoteLog QA = new RNoteLog();
+                        QA.Topic = item.Title;
+                        QA.TopicGUID = topicGUID;
+                        QA.Log = item.Title;
+                        QA.GUID = topicGUID;
+                        QA.SubLog = "Q&A";
+                        QA.SubGUID = Guid.NewGuid().ToString();
+                        QA.TagTime = item.DateAdded.Date;
+                        QA.Index = 0;
+                        G.glb.lstNoteLog.Add(QA);
 
-                //string rootGUID = Guid.NewGuid().ToString();
-                //CLiteratureTag rootTag = new CLiteratureTag();
-                //rootTag.GUID = rootGUID;
-                //rootTag.Tag = "(Root)";
-                //G.glb.lstLiteratureTagType.Add(rootTag);
-
-                //List<string> lstTag = new List<string>();
-                //foreach (RLiteratureTag item in G.glb.lstLiteratureTag)
-                //{
-                //    if (!lstTag.Exists(o => o == item.Tag))
-                //    {
-                //        lstTag.Add(item.Tag);
-                //    }
-                //}
-                //foreach (string item in lstTag)
-                //{
-                //    CLiteratureTag newTag = new CLiteratureTag();
-                //    newTag.Tag = item;
-                //    newTag.GUID = Guid.NewGuid().ToString();
-                //    G.glb.lstLiteratureTagType.Add(newTag);
-
-                //    RSubLiteratureTag newSubTag = new RSubLiteratureTag();
-                //    newSubTag.Tag = "(Root)";
-                //    newSubTag.GUID = rootGUID;
-                //    newSubTag.SubTag = item;
-                //    newSubTag.SubGUID = Guid.NewGuid().ToString();
-                //    G.glb.lstSubLiteratureTag.Add(newSubTag);
-                //}
-
-                //G.glb.lstNoteColor = new List<RNoteColor>();
-                //G.glb.lstBadJournal = new List<string>();
-                //G.glb.lstSurvey = new List<CSurvey>();
-                //G.glb.lstSurveyTag = new List<RSurveyTag>();
-                //G.glb.lstSurveyTagValueOption = new List<RSurveyTagValueOption>();
-                //G.glb.lstSurveySubTag = new List<RSurveySubTag>();
-                //G.glb.lstSurveyLiteratureTagValue = new List<RSurveyLiteratureTagValue>();
-                //G.glb.lstSurveyLiterature = new List<RSurveyLiterature>();
-
-                // Tasks, Logs and Events
-                //G.glb.lstTask = new List<CTask>();
-                //G.glb.lstSubTask = new List<RSubTask>();
-                //G.glb.lstSchedule = new List<CLog>();
-                //G.glb.lstLog = new List<CLog>();
-                //G.glb.lstEvent = new List<CEvent>();
-                //G.glb.lstSleepSchedule = new List<CSleep>();
-                //G.glb.lstSleepLog = new List<CSleep>();
-                //G.glb.lstWorkOut = new List<CWorkOut>();
-                //G.glb.lstMedicine = new List<CMedicine>();
-
-                //// Finiance
-                //G.glb.lstTransaction = new List<CTransaction>();
-                //G.glb.lstBudget = new List<CTransaction>();
-                //G.glb.lstAccount = new List<CAccount>();
-                //G.glb.lstSubAccount = new List<RSubAccount>();
-                //G.glb.lstCurrencyRate = new List<RCurrencyRate>();
-
-                //// Note
-                //G.glb.lstNote = new List<CNote>();
-                //G.glb.lstNoteOutsource = new List<RNoteOutsource>();
-                //G.glb.lstNoteLog = new List<RNoteLog>();
-
-                //G.glb.lstAuthor = new List<CAuthor>();
-                //G.glb.lstAuthorAffiliation = new List<RAuthorAffiliation>();
-                //foreach (RLiteratureAuthor literature in G.glb.lstLiteratureAuthor)
-                //{
-                //    if (!G.glb.lstAuthor.Exists(o => o.Author == literature.Author))
-                //    {
-                //        CAuthor author = new CAuthor();
-                //        author.Author = literature.Author;
-                //        author.PrimeAffiliation = "";
-                //        author.IsReliable = false;
-                //        G.glb.lstAuthor.Add(author);
-                //    }
-                //}
-
-                //Initialize bank accounts
-                //G.glb.lstTransaction.Clear();
-                //G.glb.lstAccount.Clear();
-                //G.glb.lstAccount.Add(new CAccount());
-                //G.glb.lstAccount.Add(new CAccount());
-                //G.glb.lstAccount.Add(new CAccount());
-                //G.glb.lstAccount.Add(new CAccount());
-                //G.glb.lstAccount.Add(new CAccount());
-                //G.glb.lstAccount.Add(new CAccount());
-                //G.glb.lstAccount.Add(new CAccount());
-                //G.glb.lstAccount[0].AccountName = "(Assets)";
-                //G.glb.lstAccount[0].AccountType = EAccountType.Assets;
-                //G.glb.lstAccount[0].Currency = "RMB";
-                //G.glb.lstAccount[0].ProtectedAccount = true;
-                //G.glb.lstAccount[1].AccountName = "(Gain/Loss on Exchange)";
-                //G.glb.lstAccount[1].AccountType = EAccountType.Assets;
-                //G.glb.lstAccount[1].Currency = "RMB";
-                //G.glb.lstAccount[1].ProtectedAccount = true;
-                //G.glb.lstAccount[2].AccountName = "(Expense)";
-                //G.glb.lstAccount[2].AccountType = EAccountType.Expense;
-                //G.glb.lstAccount[2].Currency = "RMB";
-                //G.glb.lstAccount[2].ProtectedAccount = true;
-                //G.glb.lstAccount[3].AccountName = "(Equity)";
-                //G.glb.lstAccount[3].AccountType = EAccountType.Equity;
-                //G.glb.lstAccount[3].Currency = "RMB";
-                //G.glb.lstAccount[3].ProtectedAccount = true;
-                //G.glb.lstAccount[4].AccountName = "(Openning Balance)";
-                //G.glb.lstAccount[4].AccountType = EAccountType.Equity;
-                //G.glb.lstAccount[4].Currency = "RMB";
-                //G.glb.lstAccount[4].ProtectedAccount = true;
-                //G.glb.lstAccount[5].AccountName = "(Liability)";
-                //G.glb.lstAccount[5].AccountType = EAccountType.Liability;
-                //G.glb.lstAccount[5].Currency = "RMB";
-                //G.glb.lstAccount[5].ProtectedAccount = true;
-                //G.glb.lstAccount[6].AccountName = "(Income)";
-                //G.glb.lstAccount[6].AccountType = EAccountType.Income;
-                //G.glb.lstAccount[6].Currency = "RMB";
-                //G.glb.lstAccount[6].ProtectedAccount = true;
-                //G.glb.lstSubAccount.Clear();
-                //G.glb.lstSubAccount.Add(new RSubAccount());
-                //G.glb.lstSubAccount.Add(new RSubAccount());
-                //G.glb.lstSubAccount.Add(new RSubAccount());
-                //G.glb.lstSubAccount.Add(new RSubAccount());
-                //G.glb.lstSubAccount.Add(new RSubAccount());
-                //G.glb.lstSubAccount.Add(new RSubAccount());
-                //G.glb.lstSubAccount.Add(new RSubAccount());
-                //G.glb.lstSubAccount[0].Account = "(Root)";
-                //G.glb.lstSubAccount[0].SubAccount = "(Assets)";
-                //G.glb.lstSubAccount[0].index = 0;
-                //G.glb.lstSubAccount[1].Account = "(Root)";
-                //G.glb.lstSubAccount[1].SubAccount = "(Expense)";
-                //G.glb.lstSubAccount[1].index = 1;
-                //G.glb.lstSubAccount[2].Account = "(Root)";
-                //G.glb.lstSubAccount[2].SubAccount = "(Equity)";
-                //G.glb.lstSubAccount[2].index = 2;
-                //G.glb.lstSubAccount[3].Account = "(Root)";
-                //G.glb.lstSubAccount[3].SubAccount = "(Liability)";
-                //G.glb.lstSubAccount[3].index = 3;
-                //G.glb.lstSubAccount[4].Account = "(Root)";
-                //G.glb.lstSubAccount[4].SubAccount = "(Income)";
-                //G.glb.lstSubAccount[4].index = 4;
-                //G.glb.lstSubAccount[5].Account = "(Assets)";
-                //G.glb.lstSubAccount[5].SubAccount = "(Gain/Loss on Exchange)";
-                //G.glb.lstSubAccount[5].index = 0;
-                //G.glb.lstSubAccount[6].Account = "(Equity)";
-                //G.glb.lstSubAccount[6].SubAccount = "(Openning Balance)";
-                //G.glb.lstSubAccount[6].index = 0;
-                //G.glb.lstCurrencyRate.Clear();
-                //G.glb.lstCurrencyRate.Add(new RCurrencyRate());
-                //G.glb.lstCurrencyRate[0].CurrencyA = "USD";
-                //G.glb.lstCurrencyRate[0].CurrencyB = "RMB";
-                //G.glb.lstCurrencyRate[0].Rate = 6.5;
-
-
-                //foreach (CLiterature item in G.glb.lstLiterature)
-                //{
-                //    item.DateAdded = DateTime.Today;
-                //    item.DateModified = DateTime.Today;
-                //}
-
-                //foreach (RLiteratureOutSource p in G.glb.lstLiteratureOutSource)
-                //{
-                //    string[] outSource = p.OutsourcePath.Split('\\');
-                //    outSource[0] = "D:";
-                //    string newOutSource = "";
-                //    for (int i = 0; i < outSource.Length; i++)
-                //    {
-                //        newOutSource += outSource[i];
-                //        newOutSource += "\\";
-                //    }
-                //    p.OutsourcePath = newOutSource;
-                //}
-
+                        RNoteLog keyTakeaway = new RNoteLog();
+                        keyTakeaway.Topic = item.Title;
+                        keyTakeaway.TopicGUID = topicGUID;
+                        keyTakeaway.Log = item.Title;
+                        keyTakeaway.GUID = topicGUID;
+                        keyTakeaway.SubLog = "key take-away";
+                        keyTakeaway.SubGUID = Guid.NewGuid().ToString();
+                        keyTakeaway.TagTime = item.DateAdded.Date;
+                        keyTakeaway.Index = 1;
+                        G.glb.lstNoteLog.Add(keyTakeaway);
+                    }
+                }
             }
             catch (Exception)
             {

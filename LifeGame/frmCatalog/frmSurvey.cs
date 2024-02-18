@@ -696,8 +696,17 @@ namespace LifeGame
         {
             if (dgvSurvey.SelectedCells.Count == 1)
             {
-                frmInfoLiterature frmInfoLiterature = new frmInfoLiterature(dgvSurvey.CurrentRow.Cells[0].Value.ToString());
-                frmInfoLiterature.Show();
+                if (M.notesOpened.Exists(o => o.note.LiteratureTitle == dgvSurvey.CurrentRow.Cells[0].Value.ToString()))
+                {
+                    M.notesOpened.Find(o => o.note.LiteratureTitle == dgvSurvey.CurrentRow.Cells[0].Value.ToString()).Show();
+                    M.notesOpened.Find(o => o.note.LiteratureTitle == dgvSurvey.CurrentRow.Cells[0].Value.ToString()).BringToFront();
+                }
+                else
+                {
+                    frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.Title == dgvSurvey.CurrentRow.Cells[0].Value.ToString()));
+                    M.notesOpened.Add(frmInfoNote);
+                    frmInfoNote.Show();
+                }
             }
         }
 
