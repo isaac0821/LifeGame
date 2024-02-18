@@ -307,12 +307,6 @@
     <Compile Include="frmNoteMine\frmBibTeX\frmBibArticle.Designer.cs">
       <DependentUpon>frmBibArticle.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiterature.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiterature.Designer.cs">
-      <DependentUpon>frmInfoLiterature.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmNoteMine\frmInfoNote.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -471,9 +465,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNoteMine\frmBibTeX\frmBibArticle.resx">
       <DependentUpon>frmBibArticle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmInfoLiterature.resx">
-      <DependentUpon>frmInfoLiterature.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNoteMine\frmInfoNote.resx">
       <DependentUpon>frmInfoNote.cs</DependentUpon>

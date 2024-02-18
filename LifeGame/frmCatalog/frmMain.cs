@@ -56,41 +56,41 @@ namespace LifeGame
             {
                 Deserialize();
 
-                foreach (CLiterature item in G.glb.lstLiterature)
-                {
-                    if (!G.glb.lstNote.Exists(o => o.LiteratureTitle == item.Title))
-                    {
-                        string topicGUID = Guid.NewGuid().ToString();
-                        CNote note = new CNote();
-                        note.LiteratureTitle = item.Title;
-                        note.TagTime = item.DateAdded.Date;
-                        note.GUID = topicGUID;
-                        note.Topic = item.Title;
-                        G.glb.lstNote.Add(note);
+                //foreach (CLiterature item in G.glb.lstLiterature)
+                //{
+                //    if (!G.glb.lstNote.Exists(o => o.LiteratureTitle == item.Title))
+                //    {
+                //        string topicGUID = Guid.NewGuid().ToString();
+                //        CNote note = new CNote();
+                //        note.LiteratureTitle = item.Title;
+                //        note.TagTime = item.DateAdded.Date;
+                //        note.GUID = topicGUID;
+                //        note.Topic = item.Title;
+                //        G.glb.lstNote.Add(note);
 
-                        RNoteLog QA = new RNoteLog();
-                        QA.Topic = item.Title;
-                        QA.TopicGUID = topicGUID;
-                        QA.Log = item.Title;
-                        QA.GUID = topicGUID;
-                        QA.SubLog = "Q&A";
-                        QA.SubGUID = Guid.NewGuid().ToString();
-                        QA.TagTime = item.DateAdded.Date;
-                        QA.Index = 0;
-                        G.glb.lstNoteLog.Add(QA);
+                //        RNoteLog QA = new RNoteLog();
+                //        QA.Topic = item.Title;
+                //        QA.TopicGUID = topicGUID;
+                //        QA.Log = item.Title;
+                //        QA.GUID = topicGUID;
+                //        QA.SubLog = "Q&A";
+                //        QA.SubGUID = Guid.NewGuid().ToString();
+                //        QA.TagTime = item.DateAdded.Date;
+                //        QA.Index = 0;
+                //        G.glb.lstNoteLog.Add(QA);
 
-                        RNoteLog keyTakeaway = new RNoteLog();
-                        keyTakeaway.Topic = item.Title;
-                        keyTakeaway.TopicGUID = topicGUID;
-                        keyTakeaway.Log = item.Title;
-                        keyTakeaway.GUID = topicGUID;
-                        keyTakeaway.SubLog = "key take-away";
-                        keyTakeaway.SubGUID = Guid.NewGuid().ToString();
-                        keyTakeaway.TagTime = item.DateAdded.Date;
-                        keyTakeaway.Index = 1;
-                        G.glb.lstNoteLog.Add(keyTakeaway);
-                    }
-                }
+                //        RNoteLog keyTakeaway = new RNoteLog();
+                //        keyTakeaway.Topic = item.Title;
+                //        keyTakeaway.TopicGUID = topicGUID;
+                //        keyTakeaway.Log = item.Title;
+                //        keyTakeaway.GUID = topicGUID;
+                //        keyTakeaway.SubLog = "key take-away";
+                //        keyTakeaway.SubGUID = Guid.NewGuid().ToString();
+                //        keyTakeaway.TagTime = item.DateAdded.Date;
+                //        keyTakeaway.Index = 1;
+                //        G.glb.lstNoteLog.Add(keyTakeaway);
+                //    }
+                //}
             }
             catch (Exception)
             {
