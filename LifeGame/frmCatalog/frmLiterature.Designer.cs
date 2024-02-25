@@ -106,21 +106,7 @@
             this.tsmAddToAreaB = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.clbTempLitsAreaA = new System.Windows.Forms.CheckedListBox();
-            this.cmsTempLitsArea = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmTempSelectAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmTempClearSelection = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmTempSort = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmTempClear = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRemoveSelected = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmReplaceMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAddToMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAddSelectedToMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
-            this.clbTempLitsAreaB = new System.Windows.Forms.CheckedListBox();
+            this.tblTempArea = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.clbAuthor = new System.Windows.Forms.CheckedListBox();
@@ -136,6 +122,20 @@
             this.allConferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.clearToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsTempLitsArea = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmTempSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmTempClearSelection = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmTempSort = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmTempClear = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRemoveSelected = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmReplaceMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddToMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddSelectedToMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmH2V = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -161,8 +161,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).BeginInit();
             this.cmsLiterature.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
-            this.cmsTempLitsArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
@@ -171,6 +169,7 @@
             this.cmsAuthor.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.cmsJournal.SuspendLayout();
+            this.cmsTempLitsArea.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnsMain
@@ -902,7 +901,7 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.tableLayoutPanel7);
+            this.groupBox5.Controls.Add(this.tblTempArea);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(9);
@@ -912,131 +911,18 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Temp Lits Area";
             // 
-            // tableLayoutPanel7
+            // tblTempArea
             // 
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Controls.Add(this.clbTempLitsAreaA, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.clbTempLitsAreaB, 0, 1);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 16);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 2;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(249, 405);
-            this.tableLayoutPanel7.TabIndex = 0;
-            // 
-            // clbTempLitsAreaA
-            // 
-            this.clbTempLitsAreaA.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.clbTempLitsAreaA.ContextMenuStrip = this.cmsTempLitsArea;
-            this.clbTempLitsAreaA.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clbTempLitsAreaA.FormattingEnabled = true;
-            this.clbTempLitsAreaA.Location = new System.Drawing.Point(3, 3);
-            this.clbTempLitsAreaA.Name = "clbTempLitsAreaA";
-            this.clbTempLitsAreaA.Size = new System.Drawing.Size(243, 196);
-            this.clbTempLitsAreaA.TabIndex = 0;
-            // 
-            // cmsTempLitsArea
-            // 
-            this.cmsTempLitsArea.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmTempSelectAll,
-            this.tsmTempClearSelection,
-            this.toolStripSeparator15,
-            this.tsmTempSort,
-            this.toolStripSeparator14,
-            this.tsmTempClear,
-            this.tsmRemoveSelected,
-            this.toolStripSeparator13,
-            this.tsmReplaceMainLitsArea,
-            this.tsmAddToMainLitsArea,
-            this.tsmAddSelectedToMainLitsArea});
-            this.cmsTempLitsArea.Name = "cmsTempLitsArea";
-            this.cmsTempLitsArea.Size = new System.Drawing.Size(236, 198);
-            this.cmsTempLitsArea.Opening += new System.ComponentModel.CancelEventHandler(this.cmsTempLitsArea_Opening);
-            // 
-            // tsmTempSelectAll
-            // 
-            this.tsmTempSelectAll.Name = "tsmTempSelectAll";
-            this.tsmTempSelectAll.Size = new System.Drawing.Size(235, 22);
-            this.tsmTempSelectAll.Text = "Select All";
-            this.tsmTempSelectAll.Click += new System.EventHandler(this.tsmTempSelectAll_Click);
-            // 
-            // tsmTempClearSelection
-            // 
-            this.tsmTempClearSelection.Name = "tsmTempClearSelection";
-            this.tsmTempClearSelection.Size = new System.Drawing.Size(235, 22);
-            this.tsmTempClearSelection.Text = "Clear Selection";
-            this.tsmTempClearSelection.Click += new System.EventHandler(this.tsmTempClearSelection_Click);
-            // 
-            // toolStripSeparator15
-            // 
-            this.toolStripSeparator15.Name = "toolStripSeparator15";
-            this.toolStripSeparator15.Size = new System.Drawing.Size(232, 6);
-            // 
-            // tsmTempSort
-            // 
-            this.tsmTempSort.Name = "tsmTempSort";
-            this.tsmTempSort.Size = new System.Drawing.Size(235, 22);
-            this.tsmTempSort.Text = "Sort";
-            this.tsmTempSort.Click += new System.EventHandler(this.tsmTempSort_Click);
-            // 
-            // toolStripSeparator14
-            // 
-            this.toolStripSeparator14.Name = "toolStripSeparator14";
-            this.toolStripSeparator14.Size = new System.Drawing.Size(232, 6);
-            // 
-            // tsmTempClear
-            // 
-            this.tsmTempClear.Name = "tsmTempClear";
-            this.tsmTempClear.Size = new System.Drawing.Size(235, 22);
-            this.tsmTempClear.Text = "Clear";
-            this.tsmTempClear.Click += new System.EventHandler(this.tsmTempClear_Click);
-            // 
-            // tsmRemoveSelected
-            // 
-            this.tsmRemoveSelected.Name = "tsmRemoveSelected";
-            this.tsmRemoveSelected.Size = new System.Drawing.Size(235, 22);
-            this.tsmRemoveSelected.Text = "Remove Selected";
-            this.tsmRemoveSelected.Click += new System.EventHandler(this.tsmRemoveSelected_Click);
-            // 
-            // toolStripSeparator13
-            // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(232, 6);
-            // 
-            // tsmReplaceMainLitsArea
-            // 
-            this.tsmReplaceMainLitsArea.Name = "tsmReplaceMainLitsArea";
-            this.tsmReplaceMainLitsArea.Size = new System.Drawing.Size(235, 22);
-            this.tsmReplaceMainLitsArea.Text = "Replace Main Lits Area";
-            this.tsmReplaceMainLitsArea.Click += new System.EventHandler(this.tsmReplaceMainLitsArea_Click);
-            // 
-            // tsmAddToMainLitsArea
-            // 
-            this.tsmAddToMainLitsArea.Name = "tsmAddToMainLitsArea";
-            this.tsmAddToMainLitsArea.Size = new System.Drawing.Size(235, 22);
-            this.tsmAddToMainLitsArea.Text = "Add All to Main Lits Area";
-            this.tsmAddToMainLitsArea.Click += new System.EventHandler(this.tsmAddToMainLitsArea_Click);
-            // 
-            // tsmAddSelectedToMainLitsArea
-            // 
-            this.tsmAddSelectedToMainLitsArea.Name = "tsmAddSelectedToMainLitsArea";
-            this.tsmAddSelectedToMainLitsArea.Size = new System.Drawing.Size(235, 22);
-            this.tsmAddSelectedToMainLitsArea.Text = "Add Selected to Main Lits Area";
-            this.tsmAddSelectedToMainLitsArea.Click += new System.EventHandler(this.tsmAddSelectedToMainLitsArea_Click);
-            // 
-            // clbTempLitsAreaB
-            // 
-            this.clbTempLitsAreaB.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.clbTempLitsAreaB.ContextMenuStrip = this.cmsTempLitsArea;
-            this.clbTempLitsAreaB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clbTempLitsAreaB.FormattingEnabled = true;
-            this.clbTempLitsAreaB.Location = new System.Drawing.Point(3, 205);
-            this.clbTempLitsAreaB.Name = "clbTempLitsAreaB";
-            this.clbTempLitsAreaB.Size = new System.Drawing.Size(243, 197);
-            this.clbTempLitsAreaB.TabIndex = 1;
+            this.tblTempArea.ColumnCount = 1;
+            this.tblTempArea.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblTempArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblTempArea.Location = new System.Drawing.Point(3, 16);
+            this.tblTempArea.Name = "tblTempArea";
+            this.tblTempArea.RowCount = 2;
+            this.tblTempArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblTempArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblTempArea.Size = new System.Drawing.Size(249, 405);
+            this.tblTempArea.TabIndex = 0;
             // 
             // splitContainer4
             // 
@@ -1170,6 +1056,109 @@
             this.clearToolStripMenuItem1.Text = "Clear";
             this.clearToolStripMenuItem1.Click += new System.EventHandler(this.clearToolStripMenuItem1_Click);
             // 
+            // cmsTempLitsArea
+            // 
+            this.cmsTempLitsArea.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmTempSelectAll,
+            this.tsmTempClearSelection,
+            this.toolStripSeparator15,
+            this.tsmTempSort,
+            this.toolStripSeparator14,
+            this.tsmTempClear,
+            this.tsmRemoveSelected,
+            this.toolStripSeparator13,
+            this.tsmReplaceMainLitsArea,
+            this.tsmAddToMainLitsArea,
+            this.tsmAddSelectedToMainLitsArea,
+            this.toolStripSeparator16,
+            this.tsmH2V});
+            this.cmsTempLitsArea.Name = "cmsTempLitsArea";
+            this.cmsTempLitsArea.Size = new System.Drawing.Size(236, 226);
+            this.cmsTempLitsArea.Opening += new System.ComponentModel.CancelEventHandler(this.cmsTempLitsArea_Opening);
+            // 
+            // tsmTempSelectAll
+            // 
+            this.tsmTempSelectAll.Name = "tsmTempSelectAll";
+            this.tsmTempSelectAll.Size = new System.Drawing.Size(235, 22);
+            this.tsmTempSelectAll.Text = "Select All";
+            this.tsmTempSelectAll.Click += new System.EventHandler(this.tsmTempSelectAll_Click);
+            // 
+            // tsmTempClearSelection
+            // 
+            this.tsmTempClearSelection.Name = "tsmTempClearSelection";
+            this.tsmTempClearSelection.Size = new System.Drawing.Size(235, 22);
+            this.tsmTempClearSelection.Text = "Clear Selection";
+            this.tsmTempClearSelection.Click += new System.EventHandler(this.tsmTempClearSelection_Click);
+            // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            this.toolStripSeparator15.Size = new System.Drawing.Size(232, 6);
+            // 
+            // tsmTempSort
+            // 
+            this.tsmTempSort.Name = "tsmTempSort";
+            this.tsmTempSort.Size = new System.Drawing.Size(235, 22);
+            this.tsmTempSort.Text = "Sort";
+            this.tsmTempSort.Click += new System.EventHandler(this.tsmTempSort_Click);
+            // 
+            // toolStripSeparator14
+            // 
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            this.toolStripSeparator14.Size = new System.Drawing.Size(232, 6);
+            // 
+            // tsmTempClear
+            // 
+            this.tsmTempClear.Name = "tsmTempClear";
+            this.tsmTempClear.Size = new System.Drawing.Size(235, 22);
+            this.tsmTempClear.Text = "Clear";
+            this.tsmTempClear.Click += new System.EventHandler(this.tsmTempClear_Click);
+            // 
+            // tsmRemoveSelected
+            // 
+            this.tsmRemoveSelected.Name = "tsmRemoveSelected";
+            this.tsmRemoveSelected.Size = new System.Drawing.Size(235, 22);
+            this.tsmRemoveSelected.Text = "Remove Selected";
+            this.tsmRemoveSelected.Click += new System.EventHandler(this.tsmRemoveSelected_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(232, 6);
+            // 
+            // tsmReplaceMainLitsArea
+            // 
+            this.tsmReplaceMainLitsArea.Name = "tsmReplaceMainLitsArea";
+            this.tsmReplaceMainLitsArea.Size = new System.Drawing.Size(235, 22);
+            this.tsmReplaceMainLitsArea.Text = "Replace Main Lits Area";
+            this.tsmReplaceMainLitsArea.Click += new System.EventHandler(this.tsmReplaceMainLitsArea_Click);
+            // 
+            // tsmAddToMainLitsArea
+            // 
+            this.tsmAddToMainLitsArea.Name = "tsmAddToMainLitsArea";
+            this.tsmAddToMainLitsArea.Size = new System.Drawing.Size(235, 22);
+            this.tsmAddToMainLitsArea.Text = "Add All to Main Lits Area";
+            this.tsmAddToMainLitsArea.Click += new System.EventHandler(this.tsmAddToMainLitsArea_Click);
+            // 
+            // tsmAddSelectedToMainLitsArea
+            // 
+            this.tsmAddSelectedToMainLitsArea.Name = "tsmAddSelectedToMainLitsArea";
+            this.tsmAddSelectedToMainLitsArea.Size = new System.Drawing.Size(235, 22);
+            this.tsmAddSelectedToMainLitsArea.Text = "Add Selected to Main Lits Area";
+            this.tsmAddSelectedToMainLitsArea.Click += new System.EventHandler(this.tsmAddSelectedToMainLitsArea_Click);
+            // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            this.toolStripSeparator16.Size = new System.Drawing.Size(232, 6);
+            // 
+            // tsmH2V
+            // 
+            this.tsmH2V.Name = "tsmH2V";
+            this.tsmH2V.Size = new System.Drawing.Size(235, 22);
+            this.tsmH2V.Text = "Horizontal <-> Vertical";
+            this.tsmH2V.Click += new System.EventHandler(this.tsmH2V_Click);
+            // 
             // frmLiterature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1213,8 +1202,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLiterature)).EndInit();
             this.cmsLiterature.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.cmsTempLitsArea.ResumeLayout(false);
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
@@ -1223,6 +1210,7 @@
             this.cmsAuthor.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.cmsJournal.ResumeLayout(false);
+            this.cmsTempLitsArea.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1312,7 +1300,7 @@
         private System.Windows.Forms.TextBox txtSearchInRes;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.CheckedListBox clbTempLitsAreaA;
+        //private System.Windows.Forms.CheckedListBox clbTempLitsAreaA;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripMenuItem tsmAddToTempLitsArea;
         private System.Windows.Forms.ContextMenuStrip cmsTempLitsArea;
@@ -1328,12 +1316,14 @@
         private System.Windows.Forms.ToolStripMenuItem tsmAddToMainLitsArea;
         private System.Windows.Forms.ToolStripMenuItem tsmAddSelectedToMainLitsArea;
         private System.Windows.Forms.ToolStripMenuItem tsmRemoveTagFromMulti;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
-        private System.Windows.Forms.CheckedListBox clbTempLitsAreaB;
+        private System.Windows.Forms.TableLayoutPanel tblTempArea;
+        //private System.Windows.Forms.CheckedListBox clbTempLitsAreaB;
         private System.Windows.Forms.ToolStripMenuItem tsmAddToAreaA;
         private System.Windows.Forms.ToolStripMenuItem tsmAddToAreaB;
         private System.Windows.Forms.ToolStripMenuItem copyToNoteToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
+        private System.Windows.Forms.ToolStripMenuItem tsmH2V;
     }
 }

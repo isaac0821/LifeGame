@@ -51,46 +51,30 @@ namespace LifeGame
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            
+
             try
             {
                 Deserialize();
 
-                //foreach (CLiterature item in G.glb.lstLiterature)
+                //foreach (CLiterature lit in G.glb.lstLiterature)
                 //{
-                //    if (!G.glb.lstNote.Exists(o => o.LiteratureTitle == item.Title))
+                //    foreach(RNoteLog exi in G.glb.lstNoteLog.FindAll(o => o.Topic == lit.Title && o.Log == o.Topic).ToList())
                 //    {
-                //        string topicGUID = Guid.NewGuid().ToString();
-                //        CNote note = new CNote();
-                //        note.LiteratureTitle = item.Title;
-                //        note.TagTime = item.DateAdded.Date;
-                //        note.GUID = topicGUID;
-                //        note.Topic = item.Title;
-                //        G.glb.lstNote.Add(note);
-
-                //        RNoteLog QA = new RNoteLog();
-                //        QA.Topic = item.Title;
-                //        QA.TopicGUID = topicGUID;
-                //        QA.Log = item.Title;
-                //        QA.GUID = topicGUID;
-                //        QA.SubLog = "Q&A";
-                //        QA.SubGUID = Guid.NewGuid().ToString();
-                //        QA.TagTime = item.DateAdded.Date;
-                //        QA.Index = 0;
-                //        G.glb.lstNoteLog.Add(QA);
-
-                //        RNoteLog keyTakeaway = new RNoteLog();
-                //        keyTakeaway.Topic = item.Title;
-                //        keyTakeaway.TopicGUID = topicGUID;
-                //        keyTakeaway.Log = item.Title;
-                //        keyTakeaway.GUID = topicGUID;
-                //        keyTakeaway.SubLog = "key take-away";
-                //        keyTakeaway.SubGUID = Guid.NewGuid().ToString();
-                //        keyTakeaway.TagTime = item.DateAdded.Date;
-                //        keyTakeaway.Index = 1;
-                //        G.glb.lstNoteLog.Add(keyTakeaway);
+                //        exi.Index += 1;
                 //    }
+
+                //    RNoteLog modi = new RNoteLog();
+                //    modi.Topic = lit.Title;
+                //    modi.TopicGUID = G.glb.lstNote.Find(o => o.Topic== lit.Title).GUID;
+                //    modi.TagTime = G.glb.lstNote.Find(o => o.Topic == lit.Title).TagTime.Date;
+                //    modi.Log = lit.Title;
+                //    modi.GUID = G.glb.lstNote.Find(o => o.Topic == lit.Title).GUID;
+                //    modi.SubLog = "modified: " + DateTime.Now.ToString("F"); 
+                //    modi.Index = 0;
+                //    modi.SubGUID = Guid.NewGuid().ToString();
+                //    G.glb.lstNoteLog.Add(modi);
                 //}
+
             }
             catch (Exception)
             {

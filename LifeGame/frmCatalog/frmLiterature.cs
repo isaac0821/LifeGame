@@ -19,6 +19,9 @@ namespace LifeGame
         List<string> tempLitsA = new List<string>();
         List<string> tempLitsB = new List<string>();
 
+        CheckedListBox clbTempLitsAreaA = new CheckedListBox();
+        CheckedListBox clbTempLitsAreaB = new CheckedListBox();
+
         //记录数量
         List<CItem> Tags = new List<CItem>();
         List<CItem> Authors = new List<CItem>();
@@ -35,6 +38,23 @@ namespace LifeGame
             lstSubTags = G.glb.lstSubLiteratureTag.ToList();
             cbxMode.Text = "AND";
             LoadTab();
+
+            clbTempLitsAreaA.Dock = DockStyle.Fill;
+            clbTempLitsAreaA.ContextMenuStrip = cmsTempLitsArea;
+            clbTempLitsAreaA.BorderStyle = BorderStyle.None;
+            clbTempLitsAreaA.Name = "clbTempLitsAreaA";
+            clbTempLitsAreaB.Dock = DockStyle.Fill;
+            clbTempLitsAreaB.ContextMenuStrip = cmsTempLitsArea;
+            clbTempLitsAreaB.BorderStyle = BorderStyle.None;
+            clbTempLitsAreaB.Name = "clbTempLitsAreaB";
+
+            tblTempArea.RowCount = 2;
+            tblTempArea.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblTempArea.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblTempArea.ColumnCount = 1;
+            tblTempArea.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tblTempArea.Controls.Add(clbTempLitsAreaA, 0, 0);
+            tblTempArea.Controls.Add(clbTempLitsAreaB, 0, 1);
         }
 
         private class CItem
@@ -149,6 +169,26 @@ namespace LifeGame
                         G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstSurveyLiterature.RemoveAll(o => o.LiteratureTitle == removedLit);
                         G.glb.lstSurveyLiteratureTagValue.RemoveAll(o => o.LiteratureTitle == removedLit);
+                        DialogResult noteResult = MessageBox.Show("Delete related note?", "Delete", MessageBoxButtons.YesNo);
+                        switch (noteResult)
+                        {
+                            case DialogResult.Yes:
+                                if (G.glb.lstNote.Exists(o => o.LiteratureTitle == removedLit))
+                                {
+                                    string topicGUID = G.glb.lstNote.Find(o => o.LiteratureTitle == removedLit).GUID;
+                                    G.glb.lstNote.RemoveAll(o => o.LiteratureTitle == removedLit);
+                                    G.glb.lstNoteLog.RemoveAll(o => o.TopicGUID == topicGUID);
+                                }
+                                break;
+                            case DialogResult.No:
+                                if (G.glb.lstNote.Exists(o => o.LiteratureTitle == removedLit))
+                                {
+                                    G.glb.lstNote.Find(o => o.LiteratureTitle == removedLit).LiteratureTitle = "";
+                                }
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                     case DialogResult.No:
                         break;
@@ -345,7 +385,6 @@ namespace LifeGame
                     if (showFlag)
                     {
                         dgvLiterature.Rows.Add(starStr, title, Convert.ToString(year), litType, goodJourStr, predatoryStr, addedDate.ToString("yyyy/MM/dd"), lastModifyDate.ToString("yyyy/MM/dd"));
-                        dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].Cells[1].ToolTipText = G.glb.lstLiterature.Find(o => o.Title == title).InOneSentence;
                     }
                     lblNumFound.Text = Convert.ToString(dgvLiterature.Rows.Count) + " result(s) found";
                 }
@@ -1144,7 +1183,7 @@ namespace LifeGame
         {
 
         }
-
+        
         private void updateTempLitAreaA()
         {
             clbTempLitsAreaA.Items.Clear();
@@ -1153,6 +1192,7 @@ namespace LifeGame
                 clbTempLitsAreaA.Items.Add(item);
             }
         }
+       
         private void updateTempLitAreaB()
         {
             clbTempLitsAreaB.Items.Clear();
@@ -1222,7 +1262,7 @@ namespace LifeGame
                     break;
                 case "clbTempLitsAreaB":
                     clbTempLitsAreaB.Items.Clear();
-                    tempLitsA.Sort();
+                    tempLitsB.Sort();
                     foreach (string item in tempLitsB)
                     {
                         clbTempLitsAreaB.Items.Add(item, false);
@@ -1399,46 +1439,280 @@ namespace LifeGame
             if (dgvLiterature.SelectedCells.Count == 1)
             {
                 string litName = dgvLiterature.CurrentRow.Cells[1].Value.ToString();
-                TreeNode litNode = new TreeNode();
-                litNode.Text = "$LITR$>" + litName;
-                litNode.Name = Guid.NewGuid().ToString();
-                litNode.ForeColor = Color.Brown;
-                litNode.NodeFont = new Font(Font, FontStyle.Underline);
+                
+                CNote note = G.glb.lstNote.Find(o => o.LiteratureTitle == litName);
+                List<RNoteLog> litNoteLog = G.glb.lstNoteLog.FindAll(o => o.Topic == litName && o.TagTime.Date == G.glb.lstLiterature.Find(p => p.Title == litName).DateAdded.Date);
+                
+                TreeNode litNode = createLitNoteLogNode(note, litNoteLog);
+                M.mem.copiedNodes.Clear();
+                copyNode(litNode);
+            }
+        }
 
-                TreeNode jourNode = new TreeNode();
-                jourNode.Text = "jourConf: " + G.glb.lstLiterature.Find(o => o.Title == litName).JournalOrConferenceName;
-                jourNode.Name = Guid.NewGuid().ToString();
-                litNode.Nodes.Add(jourNode);
+        private TreeNode createLitNoteLogNode(CNote note, List<RNoteLog> litNoteLog)
+        {
+            TreeNode rootNode = new TreeNode(note.Topic, 0, 0);
+            rootNode.Name = note.GUID;
+            rootNode.Text = note.Topic;
 
-                if (G.glb.lstNote.Exists(o => o.LiteratureTitle == litName))
+            TreeNode metaNode = new TreeNode("meta", 0, 0);
+            metaNode.Name = Guid.NewGuid().ToString();
+
+            TreeNode yearNode = new TreeNode("year", 0, 0);
+            yearNode.Name = Guid.NewGuid().ToString();
+            yearNode.Text = "year: " + G.glb.lstLiterature.Find(o => o.Title == note.LiteratureTitle).PublishYear.ToString();
+            metaNode.Nodes.Add(yearNode);
+
+            TreeNode jourNode = new TreeNode("", 0, 0);
+            jourNode.Name = Guid.NewGuid().ToString();
+            jourNode.Text = "jourConf: " + G.glb.lstLiterature.Find(o => o.Title == note.LiteratureTitle).JournalOrConferenceName;
+            metaNode.Nodes.Add(jourNode);
+
+            List<RLiteratureAuthor> authors = new List<RLiteratureAuthor>();
+            authors = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == note.LiteratureTitle).ToList();
+            foreach (RLiteratureAuthor author in authors)
+            {
+                TreeNode authorNode = new TreeNode(author.Author, 0, 0);
+                authorNode.Name = Guid.NewGuid().ToString();
+                authorNode.Text = "author: " + author.Author;
+                metaNode.Nodes.Add(authorNode);
+            }
+
+            rootNode.Nodes.Add(metaNode);
+            rootNode.Expand();
+            LoadChildNoteLog(rootNode, litNoteLog);
+
+            rootNode.Text = "$LITR$>" + note.LiteratureTitle;
+            rootNode.Name = Guid.NewGuid().ToString();
+            rootNode.ForeColor = Color.Brown;
+            rootNode.NodeFont = new Font(Font, FontStyle.Underline);
+            return rootNode;
+        }
+
+        private int getLogo(string noteText)
+        {
+            if (noteText.Contains("ddl: ") || noteText.Contains("DDL: "))
+            {
+                return 14;
+            }
+            else if (noteText.Contains("$LINK$>"))
+            {
+                string selectedPath = noteText.Replace("$LINK$>", "");
+                string[] checkUrl = selectedPath.Split(':');
+                if (checkUrl[0] == "http" || checkUrl[0] == "https")
                 {
-                    TreeNode noteNode = new TreeNode();
-                    noteNode.Text = "$NOTE$>" + G.glb.lstNote.Find(o => o.LiteratureTitle == litName).TagTime.Date.ToString("yyyy.MM.dd") + "@" + litName;
-                    noteNode.Name = Guid.NewGuid().ToString();
-                    litNode.Nodes.Add(noteNode);
+                    return 0;
                 }
-
-                if (G.glb.lstLiterature.Find(o => o.Title == litName).InOneSentence != "")
+                else
                 {
-                    string[] descs = G.glb.lstLiterature.Find(o => o.Title == litName).InOneSentence.Split('\n');
-                    foreach (string desc in descs)
+                    try
                     {
-                        TreeNode descNode = new TreeNode();
-                        if (desc.Contains(':'))
+                        if (System.IO.File.Exists(selectedPath))
                         {
-                            descNode.Text = desc;
+                            return 0;
                         }
                         else
                         {
-                            descNode.Text = "desc: " + desc;
+                            return 1;
                         }
-                        descNode.Name = Guid.NewGuid().ToString();
-                        litNode.Nodes.Add(descNode);
+                    }
+                    catch (Exception)
+                    {
+                        return 1;
+                    }
+                }
+            }
+            else if (noteText.Contains("$NOTE$>"))
+            {
+                string selectedPath = noteText.Replace("$NOTE$>", "");
+                string[] checkNote = selectedPath.Split('@');
+                DateTime noteDate = new DateTime();
+                string noteTitle = "";
+                bool tryOpenFlag = true;
+                if (checkNote.Length != 2)
+                {
+                    return 3;
+                }
+                else
+                {
+                    string[] dateNote = checkNote[0].Split('.');
+                    if (dateNote.Length != 3)
+                    {
+                        return 3;
+                    }
+                    else
+                    {
+                        noteDate = new DateTime(Convert.ToInt32(dateNote[0]), Convert.ToInt32(dateNote[1]), Convert.ToInt32(dateNote[2]));
                     }
                 }
 
-                M.mem.copiedNodes.Clear();
-                copyNode(litNode);
+                for (int i = 1; i < checkNote.Length; i++)
+                {
+                    noteTitle = noteTitle + checkNote[i];
+                    if (i < checkNote.Length - 1)
+                    {
+                        noteTitle = noteTitle + " ";
+                    }
+                }
+                if (tryOpenFlag && G.glb.lstNote.Exists(o => o.TagTime == noteDate && o.Topic == noteTitle))
+                {
+                    return 2;
+                }
+                else
+                {
+                    return 3;
+                }
+            }
+            else if (noteText.Contains("$JUMP$>"))
+            {
+                return 4;
+            }
+            else if (noteText.Contains("$LITR$>"))
+            {
+                string selectedPath = noteText.Replace("$LITR$>", "");
+                if (G.glb.lstLiterature.Exists(o => o.Title == selectedPath))
+                {
+                    return 6;
+                }
+                else if (G.glb.lstLiterature.Exists(o => o.BibKey == selectedPath))
+                {
+                    return 6;
+                }
+                else
+                {
+                    return 7;
+                }
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        private (Color, Color, Font) getColor(string note)
+        {
+            Color BackColor = new Color();
+            Color ForeColor = new Color();
+            Font TextFont = new Font(Font, FontStyle.Regular);
+
+            BackColor = Color.White;
+            if (note.Contains("$LINK$>"))
+            {
+                ForeColor = Color.Blue;
+                TextFont = new Font(Font, FontStyle.Underline);
+            }
+            else if (note.Contains("$LITR$>"))
+            {
+                ForeColor = Color.Brown;
+                TextFont = new Font(Font, FontStyle.Underline);
+            }
+            else if (note.Contains("$NOTE$>"))
+            {
+                ForeColor = Color.DarkGreen;
+                TextFont = new Font(Font, FontStyle.Underline);
+            }
+            else if (note.Contains("$JUMP$>"))
+            {
+                ForeColor = Color.Indigo;
+                TextFont = new Font(Font, FontStyle.Bold);
+            }
+            else if (note.Split('#').Length == 3)
+            {
+                ForeColor = Color.Indigo;
+                TextFont = new Font(Font, FontStyle.Bold);
+            }
+
+            if (note.Contains("ddl: ") || note.Contains("DDL: "))
+            {
+                string dateSeg = "";
+                dateSeg = note.Replace("ddl: ", "");
+                dateSeg = dateSeg.Replace("DDL: ", "");
+                string[] dateNote = dateSeg.Split('.');
+                DateTime noteDate = new DateTime();
+                try
+                {
+                    noteDate = new DateTime(Convert.ToInt32(dateNote[0]), Convert.ToInt32(dateNote[1]), Convert.ToInt32(dateNote[2]));
+
+                    if (noteDate - DateTime.Today >= TimeSpan.FromDays(30))
+                    {
+                        BackColor = Color.Green;
+                    }
+                    else if (noteDate - DateTime.Today >= TimeSpan.FromDays(7))
+                    {
+                        BackColor = Color.Yellow;
+                    }
+                    else if (noteDate - DateTime.Today >= TimeSpan.FromDays(3))
+                    {
+                        BackColor = Color.Orange;
+                    }
+                    else if (noteDate - DateTime.Today >= TimeSpan.FromDays(0))
+                    {
+                        BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        BackColor = Color.LightGray;
+                    }
+                }
+                catch { }
+            }
+            else if (note.Contains("modified: ") || note.Contains("Modified: ") || note.Contains("MODIFIED: "))
+            {
+                BackColor = Color.Pink;
+                TextFont = new Font(Font, FontStyle.Bold);
+            }
+            return (BackColor, ForeColor, TextFont);
+        }
+
+        private void LoadChildNoteLog(TreeNode treeNode, List<RNoteLog> litNoteLog)
+        {
+            // 如果本条NoteLog作为上级NoteLog存在，添加所有的SubLog
+            if (litNoteLog.Exists(o => o.Log == treeNode.Text && o.GUID == treeNode.Name))
+            {
+                List<RNoteLog> subNoteLog = litNoteLog.FindAll(o => o.Log == treeNode.Text && o.GUID == treeNode.Name).ToList();
+                subNoteLog = subNoteLog.OrderBy(o => o.Index).ToList();
+                foreach (RNoteLog sub in subNoteLog)
+                {
+                    TreeNode childNode = new TreeNode(sub.SubLog);
+                    childNode.Name = sub.SubGUID;
+                    childNode.Text = sub.SubLog;
+                    childNode.BackColor = SystemColors.Window;
+                    childNode.ForeColor = Color.Black;
+                    childNode.Expand();
+                    childNode.StateImageIndex = getLogo(sub.SubLog);
+                    (childNode.BackColor, childNode.ForeColor, childNode.NodeFont) = getColor(sub.SubLog);
+                    LoadChildNoteLog(childNode, litNoteLog);
+                    treeNode.Nodes.Add(childNode);
+                }
+            }
+        }
+
+        private void tsmH2V_Click(object sender, EventArgs e)
+        {
+            // 如果是垂直分割
+            if (tblTempArea.RowCount == 1)
+            {
+                tblTempArea.RowCount = 2;
+                tblTempArea.RowStyles.Clear();
+                tblTempArea.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+                tblTempArea.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+                tblTempArea.ColumnCount--;
+                tblTempArea.ColumnStyles.Clear();
+                tblTempArea.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+                tblTempArea.Controls.Add(clbTempLitsAreaA, 0, 0);
+                tblTempArea.Controls.Add(clbTempLitsAreaB, 0, 1);
+            }
+            else
+            {
+                tblTempArea.ColumnCount = 2;
+                tblTempArea.ColumnStyles.Clear();
+                tblTempArea.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+                tblTempArea.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+                tblTempArea.RowCount--;
+                tblTempArea.RowStyles.Clear();
+                tblTempArea.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+                tblTempArea.Controls.Add(clbTempLitsAreaA, 0, 0);
+                tblTempArea.Controls.Add(clbTempLitsAreaB, 1, 0);
             }
         }
     }

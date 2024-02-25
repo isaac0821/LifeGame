@@ -344,6 +344,7 @@ namespace LifeGame
             this.MinimizeBox = false;
             this.Name = "frmNoteProperties";
             this.Text = "LifeGame - Note - Properties";
+            this.Load += new System.EventHandler(this.frmNoteProperties_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

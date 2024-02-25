@@ -1336,6 +1336,7 @@ namespace LifeGame
             }
         }
 
+        string oldEditNoteText = "";
         private void tsmEdit_Click(object sender, EventArgs e)
         {
             if (trvNote.SelectedNode != null && trvNote.SelectedNode.Parent != null)
@@ -1346,6 +1347,7 @@ namespace LifeGame
                 {
                     trvNote.SelectedNode.BeginEdit();
                 }
+                oldEditNoteText = trvNote.SelectedNode.Text;
             }
         }
 
@@ -1667,6 +1669,23 @@ namespace LifeGame
 
         private void trvNote_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            if (txtTopic.Text != "Daily Report")
+            {
+                tsmConvertToLog.Visible = false;
+                tsmConvertToSchedule.Visible = false;
+                tsmConvertToTransaction.Visible = false;
+                tspDaily.Visible = false;
+            }
+            else
+            {
+                tsmConvertToLog.Visible = true;
+                tsmConvertToSchedule.Visible = true;
+                tsmConvertToTransaction.Visible = true;
+                tspDaily.Visible = true;
+            }
+
+            UpdateWordCount();
+
             if (trvNote.SelectedNode.Parent == null)
             {
                 tsmEdit.Enabled = false;
@@ -1863,6 +1882,30 @@ namespace LifeGame
                 }
             }
             return null;
+        }
+
+        private void updateJumpNode(TreeNode treeNode, string oldNodeText, string newNodeText)
+        {
+            if (treeNode.Text == "$JUMP$>" + oldNodeText)
+            {
+                treeNode.Text = "$JUMP$>" + newNodeText;
+            }
+            else
+            {
+                string[] sp = treeNode.Text.Split('#');
+                if (sp.Length == 3)
+                {
+                    if (sp[1] == oldNodeText)
+                    {
+                        treeNode.Text = "#" + newNodeText + "#";
+                    }
+                }
+            }
+            
+            foreach (TreeNode subNode in treeNode.Nodes)
+            {
+                updateJumpNode(subNode, oldNodeText, newNodeText);
+            }
         }
 
         private void tsmReplace_Click(object sender, EventArgs e)
@@ -2108,7 +2151,7 @@ namespace LifeGame
                     }
                 }
                 int[] count = nodeProperties(trvNote.SelectedNode);
-                p.numChar = count[0] + wordCount(trvNote.SelectedNode.Text);
+                p.numChar = count[0];
                 p.numOffsprings = count[1];
                 p.numOLinks = count[2];
                 p.numONotes = count[3];
@@ -2117,6 +2160,21 @@ namespace LifeGame
                 frmNoteProperties frmNoteProperties = new frmNoteProperties(p);
                 frmNoteProperties.Show();
             }
+        }
+        
+        private void UpdateWordCount()
+        {
+            int[] rootProperty = nodeProperties(trvNote.Nodes[0]);
+            if (trvNote.SelectedNode !=  null)
+            {
+                int[] selectedProperty = nodeProperties(trvNote.SelectedNode);
+                lblWordCount.Text = "Word Count: " + selectedProperty[0].ToString() + "/" + rootProperty[0].ToString();
+            }
+            else
+            {
+                lblWordCount.Text = "Word Count: 0/" + rootProperty[0].ToString();
+            }
+            
         }
 
         private int wordCount(string str)
@@ -2137,9 +2195,9 @@ namespace LifeGame
         private int[] nodeProperties(TreeNode node)
         {
             int[] count = new int[] { 0, 0, 0, 0, 0 };
+            count[0] = wordCount(node.Text);
             foreach (TreeNode item in node.Nodes)
-            {
-                count[0] += wordCount(node.Text);
+            {                
                 count[1] += 1;
                 if (item.Text.Contains("$LINK$>"))
                 {
@@ -2314,6 +2372,9 @@ namespace LifeGame
             {
                 string newLog = e.Label.Trim();
                 trvNote.SelectedNode.Text = newLog;
+                trvNote.LabelEdit = false;
+                updateJumpNode(trvNote.Nodes[0], oldEditNoteText, newLog);
+                oldEditNoteText = "";
                 updateNodeColor(trvNote.SelectedNode);
                 btnSave.Enabled = true;
             }
@@ -3084,47 +3145,6 @@ namespace LifeGame
             System.Diagnostics.Process.Start("chrome.exe", url);
         }
 
-        private void frmInfoLiterature_Load(object sender, EventArgs e)
-        {
-            if (txtTitle.Enabled)
-            {
-                this.ActiveControl = txtTitle;
-            }
-            List<string> journalList = new List<string>();
-            foreach (CLiterature lit in G.glb.lstLiterature)
-            {
-                if (!journalList.Exists(o => o == lit.JournalOrConferenceName))
-                {
-                    journalList.Add(lit.JournalOrConferenceName);
-                }
-            }
-            journalList.Sort();
-            foreach (string jour in journalList)
-            {
-                cbxJournalConference.Items.Add(jour);
-            }
-
-            //靠！！气死了，白写了，谷歌学术会检查是不是机器人...咋绕过去呢...
-            //try
-            //{
-            //    string url = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C33&q=" + txtTitle.Text.Replace(" ", "+") + "&btnG=";
-            //    WebRequest request = WebRequest.Create(url);
-            //    WebResponse response = request.GetResponse();
-            //    StreamReader reader = new StreamReader(response.GetResponseStream());
-            //    string htmlStr = reader.ReadToEnd();
-            //    reader.Close();
-            //    response.Close();
-            //    Regex citation = new Regex(@"(Cited)\s(by)\s[0-9]*");
-            //    bool cite = citation.IsMatch(htmlStr);
-            //    Match m = citation.Match(htmlStr);
-            //    lblCited.Text = m.ToString();
-            //}
-            //catch (Exception)
-            //{
-            //    lblCited.Text = "NaN";
-            //}
-        }
-
         private void cbxJournalConference_TextChanged(object sender, EventArgs e)
         {
             modifiedFlag = true;
@@ -3288,6 +3308,15 @@ namespace LifeGame
                 }
                 txtTopic.Text = txtTitle.Text;
                 modifiedFlag = true;
+
+                if (trvNote.Nodes[0].Nodes.Count == 0)
+                {
+                    trvNote.Nodes[0].Nodes.Add("modified: " + DateTime.Now.ToString("F"));
+                    trvNote.Nodes[0].Nodes[0].BackColor = Color.Pink;
+                    trvNote.Nodes[0].Nodes[0].NodeFont = new Font(Font, FontStyle.Bold);
+                    trvNote.Nodes[0].Nodes.Add("Q&A");
+                    trvNote.Nodes[0].Nodes.Add("key take-away");
+                }
             }
         }
 

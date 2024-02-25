@@ -117,61 +117,6 @@ namespace LifeGame
             return ret;
         }
 
-        public int IndexChangeOptionCompound(int OptionCompound, int index1, int index2)
-        {
-            int newOptionCompound = OptionCompound;
-            List<int> Decoded = DecodeOptionCompound(OptionCompound);
-            if (Decoded.Exists(o => o == index1) && !Decoded.Exists(o => o == index2))
-            {
-                Decoded.Remove(index1);
-                Decoded.Add(index2);
-                newOptionCompound = EncodeOptionCompound(Decoded);
-            }
-            else if (!Decoded.Exists(o => o == index1) && Decoded.Exists(o => o == index2))
-            {
-                Decoded.Remove(index2);
-                Decoded.Add(index1);
-                newOptionCompound = EncodeOptionCompound(Decoded);
-            }
-            return OptionCompound;
-        }
-
-        public int EncodeOptionCompound(List<int> Options)
-        {
-            int Compound = 0;
-            for (int i = 0; i < Options.Count; i++)
-            {
-                Compound += (int)Math.Pow(2, Options[i]);
-            }
-            return Compound;
-        }
-
-        public List<int> DecodeOptionCompound(int OptionCompound)
-        {
-            List<int> Options = new List<int>();
-            List<int> Binary = new List<int>();
-
-            int Residual = OptionCompound;
-            while (Residual > 0)
-            {
-                int R = Residual % 2;
-                Binary.Add(R);
-                Residual -= R;
-                Residual /= 2;
-            }
-            Binary.Reverse();
-
-            for (int i = 0; i < Binary.Count; i++)
-            {
-                if (Binary[i] == 1)
-                {
-                    Options.Add(i);
-                }
-            }
-
-            return Options;
-        }
-
         public struct SBalance
         {
             public double OpeningBalanceDebit;

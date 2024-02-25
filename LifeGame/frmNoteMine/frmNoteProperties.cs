@@ -26,5 +26,10 @@ namespace LifeGame
             lblNumONotes.Text = noteProperties.numONotes.ToString();
             lblNumOLitrs.Text = noteProperties.numOLitrs.ToString();
         }
+
+        private void frmNoteProperties_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
