@@ -1386,6 +1386,21 @@ namespace LifeGame
         private void cmsTempLitsArea_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             SelectedAttri = (sender as ContextMenuStrip).SourceControl.Name;
+
+            if (SelectedAttri == "clbTempLitsAreaA")
+            {
+                tsmRemoveDupsA.Visible = true;
+                tsmIntersectAwithB.Visible = true;
+                tsmRemoveDupsB.Visible = false;
+                tsmIntersectBwithA.Visible = false;
+            }
+            else
+            {
+                tsmRemoveDupsA.Visible = false;
+                tsmIntersectAwithB.Visible = false;
+                tsmRemoveDupsB.Visible = true;
+                tsmIntersectBwithA.Visible = true;
+            }
         }
 
         private void tsmAddToAreaA_Click(object sender, EventArgs e)
@@ -1714,6 +1729,30 @@ namespace LifeGame
                 tblTempArea.Controls.Add(clbTempLitsAreaA, 0, 0);
                 tblTempArea.Controls.Add(clbTempLitsAreaB, 1, 0);
             }
+        }
+
+        private void removeDupsInAreaAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tempLitsA.RemoveAll(o => tempLitsB.Contains(o));
+            updateTempLitAreaA();
+        }
+
+        private void removeDupsInAreaBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tempLitsB.RemoveAll(o => tempLitsA.Contains(o));
+            updateTempLitAreaB();
+        }
+
+        private void tmsIntersectAwithB_Click(object sender, EventArgs e)
+        {
+            tempLitsA.RemoveAll(o => !tempLitsB.Contains(o));
+            updateTempLitAreaA();
+        }
+
+        private void tsmIntersectBwithA_Click(object sender, EventArgs e)
+        {
+            tempLitsB.RemoveAll(o => !tempLitsA.Contains(o));
+            updateTempLitAreaB();
         }
     }
 }

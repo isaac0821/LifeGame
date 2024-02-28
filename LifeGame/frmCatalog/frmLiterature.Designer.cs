@@ -130,6 +130,10 @@
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmTempClear = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveSelected = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRemoveDupsA = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRemoveDupsB = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmIntersectAwithB = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmIntersectBwithA = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmReplaceMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddToMainLitsArea = new System.Windows.Forms.ToolStripMenuItem();
@@ -1066,6 +1070,10 @@
             this.toolStripSeparator14,
             this.tsmTempClear,
             this.tsmRemoveSelected,
+            this.tsmRemoveDupsA,
+            this.tsmRemoveDupsB,
+            this.tsmIntersectAwithB,
+            this.tsmIntersectBwithA,
             this.toolStripSeparator13,
             this.tsmReplaceMainLitsArea,
             this.tsmAddToMainLitsArea,
@@ -1073,7 +1081,7 @@
             this.toolStripSeparator16,
             this.tsmH2V});
             this.cmsTempLitsArea.Name = "cmsTempLitsArea";
-            this.cmsTempLitsArea.Size = new System.Drawing.Size(236, 226);
+            this.cmsTempLitsArea.Size = new System.Drawing.Size(236, 336);
             this.cmsTempLitsArea.Opening += new System.ComponentModel.CancelEventHandler(this.cmsTempLitsArea_Opening);
             // 
             // tsmTempSelectAll
@@ -1120,6 +1128,34 @@
             this.tsmRemoveSelected.Size = new System.Drawing.Size(235, 22);
             this.tsmRemoveSelected.Text = "Remove Selected";
             this.tsmRemoveSelected.Click += new System.EventHandler(this.tsmRemoveSelected_Click);
+            // 
+            // tsmRemoveDupsA
+            // 
+            this.tsmRemoveDupsA.Name = "tsmRemoveDupsA";
+            this.tsmRemoveDupsA.Size = new System.Drawing.Size(235, 22);
+            this.tsmRemoveDupsA.Text = "Remove Dups in Area B";
+            this.tsmRemoveDupsA.Click += new System.EventHandler(this.removeDupsInAreaAToolStripMenuItem_Click);
+            // 
+            // tsmRemoveDupsB
+            // 
+            this.tsmRemoveDupsB.Name = "tsmRemoveDupsB";
+            this.tsmRemoveDupsB.Size = new System.Drawing.Size(235, 22);
+            this.tsmRemoveDupsB.Text = "Remove Dups in Area A";
+            this.tsmRemoveDupsB.Click += new System.EventHandler(this.removeDupsInAreaBToolStripMenuItem_Click);
+            // 
+            // tsmIntersectAwithB
+            // 
+            this.tsmIntersectAwithB.Name = "tsmIntersectAwithB";
+            this.tsmIntersectAwithB.Size = new System.Drawing.Size(235, 22);
+            this.tsmIntersectAwithB.Text = "Intersect with Area B";
+            this.tsmIntersectAwithB.Click += new System.EventHandler(this.tmsIntersectAwithB_Click);
+            // 
+            // tsmIntersectBwithA
+            // 
+            this.tsmIntersectBwithA.Name = "tsmIntersectBwithA";
+            this.tsmIntersectBwithA.Size = new System.Drawing.Size(235, 22);
+            this.tsmIntersectBwithA.Text = "Intersect with Area A";
+            this.tsmIntersectBwithA.Click += new System.EventHandler(this.tsmIntersectBwithA_Click);
             // 
             // toolStripSeparator13
             // 
@@ -1325,5 +1361,9 @@
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
         private System.Windows.Forms.ToolStripMenuItem tsmH2V;
+        private System.Windows.Forms.ToolStripMenuItem tsmRemoveDupsA;
+        private System.Windows.Forms.ToolStripMenuItem tsmRemoveDupsB;
+        private System.Windows.Forms.ToolStripMenuItem tsmIntersectAwithB;
+        private System.Windows.Forms.ToolStripMenuItem tsmIntersectBwithA;
     }
 }

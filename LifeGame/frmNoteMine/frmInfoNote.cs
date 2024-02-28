@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Management.Instrumentation;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -2294,6 +2295,11 @@ namespace LifeGame
             {
                 tsmExpand_Click(trvNote, e);
             }
+            // 更换label
+            else if (e.Control && e.KeyCode == Keys.R)
+            {
+                tsmRotateLabel_Click(trvNote, e);
+            }
             // 转到
             else if (e.Control && e.KeyCode == Keys.G)
             {
@@ -3335,7 +3341,39 @@ namespace LifeGame
             }
         }
 
+        private void relabelNode(TreeNode node)
+        {
+            List<string> labels = new List<string>();
+            foreach (RNoteColor item in noteColors)
+            {
+                labels.Add(item.Keyword);
+            }
+            for (int i = 0; i < labels.Count; i++)
+            {
+                if (node.Text.Contains(labels[i]))
+                {
+                    int newI = i + 1;
+                    if (newI >= labels.Count)
+                    {
+                        newI = 0;
+                    }
+                    node.Text = node.Text.Replace(labels[i], labels[newI]);
+                    (node.BackColor, node.ForeColor, node.NodeFont) = getColor(node.Text);
+                    node.StateImageIndex = getLogo(node.Text);
+                    break;
+                }
+            }
+        }
 
+        private void tsmRotateLabel_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null)
+            {
+                relabelNode(trvNote.SelectedNode);
+                
+                UpdateModifiedNodeTime(trvNote.SelectedNode);
+            }
+        }
     }
 
     public class CNoteProperties

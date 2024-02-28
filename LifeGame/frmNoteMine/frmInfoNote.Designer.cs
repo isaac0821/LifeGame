@@ -133,6 +133,7 @@
             this.cmsNoteTag = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAddTag = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveTag = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRotateLabel = new System.Windows.Forms.ToolStripMenuItem();
             this.tblNote.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.cmsTrvNote.SuspendLayout();
@@ -324,6 +325,7 @@
             this.tsmPrepend,
             this.tsmAppend,
             this.tsmReplace,
+            this.tsmRotateLabel,
             this.tsmChangeLabel,
             this.toolStripSeparator8,
             this.tsmCopy,
@@ -341,7 +343,7 @@
             this.toolStripSeparator10,
             this.tsmRenameNote});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(195, 592);
+            this.cmsTrvNote.Size = new System.Drawing.Size(195, 636);
             // 
             // tsmAdd
             // 
@@ -1205,6 +1207,13 @@
             this.tsmRemoveTag.Size = new System.Drawing.Size(117, 22);
             this.tsmRemoveTag.Text = "Remove";
             // 
+            // tsmRotateLabel
+            // 
+            this.tsmRotateLabel.Name = "tsmRotateLabel";
+            this.tsmRotateLabel.Size = new System.Drawing.Size(194, 22);
+            this.tsmRotateLabel.Text = "Rotate label (&R)";
+            this.tsmRotateLabel.Click += new System.EventHandler(this.tsmRotateLabel_Click);
+            // 
             // frmInfoNote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1353,5 +1362,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmRemoveSurvey;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.Label lblWordCount;
+        private System.Windows.Forms.ToolStripMenuItem tsmRotateLabel;
     }
 }
