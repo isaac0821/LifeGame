@@ -59,6 +59,7 @@
             this.tsmPrepend = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAppend = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmReplace = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRotateLabel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmChangeLabel = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmCopy = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,10 +131,13 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.txtHighlight = new System.Windows.Forms.TextBox();
             this.btnHighlight = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblLabelCount = new System.Windows.Forms.Label();
             this.cmsNoteTag = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAddTag = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveTag = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRotateLabel = new System.Windows.Forms.ToolStripMenuItem();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblLabelWordCount = new System.Windows.Forms.Label();
             this.tblNote.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.cmsTrvNote.SuspendLayout();
@@ -343,7 +347,7 @@
             this.toolStripSeparator10,
             this.tsmRenameNote});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(195, 636);
+            this.cmsTrvNote.Size = new System.Drawing.Size(195, 614);
             // 
             // tsmAdd
             // 
@@ -460,6 +464,13 @@
             this.tsmReplace.Size = new System.Drawing.Size(194, 22);
             this.tsmReplace.Text = "Replace...";
             this.tsmReplace.Click += new System.EventHandler(this.tsmReplace_Click);
+            // 
+            // tsmRotateLabel
+            // 
+            this.tsmRotateLabel.Name = "tsmRotateLabel";
+            this.tsmRotateLabel.Size = new System.Drawing.Size(194, 22);
+            this.tsmRotateLabel.Text = "Rotate label (&R)";
+            this.tsmRotateLabel.Click += new System.EventHandler(this.tsmRotateLabel_Click);
             // 
             // tsmChangeLabel
             // 
@@ -1075,7 +1086,7 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
@@ -1096,25 +1107,25 @@
             this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label5.Location = new System.Drawing.Point(3, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 62);
+            this.label5.Size = new System.Drawing.Size(44, 62);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Keywords";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.Text = "Labels";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 236F));
             this.tableLayoutPanel5.Controls.Add(this.lsvColor, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(62, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(50, 0);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(492, 62);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(504, 62);
             this.tableLayoutPanel5.TabIndex = 10;
             // 
             // lsvColor
@@ -1125,10 +1136,11 @@
             this.lsvColor.HideSelection = false;
             this.lsvColor.Location = new System.Drawing.Point(3, 3);
             this.lsvColor.Name = "lsvColor";
-            this.lsvColor.Size = new System.Drawing.Size(416, 56);
+            this.lsvColor.Size = new System.Drawing.Size(262, 56);
             this.lsvColor.TabIndex = 3;
             this.lsvColor.UseCompatibleStateImageBehavior = false;
             this.lsvColor.View = System.Windows.Forms.View.List;
+            this.lsvColor.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.lsvColor_ItemSelectionChanged);
             // 
             // cmsNoteColor
             // 
@@ -1154,38 +1166,66 @@
             // 
             // tableLayoutPanel6
             // 
-            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnCount = 3;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.txtHighlight, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.btnHighlight, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.txtHighlight, 2, 0);
+            this.tableLayoutPanel6.Controls.Add(this.btnHighlight, 2, 1);
+            this.tableLayoutPanel6.Controls.Add(this.label8, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.lblLabelCount, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.label9, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.lblLabelWordCount, 1, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(425, 3);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(271, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(64, 56);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(230, 56);
             this.tableLayoutPanel6.TabIndex = 4;
             // 
             // txtHighlight
             // 
             this.txtHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtHighlight.Location = new System.Drawing.Point(3, 3);
+            this.txtHighlight.Location = new System.Drawing.Point(163, 3);
             this.txtHighlight.Name = "txtHighlight";
-            this.txtHighlight.Size = new System.Drawing.Size(58, 20);
+            this.txtHighlight.Size = new System.Drawing.Size(64, 20);
             this.txtHighlight.TabIndex = 0;
             this.txtHighlight.TextChanged += new System.EventHandler(this.txtHighlight_TextChanged);
             // 
             // btnHighlight
             // 
             this.btnHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnHighlight.Location = new System.Drawing.Point(3, 31);
+            this.btnHighlight.Location = new System.Drawing.Point(163, 31);
             this.btnHighlight.Name = "btnHighlight";
-            this.btnHighlight.Size = new System.Drawing.Size(58, 22);
+            this.btnHighlight.Size = new System.Drawing.Size(64, 22);
             this.btnHighlight.TabIndex = 1;
             this.btnHighlight.Text = "Highlight";
             this.btnHighlight.UseVisualStyleBackColor = true;
             this.btnHighlight.Click += new System.EventHandler(this.btnHighlight_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Location = new System.Drawing.Point(3, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(74, 28);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Label Count:";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLabelCount
+            // 
+            this.lblLabelCount.AutoSize = true;
+            this.lblLabelCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLabelCount.Location = new System.Drawing.Point(3, 28);
+            this.lblLabelCount.Name = "lblLabelCount";
+            this.lblLabelCount.Size = new System.Drawing.Size(74, 28);
+            this.lblLabelCount.TabIndex = 3;
+            this.lblLabelCount.Text = "-";
+            this.lblLabelCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cmsNoteTag
             // 
@@ -1207,12 +1247,27 @@
             this.tsmRemoveTag.Size = new System.Drawing.Size(117, 22);
             this.tsmRemoveTag.Text = "Remove";
             // 
-            // tsmRotateLabel
+            // label9
             // 
-            this.tsmRotateLabel.Name = "tsmRotateLabel";
-            this.tsmRotateLabel.Size = new System.Drawing.Size(194, 22);
-            this.tsmRotateLabel.Text = "Rotate label (&R)";
-            this.tsmRotateLabel.Click += new System.EventHandler(this.tsmRotateLabel_Click);
+            this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Location = new System.Drawing.Point(83, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(74, 28);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Word Count:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLabelWordCount
+            // 
+            this.lblLabelWordCount.AutoSize = true;
+            this.lblLabelWordCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLabelWordCount.Location = new System.Drawing.Point(83, 28);
+            this.lblLabelWordCount.Name = "lblLabelWordCount";
+            this.lblLabelWordCount.Size = new System.Drawing.Size(74, 28);
+            this.lblLabelWordCount.TabIndex = 5;
+            this.lblLabelWordCount.Text = "-";
+            this.lblLabelWordCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmInfoNote
             // 
@@ -1282,7 +1337,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmRemoveColor;
         private System.Windows.Forms.ListView lsvColor;
         private System.Windows.Forms.TextBox txtTopic;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem tsmChangeLabel;
         private System.Windows.Forms.ToolStripMenuItem tsmAddBatch;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
@@ -1363,5 +1417,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.Label lblWordCount;
         private System.Windows.Forms.ToolStripMenuItem tsmRotateLabel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblLabelCount;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblLabelWordCount;
     }
 }

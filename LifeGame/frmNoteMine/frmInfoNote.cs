@@ -2221,6 +2221,24 @@ namespace LifeGame
             return count;
         }
 
+        private int[] countLabel(TreeNode node, string label)
+        {
+            int count = 0;
+            int countWord = 0;
+            if (node.Text.Contains(label))
+            {
+                count++;
+                countWord += wordCount(node.Text);
+            }
+            foreach (TreeNode sub in node.Nodes)
+            {
+                int[] subCount = countLabel(sub, label);
+                count += subCount[0];
+                countWord += subCount[1];
+            }
+            return new int[] {count, countWord};
+        }
+
         private void tsmFold_Click(object sender, EventArgs e)
         {
             if (trvNote.SelectedNode != null)
@@ -3372,6 +3390,24 @@ namespace LifeGame
                 relabelNode(trvNote.SelectedNode);
                 
                 UpdateModifiedNodeTime(trvNote.SelectedNode);
+            }
+        }
+
+        private void lsvColor_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (lsvColor.SelectedItems.Count == 1)
+            {
+                string selectedLabel = lsvColor.SelectedItems[0].Text;
+                int[] count = countLabel(trvNote.Nodes[0], selectedLabel);
+                int labelCount = count[0];
+                int labelWordCount = count[1];
+                lblLabelCount.Text = labelCount.ToString();
+                lblLabelWordCount.Text = labelWordCount.ToString();
+            }
+            else
+            {
+                lblLabelCount.Text = "-";
+                lblLabelWordCount.Text = "-";
             }
         }
     }

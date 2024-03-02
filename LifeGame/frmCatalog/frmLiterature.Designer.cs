@@ -1081,7 +1081,7 @@
             this.toolStripSeparator16,
             this.tsmH2V});
             this.cmsTempLitsArea.Name = "cmsTempLitsArea";
-            this.cmsTempLitsArea.Size = new System.Drawing.Size(236, 336);
+            this.cmsTempLitsArea.Size = new System.Drawing.Size(236, 314);
             this.cmsTempLitsArea.Opening += new System.ComponentModel.CancelEventHandler(this.cmsTempLitsArea_Opening);
             // 
             // tsmTempSelectAll
