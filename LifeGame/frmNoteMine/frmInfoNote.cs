@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Microsoft.VisualBasic;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LifeGame
 {
@@ -274,7 +275,7 @@ namespace LifeGame
             InitializeComponent();
 
             note = new CNote();
-            note.Topic = "Daily Report";
+            note.Topic = "Daily Report";            
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
@@ -375,6 +376,7 @@ namespace LifeGame
             LoadNoteLog();
             dtpDate.Value = selectedDate;
             btnSave.Enabled = true;
+            txtTopic.Text = "Daily Report";
         }
 
         public frmInfoNote(string topic, List<string> lstLiterature)
@@ -756,6 +758,26 @@ namespace LifeGame
                 {
                     string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
                     BackColor = C.GetColor(itemColor);
+                    // 看看有没有带百分号
+                    if (note.Contains("%") && note.ToCharArray().Count(c => c == '%') == 1)
+                    
+                    {
+                        string percentStr = Regex.Match(note, @"(?<num>\d+)(?:\%)").Groups["num"].Value;
+                        if (percentStr != "")
+                        {
+                            int percent = Convert.ToInt32(percentStr);
+                            if (percent >= 100)
+                            {
+                                percent = 100;
+                            }
+                            percent = percent * 4 / 5;
+                            percent = 80 - percent;
+                            int R = (int)((255 - BackColor.R) * (percent / 100.0)) + BackColor.R;
+                            int G = (int)((255 - BackColor.G) * (percent / 100.0)) + BackColor.G;
+                            int B = (int)((255 - BackColor.B) * (percent / 100.0)) + BackColor.B;
+                            BackColor = Color.FromArgb(R, G, B);
+                        }
+                    }
                     if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown" || itemColor == "Purple")
                     {
                         ForeColor = Color.White;
@@ -2316,7 +2338,11 @@ namespace LifeGame
             // 更换label
             else if (e.Control && e.KeyCode == Keys.R)
             {
-                tsmRotateLabel_Click(trvNote, e);
+                tsmRotateLabelNext_Click(trvNote, e);
+            }
+            else if (e.Control && e.KeyCode == Keys.T)
+            {
+                tsmRotateLabelPrev_Click(trvNote, e);
             }
             // 转到
             else if (e.Control && e.KeyCode == Keys.G)
@@ -3359,7 +3385,7 @@ namespace LifeGame
             }
         }
 
-        private void relabelNode(TreeNode node)
+        private void relabelNodeNext(TreeNode node)
         {
             List<string> labels = new List<string>();
             foreach (RNoteColor item in noteColors)
@@ -3383,12 +3409,46 @@ namespace LifeGame
             }
         }
 
-        private void tsmRotateLabel_Click(object sender, EventArgs e)
+        private void relabelNodePrev(TreeNode node)
+        {
+            List<string> labels = new List<string>();
+            foreach (RNoteColor item in noteColors)
+            {
+                labels.Add(item.Keyword);
+            }
+            for (int i = 0; i < labels.Count; i++)
+            {
+                if (node.Text.Contains(labels[i]))
+                {
+                    int newI = i - 1;
+                    if (newI < 0)
+                    {
+                        newI = labels.Count - 1;
+                    }
+                    node.Text = node.Text.Replace(labels[i], labels[newI]);
+                    (node.BackColor, node.ForeColor, node.NodeFont) = getColor(node.Text);
+                    node.StateImageIndex = getLogo(node.Text);
+                    break;
+                }
+            }
+        }
+
+        private void tsmRotateLabelNext_Click(object sender, EventArgs e)
         {
             if (trvNote.SelectedNode != null)
             {
-                relabelNode(trvNote.SelectedNode);
+                relabelNodeNext(trvNote.SelectedNode);
                 
+                UpdateModifiedNodeTime(trvNote.SelectedNode);
+            }
+        }
+
+        private void tsmRotateLabelPrev_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null)
+            {
+                relabelNodePrev(trvNote.SelectedNode);
+
                 UpdateModifiedNodeTime(trvNote.SelectedNode);
             }
         }
@@ -3410,6 +3470,8 @@ namespace LifeGame
                 lblLabelWordCount.Text = "-";
             }
         }
+
+
     }
 
     public class CNoteProperties
