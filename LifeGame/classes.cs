@@ -483,6 +483,7 @@ namespace LifeGame
         public string GUID;
         public string SubLog;  // 自己的
         public string SubGUID;
+        public bool IsExpand;
         public int Index;
     }
 

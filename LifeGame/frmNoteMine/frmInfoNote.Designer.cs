@@ -62,7 +62,10 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmRotateLabelPrev = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRotateLabelNext = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmProgressAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmProgressMinus = new System.Windows.Forms.ToolStripMenuItem();
+            this.tspProgress = new System.Windows.Forms.ToolStripSeparator();
             this.tsmChangeLabel = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmCopy = new System.Windows.Forms.ToolStripMenuItem();
@@ -336,7 +339,10 @@
             this.toolStripSeparator4,
             this.tsmRotateLabelPrev,
             this.tsmRotateLabelNext,
-            this.toolStripSeparator13,
+            this.toolStripSeparator14,
+            this.tsmProgressAdd,
+            this.tsmProgressMinus,
+            this.tspProgress,
             this.tsmChangeLabel,
             this.toolStripSeparator8,
             this.tsmCopy,
@@ -354,7 +360,7 @@
             this.toolStripSeparator10,
             this.tsmRenameNote});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(210, 648);
+            this.cmsTrvNote.Size = new System.Drawing.Size(210, 698);
             // 
             // tsmAdd
             // 
@@ -491,10 +497,29 @@
             this.tsmRotateLabelNext.Text = "Rotate - next label (&R)";
             this.tsmRotateLabelNext.Click += new System.EventHandler(this.tsmRotateLabelNext_Click);
             // 
-            // toolStripSeparator13
+            // toolStripSeparator14
             // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(206, 6);
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            this.toolStripSeparator14.Size = new System.Drawing.Size(206, 6);
+            // 
+            // tsmProgressAdd
+            // 
+            this.tsmProgressAdd.Name = "tsmProgressAdd";
+            this.tsmProgressAdd.Size = new System.Drawing.Size(209, 22);
+            this.tsmProgressAdd.Text = "Progress - add 5%";
+            this.tsmProgressAdd.Click += new System.EventHandler(this.tsmProgressAdd_Click);
+            // 
+            // tsmProgressMinus
+            // 
+            this.tsmProgressMinus.Name = "tsmProgressMinus";
+            this.tsmProgressMinus.Size = new System.Drawing.Size(209, 22);
+            this.tsmProgressMinus.Text = "Progress - substract 5%";
+            this.tsmProgressMinus.Click += new System.EventHandler(this.tsmProgressMinus_Click);
+            // 
+            // tspProgress
+            // 
+            this.tspProgress.Name = "tspProgress";
+            this.tspProgress.Size = new System.Drawing.Size(206, 6);
             // 
             // tsmChangeLabel
             // 
@@ -903,6 +928,7 @@
             // 
             // cmsAttri
             // 
+            this.cmsAttri.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsAttri.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAttriAdd,
             this.tsmAttriRemove});
@@ -948,6 +974,7 @@
             // 
             // cmsAuthor
             // 
+            this.cmsAuthor.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsAuthor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAuthorAdd,
             this.tsmAuthorRemove,
@@ -1015,6 +1042,7 @@
             // 
             // cmsSurvey
             // 
+            this.cmsSurvey.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsSurvey.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmOpenSurvey,
             this.toolStripSeparator12,
@@ -1165,9 +1193,11 @@
             this.lsvColor.UseCompatibleStateImageBehavior = false;
             this.lsvColor.View = System.Windows.Forms.View.List;
             this.lsvColor.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.lsvColor_ItemSelectionChanged);
+            this.lsvColor.DoubleClick += new System.EventHandler(this.lsvColor_DoubleClick);
             // 
             // cmsNoteColor
             // 
+            this.cmsNoteColor.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsNoteColor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAddColor,
             this.tsmRemoveColor});
@@ -1275,6 +1305,7 @@
             // 
             // cmsNoteTag
             // 
+            this.cmsNoteTag.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsNoteTag.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAddTag,
             this.tsmRemoveTag});
@@ -1448,6 +1479,9 @@
         private System.Windows.Forms.Label lblLabelWordCount;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem tsmRotateLabelPrev;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
+        private System.Windows.Forms.ToolStripSeparator tspProgress;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+        private System.Windows.Forms.ToolStripMenuItem tsmProgressAdd;
+        private System.Windows.Forms.ToolStripMenuItem tsmProgressMinus;
     }
 }

@@ -759,8 +759,8 @@ namespace LifeGame
                     string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
                     BackColor = C.GetColor(itemColor);
                     // 看看有没有带百分号
+                    int percentVal = 100;
                     if (note.Contains("%") && note.ToCharArray().Count(c => c == '%') == 1)
-                    
                     {
                         string percentStr = Regex.Match(note, @"(?<num>\d+)(?:\%)").Groups["num"].Value;
                         if (percentStr != "")
@@ -770,6 +770,7 @@ namespace LifeGame
                             {
                                 percent = 100;
                             }
+                            percentVal = percent;
                             percent = percent * 4 / 5;
                             percent = 80 - percent;
                             int R = (int)((255 - BackColor.R) * (percent / 100.0)) + BackColor.R;
@@ -780,7 +781,14 @@ namespace LifeGame
                     }
                     if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown" || itemColor == "Purple")
                     {
-                        ForeColor = Color.White;
+                        if (percentVal <= 50)
+                        {
+                            ForeColor = Color.Black;
+                        }
+                        else
+                        {
+                            ForeColor = Color.White;
+                        }
                     }
                     else
                     {
@@ -912,7 +920,10 @@ namespace LifeGame
                     childNode.Text = sub.SubLog;
                     childNode.BackColor = SystemColors.Window;
                     childNode.ForeColor = Color.Black;
-                    childNode.Expand();
+                    if (sub.IsExpand)
+                    {
+                        childNode.Expand();
+                    }                    
                     childNode.StateImageIndex = getLogo(sub.SubLog);
                     if (highlightText != "" && sub.SubLog.Contains(highlightText))
                     {
@@ -977,6 +988,7 @@ namespace LifeGame
             newNoteLog.GUID = treeNode.Parent.Name;
             newNoteLog.SubLog = treeNode.Text;
             newNoteLog.SubGUID = treeNode.Name;
+            newNoteLog.IsExpand = treeNode.IsExpanded;
             newNoteLog.Index = treeNode.Index;
             noteLogs.Add(newNoteLog);
             foreach (TreeNode child in treeNode.Nodes)
@@ -1201,13 +1213,14 @@ namespace LifeGame
                     newNode.Name = Guid.NewGuid().ToString();
                     newNode.BackColor = SystemColors.Window;
                     newNode.ForeColor = Color.Black;
-                    newNode.ExpandAll();
-                    trvNote.SelectedNode.ExpandAll();
-
+                    newNode.ExpandAll();                    
                     (newNode.BackColor, newNode.ForeColor, newNode.NodeFont) = getColor(newLog);
                     newNode.StateImageIndex = getLogo(newLog);
-
                     trvNote.SelectedNode.Nodes.Add(newNode);
+                    if (trvNote.SelectedNode.Nodes.Count == 1)
+                    {
+                        trvNote.SelectedNode.ExpandAll();
+                    }
                     UpdateModifiedNodeTime(trvNote.SelectedNode);
                 }
             }
@@ -1345,7 +1358,7 @@ namespace LifeGame
                             newNode.Name = Guid.NewGuid().ToString();
                             newNode.BackColor = SystemColors.Window;
                             newNode.ForeColor = Color.Black;
-                            newNode.ExpandAll();
+                            newNode.ExpandAll(); 
                             trvNote.SelectedNode.ExpandAll();
 
                             (newNode.BackColor, newNode.ForeColor, newNode.NodeFont) = getColor(newLog);
@@ -1737,6 +1750,23 @@ namespace LifeGame
             else
             {
                 tsmPaste.Enabled = true;
+            }
+
+            if (trvNote.SelectedNode.Text.Contains("%") && trvNote.SelectedNode.Text.ToCharArray().Count(c => c == '%') == 1)
+            {
+                string percentStr = Regex.Match(trvNote.SelectedNode.Text, @"(?<num>\d+)(?:\%)").Groups["num"].Value;
+                if (percentStr != "")
+                {
+                    tsmProgressAdd.Visible = true;
+                    tsmProgressMinus.Visible = true;
+                    tspProgress.Visible = true;
+                }
+            }
+            else
+            {
+                tsmProgressAdd.Visible = false;
+                tsmProgressMinus.Visible = false;
+                tspProgress.Visible = false;
             }
             if (trvNote.SelectedNode.Text.Contains("$LINK$>")
                 || trvNote.SelectedNode.Text.Contains("$LITR$>")
@@ -2343,6 +2373,59 @@ namespace LifeGame
             else if (e.Control && e.KeyCode == Keys.T)
             {
                 tsmRotateLabelPrev_Click(trvNote, e);
+            }
+            // 调整百分比
+            else if (e.Control && e.KeyCode == Keys.Oemplus)
+            {
+                tsmProgressAdd_Click(trvNote, e);
+            }
+            else if (e.Control && e.KeyCode == Keys.OemMinus)
+            {
+                tsmProgressMinus_Click(trvNote, e);
+            }
+            else if (e.Control && e.KeyCode == Keys.Oemtilde)
+            {
+                tsmProgressSetPtg(0);
+            }
+            else if (e.Control && e.KeyCode == Keys.D1)
+            {
+                tsmProgressSetPtg(10);
+            }
+            else if (e.Control && e.KeyCode == Keys.D2)
+            {
+                tsmProgressSetPtg(20);
+            }
+            else if (e.Control && e.KeyCode == Keys.D3)
+            {
+                tsmProgressSetPtg(30);
+            }
+            else if (e.Control && e.KeyCode == Keys.D4)
+            {
+                tsmProgressSetPtg(40);
+            }
+            else if (e.Control && e.KeyCode == Keys.D5)
+            {
+                tsmProgressSetPtg(50);
+            }
+            else if (e.Control && e.KeyCode == Keys.D6)
+            {
+                tsmProgressSetPtg(60);
+            }
+            else if (e.Control && e.KeyCode == Keys.D7)
+            {
+                tsmProgressSetPtg(70);
+            }
+            else if (e.Control && e.KeyCode == Keys.D8)
+            {
+                tsmProgressSetPtg(80);
+            }
+            else if (e.Control && e.KeyCode == Keys.D9)
+            {
+                tsmProgressSetPtg(90);
+            }
+            else if (e.Control && e.KeyCode == Keys.D0)
+            {
+                tsmProgressSetPtg(100);
             }
             // 转到
             else if (e.Control && e.KeyCode == Keys.G)
@@ -3471,7 +3554,88 @@ namespace LifeGame
             }
         }
 
+        private void tsmProgressAdd_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null)
+            {
+                if (trvNote.SelectedNode.Text.Contains("%") && trvNote.SelectedNode.Text.ToCharArray().Count(c => c == '%') == 1)
+                {                    
+                    string percentStr = Regex.Match(trvNote.SelectedNode.Text, @"(?<num>\d+)(?:\%)").Groups["num"].Value;
+                    if (percentStr != "")
+                    {
+                        int percent = Convert.ToInt32(percentStr);
+                        percent += 5;
+                        if (percent >= 100)
+                        {
+                            percent = 100;
+                        }
+                        trvNote.SelectedNode.Text = trvNote.SelectedNode.Text.Replace(percentStr, percent.ToString());
+                        (trvNote.SelectedNode.BackColor, trvNote.SelectedNode.ForeColor, trvNote.SelectedNode.NodeFont) = getColor(trvNote.SelectedNode.Text);
+                        trvNote.SelectedNode.StateImageIndex = getLogo(trvNote.SelectedNode.Text);
+                        UpdateModifiedNodeTime(trvNote.SelectedNode);
+                    }
+                }
+            }
+        }
 
+        private void tsmProgressMinus_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null)
+            {
+                if (trvNote.SelectedNode.Text.Contains("%") && trvNote.SelectedNode.Text.ToCharArray().Count(c => c == '%') == 1)
+                {
+                    string percentStr = Regex.Match(trvNote.SelectedNode.Text, @"(?<num>\d+)(?:\%)").Groups["num"].Value;
+                    if (percentStr != "")
+                    {
+                        int percent = Convert.ToInt32(percentStr);
+                        percent -= 5;
+                        if (percent <= 0)
+                        {
+                            percent = 0;
+                        }
+                        trvNote.SelectedNode.Text = trvNote.SelectedNode.Text.Replace(percentStr, percent.ToString());
+                        (trvNote.SelectedNode.BackColor, trvNote.SelectedNode.ForeColor, trvNote.SelectedNode.NodeFont) = getColor(trvNote.SelectedNode.Text);
+                        trvNote.SelectedNode.StateImageIndex = getLogo(trvNote.SelectedNode.Text);
+                        UpdateModifiedNodeTime(trvNote.SelectedNode);
+                    }
+                }
+            }
+        }
+
+        private void tsmProgressSetPtg(int percentage)
+        {
+            if (trvNote.SelectedNode != null)
+            {
+                if (trvNote.SelectedNode.Text.Contains("%") && trvNote.SelectedNode.Text.ToCharArray().Count(c => c == '%') == 1)
+                {
+                    string percentStr = Regex.Match(trvNote.SelectedNode.Text, @"(?<num>\d+)(?:\%)").Groups["num"].Value;
+                    if (percentStr != "")
+                    {
+                        int percent = Convert.ToInt32(percentage);
+                        if (percent <= 0)
+                        {
+                            percent = 0;
+                        }
+                        if (percent >= 100)
+                        {
+                            percent = 100;
+                        }
+                        trvNote.SelectedNode.Text = trvNote.SelectedNode.Text.Replace(percentStr, percent.ToString());
+                        (trvNote.SelectedNode.BackColor, trvNote.SelectedNode.ForeColor, trvNote.SelectedNode.NodeFont) = getColor(trvNote.SelectedNode.Text);
+                        trvNote.SelectedNode.StateImageIndex = getLogo(trvNote.SelectedNode.Text);
+                        UpdateModifiedNodeTime(trvNote.SelectedNode);
+                    }
+                }
+            }
+        }
+
+        private void lsvColor_DoubleClick(object sender, EventArgs e)
+        {
+            if (lsvColor.SelectedItems.Count == 1)
+            {
+                string selectedLabel = lsvColor.SelectedItems[0].Text;
+            }
+        }
     }
 
     public class CNoteProperties
