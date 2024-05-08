@@ -45,7 +45,7 @@ namespace LifeGame
                     ret = Color.Brown;
                     break;
                 case "Gray":
-                    ret = Color.Gray;
+                    ret = Color.DarkGray;
                     break;
                 default:
                     ret = Color.Black;

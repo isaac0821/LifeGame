@@ -15,10 +15,6 @@ namespace LifeGame
         List<CLiteratureTag> lstTags = new List<CLiteratureTag>();
         List<RSubLiteratureTag> lstSubTags = new List<RSubLiteratureTag>();
 
-        List<string> shownLits = new List<string>();
-        List<string> tempLitsA = new List<string>();
-        List<string> tempLitsB = new List<string>();
-
         CheckedListBox clbTempLitsAreaA = new CheckedListBox();
         CheckedListBox clbTempLitsAreaB = new CheckedListBox();
 
@@ -104,7 +100,7 @@ namespace LifeGame
                 }
             }
             LoadTag();
-            LoadLiteratureList(shownLits);
+            LoadLiteratureList(M.shownLits);
         }
 
         private void tsmAddLiterature_Click(object sender, EventArgs e)
@@ -146,20 +142,20 @@ namespace LifeGame
                 {
                     case DialogResult.Yes:
                         string removedLit = dgvLiterature.CurrentRow.Cells[1].Value.ToString();
-                        if (tempLitsA.Contains(removedLit))
+                        if (M.tempLitsA.Contains(removedLit))
                         {
-                            tempLitsA.RemoveAll(o => o == removedLit);
+                            M.tempLitsA.RemoveAll(o => o == removedLit);
                             clbTempLitsAreaA.Items.Clear();
-                            foreach (string item in tempLitsA)
+                            foreach (string item in M.tempLitsA)
                             {
                                 clbTempLitsAreaA.Items.Add(item, false);
                             }
                         }
-                        if (tempLitsB.Contains(removedLit))
+                        if (M.tempLitsB.Contains(removedLit))
                         {
-                            tempLitsB.RemoveAll(o => o == removedLit);
+                            M.tempLitsB.RemoveAll(o => o == removedLit);
                             clbTempLitsAreaB.Items.Clear();
-                            foreach (string item in tempLitsB)
+                            foreach (string item in M.tempLitsB)
                             {
                                 clbTempLitsAreaB.Items.Add(item, false);
                             }
@@ -203,10 +199,10 @@ namespace LifeGame
         {
             if (cbxMode.Text == "AND")
             {
-                if (shownLits.Count > 0 && txtSearchInRes.Text != "")
+                if (M.shownLits.Count > 0 && txtSearchInRes.Text != "")
                 {
                     List<string> newLitList = searchByText(txtSearchInRes.Text);
-                    List<string> oriLitList = shownLits.ToList();
+                    List<string> oriLitList = M.shownLits.ToList();
 
                     List<string> bothLitList = new List<string>();
                     foreach (string lit in oriLitList)
@@ -216,32 +212,32 @@ namespace LifeGame
                             bothLitList.Add(lit);
                         }
                     }
-                    shownLits = bothLitList.ToList();
-                    shownLits = shownLits.Distinct().ToList();
-                    LoadLiteratureList(shownLits);
+                    M.shownLits = bothLitList.ToList();
+                    M.shownLits = M.shownLits.Distinct().ToList();
+                    LoadLiteratureList(M.shownLits);
                 }
             }
             else if (cbxMode.Text == "OR")
             {
-                if (shownLits.Count > 0 && txtSearchInRes.Text != "")
+                if (M.shownLits.Count > 0 && txtSearchInRes.Text != "")
                 {
                     List<string> newLitList = searchByText(txtSearchInRes.Text);
-                    shownLits.AddRange(newLitList);
-                    shownLits = shownLits.Distinct().ToList();
-                    LoadLiteratureList(shownLits);
+                    M.shownLits.AddRange(newLitList);
+                    M.shownLits = M.shownLits.Distinct().ToList();
+                    LoadLiteratureList(M.shownLits);
                 }
             }
             else if (cbxMode.Text == "NOT")
             {
-                if (shownLits.Count > 0 && txtSearchInRes.Text != "")
+                if (M.shownLits.Count > 0 && txtSearchInRes.Text != "")
                 {
                     List<string> newLitList = searchByText(txtSearchInRes.Text);
                     foreach (string item in newLitList)
                     {
-                        shownLits.RemoveAll(o => o == item);
+                        M.shownLits.RemoveAll(o => o == item);
                     }
-                    shownLits = shownLits.Distinct().ToList();
-                    LoadLiteratureList(shownLits);
+                    M.shownLits = M.shownLits.Distinct().ToList();
+                    LoadLiteratureList(M.shownLits);
                 }
             }
         }
@@ -393,13 +389,13 @@ namespace LifeGame
 
         private void LoadLiteratureList(string SearchText)
         {
-            shownLits = searchByText(SearchText).Distinct().ToList();
-            LoadLiteratureList(shownLits);
+            M.shownLits = searchByText(SearchText).Distinct().ToList();
+            LoadLiteratureList(M.shownLits);
         }
 
         private void LoadLiteratureList()
         {
-            shownLits.Clear();
+            M.shownLits.Clear();
             int startYear = Convert.ToInt32(txtStartYear.Text);
             int endYear = Convert.ToInt32(txtEndYear.Text);
 
@@ -430,11 +426,11 @@ namespace LifeGame
                     && chosenTags.Exists(o => G.glb.lstLiteratureTag.Exists(p => p.Title == literature.Title && p.Tag == o))
                     && chosenJourConf.Exists(o => o == literature.JournalOrConferenceName))
                 {
-                    shownLits.Add(literature.Title);
+                    M.shownLits.Add(literature.Title);
                 }
             }
-            shownLits = shownLits.Distinct().ToList();
-            LoadLiteratureList(shownLits);
+            M.shownLits = M.shownLits.Distinct().ToList();
+            LoadLiteratureList(M.shownLits);
         }
 
         private void LoadTag()
@@ -1187,7 +1183,7 @@ namespace LifeGame
         private void updateTempLitAreaA()
         {
             clbTempLitsAreaA.Items.Clear();
-            foreach (string item in tempLitsA)
+            foreach (string item in M.tempLitsA)
             {
                 clbTempLitsAreaA.Items.Add(item);
             }
@@ -1196,7 +1192,7 @@ namespace LifeGame
         private void updateTempLitAreaB()
         {
             clbTempLitsAreaB.Items.Clear();
-            foreach (string item in tempLitsB)
+            foreach (string item in M.tempLitsB)
             {
                 clbTempLitsAreaB.Items.Add(item);
             }
@@ -1208,14 +1204,14 @@ namespace LifeGame
             {
                 case "clbTempLitsAreaA":
                     clbTempLitsAreaA.Items.Clear();
-                    foreach (string item in tempLitsA)
+                    foreach (string item in M.tempLitsA)
                     {
                         clbTempLitsAreaA.Items.Add(item, true);
                     }
                     break;
                 case "clbTempLitsAreaB":
                     clbTempLitsAreaB.Items.Clear();
-                    foreach (string item in tempLitsB)
+                    foreach (string item in M.tempLitsB)
                     {
                         clbTempLitsAreaB.Items.Add(item, true);
                     }
@@ -1231,14 +1227,14 @@ namespace LifeGame
             {
                 case "clbTempLitsAreaA":
                     clbTempLitsAreaA.Items.Clear();
-                    foreach (string item in tempLitsA)
+                    foreach (string item in M.tempLitsA)
                     {
                         clbTempLitsAreaA.Items.Add(item, false);
                     }
                     break;
                 case "clbTempLitsAreaB":
                     clbTempLitsAreaB.Items.Clear();
-                    foreach (string item in tempLitsB)
+                    foreach (string item in M.tempLitsB)
                     {
                         clbTempLitsAreaB.Items.Add(item, false);
                     }
@@ -1254,16 +1250,16 @@ namespace LifeGame
             {
                 case "clbTempLitsAreaA":
                     clbTempLitsAreaA.Items.Clear();
-                    tempLitsA.Sort();
-                    foreach (string item in tempLitsA)
+                    M.tempLitsA.Sort();
+                    foreach (string item in M.tempLitsA)
                     {
                         clbTempLitsAreaA.Items.Add(item, false);
                     }
                     break;
                 case "clbTempLitsAreaB":
                     clbTempLitsAreaB.Items.Clear();
-                    tempLitsB.Sort();
-                    foreach (string item in tempLitsB)
+                    M.tempLitsB.Sort();
+                    foreach (string item in M.tempLitsB)
                     {
                         clbTempLitsAreaB.Items.Add(item, false);
                     }
@@ -1278,11 +1274,11 @@ namespace LifeGame
             switch (SelectedAttri)
             {
                 case "clbTempLitsAreaA":
-                    tempLitsA.Clear();
+                    M.tempLitsA.Clear();
                     clbTempLitsAreaA.Items.Clear();
                     break;
                 case "clbTempLitsAreaB":
-                    tempLitsB.Clear();
+                    M.tempLitsB.Clear();
                     clbTempLitsAreaB.Items.Clear();
                     break;
                 default:
@@ -1297,10 +1293,10 @@ namespace LifeGame
                 case "clbTempLitsAreaA":
                     for (int i = 0; i < clbTempLitsAreaA.CheckedItems.Count; i++)
                     {
-                        tempLitsA.RemoveAll(o => o == clbTempLitsAreaA.CheckedItems[i].ToString());
+                        M.tempLitsA.RemoveAll(o => o == clbTempLitsAreaA.CheckedItems[i].ToString());
                     }
                     clbTempLitsAreaA.Items.Clear();
-                    foreach (string item in tempLitsA)
+                    foreach (string item in M.tempLitsA)
                     {
                         clbTempLitsAreaA.Items.Add(item, false);
                     }
@@ -1308,10 +1304,10 @@ namespace LifeGame
                 case "clbTempLitsAreaB":
                     for (int i = 0; i < clbTempLitsAreaB.CheckedItems.Count; i++)
                     {
-                        tempLitsB.RemoveAll(o => o == clbTempLitsAreaB.CheckedItems[i].ToString());
+                        M.tempLitsB.RemoveAll(o => o == clbTempLitsAreaB.CheckedItems[i].ToString());
                     }
                     clbTempLitsAreaB.Items.Clear();
-                    foreach (string item in tempLitsB)
+                    foreach (string item in M.tempLitsB)
                     {
                         clbTempLitsAreaB.Items.Add(item, false);
                     }
@@ -1326,12 +1322,12 @@ namespace LifeGame
             switch (SelectedAttri)
             {
                 case "clbTempLitsAreaA":
-                    shownLits = tempLitsA.ToList();
-                    LoadLiteratureList(shownLits);
+                    M.shownLits = M.tempLitsA.ToList();
+                    LoadLiteratureList(M.shownLits);
                     break;
                 case "clbTempLitsAreaB":
-                    shownLits = tempLitsB.ToList();
-                    LoadLiteratureList(shownLits);
+                    M.shownLits = M.tempLitsB.ToList();
+                    LoadLiteratureList(M.shownLits);
                     break;
                 default:
                     break;
@@ -1343,14 +1339,14 @@ namespace LifeGame
             switch (SelectedAttri)
             {
                 case "clbTempLitsAreaA":
-                    shownLits.AddRange(tempLitsA.ToList());
-                    shownLits = shownLits.Distinct().ToList();
-                    LoadLiteratureList(shownLits);
+                    M.shownLits.AddRange(M.tempLitsA.ToList());
+                    M.shownLits = M.shownLits.Distinct().ToList();
+                    LoadLiteratureList(M.shownLits);
                     break;
                 case "clbTempLitsAreaB":
-                    shownLits.AddRange(tempLitsB.ToList());
-                    shownLits = shownLits.Distinct().ToList();
-                    LoadLiteratureList(shownLits);
+                    M.shownLits.AddRange(M.tempLitsB.ToList());
+                    M.shownLits = M.shownLits.Distinct().ToList();
+                    LoadLiteratureList(M.shownLits);
                     break;
                 default:
                     break;
@@ -1364,18 +1360,18 @@ namespace LifeGame
                 case "clbTempLitsAreaA":
                     for (int i = 0; i < clbTempLitsAreaA.CheckedItems.Count; i++)
                     {
-                        shownLits.Add(clbTempLitsAreaA.CheckedItems[i].ToString());
+                        M.shownLits.Add(clbTempLitsAreaA.CheckedItems[i].ToString());
                     }
-                    shownLits = shownLits.Distinct().ToList();
-                    LoadLiteratureList(shownLits);
+                    M.shownLits = M.shownLits.Distinct().ToList();
+                    LoadLiteratureList(M.shownLits);
                     break;
                 case "clbTempLitsAreaB":
                     for (int i = 0; i < clbTempLitsAreaB.CheckedItems.Count; i++)
                     {
-                        shownLits.Add(clbTempLitsAreaB.CheckedItems[i].ToString());
+                        M.shownLits.Add(clbTempLitsAreaB.CheckedItems[i].ToString());
                     }
-                    shownLits = shownLits.Distinct().ToList();
-                    LoadLiteratureList(shownLits);
+                    M.shownLits = M.shownLits.Distinct().ToList();
+                    LoadLiteratureList(M.shownLits);
                     break;
                 default:
                     break;
@@ -1409,9 +1405,9 @@ namespace LifeGame
             {
                 for (int i = 0; i < dgvLiterature.SelectedRows.Count; i++)
                 {
-                    if (!tempLitsA.Contains(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString()))
+                    if (!M.tempLitsA.Contains(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString()))
                     {
-                        tempLitsA.Add(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString());
+                        M.tempLitsA.Add(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString());
                     }
                 }
                 updateTempLitAreaA();
@@ -1424,9 +1420,9 @@ namespace LifeGame
             {
                 for (int i = 0; i < dgvLiterature.SelectedRows.Count; i++)
                 {
-                    if (!tempLitsB.Contains(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString()))
+                    if (!M.tempLitsB.Contains(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString()))
                     {
-                        tempLitsB.Add(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString());
+                        M.tempLitsB.Add(dgvLiterature.SelectedRows[i].Cells[1].Value.ToString());
                     }
                 }
                 updateTempLitAreaB();
@@ -1733,25 +1729,25 @@ namespace LifeGame
 
         private void removeDupsInAreaAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tempLitsA.RemoveAll(o => tempLitsB.Contains(o));
+            M.tempLitsA.RemoveAll(o => M.tempLitsB.Contains(o));
             updateTempLitAreaA();
         }
 
         private void removeDupsInAreaBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tempLitsB.RemoveAll(o => tempLitsA.Contains(o));
+            M.tempLitsB.RemoveAll(o => M.tempLitsA.Contains(o));
             updateTempLitAreaB();
         }
 
         private void tmsIntersectAwithB_Click(object sender, EventArgs e)
         {
-            tempLitsA.RemoveAll(o => !tempLitsB.Contains(o));
+            M.tempLitsA.RemoveAll(o => !M.tempLitsB.Contains(o));
             updateTempLitAreaA();
         }
 
         private void tsmIntersectBwithA_Click(object sender, EventArgs e)
         {
-            tempLitsB.RemoveAll(o => !tempLitsA.Contains(o));
+            M.tempLitsB.RemoveAll(o => !M.tempLitsA.Contains(o));
             updateTempLitAreaB();
         }
     }

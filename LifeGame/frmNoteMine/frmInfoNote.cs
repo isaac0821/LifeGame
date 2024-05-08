@@ -1125,47 +1125,37 @@ namespace LifeGame
 
         private void SaveNote()
         {
-            DialogResult result = MessageBox.Show("Wanna save?", "Saving", MessageBoxButtons.YesNo);
-            switch (result)
+            G.glb.lstNoteLog.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
+            G.glb.lstNoteColor.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
+            SaveNoteLog();
+            foreach (RNoteLog noteLog in noteLogs)
             {
-                case DialogResult.Yes:
-                    G.glb.lstNoteLog.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
-                    G.glb.lstNoteColor.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
-                    SaveNoteLog();
-                    foreach (RNoteLog noteLog in noteLogs)
-                    {
-                        noteLog.Topic = txtTopic.Text;
-                        noteLog.TagTime = dtpDate.Value.Date;
-                        G.glb.lstNoteLog.Add(noteLog);
-                    }
-                    foreach (RNoteColor noteColor in noteColors)
-                    {
-                        noteColor.Topic = txtTopic.Text;
-                        noteColor.TagTime = dtpDate.Value.Date;
-                        G.glb.lstNoteColor.Add(noteColor);
-                    }
-                    if (G.glb.lstNote.Exists(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date))
-                    {
-                        G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).TagTime = dtpDate.Value.Date;
-                        G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Topic = txtTopic.Text;
-                        G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).LiteratureTitle = txtTitle.Text;
-                        G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Locked = lockMode;
-                    }
-                    else
-                    {
-                        CNote newNote = new CNote();
-                        newNote.Topic = txtTopic.Text;
-                        newNote.TagTime = dtpDate.Value.Date;
-                        newNote.LiteratureTitle = txtTitle.Text;
-                        newNote.Locked = lockMode;
-                        newNote.GUID = topicGUID;
-                        G.glb.lstNote.Add(newNote);
-                    }
-                    break;
-                case DialogResult.No:
-                    break;
-                default:
-                    break;
+                noteLog.Topic = txtTopic.Text;
+                noteLog.TagTime = dtpDate.Value.Date;
+                G.glb.lstNoteLog.Add(noteLog);
+            }
+            foreach (RNoteColor noteColor in noteColors)
+            {
+                noteColor.Topic = txtTopic.Text;
+                noteColor.TagTime = dtpDate.Value.Date;
+                G.glb.lstNoteColor.Add(noteColor);
+            }
+            if (G.glb.lstNote.Exists(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date))
+            {
+                G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).TagTime = dtpDate.Value.Date;
+                G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Topic = txtTopic.Text;
+                G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).LiteratureTitle = txtTitle.Text;
+                G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Locked = lockMode;
+            }
+            else
+            {
+                CNote newNote = new CNote();
+                newNote.Topic = txtTopic.Text;
+                newNote.TagTime = dtpDate.Value.Date;
+                newNote.LiteratureTitle = txtTitle.Text;
+                newNote.Locked = lockMode;
+                newNote.GUID = topicGUID;
+                G.glb.lstNote.Add(newNote);
             }
 
             FileStream f = new FileStream("data.dat", FileMode.Create);
@@ -3634,6 +3624,64 @@ namespace LifeGame
             if (lsvColor.SelectedItems.Count == 1)
             {
                 string selectedLabel = lsvColor.SelectedItems[0].Text;
+            }
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (M.shownLits.Count > 0)
+            {
+                CLiterature prevLit = new CLiterature();
+                int litIndex = M.shownLits.FindIndex(o => o == txtTitle.Text);
+                if (litIndex == -1)
+                {
+                    prevLit = G.glb.lstLiterature.Find(o => o.Title == M.shownLits[0]);
+                }
+                else if (litIndex == 0)
+                {
+                    prevLit = G.glb.lstLiterature.Find(o => o.Title == M.shownLits[M.shownLits.Count - 1]);
+                }
+                else
+                {
+                    prevLit = G.glb.lstLiterature.Find(o => o.Title == M.shownLits[litIndex - 1]);
+                }
+
+                frmInfoNote frmInfoNote = new frmInfoNote(prevLit);
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
+
+                M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
+                SaveLiterature();
+                Dispose();
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (M.shownLits.Count > 0)
+            {
+                CLiterature nextLit = new CLiterature();
+                int litIndex = M.shownLits.FindIndex(o => o == txtTitle.Text);
+                if (litIndex == -1)
+                {
+                    nextLit = G.glb.lstLiterature.Find(o => o.Title == M.shownLits[0]);
+                }
+                else if (litIndex == M.shownLits.Count - 1)
+                {
+                    nextLit = G.glb.lstLiterature.Find(o => o.Title == M.shownLits[0]);
+                }
+                else
+                {
+                    nextLit = G.glb.lstLiterature.Find(o => o.Title == M.shownLits[litIndex + 1]);
+                }
+
+                frmInfoNote frmInfoNote = new frmInfoNote(nextLit);
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
+
+                M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
+                SaveLiterature();
+                Dispose();
             }
         }
     }

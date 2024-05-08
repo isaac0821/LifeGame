@@ -86,6 +86,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPrev = new System.Windows.Forms.Button();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.btnBibTeX = new System.Windows.Forms.Button();
             this.cbxBibEntryType = new System.Windows.Forms.ComboBox();
@@ -646,11 +648,15 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtTitle, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnNext, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnPrev, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 52);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -676,9 +682,33 @@
             this.txtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTitle.Location = new System.Drawing.Point(49, 3);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(502, 20);
+            this.txtTitle.Size = new System.Drawing.Size(442, 20);
             this.txtTitle.TabIndex = 1;
             this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnNext.Location = new System.Drawing.Point(527, 3);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(24, 20);
+            this.btnNext.TabIndex = 2;
+            this.btnNext.Text = ">";
+            this.btnNext.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnPrev
+            // 
+            this.btnPrev.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPrev.Location = new System.Drawing.Point(497, 3);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(24, 20);
+            this.btnPrev.TabIndex = 3;
+            this.btnPrev.Text = "<";
+            this.btnPrev.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // tableLayoutPanel7
             // 
@@ -1332,6 +1362,7 @@
             this.Controls.Add(this.tblNote);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmInfoNote";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInfoNote_FormClosing);
             this.Load += new System.EventHandler(this.frmInfoNote_Load);
@@ -1483,5 +1514,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.ToolStripMenuItem tsmProgressAdd;
         private System.Windows.Forms.ToolStripMenuItem tsmProgressMinus;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPrev;
     }
 }

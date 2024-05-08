@@ -12,6 +12,9 @@ namespace LifeGame
         // 单例模式的窗口
         public static List<frmInfoNote> notesOpened = new List<frmInfoNote>();
         public static List<frmLiterature> literatureOpened = new List<frmLiterature>();
+        public static List<string> shownLits = new List<string>();
+        public static List<string> tempLitsA = new List<string>();
+        public static List<string> tempLitsB = new List<string>();
     }
 
     public class TempMemory
