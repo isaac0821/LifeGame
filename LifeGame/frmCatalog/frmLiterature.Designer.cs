@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("(Root)");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("(Root)");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLiterature));
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.filesFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -321,10 +321,10 @@
             this.trvTag.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvTag.Location = new System.Drawing.Point(3, 16);
             this.trvTag.Name = "trvTag";
-            treeNode1.Name = "rootNode";
-            treeNode1.Text = "(Root)";
+            treeNode2.Name = "rootNode";
+            treeNode2.Text = "(Root)";
             this.trvTag.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.trvTag.Size = new System.Drawing.Size(273, 524);
             this.trvTag.TabIndex = 2;
             this.trvTag.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.trvTag_AfterCheck);

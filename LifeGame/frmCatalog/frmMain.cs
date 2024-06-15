@@ -220,6 +220,16 @@ namespace LifeGame
             tblMain.ColumnStyles[0].Width = 30;
             tblMain.ColumnStyles[8].Width = 30;
             DrawLog();
+
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                nfiMain.Visible = true;
+                this.ShowInTaskbar = false;
+            }
+            else
+            {
+                nfiMain.Visible = false;
+            }
         }
 
         private void FindNextToAlarm()
@@ -1331,6 +1341,18 @@ namespace LifeGame
                     MessageBox.Show("Intotal " + succeedNum.ToString() + " transaction record added."); 
                 }
             }
+        }
+
+        private void nfiMain_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Visible = true;
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

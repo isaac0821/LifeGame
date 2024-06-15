@@ -94,6 +94,9 @@
             this.chkMine = new System.Windows.Forms.CheckBox();
             this.txtSearchNote = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.nfiMain = new System.Windows.Forms.NotifyIcon(this.components);
+            this.cmsTool = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMain.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -107,6 +110,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picSat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSun)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
+            this.cmsTool.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnsMain
@@ -750,6 +754,28 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // nfiMain
+            // 
+            this.nfiMain.ContextMenuStrip = this.cmsTool;
+            this.nfiMain.Icon = ((System.Drawing.Icon)(resources.GetObject("nfiMain.Icon")));
+            this.nfiMain.Text = "Life Game";
+            this.nfiMain.Visible = true;
+            this.nfiMain.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.nfiMain_MouseDoubleClick);
+            // 
+            // cmsTool
+            // 
+            this.cmsTool.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.cmsTool.Name = "cmsTool";
+            this.cmsTool.Size = new System.Drawing.Size(94, 26);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -785,6 +811,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picSun)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.cmsTool.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -856,6 +883,9 @@
         private System.Windows.Forms.ToolStripMenuItem addBatchInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmAddBatchTransactions;
         private System.Windows.Forms.ToolStripMenuItem tsmAddBatchLiterature;
+        private System.Windows.Forms.NotifyIcon nfiMain;
+        private System.Windows.Forms.ContextMenuStrip cmsTool;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

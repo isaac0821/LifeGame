@@ -1750,5 +1750,6 @@ namespace LifeGame
             M.tempLitsB.RemoveAll(o => !M.tempLitsA.Contains(o));
             updateTempLitAreaB();
         }
+
     }
 }
