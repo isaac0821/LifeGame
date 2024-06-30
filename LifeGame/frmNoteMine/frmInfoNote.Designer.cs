@@ -69,6 +69,7 @@
             this.tsmChangeLabel = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCopyFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.removeChildrenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,6 +89,7 @@
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
+            this.btnCopy = new System.Windows.Forms.Button();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.btnBibTeX = new System.Windows.Forms.Button();
             this.cbxBibEntryType = new System.Windows.Forms.ComboBox();
@@ -348,6 +350,7 @@
             this.tsmChangeLabel,
             this.toolStripSeparator8,
             this.tsmCopy,
+            this.tsmCopyFile,
             this.tsmPaste,
             this.tsmRemove,
             this.removeChildrenToolStripMenuItem,
@@ -362,7 +365,7 @@
             this.toolStripSeparator10,
             this.tsmRenameNote});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(210, 698);
+            this.cmsTrvNote.Size = new System.Drawing.Size(210, 720);
             // 
             // tsmAdd
             // 
@@ -542,6 +545,13 @@
             this.tsmCopy.Text = "Copy (&C)";
             this.tsmCopy.Click += new System.EventHandler(this.tsmCopy_Click);
             // 
+            // tsmCopyFile
+            // 
+            this.tsmCopyFile.Name = "tsmCopyFile";
+            this.tsmCopyFile.Size = new System.Drawing.Size(209, 22);
+            this.tsmCopyFile.Text = "Copy File";
+            this.tsmCopyFile.Click += new System.EventHandler(this.tsmCopyFile_Click);
+            // 
             // tsmPaste
             // 
             this.tsmPaste.Enabled = false;
@@ -648,15 +658,17 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnCount = 5;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtTitle, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnNext, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnPrev, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnCopy, 4, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 52);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -682,14 +694,14 @@
             this.txtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTitle.Location = new System.Drawing.Point(49, 3);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(442, 20);
+            this.txtTitle.Size = new System.Drawing.Size(357, 20);
             this.txtTitle.TabIndex = 1;
             this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
             // 
             // btnNext
             // 
             this.btnNext.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNext.Location = new System.Drawing.Point(527, 3);
+            this.btnNext.Location = new System.Drawing.Point(442, 3);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(24, 20);
             this.btnNext.TabIndex = 2;
@@ -701,7 +713,7 @@
             // btnPrev
             // 
             this.btnPrev.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPrev.Location = new System.Drawing.Point(497, 3);
+            this.btnPrev.Location = new System.Drawing.Point(412, 3);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(24, 20);
             this.btnPrev.TabIndex = 3;
@@ -709,6 +721,17 @@
             this.btnPrev.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnPrev.UseVisualStyleBackColor = true;
             this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCopy.Location = new System.Drawing.Point(472, 3);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(79, 20);
+            this.btnCopy.TabIndex = 4;
+            this.btnCopy.Text = "CopyToNote";
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // tableLayoutPanel7
             // 
@@ -1516,5 +1539,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmProgressMinus;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnCopy;
+        private System.Windows.Forms.ToolStripMenuItem tsmCopyFile;
     }
 }

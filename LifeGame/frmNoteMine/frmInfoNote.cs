@@ -1794,6 +1794,14 @@ namespace LifeGame
             {
                 tsmConvertToTransaction.Enabled = false;
             }
+            if (trvNote.SelectedNode.Text.Contains("$LITR$>"))
+            {
+                tsmCopyFile.Enabled = true;
+            }
+            else
+            {
+                tsmCopyFile.Enabled = false;
+            }
         }
 
         private void tsmGoto_Click(object sender, EventArgs e)
@@ -1987,14 +1995,17 @@ namespace LifeGame
         private void btnWrite_Click(object sender, EventArgs e)
         {
             List<string> logList = writeByNode(trvNote.Nodes[0], 0);
-
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(trvNote.Nodes[0].Text + ".txt", false))
+            string txtFile = txtTopic.Text;
+            txtFile = txtFile.Replace(":", "-");
+            
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(txtFile + ".txt", false))
             {
                 foreach (string log in logList)
                 {
                     file.WriteLine(log);
                 }
-                MessageBox.Show("Write notes to " + txtTopic.Text + ".txt");
+
+                MessageBox.Show("Write notes to " + txtFile + ".txt");
             }
         }
 
@@ -2434,6 +2445,7 @@ namespace LifeGame
             else if (e.Control && e.KeyCode == Keys.C)
             {
                 tsmCopy_Click(trvNote, e);
+                tsmCopyFile_Click(trvNote, e);
             }
             // 粘贴
             else if (e.Control && e.KeyCode == Keys.V)
@@ -3682,6 +3694,97 @@ namespace LifeGame
                 M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
                 SaveLiterature();
                 Dispose();
+            }
+        }
+
+        private TreeNode createLitNoteLogNode()
+        {
+            TreeNode rootNode = new TreeNode(note.Topic, 0, 0);
+            rootNode.Name = note.GUID;
+            rootNode.Text = note.Topic;
+
+            TreeNode metaNode = new TreeNode("meta", 0, 0);
+            metaNode.Name = Guid.NewGuid().ToString();
+
+            TreeNode yearNode = new TreeNode("year", 0, 0);
+            yearNode.Name = Guid.NewGuid().ToString();
+            yearNode.Text = "year: " + G.glb.lstLiterature.Find(o => o.Title == note.LiteratureTitle).PublishYear.ToString();
+            metaNode.Nodes.Add(yearNode);
+
+            TreeNode jourNode = new TreeNode("", 0, 0);
+            jourNode.Name = Guid.NewGuid().ToString();
+            jourNode.Text = "jourConf: " + G.glb.lstLiterature.Find(o => o.Title == note.LiteratureTitle).JournalOrConferenceName;
+            metaNode.Nodes.Add(jourNode);
+
+            List<RLiteratureAuthor> authors = new List<RLiteratureAuthor>();
+            authors = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == note.LiteratureTitle).ToList();
+            foreach (RLiteratureAuthor author in authors)
+            {
+                TreeNode authorNode = new TreeNode(author.Author, 0, 0);
+                authorNode.Name = Guid.NewGuid().ToString();
+                authorNode.Text = "author: " + author.Author;
+                metaNode.Nodes.Add(authorNode);
+            }
+
+            TreeNode tagRootNode = new TreeNode("tag", 0, 0);
+            tagRootNode.Name = Guid.NewGuid().ToString();
+
+            List<RLiteratureTag> tags = new List<RLiteratureTag>();
+            tags = G.glb.lstLiteratureTag.FindAll(o => o.Title == note.LiteratureTitle).ToList();
+            foreach (RLiteratureTag tag in tags)
+            {
+                TreeNode tagNode = new TreeNode(tag.Tag, 0, 0);
+                tagNode.Name = Guid.NewGuid().ToString();
+                tagNode.Text = "tag: " + tag.Tag;
+                tagRootNode.Nodes.Add(tagNode);
+            }
+
+            rootNode.Nodes.Add(metaNode);
+            rootNode.Nodes.Add(tagRootNode);
+            rootNode.Expand();
+
+            foreach (TreeNode tr in trvNote.Nodes[0].Nodes)
+            {
+                if (tr.Nodes.Count > 0)
+                {
+                    TreeNode sub = new TreeNode(tr.Text, 0, 0);
+                    sub.Name = tr.Name;
+                    sub.Text = tr.Text;
+                    LoadChildNoteLog(sub, note.Topic);
+                    sub.Name = Guid.NewGuid().ToString();
+                    rootNode.Nodes.Add(sub);
+                }
+            }
+
+            rootNode.Text = "$LITR$>" + note.LiteratureTitle;
+            rootNode.Name = Guid.NewGuid().ToString();
+            rootNode.ForeColor = Color.Brown;
+            rootNode.NodeFont = new Font(Font, FontStyle.Underline);
+            return rootNode;
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            TreeNode litNode = createLitNoteLogNode();
+            M.mem.copiedNodes.Clear();
+            copyNode(litNode);
+        }
+
+        private void tsmCopyFile_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null)
+            {
+                try
+                {
+                    string lit = trvNote.SelectedNode.Text.ToString();
+                    lit = lit.Replace("$LITR$>", "");
+                    lit = lit.Replace(":", "-");
+                    string files = "D:\\Literature\\" + lit + ".pdf";
+                    System.Collections.Specialized.StringCollection toCopy = new System.Collections.Specialized.StringCollection();
+                    toCopy.Add(files);
+                    Clipboard.SetFileDropList(toCopy);
+                }
+                catch { }
             }
         }
     }

@@ -1489,9 +1489,34 @@ namespace LifeGame
                 metaNode.Nodes.Add(authorNode);
             }
 
+            TreeNode tagRootNode = new TreeNode("tag", 0, 0);
+            tagRootNode.Name = Guid.NewGuid().ToString();
+
+            List<RLiteratureTag> tags = new List<RLiteratureTag>();
+            tags = G.glb.lstLiteratureTag.FindAll(o => o.Title == note.LiteratureTitle).ToList();
+            foreach (RLiteratureTag tag in tags)
+            {
+                TreeNode tagNode = new TreeNode(tag.Tag, 0, 0);
+                tagNode.Name = Guid.NewGuid().ToString();
+                tagNode.Text = "tag: " + tag.Tag;
+                tagRootNode.Nodes.Add(tagNode);
+            }
+
             rootNode.Nodes.Add(metaNode);
+            rootNode.Nodes.Add(tagRootNode);
             rootNode.Expand();
-            LoadChildNoteLog(rootNode, litNoteLog);
+
+            litNoteLog.RemoveAll(o => o.SubLog.Contains("modified: "));
+            litNoteLog.RemoveAll(o => o.SubLog.Contains("Modified: "));
+
+            litNoteLog.RemoveAll(o =>
+                    o.Topic == o.Log
+                    && !litNoteLog.Exists(p => p.Log == o.SubLog));
+
+            if (litNoteLog.Count > 0)
+            {
+                LoadChildNoteLog(rootNode, litNoteLog);
+            }           
 
             rootNode.Text = "$LITR$>" + note.LiteratureTitle;
             rootNode.Name = Guid.NewGuid().ToString();

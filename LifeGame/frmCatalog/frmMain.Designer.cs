@@ -96,6 +96,11 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.nfiMain = new System.Windows.Forms.NotifyIcon(this.components);
             this.cmsTool = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmToolNewNote = new System.Windows.Forms.ToolStripMenuItem();
+            this.findNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmToolLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMain.SuspendLayout();
             this.stsMain.SuspendLayout();
@@ -765,14 +770,50 @@
             // cmsTool
             // 
             this.cmsTool.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmToolNewNote,
+            this.findNoteToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.tsmToolLiterature,
+            this.toolStripSeparator5,
             this.exitToolStripMenuItem});
             this.cmsTool.Name = "cmsTool";
-            this.cmsTool.Size = new System.Drawing.Size(94, 26);
+            this.cmsTool.Size = new System.Drawing.Size(136, 104);
+            // 
+            // tsmToolNewNote
+            // 
+            this.tsmToolNewNote.Name = "tsmToolNewNote";
+            this.tsmToolNewNote.Size = new System.Drawing.Size(135, 22);
+            this.tsmToolNewNote.Text = "New Note";
+            this.tsmToolNewNote.Click += new System.EventHandler(this.tsmToolNewNote_Click);
+            // 
+            // findNoteToolStripMenuItem
+            // 
+            this.findNoteToolStripMenuItem.Name = "findNoteToolStripMenuItem";
+            this.findNoteToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.findNoteToolStripMenuItem.Text = "Find Note...";
+            this.findNoteToolStripMenuItem.Click += new System.EventHandler(this.findNoteToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(132, 6);
+            // 
+            // tsmToolLiterature
+            // 
+            this.tsmToolLiterature.Name = "tsmToolLiterature";
+            this.tsmToolLiterature.Size = new System.Drawing.Size(135, 22);
+            this.tsmToolLiterature.Text = "Literature";
+            this.tsmToolLiterature.Click += new System.EventHandler(this.tsmToolLiterature_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(132, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -886,6 +927,11 @@
         private System.Windows.Forms.NotifyIcon nfiMain;
         private System.Windows.Forms.ContextMenuStrip cmsTool;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmToolLiterature;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem tsmToolNewNote;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem findNoteToolStripMenuItem;
     }
 }
 

@@ -267,21 +267,37 @@ namespace LifeGame
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show("Wanna save?", "Saving", MessageBoxButtons.YesNoCancel);
-            switch (result)
+            DialogResult minimize = MessageBox.Show("Minimize windows (Yes) or exit (No)?", "Exiting", MessageBoxButtons.YesNoCancel);
+            switch (minimize)
             {
+
                 case DialogResult.Yes:
-                    SerializeNow();
-                    e.Cancel = false;
+                    this.WindowState = FormWindowState.Minimized;
+                    e.Cancel = true;
                     break;
                 case DialogResult.No:
-                    e.Cancel = false;
+                    DialogResult result = MessageBox.Show("Wanna save?", "Saving", MessageBoxButtons.YesNoCancel);
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            SerializeNow();
+                            e.Cancel = false;
+                            break;
+                        case DialogResult.No:
+                            e.Cancel = false;
+                            break;
+                        case DialogResult.Cancel:
+                            e.Cancel = true;
+                            break;
+                        default:
+                            e.Cancel = true;
+                            break;
+                    }
                     break;
                 case DialogResult.Cancel:
                     e.Cancel = true;
                     break;
                 default:
-                    e.Cancel = true;
                     break;
             }
         }
@@ -1353,6 +1369,50 @@ namespace LifeGame
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void tsmToolLiterature_Click(object sender, EventArgs e)
+        {
+            if (M.literatureOpened.Count != 0)
+            {
+                M.literatureOpened[0].Show();
+                M.literatureOpened[0].BringToFront();
+            }
+            else
+            {
+                frmLiterature frmLiterature = new frmLiterature();
+                M.literatureOpened.Add(frmLiterature);
+                frmLiterature.Show();
+            }
+        }
+
+        private void tsmToolNewNote_Click(object sender, EventArgs e)
+        {
+            frmInfoNote frmInfoNote = new frmInfoNote(DateTime.Today.Date);
+            frmInfoNote.Show();
+        }
+
+        private void findNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string search = Interaction.InputBox("Search for existing notes.", "Search Note", "", 300, 300);
+            if (search != "")
+            {
+                List<CNote> notes = G.glb.lstNote.FindAll(o => o.Topic.ToUpper().Contains(search.ToUpper()));
+                if (notes.Count == 0)
+                {
+                    MessageBox.Show("No record!");
+                }
+                else if (notes.Count == 1)
+                {
+                    plot D = new plot();
+                    D.CallInfoNote(notes[0]);
+                }
+                else
+                {
+                    frmSearchNote frmSearchNote = new frmSearchNote(search);
+                    frmSearchNote.Show();
+                }
+            }
         }
     }
 }
