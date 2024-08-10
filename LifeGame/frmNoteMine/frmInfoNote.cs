@@ -100,7 +100,7 @@ namespace LifeGame
             lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
             lstSurveyLiterature = G.glb.lstSurveyLiterature.FindAll(o => o.LiteratureTitle == litTitle).ToList();
             literatureBib = literature.BibTeX;
-            
+
             InitializeComponent();
 
             noteType = ENoteType.Literature;
@@ -118,10 +118,10 @@ namespace LifeGame
             note = info;
             noteLogs = G.glb.lstNoteLog.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             noteColors = G.glb.lstNoteColor.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
-            topicGUID = info.GUID;            
+            topicGUID = info.GUID;
 
             this.Text = "LifeGame - Literature - " + lit.Title;
-                        
+
             LoadNoteColor();
             LoadNoteLog();
             LoadLiterature();
@@ -275,7 +275,7 @@ namespace LifeGame
             InitializeComponent();
 
             note = new CNote();
-            note.Topic = "Daily Report";            
+            note.Topic = "Daily Report";
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
@@ -492,7 +492,8 @@ namespace LifeGame
             }
             else if (noteText.Contains("$LINK$>"))
             {
-                string selectedPath = noteText.Replace("$LINK$>", "");
+                string selectedPath = noteText.Split('@')[0];
+                selectedPath = selectedPath.Replace("$LINK$>", "");
                 string[] checkUrl = selectedPath.Split(':');
                 if (checkUrl[0] == "http" || checkUrl[0] == "https")
                 {
@@ -519,7 +520,8 @@ namespace LifeGame
             }
             else if (noteText.Contains("$NOTE$>"))
             {
-                string selectedPath = noteText.Replace("$NOTE$>", "");
+                string selectedPath = noteText.Split('@')[0];
+                selectedPath = selectedPath.Replace("$NOTE$>", "");
                 string[] checkNote = selectedPath.Split('@');
                 DateTime noteDate = new DateTime();
                 string noteTitle = "";
@@ -564,7 +566,8 @@ namespace LifeGame
             }
             else if (noteText.Contains("$LITR$>"))
             {
-                string selectedPath = noteText.Replace("$LITR$>", "");
+                string selectedPath = noteText.Split('@')[0];
+                selectedPath = selectedPath.Replace("$LITR$>", "");
                 if (G.glb.lstLiterature.Exists(o => o.Title == selectedPath))
                 {
                     return 6;
@@ -923,7 +926,7 @@ namespace LifeGame
                     if (sub.IsExpand)
                     {
                         childNode.Expand();
-                    }                    
+                    }
                     childNode.StateImageIndex = getLogo(sub.SubLog);
                     if (highlightText != "" && sub.SubLog.Contains(highlightText))
                     {
@@ -1167,7 +1170,7 @@ namespace LifeGame
         private void frmInfoNote_FormClosing(object sender, FormClosingEventArgs e)
         {
             M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
-            
+
             if (noteType == ENoteType.Note)
             {
                 SaveNote();
@@ -1203,7 +1206,7 @@ namespace LifeGame
                     newNode.Name = Guid.NewGuid().ToString();
                     newNode.BackColor = SystemColors.Window;
                     newNode.ForeColor = Color.Black;
-                    newNode.ExpandAll();                    
+                    newNode.ExpandAll();
                     (newNode.BackColor, newNode.ForeColor, newNode.NodeFont) = getColor(newLog);
                     newNode.StateImageIndex = getLogo(newLog);
                     trvNote.SelectedNode.Nodes.Add(newNode);
@@ -1348,7 +1351,7 @@ namespace LifeGame
                             newNode.Name = Guid.NewGuid().ToString();
                             newNode.BackColor = SystemColors.Window;
                             newNode.ForeColor = Color.Black;
-                            newNode.ExpandAll(); 
+                            newNode.ExpandAll();
                             trvNote.SelectedNode.ExpandAll();
 
                             (newNode.BackColor, newNode.ForeColor, newNode.NodeFont) = getColor(newLog);
@@ -1749,14 +1752,12 @@ namespace LifeGame
                 {
                     tsmProgressAdd.Visible = true;
                     tsmProgressMinus.Visible = true;
-                    tspProgress.Visible = true;
                 }
             }
             else
             {
                 tsmProgressAdd.Visible = false;
                 tsmProgressMinus.Visible = false;
-                tspProgress.Visible = false;
             }
             if (trvNote.SelectedNode.Text.Contains("$LINK$>")
                 || trvNote.SelectedNode.Text.Contains("$LITR$>")
@@ -1797,10 +1798,12 @@ namespace LifeGame
             if (trvNote.SelectedNode.Text.Contains("$LITR$>"))
             {
                 tsmCopyFile.Enabled = true;
+                tsmCopyBibTeX.Enabled = true;
             }
             else
             {
                 tsmCopyFile.Enabled = false;
+                tsmCopyBibTeX.Enabled = false;
             }
         }
 
@@ -1810,7 +1813,8 @@ namespace LifeGame
             {
                 if (trvNote.SelectedNode.Text.Contains("$LINK$>"))
                 {
-                    string selectedPath = trvNote.SelectedNode.Text.Replace("$LINK$>", "");
+                    string selectedPath = trvNote.SelectedNode.Text.Split('@')[0];
+                    selectedPath = selectedPath.Replace("$LINK$>", "");
                     string[] checkUrl = selectedPath.Split(':');
                     if (checkUrl[0] == "http" || checkUrl[0] == "https")
                     {
@@ -1830,7 +1834,8 @@ namespace LifeGame
                 }
                 else if (trvNote.SelectedNode.Text.Contains("$LITR$>"))
                 {
-                    string selectedPath = trvNote.SelectedNode.Text.Replace("$LITR$>", "");
+                    string selectedPath = trvNote.SelectedNode.Text.Split('@')[0];
+                    selectedPath = selectedPath.Replace("$LITR$>", "");
                     if (G.glb.lstLiterature.Exists(o => o.Title == selectedPath))
                     {
                         if (M.notesOpened.Exists(o => o.note.LiteratureTitle == selectedPath))
@@ -1852,7 +1857,8 @@ namespace LifeGame
                 }
                 else if (trvNote.SelectedNode.Text.Contains("$NOTE$>"))
                 {
-                    string selectedPath = trvNote.SelectedNode.Text.Replace("$NOTE$>", "");
+                    string selectedPath = trvNote.SelectedNode.Text.Split('@')[0];
+                    selectedPath = selectedPath.Replace("$NOTE$>", "");
                     string[] checkNote = selectedPath.Split('@');
                     DateTime noteDate = new DateTime();
                     string noteTitle = "";
@@ -1952,7 +1958,7 @@ namespace LifeGame
                     }
                 }
             }
-            
+
             foreach (TreeNode subNode in treeNode.Nodes)
             {
                 updateJumpNode(subNode, oldNodeText, newNodeText);
@@ -1997,7 +2003,7 @@ namespace LifeGame
             List<string> logList = writeByNode(trvNote.Nodes[0], 0);
             string txtFile = txtTopic.Text;
             txtFile = txtFile.Replace(":", "-");
-            
+
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(txtFile + ".txt", false))
             {
                 foreach (string log in logList)
@@ -2215,11 +2221,11 @@ namespace LifeGame
                 frmNoteProperties.Show();
             }
         }
-        
+
         private void UpdateWordCount()
         {
             int[] rootProperty = nodeProperties(trvNote.Nodes[0]);
-            if (trvNote.SelectedNode !=  null)
+            if (trvNote.SelectedNode != null)
             {
                 int[] selectedProperty = nodeProperties(trvNote.SelectedNode);
                 lblWordCount.Text = "Word Count: " + selectedProperty[0].ToString() + "/" + rootProperty[0].ToString();
@@ -2228,7 +2234,7 @@ namespace LifeGame
             {
                 lblWordCount.Text = "Word Count: 0/" + rootProperty[0].ToString();
             }
-            
+
         }
 
         private int wordCount(string str)
@@ -2251,7 +2257,7 @@ namespace LifeGame
             int[] count = new int[] { 0, 0, 0, 0, 0 };
             count[0] = wordCount(node.Text);
             foreach (TreeNode item in node.Nodes)
-            {                
+            {
                 count[1] += 1;
                 if (item.Text.Contains("$LINK$>"))
                 {
@@ -2289,7 +2295,7 @@ namespace LifeGame
                 count += subCount[0];
                 countWord += subCount[1];
             }
-            return new int[] {count, countWord};
+            return new int[] { count, countWord };
         }
 
         private void tsmFold_Click(object sender, EventArgs e)
@@ -3523,7 +3529,7 @@ namespace LifeGame
             if (trvNote.SelectedNode != null)
             {
                 relabelNodeNext(trvNote.SelectedNode);
-                
+
                 UpdateModifiedNodeTime(trvNote.SelectedNode);
             }
         }
@@ -3561,7 +3567,7 @@ namespace LifeGame
             if (trvNote.SelectedNode != null)
             {
                 if (trvNote.SelectedNode.Text.Contains("%") && trvNote.SelectedNode.Text.ToCharArray().Count(c => c == '%') == 1)
-                {                    
+                {
                     string percentStr = Regex.Match(trvNote.SelectedNode.Text, @"(?<num>\d+)(?:\%)").Groups["num"].Value;
                     if (percentStr != "")
                     {
@@ -3787,6 +3793,109 @@ namespace LifeGame
                 catch { }
             }
         }
+
+        private void tsmCopyBibTeX_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null)
+            {
+                try
+                {
+                    string litTopic = trvNote.SelectedNode.Text.ToString();
+                    litTopic = litTopic.Replace("$LITR$>", "");
+                    litTopic = litTopic.Replace(":", "-");
+                    CLiterature lit = G.glb.lstLiterature.Find(o => o.Title == litTopic);
+                    string bib = "";
+                    if (lit != null)
+                    {
+                        ParseBibTeX bibParser = new ParseBibTeX();
+                        switch (lit.BibTeX.BibEntry)
+                        {
+                            case EBibEntry.Article:
+                                bib = bibParser.ParseBibTeXArticle(lit.BibTeX);
+                                break;
+                            case EBibEntry.Conference:
+                                bib = bibParser.ParseBibTeXConference(lit.BibTeX);
+                                break;
+                            case EBibEntry.Mastersthesis:
+                                bib = bibParser.ParseBibTeXMastersthesis(lit.BibTeX);
+                                break;
+                            case EBibEntry.Phdthesis:
+                                bib = bibParser.ParseBibTeXPhdthesis(lit.BibTeX);
+                                break;
+                            case EBibEntry.Unpublished:
+                                bib = bibParser.ParseBibTeXUnpublished(lit.BibTeX);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    Clipboard.SetText(bib);
+                }
+                catch { }
+            }
+        }
+
+        private void tsmAddProgress_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null)
+            {
+                noteAddProgress(trvNote.SelectedNode, "Mid");
+            }
+            UpdateModifiedNodeTime(trvNote.SelectedNode);
+        }
+
+        private void noteAddProgress(TreeNode node, string place)
+        {
+            // 先确认有没有progress
+            if (!(node.Text.Contains("%") && node.Text.ToCharArray().Count(c => c == '%') == 1)
+                && !node.Text.Contains("$LITR$>") 
+                && !node.Text.Contains("$NOTE$>") 
+                && !node.Text.Contains("$LINK$>") 
+                && !node.Text.Contains("$JUMP$>")
+                && !node.Text.Contains("$SCHL$>")
+                && !node.Text.Contains("$RECO$>")
+                && !node.Text.Contains("$TSRA$>"))
+            {
+                if (place == "Front")
+                {
+                    node.Text = "[0%] - " + node.Text;
+                }
+                else if (place == "End")
+                {
+                    node.Text = node.Text + " - [0%]";
+                }
+                else if (place == "Mid")
+                {
+                    string[] split = node.Text.Split(':');
+                    string newNote = split[0];
+                    if (split.Length > 1)
+                    {
+                        newNote += ": [0%] - ";
+                        for (int i = 1; i < split.Length; i++)
+                        {
+                            newNote += split[i];
+                        }
+                    }
+                    else
+                    {
+                        newNote += " - [0%]";
+                    }
+                    node.Text = newNote;
+                }
+                (node.BackColor, node.ForeColor, node.NodeFont) = getColor(node.Text);
+                node.StateImageIndex = getLogo(node.Text);
+            }
+            foreach (TreeNode child in node.Nodes)
+            {
+                noteAddProgress(child, place);
+            }
+        }
+        private void tsmRemoveProgress_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 
     public class CNoteProperties

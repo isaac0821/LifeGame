@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Diagnostics;
 using Microsoft.VisualBasic;
+using System.Windows.Forms.VisualStyles;
 
 namespace LifeGame
 {
@@ -56,23 +57,96 @@ namespace LifeGame
             {
                 Deserialize();
 
-                //foreach (CLiterature lit in G.glb.lstLiterature)
+                //calculate C = new calculate();
+                //string[] logList = System.IO.File.ReadAllLines("D:\\test.txt");
+                //List<CTransaction> tmpTrans = new List<CTransaction>();
+                //foreach (string log in logList)
                 //{
-                //    foreach(RNoteLog exi in G.glb.lstNoteLog.FindAll(o => o.Topic == lit.Title && o.Log == o.Topic).ToList())
-                //    {
-                //        exi.Index += 1;
-                //    }
+                //    string[] sp = log.Split(';');
+                //    string dateStr = sp[0].Trim();
+                //    double number = Convert.ToDouble(sp[1].Trim());
+                //    string creditAcc = sp[2].Trim();
+                //    string debitAcc = sp[3].Trim();
+                //    string recordStr = sp[4].Trim();
 
-                //    RNoteLog modi = new RNoteLog();
-                //    modi.Topic = lit.Title;
-                //    modi.TopicGUID = G.glb.lstNote.Find(o => o.Topic== lit.Title).GUID;
-                //    modi.TagTime = G.glb.lstNote.Find(o => o.Topic == lit.Title).TagTime.Date;
-                //    modi.Log = lit.Title;
-                //    modi.GUID = G.glb.lstNote.Find(o => o.Topic == lit.Title).GUID;
-                //    modi.SubLog = "modified: " + DateTime.Now.ToString("F"); 
-                //    modi.Index = 0;
-                //    modi.SubGUID = Guid.NewGuid().ToString();
-                //    G.glb.lstNoteLog.Add(modi);
+                //    CTransaction tmp = new CTransaction();
+                //    tmp.Summary = recordStr;
+                //    tmp.TagTime = DateTime.Parse(dateStr);
+                //    tmp.CreditCurrency = "RMB";
+                //    tmp.DebitCurrency = "RMB";
+                //    tmp.CreditAccount = creditAcc;
+                //    tmp.DebitAccount = debitAcc;
+                //    tmp.CreditAmount = number;
+                //    tmp.DebitAmount = number;
+                //    tmp.IconType = C.MoneyInOrOut(
+                //        G.glb.lstAccount.Find(o => o.AccountName == debitAcc).AccountType,
+                //        G.glb.lstAccount.Find(o => o.AccountName == creditAcc).AccountType);
+                //    tmpTrans.Add(tmp);
+                //}
+
+                //foreach (CTransaction item in tmpTrans)
+                //{
+                //    bool NameGoodFlag = false;
+                //    while (!NameGoodFlag)
+                //    {
+                //        if (G.glb.lstTransaction.FindAll(o => o.TagTime.Date == item.TagTime.Date && o.Summary == item.Summary).Count > 0)
+                //        {
+                //            item.Summary += "_";
+                //        }
+                //        else
+                //        {
+                //            NameGoodFlag = true;
+                //        }
+                //    }
+                //    G.glb.lstTransaction.Add(item);
+                //}
+
+                //foreach (CTransaction item in tmpTrans)
+                //{
+                //    RNoteLog transLog = G.glb.lstNoteLog.Find(o =>
+                //        o.TagTime.Date == item.TagTime.Date 
+                //        && o.SubLog == "Transaction"
+                //        && o.Topic == "Daily Report");
+                //    RNoteLog newLog = new RNoteLog();
+                //    newLog.TagTime = item.TagTime.Date;
+                //    newLog.Topic = "Daily Report";
+                //    newLog.TopicGUID = transLog.TopicGUID;
+                //    newLog.Log = "Transaction";
+                //    newLog.GUID = transLog.SubGUID;
+                //    newLog.SubLog = "$TRSA$>" + item.Summary + "@" + item.CreditAmount.ToString() + "@" + item.CreditAccount + "=>" + item.DebitAccount;
+                //    newLog.SubGUID = Guid.NewGuid().ToString();
+                //    newLog.Index = 0;
+                //    G.glb.lstNoteLog.Add(newLog);
+                //}
+
+
+                //foreach (RNoteLog log in G.glb.lstNoteLog)
+                //{
+                //    log.Log = log.Log.Replace("Food - 方便面 + 自嗨锅", "Food - 方便食品");
+                //    log.Log = log.Log.Replace("Food - 熟食", "Food - 方便食品");
+
+                //    log.SubLog = log.SubLog.Replace("Food - 方便面 + 自嗨锅", "Food - 方便食品");
+                //    log.SubLog = log.SubLog.Replace("Food - 熟食", "Food - 方便食品");
+                //}
+
+                //foreach (CTransaction trans in G.glb.lstTransaction)
+                //{
+                //    if (trans.CreditAccount == "Food - 水果" ||
+                //        trans.CreditAccount == "Food - 零食饮料" ||
+                //        trans.CreditAccount == "Food - 咖啡及附属品" ||
+                //        trans.CreditAccount == "Food - 酒类" ||
+                //        trans.CreditAccount == "Food - 桶装水")
+                //    {
+                //        trans.CreditAccount = "Food - 水果零食饮料";
+                //    }
+                //    if (trans.DebitAccount == "Food - 水果" ||
+                //        trans.DebitAccount == "Food - 零食饮料" ||
+                //        trans.DebitAccount == "Food - 咖啡及附属品" ||
+                //        trans.DebitAccount == "Food - 酒类" ||
+                //        trans.DebitAccount == "Food - 桶装水")
+                //    {
+                //        trans.DebitAccount = "Food - 水果零食饮料";
+                //    }
                 //}
 
             }
@@ -267,38 +341,31 @@ namespace LifeGame
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult minimize = MessageBox.Show("Minimize windows (Yes) or exit (No)?", "Exiting", MessageBoxButtons.YesNoCancel);
-            switch (minimize)
+            if (this.WindowState == FormWindowState.Minimized)
             {
+                SerializeNow();
+                e.Cancel = false;
+            }
+            else
+            {
+                DialogResult minimize = MessageBox.Show("Minimize windows (Yes) or exit (No)?", "Exiting", MessageBoxButtons.YesNoCancel);
+                switch (minimize)
+                {
 
-                case DialogResult.Yes:
-                    this.WindowState = FormWindowState.Minimized;
-                    e.Cancel = true;
-                    break;
-                case DialogResult.No:
-                    DialogResult result = MessageBox.Show("Wanna save?", "Saving", MessageBoxButtons.YesNoCancel);
-                    switch (result)
-                    {
-                        case DialogResult.Yes:
-                            SerializeNow();
-                            e.Cancel = false;
-                            break;
-                        case DialogResult.No:
-                            e.Cancel = false;
-                            break;
-                        case DialogResult.Cancel:
-                            e.Cancel = true;
-                            break;
-                        default:
-                            e.Cancel = true;
-                            break;
-                    }
-                    break;
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-                default:
-                    break;
+                    case DialogResult.Yes:
+                        this.WindowState = FormWindowState.Minimized;
+                        e.Cancel = true;
+                        break;
+                    case DialogResult.No:
+                        SerializeNow();
+                        e.Cancel = false;
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -1186,13 +1253,13 @@ namespace LifeGame
                 openFilePath = openFileDialog.FileName;
                 string[] logList = System.IO.File.ReadAllLines(openFilePath);
                 int succeedNum = 0;
-                for (int i = 0; i < logList.Length; i++)
+                for (int i = 0; i < logList.Length; i++) 
                 {
                     try
                     {
                         string[] sp = logList[i].Split(';');
-                        string authors = sp[0].Trim();
-                        string literature = sp[1].Trim();
+                        string literature = sp[0].Trim();
+                        string authors = sp[1].Trim();
                         string journal = sp[2].Trim();
                         int year = Convert.ToInt32(sp[3].Trim());
                         string bibType = sp[4].Trim().Trim('[').Trim(']');
@@ -1263,11 +1330,55 @@ namespace LifeGame
 
                             RLiteratureTag newLiteratureTag = new RLiteratureTag();
                             newLiteratureTag.Title = literature;
-                            newLiteratureTag.Tag = "(Root)";
+                            newLiteratureTag.Tag = "(TBD)";
+
+                            CNote newNote = new CNote();
+                            string topicGUID = Guid.NewGuid().ToString();
+                            newNote.LiteratureTitle = literature;
+                            newNote.Topic = literature;                           
+                            newNote.GUID =  topicGUID;
+                            newNote.TagTime = DateTime.Today.Date;
+                            newNote.FinishedNote = false;
+                            newNote.Locked = false;
+
+                            RNoteLog litModify = new RNoteLog();
+                            litModify.Topic = literature;
+                            litModify.TopicGUID = topicGUID;
+                            litModify.TagTime = DateTime.Today.Date;
+                            litModify.Log = literature;
+                            litModify.GUID = topicGUID;
+                            litModify.SubLog = "modified: " + DateTime.Now.ToString("F");
+                            litModify.SubGUID = Guid.NewGuid().ToString();
+                            litModify.IsExpand = true;
+                            litModify.Index = 0;
+                            RNoteLog litQA = new RNoteLog();
+                            litQA.Topic = literature;
+                            litQA.TopicGUID = topicGUID;
+                            litQA.TagTime = DateTime.Today.Date;
+                            litQA.Log = literature;
+                            litQA.GUID = topicGUID;
+                            litQA.SubLog = "Q&A";
+                            litQA.SubGUID = Guid.NewGuid().ToString();
+                            litQA.IsExpand = true;
+                            litQA.Index = 1;
+                            RNoteLog litKey = new RNoteLog();
+                            litKey.Topic = literature;
+                            litKey.TopicGUID = topicGUID;
+                            litKey.TagTime = DateTime.Today.Date;
+                            litKey.Log = literature;
+                            litKey.GUID = topicGUID;
+                            litKey.SubLog = "key take-away";
+                            litKey.SubGUID = Guid.NewGuid().ToString();
+                            litKey.IsExpand = true;
+                            litKey.Index = 2;
 
                             G.glb.lstLiterature.Add(newLiterature);
                             G.glb.lstLiteratureAuthor.AddRange(newLiteratureAuthors);
                             G.glb.lstLiteratureTag.Add(newLiteratureTag);
+                            G.glb.lstNote.Add(newNote);
+                            G.glb.lstNoteLog.Add(litModify);
+                            G.glb.lstNoteLog.Add(litQA);
+                            G.glb.lstNoteLog.Add(litKey);
                             succeedNum += 1;
                         }
                         else
@@ -1278,6 +1389,7 @@ namespace LifeGame
                     catch
                     {
                         MessageBox.Show("Failed: " + logList[i] + " is illegal!");
+                        MessageBox.Show("Correct Format: Bla-bla-bla literature; Author 1, Author 2; International Journal on Strange; 2050; [J]");
                     }
                 }
                 if (succeedNum > 0)

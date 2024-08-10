@@ -175,13 +175,13 @@
             this.tsmAddBatchTransactions,
             this.tsmAddBatchLiterature});
             this.addBatchInfoToolStripMenuItem.Name = "addBatchInfoToolStripMenuItem";
-            this.addBatchInfoToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.addBatchInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addBatchInfoToolStripMenuItem.Text = "Add Batch Info";
             // 
             // tsmAddBatchTransactions
             // 
             this.tsmAddBatchTransactions.Name = "tsmAddBatchTransactions";
-            this.tsmAddBatchTransactions.Size = new System.Drawing.Size(139, 22);
+            this.tsmAddBatchTransactions.Size = new System.Drawing.Size(180, 22);
             this.tsmAddBatchTransactions.Text = "Transactions";
             this.tsmAddBatchTransactions.Visible = false;
             this.tsmAddBatchTransactions.Click += new System.EventHandler(this.tsmAddBatchTransactions_Click);
@@ -189,7 +189,7 @@
             // tsmAddBatchLiterature
             // 
             this.tsmAddBatchLiterature.Name = "tsmAddBatchLiterature";
-            this.tsmAddBatchLiterature.Size = new System.Drawing.Size(139, 22);
+            this.tsmAddBatchLiterature.Size = new System.Drawing.Size(180, 22);
             this.tsmAddBatchLiterature.Text = "Literature";
             this.tsmAddBatchLiterature.Click += new System.EventHandler(this.tsmAddBatchLiterature_Click);
             // 

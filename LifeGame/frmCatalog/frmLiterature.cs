@@ -378,9 +378,14 @@ namespace LifeGame
                         default:
                             break;
                     }
+
                     if (showFlag)
                     {
                         dgvLiterature.Rows.Add(starStr, title, Convert.ToString(year), litType, goodJourStr, predatoryStr, addedDate.ToString("yyyy/MM/dd"), lastModifyDate.ToString("yyyy/MM/dd"));
+                        if (chkHightlight.Checked && G.glb.lstNoteLog.FindAll(o => o.Topic == title).Count >= 4)
+                        {
+                            dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightBlue;
+                        }
                     }
                     lblNumFound.Text = Convert.ToString(dgvLiterature.Rows.Count) + " result(s) found";
                 }
@@ -691,6 +696,10 @@ namespace LifeGame
         }
 
         private void chkNoBad_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadLiteratureList();
+        }
+        private void chkHightlight_CheckedChanged(object sender, EventArgs e)
         {
             LoadLiteratureList();
         }
@@ -1776,5 +1785,6 @@ namespace LifeGame
             updateTempLitAreaB();
         }
 
+       
     }
 }

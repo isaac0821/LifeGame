@@ -63,6 +63,7 @@
             this.tsmRotateLabelPrev = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRotateLabelNext = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmAddProgress = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProgressAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProgressMinus = new System.Windows.Forms.ToolStripMenuItem();
             this.tspProgress = new System.Windows.Forms.ToolStripSeparator();
@@ -70,6 +71,7 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCopyFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCopyBibTeX = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.removeChildrenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -139,12 +141,13 @@
             this.tsmAddColor = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveColor = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtHighlight = new System.Windows.Forms.TextBox();
-            this.btnHighlight = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.lblLabelCount = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblLabelWordCount = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtHighlight = new System.Windows.Forms.TextBox();
+            this.btnHighlight = new System.Windows.Forms.Button();
             this.cmsNoteTag = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAddTag = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveTag = new System.Windows.Forms.ToolStripMenuItem();
@@ -167,6 +170,7 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.cmsNoteColor.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.cmsNoteTag.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -175,17 +179,18 @@
             this.tblNote.ColumnCount = 1;
             this.tblNote.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblNote.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tblNote.Controls.Add(this.trvNote, 0, 7);
+            this.tblNote.Controls.Add(this.trvNote, 0, 8);
             this.tblNote.Controls.Add(this.tableLayoutPanel1, 0, 2);
             this.tblNote.Controls.Add(this.tableLayoutPanel7, 0, 3);
             this.tblNote.Controls.Add(this.tableLayoutPanel8, 0, 4);
             this.tblNote.Controls.Add(this.tableLayoutPanel9, 0, 5);
             this.tblNote.Controls.Add(this.tableLayoutPanel10, 0, 1);
             this.tblNote.Controls.Add(this.tableLayoutPanel3, 0, 6);
+            this.tblNote.Controls.Add(this.tableLayoutPanel4, 0, 7);
             this.tblNote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblNote.Location = new System.Drawing.Point(0, 0);
             this.tblNote.Name = "tblNote";
-            this.tblNote.RowCount = 8;
+            this.tblNote.RowCount = 9;
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
@@ -193,6 +198,7 @@
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblNote.Size = new System.Drawing.Size(554, 711);
             this.tblNote.TabIndex = 0;
@@ -307,9 +313,9 @@
             this.trvNote.BackColor = System.Drawing.SystemColors.Window;
             this.trvNote.ContextMenuStrip = this.cmsTrvNote;
             this.trvNote.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvNote.Location = new System.Drawing.Point(3, 315);
+            this.trvNote.Location = new System.Drawing.Point(3, 341);
             this.trvNote.Name = "trvNote";
-            this.trvNote.Size = new System.Drawing.Size(548, 393);
+            this.trvNote.Size = new System.Drawing.Size(548, 367);
             this.trvNote.StateImageList = this.iglIcon;
             this.trvNote.TabIndex = 0;
             this.trvNote.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.trvNote_AfterLabelEdit);
@@ -344,6 +350,7 @@
             this.tsmRotateLabelPrev,
             this.tsmRotateLabelNext,
             this.toolStripSeparator14,
+            this.tsmAddProgress,
             this.tsmProgressAdd,
             this.tsmProgressMinus,
             this.tspProgress,
@@ -351,6 +358,7 @@
             this.toolStripSeparator8,
             this.tsmCopy,
             this.tsmCopyFile,
+            this.tsmCopyBibTeX,
             this.tsmPaste,
             this.tsmRemove,
             this.removeChildrenToolStripMenuItem,
@@ -365,7 +373,7 @@
             this.toolStripSeparator10,
             this.tsmRenameNote});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(210, 720);
+            this.cmsTrvNote.Size = new System.Drawing.Size(210, 764);
             // 
             // tsmAdd
             // 
@@ -507,6 +515,13 @@
             this.toolStripSeparator14.Name = "toolStripSeparator14";
             this.toolStripSeparator14.Size = new System.Drawing.Size(206, 6);
             // 
+            // tsmAddProgress
+            // 
+            this.tsmAddProgress.Name = "tsmAddProgress";
+            this.tsmAddProgress.Size = new System.Drawing.Size(209, 22);
+            this.tsmAddProgress.Text = "Progress - initialize";
+            this.tsmAddProgress.Click += new System.EventHandler(this.tsmAddProgress_Click);
+            // 
             // tsmProgressAdd
             // 
             this.tsmProgressAdd.Name = "tsmProgressAdd";
@@ -551,6 +566,13 @@
             this.tsmCopyFile.Size = new System.Drawing.Size(209, 22);
             this.tsmCopyFile.Text = "Copy File";
             this.tsmCopyFile.Click += new System.EventHandler(this.tsmCopyFile_Click);
+            // 
+            // tsmCopyBibTeX
+            // 
+            this.tsmCopyBibTeX.Name = "tsmCopyBibTeX";
+            this.tsmCopyBibTeX.Size = new System.Drawing.Size(209, 22);
+            this.tsmCopyBibTeX.Text = "Copy BibTeX";
+            this.tsmCopyBibTeX.Click += new System.EventHandler(this.tsmCopyBibTeX_Click);
             // 
             // tsmPaste
             // 
@@ -1148,6 +1170,7 @@
             this.txtBibRef.Location = new System.Drawing.Point(3, 16);
             this.txtBibRef.Multiline = true;
             this.txtBibRef.Name = "txtBibRef";
+            this.txtBibRef.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtBibRef.Size = new System.Drawing.Size(128, 95);
             this.txtBibRef.TabIndex = 0;
             // 
@@ -1221,7 +1244,7 @@
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 236F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 174F));
             this.tableLayoutPanel5.Controls.Add(this.lsvColor, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1241,7 +1264,7 @@
             this.lsvColor.HideSelection = false;
             this.lsvColor.Location = new System.Drawing.Point(3, 3);
             this.lsvColor.Name = "lsvColor";
-            this.lsvColor.Size = new System.Drawing.Size(262, 56);
+            this.lsvColor.Size = new System.Drawing.Size(324, 56);
             this.lsvColor.TabIndex = 3;
             this.lsvColor.UseCompatibleStateImageBehavior = false;
             this.lsvColor.View = System.Windows.Forms.View.List;
@@ -1273,44 +1296,21 @@
             // 
             // tableLayoutPanel6
             // 
-            this.tableLayoutPanel6.ColumnCount = 3;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.txtHighlight, 2, 0);
-            this.tableLayoutPanel6.Controls.Add(this.btnHighlight, 2, 1);
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.lblLabelCount, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.label9, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.lblLabelWordCount, 1, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(271, 3);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(333, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(230, 56);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(168, 56);
             this.tableLayoutPanel6.TabIndex = 4;
-            // 
-            // txtHighlight
-            // 
-            this.txtHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtHighlight.Location = new System.Drawing.Point(163, 3);
-            this.txtHighlight.Name = "txtHighlight";
-            this.txtHighlight.Size = new System.Drawing.Size(64, 20);
-            this.txtHighlight.TabIndex = 0;
-            this.txtHighlight.TextChanged += new System.EventHandler(this.txtHighlight_TextChanged);
-            // 
-            // btnHighlight
-            // 
-            this.btnHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnHighlight.Location = new System.Drawing.Point(163, 31);
-            this.btnHighlight.Name = "btnHighlight";
-            this.btnHighlight.Size = new System.Drawing.Size(64, 22);
-            this.btnHighlight.TabIndex = 1;
-            this.btnHighlight.Text = "Highlight";
-            this.btnHighlight.UseVisualStyleBackColor = true;
-            this.btnHighlight.Click += new System.EventHandler(this.btnHighlight_Click);
             // 
             // label8
             // 
@@ -1318,7 +1318,7 @@
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Location = new System.Drawing.Point(3, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 28);
+            this.label8.Size = new System.Drawing.Size(78, 28);
             this.label8.TabIndex = 2;
             this.label8.Text = "Label Count:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1329,7 +1329,7 @@
             this.lblLabelCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblLabelCount.Location = new System.Drawing.Point(3, 28);
             this.lblLabelCount.Name = "lblLabelCount";
-            this.lblLabelCount.Size = new System.Drawing.Size(74, 28);
+            this.lblLabelCount.Size = new System.Drawing.Size(78, 28);
             this.lblLabelCount.TabIndex = 3;
             this.lblLabelCount.Text = "-";
             this.lblLabelCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1338,9 +1338,9 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(83, 0);
+            this.label9.Location = new System.Drawing.Point(87, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(74, 28);
+            this.label9.Size = new System.Drawing.Size(78, 28);
             this.label9.TabIndex = 4;
             this.label9.Text = "Word Count:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1349,12 +1349,50 @@
             // 
             this.lblLabelWordCount.AutoSize = true;
             this.lblLabelWordCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLabelWordCount.Location = new System.Drawing.Point(83, 28);
+            this.lblLabelWordCount.Location = new System.Drawing.Point(87, 28);
             this.lblLabelWordCount.Name = "lblLabelWordCount";
-            this.lblLabelWordCount.Size = new System.Drawing.Size(74, 28);
+            this.lblLabelWordCount.Size = new System.Drawing.Size(78, 28);
             this.lblLabelWordCount.TabIndex = 5;
             this.lblLabelWordCount.Text = "-";
             this.lblLabelWordCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.tableLayoutPanel4.Controls.Add(this.txtHighlight, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnHighlight, 2, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 312);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(554, 26);
+            this.tableLayoutPanel4.TabIndex = 8;
+            // 
+            // txtHighlight
+            // 
+            this.txtHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtHighlight.Location = new System.Drawing.Point(404, 3);
+            this.txtHighlight.Name = "txtHighlight";
+            this.txtHighlight.Size = new System.Drawing.Size(90, 20);
+            this.txtHighlight.TabIndex = 0;
+            this.txtHighlight.TextChanged += new System.EventHandler(this.txtHighlight_TextChanged);
+            // 
+            // btnHighlight
+            // 
+            this.btnHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnHighlight.Location = new System.Drawing.Point(498, 1);
+            this.btnHighlight.Margin = new System.Windows.Forms.Padding(1);
+            this.btnHighlight.Name = "btnHighlight";
+            this.btnHighlight.Size = new System.Drawing.Size(55, 24);
+            this.btnHighlight.TabIndex = 1;
+            this.btnHighlight.Text = "Search";
+            this.btnHighlight.UseVisualStyleBackColor = true;
+            this.btnHighlight.Click += new System.EventHandler(this.btnHighlight_Click);
             // 
             // cmsNoteTag
             // 
@@ -1416,6 +1454,8 @@
             this.cmsNoteColor.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.cmsNoteTag.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1541,5 +1581,8 @@
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.ToolStripMenuItem tsmCopyFile;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddProgress;
+        private System.Windows.Forms.ToolStripMenuItem tsmCopyBibTeX;
     }
 }
