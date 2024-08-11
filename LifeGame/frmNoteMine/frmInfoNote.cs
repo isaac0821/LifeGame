@@ -520,8 +520,7 @@ namespace LifeGame
             }
             else if (noteText.Contains("$NOTE$>"))
             {
-                string selectedPath = noteText.Split('@')[0];
-                selectedPath = selectedPath.Replace("$NOTE$>", "");
+                string selectedPath = noteText.Replace("$NOTE$>", "");
                 string[] checkNote = selectedPath.Split('@');
                 DateTime noteDate = new DateTime();
                 string noteTitle = "";
@@ -1857,8 +1856,7 @@ namespace LifeGame
                 }
                 else if (trvNote.SelectedNode.Text.Contains("$NOTE$>"))
                 {
-                    string selectedPath = trvNote.SelectedNode.Text.Split('@')[0];
-                    selectedPath = selectedPath.Replace("$NOTE$>", "");
+                    string selectedPath = trvNote.SelectedNode.Text.Replace("$NOTE$>", "");
                     string[] checkNote = selectedPath.Split('@');
                     DateTime noteDate = new DateTime();
                     string noteTitle = "";
