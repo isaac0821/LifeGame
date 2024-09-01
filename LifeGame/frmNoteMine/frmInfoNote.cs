@@ -22,6 +22,10 @@ namespace LifeGame
     public partial class frmInfoNote : Form
     {
         bool modifiedFlag = false;
+        Timer curPointerTimer = new Timer();
+
+        // 先写死，之后改成系统环境变量
+        string SysNoteName = "To Do List";
 
         private plot C = new plot();
         public CNote note = new CNote();
@@ -54,7 +58,32 @@ namespace LifeGame
 
             InitializeComponent();
 
-            noteType = ENoteType.Note;
+            if (note.Topic == "Daily Report")
+            {
+                this.Text = "LifeGame - Daily Report - " + info.TagTime.Date.ToString("dd/MM/YYYY");
+                noteType = ENoteType.DailyReport;
+                DrawDailySchedule();
+                LoadShareNoteLog();   
+                
+                // 每一分钟绘制一次当前的时刻
+                TimeSpan secToNextMin = new TimeSpan();
+                DateTime datetimeWithoutSec = new DateTime(
+                    DateTime.Now.Year,
+                    DateTime.Now.Month,
+                    DateTime.Now.Day,
+                    DateTime.Now.Hour,
+                    DateTime.Now.Minute,
+                    0);
+                secToNextMin = DateTime.Now - datetimeWithoutSec;
+                curPointerTimer.Interval = (int)(1000 * (60 - secToNextMin.TotalSeconds));
+                curPointerTimer.Start();
+                curPointerTimer.Tick += RefreshDailySchedule;
+            }
+            else
+            {
+                this.Text = "LifeGame - Note - " + info.Topic;
+                noteType = ENoteType.Note;
+            }
 
             tblNote.RowStyles[1].Height = 0;
             tblNote.RowStyles[2].Height = 0;
@@ -65,9 +94,7 @@ namespace LifeGame
 
             chkShow.Checked = false;
 
-            this.Text = "LifeGame - Note - " + info.Topic;
-
-            LoadNoteColor();
+            LoadNoteColor(noteColors);
             LoadNoteLog();
             dtpDate.Value = note.TagTime;
             txtTopic.Enabled = false;
@@ -122,7 +149,7 @@ namespace LifeGame
 
             this.Text = "LifeGame - Literature - " + lit.Title;
 
-            LoadNoteColor();
+            LoadNoteColor(noteColors);
             LoadNoteLog();
             LoadLiterature();
 
@@ -232,7 +259,7 @@ namespace LifeGame
 
             this.Text = "LifeGame - Literature - (New)";
 
-            LoadNoteColor();
+            LoadNoteColor(noteColors);
             LoadNoteLog();
             dtpDate.Value = DateTime.Today.Date;
             btnSave.Enabled = true;
@@ -264,7 +291,7 @@ namespace LifeGame
 
             this.Text = "LifeGame - Note - (New)";
 
-            LoadNoteColor();
+            LoadNoteColor(noteColors);
             LoadNoteLog();
             dtpDate.Value = selectedDate;
             btnSave.Enabled = true;
@@ -281,7 +308,7 @@ namespace LifeGame
             note.TagTime = DateTime.Today.Date;
 
             // 暂时不区分，以后加专用Note
-            noteType = ENoteType.Note;
+            noteType = ENoteType.DailyReport;
 
             tblNote.RowStyles[1].Height = 0;
             tblNote.RowStyles[2].Height = 0;
@@ -293,6 +320,22 @@ namespace LifeGame
             chkShow.Checked = false;
 
             this.Text = "LifeGame - Daily Report";
+            DrawDailySchedule(); 
+            LoadShareNoteLog();           
+            
+            // 每一分钟绘制一次当前的时刻
+            TimeSpan secToNextMin = new TimeSpan();
+            DateTime datetimeWithoutSec = new DateTime(
+                DateTime.Now.Year,
+                DateTime.Now.Month,
+                DateTime.Now.Day,
+                DateTime.Now.Hour,
+                DateTime.Now.Minute,
+                0);
+            secToNextMin = DateTime.Now - datetimeWithoutSec;
+            curPointerTimer.Interval = (int)(1000 * (60 - secToNextMin.TotalSeconds));
+            curPointerTimer.Start();
+            curPointerTimer.Tick += RefreshDailySchedule;
 
             // 加入template
             RNoteColor planning = new RNoteColor();
@@ -372,7 +415,7 @@ namespace LifeGame
             transaction.Index = 4;
             noteLogs.Add(transaction);
 
-            LoadNoteColor();
+            LoadNoteColor(noteColors);
             LoadNoteLog();
             dtpDate.Value = selectedDate;
             btnSave.Enabled = true;
@@ -446,17 +489,21 @@ namespace LifeGame
             noteColors.Add(revisit);
 
             // LoadNoteTag();
-            LoadNoteColor();
+            LoadNoteColor(noteColors);
             LoadNoteLog();
             txtTopic.Text = topic;
             dtpDate.Value = DateTime.Today.Date;
             btnSave.Enabled = true;
         }
-
-        private void LoadNoteColor()
+        private void RefreshDailySchedule(object sender, EventArgs e)
+        {
+            curPointerTimer.Interval = 1000 * 60;
+            DrawDailySchedule();
+        }
+        private void LoadNoteColor(List<RNoteColor> noteColorSource)
         {
             lsvColor.Items.Clear();
-            foreach (RNoteColor noteColor in noteColors)
+            foreach (RNoteColor noteColor in noteColorSource)
             {
                 ListViewItem item = new ListViewItem();
                 item.Text = noteColor.Keyword;
@@ -482,6 +529,18 @@ namespace LifeGame
             rootNode.Expand();
             LoadChildNoteLog(rootNode, note.Topic);
             trvNote.Nodes.Add(rootNode);
+        }
+
+        private void LoadShareNoteLog()
+        {
+            trvShare.Nodes.Clear();
+            TreeNode rootNode = new TreeNode(SysNoteName, 0, 0);
+            rootNode.Name = G.glb.lstNote.Find(o => o.Topic == SysNoteName).GUID;
+            rootNode.Text = SysNoteName;
+            rootNode.Expand();
+            List<RNoteColor> sysNoteColor = G.glb.lstNoteColor.FindAll(o => o.Topic == SysNoteName);
+            LoadChildNoteLog(rootNode, SysNoteName, G.glb.lstNoteLog, sysNoteColor);
+            trvShare.Nodes.Add(rootNode);
         }
 
         private int getLogo(string noteText)
@@ -747,18 +806,18 @@ namespace LifeGame
             }
         }
 
-        private (Color, Color, Font) getColor(string note)
+        private (Color, Color, Font) getColor(string note, List<RNoteColor> noteColorsource)
         {
             Color BackColor = new Color();
             Color ForeColor = new Color();
             Font TextFont = new Font(Font, FontStyle.Regular);
 
             BackColor = Color.White;
-            foreach (ListViewItem item in lsvColor.Items)
+            foreach (RNoteColor color in noteColorsource)
             {
-                if (note.Contains(item.Text))
+                if (note.Contains(color.Keyword))
                 {
-                    string itemColor = noteColors.Find(o => o.Keyword == item.Text).Color;
+                    string itemColor = color.Color;
                     BackColor = C.GetColor(itemColor);
                     // 看看有没有带百分号
                     int percentVal = 100;
@@ -908,12 +967,17 @@ namespace LifeGame
             return (BackColor, ForeColor, TextFont);
         }
 
-        private void LoadChildNoteLog(TreeNode treeNode, string topic)
+        private (Color, Color, Font) getColor(string note)
+        {
+            return getColor(note, noteColors);
+        }
+
+        private void LoadChildNoteLog(TreeNode treeNode, string topic, List<RNoteLog> noteSource, List<RNoteColor> noteColorSource)
         {
             // 如果本条NoteLog作为上级NoteLog存在，添加所有的SubLog
-            if (noteLogs.Exists(o => o.Log == treeNode.Text && o.GUID == treeNode.Name && o.Topic == topic))
+            if (noteSource.Exists(o => o.Log == treeNode.Text && o.GUID == treeNode.Name && o.Topic == topic))
             {
-                List<RNoteLog> subNoteLog = noteLogs.FindAll(o => o.Log == treeNode.Text && o.GUID == treeNode.Name && o.Topic == note.Topic).ToList();
+                List<RNoteLog> subNoteLog = noteSource.FindAll(o => o.Log == treeNode.Text && o.GUID == treeNode.Name && o.Topic == topic).ToList();
                 subNoteLog = subNoteLog.OrderBy(o => o.Index).ToList();
                 foreach (RNoteLog sub in subNoteLog)
                 {
@@ -934,12 +998,17 @@ namespace LifeGame
                     }
                     else
                     {
-                        (childNode.BackColor, childNode.ForeColor, childNode.NodeFont) = getColor(sub.SubLog);
+                        (childNode.BackColor, childNode.ForeColor, childNode.NodeFont) = getColor(sub.SubLog, noteColorSource);
                     }
-                    LoadChildNoteLog(childNode, note.Topic);
+                    LoadChildNoteLog(childNode, topic, noteSource, noteColorSource);
                     treeNode.Nodes.Add(childNode);
                 }
             }
+        }
+
+        private void LoadChildNoteLog(TreeNode treeNode, string topic)
+        {
+            LoadChildNoteLog(treeNode, topic, noteLogs, noteColors);
         }
 
         private void UpdateModifiedTime(TreeNode node)
@@ -1174,7 +1243,11 @@ namespace LifeGame
             {
                 SaveNote();
             }
-            if (noteType == ENoteType.Literature)
+            else if (noteType == ENoteType.DailyReport)
+            {
+                SaveNote();
+            }
+            else if (noteType == ENoteType.Literature)
             {
                 SaveLiterature();
             }
@@ -1191,6 +1264,15 @@ namespace LifeGame
                 txtTopic.Text = note.Topic;
                 chkShow.Checked = false;
             }
+        }
+
+        private void DrawDailySchedule()
+        {
+            plot Draw = new plot();
+            picToday.Controls.Clear();
+            Draw.DrawEventController(picToday, note.TagTime.Date, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
+            Draw.DrawScheduleAndLogController(picToday, note.TagTime.Date, G.glb.lstSchedule, G.glb.lstSleepSchedule, "leftWithSupp");
+            Draw.DrawScheduleAndLogController(picToday, note.TagTime.Date, G.glb.lstLog, G.glb.lstSleepLog, "rightWithSupp");
         }
 
         private void tsmAdd_Click(object sender, EventArgs e)
@@ -2853,6 +2935,16 @@ namespace LifeGame
                 tblNote.RowStyles[4].Height = 0;
                 tblNote.RowStyles[5].Height = 0;
                 tblNote.RowStyles[6].Height = 0;
+                if (noteType == ENoteType.DailyReport)
+                {
+                    splitContainer1.Panel1Collapsed = false;
+                    splitContainer2.Panel1Collapsed = false;
+                }
+                else
+                {
+                    splitContainer1.Panel1Collapsed = true;
+                    splitContainer2.Panel1Collapsed = true;
+                }
             }
             else
             {
@@ -2864,6 +2956,19 @@ namespace LifeGame
                     tblNote.RowStyles[4].Height = 0;
                     tblNote.RowStyles[5].Height = 0;
                     tblNote.RowStyles[6].Height = 62;
+                    splitContainer1.Panel1Collapsed = true;
+                    splitContainer2.Panel1Collapsed = true;
+                }
+                if (noteType == ENoteType.DailyReport)
+                {
+                    tblNote.RowStyles[1].Height = 26;
+                    tblNote.RowStyles[2].Height = 0;
+                    tblNote.RowStyles[3].Height = 0;
+                    tblNote.RowStyles[4].Height = 0;
+                    tblNote.RowStyles[5].Height = 0;
+                    tblNote.RowStyles[6].Height = 62;
+                    splitContainer1.Panel1Collapsed = false;
+                    splitContainer2.Panel1Collapsed = false;
                 }
                 else if (noteType == ENoteType.Literature)
                 {
@@ -2873,81 +2978,90 @@ namespace LifeGame
                     tblNote.RowStyles[4].Height = 26;
                     tblNote.RowStyles[5].Height = 120;
                     tblNote.RowStyles[6].Height = 62;
+                    splitContainer1.Panel1Collapsed = true;
+                    splitContainer2.Panel1Collapsed = true;
                 }
             }
         }
 
         private void tsmRenameNote_Click(object sender, EventArgs e)
         {
-            string newLog = Interaction.InputBox("Input new note name", "New Note Name", note.Topic, 300, 300);
-            if (newLog != "" && newLog != note.Topic)
+            if (noteType == ENoteType.Note)
             {
-                // First check if such name is exist
-                if (G.glb.lstNote.Exists(o => o.Topic == newLog && o.TagTime == note.TagTime))
+                string newLog = Interaction.InputBox("Input new note name", "New Note Name", note.Topic, 300, 300);
+                if (newLog != "" && newLog != note.Topic)
                 {
-                    MessageBox.Show("Note exists!");
-                }
-                else
-                {
-                    // 先把当前窗口的东西变了
-                    this.Text = "LifeGame - Note - " + newLog;
-                    string oldTopic = txtTopic.Text;
-                    txtTopic.Text = newLog;
-                    trvNote.Nodes[0].Text = newLog;
-
-                    // 把G.glb里的信息更新了
-                    foreach (RNoteColor item in G.glb.lstNoteColor.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
+                    // First check if such name is exist
+                    if (G.glb.lstNote.Exists(o => o.Topic == newLog && o.TagTime == note.TagTime))
                     {
-                        item.Topic = newLog;
+                        MessageBox.Show("Note exists!");
                     }
-
-                    foreach (RNoteLog item in G.glb.lstNoteLog.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
+                    else
                     {
-                        item.Topic = newLog;
-                    }
+                        // 先把当前窗口的东西变了
+                        this.Text = "LifeGame - Note - " + newLog;
+                        string oldTopic = txtTopic.Text;
+                        txtTopic.Text = newLog;
+                        trvNote.Nodes[0].Text = newLog;
 
-                    foreach (CNote item in G.glb.lstNote.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
-                    {
-                        item.Topic = newLog;
-                    }
-
-                    // 把G.glb里带有该note的引用信息更新了
-                    foreach (RNoteLog item in G.glb.lstNoteLog.FindAll(o => o.Log.Contains("$NOTE$>") && o.Log.Contains(oldTopic)))
-                    {
-                        item.Log = item.Log.Replace(oldTopic, newLog);
-                    }
-                    foreach (RNoteLog item in G.glb.lstNoteLog.FindAll(o => o.SubLog.Contains("$NOTE$>") && o.SubLog.Contains(oldTopic)))
-                    {
-                        item.SubLog = item.SubLog.Replace(oldTopic, newLog);
-                    }
-
-
-                    // 把打开的Note的条目更新了
-                    // 暂时不好改，先搁置着...
-
-                    // 把note里的信息更新了
-                    foreach (RNoteColor item in noteColors)
-                    {
-                        item.Topic = newLog;
-                    }
-
-                    foreach (RNoteLog item in noteLogs)
-                    {
-                        item.Topic = newLog;
-                        if (item.Log == oldTopic)
+                        // 把G.glb里的信息更新了
+                        foreach (RNoteColor item in G.glb.lstNoteColor.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
                         {
-                            item.Log = newLog;
+                            item.Topic = newLog;
                         }
-                        if (item.SubLog == oldTopic)
+
+                        foreach (RNoteLog item in G.glb.lstNoteLog.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
                         {
-                            item.SubLog = newLog;
+                            item.Topic = newLog;
                         }
+
+                        foreach (CNote item in G.glb.lstNote.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
+                        {
+                            item.Topic = newLog;
+                        }
+
+                        // 把G.glb里带有该note的引用信息更新了
+                        foreach (RNoteLog item in G.glb.lstNoteLog.FindAll(o => o.Log.Contains("$NOTE$>") && o.Log.Contains(oldTopic)))
+                        {
+                            item.Log = item.Log.Replace(oldTopic, newLog);
+                        }
+                        foreach (RNoteLog item in G.glb.lstNoteLog.FindAll(o => o.SubLog.Contains("$NOTE$>") && o.SubLog.Contains(oldTopic)))
+                        {
+                            item.SubLog = item.SubLog.Replace(oldTopic, newLog);
+                        }
+
+
+                        // 把打开的Note的条目更新了
+                        // 暂时不好改，先搁置着...
+
+                        // 把note里的信息更新了
+                        foreach (RNoteColor item in noteColors)
+                        {
+                            item.Topic = newLog;
+                        }
+
+                        foreach (RNoteLog item in noteLogs)
+                        {
+                            item.Topic = newLog;
+                            if (item.Log == oldTopic)
+                            {
+                                item.Log = newLog;
+                            }
+                            if (item.SubLog == oldTopic)
+                            {
+                                item.SubLog = newLog;
+                            }
+                        }
+
+                        note.Topic = newLog;
+
+                        LoadNoteLog();
                     }
-
-                    note.Topic = newLog;
-
-                    LoadNoteLog();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Type error!");
             }
         }
 
@@ -3846,9 +3960,9 @@ namespace LifeGame
         {
             // 先确认有没有progress
             if (!(node.Text.Contains("%") && node.Text.ToCharArray().Count(c => c == '%') == 1)
-                && !node.Text.Contains("$LITR$>") 
-                && !node.Text.Contains("$NOTE$>") 
-                && !node.Text.Contains("$LINK$>") 
+                && !node.Text.Contains("$LITR$>")
+                && !node.Text.Contains("$NOTE$>")
+                && !node.Text.Contains("$LINK$>")
                 && !node.Text.Contains("$JUMP$>")
                 && !node.Text.Contains("$SCHL$>")
                 && !node.Text.Contains("$RECO$>")
@@ -3893,7 +4007,150 @@ namespace LifeGame
 
         }
 
+        private void picToday_Resize(object sender, EventArgs e)
+        {
+            DrawDailySchedule();
+        }
 
+        private void picToday_Click(object sender, EventArgs e)
+        {
+            DrawDailySchedule();
+        }
+
+        private void tsmGoToShare_Click(object sender, EventArgs e)
+        {
+            if (trvShare.SelectedNode != null)
+            {
+                if (trvShare.SelectedNode.Text.Contains("$LINK$>"))
+                {
+                    string selectedPath = trvShare.SelectedNode.Text.Split('@')[0];
+                    selectedPath = selectedPath.Replace("$LINK$>", "");
+                    string[] checkUrl = selectedPath.Split(':');
+                    if (checkUrl[0] == "http" || checkUrl[0] == "https")
+                    {
+                        System.Diagnostics.Process.Start("chrome.exe", selectedPath);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            System.Diagnostics.Process.Start(selectedPath);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("File/link is not found.");
+                        }
+                    }
+                }
+                else if (trvShare.SelectedNode.Text.Contains("$LITR$>"))
+                {
+                    string selectedPath = trvShare.SelectedNode.Text.Split('@')[0];
+                    selectedPath = selectedPath.Replace("$LITR$>", "");
+                    if (G.glb.lstLiterature.Exists(o => o.Title == selectedPath))
+                    {
+                        if (M.notesOpened.Exists(o => o.note.LiteratureTitle == selectedPath))
+                        {
+                            M.notesOpened.Find(o => o.note.LiteratureTitle == selectedPath).Show();
+                            M.notesOpened.Find(o => o.note.LiteratureTitle == selectedPath).BringToFront();
+                        }
+                        else
+                        {
+                            frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.Title == selectedPath));
+                            M.notesOpened.Add(frmInfoNote);
+                            frmInfoNote.Show();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Literature does not exist in database");
+                    }
+                }
+                else if (trvShare.SelectedNode.Text.Contains("$NOTE$>"))
+                {
+                    string selectedPath = trvShare.SelectedNode.Text.Replace("$NOTE$>", "");
+                    string[] checkNote = selectedPath.Split('@');
+                    DateTime noteDate = new DateTime();
+                    string noteTitle = "";
+                    bool tryOpenFlag = true;
+                    if (checkNote.Length != 2)
+                    {
+                        MessageBox.Show("Incorrect Note Format, correct format should be 'YYYY.MM.DD@Note'");
+                        tryOpenFlag = false;
+                    }
+                    else
+                    {
+                        string[] dateNote = checkNote[0].Split('.');
+                        if (dateNote.Length != 3)
+                        {
+                            MessageBox.Show("Incorrect Note Format, correct format should be 'YYYY.MM.DD@Note'");
+                            tryOpenFlag = false;
+                        }
+                        else
+                        {
+                            noteDate = new DateTime(Convert.ToInt32(dateNote[0]), Convert.ToInt32(dateNote[1]), Convert.ToInt32(dateNote[2]));
+                        }
+                    }
+
+                    for (int i = 1; i < checkNote.Length; i++)
+                    {
+                        noteTitle = noteTitle + checkNote[i];
+                        if (i < checkNote.Length - 1)
+                        {
+                            noteTitle = noteTitle + " ";
+                        }
+                    }
+                    if (tryOpenFlag && G.glb.lstNote.Exists(o => o.TagTime == noteDate && o.Topic == noteTitle))
+                    {
+                        if (M.notesOpened.Exists(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate))
+                        {
+                            M.notesOpened.Find(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate).Show();
+                            M.notesOpened.Find(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate).BringToFront();
+                        }
+                        else
+                        {
+                            frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.TagTime == noteDate && o.Topic == noteTitle));
+                            M.notesOpened.Add(frmInfoNote);
+                            frmInfoNote.Show();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cannot find record.");
+                    }
+                }
+                else if (trvShare.SelectedNode.Text.Contains("$JUMP$>"))
+                {
+                    string selectedText = trvShare.SelectedNode.Text.Replace("$JUMP$>", "");
+                    trvShare.SelectedNode = findByName(trvShare.Nodes[0], selectedText);
+                }
+                else if (trvShare.SelectedNode.Text.Split('#').Length == 3)
+                {
+                    string selectedText = trvShare.SelectedNode.Text.Split('#')[1];
+                    trvShare.SelectedNode = findByName(trvShare.Nodes[0], selectedText);
+                }
+            }
+        }
+
+        private void tsmShowNote_Click(object sender, EventArgs e)
+        {
+            if (M.notesOpened.Exists(o => o.note.Topic == SysNoteName))
+            {
+                M.notesOpened.Find(o => o.note.Topic == SysNoteName).Show();
+                M.notesOpened.Find(o => o.note.Topic == SysNoteName).BringToFront();
+            }
+            else
+            {
+                frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.Topic == SysNoteName));
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
+            }
+        }
+
+        private void tsmUpdateShareNote_Click(object sender, EventArgs e)
+        {
+            trvShare.Nodes.Clear();
+            LoadShareNoteLog();
+        }
     }
 
     public class CNoteProperties
