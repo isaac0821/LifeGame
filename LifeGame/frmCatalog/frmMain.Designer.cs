@@ -175,13 +175,13 @@
             this.tsmAddBatchTransactions,
             this.tsmAddBatchLiterature});
             this.addBatchInfoToolStripMenuItem.Name = "addBatchInfoToolStripMenuItem";
-            this.addBatchInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addBatchInfoToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.addBatchInfoToolStripMenuItem.Text = "Add Batch Info";
             // 
             // tsmAddBatchTransactions
             // 
             this.tsmAddBatchTransactions.Name = "tsmAddBatchTransactions";
-            this.tsmAddBatchTransactions.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddBatchTransactions.Size = new System.Drawing.Size(139, 22);
             this.tsmAddBatchTransactions.Text = "Transactions";
             this.tsmAddBatchTransactions.Visible = false;
             this.tsmAddBatchTransactions.Click += new System.EventHandler(this.tsmAddBatchTransactions_Click);
@@ -189,7 +189,7 @@
             // tsmAddBatchLiterature
             // 
             this.tsmAddBatchLiterature.Name = "tsmAddBatchLiterature";
-            this.tsmAddBatchLiterature.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddBatchLiterature.Size = new System.Drawing.Size(139, 22);
             this.tsmAddBatchLiterature.Text = "Literature";
             this.tsmAddBatchLiterature.Click += new System.EventHandler(this.tsmAddBatchLiterature_Click);
             // 
@@ -238,6 +238,7 @@
             this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.tblMain.Controls.Add(this.picThu, 4, 1);
             this.tblMain.Controls.Add(this.btnNextDate, 8, 1);
             this.tblMain.Controls.Add(this.btnPreDate, 0, 1);
             this.tblMain.Controls.Add(this.lblMonday, 1, 0);
@@ -250,7 +251,6 @@
             this.tblMain.Controls.Add(this.picMon, 1, 1);
             this.tblMain.Controls.Add(this.picTue, 2, 1);
             this.tblMain.Controls.Add(this.picWed, 3, 1);
-            this.tblMain.Controls.Add(this.picThu, 4, 1);
             this.tblMain.Controls.Add(this.picFri, 5, 1);
             this.tblMain.Controls.Add(this.picSat, 6, 1);
             this.tblMain.Controls.Add(this.picSun, 7, 1);
