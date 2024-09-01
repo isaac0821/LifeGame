@@ -60,10 +60,12 @@ namespace LifeGame
 
             if (note.Topic == "Daily Report")
             {
-                this.Text = "LifeGame - Daily Report - " + info.TagTime.Date.ToString("dd/MM/YYYY");
+                this.Text = "LifeGame - Daily Report - " + info.TagTime.Date.ToString("dd/MM/yyyy");
                 noteType = ENoteType.DailyReport;
                 DrawDailySchedule();
-                LoadShareNoteLog();   
+                LoadShareNoteLog();
+
+                lblDate.Text = info.TagTime.Date.ToShortDateString();
                 
                 // 每一分钟绘制一次当前的时刻
                 TimeSpan secToNextMin = new TimeSpan();
@@ -305,7 +307,7 @@ namespace LifeGame
             note.Topic = "Daily Report";
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
-            note.TagTime = DateTime.Today.Date;
+            note.TagTime = selectedDate.Date;
 
             // 暂时不区分，以后加专用Note
             noteType = ENoteType.DailyReport;
@@ -319,7 +321,8 @@ namespace LifeGame
 
             chkShow.Checked = false;
 
-            this.Text = "LifeGame - Daily Report";
+            this.Text = "LifeGame - Daily Report - " + selectedDate.Date.ToString("dd/MM/yyyy");
+            lblDate.Text = selectedDate.ToShortDateString();
             DrawDailySchedule(); 
             LoadShareNoteLog();           
             
@@ -4150,6 +4153,50 @@ namespace LifeGame
         {
             trvShare.Nodes.Clear();
             LoadShareNoteLog();
+        }
+
+        private void btnPrevDate_Click(object sender, EventArgs e)
+        {
+            DateTime prevDate = note.TagTime.Date.AddDays(-1);
+            if (G.glb.lstNote.Exists(o => o.Topic == "Daily Report" && o.TagTime == prevDate))
+            {
+                CNote prevDateNote = G.glb.lstNote.Find(o => o.Topic == "Daily Report" && o.TagTime.Date == prevDate.Date);
+                frmInfoNote frmInfoNote = new frmInfoNote(prevDateNote);
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
+            }
+            else
+            {
+                frmInfoNote frmInfoNote = new frmInfoNote(prevDate, true);
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
+            }
+
+            M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
+            SaveNote();
+            Dispose();
+        }
+
+        private void btnNextDate_Click(object sender, EventArgs e)
+        {
+            DateTime nextDate = note.TagTime.Date.AddDays(1);
+            if (G.glb.lstNote.Exists(o => o.Topic == "Daily Report" && o.TagTime == nextDate))
+            {
+                CNote prevDateNote = G.glb.lstNote.Find(o => o.Topic == "Daily Report" && o.TagTime.Date == nextDate.Date);
+                frmInfoNote frmInfoNote = new frmInfoNote(prevDateNote);
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
+            }
+            else
+            {
+                frmInfoNote frmInfoNote = new frmInfoNote(nextDate, true);
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
+            }
+
+            M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
+            SaveNote();
+            Dispose();
         }
     }
 

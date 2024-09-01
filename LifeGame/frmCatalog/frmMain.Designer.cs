@@ -35,24 +35,11 @@
             this.moneyMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.literatureLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.surveyVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addBatchInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAddBatchTransactions = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAddBatchLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.stsMain = new System.Windows.Forms.StatusStrip();
             this.tslVersionNumber = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tblMain = new System.Windows.Forms.TableLayoutPanel();
-            this.btnNextDate = new System.Windows.Forms.Button();
-            this.btnPreDate = new System.Windows.Forms.Button();
-            this.lblMonday = new System.Windows.Forms.Label();
-            this.lblTuesday = new System.Windows.Forms.Label();
-            this.lblWednesday = new System.Windows.Forms.Label();
-            this.lblThursday = new System.Windows.Forms.Label();
-            this.lblFriday = new System.Windows.Forms.Label();
-            this.lblSaturday = new System.Windows.Forms.Label();
-            this.lblSunday = new System.Windows.Forms.Label();
-            this.picMon = new System.Windows.Forms.PictureBox();
+            this.picThu = new System.Windows.Forms.PictureBox();
             this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAddSleepSchedule = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddSleepLog = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,9 +68,18 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmDeleteInfoMine = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDeleteNoteMine = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnNextDate = new System.Windows.Forms.Button();
+            this.btnPreDate = new System.Windows.Forms.Button();
+            this.lblMonday = new System.Windows.Forms.Label();
+            this.lblTuesday = new System.Windows.Forms.Label();
+            this.lblWednesday = new System.Windows.Forms.Label();
+            this.lblThursday = new System.Windows.Forms.Label();
+            this.lblFriday = new System.Windows.Forms.Label();
+            this.lblSaturday = new System.Windows.Forms.Label();
+            this.lblSunday = new System.Windows.Forms.Label();
+            this.picMon = new System.Windows.Forms.PictureBox();
             this.picTue = new System.Windows.Forms.PictureBox();
             this.picWed = new System.Windows.Forms.PictureBox();
-            this.picThu = new System.Windows.Forms.PictureBox();
             this.picFri = new System.Windows.Forms.PictureBox();
             this.picSat = new System.Windows.Forms.PictureBox();
             this.picSun = new System.Windows.Forms.PictureBox();
@@ -106,11 +102,11 @@
             this.stsMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tblMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picThu)).BeginInit();
             this.cmsMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picThu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFri)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSun)).BeginInit();
@@ -122,8 +118,7 @@
             // 
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewVToolStripMenuItem,
-            this.toolTToolStripMenuItem});
+            this.viewVToolStripMenuItem});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
             this.mnsMain.Size = new System.Drawing.Size(1189, 24);
@@ -160,38 +155,6 @@
             this.surveyVToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.surveyVToolStripMenuItem.Text = "Survey(&V)";
             this.surveyVToolStripMenuItem.Click += new System.EventHandler(this.surveyVToolStripMenuItem_Click);
-            // 
-            // toolTToolStripMenuItem
-            // 
-            this.toolTToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addBatchInfoToolStripMenuItem});
-            this.toolTToolStripMenuItem.Name = "toolTToolStripMenuItem";
-            this.toolTToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.toolTToolStripMenuItem.Text = "Tool(&T)";
-            // 
-            // addBatchInfoToolStripMenuItem
-            // 
-            this.addBatchInfoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmAddBatchTransactions,
-            this.tsmAddBatchLiterature});
-            this.addBatchInfoToolStripMenuItem.Name = "addBatchInfoToolStripMenuItem";
-            this.addBatchInfoToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.addBatchInfoToolStripMenuItem.Text = "Add Batch Info";
-            // 
-            // tsmAddBatchTransactions
-            // 
-            this.tsmAddBatchTransactions.Name = "tsmAddBatchTransactions";
-            this.tsmAddBatchTransactions.Size = new System.Drawing.Size(139, 22);
-            this.tsmAddBatchTransactions.Text = "Transactions";
-            this.tsmAddBatchTransactions.Visible = false;
-            this.tsmAddBatchTransactions.Click += new System.EventHandler(this.tsmAddBatchTransactions_Click);
-            // 
-            // tsmAddBatchLiterature
-            // 
-            this.tsmAddBatchLiterature.Name = "tsmAddBatchLiterature";
-            this.tsmAddBatchLiterature.Size = new System.Drawing.Size(139, 22);
-            this.tsmAddBatchLiterature.Text = "Literature";
-            this.tsmAddBatchLiterature.Click += new System.EventHandler(this.tsmAddBatchLiterature_Click);
             // 
             // stsMain
             // 
@@ -263,123 +226,17 @@
             this.tblMain.Size = new System.Drawing.Size(1183, 688);
             this.tblMain.TabIndex = 0;
             // 
-            // btnNextDate
+            // picThu
             // 
-            this.btnNextDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNextDate.Location = new System.Drawing.Point(1139, 24);
-            this.btnNextDate.Name = "btnNextDate";
-            this.btnNextDate.Size = new System.Drawing.Size(41, 661);
-            this.btnNextDate.TabIndex = 2;
-            this.btnNextDate.Text = ">";
-            this.btnNextDate.UseVisualStyleBackColor = true;
-            this.btnNextDate.Click += new System.EventHandler(this.btnNextDate_Click);
-            // 
-            // btnPreDate
-            // 
-            this.btnPreDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPreDate.Location = new System.Drawing.Point(3, 24);
-            this.btnPreDate.Name = "btnPreDate";
-            this.btnPreDate.Size = new System.Drawing.Size(24, 661);
-            this.btnPreDate.TabIndex = 1;
-            this.btnPreDate.Text = "<";
-            this.btnPreDate.UseVisualStyleBackColor = true;
-            this.btnPreDate.Click += new System.EventHandler(this.btnPreDate_Click);
-            // 
-            // lblMonday
-            // 
-            this.lblMonday.AutoSize = true;
-            this.lblMonday.BackColor = System.Drawing.Color.Silver;
-            this.lblMonday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMonday.Location = new System.Drawing.Point(33, 0);
-            this.lblMonday.Name = "lblMonday";
-            this.lblMonday.Size = new System.Drawing.Size(152, 21);
-            this.lblMonday.TabIndex = 14;
-            this.lblMonday.Text = "Day 1";
-            this.lblMonday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblTuesday
-            // 
-            this.lblTuesday.AutoSize = true;
-            this.lblTuesday.BackColor = System.Drawing.Color.Silver;
-            this.lblTuesday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTuesday.Location = new System.Drawing.Point(191, 0);
-            this.lblTuesday.Name = "lblTuesday";
-            this.lblTuesday.Size = new System.Drawing.Size(152, 21);
-            this.lblTuesday.TabIndex = 15;
-            this.lblTuesday.Text = "Day 2";
-            this.lblTuesday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblWednesday
-            // 
-            this.lblWednesday.AutoSize = true;
-            this.lblWednesday.BackColor = System.Drawing.Color.Silver;
-            this.lblWednesday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWednesday.Location = new System.Drawing.Point(349, 0);
-            this.lblWednesday.Name = "lblWednesday";
-            this.lblWednesday.Size = new System.Drawing.Size(152, 21);
-            this.lblWednesday.TabIndex = 16;
-            this.lblWednesday.Text = "Day 3";
-            this.lblWednesday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblThursday
-            // 
-            this.lblThursday.AutoSize = true;
-            this.lblThursday.BackColor = System.Drawing.Color.Silver;
-            this.lblThursday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblThursday.Location = new System.Drawing.Point(507, 0);
-            this.lblThursday.Name = "lblThursday";
-            this.lblThursday.Size = new System.Drawing.Size(152, 21);
-            this.lblThursday.TabIndex = 17;
-            this.lblThursday.Text = "Day 4";
-            this.lblThursday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblFriday
-            // 
-            this.lblFriday.AutoSize = true;
-            this.lblFriday.BackColor = System.Drawing.Color.Silver;
-            this.lblFriday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFriday.Location = new System.Drawing.Point(665, 0);
-            this.lblFriday.Name = "lblFriday";
-            this.lblFriday.Size = new System.Drawing.Size(152, 21);
-            this.lblFriday.TabIndex = 18;
-            this.lblFriday.Text = "Day 5";
-            this.lblFriday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblSaturday
-            // 
-            this.lblSaturday.AutoSize = true;
-            this.lblSaturday.BackColor = System.Drawing.Color.Silver;
-            this.lblSaturday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSaturday.Location = new System.Drawing.Point(823, 0);
-            this.lblSaturday.Name = "lblSaturday";
-            this.lblSaturday.Size = new System.Drawing.Size(152, 21);
-            this.lblSaturday.TabIndex = 19;
-            this.lblSaturday.Text = "Day 6";
-            this.lblSaturday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblSunday
-            // 
-            this.lblSunday.AutoSize = true;
-            this.lblSunday.BackColor = System.Drawing.Color.Silver;
-            this.lblSunday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSunday.Location = new System.Drawing.Point(981, 0);
-            this.lblSunday.Name = "lblSunday";
-            this.lblSunday.Size = new System.Drawing.Size(152, 21);
-            this.lblSunday.TabIndex = 20;
-            this.lblSunday.Text = "Day 7";
-            this.lblSunday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // picMon
-            // 
-            this.picMon.BackColor = System.Drawing.Color.White;
-            this.picMon.ContextMenuStrip = this.cmsMain;
-            this.picMon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picMon.Location = new System.Drawing.Point(33, 24);
-            this.picMon.Name = "picMon";
-            this.picMon.Size = new System.Drawing.Size(152, 661);
-            this.picMon.TabIndex = 0;
-            this.picMon.TabStop = false;
-            this.picMon.Click += new System.EventHandler(this.picMon_Click);
+            this.picThu.BackColor = System.Drawing.Color.White;
+            this.picThu.ContextMenuStrip = this.cmsMain;
+            this.picThu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picThu.Location = new System.Drawing.Point(507, 24);
+            this.picThu.Name = "picThu";
+            this.picThu.Size = new System.Drawing.Size(152, 661);
+            this.picThu.TabIndex = 0;
+            this.picThu.TabStop = false;
+            this.picThu.Click += new System.EventHandler(this.picThu_Click);
             // 
             // cmsMain
             // 
@@ -595,6 +452,124 @@
             this.tsmDeleteNoteMine.Text = "Delete Note Mine";
             this.tsmDeleteNoteMine.Click += new System.EventHandler(this.tsmDeleteNoteMine_Click);
             // 
+            // btnNextDate
+            // 
+            this.btnNextDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnNextDate.Location = new System.Drawing.Point(1139, 24);
+            this.btnNextDate.Name = "btnNextDate";
+            this.btnNextDate.Size = new System.Drawing.Size(41, 661);
+            this.btnNextDate.TabIndex = 2;
+            this.btnNextDate.Text = ">";
+            this.btnNextDate.UseVisualStyleBackColor = true;
+            this.btnNextDate.Click += new System.EventHandler(this.btnNextDate_Click);
+            // 
+            // btnPreDate
+            // 
+            this.btnPreDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPreDate.Location = new System.Drawing.Point(3, 24);
+            this.btnPreDate.Name = "btnPreDate";
+            this.btnPreDate.Size = new System.Drawing.Size(24, 661);
+            this.btnPreDate.TabIndex = 1;
+            this.btnPreDate.Text = "<";
+            this.btnPreDate.UseVisualStyleBackColor = true;
+            this.btnPreDate.Click += new System.EventHandler(this.btnPreDate_Click);
+            // 
+            // lblMonday
+            // 
+            this.lblMonday.AutoSize = true;
+            this.lblMonday.BackColor = System.Drawing.Color.Silver;
+            this.lblMonday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblMonday.Location = new System.Drawing.Point(33, 0);
+            this.lblMonday.Name = "lblMonday";
+            this.lblMonday.Size = new System.Drawing.Size(152, 21);
+            this.lblMonday.TabIndex = 14;
+            this.lblMonday.Text = "Day 1";
+            this.lblMonday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTuesday
+            // 
+            this.lblTuesday.AutoSize = true;
+            this.lblTuesday.BackColor = System.Drawing.Color.Silver;
+            this.lblTuesday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTuesday.Location = new System.Drawing.Point(191, 0);
+            this.lblTuesday.Name = "lblTuesday";
+            this.lblTuesday.Size = new System.Drawing.Size(152, 21);
+            this.lblTuesday.TabIndex = 15;
+            this.lblTuesday.Text = "Day 2";
+            this.lblTuesday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblWednesday
+            // 
+            this.lblWednesday.AutoSize = true;
+            this.lblWednesday.BackColor = System.Drawing.Color.Silver;
+            this.lblWednesday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWednesday.Location = new System.Drawing.Point(349, 0);
+            this.lblWednesday.Name = "lblWednesday";
+            this.lblWednesday.Size = new System.Drawing.Size(152, 21);
+            this.lblWednesday.TabIndex = 16;
+            this.lblWednesday.Text = "Day 3";
+            this.lblWednesday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblThursday
+            // 
+            this.lblThursday.AutoSize = true;
+            this.lblThursday.BackColor = System.Drawing.Color.Silver;
+            this.lblThursday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblThursday.Location = new System.Drawing.Point(507, 0);
+            this.lblThursday.Name = "lblThursday";
+            this.lblThursday.Size = new System.Drawing.Size(152, 21);
+            this.lblThursday.TabIndex = 17;
+            this.lblThursday.Text = "Day 4";
+            this.lblThursday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblFriday
+            // 
+            this.lblFriday.AutoSize = true;
+            this.lblFriday.BackColor = System.Drawing.Color.Silver;
+            this.lblFriday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblFriday.Location = new System.Drawing.Point(665, 0);
+            this.lblFriday.Name = "lblFriday";
+            this.lblFriday.Size = new System.Drawing.Size(152, 21);
+            this.lblFriday.TabIndex = 18;
+            this.lblFriday.Text = "Day 5";
+            this.lblFriday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSaturday
+            // 
+            this.lblSaturday.AutoSize = true;
+            this.lblSaturday.BackColor = System.Drawing.Color.Silver;
+            this.lblSaturday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSaturday.Location = new System.Drawing.Point(823, 0);
+            this.lblSaturday.Name = "lblSaturday";
+            this.lblSaturday.Size = new System.Drawing.Size(152, 21);
+            this.lblSaturday.TabIndex = 19;
+            this.lblSaturday.Text = "Day 6";
+            this.lblSaturday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSunday
+            // 
+            this.lblSunday.AutoSize = true;
+            this.lblSunday.BackColor = System.Drawing.Color.Silver;
+            this.lblSunday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSunday.Location = new System.Drawing.Point(981, 0);
+            this.lblSunday.Name = "lblSunday";
+            this.lblSunday.Size = new System.Drawing.Size(152, 21);
+            this.lblSunday.TabIndex = 20;
+            this.lblSunday.Text = "Day 7";
+            this.lblSunday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // picMon
+            // 
+            this.picMon.BackColor = System.Drawing.Color.White;
+            this.picMon.ContextMenuStrip = this.cmsMain;
+            this.picMon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picMon.Location = new System.Drawing.Point(33, 24);
+            this.picMon.Name = "picMon";
+            this.picMon.Size = new System.Drawing.Size(152, 661);
+            this.picMon.TabIndex = 0;
+            this.picMon.TabStop = false;
+            this.picMon.Click += new System.EventHandler(this.picMon_Click);
+            // 
             // picTue
             // 
             this.picTue.BackColor = System.Drawing.Color.White;
@@ -618,18 +593,6 @@
             this.picWed.TabIndex = 0;
             this.picWed.TabStop = false;
             this.picWed.Click += new System.EventHandler(this.picWed_Click);
-            // 
-            // picThu
-            // 
-            this.picThu.BackColor = System.Drawing.Color.White;
-            this.picThu.ContextMenuStrip = this.cmsMain;
-            this.picThu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picThu.Location = new System.Drawing.Point(507, 24);
-            this.picThu.Name = "picThu";
-            this.picThu.Size = new System.Drawing.Size(152, 661);
-            this.picThu.TabIndex = 0;
-            this.picThu.TabStop = false;
-            this.picThu.Click += new System.EventHandler(this.picThu_Click);
             // 
             // picFri
             // 
@@ -842,11 +805,11 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tblMain.ResumeLayout(false);
             this.tblMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picThu)).EndInit();
             this.cmsMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picMon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picThu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFri)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSun)).EndInit();
@@ -918,12 +881,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmConvertSchedule;
         private System.Windows.Forms.ToolStripMenuItem surveyVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addDailyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolTToolStripMenuItem;
         private System.Windows.Forms.TextBox txtSearchNote;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.ToolStripMenuItem addBatchInfoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tsmAddBatchTransactions;
-        private System.Windows.Forms.ToolStripMenuItem tsmAddBatchLiterature;
         private System.Windows.Forms.NotifyIcon nfiMain;
         private System.Windows.Forms.ContextMenuStrip cmsTool;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;

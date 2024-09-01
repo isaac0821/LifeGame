@@ -101,13 +101,20 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lblLabelWordCount = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.picToday = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnPrevDate = new System.Windows.Forms.Button();
+            this.btnNextDate = new System.Windows.Forms.Button();
+            this.lblDate = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.trvShare = new System.Windows.Forms.TreeView();
             this.cmsTrvShare = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmShowNote = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmUpdateShareNote = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmGoToShare = new System.Windows.Forms.ToolStripMenuItem();
+            this.iglIcon = new System.Windows.Forms.ImageList(this.components);
             this.trvNote = new System.Windows.Forms.TreeView();
             this.cmsTrvNote = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAdd = new System.Windows.Forms.ToolStripMenuItem();
@@ -154,11 +161,9 @@
             this.tsmProperties = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmRenameNote = new System.Windows.Forms.ToolStripMenuItem();
-            this.iglIcon = new System.Windows.Forms.ImageList(this.components);
             this.cmsNoteTag = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAddTag = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveTag = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmUpdateShareNote = new System.Windows.Forms.ToolStripMenuItem();
             this.tblNote.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -181,7 +186,9 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picToday)).BeginInit();
+            this.tableLayoutPanel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -222,8 +229,8 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 9;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
@@ -261,9 +268,9 @@
             // 
             this.dtpDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(251, 3);
+            this.dtpDate.Location = new System.Drawing.Point(263, 3);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(96, 20);
+            this.dtpDate.Size = new System.Drawing.Size(84, 20);
             this.dtpDate.TabIndex = 0;
             // 
             // btnHighlight
@@ -281,9 +288,10 @@
             // btnWrite
             // 
             this.btnWrite.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnWrite.Location = new System.Drawing.Point(402, 3);
+            this.btnWrite.Location = new System.Drawing.Point(400, 1);
+            this.btnWrite.Margin = new System.Windows.Forms.Padding(1);
             this.btnWrite.Name = "btnWrite";
-            this.btnWrite.Size = new System.Drawing.Size(46, 20);
+            this.btnWrite.Size = new System.Drawing.Size(50, 24);
             this.btnWrite.TabIndex = 2;
             this.btnWrite.Text = "Write";
             this.btnWrite.UseVisualStyleBackColor = true;
@@ -293,9 +301,10 @@
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(454, 3);
+            this.btnSave.Location = new System.Drawing.Point(452, 1);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(1);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(60, 20);
+            this.btnSave.Size = new System.Drawing.Size(64, 24);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save (&S)";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -304,9 +313,10 @@
             // btnRead
             // 
             this.btnRead.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRead.Location = new System.Drawing.Point(353, 3);
+            this.btnRead.Location = new System.Drawing.Point(351, 1);
+            this.btnRead.Margin = new System.Windows.Forms.Padding(1);
             this.btnRead.Name = "btnRead";
-            this.btnRead.Size = new System.Drawing.Size(43, 20);
+            this.btnRead.Size = new System.Drawing.Size(47, 24);
             this.btnRead.TabIndex = 3;
             this.btnRead.Text = "Read";
             this.btnRead.UseVisualStyleBackColor = true;
@@ -314,9 +324,11 @@
             // 
             // btnLock
             // 
-            this.btnLock.Location = new System.Drawing.Point(520, 3);
+            this.btnLock.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLock.Location = new System.Drawing.Point(518, 1);
+            this.btnLock.Margin = new System.Windows.Forms.Padding(1);
             this.btnLock.Name = "btnLock";
-            this.btnLock.Size = new System.Drawing.Size(43, 20);
+            this.btnLock.Size = new System.Drawing.Size(47, 24);
             this.btnLock.TabIndex = 4;
             this.btnLock.Text = "Lock";
             this.btnLock.UseVisualStyleBackColor = true;
@@ -342,7 +354,7 @@
             this.lblWordCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblWordCount.Location = new System.Drawing.Point(116, 0);
             this.lblWordCount.Name = "lblWordCount";
-            this.lblWordCount.Size = new System.Drawing.Size(129, 26);
+            this.lblWordCount.Size = new System.Drawing.Size(141, 26);
             this.lblWordCount.TabIndex = 6;
             this.lblWordCount.Text = "Word Count: 9999/9999";
             this.lblWordCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -352,8 +364,8 @@
             this.tableLayoutPanel1.ColumnCount = 5;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtTitle, 1, 0);
@@ -385,16 +397,17 @@
             this.txtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTitle.Location = new System.Drawing.Point(49, 3);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(518, 20);
+            this.txtTitle.Size = new System.Drawing.Size(528, 20);
             this.txtTitle.TabIndex = 1;
             this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
             // 
             // btnNext
             // 
             this.btnNext.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNext.Location = new System.Drawing.Point(603, 3);
+            this.btnNext.Location = new System.Drawing.Point(606, 1);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(1);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(24, 20);
+            this.btnNext.Size = new System.Drawing.Size(23, 24);
             this.btnNext.TabIndex = 2;
             this.btnNext.Text = ">";
             this.btnNext.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -404,9 +417,10 @@
             // btnPrev
             // 
             this.btnPrev.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPrev.Location = new System.Drawing.Point(573, 3);
+            this.btnPrev.Location = new System.Drawing.Point(581, 1);
+            this.btnPrev.Margin = new System.Windows.Forms.Padding(1);
             this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(24, 20);
+            this.btnPrev.Size = new System.Drawing.Size(23, 24);
             this.btnPrev.TabIndex = 3;
             this.btnPrev.Text = "<";
             this.btnPrev.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -416,9 +430,10 @@
             // btnCopy
             // 
             this.btnCopy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCopy.Location = new System.Drawing.Point(633, 3);
+            this.btnCopy.Location = new System.Drawing.Point(631, 1);
+            this.btnCopy.Margin = new System.Windows.Forms.Padding(1);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(79, 20);
+            this.btnCopy.Size = new System.Drawing.Size(83, 24);
             this.btnCopy.TabIndex = 4;
             this.btnCopy.Text = "CopyToNote";
             this.btnCopy.UseVisualStyleBackColor = true;
@@ -449,9 +464,10 @@
             // btnBibTeX
             // 
             this.btnBibTeX.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnBibTeX.Location = new System.Drawing.Point(654, 3);
+            this.btnBibTeX.Location = new System.Drawing.Point(652, 1);
+            this.btnBibTeX.Margin = new System.Windows.Forms.Padding(1);
             this.btnBibTeX.Name = "btnBibTeX";
-            this.btnBibTeX.Size = new System.Drawing.Size(58, 20);
+            this.btnBibTeX.Size = new System.Drawing.Size(62, 24);
             this.btnBibTeX.TabIndex = 0;
             this.btnBibTeX.Text = "BibTeX";
             this.btnBibTeX.UseVisualStyleBackColor = true;
@@ -1033,7 +1049,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.picToday);
+            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel4);
             // 
             // splitContainer1.Panel2
             // 
@@ -1042,16 +1058,84 @@
             this.splitContainer1.SplitterDistance = 178;
             this.splitContainer1.TabIndex = 8;
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.picToday, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel11, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(178, 429);
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
             // picToday
             // 
             this.picToday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picToday.Location = new System.Drawing.Point(0, 0);
+            this.picToday.Location = new System.Drawing.Point(3, 34);
             this.picToday.Name = "picToday";
-            this.picToday.Size = new System.Drawing.Size(178, 429);
+            this.picToday.Size = new System.Drawing.Size(172, 392);
             this.picToday.TabIndex = 0;
             this.picToday.TabStop = false;
             this.picToday.Click += new System.EventHandler(this.picToday_Click);
             this.picToday.Resize += new System.EventHandler(this.picToday_Resize);
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 3;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel11.Controls.Add(this.btnPrevDate, 0, 0);
+            this.tableLayoutPanel11.Controls.Add(this.btnNextDate, 2, 0);
+            this.tableLayoutPanel11.Controls.Add(this.lblDate, 1, 0);
+            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 1;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(172, 25);
+            this.tableLayoutPanel11.TabIndex = 1;
+            // 
+            // btnPrevDate
+            // 
+            this.btnPrevDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPrevDate.Location = new System.Drawing.Point(1, 1);
+            this.btnPrevDate.Margin = new System.Windows.Forms.Padding(1);
+            this.btnPrevDate.Name = "btnPrevDate";
+            this.btnPrevDate.Size = new System.Drawing.Size(23, 23);
+            this.btnPrevDate.TabIndex = 0;
+            this.btnPrevDate.Text = "<";
+            this.btnPrevDate.UseVisualStyleBackColor = true;
+            this.btnPrevDate.Click += new System.EventHandler(this.btnPrevDate_Click);
+            // 
+            // btnNextDate
+            // 
+            this.btnNextDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnNextDate.Location = new System.Drawing.Point(148, 1);
+            this.btnNextDate.Margin = new System.Windows.Forms.Padding(1);
+            this.btnNextDate.Name = "btnNextDate";
+            this.btnNextDate.Size = new System.Drawing.Size(23, 23);
+            this.btnNextDate.TabIndex = 1;
+            this.btnNextDate.Text = ">";
+            this.btnNextDate.UseVisualStyleBackColor = true;
+            this.btnNextDate.Click += new System.EventHandler(this.btnNextDate_Click);
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.BackColor = System.Drawing.Color.Silver;
+            this.lblDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDate.Location = new System.Drawing.Point(28, 0);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(116, 25);
+            this.lblDate.TabIndex = 2;
+            this.lblDate.Text = "(Date)";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // splitContainer2
             // 
@@ -1078,6 +1162,7 @@
             this.trvShare.Location = new System.Drawing.Point(0, 0);
             this.trvShare.Name = "trvShare";
             this.trvShare.Size = new System.Drawing.Size(527, 207);
+            this.trvShare.StateImageList = this.iglIcon;
             this.trvShare.TabIndex = 0;
             // 
             // cmsTrvShare
@@ -1088,7 +1173,7 @@
             this.toolStripSeparator13,
             this.tsmGoToShare});
             this.cmsTrvShare.Name = "cmsTrvShare";
-            this.cmsTrvShare.Size = new System.Drawing.Size(188, 98);
+            this.cmsTrvShare.Size = new System.Drawing.Size(188, 76);
             // 
             // tsmShowNote
             // 
@@ -1096,6 +1181,13 @@
             this.tsmShowNote.Size = new System.Drawing.Size(187, 22);
             this.tsmShowNote.Text = "Go to Share Note...(&S)";
             this.tsmShowNote.Click += new System.EventHandler(this.tsmShowNote_Click);
+            // 
+            // tsmUpdateShareNote
+            // 
+            this.tsmUpdateShareNote.Name = "tsmUpdateShareNote";
+            this.tsmUpdateShareNote.Size = new System.Drawing.Size(187, 22);
+            this.tsmUpdateShareNote.Text = "Update Share Note";
+            this.tsmUpdateShareNote.Click += new System.EventHandler(this.tsmUpdateShareNote_Click);
             // 
             // toolStripSeparator13
             // 
@@ -1108,6 +1200,26 @@
             this.tsmGoToShare.Size = new System.Drawing.Size(187, 22);
             this.tsmGoToShare.Text = "Go to... (&G)";
             this.tsmGoToShare.Click += new System.EventHandler(this.tsmGoToShare_Click);
+            // 
+            // iglIcon
+            // 
+            this.iglIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iglIcon.ImageStream")));
+            this.iglIcon.TransparentColor = System.Drawing.Color.Transparent;
+            this.iglIcon.Images.SetKeyName(0, "Link_Link_Avail.png");
+            this.iglIcon.Images.SetKeyName(1, "Link_Link_Unavail.png");
+            this.iglIcon.Images.SetKeyName(2, "Link_Note_Avail.png");
+            this.iglIcon.Images.SetKeyName(3, "Link_Note_Unavail.png");
+            this.iglIcon.Images.SetKeyName(4, "Link_Jump_Avail.png");
+            this.iglIcon.Images.SetKeyName(5, "Link_Jump_Unavail.png");
+            this.iglIcon.Images.SetKeyName(6, "Link_Litr_Avail.png");
+            this.iglIcon.Images.SetKeyName(7, "Link_Litr_Unavail.png");
+            this.iglIcon.Images.SetKeyName(8, "Link_Schl_Avail.png");
+            this.iglIcon.Images.SetKeyName(9, "Link_Schl_Unavail.png");
+            this.iglIcon.Images.SetKeyName(10, "Link_Recd_Avail.png");
+            this.iglIcon.Images.SetKeyName(11, "Link_Recd_Unavail.png");
+            this.iglIcon.Images.SetKeyName(12, "Link_Trsa_Avail.png");
+            this.iglIcon.Images.SetKeyName(13, "Link_Trsa_Unavail.png");
+            this.iglIcon.Images.SetKeyName(14, "Note_DDL.png");
             // 
             // trvNote
             // 
@@ -1459,26 +1571,6 @@
             this.tsmRenameNote.Text = "Rename Note";
             this.tsmRenameNote.Click += new System.EventHandler(this.tsmRenameNote_Click);
             // 
-            // iglIcon
-            // 
-            this.iglIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iglIcon.ImageStream")));
-            this.iglIcon.TransparentColor = System.Drawing.Color.Transparent;
-            this.iglIcon.Images.SetKeyName(0, "Link_Link_Avail.png");
-            this.iglIcon.Images.SetKeyName(1, "Link_Link_Unavail.png");
-            this.iglIcon.Images.SetKeyName(2, "Link_Note_Avail.png");
-            this.iglIcon.Images.SetKeyName(3, "Link_Note_Unavail.png");
-            this.iglIcon.Images.SetKeyName(4, "Link_Jump_Avail.png");
-            this.iglIcon.Images.SetKeyName(5, "Link_Jump_Unavail.png");
-            this.iglIcon.Images.SetKeyName(6, "Link_Litr_Avail.png");
-            this.iglIcon.Images.SetKeyName(7, "Link_Litr_Unavail.png");
-            this.iglIcon.Images.SetKeyName(8, "Link_Schl_Avail.png");
-            this.iglIcon.Images.SetKeyName(9, "Link_Schl_Unavail.png");
-            this.iglIcon.Images.SetKeyName(10, "Link_Recd_Avail.png");
-            this.iglIcon.Images.SetKeyName(11, "Link_Recd_Unavail.png");
-            this.iglIcon.Images.SetKeyName(12, "Link_Trsa_Avail.png");
-            this.iglIcon.Images.SetKeyName(13, "Link_Trsa_Unavail.png");
-            this.iglIcon.Images.SetKeyName(14, "Note_DDL.png");
-            // 
             // cmsNoteTag
             // 
             this.cmsNoteTag.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -1499,13 +1591,6 @@
             this.tsmRemoveTag.Name = "tsmRemoveTag";
             this.tsmRemoveTag.Size = new System.Drawing.Size(117, 22);
             this.tsmRemoveTag.Text = "Remove";
-            // 
-            // tsmUpdateShareNote
-            // 
-            this.tsmUpdateShareNote.Name = "tsmUpdateShareNote";
-            this.tsmUpdateShareNote.Size = new System.Drawing.Size(187, 22);
-            this.tsmUpdateShareNote.Text = "Update Share Note";
-            this.tsmUpdateShareNote.Click += new System.EventHandler(this.tsmUpdateShareNote_Click);
             // 
             // frmInfoNote
             // 
@@ -1549,7 +1634,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picToday)).EndInit();
+            this.tableLayoutPanel11.ResumeLayout(false);
+            this.tableLayoutPanel11.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -1692,5 +1780,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripMenuItem tsmGoToShare;
         private System.Windows.Forms.ToolStripMenuItem tsmUpdateShareNote;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
+        private System.Windows.Forms.Button btnPrevDate;
+        private System.Windows.Forms.Button btnNextDate;
+        private System.Windows.Forms.Label lblDate;
     }
 }

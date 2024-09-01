@@ -34,15 +34,8 @@
             this.stsAccount = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.mnsAccount = new System.Windows.Forms.MenuStrip();
-            this.filesFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCurrencyRate = new System.Windows.Forms.ToolStripMenuItem();
-            this.modeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.darkModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lightModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statisticsDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generateReportRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.analysisAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -171,26 +164,17 @@
             // 
             this.mnsAccount.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnsAccount.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.filesFToolStripMenuItem,
-            this.settingSToolStripMenuItem,
-            this.statisticsDToolStripMenuItem});
+            this.settingSToolStripMenuItem});
             this.mnsAccount.Location = new System.Drawing.Point(0, 0);
             this.mnsAccount.Name = "mnsAccount";
             this.mnsAccount.Size = new System.Drawing.Size(1155, 24);
             this.mnsAccount.TabIndex = 1;
             this.mnsAccount.Text = "menuStrip1";
             // 
-            // filesFToolStripMenuItem
-            // 
-            this.filesFToolStripMenuItem.Name = "filesFToolStripMenuItem";
-            this.filesFToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.filesFToolStripMenuItem.Text = "Files(&F)";
-            // 
             // settingSToolStripMenuItem
             // 
             this.settingSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmCurrencyRate,
-            this.modeToolStripMenuItem});
+            this.tsmCurrencyRate});
             this.settingSToolStripMenuItem.Name = "settingSToolStripMenuItem";
             this.settingSToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.settingSToolStripMenuItem.Text = "Setting(&S)";
@@ -198,51 +182,9 @@
             // tsmCurrencyRate
             // 
             this.tsmCurrencyRate.Name = "tsmCurrencyRate";
-            this.tsmCurrencyRate.Size = new System.Drawing.Size(148, 22);
+            this.tsmCurrencyRate.Size = new System.Drawing.Size(180, 22);
             this.tsmCurrencyRate.Text = "Currency Rate";
             this.tsmCurrencyRate.Click += new System.EventHandler(this.tsmCurrencyRate_Click);
-            // 
-            // modeToolStripMenuItem
-            // 
-            this.modeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.darkModeToolStripMenuItem,
-            this.lightModeToolStripMenuItem});
-            this.modeToolStripMenuItem.Name = "modeToolStripMenuItem";
-            this.modeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.modeToolStripMenuItem.Text = "Mode";
-            // 
-            // darkModeToolStripMenuItem
-            // 
-            this.darkModeToolStripMenuItem.Name = "darkModeToolStripMenuItem";
-            this.darkModeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.darkModeToolStripMenuItem.Text = "Dark Mode";
-            // 
-            // lightModeToolStripMenuItem
-            // 
-            this.lightModeToolStripMenuItem.Name = "lightModeToolStripMenuItem";
-            this.lightModeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.lightModeToolStripMenuItem.Text = "Light Mode";
-            // 
-            // statisticsDToolStripMenuItem
-            // 
-            this.statisticsDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.generateReportRToolStripMenuItem,
-            this.analysisAToolStripMenuItem});
-            this.statisticsDToolStripMenuItem.Name = "statisticsDToolStripMenuItem";
-            this.statisticsDToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
-            this.statisticsDToolStripMenuItem.Text = "Statistics(&D)";
-            // 
-            // generateReportRToolStripMenuItem
-            // 
-            this.generateReportRToolStripMenuItem.Name = "generateReportRToolStripMenuItem";
-            this.generateReportRToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.generateReportRToolStripMenuItem.Text = "Generate Report(&R)";
-            // 
-            // analysisAToolStripMenuItem
-            // 
-            this.analysisAToolStripMenuItem.Name = "analysisAToolStripMenuItem";
-            this.analysisAToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.analysisAToolStripMenuItem.Text = "Analysis(&A)";
             // 
             // splitContainer1
             // 
@@ -1207,7 +1149,6 @@
         private System.Windows.Forms.StatusStrip stsAccount;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.MenuStrip mnsAccount;
-        private System.Windows.Forms.ToolStripMenuItem filesFToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -1255,9 +1196,6 @@
         private System.Windows.Forms.Label lblCurrency;
         private System.Windows.Forms.ToolStripMenuItem settingSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmCurrencyRate;
-        private System.Windows.Forms.ToolStripMenuItem statisticsDToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generateReportRToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem analysisAToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
@@ -1284,9 +1222,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colCurrency;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEquivalentAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCurrencyRate;
-        private System.Windows.Forms.ToolStripMenuItem modeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem darkModeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem lightModeToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox picDebit;
         private System.Windows.Forms.GroupBox groupBox3;
