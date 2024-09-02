@@ -101,7 +101,10 @@ namespace LifeGame
             dtpDate.Value = note.TagTime;
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
-            lockMode = info.Locked;
+            lockMode = info.Locked; 
+            splitContainer1.Panel1Collapsed = true;
+            splitContainer2.Panel1Collapsed = true;
+            
             if (lockMode)
             {
                 btnRead.Enabled = false;
@@ -197,6 +200,10 @@ namespace LifeGame
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
             lockMode = info.Locked;
+
+            splitContainer1.Panel1Collapsed = true;
+            splitContainer2.Panel1Collapsed = true;
+
             if (lockMode)
             {
                 btnRead.Enabled = false;
@@ -245,6 +252,9 @@ namespace LifeGame
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
 
+            splitContainer1.Panel1Collapsed = true;
+            splitContainer2.Panel1Collapsed = true;
+
             List<string> journalList = new List<string>();
             foreach (CLiterature l in G.glb.lstLiterature)
             {
@@ -290,6 +300,9 @@ namespace LifeGame
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
             note.TagTime = selectedDate;
+
+            splitContainer1.Panel1Collapsed = true;
+            splitContainer2.Panel1Collapsed = true;
 
             this.Text = "LifeGame - Note - (New)";
 
@@ -423,6 +436,9 @@ namespace LifeGame
             dtpDate.Value = selectedDate;
             btnSave.Enabled = true;
             txtTopic.Text = "Daily Report";
+
+            splitContainer1.Panel1Collapsed = false;
+            splitContainer2.Panel1Collapsed = false;
         }
 
         public frmInfoNote(string topic, List<string> lstLiterature)
@@ -497,6 +513,9 @@ namespace LifeGame
             txtTopic.Text = topic;
             dtpDate.Value = DateTime.Today.Date;
             btnSave.Enabled = true;
+
+            splitContainer1.Panel1Collapsed = true;
+            splitContainer2.Panel1Collapsed = true;
         }
         private void RefreshDailySchedule(object sender, EventArgs e)
         {
@@ -4012,12 +4031,18 @@ namespace LifeGame
 
         private void picToday_Resize(object sender, EventArgs e)
         {
-            DrawDailySchedule();
+            if (noteType == ENoteType.DailyReport)
+            {
+                DrawDailySchedule();
+            }
         }
 
         private void picToday_Click(object sender, EventArgs e)
         {
-            DrawDailySchedule();
+            if (noteType == ENoteType.DailyReport)
+            {
+                DrawDailySchedule();
+            }
         }
 
         private void tsmGoToShare_Click(object sender, EventArgs e)
