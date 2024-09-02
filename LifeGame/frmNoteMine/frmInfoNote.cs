@@ -80,11 +80,17 @@ namespace LifeGame
                 curPointerTimer.Interval = (int)(1000 * (60 - secToNextMin.TotalSeconds));
                 curPointerTimer.Start();
                 curPointerTimer.Tick += RefreshDailySchedule;
+
+                splitContainer1.Panel1Collapsed = false;
+                splitContainer2.Panel1Collapsed = false;
             }
             else
             {
                 this.Text = "LifeGame - Note - " + info.Topic;
                 noteType = ENoteType.Note;
+
+                splitContainer1.Panel1Collapsed = true;
+                splitContainer2.Panel1Collapsed = true;
             }
 
             tblNote.RowStyles[1].Height = 0;
@@ -102,8 +108,6 @@ namespace LifeGame
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
             lockMode = info.Locked; 
-            splitContainer1.Panel1Collapsed = true;
-            splitContainer2.Panel1Collapsed = true;
             
             if (lockMode)
             {
@@ -275,6 +279,9 @@ namespace LifeGame
             LoadNoteLog();
             dtpDate.Value = DateTime.Today.Date;
             btnSave.Enabled = true;
+
+            splitContainer1.Panel1Collapsed = true;
+            splitContainer2.Panel1Collapsed = true;
         }
 
         // 新建空note
@@ -310,6 +317,9 @@ namespace LifeGame
             LoadNoteLog();
             dtpDate.Value = selectedDate;
             btnSave.Enabled = true;
+
+            splitContainer1.Panel1Collapsed = true;
+            splitContainer2.Panel1Collapsed = true;
         }
 
         public frmInfoNote(DateTime selectedDate, bool DiaryFlag)
@@ -4222,6 +4232,23 @@ namespace LifeGame
             M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
             SaveNote();
             Dispose();
+        }
+
+        private void trvShare_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void trvShare_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.G)
+            {
+                tsmGoToShare_Click(trvShare, e);
+            }
+            else if (e.Control && e.KeyCode == Keys.E)
+            {
+                tsmShowNote_Click(trvShare, e);
+            }
         }
     }
 

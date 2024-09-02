@@ -1164,6 +1164,8 @@
             this.trvShare.Size = new System.Drawing.Size(527, 207);
             this.trvShare.StateImageList = this.iglIcon;
             this.trvShare.TabIndex = 0;
+            this.trvShare.KeyDown += new System.Windows.Forms.KeyEventHandler(this.trvShare_KeyDown);
+            this.trvShare.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.trvShare_KeyPress);
             // 
             // cmsTrvShare
             // 
@@ -1173,13 +1175,13 @@
             this.toolStripSeparator13,
             this.tsmGoToShare});
             this.cmsTrvShare.Name = "cmsTrvShare";
-            this.cmsTrvShare.Size = new System.Drawing.Size(188, 76);
+            this.cmsTrvShare.Size = new System.Drawing.Size(188, 98);
             // 
             // tsmShowNote
             // 
             this.tsmShowNote.Name = "tsmShowNote";
             this.tsmShowNote.Size = new System.Drawing.Size(187, 22);
-            this.tsmShowNote.Text = "Go to Share Note...(&S)";
+            this.tsmShowNote.Text = "Edit Share Note...(&E)";
             this.tsmShowNote.Click += new System.EventHandler(this.tsmShowNote_Click);
             // 
             // tsmUpdateShareNote
