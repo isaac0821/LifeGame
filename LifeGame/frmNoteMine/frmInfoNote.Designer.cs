@@ -33,7 +33,6 @@
             this.tblNote = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.txtHighlight = new System.Windows.Forms.TextBox();
-            this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.btnHighlight = new System.Windows.Forms.Button();
             this.btnWrite = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -227,23 +226,21 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 9;
+            this.tableLayoutPanel2.ColumnCount = 8;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
-            this.tableLayoutPanel2.Controls.Add(this.txtHighlight, 7, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dtpDate, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnHighlight, 8, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnWrite, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnSave, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnRead, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnLock, 6, 0);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel2.Controls.Add(this.txtHighlight, 6, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnHighlight, 7, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnWrite, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnSave, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnRead, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnLock, 5, 0);
             this.tableLayoutPanel2.Controls.Add(this.chkShow, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblWordCount, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -258,40 +255,31 @@
             // txtHighlight
             // 
             this.txtHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtHighlight.Location = new System.Drawing.Point(569, 3);
+            this.txtHighlight.Location = new System.Drawing.Point(563, 3);
             this.txtHighlight.Name = "txtHighlight";
             this.txtHighlight.Size = new System.Drawing.Size(90, 20);
             this.txtHighlight.TabIndex = 0;
             this.txtHighlight.TextChanged += new System.EventHandler(this.txtHighlight_TextChanged);
             // 
-            // dtpDate
-            // 
-            this.dtpDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(263, 3);
-            this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(84, 20);
-            this.dtpDate.TabIndex = 0;
-            // 
             // btnHighlight
             // 
             this.btnHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnHighlight.Location = new System.Drawing.Point(663, 1);
+            this.btnHighlight.Location = new System.Drawing.Point(657, 1);
             this.btnHighlight.Margin = new System.Windows.Forms.Padding(1);
             this.btnHighlight.Name = "btnHighlight";
-            this.btnHighlight.Size = new System.Drawing.Size(51, 24);
+            this.btnHighlight.Size = new System.Drawing.Size(57, 24);
             this.btnHighlight.TabIndex = 1;
-            this.btnHighlight.Text = "Search";
+            this.btnHighlight.Text = "Highlight";
             this.btnHighlight.UseVisualStyleBackColor = true;
             this.btnHighlight.Click += new System.EventHandler(this.btnHighlight_Click);
             // 
             // btnWrite
             // 
             this.btnWrite.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnWrite.Location = new System.Drawing.Point(400, 1);
+            this.btnWrite.Location = new System.Drawing.Point(411, 1);
             this.btnWrite.Margin = new System.Windows.Forms.Padding(1);
             this.btnWrite.Name = "btnWrite";
-            this.btnWrite.Size = new System.Drawing.Size(50, 24);
+            this.btnWrite.Size = new System.Drawing.Size(46, 24);
             this.btnWrite.TabIndex = 2;
             this.btnWrite.Text = "Write";
             this.btnWrite.UseVisualStyleBackColor = true;
@@ -301,10 +289,10 @@
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(452, 1);
+            this.btnSave.Location = new System.Drawing.Point(459, 1);
             this.btnSave.Margin = new System.Windows.Forms.Padding(1);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(64, 24);
+            this.btnSave.Size = new System.Drawing.Size(57, 24);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save (&S)";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -313,10 +301,10 @@
             // btnRead
             // 
             this.btnRead.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRead.Location = new System.Drawing.Point(351, 1);
+            this.btnRead.Location = new System.Drawing.Point(363, 1);
             this.btnRead.Margin = new System.Windows.Forms.Padding(1);
             this.btnRead.Name = "btnRead";
-            this.btnRead.Size = new System.Drawing.Size(47, 24);
+            this.btnRead.Size = new System.Drawing.Size(46, 24);
             this.btnRead.TabIndex = 3;
             this.btnRead.Text = "Read";
             this.btnRead.UseVisualStyleBackColor = true;
@@ -328,7 +316,7 @@
             this.btnLock.Location = new System.Drawing.Point(518, 1);
             this.btnLock.Margin = new System.Windows.Forms.Padding(1);
             this.btnLock.Name = "btnLock";
-            this.btnLock.Size = new System.Drawing.Size(47, 24);
+            this.btnLock.Size = new System.Drawing.Size(41, 24);
             this.btnLock.TabIndex = 4;
             this.btnLock.Text = "Lock";
             this.btnLock.UseVisualStyleBackColor = true;
@@ -342,7 +330,7 @@
             this.chkShow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkShow.Location = new System.Drawing.Point(3, 3);
             this.chkShow.Name = "chkShow";
-            this.chkShow.Size = new System.Drawing.Size(107, 20);
+            this.chkShow.Size = new System.Drawing.Size(96, 20);
             this.chkShow.TabIndex = 5;
             this.chkShow.Text = "Expand heads";
             this.chkShow.UseVisualStyleBackColor = true;
@@ -352,9 +340,9 @@
             // 
             this.lblWordCount.AutoSize = true;
             this.lblWordCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWordCount.Location = new System.Drawing.Point(116, 0);
+            this.lblWordCount.Location = new System.Drawing.Point(105, 0);
             this.lblWordCount.Name = "lblWordCount";
-            this.lblWordCount.Size = new System.Drawing.Size(141, 26);
+            this.lblWordCount.Size = new System.Drawing.Size(254, 26);
             this.lblWordCount.TabIndex = 6;
             this.lblWordCount.Text = "Word Count: 9999/9999";
             this.lblWordCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -606,9 +594,10 @@
             // btnGoogleScholar
             // 
             this.btnGoogleScholar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGoogleScholar.Location = new System.Drawing.Point(413, 3);
+            this.btnGoogleScholar.Location = new System.Drawing.Point(411, 1);
+            this.btnGoogleScholar.Margin = new System.Windows.Forms.Padding(1);
             this.btnGoogleScholar.Name = "btnGoogleScholar";
-            this.btnGoogleScholar.Size = new System.Drawing.Size(90, 20);
+            this.btnGoogleScholar.Size = new System.Drawing.Size(94, 24);
             this.btnGoogleScholar.TabIndex = 4;
             this.btnGoogleScholar.Text = "Google Scholar";
             this.btnGoogleScholar.UseVisualStyleBackColor = true;
@@ -617,9 +606,10 @@
             // btnFullText
             // 
             this.btnFullText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFullText.Location = new System.Drawing.Point(509, 3);
+            this.btnFullText.Location = new System.Drawing.Point(507, 1);
+            this.btnFullText.Margin = new System.Windows.Forms.Padding(1);
             this.btnFullText.Name = "btnFullText";
-            this.btnFullText.Size = new System.Drawing.Size(56, 20);
+            this.btnFullText.Size = new System.Drawing.Size(60, 24);
             this.btnFullText.TabIndex = 5;
             this.btnFullText.Text = "Full Text";
             this.btnFullText.UseVisualStyleBackColor = true;
@@ -1175,31 +1165,31 @@
             this.toolStripSeparator13,
             this.tsmGoToShare});
             this.cmsTrvShare.Name = "cmsTrvShare";
-            this.cmsTrvShare.Size = new System.Drawing.Size(188, 98);
+            this.cmsTrvShare.Size = new System.Drawing.Size(179, 76);
             // 
             // tsmShowNote
             // 
             this.tsmShowNote.Name = "tsmShowNote";
-            this.tsmShowNote.Size = new System.Drawing.Size(187, 22);
+            this.tsmShowNote.Size = new System.Drawing.Size(178, 22);
             this.tsmShowNote.Text = "Edit Share Note...(&E)";
             this.tsmShowNote.Click += new System.EventHandler(this.tsmShowNote_Click);
             // 
             // tsmUpdateShareNote
             // 
             this.tsmUpdateShareNote.Name = "tsmUpdateShareNote";
-            this.tsmUpdateShareNote.Size = new System.Drawing.Size(187, 22);
+            this.tsmUpdateShareNote.Size = new System.Drawing.Size(178, 22);
             this.tsmUpdateShareNote.Text = "Update Share Note";
             this.tsmUpdateShareNote.Click += new System.EventHandler(this.tsmUpdateShareNote_Click);
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(184, 6);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(175, 6);
             // 
             // tsmGoToShare
             // 
             this.tsmGoToShare.Name = "tsmGoToShare";
-            this.tsmGoToShare.Size = new System.Drawing.Size(187, 22);
+            this.tsmGoToShare.Size = new System.Drawing.Size(178, 22);
             this.tsmGoToShare.Text = "Go to... (&G)";
             this.tsmGoToShare.Click += new System.EventHandler(this.tsmGoToShare_Click);
             // 
@@ -1656,7 +1646,6 @@
         private System.Windows.Forms.TableLayoutPanel tblNote;
         private System.Windows.Forms.TreeView trvNote;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.ContextMenuStrip cmsTrvNote;
         private System.Windows.Forms.ToolStripMenuItem tsmAdd;
         private System.Windows.Forms.ToolStripMenuItem tsmEdit;

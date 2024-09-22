@@ -203,7 +203,7 @@
             // tsmExportBib
             // 
             this.tsmExportBib.Name = "tsmExportBib";
-            this.tsmExportBib.Size = new System.Drawing.Size(180, 22);
+            this.tsmExportBib.Size = new System.Drawing.Size(128, 22);
             this.tsmExportBib.Text = "Export bib";
             this.tsmExportBib.Click += new System.EventHandler(this.tsmExportBib_Click);
             // 
@@ -219,14 +219,14 @@
             // goodJournalsToolStripMenuItem
             // 
             this.goodJournalsToolStripMenuItem.Name = "goodJournalsToolStripMenuItem";
-            this.goodJournalsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.goodJournalsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.goodJournalsToolStripMenuItem.Text = "Reliable Source";
             this.goodJournalsToolStripMenuItem.Click += new System.EventHandler(this.goodJournalsToolStripMenuItem_Click);
             // 
             // unreliableSourceToolStripMenuItem
             // 
             this.unreliableSourceToolStripMenuItem.Name = "unreliableSourceToolStripMenuItem";
-            this.unreliableSourceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.unreliableSourceToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.unreliableSourceToolStripMenuItem.Text = "Unreliable Source";
             this.unreliableSourceToolStripMenuItem.Click += new System.EventHandler(this.unreliableSourceToolStripMenuItem_Click);
             // 
@@ -763,6 +763,7 @@
             this.dgvLiterature.Size = new System.Drawing.Size(456, 405);
             this.dgvLiterature.TabIndex = 1;
             this.dgvLiterature.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dgvLiterature_SortCompare);
+            this.dgvLiterature.Sorted += new System.EventHandler(this.dgvLiterature_Sorted);
             // 
             // Star
             // 

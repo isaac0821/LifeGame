@@ -76,13 +76,6 @@ namespace LifeGame
     }
 
     [Serializable]
-    public class RLiteratureInCiting
-    {
-        public string Title;
-        public string TitleOfMyArticle;
-    }
-
-    [Serializable]
     public class CLiteratureTag
     {
         public string Tag;
@@ -129,48 +122,6 @@ namespace LifeGame
         public string Title;
         public string Author;
         public int Rank;
-    }
-
-    /// <summary>
-    /// 作者
-    /// </summary>
-    [Serializable]
-    public class CAuthor
-    {
-        public string Author;
-        public string PrimeAffiliation;
-        public bool IsReliable;
-    }
-
-    /// <summary>
-    /// 作者单位
-    /// </summary>
-    [Serializable]
-    public class RAuthorAffiliation
-    {
-        public string Author;
-        public string Affiliation;
-        public bool IsPrime;
-    }
-
-    /// <summary>
-    /// 文献机构
-    /// </summary>
-    [Serializable]
-    public class RLiteratureInstitution
-    {
-        public string Title;
-        public string Institution;
-    }
-
-    /// <summary>
-    /// 文献的外链
-    /// </summary>
-    [Serializable]
-    public class RLiteratureOutSource
-    {
-        public string Title;
-        public string OutsourcePath;
     }
 
     /// <summary>
@@ -241,40 +192,6 @@ namespace LifeGame
 
     #region 任务系统
     /// <summary>
-    /// 任务（已废弃）
-    /// </summary>
-    [Serializable]
-    public class CTask
-    {
-        public string TaskName;
-        public string TaskDescription;
-        public DateTime DeadLine;
-        public bool IsBottom;
-        public bool IsInfinite;
-        public ETaskState TaskState;
-    }
-
-    [Serializable]
-    public enum ETaskState : int
-    {
-        NotStartedYet,
-        Ongoing,
-        Finished,
-        Aborted
-    }
-
-    /// <summary>
-    /// 任务与子任务关系（已废弃）
-    /// </summary>
-    [Serializable]
-    public class RSubTask
-    {
-        public string Task;
-        public string SubTask;
-        public int index;
-    }
-
-    /// <summary>
     /// 日志
     /// </summary>
     [Serializable]
@@ -307,45 +224,6 @@ namespace LifeGame
         LogEvent,
         Succeed,
         Failed
-    }
-
-    /// <summary>
-    /// 锻炼记录
-    /// </summary>
-    [Serializable]
-    public class CWorkOut
-    {
-        public DateTime TagTime;
-        public string WorkOutType;
-        public double WorkOutQty;
-        public string WorkOutUnit;
-        public string Location;
-    }
-
-    /// <summary>
-    /// 药物记录
-    /// </summary>
-    [Serializable]
-    public class CMedicine
-    {
-        public DateTime TagTime;
-        public EMedicineTiming MedicineTime;
-        public string MedicineName;
-        public double MedicineQty;
-        public string MedicineUnit;
-    }
-
-    [Serializable]
-    public enum EMedicineTiming : int
-    {
-        BeforeBreakfast,
-        AfterBreakfast,
-        BeforeLunch,
-        AfterLunch,
-        BeforeDinner,
-        AfterDinner,
-        BeforeSleep,
-        WhenNeeded
     }
 
     /// <summary>
@@ -460,17 +338,6 @@ namespace LifeGame
     }
 
     /// <summary>
-    /// 笔记的外部链接路径（已废弃）
-    /// </summary>
-    [Serializable]
-    public class RNoteOutsource
-    {
-        public DateTime TagTime;
-        public string Topic;
-        public string Outsourcepath;
-    }
-
-    /// <summary>
     /// 笔记记录
     /// </summary>
     [Serializable]
@@ -494,14 +361,6 @@ namespace LifeGame
         public DateTime TagTime;
         public string Keyword;
         public string Color;
-    }
-
-    [Serializable]
-    public class RNoteTag
-    {
-        public string Topic;
-        public DateTime TagTime;
-        public string Tag;
     }
 
     #endregion

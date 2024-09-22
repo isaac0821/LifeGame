@@ -1785,6 +1785,13 @@ namespace LifeGame
             updateTempLitAreaB();
         }
 
-       
+        private void dgvLiterature_Sorted(object sender, EventArgs e)
+        {
+            M.shownLits.Clear();
+            for (int i = 0; i < dgvLiterature.Rows.Count; i++)
+            {
+                M.shownLits.Add(dgvLiterature.Rows[i].Cells[1].Value.ToString());
+            }
+        }
     }
 }

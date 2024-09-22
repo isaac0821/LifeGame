@@ -23,6 +23,7 @@ namespace LifeGame
     {
         bool modifiedFlag = false;
         Timer curPointerTimer = new Timer();
+        DateTime noteDateTime = new DateTime();
 
         // 先写死，之后改成系统环境变量
         string SysNoteName = "To Do List";
@@ -104,7 +105,7 @@ namespace LifeGame
 
             LoadNoteColor(noteColors);
             LoadNoteLog();
-            dtpDate.Value = note.TagTime;
+            noteDateTime = note.TagTime;
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
             lockMode = info.Locked; 
@@ -200,7 +201,7 @@ namespace LifeGame
             //    lblCited.Text = "NaN";
             //}
 
-            dtpDate.Value = note.TagTime;
+            noteDateTime = note.TagTime;
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
             lockMode = info.Locked;
@@ -277,7 +278,7 @@ namespace LifeGame
 
             LoadNoteColor(noteColors);
             LoadNoteLog();
-            dtpDate.Value = DateTime.Today.Date;
+            noteDateTime = DateTime.Today.Date;
             btnSave.Enabled = true;
 
             splitContainer1.Panel1Collapsed = true;
@@ -315,7 +316,7 @@ namespace LifeGame
 
             LoadNoteColor(noteColors);
             LoadNoteLog();
-            dtpDate.Value = selectedDate;
+            noteDateTime = selectedDate;
             btnSave.Enabled = true;
 
             splitContainer1.Panel1Collapsed = true;
@@ -443,7 +444,7 @@ namespace LifeGame
 
             LoadNoteColor(noteColors);
             LoadNoteLog();
-            dtpDate.Value = selectedDate;
+            noteDateTime = selectedDate;
             btnSave.Enabled = true;
             txtTopic.Text = "Daily Report";
 
@@ -521,7 +522,7 @@ namespace LifeGame
             LoadNoteColor(noteColors);
             LoadNoteLog();
             txtTopic.Text = topic;
-            dtpDate.Value = DateTime.Today.Date;
+            noteDateTime = DateTime.Today.Date;
             btnSave.Enabled = true;
 
             splitContainer1.Panel1Collapsed = true;
@@ -1086,7 +1087,7 @@ namespace LifeGame
             RNoteLog newNoteLog = new RNoteLog();
             newNoteLog.Topic = txtTopic.Text;
             newNoteLog.TopicGUID = topicGUID;
-            newNoteLog.TagTime = dtpDate.Value.Date;
+            newNoteLog.TagTime = noteDateTime;
             newNoteLog.Log = treeNode.Parent.Text;
             newNoteLog.GUID = treeNode.Parent.Name;
             newNoteLog.SubLog = treeNode.Text;
@@ -1228,33 +1229,33 @@ namespace LifeGame
 
         private void SaveNote()
         {
-            G.glb.lstNoteLog.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
-            G.glb.lstNoteColor.RemoveAll(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date);
+            G.glb.lstNoteLog.RemoveAll(o => o.Topic == note.Topic && o.TagTime == noteDateTime);
+            G.glb.lstNoteColor.RemoveAll(o => o.Topic == note.Topic && o.TagTime == noteDateTime);
             SaveNoteLog();
             foreach (RNoteLog noteLog in noteLogs)
             {
                 noteLog.Topic = txtTopic.Text;
-                noteLog.TagTime = dtpDate.Value.Date;
+                noteLog.TagTime = noteDateTime;
                 G.glb.lstNoteLog.Add(noteLog);
             }
             foreach (RNoteColor noteColor in noteColors)
             {
                 noteColor.Topic = txtTopic.Text;
-                noteColor.TagTime = dtpDate.Value.Date;
+                noteColor.TagTime = noteDateTime;
                 G.glb.lstNoteColor.Add(noteColor);
             }
-            if (G.glb.lstNote.Exists(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date))
+            if (G.glb.lstNote.Exists(o => o.Topic == note.Topic && o.TagTime == noteDateTime))
             {
-                G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).TagTime = dtpDate.Value.Date;
-                G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Topic = txtTopic.Text;
-                G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).LiteratureTitle = txtTitle.Text;
-                G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == dtpDate.Value.Date).Locked = lockMode;
+                G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == noteDateTime).TagTime = noteDateTime;
+                G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == noteDateTime).Topic = txtTopic.Text;
+                G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == noteDateTime).LiteratureTitle = txtTitle.Text;
+                G.glb.lstNote.Find(o => o.Topic == note.Topic && o.TagTime == noteDateTime).Locked = lockMode;
             }
             else
             {
                 CNote newNote = new CNote();
                 newNote.Topic = txtTopic.Text;
-                newNote.TagTime = dtpDate.Value.Date;
+                newNote.TagTime = noteDateTime;
                 newNote.LiteratureTitle = txtTitle.Text;
                 newNote.Locked = lockMode;
                 newNote.GUID = topicGUID;
@@ -1673,7 +1674,7 @@ namespace LifeGame
             {
                 RNoteColor newNoteColor = new RNoteColor();
                 newNoteColor.Topic = txtTopic.Text;
-                newNoteColor.TagTime = dtpDate.Value.Date;
+                newNoteColor.TagTime = noteDateTime;
                 newNoteColor.Keyword = Keyword;
                 newNoteColor.Color = NoteColor;
                 noteColors.Add(newNoteColor);
@@ -2729,10 +2730,10 @@ namespace LifeGame
                         string[] schStartStr = schTimeStr[0].Split(':');
                         string[] schEndStr = schTimeStr[1].Split(':');
                         DateTime StartTime = new DateTime(
-                            Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
+                            Convert.ToInt32(noteDateTime.Year), Convert.ToInt32(noteDateTime.Month), Convert.ToInt32(noteDateTime.Day),
                             Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), 0);
                         DateTime EndTime = new DateTime(
-                            Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
+                            Convert.ToInt32(noteDateTime.Year), Convert.ToInt32(noteDateTime.Month), Convert.ToInt32(noteDateTime.Day),
                             Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), 0);
                         if (addOneDayFlag)
                         {
@@ -2832,10 +2833,10 @@ namespace LifeGame
                         string[] schStartStr = schTimeStr[0].Split(':');
                         string[] schEndStr = schTimeStr[1].Split(':');
                         DateTime StartTime = new DateTime(
-                            Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
+                            Convert.ToInt32(noteDateTime.Year), Convert.ToInt32(noteDateTime.Month), Convert.ToInt32(noteDateTime.Day),
                             Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), 0);
                         DateTime EndTime = new DateTime(
-                            Convert.ToInt32(dtpDate.Value.Date.Year), Convert.ToInt32(dtpDate.Value.Date.Month), Convert.ToInt32(dtpDate.Value.Date.Day),
+                            Convert.ToInt32(noteDateTime.Year), Convert.ToInt32(noteDateTime.Month), Convert.ToInt32(noteDateTime.Day),
                             Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), 0);
                         if (addOneDayFlag)
                         {
@@ -2922,7 +2923,7 @@ namespace LifeGame
                     string accountTo = transactionNote[3];
 
                     bool CanSaveFlag = true;
-                    if (G.glb.lstTransaction.Exists(o => o.TagTime == dtpDate.Value.Date && o.Summary == transactionNote[0]))
+                    if (G.glb.lstTransaction.Exists(o => o.TagTime == noteDateTime && o.Summary == transactionNote[0]))
                     {
                         CanSaveFlag = false;
                     }
@@ -2930,7 +2931,7 @@ namespace LifeGame
                     if (CanSaveFlag)
                     {
                         CTransaction newTransaction = new CTransaction();
-                        newTransaction.TagTime = dtpDate.Value.Date;
+                        newTransaction.TagTime = noteDateTime;
                         newTransaction.Summary = transactionNote[0];
                         newTransaction.CreditAccount = transactionNote[2];
                         newTransaction.CreditAmount = Convert.ToDouble(transactionNote[1]);
@@ -4034,6 +4035,7 @@ namespace LifeGame
                 noteAddProgress(child, place);
             }
         }
+        
         private void tsmRemoveProgress_Click(object sender, EventArgs e)
         {
 
