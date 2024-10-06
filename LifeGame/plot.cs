@@ -137,7 +137,7 @@ namespace LifeGame
         /// <param name="healths">健康日志</param>
         /// <param name="IsLabelShown">是否显示标签</param>
         /// <param name="LocationMode">位置模式："all" - 全部; "left" - 左侧; "right" - 右侧</param>
-        public void DrawScheduleAndLogController(PictureBox picMap, DateTime date, List<CLog> logs, List<CSleep> healths, string LocationMode)
+        public void DrawScheduleAndLogController(PictureBox picMap, DateTime date, List<CLog> logs, string LocationMode)
         {
             int left = 0;
             int width = picMap.Width;
@@ -207,61 +207,6 @@ namespace LifeGame
 
             List<CLog> todayLogs = logs.FindAll(o => o.StartTime.Date == date).ToList();
             List<CLog> yesterdayLogs = logs.FindAll(o => o.StartTime.Date == date.AddDays(-1) && o.EndTime.Date == date).ToList();
-            CSleep todaySleep = healths.Find(o => o.Date == date);
-            CSleep tomorrowSleep = healths.Find(o => o.Date == date.AddDays(1));
-
-            PictureBox picSleep = new PictureBox();
-            Label lblSleep = new Label();
-            if (healths.Exists(o => o.Date == date))
-            {
-                double start;
-                if (todaySleep.IsGoToBedBeforeMidNight)
-                {
-                    start = 0;
-                }
-                else
-                {
-                    start = (todaySleep.GoToBedTime.Hour + todaySleep.GoToBedTime.Minute / 60d) / 24d * height;
-                }
-                double end = (todaySleep.GetUpTime.Hour + todaySleep.GetUpTime.Minute / 60d) / 24d * height;
-                double totalHour = (todaySleep.GetUpTime - todaySleep.GoToBedTime).TotalHours;
-                totalHour = Math.Round(totalHour, 2);
-                string SleepTime = (todaySleep.IsGoToBedBeforeMidNight ? "(-1d)" : "") + todaySleep.GoToBedTime.ToShortTimeString() + " - " + todaySleep.GetUpTime.ToShortTimeString() + " [" + totalHour.ToString() + "h]";
-                picSleep.Width = width;
-                picSleep.Height = (int)(end - start);
-                picSleep.Left = left;
-                picSleep.Top = (int)start;
-                picSleep.BackColor = Color.LightBlue;
-                picMap.Controls.Add(picSleep);
-                lblSleep.Text = SleepTime + "\n" + "Sleep";
-                lblSleep.Dock = DockStyle.Fill;
-                lblSleep.Click += (e, a) => CallInfoLog(SleepTime, "Sleep", "", "", picSleep.BackColor, false);
-                picSleep.Controls.Add(lblSleep);
-            }
-
-            PictureBox picSleepYesterday = new PictureBox();
-            Label lblSleepYesterday = new Label();
-            if (healths.Exists(o => o.Date == date.AddDays(1)))
-            {
-                if (tomorrowSleep.IsGoToBedBeforeMidNight)
-                {
-                    double start = (tomorrowSleep.GoToBedTime.Hour + tomorrowSleep.GoToBedTime.Minute / 60d) / 24d * height;
-                    double end = height;
-                    double totalHour = (tomorrowSleep.GetUpTime - tomorrowSleep.GoToBedTime).TotalHours;
-                    totalHour = Math.Round(totalHour, 2);
-                    string SleepTime = tomorrowSleep.GoToBedTime.ToShortTimeString() + " - " + tomorrowSleep.GetUpTime.ToShortTimeString() + "(+1d)" + " [" + totalHour.ToString() + "h]";
-                    picSleepYesterday.Width = width;
-                    picSleepYesterday.Height = (int)(end - start);
-                    picSleepYesterday.Left = left;
-                    picSleepYesterday.Top = (int)start;
-                    picSleepYesterday.BackColor = Color.LightBlue;
-                    picMap.Controls.Add(picSleepYesterday);
-                    lblSleepYesterday.Text = SleepTime + "\n" + "Sleep";
-                    lblSleepYesterday.Dock = DockStyle.Fill;
-                    lblSleepYesterday.Click += (e, a) => CallInfoLog("", "Sleep", "", "", picSleepYesterday.BackColor, false);
-                    picSleepYesterday.Controls.Add(lblSleepYesterday);
-                }
-            }
 
             List<PictureBox> lstPicLog = new List<PictureBox>();
             List<Label> lstLblLog = new List<Label>();

@@ -26,7 +26,7 @@ namespace LifeGame
         DateTime noteDateTime = new DateTime();
 
         // 先写死，之后改成系统环境变量
-        string SysNoteName = "To Do List";
+        string TDLNoteName = "SysNote: To Do List";
 
         private plot C = new plot();
         public CNote note = new CNote();
@@ -41,12 +41,7 @@ namespace LifeGame
         List<RSurveyLiterature> lstSurveyLiterature = new List<RSurveyLiterature>();
         CBibTeX literatureBib = new CBibTeX();
 
-        public enum ENoteType : int
-        {
-            Note = 0,
-            DailyReport = 1,
-            Literature = 2
-        }
+
         public ENoteType noteType = ENoteType.Note;
 
         // 已经有了note之后打开
@@ -56,13 +51,13 @@ namespace LifeGame
             noteLogs = G.glb.lstNoteLog.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             noteColors = G.glb.lstNoteColor.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             topicGUID = info.GUID;
+            noteType = note.NoteType;
 
             InitializeComponent();
 
-            if (note.Topic == "Daily Report")
+            if (note.NoteType == ENoteType.DailyReport)
             {
                 this.Text = "LifeGame - Daily Report - " + info.TagTime.Date.ToString("dd/MM/yyyy");
-                noteType = ENoteType.DailyReport;
                 DrawDailySchedule();
                 LoadShareNoteLog();
 
@@ -88,8 +83,6 @@ namespace LifeGame
             else
             {
                 this.Text = "LifeGame - Note - " + info.Topic;
-                noteType = ENoteType.Note;
-
                 splitContainer1.Panel1Collapsed = true;
                 splitContainer2.Panel1Collapsed = true;
             }
@@ -333,7 +326,6 @@ namespace LifeGame
             note.GUID = topicGUID;
             note.TagTime = selectedDate.Date;
 
-            // 暂时不区分，以后加专用Note
             noteType = ENoteType.DailyReport;
 
             tblNote.RowStyles[1].Height = 0;
@@ -567,12 +559,12 @@ namespace LifeGame
         private void LoadShareNoteLog()
         {
             trvShare.Nodes.Clear();
-            TreeNode rootNode = new TreeNode(SysNoteName, 0, 0);
-            rootNode.Name = G.glb.lstNote.Find(o => o.Topic == SysNoteName).GUID;
-            rootNode.Text = SysNoteName;
+            TreeNode rootNode = new TreeNode(TDLNoteName, 0, 0);
+            rootNode.Name = G.glb.lstNote.Find(o => o.Topic == TDLNoteName).GUID;
+            rootNode.Text = TDLNoteName;
             rootNode.Expand();
-            List<RNoteColor> sysNoteColor = G.glb.lstNoteColor.FindAll(o => o.Topic == SysNoteName);
-            LoadChildNoteLog(rootNode, SysNoteName, G.glb.lstNoteLog, sysNoteColor);
+            List<RNoteColor> sysNoteColor = G.glb.lstNoteColor.FindAll(o => o.Topic == TDLNoteName);
+            LoadChildNoteLog(rootNode, TDLNoteName, G.glb.lstNoteLog, sysNoteColor);
             trvShare.Nodes.Add(rootNode);
         }
 
@@ -1259,6 +1251,7 @@ namespace LifeGame
                 newNote.LiteratureTitle = txtTitle.Text;
                 newNote.Locked = lockMode;
                 newNote.GUID = topicGUID;
+                newNote.NoteType = noteType;
                 G.glb.lstNote.Add(newNote);
             }
 
@@ -1272,11 +1265,7 @@ namespace LifeGame
         {
             M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
 
-            if (noteType == ENoteType.Note)
-            {
-                SaveNote();
-            }
-            else if (noteType == ENoteType.DailyReport)
+            if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport || noteType == ENoteType.System)
             {
                 SaveNote();
             }
@@ -1304,8 +1293,8 @@ namespace LifeGame
             plot Draw = new plot();
             picToday.Controls.Clear();
             Draw.DrawEventController(picToday, note.TagTime.Date, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawScheduleAndLogController(picToday, note.TagTime.Date, G.glb.lstSchedule, G.glb.lstSleepSchedule, "leftWithSupp");
-            Draw.DrawScheduleAndLogController(picToday, note.TagTime.Date, G.glb.lstLog, G.glb.lstSleepLog, "rightWithSupp");
+            Draw.DrawScheduleAndLogController(picToday, note.TagTime.Date, G.glb.lstSchedule, "leftWithSupp");
+            Draw.DrawScheduleAndLogController(picToday, note.TagTime.Date, G.glb.lstLog, "rightWithSupp");
         }
 
         private void tsmAdd_Click(object sender, EventArgs e)
@@ -1629,6 +1618,10 @@ namespace LifeGame
             {
                 this.Text = "LifeGame - Note - " + txtTopic.Text;
             }
+            else if (noteType == ENoteType.System)
+            {
+                this.Text = "LifeGame - Config - " + txtTopic.Text;
+            }
             else if (noteType == ENoteType.Literature)
             {
                 this.Text = "LifeGame - Literature - " + txtTopic.Text;
@@ -1649,7 +1642,7 @@ namespace LifeGame
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (noteType == ENoteType.Note)
+            if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport || noteType == ENoteType.System)
             {
                 SaveNote();
             }
@@ -2604,7 +2597,7 @@ namespace LifeGame
             // 保存
             else if (e.Control && e.KeyCode == Keys.S)
             {
-                if (noteType == ENoteType.Note)
+                if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport || noteType == ENoteType.System)
                 {
                     SaveNote();
                 }
@@ -2757,12 +2750,6 @@ namespace LifeGame
                         // 判断是否能添加日程
                         bool CanAddScheduleFlag = true;
                         bool ReplaceExistFlag = false;
-
-                        if (G.glb.lstSleepSchedule.Exists(o => (o.GoToBedTime <= StartTime && o.GetUpTime >= StartTime) || (o.GoToBedTime >= StartTime && o.GoToBedTime <= EndTime)))
-                        {
-                            MessageBox.Show("Overlapped with sleep time, please check");
-                            CanAddScheduleFlag = false;
-                        }
                         if (CanAddScheduleFlag && G.glb.lstSchedule.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
                         {
                             DialogResult result = MessageBox.Show("Already have logs at that time, Do you replace?", "Log", MessageBoxButtons.YesNo);
@@ -2860,12 +2847,6 @@ namespace LifeGame
                         // 判断是否能添加日程
                         bool CanAddScheduleFlag = true;
                         bool ReplaceExistFlag = false;
-
-                        if (G.glb.lstSleepLog.Exists(o => (o.GoToBedTime <= StartTime && o.GetUpTime >= StartTime) || (o.GoToBedTime >= StartTime && o.GoToBedTime <= EndTime)))
-                        {
-                            MessageBox.Show("Overlapped with sleep time, please check");
-                            CanAddScheduleFlag = false;
-                        }
                         if (CanAddScheduleFlag && G.glb.lstLog.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
                         {
                             DialogResult result = MessageBox.Show("Already have logs at that time, Do you replace?", "Log", MessageBoxButtons.YesNo);
@@ -2981,7 +2962,7 @@ namespace LifeGame
             }
             else
             {
-                if (noteType == ENoteType.Note)
+                if (noteType == ENoteType.Note || noteType == ENoteType.System)
                 {
                     tblNote.RowStyles[1].Height = 26;
                     tblNote.RowStyles[2].Height = 0;
@@ -3094,7 +3075,7 @@ namespace LifeGame
             }
             else
             {
-                MessageBox.Show("Type error!");
+                MessageBox.Show("Error: Cannot rename this note!");
             }
         }
 
@@ -4173,14 +4154,14 @@ namespace LifeGame
 
         private void tsmShowNote_Click(object sender, EventArgs e)
         {
-            if (M.notesOpened.Exists(o => o.note.Topic == SysNoteName))
+            if (M.notesOpened.Exists(o => o.note.Topic == TDLNoteName))
             {
-                M.notesOpened.Find(o => o.note.Topic == SysNoteName).Show();
-                M.notesOpened.Find(o => o.note.Topic == SysNoteName).BringToFront();
+                M.notesOpened.Find(o => o.note.Topic == TDLNoteName).Show();
+                M.notesOpened.Find(o => o.note.Topic == TDLNoteName).BringToFront();
             }
             else
             {
-                frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.Topic == SysNoteName));
+                frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.Topic == TDLNoteName));
                 M.notesOpened.Add(frmInfoNote);
                 frmInfoNote.Show();
             }
@@ -4250,6 +4231,22 @@ namespace LifeGame
             else if (e.Control && e.KeyCode == Keys.E)
             {
                 tsmShowNote_Click(trvShare, e);
+            }
+        }
+
+        private void btnJournal_Click(object sender, EventArgs e)
+        {
+            string journalNoteName = "SysNote: Journal Information";
+            if (M.notesOpened.Exists(o => o.note.Topic == journalNoteName))
+            {
+                M.notesOpened.Find(o => o.note.Topic == journalNoteName).Show();
+                M.notesOpened.Find(o => o.note.Topic == journalNoteName).BringToFront();
+            }
+            else
+            {
+                frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.Topic == journalNoteName));
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
             }
         }
     }

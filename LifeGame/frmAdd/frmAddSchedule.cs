@@ -101,11 +101,6 @@ namespace LifeGame
                             EndTime = new DateTime(day.AddDays(1).Year, day.AddDays(1).Month, day.AddDays(1).Day, dtpTimeEnd.Value.Hour, dtpTimeEnd.Value.Minute, dtpTimeEnd.Value.Second);
                         }
 
-                        if (G.glb.lstSleepSchedule.Exists(o => (o.GoToBedTime <= StartTime && o.GetUpTime >= StartTime) || (o.GoToBedTime >= StartTime && o.GoToBedTime <= EndTime)))
-                        {
-                            MessageBox.Show("Overlapped with sleep time, please check");
-                            CanAddScheduleAtThatDay = false;
-                        }
                         if (CanAddScheduleAtThatDay && G.glb.lstSchedule.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
                         {
                             DialogResult result = MessageBox.Show("Already have logs at that time, Do you replace?", "Log", MessageBoxButtons.YesNo);

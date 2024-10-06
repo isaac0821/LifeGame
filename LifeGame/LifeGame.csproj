@@ -105,6 +105,12 @@
     <Compile Include="frmAdd\frmReplaceNote.Designer.cs">
       <DependentUpon>frmReplaceNote.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmInfo\frmJournalConf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfo\frmJournalConf.Designer.cs">
+      <DependentUpon>frmJournalConf.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInfo\frmSearchNote.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,18 +158,6 @@
     </Compile>
     <Compile Include="frmNoteMine\frmNoteProperties.Designer.cs">
       <DependentUpon>frmNoteProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmSettings\frmUnreliableJournal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSettings\frmUnreliableJournal.Designer.cs">
-      <DependentUpon>frmUnreliableJournal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmSettings\frmReliableJournal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSettings\frmReliableJournal.Designer.cs">
-      <DependentUpon>frmReliableJournal.cs</DependentUpon>
     </Compile>
     <Compile Include="memory.cs" />
     <Compile Include="names.cs" />
@@ -216,18 +210,6 @@
     </Compile>
     <Compile Include="frmAdd\frmAddSchedule.Designer.cs">
       <DependentUpon>frmAddSchedule.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddSleepSchedule.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddSleepSchedule.Designer.cs">
-      <DependentUpon>frmAddSleepSchedule.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddSleepLog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddSleepLog.Designer.cs">
-      <DependentUpon>frmAddSleepLog.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAdd\frmAddTransaction.cs">
       <SubType>Form</SubType>
@@ -385,12 +367,6 @@
     <EmbeddedResource Include="frmAdd\frmAddSchedule.resx">
       <DependentUpon>frmAddSchedule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddSleepSchedule.resx">
-      <DependentUpon>frmAddSleepSchedule.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddSleepLog.resx">
-      <DependentUpon>frmAddSleepLog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddTransaction.resx">
       <DependentUpon>frmAddTransaction.cs</DependentUpon>
     </EmbeddedResource>
@@ -477,12 +453,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatalog\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmSettings\frmUnreliableJournal.resx">
-      <DependentUpon>frmUnreliableJournal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmSettings\frmReliableJournal.resx">
-      <DependentUpon>frmReliableJournal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="icon.resx">
       <Generator>ResXFileCodeGenerator</Generator>

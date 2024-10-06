@@ -29,8 +29,6 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.exe
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.pdb
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.icon.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddTransaction.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSleepSchedule.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSleepLog.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmLiterature.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmDelLog.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddAccount.resources
@@ -52,7 +50,6 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibConference.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibMasterThesis.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmBibUnpublished.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmSurvey.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmReliableJournal.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddAuthor.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddTag.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddSurveyTag.resources
@@ -62,7 +59,6 @@ D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoLiteratureSurveyTagSingleOption.r
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoLiteratureSurveyTagNumber.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoLiteratureSurveyTagString.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmInfoLiteratureSurveyTagBoolean.resources
-D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmUnreliableJournal.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddNoteColor.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmNoteChangeLabel.resources
 D:\LifeGame\LifeGame\obj\Debug\LifeGame.frmAddLiterature.resources

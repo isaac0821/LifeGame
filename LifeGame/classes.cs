@@ -92,15 +92,14 @@ namespace LifeGame
         public int Index;
     }
 
-    [Serializable]
     public class CJournalConf
     {
-        public string JournalConf;
-        public string AbbrName;
+        public string Name;
+        public string Abbr;
+        public string Description;
+        public bool isReliable;
+        public bool isGarbage;
         public string Publisher;
-        public bool IsImportant;
-        public bool IsPredatory;
-        public string Desc;
     }
 
     /// <summary>
@@ -226,17 +225,6 @@ namespace LifeGame
         Failed
     }
 
-    /// <summary>
-    /// 睡眠记录
-    /// </summary>
-    [Serializable]
-    public class CSleep
-    {
-        public DateTime Date;
-        public DateTime GetUpTime;
-        public DateTime GoToBedTime;
-        public bool IsGoToBedBeforeMidNight;
-    }
     #endregion
 
     #region 财务系统
@@ -335,8 +323,15 @@ namespace LifeGame
         public string LiteratureTitle;
         public bool FinishedNote;
         public bool Locked;
+        public ENoteType NoteType;
     }
-
+    public enum ENoteType : int
+    {
+        Note = 0,
+        DailyReport = 1,
+        Literature = 2,
+        System = 3,
+    }
     /// <summary>
     /// 笔记记录
     /// </summary>

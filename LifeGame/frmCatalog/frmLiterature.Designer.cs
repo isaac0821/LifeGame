@@ -34,9 +34,6 @@
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.filesFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExportBib = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.goodJournalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unreliableSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -87,6 +84,8 @@
             this.dgvLiterature = new System.Windows.Forms.DataGridView();
             this.Star = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Abbr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Publisher = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLitType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGoodJournal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -182,8 +181,7 @@
             this.mnsMain.BackColor = System.Drawing.SystemColors.Control;
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.filesFToolStripMenuItem,
-            this.settingsSToolStripMenuItem});
+            this.filesFToolStripMenuItem});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
             this.mnsMain.Size = new System.Drawing.Size(1022, 24);
@@ -203,32 +201,9 @@
             // tsmExportBib
             // 
             this.tsmExportBib.Name = "tsmExportBib";
-            this.tsmExportBib.Size = new System.Drawing.Size(128, 22);
+            this.tsmExportBib.Size = new System.Drawing.Size(180, 22);
             this.tsmExportBib.Text = "Export bib";
             this.tsmExportBib.Click += new System.EventHandler(this.tsmExportBib_Click);
-            // 
-            // settingsSToolStripMenuItem
-            // 
-            this.settingsSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.goodJournalsToolStripMenuItem,
-            this.unreliableSourceToolStripMenuItem});
-            this.settingsSToolStripMenuItem.Name = "settingsSToolStripMenuItem";
-            this.settingsSToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
-            this.settingsSToolStripMenuItem.Text = "Settings(&S)";
-            // 
-            // goodJournalsToolStripMenuItem
-            // 
-            this.goodJournalsToolStripMenuItem.Name = "goodJournalsToolStripMenuItem";
-            this.goodJournalsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.goodJournalsToolStripMenuItem.Text = "Reliable Source";
-            this.goodJournalsToolStripMenuItem.Click += new System.EventHandler(this.goodJournalsToolStripMenuItem_Click);
-            // 
-            // unreliableSourceToolStripMenuItem
-            // 
-            this.unreliableSourceToolStripMenuItem.Name = "unreliableSourceToolStripMenuItem";
-            this.unreliableSourceToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.unreliableSourceToolStripMenuItem.Text = "Unreliable Source";
-            this.unreliableSourceToolStripMenuItem.Click += new System.EventHandler(this.unreliableSourceToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -749,6 +724,8 @@
             this.dgvLiterature.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Star,
             this.colTitle,
+            this.Abbr,
+            this.Publisher,
             this.colYear,
             this.colLitType,
             this.colGoodJournal,
@@ -779,6 +756,19 @@
             this.colTitle.ReadOnly = true;
             this.colTitle.Width = 600;
             // 
+            // Abbr
+            // 
+            this.Abbr.HeaderText = "Abbr";
+            this.Abbr.Name = "Abbr";
+            this.Abbr.ReadOnly = true;
+            this.Abbr.Width = 45;
+            // 
+            // Publisher
+            // 
+            this.Publisher.HeaderText = "Publisher";
+            this.Publisher.Name = "Publisher";
+            this.Publisher.ReadOnly = true;
+            // 
             // colYear
             // 
             this.colYear.HeaderText = "Year";
@@ -795,14 +785,14 @@
             // 
             // colGoodJournal
             // 
-            this.colGoodJournal.HeaderText = "Good Source";
+            this.colGoodJournal.HeaderText = "Reliable";
             this.colGoodJournal.Name = "colGoodJournal";
             this.colGoodJournal.ReadOnly = true;
             this.colGoodJournal.Width = 95;
             // 
             // colPredatory
             // 
-            this.colPredatory.HeaderText = "Low Quality";
+            this.colPredatory.HeaderText = "Garbage";
             this.colPredatory.Name = "colPredatory";
             this.colPredatory.ReadOnly = true;
             this.colPredatory.Width = 95;
@@ -1289,21 +1279,10 @@
         private System.Windows.Forms.ContextMenuStrip cmsTags;
         private System.Windows.Forms.ToolStripMenuItem tsmEditTag;
         private System.Windows.Forms.ToolStripMenuItem tsmRemoveTag;
-        private System.Windows.Forms.ToolStripMenuItem settingsSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem goodJournalsToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
         private System.Windows.Forms.CheckBox chkNoBad;
         private System.Windows.Forms.CheckBox chkOnlyGood;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Star;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colYear;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colLitType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colGoodJournal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPredatory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lastModifyDate;
         private System.Windows.Forms.Label lblNumFound;
-        private System.Windows.Forms.ToolStripMenuItem unreliableSourceToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem tsmCreateNote;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
@@ -1381,5 +1360,15 @@
         private System.Windows.Forms.ToolStripMenuItem tsmIntersectAwithB;
         private System.Windows.Forms.ToolStripMenuItem tsmIntersectBwithA;
         private System.Windows.Forms.CheckBox chkHightlight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Star;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Abbr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Publisher;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colYear;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLitType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGoodJournal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPredatory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastModifyDate;
     }
 }

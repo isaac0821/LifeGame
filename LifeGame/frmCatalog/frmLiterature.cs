@@ -23,6 +23,9 @@ namespace LifeGame
         List<CItem> Authors = new List<CItem>();
         List<CItem> JournalConferences = new List<CItem>();
 
+        //记录Journal Information，关闭/打开窗口时更新
+        List<CJournalConf> lstJournal = new List<CJournalConf>();
+
         public frmLiterature()
         {
             InitializeComponent();
@@ -30,6 +33,7 @@ namespace LifeGame
 
         private void frmLiterature_Load(object sender, EventArgs e)
         {
+            LoadJournalInfo();
             lstTags = G.glb.lstLiteratureTagType.ToList();
             lstSubTags = G.glb.lstSubLiteratureTag.ToList();
             cbxMode.Text = "AND";
@@ -51,6 +55,84 @@ namespace LifeGame
             tblTempArea.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tblTempArea.Controls.Add(clbTempLitsAreaA, 0, 0);
             tblTempArea.Controls.Add(clbTempLitsAreaB, 0, 1);
+        }
+
+        private string journalNoteName = "SysNote: Journal Information";
+        
+        private void LoadJournalInfo()
+        {
+            List<RNoteLog> jours = G.glb.lstNoteLog.FindAll(o => o.Topic == journalNoteName).ToList();
+            foreach (RNoteLog item in jours)
+            {
+                CJournalConf journal = new CJournalConf();
+                journal.Name = item.SubLog;
+                // 得到具体的内容
+                List<RNoteLog> details = G.glb.lstNoteLog.FindAll(o => o.Topic == journalNoteName && o.Log == journal.Name).ToList();
+                foreach (RNoteLog info in details)
+                {
+                    string text = info.SubLog;
+                    string[] split = text.Split(':');
+                    // 如果有Abbr
+                    if (split[0] == "Abbr" && split.Length > 1)
+                    {
+                        journal.Abbr = split[1].Trim();
+                    }
+                    // 如果有Description
+                    if (split[0] == "Desc" && split.Length > 1)
+                    {
+                        journal.Description = split[1].Trim();
+                    }
+                    // 如果有IsPredatory
+                    if (split[0] == "IsPred" && split.Length > 1)
+                    {
+                        journal.isGarbage = true;
+                    }
+                    // 如果有IsReliable
+                    if (split[0] == "IsGood" && split.Length > 1)
+                    {
+                        journal.isReliable = true;
+                    }
+                    // 如果有Publisher
+                    if (split[0] == "Publisher" && split.Length > 1)
+                    {
+                        journal.Publisher = split[1].Trim();
+                    }
+                }
+                lstJournal.Add(journal);
+            }
+        }
+        private void SaveJournalInfo()
+        {
+            List<string> litTitle = new List<string>();
+            foreach (CLiterature item in G.glb.lstLiterature)
+            {
+                if (!litTitle.Contains(item.JournalOrConferenceName))
+                {
+                    litTitle.Add(item.JournalOrConferenceName);
+                }
+            }
+            // string jourGUID = G.glb.lstNote.Find(o => o.Topic == journalNoteName).GUID;
+            DateTime tagTime = G.glb.lstNote.Find(o => o.Topic == journalNoteName).TagTime;
+            foreach (string item in litTitle)
+            {
+                if (!G.glb.lstNoteLog.Exists(o => 
+                        o.Topic == journalNoteName
+                        && o.Log == item) &&
+                    !G.glb.lstNoteLog.Exists(o =>
+                        o.Topic == journalNoteName
+                        && o.SubLog == item))
+                {
+                    RNoteLog newJour = new RNoteLog();
+                    newJour.SubLog = item;
+                    newJour.SubGUID = Guid.NewGuid().ToString();
+                    newJour.Log = journalNoteName;
+                    newJour.GUID = "";
+                    newJour.Topic = journalNoteName;
+                    // newJour.TopicGUID = jourGUID;
+                    newJour.TagTime = tagTime;
+                    G.glb.lstNoteLog.Add(newJour);
+                }
+            }
         }
 
         private class CItem
@@ -299,16 +381,21 @@ namespace LifeGame
                     bool goodJourShowFlag = false;  // true if we want to show it
                     bool showFlag = true;
                     string litType = "";
+                    string abbr = "";
+                    string publisher = "";
                     int year = G.glb.lstLiterature.Find(o => o.Title == title).PublishYear;
                     if (G.glb.lstLiterature.Find(o => o.Title == title).Star)
                     {
                         starStr = "√";
                     }
                     // If the journal is predatory
-                    if (G.glb.lstBadJournal.Exists(o => o == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
+                    if (lstJournal.Exists(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
                     {
-                        predatoryStr = "√";
-                        predatoryShowFlag = false;
+                        if (lstJournal.Find(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName).isGarbage)
+                        {
+                            predatoryStr = "√";
+                            predatoryShowFlag = false;
+                        }
                     }
                     if (G.glb.lstLiterature.Find(o => o.Title == title).PredatoryAlert)
                     {
@@ -316,10 +403,13 @@ namespace LifeGame
                         predatoryShowFlag = false;
                     }
                     // If the journal is reliable
-                    if (G.glb.lstGoodJournal.Exists(o => o == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
+                    if (lstJournal.Exists(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
                     {
-                        goodJourStr = "√";
-                        goodJourShowFlag = true;
+                        if (lstJournal.Find(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName).isReliable)
+                        {
+                            goodJourStr = "√";
+                            goodJourShowFlag = true;
+                        }
                     }
                     // Only if chkOnlyGood is checked and goodJournalShowFlag is not true, don't show it.
                     if (chkOnlyGood.Checked && !goodJourShowFlag)
@@ -378,10 +468,30 @@ namespace LifeGame
                         default:
                             break;
                     }
+                    // Abbr
+                    if (lstJournal.Exists(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
+                    {
+                        abbr = lstJournal.Find(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName).Abbr;
+                    }
+                    // Publisher
+                    if (lstJournal.Exists(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
+                    {
+                        publisher = lstJournal.Find(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName).Publisher;
+                    }
 
                     if (showFlag)
                     {
-                        dgvLiterature.Rows.Add(starStr, title, Convert.ToString(year), litType, goodJourStr, predatoryStr, addedDate.ToString("yyyy/MM/dd"), lastModifyDate.ToString("yyyy/MM/dd"));
+                        dgvLiterature.Rows.Add(
+                            starStr, 
+                            title, 
+                            abbr,
+                            publisher,
+                            Convert.ToString(year), 
+                            litType, 
+                            goodJourStr, 
+                            predatoryStr, 
+                            addedDate.ToString("yyyy/MM/dd"), 
+                            lastModifyDate.ToString("yyyy/MM/dd"));
                         if (chkHightlight.Checked && G.glb.lstNoteLog.FindAll(o => o.Topic == title).Count >= 4)
                         {
                             dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightBlue;
@@ -683,13 +793,6 @@ namespace LifeGame
             System.IO.File.WriteAllText(@"D:\" + strTag + "Bib.bib", bib);
         }
 
-        private void goodJournalsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmReliableJournal frmReliableJournal = new frmReliableJournal();
-            frmReliableJournal.RefreshLits += new frmReliableJournal.RefreshLitsHandler(LoadLiteratureList);
-            frmReliableJournal.Show();
-        }
-
         private void chkOnlyGood_CheckedChanged(object sender, EventArgs e)
         {
             LoadLiteratureList();
@@ -717,13 +820,6 @@ namespace LifeGame
                     0);
                 e.Handled = true;
             }
-        }
-
-        private void unreliableSourceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmUnreliableJournal frmUnreliableJournal = new frmUnreliableJournal();
-            frmUnreliableJournal.RefreshLits += new frmUnreliableJournal.RefreshLitsHandler(LoadLiteratureList);
-            frmUnreliableJournal.Show();
         }
 
         private void AddTag2MultipleLiterature(string strTag)
@@ -1057,6 +1153,7 @@ namespace LifeGame
         private void frmLiterature_FormClosing(object sender, FormClosingEventArgs e)
         {
             M.literatureOpened.Clear();
+            SaveJournalInfo();
             SaveTag();
             Dispose();
         }

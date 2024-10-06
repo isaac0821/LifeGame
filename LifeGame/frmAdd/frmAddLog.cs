@@ -42,11 +42,6 @@ namespace LifeGame
                 MessageBox.Show("End time can not earlier than start time");
                 CanAddFlag = false;
             }
-            if (G.glb.lstSleepLog.Exists(o => (o.GoToBedTime <= StartTime && o.GetUpTime >= StartTime) || (o.GoToBedTime >= StartTime && o.GoToBedTime <= EndTime)))
-            {
-                MessageBox.Show("Overlapped with sleep time, please check");
-                CanAddFlag = false;
-            }
             if (CanAddFlag && G.glb.lstLog.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
             {
                 DialogResult result = MessageBox.Show("Already has a log at that time, Do you replace it?", "Log", MessageBoxButtons.YesNo);

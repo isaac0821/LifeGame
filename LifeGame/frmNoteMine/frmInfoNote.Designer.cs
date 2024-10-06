@@ -52,6 +52,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cbxJournalConference = new System.Windows.Forms.ComboBox();
+            this.btnJournal = new System.Windows.Forms.Button();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.txtYear = new System.Windows.Forms.TextBox();
@@ -429,17 +430,19 @@
             // 
             // tableLayoutPanel7
             // 
-            this.tableLayoutPanel7.ColumnCount = 5;
+            this.tableLayoutPanel7.ColumnCount = 6;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanel7.Controls.Add(this.btnBibTeX, 4, 0);
-            this.tableLayoutPanel7.Controls.Add(this.cbxBibEntryType, 3, 0);
-            this.tableLayoutPanel7.Controls.Add(this.label3, 2, 0);
+            this.tableLayoutPanel7.Controls.Add(this.btnBibTeX, 5, 0);
+            this.tableLayoutPanel7.Controls.Add(this.cbxBibEntryType, 4, 0);
+            this.tableLayoutPanel7.Controls.Add(this.label3, 3, 0);
             this.tableLayoutPanel7.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.cbxJournalConference, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.btnJournal, 2, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 78);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
@@ -514,9 +517,21 @@
             this.cbxJournalConference.FormattingEnabled = true;
             this.cbxJournalConference.Location = new System.Drawing.Point(90, 3);
             this.cbxJournalConference.Name = "cbxJournalConference";
-            this.cbxJournalConference.Size = new System.Drawing.Size(417, 21);
+            this.cbxJournalConference.Size = new System.Drawing.Size(375, 21);
             this.cbxJournalConference.TabIndex = 4;
             this.cbxJournalConference.TextChanged += new System.EventHandler(this.cbxJournalConference_TextChanged);
+            // 
+            // btnJournal
+            // 
+            this.btnJournal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnJournal.Location = new System.Drawing.Point(469, 1);
+            this.btnJournal.Margin = new System.Windows.Forms.Padding(1);
+            this.btnJournal.Name = "btnJournal";
+            this.btnJournal.Size = new System.Drawing.Size(40, 24);
+            this.btnJournal.TabIndex = 5;
+            this.btnJournal.Text = "Info";
+            this.btnJournal.UseVisualStyleBackColor = true;
+            this.btnJournal.Click += new System.EventHandler(this.btnJournal_Click);
             // 
             // tableLayoutPanel8
             // 
@@ -1776,5 +1791,6 @@
         private System.Windows.Forms.Button btnPrevDate;
         private System.Windows.Forms.Button btnNextDate;
         private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Button btnJournal;
     }
 }

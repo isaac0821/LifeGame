@@ -56,6 +56,25 @@ namespace LifeGame
             try
             {
                 Deserialize();
+                //foreach (CNote item in G.glb.lstNote)
+                //{
+                //    if (item.Topic == "Daily Report")
+                //    {
+                //        item.NoteType = ENoteType.DailyReport;
+                //    }
+                //    else if (G.glb.lstLiterature.Exists(o => o.Title == item.Topic))
+                //    {
+                //        item.NoteType = ENoteType.Literature;
+                //    }
+                //    else if (item.Topic == "SysNote: To Do List" || item.Topic == "SysNote: Journal Information")
+                //    {
+                //        item.NoteType = ENoteType.System;
+                //    }
+                //    else
+                //    {
+                //        item.NoteType = ENoteType.Note;
+                //    }
+                //}
 
                 //calculate C = new calculate();
                 //string[] logList = System.IO.File.ReadAllLines("D:\\test.txt");
@@ -155,8 +174,8 @@ namespace LifeGame
                 MessageBox.Show("Can not find an existing data file, a new empty data file is auto-created");
                 // Event
                 G.glb.lstEvent = new List<CEvent>();
-                G.glb.lstSleepSchedule = new List<CSleep>();
-                G.glb.lstSleepLog = new List<CSleep>();
+                //G.glb.lstSleepSchedule = new List<CSleep>();
+                //G.glb.lstSleepLog = new List<CSleep>();
 
                 // Note
                 G.glb.lstNote = new List<CNote>();
@@ -525,45 +544,6 @@ namespace LifeGame
         private void cmsMain_Opening(object sender, CancelEventArgs e)
         {
             SelectedPicName = (sender as ContextMenuStrip).SourceControl.Name;
-        }
-        private void tsmAddSleepSchedule_Click(object sender, EventArgs e)
-        {
-            frmAddSleepSchedule frmAddScheduleSleep = new frmAddSleepSchedule();
-            frmAddScheduleSleep.DrawLog += new frmAddSleepSchedule.DrawLogHandler(DrawLog);
-            frmAddScheduleSleep.Show();
-        }
-        private void tsmAddSleepLog_Click(object sender, EventArgs e)
-        {
-            DateTime sendToFrm = SelectedDate;
-            switch (SelectedPicName)
-            {
-                case "picMon":
-                    sendToFrm = SelectedMonday;
-                    break;
-                case "picTue":
-                    sendToFrm = SelectedTuesday;
-                    break;
-                case "picWed":
-                    sendToFrm = SelectedWednesday;
-                    break;
-                case "picThu":
-                    sendToFrm = SelectedThursday;
-                    break;
-                case "picFri":
-                    sendToFrm = SelectedFriday;
-                    break;
-                case "picSat":
-                    sendToFrm = SelectedSaturday;
-                    break;
-                case "picSun":
-                    sendToFrm = SelectedSunday;
-                    break;
-                default:
-                    break;
-            }
-            frmAddSleepLog frmAddLogSleep = new frmAddSleepLog(sendToFrm);
-            frmAddLogSleep.DrawLog += new frmAddSleepLog.DrawLogHandler(DrawLog);
-            frmAddLogSleep.Show();
         }
         private void tsmAddSchedule_Click(object sender, EventArgs e)
         {
@@ -1045,31 +1025,31 @@ namespace LifeGame
                 if (chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
                 {
                     Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "leftWithSupp");
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "rightWithSupp");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, "leftWithSupp");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, "rightWithSupp");
                 }
                 else if (chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
                 {
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "left");
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "right");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, "left");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, "right");
                 }
                 else if (chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
                 {
                     Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "allWithSupp");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, "allWithSupp");
                 }
                 else if (chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
                 {
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, G.glb.lstSleepSchedule, "all");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, "all");
                 }
                 else if (!chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
                 {
                     Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "allWithSupp");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, "allWithSupp");
                 }
                 else if (!chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
                 {
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, G.glb.lstSleepLog, "all");
+                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, "all");
                 }
                 else if (!chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
                 {
@@ -1134,24 +1114,24 @@ namespace LifeGame
         private void DrawLogWithMode(string Mode)
         {
             plot Draw = new plot();
-            Draw.DrawScheduleAndLogController(picMon, SelectedMonday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
-            Draw.DrawScheduleAndLogController(picTue, SelectedTuesday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
-            Draw.DrawScheduleAndLogController(picWed, SelectedWednesday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
-            Draw.DrawScheduleAndLogController(picThu, SelectedThursday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
-            Draw.DrawScheduleAndLogController(picFri, SelectedFriday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
-            Draw.DrawScheduleAndLogController(picSat, SelectedSaturday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
-            Draw.DrawScheduleAndLogController(picSun, SelectedSunday, G.glb.lstLog, G.glb.lstSleepLog, Mode);
+            Draw.DrawScheduleAndLogController(picMon, SelectedMonday, G.glb.lstLog, Mode);
+            Draw.DrawScheduleAndLogController(picTue, SelectedTuesday, G.glb.lstLog, Mode);
+            Draw.DrawScheduleAndLogController(picWed, SelectedWednesday, G.glb.lstLog, Mode);
+            Draw.DrawScheduleAndLogController(picThu, SelectedThursday, G.glb.lstLog, Mode);
+            Draw.DrawScheduleAndLogController(picFri, SelectedFriday, G.glb.lstLog, Mode);
+            Draw.DrawScheduleAndLogController(picSat, SelectedSaturday, G.glb.lstLog, Mode);
+            Draw.DrawScheduleAndLogController(picSun, SelectedSunday, G.glb.lstLog, Mode);
         }
         private void DrawScheduleWithMode(string Mode)
         {
             plot Draw = new plot();
-            Draw.DrawScheduleAndLogController(picMon, SelectedMonday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
-            Draw.DrawScheduleAndLogController(picTue, SelectedTuesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
-            Draw.DrawScheduleAndLogController(picWed, SelectedWednesday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
-            Draw.DrawScheduleAndLogController(picThu, SelectedThursday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
-            Draw.DrawScheduleAndLogController(picFri, SelectedFriday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
-            Draw.DrawScheduleAndLogController(picSat, SelectedSaturday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
-            Draw.DrawScheduleAndLogController(picSun, SelectedSunday, G.glb.lstSchedule, G.glb.lstSleepSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picMon, SelectedMonday, G.glb.lstSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picTue, SelectedTuesday, G.glb.lstSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picWed, SelectedWednesday, G.glb.lstSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picThu, SelectedThursday, G.glb.lstSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picFri, SelectedFriday, G.glb.lstSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picSat, SelectedSaturday, G.glb.lstSchedule, Mode);
+            Draw.DrawScheduleAndLogController(picSun, SelectedSunday, G.glb.lstSchedule, Mode);
         }
         private void DrawEvent()
         {
@@ -1275,15 +1255,6 @@ namespace LifeGame
                             newLiterature.DateAdded = DateTime.Today;
                             newLiterature.DateModified = DateTime.Today;
                             newLiterature.Star = false;
-
-                            if (G.glb.lstBadJournal.Contains(journal))
-                            {
-                                newLiterature.PredatoryAlert = true;
-                            }
-                            else
-                            {
-                                newLiterature.PredatoryAlert = false;
-                            }
 
                             string[] authorList = authors.Split(',');
                             List<RLiteratureAuthor> newLiteratureAuthors = new List<RLiteratureAuthor>();

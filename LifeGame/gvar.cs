@@ -14,16 +14,10 @@ namespace LifeGame
     [Serializable]
     public class Mem
     {
-        // Settings
-        public List<string> lstGoodJournal = new List<string>();
-        public List<string> lstBadJournal = new List<string>();
-
         // Logs and Events
         public List<CLog> lstSchedule = new List<CLog>();
         public List<CLog> lstLog = new List<CLog>();
         public List<CEvent> lstEvent = new List<CEvent>();
-        public List<CSleep> lstSleepSchedule = new List<CSleep>();
-        public List<CSleep> lstSleepLog = new List<CSleep>();
 
         // Finance
         public List<CTransaction> lstTransaction = new List<CTransaction>();
@@ -43,7 +37,6 @@ namespace LifeGame
         public List<CLiterature> lstLiterature = new List<CLiterature>();
         public List<RLiteratureAuthor> lstLiteratureAuthor = new List<RLiteratureAuthor>();
         public List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
-        public List<CJournalConf> lstJournalConf = new List<CJournalConf>();
 
         // Survey
         public List<CSurvey> lstSurvey = new List<CSurvey>();

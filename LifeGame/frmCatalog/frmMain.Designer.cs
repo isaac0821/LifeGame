@@ -41,9 +41,6 @@
             this.tblMain = new System.Windows.Forms.TableLayoutPanel();
             this.picThu = new System.Windows.Forms.PictureBox();
             this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmAddSleepSchedule = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAddSleepLog = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAddSchedule = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddLog = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddNewLog = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,8 +52,6 @@
             this.tsmAddNewTransaction = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmConvertTransactionDue = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddBudget = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAddWorkOut = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAddMedicine = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddNoteMine = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddNote = new System.Windows.Forms.ToolStripMenuItem();
             this.addDailyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -242,9 +237,6 @@
             // 
             this.cmsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmAddSleepSchedule,
-            this.tsmAddSleepLog,
-            this.toolStripSeparator1,
             this.tsmAddSchedule,
             this.tsmAddLog,
             this.toolStripSeparator2,
@@ -257,32 +249,13 @@
             this.tsmDeleteInfoMine,
             this.tsmDeleteNoteMine});
             this.cmsMain.Name = "cmsMain";
-            this.cmsMain.Size = new System.Drawing.Size(179, 248);
+            this.cmsMain.Size = new System.Drawing.Size(167, 198);
             this.cmsMain.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMain_Opening);
-            // 
-            // tsmAddSleepSchedule
-            // 
-            this.tsmAddSleepSchedule.Name = "tsmAddSleepSchedule";
-            this.tsmAddSleepSchedule.Size = new System.Drawing.Size(178, 22);
-            this.tsmAddSleepSchedule.Text = "Add Sleep Schedule";
-            this.tsmAddSleepSchedule.Click += new System.EventHandler(this.tsmAddSleepSchedule_Click);
-            // 
-            // tsmAddSleepLog
-            // 
-            this.tsmAddSleepLog.Name = "tsmAddSleepLog";
-            this.tsmAddSleepLog.Size = new System.Drawing.Size(178, 22);
-            this.tsmAddSleepLog.Text = "Add Sleep Log";
-            this.tsmAddSleepLog.Click += new System.EventHandler(this.tsmAddSleepLog_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
             // 
             // tsmAddSchedule
             // 
             this.tsmAddSchedule.Name = "tsmAddSchedule";
-            this.tsmAddSchedule.Size = new System.Drawing.Size(178, 22);
+            this.tsmAddSchedule.Size = new System.Drawing.Size(166, 22);
             this.tsmAddSchedule.Text = "Add Schedule";
             this.tsmAddSchedule.Click += new System.EventHandler(this.tsmAddSchedule_Click);
             // 
@@ -292,7 +265,7 @@
             this.tsmAddNewLog,
             this.tsmConvertSchedule});
             this.tsmAddLog.Name = "tsmAddLog";
-            this.tsmAddLog.Size = new System.Drawing.Size(178, 22);
+            this.tsmAddLog.Size = new System.Drawing.Size(166, 22);
             this.tsmAddLog.Text = "Add Log";
             // 
             // tsmAddNewLog
@@ -312,18 +285,16 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(163, 6);
             // 
             // tsmAddInfoMine
             // 
             this.tsmAddInfoMine.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAddEvent,
             this.tsmAddTransaction,
-            this.tsmAddBudget,
-            this.tsmAddWorkOut,
-            this.tsmAddMedicine});
+            this.tsmAddBudget});
             this.tsmAddInfoMine.Name = "tsmAddInfoMine";
-            this.tsmAddInfoMine.Size = new System.Drawing.Size(178, 22);
+            this.tsmAddInfoMine.Size = new System.Drawing.Size(166, 22);
             this.tsmAddInfoMine.Text = "Add Info Mine";
             // 
             // tsmAddEvent
@@ -363,25 +334,13 @@
             this.tsmAddBudget.Text = "Add Budget";
             this.tsmAddBudget.Click += new System.EventHandler(this.tsmAddBudget_Click);
             // 
-            // tsmAddWorkOut
-            // 
-            this.tsmAddWorkOut.Name = "tsmAddWorkOut";
-            this.tsmAddWorkOut.Size = new System.Drawing.Size(159, 22);
-            this.tsmAddWorkOut.Text = "Add Work Out";
-            // 
-            // tsmAddMedicine
-            // 
-            this.tsmAddMedicine.Name = "tsmAddMedicine";
-            this.tsmAddMedicine.Size = new System.Drawing.Size(159, 22);
-            this.tsmAddMedicine.Text = "Add Medicine";
-            // 
             // tsmAddNoteMine
             // 
             this.tsmAddNoteMine.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAddNote,
             this.addDailyToolStripMenuItem});
             this.tsmAddNoteMine.Name = "tsmAddNoteMine";
-            this.tsmAddNoteMine.Size = new System.Drawing.Size(178, 22);
+            this.tsmAddNoteMine.Size = new System.Drawing.Size(166, 22);
             this.tsmAddNoteMine.Text = "Add Note Mine";
             // 
             // tsmAddNote
@@ -401,7 +360,7 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(163, 6);
             // 
             // tsmDeleteSchedule
             // 
@@ -409,7 +368,7 @@
             this.tsmDeleteSingleSchedule,
             this.tsmClearSchedule});
             this.tsmDeleteSchedule.Name = "tsmDeleteSchedule";
-            this.tsmDeleteSchedule.Size = new System.Drawing.Size(178, 22);
+            this.tsmDeleteSchedule.Size = new System.Drawing.Size(166, 22);
             this.tsmDeleteSchedule.Text = "Delete Schedule";
             // 
             // tsmDeleteSingleSchedule
@@ -429,26 +388,26 @@
             // tsmDeleteLog
             // 
             this.tsmDeleteLog.Name = "tsmDeleteLog";
-            this.tsmDeleteLog.Size = new System.Drawing.Size(178, 22);
+            this.tsmDeleteLog.Size = new System.Drawing.Size(166, 22);
             this.tsmDeleteLog.Text = "Delete Log";
             this.tsmDeleteLog.Click += new System.EventHandler(this.tsmDeleteLog_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(163, 6);
             // 
             // tsmDeleteInfoMine
             // 
             this.tsmDeleteInfoMine.Name = "tsmDeleteInfoMine";
-            this.tsmDeleteInfoMine.Size = new System.Drawing.Size(178, 22);
+            this.tsmDeleteInfoMine.Size = new System.Drawing.Size(166, 22);
             this.tsmDeleteInfoMine.Text = "Delete Info Mine";
             this.tsmDeleteInfoMine.Click += new System.EventHandler(this.tsmDeleteInfoMine_Click);
             // 
             // tsmDeleteNoteMine
             // 
             this.tsmDeleteNoteMine.Name = "tsmDeleteNoteMine";
-            this.tsmDeleteNoteMine.Size = new System.Drawing.Size(178, 22);
+            this.tsmDeleteNoteMine.Size = new System.Drawing.Size(166, 22);
             this.tsmDeleteNoteMine.Text = "Delete Note Mine";
             this.tsmDeleteNoteMine.Click += new System.EventHandler(this.tsmDeleteNoteMine_Click);
             // 
@@ -853,9 +812,6 @@
         private System.Windows.Forms.ContextMenuStrip cmsMain;
         private System.Windows.Forms.ToolStripMenuItem tsmAddSchedule;
         private System.Windows.Forms.ToolStripMenuItem tsmAddLog;
-        private System.Windows.Forms.ToolStripMenuItem tsmAddSleepSchedule;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem tsmAddSleepLog;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem tsmAddInfoMine;
         private System.Windows.Forms.CheckBox chkMine;
@@ -868,8 +824,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmAddEvent;
         private System.Windows.Forms.ToolStripMenuItem tsmAddTransaction;
         private System.Windows.Forms.ToolStripMenuItem tsmAddBudget;
-        private System.Windows.Forms.ToolStripMenuItem tsmAddWorkOut;
-        private System.Windows.Forms.ToolStripMenuItem tsmAddMedicine;
         private System.Windows.Forms.ToolStripMenuItem tsmAddNote;
         private System.Windows.Forms.ToolStripMenuItem tsmAddNoteMine;
         private System.Windows.Forms.ToolStripMenuItem tsmDeleteNoteMine;
