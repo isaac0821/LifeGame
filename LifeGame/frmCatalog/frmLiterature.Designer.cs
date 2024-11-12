@@ -201,7 +201,7 @@
             // tsmExportBib
             // 
             this.tsmExportBib.Name = "tsmExportBib";
-            this.tsmExportBib.Size = new System.Drawing.Size(180, 22);
+            this.tsmExportBib.Size = new System.Drawing.Size(128, 22);
             this.tsmExportBib.Text = "Export bib";
             this.tsmExportBib.Click += new System.EventHandler(this.tsmExportBib_Click);
             // 

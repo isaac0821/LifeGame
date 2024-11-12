@@ -366,6 +366,7 @@ namespace LifeGame
         {
             dgvLiterature.Rows.Clear();
             dgvLiterature.ShowCellToolTips = true;
+            LoadJournalInfo();
             foreach (string title in loadedLits)
             {
                 if (G.glb.lstLiterature.Exists(o => o.Title == title))

@@ -93,6 +93,8 @@
             this.tsmToolLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmToday = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnsMain.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -133,21 +135,21 @@
             // moneyMToolStripMenuItem
             // 
             this.moneyMToolStripMenuItem.Name = "moneyMToolStripMenuItem";
-            this.moneyMToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.moneyMToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.moneyMToolStripMenuItem.Text = "Money(&M)";
             this.moneyMToolStripMenuItem.Click += new System.EventHandler(this.moneyMToolStripMenuItem_Click);
             // 
             // literatureLToolStripMenuItem
             // 
             this.literatureLToolStripMenuItem.Name = "literatureLToolStripMenuItem";
-            this.literatureLToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.literatureLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.literatureLToolStripMenuItem.Text = "Literature(&L)";
             this.literatureLToolStripMenuItem.Click += new System.EventHandler(this.literatureLToolStripMenuItem_Click);
             // 
             // surveyVToolStripMenuItem
             // 
             this.surveyVToolStripMenuItem.Name = "surveyVToolStripMenuItem";
-            this.surveyVToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.surveyVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.surveyVToolStripMenuItem.Text = "Survey(&V)";
             this.surveyVToolStripMenuItem.Click += new System.EventHandler(this.surveyVToolStripMenuItem_Click);
             // 
@@ -692,6 +694,8 @@
             // cmsTool
             // 
             this.cmsTool.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmToday,
+            this.toolStripSeparator1,
             this.tsmToolNewNote,
             this.findNoteToolStripMenuItem,
             this.toolStripSeparator6,
@@ -699,45 +703,57 @@
             this.toolStripSeparator5,
             this.exitToolStripMenuItem});
             this.cmsTool.Name = "cmsTool";
-            this.cmsTool.Size = new System.Drawing.Size(136, 104);
+            this.cmsTool.Size = new System.Drawing.Size(181, 154);
             // 
             // tsmToolNewNote
             // 
             this.tsmToolNewNote.Name = "tsmToolNewNote";
-            this.tsmToolNewNote.Size = new System.Drawing.Size(135, 22);
+            this.tsmToolNewNote.Size = new System.Drawing.Size(180, 22);
             this.tsmToolNewNote.Text = "New Note";
             this.tsmToolNewNote.Click += new System.EventHandler(this.tsmToolNewNote_Click);
             // 
             // findNoteToolStripMenuItem
             // 
             this.findNoteToolStripMenuItem.Name = "findNoteToolStripMenuItem";
-            this.findNoteToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.findNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.findNoteToolStripMenuItem.Text = "Find Note...";
             this.findNoteToolStripMenuItem.Click += new System.EventHandler(this.findNoteToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(132, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmToolLiterature
             // 
             this.tsmToolLiterature.Name = "tsmToolLiterature";
-            this.tsmToolLiterature.Size = new System.Drawing.Size(135, 22);
+            this.tsmToolLiterature.Size = new System.Drawing.Size(180, 22);
             this.tsmToolLiterature.Text = "Literature";
             this.tsmToolLiterature.Click += new System.EventHandler(this.tsmToolLiterature_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(132, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // tsmToday
+            // 
+            this.tsmToday.Name = "tsmToday";
+            this.tsmToday.Size = new System.Drawing.Size(180, 22);
+            this.tsmToday.Text = "Today";
+            this.tsmToday.Click += new System.EventHandler(this.tsmToday_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // frmMain
             // 
@@ -845,6 +861,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmToolNewNote;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem findNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmToday;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

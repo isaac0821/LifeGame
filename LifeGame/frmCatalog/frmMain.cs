@@ -1497,5 +1497,23 @@ namespace LifeGame
                 }
             }
         }
+
+        private void tsmToday_Click(object sender, EventArgs e)
+        {
+            DateTime today = DateTime.Today.Date;
+            if (G.glb.lstNote.Exists(o => o.Topic == "Daily Report" && o.TagTime == today))
+            {
+                CNote prevDateNote = G.glb.lstNote.Find(o => o.Topic == "Daily Report" && o.TagTime.Date == today.Date);
+                frmInfoNote frmInfoNote = new frmInfoNote(prevDateNote);
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
+            }
+            else
+            {
+                frmInfoNote frmInfoNote = new frmInfoNote(today, true);
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
+            }
+        }
     }
 }
