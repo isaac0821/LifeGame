@@ -151,6 +151,7 @@
             this.tsmPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.removeChildrenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRemoveLayer = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmUp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDown = new System.Windows.Forms.ToolStripMenuItem();
@@ -1282,6 +1283,7 @@
             this.tsmPaste,
             this.tsmRemove,
             this.removeChildrenToolStripMenuItem,
+            this.tsmRemoveLayer,
             this.toolStripSeparator1,
             this.tsmUp,
             this.tsmDown,
@@ -1293,7 +1295,7 @@
             this.toolStripSeparator10,
             this.tsmRenameNote});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(210, 764);
+            this.cmsTrvNote.Size = new System.Drawing.Size(210, 786);
             // 
             // tsmAdd
             // 
@@ -1515,6 +1517,13 @@
             this.removeChildrenToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.removeChildrenToolStripMenuItem.Text = "Remove Children";
             this.removeChildrenToolStripMenuItem.Click += new System.EventHandler(this.tsmRemoveChildren_Click);
+            // 
+            // tsmRemoveLayer
+            // 
+            this.tsmRemoveLayer.Name = "tsmRemoveLayer";
+            this.tsmRemoveLayer.Size = new System.Drawing.Size(209, 22);
+            this.tsmRemoveLayer.Text = "Remove Current Layer";
+            this.tsmRemoveLayer.Click += new System.EventHandler(this.tsmRemoveLayer_Click);
             // 
             // toolStripSeparator1
             // 
@@ -1792,5 +1801,6 @@
         private System.Windows.Forms.Button btnNextDate;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Button btnJournal;
+        private System.Windows.Forms.ToolStripMenuItem tsmRemoveLayer;
     }
 }

@@ -62,7 +62,7 @@ namespace LifeGame
                 LoadShareNoteLog();
 
                 lblDate.Text = info.TagTime.Date.ToShortDateString();
-                
+
                 // 每一分钟绘制一次当前的时刻
                 TimeSpan secToNextMin = new TimeSpan();
                 DateTime datetimeWithoutSec = new DateTime(
@@ -101,8 +101,8 @@ namespace LifeGame
             noteDateTime = note.TagTime;
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
-            lockMode = info.Locked; 
-            
+            lockMode = info.Locked;
+
             if (lockMode)
             {
                 btnRead.Enabled = false;
@@ -339,9 +339,9 @@ namespace LifeGame
 
             this.Text = "LifeGame - Daily Report - " + selectedDate.Date.ToString("dd/MM/yyyy");
             lblDate.Text = selectedDate.ToShortDateString();
-            DrawDailySchedule(); 
-            LoadShareNoteLog();           
-            
+            DrawDailySchedule();
+            LoadShareNoteLog();
+
             // 每一分钟绘制一次当前的时刻
             TimeSpan secToNextMin = new TimeSpan();
             DateTime datetimeWithoutSec = new DateTime(
@@ -570,7 +570,7 @@ namespace LifeGame
 
         private int getLogo(string noteText)
         {
-            if (noteText.Contains("ddl: ") || noteText.Contains("DDL: "))
+            if (noteText.Contains("ddl: ") || noteText.Contains("DDL: ") || noteText.Contains("Date: ") || noteText.Contains("date: "))
             {
                 return 14;
             }
@@ -950,11 +950,13 @@ namespace LifeGame
                 TextFont = new Font(Font, FontStyle.Bold);
             }
 
-            if (note.Contains("ddl: ") || note.Contains("DDL: "))
+            if (note.Contains("ddl: ") || note.Contains("DDL: ") || note.Contains("Date: ") || note.Contains("date: "))
             {
                 string dateSeg = "";
                 dateSeg = note.Replace("ddl: ", "");
                 dateSeg = dateSeg.Replace("DDL: ", "");
+                dateSeg = dateSeg.Replace("Date: ", "");
+                dateSeg = dateSeg.Replace("date: ", "");
                 string[] dateNote = dateSeg.Split('.');
                 DateTime noteDate = new DateTime();
                 try
@@ -1519,6 +1521,22 @@ namespace LifeGame
                 {
                     MessageBox.Show("To be cautious, can not remove note with sub node");
                 }
+            }
+        }
+        private void tsmRemoveLayer_Click(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null && trvNote.SelectedNode.Nodes.Count > 0)
+            {
+                int ordering = trvNote.SelectedNode.Index;
+                // 把子节点都并入父节点里，拉平
+                foreach (TreeNode child in trvNote.SelectedNode.Nodes)
+                {
+                    TreeNode childClone = (TreeNode)child.Clone();
+                    trvNote.SelectedNode.Parent.Nodes.Insert(ordering, childClone);
+                    ordering += 1;
+                }
+                trvNote.Nodes.Remove(trvNote.SelectedNode);
+                btnSave.Enabled = true;
             }
         }
 
@@ -4249,6 +4267,8 @@ namespace LifeGame
                 frmInfoNote.Show();
             }
         }
+
+    
     }
 
     public class CNoteProperties
