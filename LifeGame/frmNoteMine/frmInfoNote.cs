@@ -32,6 +32,7 @@ namespace LifeGame
         public CNote note = new CNote();
         List<RNoteLog> noteLogs = new List<RNoteLog>();
         List<RNoteColor> noteColors = new List<RNoteColor>();
+        List<RNoteHierarchy> noteHierarchies = new List<RNoteHierarchy>();
         string topicGUID = "";
         private bool lockMode = false;
 
@@ -50,6 +51,7 @@ namespace LifeGame
             note = info;
             noteLogs = G.glb.lstNoteLog.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             noteColors = G.glb.lstNoteColor.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
+            noteHierarchies = G.glb.lstNoteHierarchy.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             topicGUID = info.GUID;
             noteType = note.NoteType;
 
@@ -148,6 +150,7 @@ namespace LifeGame
             note = info;
             noteLogs = G.glb.lstNoteLog.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             noteColors = G.glb.lstNoteColor.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
+            noteHierarchies = G.glb.lstNoteHierarchy.FindAll(o => o.TagTime == info.TagTime && o.Topic == info.Topic);
             topicGUID = info.GUID;
 
             this.Text = "LifeGame - Literature - " + lit.Title;
@@ -239,6 +242,7 @@ namespace LifeGame
             note = new CNote();
             noteLogs = new List<RNoteLog>();
             noteColors = new List<RNoteColor>();
+            noteHierarchies = new List<RNoteHierarchy>();
 
             literature = new CLiterature();
             lstLiteratureAuthor = new List<RLiteratureAuthor>();
@@ -297,6 +301,7 @@ namespace LifeGame
             note = new CNote();
             noteLogs = new List<RNoteLog>();
             noteColors = new List<RNoteColor>();
+            noteHierarchies = new List<RNoteHierarchy>();
 
             topicGUID = Guid.NewGuid().ToString();
             note.GUID = topicGUID;
@@ -434,6 +439,8 @@ namespace LifeGame
             transaction.Index = 4;
             noteLogs.Add(transaction);
 
+            noteHierarchies = new List<RNoteHierarchy>();
+
             LoadNoteColor(noteColors);
             LoadNoteLog();
             noteDateTime = selectedDate;
@@ -510,6 +517,8 @@ namespace LifeGame
             revisit.TagTime = DateTime.Today.Date;
             noteColors.Add(revisit);
 
+            noteHierarchies = new List<RNoteHierarchy>();
+
             // LoadNoteTag();
             LoadNoteColor(noteColors);
             LoadNoteLog();
@@ -568,6 +577,11 @@ namespace LifeGame
             trvShare.Nodes.Add(rootNode);
         }
 
+        private void LoadNoteHierarchy()
+        {
+            trvHierarchy.Nodes.Clear();
+            
+        }
         private int getLogo(string noteText)
         {
             if (noteText.Contains("ddl: ") || noteText.Contains("DDL: ") || noteText.Contains("Date: ") || noteText.Contains("date: "))
@@ -1026,6 +1040,13 @@ namespace LifeGame
                     else
                     {
                         (childNode.BackColor, childNode.ForeColor, childNode.NodeFont) = getColor(sub.SubLog, noteColorSource);
+                        // 看看子note中有没有着色label
+                        if (childNode.Text.Contains("color: ") || childNode.Text.Contains("status: ") || childNode.Text.Contains("Color: ") || childNode.Text.Contains("Status: "))
+                        {
+                            treeNode.BackColor = childNode.BackColor;
+                            treeNode.ForeColor = childNode.ForeColor;
+                            treeNode.NodeFont = childNode.NodeFont;
+                        }                        
                     }
                     LoadChildNoteLog(childNode, topic, noteSource, noteColorSource);
                     treeNode.Nodes.Add(childNode);
@@ -2987,7 +3008,7 @@ namespace LifeGame
                     tblNote.RowStyles[3].Height = 0;
                     tblNote.RowStyles[4].Height = 0;
                     tblNote.RowStyles[5].Height = 0;
-                    tblNote.RowStyles[6].Height = 62;
+                    tblNote.RowStyles[6].Height = 100;
                     splitContainer1.Panel1Collapsed = true;
                     splitContainer2.Panel1Collapsed = true;
                 }
@@ -2998,7 +3019,7 @@ namespace LifeGame
                     tblNote.RowStyles[3].Height = 0;
                     tblNote.RowStyles[4].Height = 0;
                     tblNote.RowStyles[5].Height = 0;
-                    tblNote.RowStyles[6].Height = 62;
+                    tblNote.RowStyles[6].Height = 100;
                     splitContainer1.Panel1Collapsed = false;
                     splitContainer2.Panel1Collapsed = false;
                 }
@@ -3009,7 +3030,7 @@ namespace LifeGame
                     tblNote.RowStyles[3].Height = 26;
                     tblNote.RowStyles[4].Height = 26;
                     tblNote.RowStyles[5].Height = 120;
-                    tblNote.RowStyles[6].Height = 62;
+                    tblNote.RowStyles[6].Height = 100;
                     splitContainer1.Panel1Collapsed = true;
                     splitContainer2.Panel1Collapsed = true;
                 }

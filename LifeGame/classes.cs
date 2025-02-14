@@ -144,7 +144,7 @@ namespace LifeGame
     }
 
     [Serializable]
-    public enum ESurveyTagType: int
+    public enum ESurveyTagType : int
     {
         NonBottom = 0,
         Boolean,
@@ -356,6 +356,17 @@ namespace LifeGame
         public DateTime TagTime;
         public string Keyword;
         public string Color;
+    }
+
+    [Serializable]
+    public class RNoteHierarchy
+    {
+        public string Topic;
+        public string TopicGUID;
+        public DateTime TagTime;
+        public string Tag;
+        public string SubTag;
+        public int Index;
     }
 
     #endregion

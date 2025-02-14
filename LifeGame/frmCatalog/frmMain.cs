@@ -56,6 +56,7 @@ namespace LifeGame
             try
             {
                 Deserialize();
+                G.glb.lstNoteHierarchy = new List<RNoteHierarchy>();
                 //foreach (CNote item in G.glb.lstNote)
                 //{
                 //    if (item.Topic == "Daily Report")
