@@ -1159,12 +1159,6 @@ namespace LifeGame
             DrawLog();
         }
 
-        private void surveyVToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmSurvey frmSurvey = new frmSurvey();
-            frmSurvey.Show();
-        }
-
         private void addDailyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DateTime sendToFrm = SelectedDate;

@@ -33,7 +33,7 @@
             this.tblNote = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.txtHighlight = new System.Windows.Forms.TextBox();
-            this.btnHighlight = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.btnWrite = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnRead = new System.Windows.Forms.Button();
@@ -76,13 +76,6 @@
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmAuthorUp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAuthorDown = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lsbSurvey = new System.Windows.Forms.ListBox();
-            this.cmsSurvey = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmOpenSurvey = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmAddSurvey = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRemoveSurvey = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txtBibRef = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
@@ -160,10 +153,11 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmIndependent = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBelongTo = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmProperties = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmRenameNote = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnGridView = new System.Windows.Forms.Button();
+            this.btnRegroup = new System.Windows.Forms.Button();
+            this.cbxTag = new System.Windows.Forms.ComboBox();
             this.cmsNoteTag = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAddTag = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveTag = new System.Windows.Forms.ToolStripMenuItem();
@@ -177,8 +171,6 @@
             this.cmsAttri.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.cmsAuthor.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.cmsSurvey.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -200,6 +192,7 @@
             this.splitContainer2.SuspendLayout();
             this.cmsTrvShare.SuspendLayout();
             this.cmsTrvNote.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.cmsNoteTag.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -214,11 +207,12 @@
             this.tblNote.Controls.Add(this.tableLayoutPanel9, 0, 5);
             this.tblNote.Controls.Add(this.tableLayoutPanel10, 0, 1);
             this.tblNote.Controls.Add(this.tableLayoutPanel3, 0, 6);
-            this.tblNote.Controls.Add(this.splitContainer1, 0, 7);
+            this.tblNote.Controls.Add(this.splitContainer1, 0, 8);
+            this.tblNote.Controls.Add(this.tableLayoutPanel5, 0, 7);
             this.tblNote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblNote.Location = new System.Drawing.Point(0, 0);
             this.tblNote.Name = "tblNote";
-            this.tblNote.RowCount = 8;
+            this.tblNote.RowCount = 9;
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
@@ -226,6 +220,7 @@
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tblNote.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblNote.Size = new System.Drawing.Size(715, 747);
             this.tblNote.TabIndex = 0;
@@ -239,10 +234,10 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel2.Controls.Add(this.txtHighlight, 6, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnHighlight, 7, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnSearch, 7, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnWrite, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnSave, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnRead, 2, 0);
@@ -263,21 +258,21 @@
             this.txtHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtHighlight.Location = new System.Drawing.Point(563, 3);
             this.txtHighlight.Name = "txtHighlight";
-            this.txtHighlight.Size = new System.Drawing.Size(90, 20);
+            this.txtHighlight.Size = new System.Drawing.Size(94, 20);
             this.txtHighlight.TabIndex = 0;
             this.txtHighlight.TextChanged += new System.EventHandler(this.txtHighlight_TextChanged);
             // 
-            // btnHighlight
+            // btnSearch
             // 
-            this.btnHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnHighlight.Location = new System.Drawing.Point(657, 1);
-            this.btnHighlight.Margin = new System.Windows.Forms.Padding(1);
-            this.btnHighlight.Name = "btnHighlight";
-            this.btnHighlight.Size = new System.Drawing.Size(57, 24);
-            this.btnHighlight.TabIndex = 1;
-            this.btnHighlight.Text = "Highlight";
-            this.btnHighlight.UseVisualStyleBackColor = true;
-            this.btnHighlight.Click += new System.EventHandler(this.btnHighlight_Click);
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSearch.Location = new System.Drawing.Point(661, 1);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(53, 24);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnWrite
             // 
@@ -656,15 +651,13 @@
             // 
             // tableLayoutPanel9
             // 
-            this.tableLayoutPanel9.ColumnCount = 4;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel9.ColumnCount = 3;
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel9.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.groupBox2, 1, 0);
-            this.tableLayoutPanel9.Controls.Add(this.groupBox3, 2, 0);
-            this.tableLayoutPanel9.Controls.Add(this.groupBox4, 3, 0);
+            this.tableLayoutPanel9.Controls.Add(this.groupBox4, 2, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 130);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
@@ -680,7 +673,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(172, 114);
+            this.groupBox1.Size = new System.Drawing.Size(232, 114);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tags";
@@ -693,7 +686,7 @@
             this.lsbTag.FormattingEnabled = true;
             this.lsbTag.Location = new System.Drawing.Point(3, 16);
             this.lsbTag.Name = "lsbTag";
-            this.lsbTag.Size = new System.Drawing.Size(166, 95);
+            this.lsbTag.Size = new System.Drawing.Size(226, 95);
             this.lsbTag.TabIndex = 0;
             // 
             // cmsAttri
@@ -724,9 +717,9 @@
             // 
             this.groupBox2.Controls.Add(this.lsbAuthor);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(181, 3);
+            this.groupBox2.Location = new System.Drawing.Point(241, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(172, 114);
+            this.groupBox2.Size = new System.Drawing.Size(232, 114);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Authors";
@@ -739,7 +732,7 @@
             this.lsbAuthor.FormattingEnabled = true;
             this.lsbAuthor.Location = new System.Drawing.Point(3, 16);
             this.lsbAuthor.Name = "lsbAuthor";
-            this.lsbAuthor.Size = new System.Drawing.Size(166, 95);
+            this.lsbAuthor.Size = new System.Drawing.Size(226, 95);
             this.lsbAuthor.TabIndex = 0;
             // 
             // cmsAuthor
@@ -787,73 +780,13 @@
             this.tsmAuthorDown.Text = "Down";
             this.tsmAuthorDown.Click += new System.EventHandler(this.tsmAuthorDown_Click);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.lsbSurvey);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(359, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(172, 114);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Review";
-            // 
-            // lsbSurvey
-            // 
-            this.lsbSurvey.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lsbSurvey.ContextMenuStrip = this.cmsSurvey;
-            this.lsbSurvey.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsbSurvey.FormattingEnabled = true;
-            this.lsbSurvey.Location = new System.Drawing.Point(3, 16);
-            this.lsbSurvey.Name = "lsbSurvey";
-            this.lsbSurvey.Size = new System.Drawing.Size(166, 95);
-            this.lsbSurvey.TabIndex = 0;
-            this.lsbSurvey.SelectedIndexChanged += new System.EventHandler(this.lsbSurvey_SelectedIndexChanged);
-            // 
-            // cmsSurvey
-            // 
-            this.cmsSurvey.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsSurvey.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmOpenSurvey,
-            this.toolStripSeparator12,
-            this.tsmAddSurvey,
-            this.tsmRemoveSurvey});
-            this.cmsSurvey.Name = "cmsSurvey";
-            this.cmsSurvey.Size = new System.Drawing.Size(118, 76);
-            // 
-            // tsmOpenSurvey
-            // 
-            this.tsmOpenSurvey.Name = "tsmOpenSurvey";
-            this.tsmOpenSurvey.Size = new System.Drawing.Size(117, 22);
-            this.tsmOpenSurvey.Text = "Open";
-            this.tsmOpenSurvey.Click += new System.EventHandler(this.tsmOpenSurvey_Click);
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(114, 6);
-            // 
-            // tsmAddSurvey
-            // 
-            this.tsmAddSurvey.Name = "tsmAddSurvey";
-            this.tsmAddSurvey.Size = new System.Drawing.Size(117, 22);
-            this.tsmAddSurvey.Text = "Add";
-            this.tsmAddSurvey.Click += new System.EventHandler(this.tsmAddSurvey_Click);
-            // 
-            // tsmRemoveSurvey
-            // 
-            this.tsmRemoveSurvey.Name = "tsmRemoveSurvey";
-            this.tsmRemoveSurvey.Size = new System.Drawing.Size(117, 22);
-            this.tsmRemoveSurvey.Text = "Remove";
-            this.tsmRemoveSurvey.Click += new System.EventHandler(this.tsmRemoveSurvey_Click);
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.txtBibRef);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(537, 3);
+            this.groupBox4.Location = new System.Drawing.Point(479, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(175, 114);
+            this.groupBox4.Size = new System.Drawing.Size(233, 114);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "BibTeX";
@@ -866,7 +799,7 @@
             this.txtBibRef.Multiline = true;
             this.txtBibRef.Name = "txtBibRef";
             this.txtBibRef.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtBibRef.Size = new System.Drawing.Size(169, 95);
+            this.txtBibRef.Size = new System.Drawing.Size(227, 95);
             this.txtBibRef.TabIndex = 0;
             // 
             // tableLayoutPanel10
@@ -1074,7 +1007,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 353);
+            this.splitContainer1.Location = new System.Drawing.Point(3, 379);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -1084,7 +1017,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(709, 391);
+            this.splitContainer1.Size = new System.Drawing.Size(709, 365);
             this.splitContainer1.SplitterDistance = 178;
             this.splitContainer1.TabIndex = 8;
             // 
@@ -1100,7 +1033,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(178, 391);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(178, 365);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // picToday
@@ -1108,7 +1041,7 @@
             this.picToday.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picToday.Location = new System.Drawing.Point(3, 34);
             this.picToday.Name = "picToday";
-            this.picToday.Size = new System.Drawing.Size(172, 354);
+            this.picToday.Size = new System.Drawing.Size(172, 328);
             this.picToday.TabIndex = 0;
             this.picToday.TabStop = false;
             this.picToday.Click += new System.EventHandler(this.picToday_Click);
@@ -1181,8 +1114,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.trvNote);
-            this.splitContainer2.Size = new System.Drawing.Size(527, 391);
-            this.splitContainer2.SplitterDistance = 187;
+            this.splitContainer2.Size = new System.Drawing.Size(527, 365);
+            this.splitContainer2.SplitterDistance = 174;
             this.splitContainer2.TabIndex = 0;
             // 
             // trvShare
@@ -1191,7 +1124,7 @@
             this.trvShare.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvShare.Location = new System.Drawing.Point(0, 0);
             this.trvShare.Name = "trvShare";
-            this.trvShare.Size = new System.Drawing.Size(527, 187);
+            this.trvShare.Size = new System.Drawing.Size(527, 174);
             this.trvShare.StateImageList = this.iglIcon;
             this.trvShare.TabIndex = 0;
             this.trvShare.KeyDown += new System.Windows.Forms.KeyEventHandler(this.trvShare_KeyDown);
@@ -1260,7 +1193,7 @@
             this.trvNote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvNote.Location = new System.Drawing.Point(0, 0);
             this.trvNote.Name = "trvNote";
-            this.trvNote.Size = new System.Drawing.Size(527, 200);
+            this.trvNote.Size = new System.Drawing.Size(527, 187);
             this.trvNote.StateImageList = this.iglIcon;
             this.trvNote.TabIndex = 0;
             this.trvNote.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.trvNote_AfterLabelEdit);
@@ -1314,12 +1247,9 @@
             this.toolStripSeparator2,
             this.tsmIndependent,
             this.tsmBelongTo,
-            this.toolStripSeparator5,
-            this.tsmProperties,
-            this.toolStripSeparator10,
             this.tsmRenameNote});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(211, 786);
+            this.cmsTrvNote.Size = new System.Drawing.Size(211, 774);
             // 
             // tsmAdd
             // 
@@ -1539,14 +1469,14 @@
             // 
             this.removeChildrenToolStripMenuItem.Name = "removeChildrenToolStripMenuItem";
             this.removeChildrenToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.removeChildrenToolStripMenuItem.Text = "Remove Children";
+            this.removeChildrenToolStripMenuItem.Text = "Remove Children(&O)";
             this.removeChildrenToolStripMenuItem.Click += new System.EventHandler(this.tsmRemoveChildren_Click);
             // 
             // tsmRemoveLayer
             // 
             this.tsmRemoveLayer.Name = "tsmRemoveLayer";
             this.tsmRemoveLayer.Size = new System.Drawing.Size(210, 22);
-            this.tsmRemoveLayer.Text = "Remove Current Layer";
+            this.tsmRemoveLayer.Text = "Remove Current Layer(&P)";
             this.tsmRemoveLayer.Click += new System.EventHandler(this.tsmRemoveLayer_Click);
             // 
             // toolStripSeparator1
@@ -1587,29 +1517,61 @@
             this.tsmBelongTo.Text = "Belong To (&L)";
             this.tsmBelongTo.Click += new System.EventHandler(this.tsmBelongTo_Click);
             // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(207, 6);
-            // 
-            // tsmProperties
-            // 
-            this.tsmProperties.Name = "tsmProperties";
-            this.tsmProperties.Size = new System.Drawing.Size(210, 22);
-            this.tsmProperties.Text = "Properties";
-            this.tsmProperties.Click += new System.EventHandler(this.tsmProperties_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(207, 6);
-            // 
             // tsmRenameNote
             // 
             this.tsmRenameNote.Name = "tsmRenameNote";
             this.tsmRenameNote.Size = new System.Drawing.Size(210, 22);
             this.tsmRenameNote.Text = "Rename Note";
             this.tsmRenameNote.Click += new System.EventHandler(this.tsmRenameNote_Click);
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 5;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 167F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableLayoutPanel5.Controls.Add(this.btnGridView, 4, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnRegroup, 3, 0);
+            this.tableLayoutPanel5.Controls.Add(this.cbxTag, 2, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 350);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(715, 26);
+            this.tableLayoutPanel5.TabIndex = 9;
+            // 
+            // btnGridView
+            // 
+            this.btnGridView.Location = new System.Drawing.Point(650, 1);
+            this.btnGridView.Margin = new System.Windows.Forms.Padding(1);
+            this.btnGridView.Name = "btnGridView";
+            this.btnGridView.Size = new System.Drawing.Size(64, 23);
+            this.btnGridView.TabIndex = 0;
+            this.btnGridView.Text = "Grid View";
+            this.btnGridView.UseVisualStyleBackColor = true;
+            // 
+            // btnRegroup
+            // 
+            this.btnRegroup.Location = new System.Drawing.Point(585, 1);
+            this.btnRegroup.Margin = new System.Windows.Forms.Padding(1);
+            this.btnRegroup.Name = "btnRegroup";
+            this.btnRegroup.Size = new System.Drawing.Size(63, 23);
+            this.btnRegroup.TabIndex = 1;
+            this.btnRegroup.Text = "Regroup";
+            this.btnRegroup.UseVisualStyleBackColor = true;
+            // 
+            // cbxTag
+            // 
+            this.cbxTag.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbxTag.FormattingEnabled = true;
+            this.cbxTag.Location = new System.Drawing.Point(420, 3);
+            this.cbxTag.Name = "cbxTag";
+            this.cbxTag.Size = new System.Drawing.Size(161, 21);
+            this.cbxTag.TabIndex = 2;
             // 
             // cmsNoteTag
             // 
@@ -1658,8 +1620,6 @@
             this.cmsAttri.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.cmsAuthor.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.cmsSurvey.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.tableLayoutPanel10.ResumeLayout(false);
@@ -1685,6 +1645,7 @@
             this.splitContainer2.ResumeLayout(false);
             this.cmsTrvShare.ResumeLayout(false);
             this.cmsTrvNote.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.cmsNoteTag.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1728,8 +1689,6 @@
         private System.Windows.Forms.Button btnRead;
         private System.Windows.Forms.ToolStripMenuItem tsmCopy;
         private System.Windows.Forms.ToolStripMenuItem tsmPaste;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripMenuItem tsmProperties;
         private System.Windows.Forms.ToolStripMenuItem tsmFold;
         private System.Windows.Forms.ToolStripMenuItem tsmExpand;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
@@ -1737,7 +1696,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.TextBox txtHighlight;
-        private System.Windows.Forms.Button btnHighlight;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnLock;
         private System.Windows.Forms.ContextMenuStrip cmsNoteTag;
         private System.Windows.Forms.ToolStripMenuItem tsmAddTag;
@@ -1747,7 +1706,6 @@
         private System.Windows.Forms.ToolStripSeparator tspDaily;
         private System.Windows.Forms.ToolStripMenuItem tsmConvertToTransaction;
         private System.Windows.Forms.CheckBox chkShow;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem tsmRenameNote;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
@@ -1755,7 +1713,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtTitle;
@@ -1774,11 +1731,9 @@
         private System.Windows.Forms.TextBox txtBibKey;
         private System.Windows.Forms.ListBox lsbTag;
         private System.Windows.Forms.ListBox lsbAuthor;
-        private System.Windows.Forms.ListBox lsbSurvey;
         private System.Windows.Forms.TextBox txtBibRef;
         private System.Windows.Forms.ContextMenuStrip cmsAttri;
         private System.Windows.Forms.ContextMenuStrip cmsAuthor;
-        private System.Windows.Forms.ContextMenuStrip cmsSurvey;
         private System.Windows.Forms.ToolStripMenuItem tsmAttriAdd;
         private System.Windows.Forms.ToolStripMenuItem tsmAttriRemove;
         private System.Windows.Forms.ToolStripMenuItem tsmAuthorAdd;
@@ -1786,10 +1741,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem tsmAuthorUp;
         private System.Windows.Forms.ToolStripMenuItem tsmAuthorDown;
-        private System.Windows.Forms.ToolStripMenuItem tsmOpenSurvey;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
-        private System.Windows.Forms.ToolStripMenuItem tsmAddSurvey;
-        private System.Windows.Forms.ToolStripMenuItem tsmRemoveSurvey;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.Label lblWordCount;
         private System.Windows.Forms.ToolStripMenuItem tsmRotateLabelNext;
@@ -1829,5 +1780,9 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.TreeView trvHierarchy;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Button btnGridView;
+        private System.Windows.Forms.Button btnRegroup;
+        private System.Windows.Forms.ComboBox cbxTag;
     }
 }

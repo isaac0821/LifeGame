@@ -39,9 +39,7 @@ namespace LifeGame
         CLiterature literature = new CLiterature();
         List<RLiteratureAuthor> lstLiteratureAuthor = new List<RLiteratureAuthor>();
         List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
-        List<RSurveyLiterature> lstSurveyLiterature = new List<RSurveyLiterature>();
         CBibTeX literatureBib = new CBibTeX();
-
 
         public ENoteType noteType = ENoteType.Note;
 
@@ -95,6 +93,7 @@ namespace LifeGame
             tblNote.RowStyles[4].Height = 0;
             tblNote.RowStyles[5].Height = 0;
             tblNote.RowStyles[6].Height = 0;
+            tblNote.RowStyles[7].Height = 0;
 
             chkShow.Checked = false;
 
@@ -130,7 +129,6 @@ namespace LifeGame
             lstLiteratureTag = G.glb.lstLiteratureTag.FindAll(o => o.Title == litTitle).ToList();
             lstLiteratureAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == litTitle).ToList();
             lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Rank).ToList();
-            lstSurveyLiterature = G.glb.lstSurveyLiterature.FindAll(o => o.LiteratureTitle == litTitle).ToList();
             literatureBib = literature.BibTeX;
 
             InitializeComponent();
@@ -142,7 +140,8 @@ namespace LifeGame
             tblNote.RowStyles[3].Height = 26;
             tblNote.RowStyles[4].Height = 26;
             tblNote.RowStyles[5].Height = 120;
-            tblNote.RowStyles[6].Height = 62;
+            tblNote.RowStyles[6].Height = 100;
+            tblNote.RowStyles[7].Height = 0;
 
             chkShow.Checked = true;
 
@@ -235,7 +234,8 @@ namespace LifeGame
             tblNote.RowStyles[3].Height = 26;
             tblNote.RowStyles[4].Height = 26;
             tblNote.RowStyles[5].Height = 120;
-            tblNote.RowStyles[6].Height = 62;
+            tblNote.RowStyles[6].Height = 100;
+            tblNote.RowStyles[7].Height = 0;
 
             chkShow.Checked = true;
 
@@ -247,7 +247,6 @@ namespace LifeGame
             literature = new CLiterature();
             lstLiteratureAuthor = new List<RLiteratureAuthor>();
             lstLiteratureTag = new List<RLiteratureTag>();
-            lstSurveyLiterature = new List<RSurveyLiterature>();
             literatureBib = new CBibTeX();
 
             topicGUID = Guid.NewGuid().ToString();
@@ -294,7 +293,8 @@ namespace LifeGame
             tblNote.RowStyles[3].Height = 0;
             tblNote.RowStyles[4].Height = 0;
             tblNote.RowStyles[5].Height = 0;
-            tblNote.RowStyles[6].Height = 62;
+            tblNote.RowStyles[6].Height = 100;
+            tblNote.RowStyles[7].Height = 0;
 
             chkShow.Checked = true;
 
@@ -339,6 +339,7 @@ namespace LifeGame
             tblNote.RowStyles[4].Height = 0;
             tblNote.RowStyles[5].Height = 0;
             tblNote.RowStyles[6].Height = 0;
+            tblNote.RowStyles[7].Height = 0;
 
             chkShow.Checked = false;
 
@@ -468,7 +469,8 @@ namespace LifeGame
             tblNote.RowStyles[3].Height = 0;
             tblNote.RowStyles[4].Height = 0;
             tblNote.RowStyles[5].Height = 0;
-            tblNote.RowStyles[6].Height = 62;
+            tblNote.RowStyles[6].Height = 100;
+            tblNote.RowStyles[7].Height = 0;
 
             chkShow.Checked = true;
 
@@ -529,11 +531,13 @@ namespace LifeGame
             splitContainer1.Panel1Collapsed = true;
             splitContainer2.Panel1Collapsed = true;
         }
+
         private void RefreshDailySchedule(object sender, EventArgs e)
         {
             curPointerTimer.Interval = 1000 * 60;
             DrawDailySchedule();
         }
+        
         private void LoadNoteColor(List<RNoteColor> noteColorSource)
         {
             lsvColor.Items.Clear();
@@ -582,6 +586,7 @@ namespace LifeGame
             trvHierarchy.Nodes.Clear();
             
         }
+        
         private int getLogo(string noteText)
         {
             if (noteText.Contains("ddl: ") || noteText.Contains("DDL: ") || noteText.Contains("Date: ") || noteText.Contains("date: "))
@@ -1180,20 +1185,9 @@ namespace LifeGame
                         {
                             tag.Title = txtTitle.Text;
                         }
-                        foreach (RSurveyLiterature surveyLiterature in lstSurveyLiterature)
-                        {
-                            surveyLiterature.LiteratureTitle = txtTitle.Text;
-                            if (!G.glb.lstSurvey.Exists(o => o.SurveyTitle == surveyLiterature.SurveyTitle))
-                            {
-                                CSurvey survey = new CSurvey();
-                                survey.SurveyTitle = surveyLiterature.SurveyTitle;
-                                G.glb.lstSurvey.Add(survey);
-                            }
-                        }
                         G.glb.lstLiterature.Add(newLiterature);
                         G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
                         G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
-                        G.glb.lstSurveyLiterature.AddRange(lstSurveyLiterature);
                     }
                     else
                     {
@@ -2316,57 +2310,6 @@ namespace LifeGame
             }
         }
 
-        private void tsmProperties_Click(object sender, EventArgs e)
-        {
-            if (trvNote.SelectedNode != null)
-            {
-                CNoteProperties p = new CNoteProperties();
-                p.Note = trvNote.SelectedNode.Text;
-                p.NoteType = "NORM";
-                if (trvNote.SelectedNode.Parent == null)
-                {
-                    p.NoteType = "ROOT";
-                }
-                else if (trvNote.SelectedNode.Text.Contains("$LINK$>"))
-                {
-                    p.NoteType = "LINK";
-                }
-                else if (trvNote.SelectedNode.Text.Contains("$NOTE$>"))
-                {
-                    p.NoteType = "NOTE";
-                }
-                else if (trvNote.SelectedNode.Text.Contains("$LITR$>"))
-                {
-                    p.NoteType = "LITR";
-                }
-                p.numChildren = trvNote.SelectedNode.Nodes.Count;
-                foreach (TreeNode item in trvNote.SelectedNode.Nodes)
-                {
-                    if (item.Text.Contains("$LINK$>"))
-                    {
-                        p.numCLinks += 1;
-                    }
-                    else if (item.Text.Contains("$NOTE$>"))
-                    {
-                        p.numCNotes += 1;
-                    }
-                    else if (item.Text.Contains("$LITR$>"))
-                    {
-                        p.numCLitrs += 1;
-                    }
-                }
-                int[] count = nodeProperties(trvNote.SelectedNode);
-                p.numChar = count[0];
-                p.numOffsprings = count[1];
-                p.numOLinks = count[2];
-                p.numONotes = count[3];
-                p.numOLitrs = count[4];
-
-                frmNoteProperties frmNoteProperties = new frmNoteProperties(p);
-                frmNoteProperties.Show();
-            }
-        }
-
         private void UpdateWordCount()
         {
             int[] rootProperty = nodeProperties(trvNote.Nodes[0]);
@@ -2608,6 +2551,16 @@ namespace LifeGame
             {
                 tsmRemove_Click(trvNote, e);
             }
+            // 删除子节点
+            else if (e.Control && e.KeyCode == Keys.O)
+            {
+                tsmRemoveChildren_Click(trvNote, e);
+            }            
+            // 删除当前层
+            else if (e.Control && e.KeyCode == Keys.P)
+            {
+                tsmRemoveLayer_Click(trvNote, e);
+            }
             // 上移
             else if (e.Control && e.KeyCode == Keys.I)
             {
@@ -2627,11 +2580,6 @@ namespace LifeGame
             else if (e.Control && e.KeyCode == Keys.J)
             {
                 tsmIndependent_Click(trvNote, e);
-            }
-            // 节点属性
-            else if (e.Control && e.KeyCode == Keys.P)
-            {
-                tsmProperties_Click(trvNote, e);
             }
             // 保存
             else if (e.Control && e.KeyCode == Keys.S)
@@ -2676,18 +2624,26 @@ namespace LifeGame
         }
 
         string highlightText = "";
-        private void btnHighlight_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
             if (txtHighlight.Text.Length > 0)
             {
-                highlightText = txtHighlight.Text;
+                List<CNote> notes = G.glb.lstNote.FindAll(o => o.Topic.ToUpper().Contains(txtHighlight.Text.ToUpper()));
+                if (notes.Count == 0)
+                {
+                    MessageBox.Show("No record!");
+                }
+                else if (notes.Count == 1)
+                {
+                    plot D = new plot();
+                    D.CallInfoNote(notes[0]);
+                }
+                else
+                {
+                    frmSearchNote frmSearchNote = new frmSearchNote(txtHighlight.Text);
+                    frmSearchNote.Show();
+                }
             }
-            else
-            {
-                highlightText = "";
-            }
-            SaveNoteLog();
-            LoadNoteLog();
         }
 
         private void txtHighlight_TextChanged(object sender, EventArgs e)
@@ -2988,6 +2944,7 @@ namespace LifeGame
                 tblNote.RowStyles[4].Height = 0;
                 tblNote.RowStyles[5].Height = 0;
                 tblNote.RowStyles[6].Height = 0;
+                tblNote.RowStyles[7].Height = 0;
                 if (noteType == ENoteType.DailyReport)
                 {
                     splitContainer1.Panel1Collapsed = false;
@@ -3009,10 +2966,11 @@ namespace LifeGame
                     tblNote.RowStyles[4].Height = 0;
                     tblNote.RowStyles[5].Height = 0;
                     tblNote.RowStyles[6].Height = 100;
+                    tblNote.RowStyles[7].Height = 0;
                     splitContainer1.Panel1Collapsed = true;
                     splitContainer2.Panel1Collapsed = true;
                 }
-                if (noteType == ENoteType.DailyReport)
+                else if (noteType == ENoteType.DailyReport)
                 {
                     tblNote.RowStyles[1].Height = 26;
                     tblNote.RowStyles[2].Height = 0;
@@ -3020,6 +2978,19 @@ namespace LifeGame
                     tblNote.RowStyles[4].Height = 0;
                     tblNote.RowStyles[5].Height = 0;
                     tblNote.RowStyles[6].Height = 100;
+                    tblNote.RowStyles[7].Height = 0;
+                    splitContainer1.Panel1Collapsed = false;
+                    splitContainer2.Panel1Collapsed = false;
+                }
+                else if (noteType == ENoteType.LitReview)
+                {
+                    tblNote.RowStyles[1].Height = 26;
+                    tblNote.RowStyles[2].Height = 0;
+                    tblNote.RowStyles[3].Height = 0;
+                    tblNote.RowStyles[4].Height = 0;
+                    tblNote.RowStyles[5].Height = 0;
+                    tblNote.RowStyles[6].Height = 100;
+                    tblNote.RowStyles[7].Height = 26;
                     splitContainer1.Panel1Collapsed = false;
                     splitContainer2.Panel1Collapsed = false;
                 }
@@ -3031,6 +3002,7 @@ namespace LifeGame
                     tblNote.RowStyles[4].Height = 26;
                     tblNote.RowStyles[5].Height = 120;
                     tblNote.RowStyles[6].Height = 100;
+                    tblNote.RowStyles[7].Height = 0;
                     splitContainer1.Panel1Collapsed = true;
                     splitContainer2.Panel1Collapsed = true;
                 }
@@ -3188,10 +3160,6 @@ namespace LifeGame
             foreach (RLiteratureTag tag in lstLiteratureTag)
             {
                 lsbTag.Items.Add(tag.Tag);
-            }
-            foreach (RSurveyLiterature survey in lstSurveyLiterature)
-            {
-                lsbSurvey.Items.Add(survey.SurveyTitle);
             }
         }
 
@@ -3469,139 +3437,6 @@ namespace LifeGame
         private void chkPredatroyAlert_CheckedChanged(object sender, EventArgs e)
         {
             modifiedFlag = true;
-        }
-
-        private void tsmOpenSurvey_Click(object sender, EventArgs e)
-        {
-            if (lsbSurvey.SelectedItem != null)
-            {
-                if (G.glb.lstSurveyLiterature.Exists(o =>
-                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
-                    && o.LiteratureTitle == txtTitle.Text))
-                {
-                    frmInfoLiteratureSurvey frmInfoLiteratureSurvey = new frmInfoLiteratureSurvey(txtTitle.Text, lsbSurvey.SelectedItem.ToString());
-                    frmInfoLiteratureSurvey.Show();
-                }
-            }
-        }
-
-        private void tsmAddSurvey_Click(object sender, EventArgs e)
-        {
-            frmAddSurveyLiterature frmAddSurveyLiterature = new frmAddSurveyLiterature(txtTitle.Text);
-            frmAddSurveyLiterature.SendSurvey += new frmAddSurveyLiterature.GetSurvey(GetSurvey);
-            frmAddSurveyLiterature.Show();
-        }
-
-        private void GetSurvey(string strSurvey)
-        {
-            // 如果文献标题可编辑，先暂存到缓存区，否则直接操作存储区
-            if (txtTitle.Enabled == true)
-            {
-                if (!lstSurveyLiterature.Exists(o => o.SurveyTitle == strSurvey))
-                {
-                    RSurveyLiterature newSurveyLiterature = new RSurveyLiterature();
-                    newSurveyLiterature.SurveyTitle = strSurvey;
-                    lstSurveyLiterature.Add(newSurveyLiterature);
-                    lsbSurvey.Items.Add(strSurvey);
-                }
-                else
-                {
-                    MessageBox.Show("Already included in survey");
-                }
-            }
-            else
-            {
-                if (!G.glb.lstSurvey.Exists(o => o.SurveyTitle == strSurvey))
-                {
-                    CSurvey survey = new CSurvey();
-                    survey.SurveyTitle = strSurvey;
-                    G.glb.lstSurvey.Add(survey);
-                }
-                if (!G.glb.lstSurveyLiterature.Exists(o => o.LiteratureTitle == txtTitle.Text && o.SurveyTitle == strSurvey))
-                {
-                    RSurveyLiterature newSurveyLiterature = new RSurveyLiterature();
-                    newSurveyLiterature.LiteratureTitle = txtTitle.Text;
-                    newSurveyLiterature.SurveyTitle = strSurvey;
-                    G.glb.lstSurveyLiterature.Add(newSurveyLiterature);
-                    lsbSurvey.Items.Add(strSurvey);
-                }
-                else
-                {
-                    MessageBox.Show("Already included in survey");
-                }
-            }
-        }
-
-        private void tsmRemoveSurvey_Click(object sender, EventArgs e)
-        {
-            if (lsbSurvey.SelectedItem != null)
-            {
-                if (txtTitle.Enabled == true)
-                {
-                    lstSurveyLiterature.RemoveAll(o => o.SurveyTitle == lsbSurvey.SelectedItem.ToString());
-                    lsbSurvey.Items.Clear();
-                    foreach (RSurveyLiterature item in lstSurveyLiterature)
-                    {
-                        lsbSurvey.Items.Add(item.SurveyTitle);
-                    }
-                }
-                else
-                {
-                    // 如果已经有数据， 跳出确认框确认下，否则直接删
-                    if (G.glb.lstSurveyLiteratureTagValue.Exists(o =>
-                        o.LiteratureTitle == txtTitle.Text
-                        && o.SurveyTitle == lsbSurvey.SelectedItem.ToString()))
-                    {
-                        DialogResult result = MessageBox.Show("Warning: There are some records for this literature, delete can not be restored!", "Delete", MessageBoxButtons.YesNo);
-                        switch (result)
-                        {
-                            case DialogResult.Yes:
-                                G.glb.lstSurveyLiteratureTagValue.RemoveAll(o =>
-                                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
-                                    && o.LiteratureTitle == txtTitle.Text);
-                                G.glb.lstSurveyLiterature.RemoveAll(o =>
-                                    o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
-                                    && o.LiteratureTitle == txtTitle.Text);
-                                lsbSurvey.Items.Clear();
-                                foreach (RSurveyLiterature item in G.glb.lstSurveyLiterature)
-                                {
-                                    lsbSurvey.Items.Add(item.SurveyTitle);
-                                }
-                                break;
-                            case DialogResult.No:
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        G.glb.lstSurveyLiterature.RemoveAll(o =>
-                            o.SurveyTitle == lsbSurvey.SelectedItem.ToString()
-                            && o.LiteratureTitle == txtTitle.Text);
-                        lsbSurvey.Items.Clear();
-                        foreach (RSurveyLiterature item in G.glb.lstSurveyLiterature)
-                        {
-                            lsbSurvey.Items.Add(item.SurveyTitle);
-                        }
-                    }
-                }
-            }
-        }
-
-        private void lsbSurvey_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            tsmOpenSurvey.Enabled = false;
-            if (lsbSurvey.SelectedItem != null)
-            {
-                if (G.glb.lstSurveyLiterature.Exists(o =>
-                    o.LiteratureTitle == txtTitle.Text
-                    && o.SurveyTitle == lsbSurvey.SelectedItem.ToString())
-                    && txtTitle.Enabled == false)
-                {
-                    tsmOpenSurvey.Enabled = true;
-                }
-            }
         }
 
         private void txtTitle_TextChanged(object sender, EventArgs e)
@@ -4056,11 +3891,6 @@ namespace LifeGame
             }
         }
         
-        private void tsmRemoveProgress_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void picToday_Resize(object sender, EventArgs e)
         {
             if (noteType == ENoteType.DailyReport)
@@ -4288,22 +4118,5 @@ namespace LifeGame
                 frmInfoNote.Show();
             }
         }
-
-    
-    }
-
-    public class CNoteProperties
-    {
-        public string Note = "";
-        public string NoteType = "";
-        public int numChar = 0;
-        public int numChildren = 0;
-        public int numCLinks = 0;
-        public int numCNotes = 0;
-        public int numCLitrs = 0;
-        public int numOffsprings = 0;
-        public int numOLinks = 0;
-        public int numONotes = 0;
-        public int numOLitrs = 0;
     }
 }

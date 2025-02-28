@@ -201,7 +201,7 @@
             // tsmExportBib
             // 
             this.tsmExportBib.Name = "tsmExportBib";
-            this.tsmExportBib.Size = new System.Drawing.Size(128, 22);
+            this.tsmExportBib.Size = new System.Drawing.Size(127, 22);
             this.tsmExportBib.Text = "Export bib";
             this.tsmExportBib.Click += new System.EventHandler(this.tsmExportBib_Click);
             // 
@@ -826,57 +826,57 @@
             this.tsmAddToTempLitsArea,
             this.copyToNoteToolStripMenuItem});
             this.cmsLiterature.Name = "cmsLiterature";
-            this.cmsLiterature.Size = new System.Drawing.Size(146, 176);
+            this.cmsLiterature.Size = new System.Drawing.Size(181, 198);
             // 
             // tsmViewLiterature
             // 
             this.tsmViewLiterature.Name = "tsmViewLiterature";
-            this.tsmViewLiterature.Size = new System.Drawing.Size(145, 22);
+            this.tsmViewLiterature.Size = new System.Drawing.Size(180, 22);
             this.tsmViewLiterature.Text = "View";
             this.tsmViewLiterature.Click += new System.EventHandler(this.tsmViewLiterature_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(142, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmAddLiterature
             // 
             this.tsmAddLiterature.Name = "tsmAddLiterature";
-            this.tsmAddLiterature.Size = new System.Drawing.Size(145, 22);
+            this.tsmAddLiterature.Size = new System.Drawing.Size(180, 22);
             this.tsmAddLiterature.Text = "Add";
             this.tsmAddLiterature.Click += new System.EventHandler(this.tsmAddLiterature_Click);
             // 
             // tsmRemoveLiterature
             // 
             this.tsmRemoveLiterature.Name = "tsmRemoveLiterature";
-            this.tsmRemoveLiterature.Size = new System.Drawing.Size(145, 22);
+            this.tsmRemoveLiterature.Size = new System.Drawing.Size(180, 22);
             this.tsmRemoveLiterature.Text = "Remove";
             this.tsmRemoveLiterature.Click += new System.EventHandler(this.tsmRemoveLiterature_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(142, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // addTag2Multi
             // 
             this.addTag2Multi.Name = "addTag2Multi";
-            this.addTag2Multi.Size = new System.Drawing.Size(145, 22);
+            this.addTag2Multi.Size = new System.Drawing.Size(180, 22);
             this.addTag2Multi.Text = "Add Tag";
             this.addTag2Multi.Click += new System.EventHandler(this.addTag2Multi_Click);
             // 
             // tsmRemoveTagFromMulti
             // 
             this.tsmRemoveTagFromMulti.Name = "tsmRemoveTagFromMulti";
-            this.tsmRemoveTagFromMulti.Size = new System.Drawing.Size(145, 22);
+            this.tsmRemoveTagFromMulti.Size = new System.Drawing.Size(180, 22);
             this.tsmRemoveTagFromMulti.Text = "Remove Tag";
             this.tsmRemoveTagFromMulti.Click += new System.EventHandler(this.tsmRemoveTagFromMulti_Click);
             // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(142, 6);
+            this.toolStripSeparator12.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmAddToTempLitsArea
             // 
@@ -884,7 +884,7 @@
             this.tsmAddToAreaA,
             this.tsmAddToAreaB});
             this.tsmAddToTempLitsArea.Name = "tsmAddToTempLitsArea";
-            this.tsmAddToTempLitsArea.Size = new System.Drawing.Size(145, 22);
+            this.tsmAddToTempLitsArea.Size = new System.Drawing.Size(180, 22);
             this.tsmAddToTempLitsArea.Text = "Add to Temp";
             // 
             // tsmAddToAreaA
@@ -904,7 +904,7 @@
             // copyToNoteToolStripMenuItem
             // 
             this.copyToNoteToolStripMenuItem.Name = "copyToNoteToolStripMenuItem";
-            this.copyToNoteToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.copyToNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.copyToNoteToolStripMenuItem.Text = "Copy to Note";
             this.copyToNoteToolStripMenuItem.Click += new System.EventHandler(this.tsmCopyToNote);
             // 

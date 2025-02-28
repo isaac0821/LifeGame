@@ -330,7 +330,8 @@ namespace LifeGame
         Note = 0,
         DailyReport = 1,
         Literature = 2,
-        System = 3,
+        LitReview = 3,
+        System = 4,
     }
     /// <summary>
     /// 笔记记录

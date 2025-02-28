@@ -34,7 +34,6 @@
             this.viewVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moneyMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.literatureLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.surveyVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stsMain = new System.Windows.Forms.StatusStrip();
             this.tslVersionNumber = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -126,8 +125,7 @@
             // 
             this.viewVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.moneyMToolStripMenuItem,
-            this.literatureLToolStripMenuItem,
-            this.surveyVToolStripMenuItem});
+            this.literatureLToolStripMenuItem});
             this.viewVToolStripMenuItem.Name = "viewVToolStripMenuItem";
             this.viewVToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.viewVToolStripMenuItem.Text = "View(&V)";
@@ -145,13 +143,6 @@
             this.literatureLToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.literatureLToolStripMenuItem.Text = "Literature(&L)";
             this.literatureLToolStripMenuItem.Click += new System.EventHandler(this.literatureLToolStripMenuItem_Click);
-            // 
-            // surveyVToolStripMenuItem
-            // 
-            this.surveyVToolStripMenuItem.Name = "surveyVToolStripMenuItem";
-            this.surveyVToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.surveyVToolStripMenuItem.Text = "Survey(&V)";
-            this.surveyVToolStripMenuItem.Click += new System.EventHandler(this.surveyVToolStripMenuItem_Click);
             // 
             // stsMain
             // 
@@ -302,7 +293,7 @@
             // tsmAddEvent
             // 
             this.tsmAddEvent.Name = "tsmAddEvent";
-            this.tsmAddEvent.Size = new System.Drawing.Size(159, 22);
+            this.tsmAddEvent.Size = new System.Drawing.Size(160, 22);
             this.tsmAddEvent.Text = "Add Event";
             this.tsmAddEvent.Click += new System.EventHandler(this.tsmAddEvent_Click);
             // 
@@ -312,7 +303,7 @@
             this.tsmAddNewTransaction,
             this.tsmConvertTransactionDue});
             this.tsmAddTransaction.Name = "tsmAddTransaction";
-            this.tsmAddTransaction.Size = new System.Drawing.Size(159, 22);
+            this.tsmAddTransaction.Size = new System.Drawing.Size(160, 22);
             this.tsmAddTransaction.Text = "Add Transaction";
             // 
             // tsmAddNewTransaction
@@ -332,7 +323,7 @@
             // tsmAddBudget
             // 
             this.tsmAddBudget.Name = "tsmAddBudget";
-            this.tsmAddBudget.Size = new System.Drawing.Size(159, 22);
+            this.tsmAddBudget.Size = new System.Drawing.Size(160, 22);
             this.tsmAddBudget.Text = "Add Budget";
             this.tsmAddBudget.Click += new System.EventHandler(this.tsmAddBudget_Click);
             // 
@@ -849,7 +840,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmConvertTransactionDue;
         private System.Windows.Forms.ToolStripMenuItem tsmAddNewLog;
         private System.Windows.Forms.ToolStripMenuItem tsmConvertSchedule;
-        private System.Windows.Forms.ToolStripMenuItem surveyVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addDailyToolStripMenuItem;
         private System.Windows.Forms.TextBox txtSearchNote;
         private System.Windows.Forms.Button btnSearch;

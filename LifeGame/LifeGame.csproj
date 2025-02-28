@@ -69,18 +69,6 @@
     <Compile Include="frmAdd\frmAddNoteColor.Designer.cs">
       <DependentUpon>frmAddNoteColor.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAdd\frmAddSurveyLiterature.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddSurveyLiterature.Designer.cs">
-      <DependentUpon>frmAddSurveyLiterature.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddSurveyTag.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddSurveyTag.Designer.cs">
-      <DependentUpon>frmAddSurveyTag.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmAdd\frmAddTag.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,47 +105,11 @@
     <Compile Include="frmInfo\frmSearchNote.Designer.cs">
       <DependentUpon>frmSearchNote.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiteratureSurvey.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiteratureSurvey.Designer.cs">
-      <DependentUpon>frmInfoLiteratureSurvey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveySingleOption.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveySingleOption.Designer.cs">
-      <DependentUpon>frmInfoLiteratureSurveySingleOption.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagNumber.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagNumber.Designer.cs">
-      <DependentUpon>frmInfoLiteratureSurveyTagNumber.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagString.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagString.Designer.cs">
-      <DependentUpon>frmInfoLiteratureSurveyTagString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagBoolean.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagBoolean.Designer.cs">
-      <DependentUpon>frmInfoLiteratureSurveyTagBoolean.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmNoteMine\frmNotePassword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmNoteMine\frmNotePassword.Designer.cs">
       <DependentUpon>frmNotePassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNoteMine\frmNoteProperties.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmNoteProperties.Designer.cs">
-      <DependentUpon>frmNoteProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="memory.cs" />
     <Compile Include="names.cs" />
@@ -174,12 +126,6 @@
     </Compile>
     <Compile Include="frmAdd\frmAddBudget.Designer.cs">
       <DependentUpon>frmAddBudget.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmCatalog\frmSurvey.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCatalog\frmSurvey.Designer.cs">
-      <DependentUpon>frmSurvey.cs</DependentUpon>
     </Compile>
     <Compile Include="frmInfo\frmClearSchedule.cs">
       <SubType>Form</SubType>
@@ -334,12 +280,6 @@
     <EmbeddedResource Include="frmAdd\frmAddNoteColor.resx">
       <DependentUpon>frmAddNoteColor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddSurveyLiterature.resx">
-      <DependentUpon>frmAddSurveyLiterature.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddSurveyTag.resx">
-      <DependentUpon>frmAddSurveyTag.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmAdd\frmAddTag.resx">
       <DependentUpon>frmAddTag.cs</DependentUpon>
     </EmbeddedResource>
@@ -376,32 +316,11 @@
     <EmbeddedResource Include="frmInfo\frmSearchNote.resx">
       <DependentUpon>frmSearchNote.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurvey.resx">
-      <DependentUpon>frmInfoLiteratureSurvey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveySingleOption.resx">
-      <DependentUpon>frmInfoLiteratureSurveySingleOption.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagNumber.resx">
-      <DependentUpon>frmInfoLiteratureSurveyTagNumber.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagString.resx">
-      <DependentUpon>frmInfoLiteratureSurveyTagString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmInfoLiteratureSurveyTag\frmInfoLiteratureSurveyTagBoolean.resx">
-      <DependentUpon>frmInfoLiteratureSurveyTagBoolean.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmNoteMine\frmNotePassword.resx">
       <DependentUpon>frmNotePassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmNoteProperties.resx">
-      <DependentUpon>frmNoteProperties.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmSettings\frmCurrencyRate.resx">
       <DependentUpon>frmCurrencyRate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmCatalog\frmSurvey.resx">
-      <DependentUpon>frmSurvey.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInfoMine\frmInfoEvent.resx">
       <DependentUpon>frmInfoEvent.cs</DependentUpon>

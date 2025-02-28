@@ -245,8 +245,6 @@ namespace LifeGame
                         G.glb.lstLiterature.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstLiteratureTag.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == removedLit);
-                        G.glb.lstSurveyLiterature.RemoveAll(o => o.LiteratureTitle == removedLit);
-                        G.glb.lstSurveyLiteratureTagValue.RemoveAll(o => o.LiteratureTitle == removedLit);
                         DialogResult noteResult = MessageBox.Show("Delete related note?", "Delete", MessageBoxButtons.YesNo);
                         switch (noteResult)
                         {
@@ -1573,18 +1571,15 @@ namespace LifeGame
             rootNode.Name = note.GUID;
             rootNode.Text = note.Topic;
 
-            TreeNode metaNode = new TreeNode("meta", 0, 0);
-            metaNode.Name = Guid.NewGuid().ToString();
-
             TreeNode yearNode = new TreeNode("year", 0, 0);
             yearNode.Name = Guid.NewGuid().ToString();
             yearNode.Text = "year: " + G.glb.lstLiterature.Find(o => o.Title == note.LiteratureTitle).PublishYear.ToString();
-            metaNode.Nodes.Add(yearNode);
+            rootNode.Nodes.Add(yearNode);
 
             TreeNode jourNode = new TreeNode("", 0, 0);
             jourNode.Name = Guid.NewGuid().ToString();
             jourNode.Text = "jourConf: " + G.glb.lstLiterature.Find(o => o.Title == note.LiteratureTitle).JournalOrConferenceName;
-            metaNode.Nodes.Add(jourNode);
+            rootNode.Nodes.Add(jourNode);
 
             List<RLiteratureAuthor> authors = new List<RLiteratureAuthor>();
             authors = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == note.LiteratureTitle).ToList();
@@ -1593,11 +1588,8 @@ namespace LifeGame
                 TreeNode authorNode = new TreeNode(author.Author, 0, 0);
                 authorNode.Name = Guid.NewGuid().ToString();
                 authorNode.Text = "author: " + author.Author;
-                metaNode.Nodes.Add(authorNode);
+                rootNode.Nodes.Add(authorNode);
             }
-
-            TreeNode tagRootNode = new TreeNode("tag", 0, 0);
-            tagRootNode.Name = Guid.NewGuid().ToString();
 
             List<RLiteratureTag> tags = new List<RLiteratureTag>();
             tags = G.glb.lstLiteratureTag.FindAll(o => o.Title == note.LiteratureTitle).ToList();
@@ -1606,11 +1598,9 @@ namespace LifeGame
                 TreeNode tagNode = new TreeNode(tag.Tag, 0, 0);
                 tagNode.Name = Guid.NewGuid().ToString();
                 tagNode.Text = "tag: " + tag.Tag;
-                tagRootNode.Nodes.Add(tagNode);
+                rootNode.Nodes.Add(tagNode);
             }
 
-            rootNode.Nodes.Add(metaNode);
-            rootNode.Nodes.Add(tagRootNode);
             rootNode.Expand();
 
             litNoteLog.RemoveAll(o => o.SubLog.Contains("modified: "));
