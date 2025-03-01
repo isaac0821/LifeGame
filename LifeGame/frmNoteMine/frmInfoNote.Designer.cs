@@ -33,6 +33,7 @@
             this.tblNote = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.txtHighlight = new System.Windows.Forms.TextBox();
+            this.btnRegroup = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnWrite = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -156,8 +157,8 @@
             this.tsmRenameNote = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnGridView = new System.Windows.Forms.Button();
-            this.btnRegroup = new System.Windows.Forms.Button();
-            this.cbxTag = new System.Windows.Forms.ComboBox();
+            this.txtTagHierarchy = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.cmsNoteTag = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAddTag = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveTag = new System.Windows.Forms.ToolStripMenuItem();
@@ -234,8 +235,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tableLayoutPanel2.Controls.Add(this.txtHighlight, 6, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnSearch, 7, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnWrite, 3, 0);
@@ -256,19 +257,31 @@
             // txtHighlight
             // 
             this.txtHighlight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtHighlight.Location = new System.Drawing.Point(563, 3);
+            this.txtHighlight.Location = new System.Drawing.Point(581, 3);
             this.txtHighlight.Name = "txtHighlight";
-            this.txtHighlight.Size = new System.Drawing.Size(94, 20);
+            this.txtHighlight.Size = new System.Drawing.Size(74, 20);
             this.txtHighlight.TabIndex = 0;
             this.txtHighlight.TextChanged += new System.EventHandler(this.txtHighlight_TextChanged);
+            // 
+            // btnRegroup
+            // 
+            this.btnRegroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRegroup.Location = new System.Drawing.Point(585, 1);
+            this.btnRegroup.Margin = new System.Windows.Forms.Padding(1);
+            this.btnRegroup.Name = "btnRegroup";
+            this.btnRegroup.Size = new System.Drawing.Size(63, 24);
+            this.btnRegroup.TabIndex = 1;
+            this.btnRegroup.Text = "Regroup";
+            this.btnRegroup.UseVisualStyleBackColor = true;
+            this.btnRegroup.Click += new System.EventHandler(this.btnRegroup_Click);
             // 
             // btnSearch
             // 
             this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSearch.Location = new System.Drawing.Point(661, 1);
+            this.btnSearch.Location = new System.Drawing.Point(659, 1);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(53, 24);
+            this.btnSearch.Size = new System.Drawing.Size(55, 24);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -277,7 +290,7 @@
             // btnWrite
             // 
             this.btnWrite.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnWrite.Location = new System.Drawing.Point(411, 1);
+            this.btnWrite.Location = new System.Drawing.Point(429, 1);
             this.btnWrite.Margin = new System.Windows.Forms.Padding(1);
             this.btnWrite.Name = "btnWrite";
             this.btnWrite.Size = new System.Drawing.Size(46, 24);
@@ -290,7 +303,7 @@
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(459, 1);
+            this.btnSave.Location = new System.Drawing.Point(477, 1);
             this.btnSave.Margin = new System.Windows.Forms.Padding(1);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(57, 24);
@@ -302,7 +315,7 @@
             // btnRead
             // 
             this.btnRead.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRead.Location = new System.Drawing.Point(363, 1);
+            this.btnRead.Location = new System.Drawing.Point(381, 1);
             this.btnRead.Margin = new System.Windows.Forms.Padding(1);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(46, 24);
@@ -314,7 +327,7 @@
             // btnLock
             // 
             this.btnLock.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLock.Location = new System.Drawing.Point(518, 1);
+            this.btnLock.Location = new System.Drawing.Point(536, 1);
             this.btnLock.Margin = new System.Windows.Forms.Padding(1);
             this.btnLock.Name = "btnLock";
             this.btnLock.Size = new System.Drawing.Size(41, 24);
@@ -343,7 +356,7 @@
             this.lblWordCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblWordCount.Location = new System.Drawing.Point(105, 0);
             this.lblWordCount.Name = "lblWordCount";
-            this.lblWordCount.Size = new System.Drawing.Size(254, 26);
+            this.lblWordCount.Size = new System.Drawing.Size(272, 26);
             this.lblWordCount.TabIndex = 6;
             this.lblWordCount.Text = "Word Count: 9999/9999";
             this.lblWordCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1249,7 +1262,7 @@
             this.tsmBelongTo,
             this.tsmRenameNote});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(211, 774);
+            this.cmsTrvNote.Size = new System.Drawing.Size(211, 752);
             // 
             // tsmAdd
             // 
@@ -1526,15 +1539,15 @@
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 5;
+            this.tableLayoutPanel5.ColumnCount = 4;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 167F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel5.Controls.Add(this.btnGridView, 4, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnRegroup, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.cbxTag, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnGridView, 3, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnRegroup, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.txtTagHierarchy, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 350);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
@@ -1554,24 +1567,24 @@
             this.btnGridView.Text = "Grid View";
             this.btnGridView.UseVisualStyleBackColor = true;
             // 
-            // btnRegroup
+            // txtTagHierarchy
             // 
-            this.btnRegroup.Location = new System.Drawing.Point(585, 1);
-            this.btnRegroup.Margin = new System.Windows.Forms.Padding(1);
-            this.btnRegroup.Name = "btnRegroup";
-            this.btnRegroup.Size = new System.Drawing.Size(63, 23);
-            this.btnRegroup.TabIndex = 1;
-            this.btnRegroup.Text = "Regroup";
-            this.btnRegroup.UseVisualStyleBackColor = true;
+            this.txtTagHierarchy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTagHierarchy.Location = new System.Drawing.Point(88, 3);
+            this.txtTagHierarchy.Name = "txtTagHierarchy";
+            this.txtTagHierarchy.Size = new System.Drawing.Size(493, 20);
+            this.txtTagHierarchy.TabIndex = 2;
             // 
-            // cbxTag
+            // label5
             // 
-            this.cbxTag.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbxTag.FormattingEnabled = true;
-            this.cbxTag.Location = new System.Drawing.Point(420, 3);
-            this.cbxTag.Name = "cbxTag";
-            this.cbxTag.Size = new System.Drawing.Size(161, 21);
-            this.cbxTag.TabIndex = 2;
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 26);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Tag hierarchy";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cmsNoteTag
             // 
@@ -1646,6 +1659,7 @@
             this.cmsTrvShare.ResumeLayout(false);
             this.cmsTrvNote.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.cmsNoteTag.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1783,6 +1797,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button btnGridView;
         private System.Windows.Forms.Button btnRegroup;
-        private System.Windows.Forms.ComboBox cbxTag;
+        private System.Windows.Forms.TextBox txtTagHierarchy;
+        private System.Windows.Forms.Label label5;
     }
 }

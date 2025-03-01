@@ -28,6 +28,7 @@ namespace LifeGame
         // 先写死，之后改成系统环境变量
         string TDLNoteName = "SysNote: To Do List";
 
+        // 通用信息
         private plot C = new plot();
         public CNote note = new CNote();
         List<RNoteLog> noteLogs = new List<RNoteLog>();
@@ -36,10 +37,16 @@ namespace LifeGame
         string topicGUID = "";
         private bool lockMode = false;
 
+        // 如果是Literature用这些存信息
         CLiterature literature = new CLiterature();
         List<RLiteratureAuthor> lstLiteratureAuthor = new List<RLiteratureAuthor>();
         List<RLiteratureTag> lstLiteratureTag = new List<RLiteratureTag>();
         CBibTeX literatureBib = new CBibTeX();
+
+        // 如果是Literature Review
+        Dictionary<string, List<Tuple<string, string>>> dicLitReviewTag = new Dictionary<string, List<Tuple<string, string>>>();
+        List<string> lstLitReviewTagHirearchy = new List<string>();
+        Dictionary<string, List<string>> dictTagValues = new Dictionary<string, List<string>>();
 
         public ENoteType noteType = ENoteType.Note;
 
@@ -462,7 +469,7 @@ namespace LifeGame
             note.GUID = topicGUID;
             note.TagTime = DateTime.Today.Date;
 
-            noteType = ENoteType.Note;
+            noteType = ENoteType.LitReview;
 
             tblNote.RowStyles[1].Height = 26;
             tblNote.RowStyles[2].Height = 0;
@@ -470,11 +477,11 @@ namespace LifeGame
             tblNote.RowStyles[4].Height = 0;
             tblNote.RowStyles[5].Height = 0;
             tblNote.RowStyles[6].Height = 100;
-            tblNote.RowStyles[7].Height = 0;
+            tblNote.RowStyles[7].Height = 26;
 
             chkShow.Checked = true;
 
-            this.Text = "LifeGame - Note - " + note.Topic;
+            this.Text = "LifeGame - LitReview - " + note.Topic;
 
             for (int i = 0; i < lstLiterature.Count; i++)
             {
@@ -537,7 +544,7 @@ namespace LifeGame
             curPointerTimer.Interval = 1000 * 60;
             DrawDailySchedule();
         }
-        
+
         private void LoadNoteColor(List<RNoteColor> noteColorSource)
         {
             lsvColor.Items.Clear();
@@ -584,9 +591,9 @@ namespace LifeGame
         private void LoadNoteHierarchy()
         {
             trvHierarchy.Nodes.Clear();
-            
+
         }
-        
+
         private int getLogo(string noteText)
         {
             if (noteText.Contains("ddl: ") || noteText.Contains("DDL: ") || noteText.Contains("Date: ") || noteText.Contains("date: "))
@@ -1051,7 +1058,7 @@ namespace LifeGame
                             treeNode.BackColor = childNode.BackColor;
                             treeNode.ForeColor = childNode.ForeColor;
                             treeNode.NodeFont = childNode.NodeFont;
-                        }                        
+                        }
                     }
                     LoadChildNoteLog(childNode, topic, noteSource, noteColorSource);
                     treeNode.Nodes.Add(childNode);
@@ -1282,7 +1289,7 @@ namespace LifeGame
         {
             M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
 
-            if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport || noteType == ENoteType.System)
+            if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport || noteType == ENoteType.System || noteType == ENoteType.LitReview)
             {
                 SaveNote();
             }
@@ -1675,7 +1682,7 @@ namespace LifeGame
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport || noteType == ENoteType.System)
+            if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport || noteType == ENoteType.System || noteType == ENoteType.LitReview)
             {
                 SaveNote();
             }
@@ -2555,7 +2562,7 @@ namespace LifeGame
             else if (e.Control && e.KeyCode == Keys.O)
             {
                 tsmRemoveChildren_Click(trvNote, e);
-            }            
+            }
             // 删除当前层
             else if (e.Control && e.KeyCode == Keys.P)
             {
@@ -2991,8 +2998,8 @@ namespace LifeGame
                     tblNote.RowStyles[5].Height = 0;
                     tblNote.RowStyles[6].Height = 100;
                     tblNote.RowStyles[7].Height = 26;
-                    splitContainer1.Panel1Collapsed = false;
-                    splitContainer2.Panel1Collapsed = false;
+                    splitContainer1.Panel1Collapsed = true;
+                    splitContainer2.Panel1Collapsed = true;
                 }
                 else if (noteType == ENoteType.Literature)
                 {
@@ -3890,7 +3897,7 @@ namespace LifeGame
                 noteAddProgress(child, place);
             }
         }
-        
+
         private void picToday_Resize(object sender, EventArgs e)
         {
             if (noteType == ENoteType.DailyReport)
@@ -4116,6 +4123,280 @@ namespace LifeGame
                 frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.Topic == journalNoteName));
                 M.notesOpened.Add(frmInfoNote);
                 frmInfoNote.Show();
+            }
+        }
+
+        private void btnRegroup_Click(object sender, EventArgs e)
+        {
+            dicLitReviewTag.Clear();
+            CollectLitTagTree();
+            trvNote.Nodes[0].Nodes.Clear();
+            List<string> hirearacy = new List<string>();
+            string[] tagSplit = txtTagHierarchy.Text.Split(';');
+            for (int i = 0; i < tagSplit.Length; i++)
+            {
+                if (dictTagValues.ContainsKey(tagSplit[i].Trim()))
+                {
+                    hirearacy.Add(tagSplit[i].Trim());
+                }
+            }
+            BuildLitByLevel(trvNote.Nodes[0], hirearacy, new List<Tuple<string, string>>());
+        }
+
+        private void BuildLitByLevel(TreeNode treeNode, List<string> remainTags, List<Tuple<string, string>> searchedTags)
+        {
+            if (remainTags.Count == 0)
+            {
+                BuildLitBottomLevel(treeNode, searchedTags);
+            }
+            // remainTags里的第一个取出来，找到所有的取值，每个取值都生成一个子节点
+            else
+            {
+                foreach (string tagValue in dictTagValues[remainTags[0]])
+                {
+                    // 先看看有没有符合搜索条件的
+                    bool haschild = false;
+                    if (searchedTags.Count > 0)
+                    {
+                        // 只要找到一个lit满足所有的条件就可以
+                        foreach (var lit in dicLitReviewTag)
+                        {
+                            // 每个都得满足条件才算满足，所以先假设是满足的，一个个看能不能找到
+                            bool fitFlag = true;
+                            foreach (var search in searchedTags)
+                            {
+                                if (!dicLitReviewTag[lit.Key].Contains(search))
+                                {
+                                    fitFlag = false;
+                                    break;
+                                }
+                            }
+                            if (fitFlag)
+                            {
+                                if (!dicLitReviewTag[lit.Key].Contains(new Tuple<string, string>(remainTags[0], tagValue)))
+                                {
+                                    fitFlag = false;
+                                }
+                            }
+
+                            if (fitFlag)
+                            {
+                                haschild = true;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        haschild = true;
+                    }
+
+                    if (haschild)
+                    {
+                        TreeNode tagNode = new TreeNode(remainTags[0] + ": " + tagValue);
+                        (tagNode.BackColor, tagNode.ForeColor, tagNode.NodeFont) = getColor(remainTags[0] + ": " + tagValue);
+
+                        List<string> newRemainTags = new List<string>();
+                        if (remainTags.Count >= 1)
+                        {
+                            for (int i = 1; i < remainTags.Count; i++)
+                            {
+                                newRemainTags.Add(remainTags[i]);
+                            }
+                        }
+                        List<Tuple<string, string>> newSearchTags = new List<Tuple<string, string>>();
+                        for (int i = 0; i < searchedTags.Count; i++)
+                        {
+                            newSearchTags.Add(searchedTags[i]);
+                        }
+                        newSearchTags.Add(new Tuple<string, string>(remainTags[0], tagValue));
+                        BuildLitByLevel(tagNode, newRemainTags, newSearchTags);
+                        treeNode.Nodes.Add(tagNode);
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+        }
+
+        private void BuildLitBottomLevel(TreeNode treeNode, List<Tuple<string, string>> searchedTags)
+        {
+            // 过滤出符合条件的Lit，添加为子节点
+            foreach (var lit in dicLitReviewTag)
+            {
+                // 过滤剩下用来显示的
+                List<string> takenTags = new List<string>();
+
+                bool fitFlag = true;
+                foreach (var search in searchedTags)
+                {
+                    takenTags.Add(search.Item1);
+                    if (!dicLitReviewTag[lit.Key].Contains(search))
+                    {
+                        fitFlag = false;
+                        break;
+                    }
+                }
+
+                // 如果符合条件，添加一批子节点
+                if (fitFlag)
+                {
+                    TreeNode litNode = new TreeNode(lit.Key);
+                    (litNode.BackColor, litNode.ForeColor, litNode.NodeFont) = getColor(lit.Key);
+                    litNode.StateImageIndex = getLogo(lit.Key);
+                    foreach (var tag in lit.Value)
+                    {
+                        if (tag.Item2 != "" && !takenTags.Contains(tag.Item1))
+                        {
+                            TreeNode tagNode = new TreeNode(tag.Item1 + ": " + tag.Item2);
+                            (tagNode.BackColor, tagNode.ForeColor, tagNode.NodeFont) = getColor(tag.Item1 + ": " + tag.Item2);
+                            litNode.Nodes.Add(tagNode);
+                        }
+                    }
+                    treeNode.Nodes.Add(litNode);
+                }
+                else 
+                { 
+                
+                }
+            }
+        }
+
+        private void CollectLitTagTree()
+        {
+            dictTagValues.Clear();
+            // 先搜集所有已有的tag
+            foreach (TreeNode child in trvNote.Nodes[0].Nodes)
+            {
+                CollectLitByLevel(child, new List<string>());
+            }
+            // 对于没有出现过的tag，补全，键值记为null
+            List<string> allTags = new List<string>();
+            foreach (var item in dicLitReviewTag)
+            {
+                foreach (var v in item.Value)
+                {
+                    if (!allTags.Contains(v.Item1))
+                    {
+                        allTags.Add(v.Item1);
+                    }
+                }
+            }
+            foreach (var item in dicLitReviewTag)
+            {
+                // 看看有哪些tag
+                List<string> existTags = new List<string>();
+                foreach (var v in item.Value)
+                {
+                    if (!existTags.Contains(v.Item1))
+                    {
+                        existTags.Add(v.Item1);
+                    }
+                }
+                // 看看是不是每个tag都有
+                foreach (string tag in allTags)
+                {
+                    if (!existTags.Contains(tag))
+                    {
+                        dicLitReviewTag[item.Key].Add(new Tuple<string, string>(tag, ""));
+                    }
+                }
+            }
+            foreach (var item in dicLitReviewTag)
+            {
+                foreach (var v in item.Value)
+                {
+                    if (!dictTagValues.ContainsKey(v.Item1))
+                    {
+                        dictTagValues[v.Item1] = new List<string>();
+                    }
+                    if (!dictTagValues[v.Item1].Contains(v.Item2))
+                    {
+                        dictTagValues[v.Item1].Add(v.Item2);
+                    }
+                }
+            }
+        }
+
+        private void CollectLitByLevel(TreeNode treeNode, List<string> aboveTags)
+        {
+            // 如果treeNode已经是LITR，搜索结束，把途径到这里的上层tags和所有下层tag都存起来
+            if (treeNode.Text.Contains("$LITR$>"))
+            {
+                string litName = treeNode.Text;
+                if (!dicLitReviewTag.ContainsKey(litName))
+                {
+                    dicLitReviewTag[litName] = new List<Tuple<string, string>>();
+                }
+                foreach (string above in aboveTags)
+                {
+                    string[] splits = above.Split(':');
+                    string tagName = "";
+                    string tagValue = "";
+                    if (splits.Length > 1)
+                    {
+                        tagName = splits[0].Trim();
+                        for (int i = 1; i < splits.Length; i++)
+                        {
+                            tagValue += splits[i].Trim();
+                        }
+                        if (!dicLitReviewTag[litName].Contains(new Tuple<string, string>(tagName, tagValue)))
+                        {
+                            dicLitReviewTag[litName].Add(new Tuple<string, string>(tagName, tagValue));
+                        }
+                    }
+                    else if (splits.Length == 1)
+                    {
+                        tagName = "desc";
+                        tagValue = splits[0];
+                        if (!dicLitReviewTag[litName].Contains(new Tuple<string, string>(tagName, tagValue)))
+                        {
+                            dicLitReviewTag[litName].Add(new Tuple<string, string>(tagName, tagValue));
+                        }
+                    }
+                }
+                foreach (TreeNode child in treeNode.Nodes)
+                {
+                    string[] splits = child.Text.Split(':');
+                    string tagName = "";
+                    string tagValue = "";
+                    if (splits.Length > 1)
+                    {
+                        tagName = splits[0].Trim();
+                        for (int i = 1; i < splits.Length; i++)
+                        {
+                            tagValue += splits[i].Trim();
+                        }
+                        if (!dicLitReviewTag[litName].Contains(new Tuple<string, string>(tagName, tagValue)))
+                        {
+                            dicLitReviewTag[litName].Add(new Tuple<string, string>(tagName, tagValue));
+                        }
+                    }
+                    else if (splits.Length == 1)
+                    {
+                        tagName = "desc";
+                        tagValue = splits[0];
+                        if (!dicLitReviewTag[litName].Contains(new Tuple<string, string>(tagName, tagValue)))
+                        {
+                            dicLitReviewTag[litName].Add(new Tuple<string, string>(tagName, tagValue));
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (TreeNode child in treeNode.Nodes)
+                {
+                    List<string> updatedTags = new List<string>();
+                    foreach (string item in aboveTags)
+                    {
+                        updatedTags.Add(item);
+                    }
+                    updatedTags.Add(treeNode.Text);
+                    CollectLitByLevel(child, updatedTags);
+                }
             }
         }
     }
