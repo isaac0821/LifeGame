@@ -483,18 +483,49 @@ namespace LifeGame
 
             this.Text = "LifeGame - LitReview - " + note.Topic;
 
+            TreeNode rootNode = new TreeNode();
+            rootNode.Name = Guid.NewGuid().ToString();
+            rootNode.Text = "Literature Review: " + topic;
+            trvNote.Nodes.Add(rootNode);
+
             for (int i = 0; i < lstLiterature.Count; i++)
             {
-                RNoteLog lit = new RNoteLog();
-                lit.Topic = topic;
-                lit.TopicGUID = topicGUID;
-                lit.Log = topic;
-                lit.GUID = topicGUID;
-                lit.SubLog = "$LITR$>" + lstLiterature[i];
-                lit.SubGUID = Guid.NewGuid().ToString();
-                lit.TagTime = DateTime.Today.Date;
-                lit.Index = i;
-                noteLogs.Add(lit);
+                TreeNode litNode = new TreeNode();
+                litNode.Name = Guid.NewGuid().ToString();
+                litNode.Text = "$LITR$>" + lstLiterature[i];
+                (litNode.BackColor, litNode.ForeColor, litNode.NodeFont) = getColor("$LITR$>" + lstLiterature[i]);
+                litNode.StateImageIndex = getLogo("$LITR$>" + lstLiterature[i]);
+
+                TreeNode yearNode = new TreeNode("year", 0, 0);
+                yearNode.Name = Guid.NewGuid().ToString();
+                yearNode.Text = "year: " + G.glb.lstLiterature.Find(o => o.Title == lstLiterature[i]).PublishYear.ToString();
+                litNode.Nodes.Add(yearNode);
+
+                TreeNode jourNode = new TreeNode("", 0, 0);
+                jourNode.Name = Guid.NewGuid().ToString();
+                jourNode.Text = "jourConf: " + G.glb.lstLiterature.Find(o => o.Title == lstLiterature[i]).JournalOrConferenceName;
+                litNode.Nodes.Add(jourNode);
+
+                List<RLiteratureAuthor> authors = new List<RLiteratureAuthor>();
+                authors = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == lstLiterature[i]).ToList();
+                foreach (RLiteratureAuthor author in authors)
+                {
+                    TreeNode authorNode = new TreeNode(author.Author, 0, 0);
+                    authorNode.Name = Guid.NewGuid().ToString();
+                    authorNode.Text = "author: " + author.Author;
+                    litNode.Nodes.Add(authorNode);
+                }
+
+                List<RLiteratureTag> tags = new List<RLiteratureTag>();
+                tags = G.glb.lstLiteratureTag.FindAll(o => o.Title == lstLiterature[i]).ToList();
+                foreach (RLiteratureTag tag in tags)
+                {
+                    TreeNode tagNode = new TreeNode(tag.Tag, 0, 0);
+                    tagNode.Name = Guid.NewGuid().ToString();
+                    tagNode.Text = "tag: " + tag.Tag;
+                    litNode.Nodes.Add(tagNode);
+                }
+                trvNote.Nodes[0].Nodes.Add(litNode);
             }
 
             noteColors = new List<RNoteColor>();
@@ -530,7 +561,7 @@ namespace LifeGame
 
             // LoadNoteTag();
             LoadNoteColor(noteColors);
-            LoadNoteLog();
+            //LoadNoteLog();
             txtTopic.Text = topic;
             noteDateTime = DateTime.Today.Date;
             btnSave.Enabled = true;
@@ -1997,6 +2028,21 @@ namespace LifeGame
                             frmInfoNote.Show();
                         }
                     }
+                    else if (G.glb.lstLiterature.Exists(o => o.BibKey == selectedPath))
+                    {
+                        string selectedLit = G.glb.lstLiterature.Find(o => o.BibKey == selectedPath).Title;
+                        if (M.notesOpened.Exists(o => o.note.LiteratureTitle == selectedLit))
+                        {
+                            M.notesOpened.Find(o => o.note.LiteratureTitle == selectedLit).Show();
+                            M.notesOpened.Find(o => o.note.LiteratureTitle == selectedLit).BringToFront();
+                        }
+                        else
+                        {
+                            frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.Title == selectedLit));
+                            M.notesOpened.Add(frmInfoNote);
+                            frmInfoNote.Show();
+                        }
+                    }
                     else
                     {
                         MessageBox.Show("Literature does not exist in database");
@@ -3018,7 +3064,7 @@ namespace LifeGame
 
         private void tsmRenameNote_Click(object sender, EventArgs e)
         {
-            if (noteType == ENoteType.Note)
+            if (noteType == ENoteType.Note || noteType == ENoteType.LitReview)
             {
                 string newLog = Interaction.InputBox("Input new note name", "New Note Name", note.Topic, 300, 300);
                 if (newLog != "" && newLog != note.Topic)

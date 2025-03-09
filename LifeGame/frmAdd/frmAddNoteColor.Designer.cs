@@ -53,10 +53,10 @@ namespace LifeGame
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(274, 73);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(274, 79);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -65,7 +65,7 @@ namespace LifeGame
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 24);
+            this.label1.Size = new System.Drawing.Size(64, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Keyword";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -74,9 +74,9 @@ namespace LifeGame
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 24);
+            this.label2.Location = new System.Drawing.Point(3, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 24);
+            this.label2.Size = new System.Drawing.Size(64, 26);
             this.label2.TabIndex = 1;
             this.label2.Text = "Color";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -86,7 +86,7 @@ namespace LifeGame
             this.txtKeyword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtKeyword.Location = new System.Drawing.Point(73, 3);
             this.txtKeyword.Name = "txtKeyword";
-            this.txtKeyword.Size = new System.Drawing.Size(198, 21);
+            this.txtKeyword.Size = new System.Drawing.Size(198, 20);
             this.txtKeyword.TabIndex = 2;
             // 
             // cbxColor
@@ -103,18 +103,19 @@ namespace LifeGame
             "Blue",
             "Purple",
             "Brown",
-            "Gray"});
-            this.cbxColor.Location = new System.Drawing.Point(73, 27);
+            "Gray",
+            "(None)"});
+            this.cbxColor.Location = new System.Drawing.Point(73, 29);
             this.cbxColor.Name = "cbxColor";
-            this.cbxColor.Size = new System.Drawing.Size(198, 20);
+            this.cbxColor.Size = new System.Drawing.Size(198, 21);
             this.cbxColor.TabIndex = 3;
             // 
             // btnSave
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnSave.Location = new System.Drawing.Point(203, 51);
+            this.btnSave.Location = new System.Drawing.Point(203, 55);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(68, 19);
+            this.btnSave.Size = new System.Drawing.Size(68, 21);
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -122,9 +123,9 @@ namespace LifeGame
             // 
             // frmAddNoteColor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 73);
+            this.ClientSize = new System.Drawing.Size(274, 79);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

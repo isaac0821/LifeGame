@@ -47,6 +47,9 @@ namespace LifeGame
                 case "Gray":
                     ret = Color.DarkGray;
                     break;
+                case "(None)":
+                    ret = Color.Transparent;
+                    break;
                 default:
                     ret = Color.Black;
                     break;

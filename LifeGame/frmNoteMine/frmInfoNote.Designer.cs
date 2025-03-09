@@ -33,7 +33,6 @@
             this.tblNote = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.txtHighlight = new System.Windows.Forms.TextBox();
-            this.btnRegroup = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnWrite = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -157,6 +156,7 @@
             this.tsmRenameNote = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnGridView = new System.Windows.Forms.Button();
+            this.btnRegroup = new System.Windows.Forms.Button();
             this.txtTagHierarchy = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmsNoteTag = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -262,18 +262,6 @@
             this.txtHighlight.Size = new System.Drawing.Size(74, 20);
             this.txtHighlight.TabIndex = 0;
             this.txtHighlight.TextChanged += new System.EventHandler(this.txtHighlight_TextChanged);
-            // 
-            // btnRegroup
-            // 
-            this.btnRegroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRegroup.Location = new System.Drawing.Point(585, 1);
-            this.btnRegroup.Margin = new System.Windows.Forms.Padding(1);
-            this.btnRegroup.Name = "btnRegroup";
-            this.btnRegroup.Size = new System.Drawing.Size(63, 24);
-            this.btnRegroup.TabIndex = 1;
-            this.btnRegroup.Text = "Regroup";
-            this.btnRegroup.UseVisualStyleBackColor = true;
-            this.btnRegroup.Click += new System.EventHandler(this.btnRegroup_Click);
             // 
             // btnSearch
             // 
@@ -1566,6 +1554,18 @@
             this.btnGridView.TabIndex = 0;
             this.btnGridView.Text = "Grid View";
             this.btnGridView.UseVisualStyleBackColor = true;
+            // 
+            // btnRegroup
+            // 
+            this.btnRegroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRegroup.Location = new System.Drawing.Point(585, 1);
+            this.btnRegroup.Margin = new System.Windows.Forms.Padding(1);
+            this.btnRegroup.Name = "btnRegroup";
+            this.btnRegroup.Size = new System.Drawing.Size(63, 24);
+            this.btnRegroup.TabIndex = 1;
+            this.btnRegroup.Text = "Regroup";
+            this.btnRegroup.UseVisualStyleBackColor = true;
+            this.btnRegroup.Click += new System.EventHandler(this.btnRegroup_Click);
             // 
             // txtTagHierarchy
             // 

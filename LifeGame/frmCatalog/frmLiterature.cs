@@ -1144,7 +1144,7 @@ namespace LifeGame
                 {
                     lstTitle.Add(lst[i].Title.ToString());
                 }
-                frmInfoNote frmInfoNote = new frmInfoNote(trvTag.SelectedNode.Text.Split('[')[0], lstTitle);
+                frmInfoNote frmInfoNote = new frmInfoNote("Literature Review: " + trvTag.SelectedNode.Text.Split('[')[0], lstTitle);
                 frmInfoNote.Show();
             }
         }
