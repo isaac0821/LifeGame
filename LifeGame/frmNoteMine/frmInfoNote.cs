@@ -561,7 +561,7 @@ namespace LifeGame
 
             // LoadNoteTag();
             LoadNoteColor(noteColors);
-            //LoadNoteLog();
+            // LoadNoteLog();
             txtTopic.Text = topic;
             noteDateTime = DateTime.Today.Date;
             btnSave.Enabled = true;
@@ -650,7 +650,14 @@ namespace LifeGame
                         }
                         else
                         {
-                            return 1;
+                            if (Directory.Exists(selectedPath))
+                            {
+                                return 0;
+                            }
+                            else
+                            {
+                                return 1;
+                            }
                         }
                     }
                     catch (Exception)
@@ -922,7 +929,7 @@ namespace LifeGame
                             BackColor = Color.FromArgb(R, G, B);
                         }
                     }
-                    if (itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown" || itemColor == "Purple")
+                    if (itemColor == "Black" || itemColor == "Red" || itemColor == "Green" || itemColor == "Blue" || itemColor == "DarkGreen" || itemColor == "Brown" || itemColor == "Purple")
                     {
                         if (percentVal <= 50)
                         {
@@ -1014,7 +1021,8 @@ namespace LifeGame
                 dateSeg = dateSeg.Replace("DDL: ", "");
                 dateSeg = dateSeg.Replace("Date: ", "");
                 dateSeg = dateSeg.Replace("date: ", "");
-                string[] dateNote = dateSeg.Split('.');
+                string[] removeLabel = dateSeg.Split(' ');
+                string[] dateNote = removeLabel[0].Split('.');
                 DateTime noteDate = new DateTime();
                 try
                 {
@@ -1031,10 +1039,17 @@ namespace LifeGame
                     else if (noteDate - DateTime.Today >= TimeSpan.FromDays(3))
                     {
                         BackColor = Color.Orange;
+                        ForeColor = Color.White;
+                    }
+                    else if (noteDate - DateTime.Today >= TimeSpan.FromDays(1))
+                    {
+                        BackColor = Color.Red;
+                        ForeColor = Color.White;
                     }
                     else if (noteDate - DateTime.Today >= TimeSpan.FromDays(0))
                     {
-                        BackColor = Color.Red;
+                        BackColor = Color.Black;
+                        ForeColor = Color.White;
                     }
                     else
                     {
@@ -1043,7 +1058,7 @@ namespace LifeGame
                 }
                 catch { }
             }
-            else if (note.Contains("modified: ") || note.Contains("Modified: ") || note.Contains("MODIFIED: "))
+            else if (note.Contains("modified: ") || note.Contains("Modified: ") || note.Contains("MODIFIED: ") || note.Contains("modi: "))
             {
                 BackColor = Color.Pink;
                 TextFont = new Font(Font, FontStyle.Bold);
@@ -1576,6 +1591,7 @@ namespace LifeGame
                 }
             }
         }
+        
         private void tsmRemoveLayer_Click(object sender, EventArgs e)
         {
             if (trvNote.SelectedNode != null && trvNote.SelectedNode.Nodes.Count > 0)
@@ -1747,7 +1763,7 @@ namespace LifeGame
                 item.Text = Keyword;
                 plot C = new plot();
                 item.BackColor = C.GetColor(NoteColor);
-                if (NoteColor == "Red" || NoteColor == "Green" || NoteColor == "Blue" || NoteColor == "DarkGreen" || NoteColor == "Brown" || NoteColor == "Purple")
+                if (NoteColor == "Black" || NoteColor == "Red" || NoteColor == "Green" || NoteColor == "Blue" || NoteColor == "DarkGreen" || NoteColor == "Brown" || NoteColor == "Purple")
                 {
                     item.ForeColor = Color.White;
                 }
@@ -2375,7 +2391,6 @@ namespace LifeGame
             {
                 lblWordCount.Text = "Word Count: 0/" + rootProperty[0].ToString();
             }
-
         }
 
         private int wordCount(string str)
@@ -4444,6 +4459,12 @@ namespace LifeGame
                     CollectLitByLevel(child, updatedTags);
                 }
             }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            SaveNoteLog();
+            LoadNoteLog();
         }
     }
 }

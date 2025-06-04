@@ -56,13 +56,23 @@ namespace LifeGame
             try
             {
                 Deserialize();
-                G.glb.lstNoteHierarchy = new List<RNoteHierarchy>();
+                //G.glb.lstNoteHierarchy = new List<RNoteHierarchy>();
+
+                //G.glb.lstNote.RemoveAll(o => o.NoteType == ENoteType.DailyReport);
+                //G.glb.lstNoteLog.RemoveAll(o => o.Topic == "Daily Report");
+                //G.glb.lstNoteColor.RemoveAll(o => o.Topic == "Daily Report");
+
+                //G.glb.lstSchedule = new List<CLog>();
+                //G.glb.lstLog = new List<CLog>();
+
+                //// Money
+                //G.glb.lstTransaction = new List<CTransaction>();
 
                 //foreach (CNote item in G.glb.lstNote.FindAll(o => o.Topic.Contains("Literature Review: ")).ToList())
                 //{
                 //    item.NoteType = ENoteType.LitReview;
                 //}
-                
+
                 //foreach (CNote item in G.glb.lstNote)
                 //{
                 //    if (item.Topic == "Daily Report")
@@ -146,43 +156,12 @@ namespace LifeGame
                 //}
 
 
-                //foreach (RNoteLog log in G.glb.lstNoteLog)
-                //{
-                //    log.Log = log.Log.Replace("Food - 方便面 + 自嗨锅", "Food - 方便食品");
-                //    log.Log = log.Log.Replace("Food - 熟食", "Food - 方便食品");
-
-                //    log.SubLog = log.SubLog.Replace("Food - 方便面 + 自嗨锅", "Food - 方便食品");
-                //    log.SubLog = log.SubLog.Replace("Food - 熟食", "Food - 方便食品");
-                //}
-
-                //foreach (CTransaction trans in G.glb.lstTransaction)
-                //{
-                //    if (trans.CreditAccount == "Food - 水果" ||
-                //        trans.CreditAccount == "Food - 零食饮料" ||
-                //        trans.CreditAccount == "Food - 咖啡及附属品" ||
-                //        trans.CreditAccount == "Food - 酒类" ||
-                //        trans.CreditAccount == "Food - 桶装水")
-                //    {
-                //        trans.CreditAccount = "Food - 水果零食饮料";
-                //    }
-                //    if (trans.DebitAccount == "Food - 水果" ||
-                //        trans.DebitAccount == "Food - 零食饮料" ||
-                //        trans.DebitAccount == "Food - 咖啡及附属品" ||
-                //        trans.DebitAccount == "Food - 酒类" ||
-                //        trans.DebitAccount == "Food - 桶装水")
-                //    {
-                //        trans.DebitAccount = "Food - 水果零食饮料";
-                //    }
-                //}
-
             }
             catch (Exception)
             {
                 MessageBox.Show("Can not find an existing data file, a new empty data file is auto-created");
                 // Event
                 G.glb.lstEvent = new List<CEvent>();
-                //G.glb.lstSleepSchedule = new List<CSleep>();
-                //G.glb.lstSleepLog = new List<CSleep>();
 
                 // Note
                 G.glb.lstNote = new List<CNote>();
@@ -214,31 +193,31 @@ namespace LifeGame
                 G.glb.lstAccount.Add(new CAccount());
                 G.glb.lstAccount[0].AccountName = "(Assets)";
                 G.glb.lstAccount[0].AccountType = EAccountType.Assets;
-                G.glb.lstAccount[0].Currency = "USD";
+                G.glb.lstAccount[0].Currency = "RMB";
                 G.glb.lstAccount[0].ProtectedAccount = true;
                 G.glb.lstAccount[1].AccountName = "(Gain/Loss on Exchange)";
                 G.glb.lstAccount[1].AccountType = EAccountType.Assets;
-                G.glb.lstAccount[1].Currency = "USD";
+                G.glb.lstAccount[1].Currency = "RMB";
                 G.glb.lstAccount[1].ProtectedAccount = true;
                 G.glb.lstAccount[2].AccountName = "(Expense)";
                 G.glb.lstAccount[2].AccountType = EAccountType.Expense;
-                G.glb.lstAccount[2].Currency = "USD";
+                G.glb.lstAccount[2].Currency = "RMB";
                 G.glb.lstAccount[2].ProtectedAccount = true;
                 G.glb.lstAccount[3].AccountName = "(Equity)";
                 G.glb.lstAccount[3].AccountType = EAccountType.Equity;
-                G.glb.lstAccount[3].Currency = "USD";
+                G.glb.lstAccount[3].Currency = "RMB";
                 G.glb.lstAccount[3].ProtectedAccount = true;
                 G.glb.lstAccount[4].AccountName = "(Openning Balance)";
                 G.glb.lstAccount[4].AccountType = EAccountType.Equity;
-                G.glb.lstAccount[4].Currency = "USD";
+                G.glb.lstAccount[4].Currency = "RMB";
                 G.glb.lstAccount[4].ProtectedAccount = true;
                 G.glb.lstAccount[5].AccountName = "(Liability)";
                 G.glb.lstAccount[5].AccountType = EAccountType.Liability;
-                G.glb.lstAccount[5].Currency = "USD";
+                G.glb.lstAccount[5].Currency = "RMB";
                 G.glb.lstAccount[5].ProtectedAccount = true;
                 G.glb.lstAccount[6].AccountName = "(Income)";
                 G.glb.lstAccount[6].AccountType = EAccountType.Income;
-                G.glb.lstAccount[6].Currency = "USD";
+                G.glb.lstAccount[6].Currency = "RMB";
                 G.glb.lstAccount[6].ProtectedAccount = true;
                 G.glb.lstSubAccount.Clear();
                 G.glb.lstSubAccount.Add(new RSubAccount());
