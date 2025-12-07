@@ -13,41 +13,19 @@ namespace LifeGame
     [Serializable]
     public class CLiterature
     {
-        public CBibTeX BibTeX;
-        public string BibKey;
+        public string Title;
+        public string GUID;
         public DateTime DateAdded;
         public DateTime DateModified;
         public bool PredatoryAlert;
-        public string Title;
         public int PublishYear;
         public string JournalOrConferenceName;
-        public string InOneSentence;
         public bool Star;
-    }
 
-    [Serializable]
-    public enum EBibEntry : int
-    {
-        Article,
-        Book,
-        Booklet,
-        Conference,
-        Inbook,
-        Incollection,
-        Manual,
-        Mastersthesis,
-        Misc,
-        Phdthesis,
-        Proceedings,
-        Techreport,
-        Unpublished
-    }
-
-    [Serializable]
-    public class CBibTeX
-    {
-        public EBibEntry BibEntry;
         public string BibKey;
+
+        // BibTeX
+        public EBibEntry BibEntry;
         public string Address;
         public string Annote;
         public string Author;
@@ -69,7 +47,6 @@ namespace LifeGame
         public string Publisher;
         public string School;
         public string Series;
-        public string Title;
         public string Type;
         public string Volume;
         public string Year;
@@ -89,22 +66,9 @@ namespace LifeGame
         public string GUID;
         public string SubTag;
         public string SubGUID;
-        public int Index;
+        public int Ordering;
     }
 
-    public class CJournalConf
-    {
-        public string Name;
-        public string Abbr;
-        public string Description;
-        public bool isReliable;
-        public bool isGarbage;
-        public string Publisher;
-    }
-
-    /// <summary>
-    /// 文献标签
-    /// </summary>
     [Serializable]
     public class RLiteratureTag
     {
@@ -112,87 +76,24 @@ namespace LifeGame
         public string Tag;
     }
 
-    /// <summary>
-    /// 文献作者
-    /// </summary>
     [Serializable]
     public class RLiteratureAuthor
     {
         public string Title;
         public string Author;
-        public int Rank;
-    }
-
-    /// <summary>
-    /// 综述
-    /// </summary>
-    [Serializable]
-    public class CSurvey
-    {
-        public string SurveyTitle;
-    }
-
-    /// <summary>
-    /// 综述内对文献分类用的标签，树形结构，每个标签的值可能是：布尔型，单选，字符串，数字
-    /// </summary>
-    [Serializable]
-    public class RSurveyTag
-    {
-        public string SurveyTitle;
-        public string Tag;
-        public ESurveyTagType TagType;
-    }
-
-    [Serializable]
-    public enum ESurveyTagType : int
-    {
-        NonBottom = 0,
-        Boolean,
-        SingleOption,
-        String,
-        Number
-    }
-
-    [Serializable]
-    public class RSurveyTagValueOption
-    {
-        public string SurveyTitle;
-        public string Tag;
-        public string TagOption;
-    }
-
-    [Serializable]
-    public class RSurveySubTag
-    {
-        public string SurveyTitle;
-        public string Tag;
-        public string SubTag;
-        public int SubTagIndex;
-    }
-
-    [Serializable]
-    public class RSurveyLiterature
-    {
-        public string SurveyTitle;
-        public string LiteratureTitle;
-    }
-
-    [Serializable]
-    public class RSurveyLiteratureTagValue
-    {
-        public string SurveyTitle;
-        public string LiteratureTitle;
-        public string Tag;
-        public string TagValueString;
-        public int TagValueNumber;
-        public bool TagValueBoolean;
+        public int Ordering;
     }
     #endregion
 
-    #region 任务系统
-    /// <summary>
-    /// 日志
-    /// </summary>
+    #region 每日系统
+
+    [Serializable]
+    public class CDiary
+    {
+        public DateTime Date;
+        public string GUID;
+    }
+
     [Serializable]
     public class CLog
     {
@@ -206,9 +107,6 @@ namespace LifeGame
         public DateTime AlarmTime;
     }
 
-    /// <summary>
-    /// 外部事件
-    /// </summary>
     [Serializable]
     public class CEvent
     {
@@ -216,21 +114,9 @@ namespace LifeGame
         public string EventName;
         public EEventState EventState;
     }
-
-    [Serializable]
-    public enum EEventState : int
-    {
-        LogEvent,
-        Succeed,
-        Failed
-    }
-
     #endregion
 
     #region 财务系统
-    /// <summary>
-    /// 开支，目前只支持一借一贷的形式
-    /// </summary>
     [Serializable]
     public class CTransaction
     {
@@ -246,49 +132,13 @@ namespace LifeGame
     }
 
     [Serializable]
-    public class RCurrencyRate
+    public class RCurrencyRate 
     {
         public string CurrencyA;
         public string CurrencyB;
         public double Rate;
     }
 
-    [Serializable]
-    public enum EMoneyFlowState : int
-    {
-        WithinSystem,
-        FlowIn,
-        FlowOut
-    }
-
-    [Serializable]
-    public enum EAccountType : int
-    {
-        /// <summary>
-        /// 资产
-        /// </summary>
-        Assets,
-        /// <summary>
-        /// 费用
-        /// </summary>
-        Expense,
-        /// <summary>
-        /// 负债
-        /// </summary>
-        Liability,
-        /// <summary>
-        /// 所有者权益
-        /// </summary>
-        Equity,
-        /// <summary>
-        /// 收入
-        /// </summary>
-        Income
-    }
-
-    /// <summary>
-    /// 记账科目
-    /// </summary>
     [Serializable]
     public class CAccount
     {
@@ -298,56 +148,37 @@ namespace LifeGame
         public bool ProtectedAccount;
     }
 
-    /// <summary>
-    /// 科目上下级关系
-    /// </summary>
     [Serializable]
     public class RSubAccount
     {
         public string Account;
         public string SubAccount;
-        public int index;
+        public int Ordering;
     }
     #endregion
 
     #region 笔记系统
-    /// <summary>
-    /// 笔记
-    /// </summary>
     [Serializable]
     public class CNote
     {
+        public string Topic;
         public DateTime TagTime;
         public string GUID;
-        public string Topic;
-        public string LiteratureTitle;
-        public bool FinishedNote;
-        public bool Locked;
         public ENoteType NoteType;
     }
-    public enum ENoteType : int
-    {
-        Note = 0,
-        DailyReport = 1,
-        Literature = 2,
-        LitReview = 3,
-        System = 4,
-    }
-    /// <summary>
-    /// 笔记记录
-    /// </summary>
+
     [Serializable]
     public class RNoteLog
     {
-        public string Topic;
-        public string TopicGUID;
+        public string Topic;        
         public DateTime TagTime;
-        public string Log;  // 父节点的
-        public string GUID;
+        public string GUID;        
+        public string FatherLog;  // 父节点的
+        public string FatherGUID;
         public string SubLog;  // 自己的
         public string SubGUID;
         public bool IsExpand;
-        public int Index;
+        public int Ordering;
     }
 
     [Serializable]
@@ -355,20 +186,9 @@ namespace LifeGame
     {
         public string Topic;
         public DateTime TagTime;
+        public string GUID;
         public string Keyword;
         public string Color;
     }
-
-    [Serializable]
-    public class RNoteHierarchy
-    {
-        public string Topic;
-        public string TopicGUID;
-        public DateTime TagTime;
-        public string Tag;
-        public string SubTag;
-        public int Index;
-    }
-
     #endregion
 }

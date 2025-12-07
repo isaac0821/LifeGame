@@ -128,7 +128,7 @@
             this.cbxEventState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxEventState.FormattingEnabled = true;
             this.cbxEventState.Items.AddRange(new object[] {
-            "Log Event",
+            "FatherLog Event",
             "Succeed",
             "Failed"});
             this.cbxEventState.Location = new System.Drawing.Point(199, 3);

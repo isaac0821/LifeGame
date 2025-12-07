@@ -22,7 +22,15 @@ namespace LifeGame
         List<CItem> Tags = new List<CItem>();
         List<CItem> Authors = new List<CItem>();
         List<CItem> JournalConferences = new List<CItem>();
-
+        public class CJournalConf
+        {
+            public string Name;
+            public string Abbr;
+            public string Description;
+            public bool isReliable;
+            public bool isGarbage;
+            public string Publisher;
+        }
         //记录Journal Information，关闭/打开窗口时更新
         List<CJournalConf> lstJournal = new List<CJournalConf>();
 
@@ -67,7 +75,7 @@ namespace LifeGame
                 CJournalConf journal = new CJournalConf();
                 journal.Name = item.SubLog;
                 // 得到具体的内容
-                List<RNoteLog> details = G.glb.lstNoteLog.FindAll(o => o.Topic == journalNoteName && o.Log == journal.Name).ToList();
+                List<RNoteLog> details = G.glb.lstNoteLog.FindAll(o => o.Topic == journalNoteName && o.FatherLog == journal.Name).ToList();
                 foreach (RNoteLog info in details)
                 {
                     string text = info.SubLog;
@@ -111,13 +119,13 @@ namespace LifeGame
                     litTitle.Add(item.JournalOrConferenceName);
                 }
             }
-            // string jourGUID = G.glb.lstNote.Find(o => o.Topic == journalNoteName).GUID;
+            // string jourGUID = G.glb.lstNote.Find(o => o.Topic == journalNoteName).FatherGUID;
             DateTime tagTime = G.glb.lstNote.Find(o => o.Topic == journalNoteName).TagTime;
             foreach (string item in litTitle)
             {
                 if (!G.glb.lstNoteLog.Exists(o => 
                         o.Topic == journalNoteName
-                        && o.Log == item) &&
+                        && o.FatherLog == item) &&
                     !G.glb.lstNoteLog.Exists(o =>
                         o.Topic == journalNoteName
                         && o.SubLog == item))
@@ -125,10 +133,10 @@ namespace LifeGame
                     RNoteLog newJour = new RNoteLog();
                     newJour.SubLog = item;
                     newJour.SubGUID = Guid.NewGuid().ToString();
-                    newJour.Log = journalNoteName;
-                    newJour.GUID = "";
+                    newJour.FatherLog = journalNoteName;
+                    newJour.FatherGUID = "";
                     newJour.Topic = journalNoteName;
-                    // newJour.TopicGUID = jourGUID;
+                    // newJour.GUID = jourGUID;
                     newJour.TagTime = tagTime;
                     G.glb.lstNoteLog.Add(newJour);
                 }
@@ -187,23 +195,39 @@ namespace LifeGame
 
         private void tsmAddLiterature_Click(object sender, EventArgs e)
         {
-            //frmInfoLiterature frmInfoLiterature = new frmInfoLiterature();
-            //frmInfoLiterature.RefreshTab += new frmInfoLiterature.RefreshTabHandler(LoadTab);
-            //frmInfoLiterature.Show();
+            string strTitle = Interaction.InputBox("Input literature title", "Add Literature", "(New Literture)", 300, 300);
+            if (G.glb.lstLiterature.Exists(o => o.Title == strTitle))
+            {
+                MessageBox.Show("Literature exists, please check!");
+            }
+            else
+            {
+                CLiterature newLit = new CLiterature();
+                newLit.Title = strTitle;
+                newLit.GUID = Guid.NewGuid().ToString();
+                newLit.DateAdded = DateTime.Today;
+                newLit.DateModified = DateTime.Today;
+                newLit.PredatoryAlert = false;
+                newLit.Star = false;
+                newLit.JournalOrConferenceName = "";
+                newLit.PublishYear = 9999;
+                G.glb.lstLiterature.Add(newLit);
 
-            frmInfoNote frmInfoNote = new frmInfoNote();
-            frmInfoNote.RefreshTab += new frmInfoNote.RefreshTabHandler(LoadTab);
-            frmInfoNote.Show();
+                frmInfoNote frmInfoNote = new frmInfoNote(newLit);
+                frmInfoNote.RefreshTab += new frmInfoNote.RefreshTabHandler(LoadTab);
+                frmInfoNote.Show();
+            }
         }
 
         private void tsmViewLiterature_Click(object sender, EventArgs e)
         {
             if (dgvLiterature.SelectedCells.Count == 1)
             {
-                if (M.notesOpened.Exists(o => o.note.LiteratureTitle == dgvLiterature.CurrentRow.Cells[1].Value.ToString()))
+                string GUID = G.glb.lstLiterature.Find(o => o.Title == dgvLiterature.CurrentRow.Cells[1].Value.ToString()).GUID;
+                if (M.notesOpened.Exists(o => o.GUID == GUID))
                 {
-                    M.notesOpened.Find(o => o.note.LiteratureTitle == dgvLiterature.CurrentRow.Cells[1].Value.ToString()).Show();
-                    M.notesOpened.Find(o => o.note.LiteratureTitle == dgvLiterature.CurrentRow.Cells[1].Value.ToString()).BringToFront();
+                    M.notesOpened.Find(o => o.GUID == GUID).Show();
+                    M.notesOpened.Find(o => o.GUID == GUID).BringToFront();
                 }
                 else
                 {
@@ -249,17 +273,17 @@ namespace LifeGame
                         switch (noteResult)
                         {
                             case DialogResult.Yes:
-                                if (G.glb.lstNote.Exists(o => o.LiteratureTitle == removedLit))
+                                if (G.glb.lstNote.Exists(o => o.Topic == removedLit))
                                 {
-                                    string topicGUID = G.glb.lstNote.Find(o => o.LiteratureTitle == removedLit).GUID;
-                                    G.glb.lstNote.RemoveAll(o => o.LiteratureTitle == removedLit);
-                                    G.glb.lstNoteLog.RemoveAll(o => o.TopicGUID == topicGUID);
+                                    string topicGUID = G.glb.lstNote.Find(o => o.Topic == removedLit && o.NoteType == ENoteType.Literature).GUID;
+                                    G.glb.lstNote.RemoveAll(o => o.Topic == removedLit && o.NoteType == ENoteType.Literature);
+                                    G.glb.lstNoteLog.RemoveAll(o => o.GUID == topicGUID);
                                 }
                                 break;
                             case DialogResult.No:
-                                if (G.glb.lstNote.Exists(o => o.LiteratureTitle == removedLit))
+                                if (G.glb.lstNote.Exists(o => o.Topic == removedLit))
                                 {
-                                    G.glb.lstNote.Find(o => o.LiteratureTitle == removedLit).LiteratureTitle = "";
+                                    G.glb.lstNote.Find(o => o.Topic == removedLit).Topic = "";
                                 }
                                 break;
                             default:
@@ -423,7 +447,7 @@ namespace LifeGame
                             showFlag = false;
                         }
                     }
-                    switch (G.glb.lstLiterature.Find(o => o.Title == title).BibTeX.BibEntry)
+                    switch (G.glb.lstLiterature.Find(o => o.Title == title).BibEntry)
                     {
                         case EBibEntry.Article:
                             litType = "J";
@@ -569,7 +593,7 @@ namespace LifeGame
             if (lstSubTags.Exists(o => o.Tag == tag && o.GUID == treeNode.Name))
             {
                 List<RSubLiteratureTag> subTag = lstSubTags.FindAll(o => o.Tag == tag && o.GUID == treeNode.Name);
-                subTag = subTag.OrderBy(o => o.Index).ToList();
+                subTag = subTag.OrderBy(o => o.Ordering).ToList();
 
                 foreach (RSubLiteratureTag sub in subTag)
                 {
@@ -707,7 +731,7 @@ namespace LifeGame
             newSubTag.GUID = treeNode.Parent.Name;
             newSubTag.SubTag = treeNode.Text.Split('[')[0];
             newSubTag.SubGUID = treeNode.Name;
-            newSubTag.Index = treeNode.Index;
+            newSubTag.Ordering = treeNode.Index;
             lstSubTags.Add(newSubTag);
             foreach (TreeNode child in treeNode.Nodes)
             {
@@ -749,17 +773,17 @@ namespace LifeGame
             {
                 ParseBibTeX ParseBibTeX = new ParseBibTeX();
                 string bibLog = "";
-                switch (lit.BibTeX.BibEntry)
+                switch (lit.BibEntry)
                 {
                     case EBibEntry.Article:
-                        bibLog = ParseBibTeX.ParseBibTeXArticle(lit.BibTeX, lit.DateAdded, lit.DateModified);
+                        bibLog = ParseBibTeX.ParseBibTeXArticle(lit, lit.DateAdded, lit.DateModified);
                         break;
                     case EBibEntry.Book:
                         break;
                     case EBibEntry.Booklet:
                         break;
                     case EBibEntry.Conference:
-                        bibLog = ParseBibTeX.ParseBibTeXConference(lit.BibTeX, lit.DateAdded, lit.DateModified);
+                        bibLog = ParseBibTeX.ParseBibTeXConference(lit, lit.DateAdded, lit.DateModified);
                         break;
                     case EBibEntry.Inbook:
                         break;
@@ -768,19 +792,19 @@ namespace LifeGame
                     case EBibEntry.Manual:
                         break;
                     case EBibEntry.Mastersthesis:
-                        bibLog = ParseBibTeX.ParseBibTeXMastersthesis(lit.BibTeX, lit.DateAdded, lit.DateModified);
+                        bibLog = ParseBibTeX.ParseBibTeXMastersthesis(lit, lit.DateAdded, lit.DateModified);
                         break;
                     case EBibEntry.Misc:
                         break;
                     case EBibEntry.Phdthesis:
-                        bibLog = ParseBibTeX.ParseBibTeXPhdthesis(lit.BibTeX, lit.DateAdded, lit.DateModified);
+                        bibLog = ParseBibTeX.ParseBibTeXPhdthesis(lit, lit.DateAdded, lit.DateModified);
                         break;
                     case EBibEntry.Proceedings:
                         break;
                     case EBibEntry.Techreport:
                         break;
                     case EBibEntry.Unpublished:
-                        bibLog = ParseBibTeX.ParseBibTeXUnpublished(lit.BibTeX, lit.DateAdded, lit.DateModified);
+                        bibLog = ParseBibTeX.ParseBibTeXUnpublished(lit, lit.DateAdded, lit.DateModified);
                         break;
                     default:
                         break;
@@ -1138,14 +1162,14 @@ namespace LifeGame
         {
             if (trvTag.SelectedNode != null)
             {
-                List<RLiteratureTag> lst = G.glb.lstLiteratureTag.FindAll(o => o.Tag == trvTag.SelectedNode.Text.Split('[')[0]).ToList();
-                List<string> lstTitle = new List<string>();
-                for (int i = 0; i < lst.Count; i++)
-                {
-                    lstTitle.Add(lst[i].Title.ToString());
-                }
-                frmInfoNote frmInfoNote = new frmInfoNote("Literature Review: " + trvTag.SelectedNode.Text.Split('[')[0], lstTitle);
-                frmInfoNote.Show();
+                //List<RLiteratureTag> lst = G.glb.lstLiteratureTag.FindAll(o => o.Tag == trvTag.SelectedNode.Text.Split('[')[0]).ToList();
+                //List<string> lstTitle = new List<string>();
+                //for (int i = 0; i < lst.Count; i++)
+                //{
+                //    lstTitle.Add(lst[i].Title.ToString());
+                //}
+                //frmInfoNote frmInfoNote = new frmInfoNote("Literature Review: " + trvTag.SelectedNode.Text.Split('[')[0], lstTitle);
+                //frmInfoNote.Show();
             }
         }
 
@@ -1556,7 +1580,7 @@ namespace LifeGame
             {
                 string litName = dgvLiterature.CurrentRow.Cells[1].Value.ToString();
                 
-                CNote note = G.glb.lstNote.Find(o => o.LiteratureTitle == litName);
+                CNote note = G.glb.lstNote.Find(o => o.Topic == litName);
                 List<RNoteLog> litNoteLog = G.glb.lstNoteLog.FindAll(o => o.Topic == litName && o.TagTime.Date == G.glb.lstLiterature.Find(p => p.Title == litName).DateAdded.Date);
                 
                 TreeNode litNode = createLitNoteLogNode(note, litNoteLog);
@@ -1573,16 +1597,16 @@ namespace LifeGame
 
             TreeNode yearNode = new TreeNode("year", 0, 0);
             yearNode.Name = Guid.NewGuid().ToString();
-            yearNode.Text = "year: " + G.glb.lstLiterature.Find(o => o.Title == note.LiteratureTitle).PublishYear.ToString();
+            yearNode.Text = "year: " + G.glb.lstLiterature.Find(o => o.Title == note.Topic).PublishYear.ToString();
             rootNode.Nodes.Add(yearNode);
 
             TreeNode jourNode = new TreeNode("", 0, 0);
             jourNode.Name = Guid.NewGuid().ToString();
-            jourNode.Text = "jourConf: " + G.glb.lstLiterature.Find(o => o.Title == note.LiteratureTitle).JournalOrConferenceName;
+            jourNode.Text = "jourConf: " + G.glb.lstLiterature.Find(o => o.Title == note.Topic).JournalOrConferenceName;
             rootNode.Nodes.Add(jourNode);
 
             List<RLiteratureAuthor> authors = new List<RLiteratureAuthor>();
-            authors = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == note.LiteratureTitle).ToList();
+            authors = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == note.Topic).ToList();
             foreach (RLiteratureAuthor author in authors)
             {
                 TreeNode authorNode = new TreeNode(author.Author, 0, 0);
@@ -1592,7 +1616,7 @@ namespace LifeGame
             }
 
             List<RLiteratureTag> tags = new List<RLiteratureTag>();
-            tags = G.glb.lstLiteratureTag.FindAll(o => o.Title == note.LiteratureTitle).ToList();
+            tags = G.glb.lstLiteratureTag.FindAll(o => o.Title == note.Topic).ToList();
             foreach (RLiteratureTag tag in tags)
             {
                 TreeNode tagNode = new TreeNode(tag.Tag, 0, 0);
@@ -1607,15 +1631,15 @@ namespace LifeGame
             litNoteLog.RemoveAll(o => o.SubLog.Contains("Modified: "));
 
             litNoteLog.RemoveAll(o =>
-                    o.Topic == o.Log
-                    && !litNoteLog.Exists(p => p.Log == o.SubLog));
+                    o.Topic == o.FatherLog
+                    && !litNoteLog.Exists(p => p.FatherLog == o.SubLog));
 
             if (litNoteLog.Count > 0)
             {
                 LoadChildNoteLog(rootNode, litNoteLog);
             }           
 
-            rootNode.Text = "$LITR$>" + note.LiteratureTitle;
+            rootNode.Text = "$LITR$>" + note.Topic;
             rootNode.Name = Guid.NewGuid().ToString();
             rootNode.ForeColor = Color.Brown;
             rootNode.NodeFont = new Font(Font, FontStyle.Underline);
@@ -1800,10 +1824,10 @@ namespace LifeGame
         private void LoadChildNoteLog(TreeNode treeNode, List<RNoteLog> litNoteLog)
         {
             // 如果本条NoteLog作为上级NoteLog存在，添加所有的SubLog
-            if (litNoteLog.Exists(o => o.Log == treeNode.Text && o.GUID == treeNode.Name))
+            if (litNoteLog.Exists(o => o.FatherLog == treeNode.Text && o.FatherGUID == treeNode.Name))
             {
-                List<RNoteLog> subNoteLog = litNoteLog.FindAll(o => o.Log == treeNode.Text && o.GUID == treeNode.Name).ToList();
-                subNoteLog = subNoteLog.OrderBy(o => o.Index).ToList();
+                List<RNoteLog> subNoteLog = litNoteLog.FindAll(o => o.FatherLog == treeNode.Text && o.FatherGUID == treeNode.Name).ToList();
+                subNoteLog = subNoteLog.OrderBy(o => o.Ordering).ToList();
                 foreach (RNoteLog sub in subNoteLog)
                 {
                     TreeNode childNode = new TreeNode(sub.SubLog);
@@ -1880,6 +1904,11 @@ namespace LifeGame
             {
                 M.shownLits.Add(dgvLiterature.Rows[i].Cells[1].Value.ToString());
             }
+        }
+
+        private void dgvLiterature_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

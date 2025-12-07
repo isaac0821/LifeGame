@@ -46,7 +46,7 @@ namespace LifeGame
                 //case "lsbLiteratureLog":
                 //    if (lsbLiteratureLog.SelectedItems != null)
                 //    {
-                //        G.glb.lstLiteratureLog.RemoveAll(o => o.TagTime == curDate && o.LiteratureTitle == lsbLiteratureLog.SelectedItem.ToString());
+                //        G.glb.lstLiteratureLog.RemoveAll(o => o.TagTime == curDate && o.Topic == lsbLiteratureLog.SelectedItem.ToString());
                 //        LoadLiteratureLogs();
                 //    }
                 //    break;

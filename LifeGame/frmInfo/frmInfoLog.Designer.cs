@@ -72,7 +72,7 @@
             this.lblLogName.Name = "lblLogName";
             this.lblLogName.Size = new System.Drawing.Size(554, 48);
             this.lblLogName.TabIndex = 1;
-            this.lblLogName.Text = "Log Name";
+            this.lblLogName.Text = "FatherLog Name";
             this.lblLogName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblLogName.Click += new System.EventHandler(this.lblLogName_Click);
             // 
@@ -164,7 +164,7 @@
             this.MinimizeBox = false;
             this.Name = "frmInfoLog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LifeGame - Log Info";
+            this.Text = "LifeGame - FatherLog Info";
             this.Deactivate += new System.EventHandler(this.frmLogInfo_Deactivate);
             this.Click += new System.EventHandler(this.frmLogInfo_Click);
             this.tlpLogInfo.ResumeLayout(false);

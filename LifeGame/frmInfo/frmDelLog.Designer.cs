@@ -115,7 +115,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDelLog";
-            this.Text = "LifeGame - Delete Log";
+            this.Text = "LifeGame - Delete FatherLog";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditLogList_FormClosing);
             this.Load += new System.EventHandler(this.frmEditLogList_Load);
             this.cmsLog.ResumeLayout(false);

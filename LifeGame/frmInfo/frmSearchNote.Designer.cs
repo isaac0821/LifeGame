@@ -31,122 +31,138 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearchNote));
             this.cmsNote = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.lsbNote = new System.Windows.Forms.ListBox();
-            this.tsmRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmOpenNote = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmRemoveNote = new System.Windows.Forms.ToolStripMenuItem();
+            this.lsbLit = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.chkLit = new System.Windows.Forms.CheckBox();
-            this.chkNote = new System.Windows.Forms.CheckBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cmsLit = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.lsbNote = new System.Windows.Forms.ListBox();
+            this.tsmOpenLit = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsNote.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.cmsLit.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmsNote
             // 
             this.cmsNote.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmOpen,
+            this.tsmOpenNote,
             this.toolStripSeparator1,
-            this.tsmRemove});
+            this.tsmRemoveNote});
             this.cmsNote.Name = "cmsNote";
             this.cmsNote.Size = new System.Drawing.Size(118, 54);
             // 
-            // tsmOpen
+            // tsmOpenNote
             // 
-            this.tsmOpen.Name = "tsmOpen";
-            this.tsmOpen.Size = new System.Drawing.Size(117, 22);
-            this.tsmOpen.Text = "Open";
-            this.tsmOpen.Click += new System.EventHandler(this.tsmOpen_Click);
-            // 
-            // lsbNote
-            // 
-            this.lsbNote.ContextMenuStrip = this.cmsNote;
-            this.lsbNote.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsbNote.FormattingEnabled = true;
-            this.lsbNote.Location = new System.Drawing.Point(3, 32);
-            this.lsbNote.Name = "lsbNote";
-            this.lsbNote.Size = new System.Drawing.Size(301, 276);
-            this.lsbNote.TabIndex = 2;
-            // 
-            // tsmRemove
-            // 
-            this.tsmRemove.Name = "tsmRemove";
-            this.tsmRemove.Size = new System.Drawing.Size(117, 22);
-            this.tsmRemove.Text = "Remove";
-            this.tsmRemove.Click += new System.EventHandler(this.tsmRemove_Click);
+            this.tsmOpenNote.Name = "tsmOpenNote";
+            this.tsmOpenNote.Size = new System.Drawing.Size(117, 22);
+            this.tsmOpenNote.Text = "Open";
+            this.tsmOpenNote.Click += new System.EventHandler(this.tsmOpenNote_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(114, 6);
             // 
+            // tsmRemoveNote
+            // 
+            this.tsmRemoveNote.Name = "tsmRemoveNote";
+            this.tsmRemoveNote.Size = new System.Drawing.Size(117, 22);
+            this.tsmRemoveNote.Text = "Remove";
+            this.tsmRemoveNote.Click += new System.EventHandler(this.tsmRemoveNote_Click);
+            // 
+            // lsbLit
+            // 
+            this.lsbLit.ContextMenuStrip = this.cmsNote;
+            this.lsbLit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsbLit.FormattingEnabled = true;
+            this.lsbLit.Location = new System.Drawing.Point(3, 3);
+            this.lsbLit.Name = "lsbLit";
+            this.lsbLit.Size = new System.Drawing.Size(535, 330);
+            this.lsbLit.TabIndex = 2;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.lsbNote, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tabControl1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.324759F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.67524F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(307, 311);
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.48454F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(371, 244);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // tableLayoutPanel2
+            // tabControl1
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 77F));
-            this.tableLayoutPanel2.Controls.Add(this.chkLit, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.chkNote, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(301, 23);
-            this.tableLayoutPanel2.TabIndex = 3;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(365, 238);
+            this.tabControl1.TabIndex = 3;
             // 
-            // chkLit
+            // tabPage1
             // 
-            this.chkLit.AutoSize = true;
-            this.chkLit.Checked = true;
-            this.chkLit.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkLit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkLit.Location = new System.Drawing.Point(227, 3);
-            this.chkLit.Name = "chkLit";
-            this.chkLit.Size = new System.Drawing.Size(71, 17);
-            this.chkLit.TabIndex = 0;
-            this.chkLit.Text = "Literature";
-            this.chkLit.UseVisualStyleBackColor = true;
-            this.chkLit.CheckedChanged += new System.EventHandler(this.chkLit_CheckedChanged);
+            this.tabPage1.Controls.Add(this.lsbNote);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(357, 212);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Note";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // chkNote
+            // tabPage2
             // 
-            this.chkNote.AutoSize = true;
-            this.chkNote.Checked = true;
-            this.chkNote.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkNote.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkNote.Location = new System.Drawing.Point(168, 3);
-            this.chkNote.Name = "chkNote";
-            this.chkNote.Size = new System.Drawing.Size(53, 17);
-            this.chkNote.TabIndex = 1;
-            this.chkNote.Text = "Note";
-            this.chkNote.UseVisualStyleBackColor = true;
-            this.chkNote.CheckedChanged += new System.EventHandler(this.chkNote_CheckedChanged);
+            this.tabPage2.Controls.Add(this.lsbLit);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(541, 336);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Literature";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // cmsLit
+            // 
+            this.cmsLit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmOpenLit});
+            this.cmsLit.Name = "cmsLit";
+            this.cmsLit.Size = new System.Drawing.Size(181, 48);
+            // 
+            // lsbNote
+            // 
+            this.lsbNote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsbNote.FormattingEnabled = true;
+            this.lsbNote.Location = new System.Drawing.Point(3, 3);
+            this.lsbNote.Name = "lsbNote";
+            this.lsbNote.Size = new System.Drawing.Size(351, 206);
+            this.lsbNote.TabIndex = 0;
+            // 
+            // tsmOpenLit
+            // 
+            this.tsmOpenLit.Name = "tsmOpenLit";
+            this.tsmOpenLit.Size = new System.Drawing.Size(180, 22);
+            this.tsmOpenLit.Text = "Open";
+            this.tsmOpenLit.Click += new System.EventHandler(this.tsmOpenLit_Click);
             // 
             // frmSearchNote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 311);
+            this.ClientSize = new System.Drawing.Size(371, 244);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSearchNote";
@@ -154,21 +170,26 @@
             this.Load += new System.EventHandler(this.frmSearchNote_Load);
             this.cmsNote.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.cmsLit.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.ContextMenuStrip cmsNote;
-        private System.Windows.Forms.ToolStripMenuItem tsmOpen;
-        private System.Windows.Forms.ListBox lsbNote;
+        private System.Windows.Forms.ToolStripMenuItem tsmOpenNote;
+        private System.Windows.Forms.ListBox lsbLit;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem tsmRemove;
+        private System.Windows.Forms.ToolStripMenuItem tsmRemoveNote;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.CheckBox chkLit;
-        private System.Windows.Forms.CheckBox chkNote;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ContextMenuStrip cmsLit;
+        private System.Windows.Forms.ListBox lsbNote;
+        private System.Windows.Forms.ToolStripMenuItem tsmOpenLit;
     }
 }

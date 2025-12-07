@@ -44,7 +44,7 @@ namespace LifeGame
             }
             if (CanAddFlag && G.glb.lstLog.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
             {
-                DialogResult result = MessageBox.Show("Already has a log at that time, Do you replace it?", "Log", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Already has a log at that time, Do you replace it?", "FatherLog", MessageBoxButtons.YesNo);
                 switch (result)
                 {
                     case DialogResult.Yes:

@@ -79,8 +79,8 @@ namespace LifeGame
                 if (G.glb.lstSubAccount.Exists(o => o.Account == UpperAccount))
                 {
                     List<RSubAccount> sameLevel = G.glb.lstSubAccount.FindAll(o => o.Account == UpperAccount).ToList();
-                    sameLevel = sameLevel.OrderByDescending(o => o.index).ToList();
-                    maxIndex = sameLevel[0].index + 1;
+                    sameLevel = sameLevel.OrderByDescending(o => o.Ordering).ToList();
+                    maxIndex = sameLevel[0].Ordering + 1;
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace LifeGame
                 }
                 newRSubAccount.Account = UpperAccount;
                 newRSubAccount.SubAccount = txtAccount.Text;
-                newRSubAccount.index = maxIndex;
+                newRSubAccount.Ordering = maxIndex;
                 G.glb.lstSubAccount.Add(newRSubAccount);
                 AddChildNode(txtAccount.Text, iconIndex);
                 Dispose();

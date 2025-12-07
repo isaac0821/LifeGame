@@ -44,7 +44,7 @@ namespace LifeGame
             if (G.glb.lstSubAccount.Exists(o => o.Account == treeNode.Text))
             {
                 List<RSubAccount> subAccounts = G.glb.lstSubAccount.FindAll(o => o.Account == treeNode.Text);
-                subAccounts = subAccounts.OrderBy(o => o.index).ToList();
+                subAccounts = subAccounts.OrderBy(o => o.Ordering).ToList();
                 foreach (RSubAccount subAccount in subAccounts)
                 {
                     int iconIndex = 0;
@@ -330,7 +330,7 @@ namespace LifeGame
             List<RSubAccount> sameLevel = G.glb.lstSubAccount.FindAll(o => o.Account == UpperAccount);
             foreach (RSubAccount subAccount in sameLevel)
             {
-                G.glb.lstSubAccount.Find(o => o.Account == UpperAccount && o.SubAccount == subAccount.SubAccount).index = trvAccount.Nodes.Find(subAccount.SubAccount, true).FirstOrDefault().Index;
+                G.glb.lstSubAccount.Find(o => o.Account == UpperAccount && o.SubAccount == subAccount.SubAccount).Ordering = trvAccount.Nodes.Find(subAccount.SubAccount, true).FirstOrDefault().Index;
             }
         }
 
@@ -478,7 +478,7 @@ namespace LifeGame
                     RSubAccount newSub = new RSubAccount();
                     newSub.Account = preNode.Text;
                     newSub.SubAccount = node.Text;
-                    newSub.index = preNode.Nodes.Count;
+                    newSub.Ordering = preNode.Nodes.Count;
                     G.glb.lstSubAccount.Add(newSub);
                     preNode.Nodes.Insert(preNode.Nodes.Count, newNode);
                     node.Remove();
@@ -505,7 +505,7 @@ namespace LifeGame
                     RSubAccount newSub = new RSubAccount();
                     newSub.Account = grandparentNode.Text;
                     newSub.SubAccount = node.Text;
-                    newSub.index = grandparentNode.Nodes.Count;
+                    newSub.Ordering = grandparentNode.Nodes.Count;
                     G.glb.lstSubAccount.Add(newSub);
                     grandparentNode.Nodes.Insert(parentNode.Index + 1, newNode);
                     node.Remove();

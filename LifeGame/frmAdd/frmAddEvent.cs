@@ -38,7 +38,7 @@ namespace LifeGame
                 newEvent.TagTime = dtpDate.Value.Date;
                 switch (cbxEventState.Text)
                 {
-                    case "Log Event":
+                    case "FatherLog Event":
                         newEvent.EventState = EEventState.LogEvent;
                         break;
                     case "Succeed":

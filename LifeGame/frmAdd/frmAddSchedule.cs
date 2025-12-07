@@ -103,7 +103,7 @@ namespace LifeGame
 
                         if (CanAddScheduleAtThatDay && G.glb.lstSchedule.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
                         {
-                            DialogResult result = MessageBox.Show("Already have logs at that time, Do you replace?", "Log", MessageBoxButtons.YesNo);
+                            DialogResult result = MessageBox.Show("Already have logs at that time, Do you replace?", "FatherLog", MessageBoxButtons.YesNo);
                             switch (result)
                             {
                                 case DialogResult.Yes:

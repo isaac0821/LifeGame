@@ -32,7 +32,7 @@ namespace LifeGame
             else if (eve.EventState == EEventState.LogEvent)
             {
                 tlpEvent.BackColor = Color.Gray;
-                lblSucceed.Text = "Log Event";
+                lblSucceed.Text = "FatherLog Event";
             }
             timer.Interval = 10000;
             timer.Start();

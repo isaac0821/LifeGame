@@ -14,7 +14,6 @@ namespace LifeGame
     {
         ParseBibTeX ParseBib = new ParseBibTeX();
         CLiterature literature = new CLiterature();
-        CBibTeX bibTeX = new CBibTeX();
         DateTime dateAdded = new DateTime();
         public frmBibConference()
         {
@@ -24,128 +23,118 @@ namespace LifeGame
         public frmBibConference(CLiterature inputLiterature, List<RLiteratureAuthor> inputAuthorList)
         {
             InitializeComponent();
-            bibTeX.BibEntry = EBibEntry.Conference;
+            inputLiterature.BibEntry = EBibEntry.Conference;
             literature = inputLiterature;
             txtTitle.Text = literature.Title;
             txtBibKey.Text = literature.BibKey;
-            bibTeX.BibKey = literature.BibKey;
+            inputLiterature.BibKey = literature.BibKey;
 
-            if (inputLiterature.BibTeX != null)
+            if (inputLiterature != null)
             {
-                if (inputLiterature.BibTeX.BibEntry != EBibEntry.Conference)
+                if (inputLiterature.BibEntry != EBibEntry.Conference)
                 {
-                    inputLiterature.BibTeX = null;
+                    inputLiterature = null;
                 }
             }
 
-            if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Title == "" || inputLiterature.BibTeX.Title == null)
+            if (inputLiterature == null || inputLiterature.Title == "" || inputLiterature.Title == null)
             {
                 txtBibTitle.Text = literature.Title;
-                bibTeX.Title = literature.Title;
+                inputLiterature.Title = literature.Title;
             }
             else
             {
-                txtBibTitle.Text = literature.BibTeX.Title;
-                bibTeX.Title = literature.BibTeX.Title;
+                txtBibTitle.Text = literature.Title;
+                inputLiterature.Title = literature.Title;
             }
 
-            if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Author == "" || inputLiterature.BibTeX.Author == null)
+            if (inputLiterature == null || inputLiterature.Author == "" || inputLiterature.Author == null)
             {
                 txtBibAuthor.Text = ParseBib.GetAuthor(inputAuthorList);
-                bibTeX.Author = txtBibAuthor.Text;
+                inputLiterature.Author = txtBibAuthor.Text;
             }
             else
             {
-                txtBibAuthor.Text = inputLiterature.BibTeX.Author;
-                bibTeX.Author = inputLiterature.BibTeX.Author;
+                txtBibAuthor.Text = inputLiterature.Author;
             }
 
-            if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Booktitle == "" || inputLiterature.BibTeX.Booktitle == null)
+            if (inputLiterature == null || inputLiterature.Booktitle == "" || inputLiterature.Booktitle == null)
             {
                 txtBibBooktitle.Text = literature.JournalOrConferenceName;
-                bibTeX.Booktitle = literature.JournalOrConferenceName;
+                inputLiterature.Booktitle = literature.JournalOrConferenceName;
             }
             else
             {
-                txtBibBooktitle.Text = literature.BibTeX.Booktitle;
-                bibTeX.Booktitle = literature.BibTeX.Booktitle;
+                txtBibBooktitle.Text = literature.Booktitle;
+                inputLiterature.Booktitle = literature.Booktitle;
             }
 
-            if (inputLiterature.BibTeX == null || inputLiterature.BibTeX.Year == "" || inputLiterature.BibTeX.Year == null)
+            if (inputLiterature == null || inputLiterature.Year == "" || inputLiterature.Year == null)
             {
                 if (literature.PublishYear != 9999)
                 {
                     txtBibYear.Text = literature.PublishYear.ToString();
-                    bibTeX.Year = literature.PublishYear.ToString();
+                    inputLiterature.Year = literature.PublishYear.ToString();
                 }
                 else
                 {
                     txtBibYear.Text = "";
-                    bibTeX.Year = "";
+                    inputLiterature.Year = "";
                 }
             }
             else
             {
-                txtBibYear.Text = inputLiterature.BibTeX.Year;
-                bibTeX.Year = inputLiterature.BibTeX.Year;
+                txtBibYear.Text = inputLiterature.Year;
             }
 
-            if (inputLiterature.BibTeX != null)
+            if (inputLiterature != null)
             {
-                if (inputLiterature.BibTeX.Editor != null)
+                if (inputLiterature.Editor != null)
                 {
-                    txtBibEditor.Text = inputLiterature.BibTeX.Editor;
-                    bibTeX.Editor = inputLiterature.BibTeX.Editor;
+                    txtBibEditor.Text = inputLiterature.Editor;
                 }
-                if (inputLiterature.BibTeX.Pages != null)
+                if (inputLiterature.Pages != null)
                 {
-                    txtBibPages.Text = inputLiterature.BibTeX.Pages;
-                    bibTeX.Pages = inputLiterature.BibTeX.Pages;
+                    txtBibPages.Text = inputLiterature.Pages;
                 }
-                if (inputLiterature.BibTeX.Organization != null)
+                if (inputLiterature.Organization != null)
                 {
-                    txtBibOrganization.Text = inputLiterature.BibTeX.Organization;
-                    bibTeX.Organization = inputLiterature.BibTeX.Organization;
+                    txtBibOrganization.Text = inputLiterature.Organization;
                 }
-                if (inputLiterature.BibTeX.Publisher != null)
+                if (inputLiterature.Publisher != null)
                 {
-                    txtBibPublisher.Text = inputLiterature.BibTeX.Publisher;
-                    bibTeX.Publisher = inputLiterature.BibTeX.Publisher;
+                    txtBibPublisher.Text = inputLiterature.Publisher;
                 }
-                if (inputLiterature.BibTeX.Address != null)
+                if (inputLiterature.Address != null)
                 {
-                    txtBibAddress.Text = inputLiterature.BibTeX.Address;
-                    bibTeX.Address = inputLiterature.BibTeX.Address;
+                    txtBibAddress.Text = inputLiterature.Address;
                 }
-                if (inputLiterature.BibTeX.Month != null)
+                if (inputLiterature.Month != null)
                 {
-                    cbxBibMonth.Text = inputLiterature.BibTeX.Month;
-                    bibTeX.Month = inputLiterature.BibTeX.Month;
+                    cbxBibMonth.Text = inputLiterature.Month;
                 }
-                if (inputLiterature.BibTeX.Note != null)
+                if (inputLiterature.Note != null)
                 {
-                    txtBibNote.Text = inputLiterature.BibTeX.Note;
-                    bibTeX.Note = inputLiterature.BibTeX.Note;
+                    txtBibNote.Text = inputLiterature.Note;
                 }
-                if (inputLiterature.BibTeX.Key != null)
+                if (inputLiterature.Key != null)
                 {
-                    txtBibKeyBackup.Text = inputLiterature.BibTeX.Key;
-                    bibTeX.Key = inputLiterature.BibTeX.Key;
+                    txtBibKeyBackup.Text = inputLiterature.Key;
                 }
             }
             dateAdded = literature.DateAdded;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
 
-        public delegate void BuildBibTeXHandler(CBibTeX bib);
+        public delegate void BuildBibTeXHandler(CLiterature bib);
         public event BuildBibTeXHandler BuildBibTeX;
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
             if (txtBibTitle.Text != "" && txtBibBooktitle.Text != "" && txtBibAuthor.Text != "" && txtBibYear.Text != "")
             {
-                BuildBibTeX(bibTeX);
+                BuildBibTeX(literature);
             }
             else
             {
@@ -155,74 +144,62 @@ namespace LifeGame
 
         private void txtBibAuthor_TextChanged(object sender, EventArgs e)
         {
-            bibTeX.Author = txtBibAuthor.Text;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
 
         private void txtBibTitle_TextChanged(object sender, EventArgs e)
         {
-            bibTeX.Title = txtBibTitle.Text;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
 
         private void txtBibYear_TextChanged(object sender, EventArgs e)
         {
-            bibTeX.Year = txtBibYear.Text;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
 
         private void txtBibPages_TextChanged(object sender, EventArgs e)
         {
-            bibTeX.Pages = txtBibPages.Text;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
 
         private void cbxBibMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bibTeX.Month = cbxBibMonth.Text;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
 
         private void txtBibNote_TextChanged(object sender, EventArgs e)
         {
-            bibTeX.Note = txtBibNote.Text;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
 
         private void txtBibKeyBackup_TextChanged(object sender, EventArgs e)
         {
-            bibTeX.Key = txtBibKeyBackup.Text;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
 
         private void txtBibEditor_TextChanged(object sender, EventArgs e)
         {
-            bibTeX.Editor = txtBibEditor.Text;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
 
         private void txtBibOrganization_TextChanged(object sender, EventArgs e)
         {
-            bibTeX.Organization = txtBibOrganization.Text;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
 
         private void txtBibPublisher_TextChanged(object sender, EventArgs e)
         {
-            bibTeX.Publisher = txtBibPublisher.Text;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
 
         private void txtBibAddress_TextChanged(object sender, EventArgs e)
         {
-            bibTeX.Address = txtBibAddress.Text;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
 
         private void txtBibBooktitle_TextChanged(object sender, EventArgs e)
         {
-            bibTeX.Booktitle = txtBibBooktitle.Text;
-            txtBibTeX.Text = ParseBib.ParseBibTeXConference(bibTeX, dateAdded, DateTime.Today);
+            txtBibTeX.Text = ParseBib.ParseBibTeXConference(literature, dateAdded, DateTime.Today);
         }
     }
 }

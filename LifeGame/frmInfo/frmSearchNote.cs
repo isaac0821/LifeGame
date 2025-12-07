@@ -13,76 +13,67 @@ namespace LifeGame
     public partial class frmSearchNote : Form
     {
         List<CNote> notes = new List<CNote>();
-        string searchNoteName = "";
+        List<CLiterature> lits = new List<CLiterature> ();
+        string search = "";
 
-        bool noteFlag = true;
-        bool literatureFlag = true;
-
-        public frmSearchNote(string noteName)
+        public frmSearchNote(string searchName)
         {
-            notes = G.glb.lstNote.FindAll(o => o.Topic.ToUpper().Contains(noteName.ToUpper()));
-            searchNoteName = noteName;
+            notes = G.glb.lstNote.FindAll(o => o.Topic.ToUpper().Contains(searchName.ToUpper()));
+            notes = notes.OrderBy(o => o.TagTime).ToList();
+            lits = G.glb.lstLiterature.FindAll(o => o.Title.ToUpper().Contains(searchName.ToUpper()));
+            lits = lits.OrderBy(o => o.Title).ToList();
+            search = searchName;
             InitializeComponent();
         }
 
         private void RefreshNoteList()
         {
-            notes = G.glb.lstNote.FindAll(o => 
-                o.Topic.ToUpper().Contains(searchNoteName.ToUpper())
-                && o.NoteType != ENoteType.DailyReport
-                && o.NoteType != ENoteType.System);
-            if (!noteFlag)
-            {
-                notes = notes.FindAll(o => o.NoteType != ENoteType.Note);
-            }
-            if (!literatureFlag)
-            {
-                notes = notes.FindAll(o => o.NoteType != ENoteType.Literature);
-            }
-            notes = notes.OrderBy(o => o.TagTime).ToList();
             lsbNote.Items.Clear();
             foreach (CNote note in notes)
             {
-                lsbNote.Items.Add(note.TagTime.Year.ToString() + "." + note.TagTime.Month.ToString() + "." + note.TagTime.Day.ToString() + " - " + note.Topic);
+                lsbNote.Items.Add(note.TagTime.Year.ToString() + "." + note.TagTime.Month.ToString() + "." + note.TagTime.Day.ToString() + "@" + note.Topic);
+            }
+        }
+        private void RefreshLitList()
+        {
+            lsbLit.Items.Clear();
+            foreach (CLiterature lit in lits)
+            {
+                lsbLit.Items.Add(lit.Title);
             }
         }
 
         private void frmSearchNote_Load(object sender, EventArgs e)
         {
-            chkNote.Checked = noteFlag;
-            chkLit.Checked = literatureFlag;
-            notes = notes.OrderBy(o => o.TagTime).ToList();
-            lsbNote.Items.Clear();
-            foreach (CNote note in notes)
-            {
-                lsbNote.Items.Add(note.TagTime.Year.ToString() + "." + note.TagTime.Month.ToString() + "." + note.TagTime.Day.ToString() + " - " + note.Topic);
-            }
+            RefreshNoteList();
+            RefreshLitList();
         }
 
-        private void tsmOpen_Click(object sender, EventArgs e)
+        private void tsmOpenNote_Click(object sender, EventArgs e)
         {
             if (lsbNote.SelectedItem != null)
             {
                 try
                 {
                     string selectedItemText = lsbNote.SelectedItem.ToString();
-                    string[] split = selectedItemText.Split('-');
+                    string[] split = selectedItemText.Split('@');
                     string[] datelist = split[0].Split('.');
                     int Year = Convert.ToInt16(datelist[0]);
                     int Month = Convert.ToInt16(datelist[1]);
-                    int Day = Convert.ToInt16(datelist[2].Substring(0, datelist[2].Length - 1));
+                    int Day = Convert.ToInt16(datelist[2]);
                     DateTime date = new DateTime(Year, Month, Day, 0, 0, 0);
-                    split[1] = split[1].Substring(1, split[1].Length - 1);
-                    string NoteTopic = "";
-                    for (int i = 1; i < split.Length; i++)
+                    CNote note = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == split[1]);
+                    if (M.notesOpened.Exists(o => o.GUID == note.GUID))
                     {
-                        NoteTopic += split[i];
-                        NoteTopic += "-";
+                        M.notesOpened.Find(o => o.GUID == note.GUID).Show();
+                        M.notesOpened.Find(o => o.GUID == note.GUID).BringToFront();
                     }
-                    NoteTopic = NoteTopic.Substring(0, NoteTopic.Length - 1);
-                    CNote note = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic);
-                    plot D = new plot();
-                    D.CallInfoNote(note);
+                    else
+                    {
+                        frmInfoNote frmInfoNote = new frmInfoNote(note);
+                        M.notesOpened.Add(frmInfoNote);
+                        frmInfoNote.Show();
+                    }
                 }
                 catch
                 {
@@ -91,27 +82,20 @@ namespace LifeGame
             }
         }
 
-        private void tsmRemove_Click(object sender, EventArgs e)
+        private void tsmRemoveNote_Click(object sender, EventArgs e)
         {
             if (lsbNote.SelectedItem != null)
             {
                 try
                 {
                     string selectedItemText = lsbNote.SelectedItem.ToString();
-                    string[] split = selectedItemText.Split('-');
+                    string[] split = selectedItemText.Split('@');
                     string[] datelist = split[0].Split('.');
                     int Year = Convert.ToInt16(datelist[0]);
                     int Month = Convert.ToInt16(datelist[1]);
-                    int Day = Convert.ToInt16(datelist[2].Substring(0, datelist[2].Length - 1));
+                    int Day = Convert.ToInt16(datelist[2]);
                     DateTime date = new DateTime(Year, Month, Day, 0, 0, 0);
-                    split[1] = split[1].Substring(1, split[1].Length - 1);
-                    string NoteTopic = "";
-                    for (int i = 1; i < split.Length; i++)
-                    {
-                        NoteTopic += split[i];
-                        NoteTopic += "-";
-                    }
-                    NoteTopic = NoteTopic.Substring(0, NoteTopic.Length - 1);
+                    string NoteTopic = split[1];
 
                     DialogResult result = MessageBox.Show("Delete this Note?", "Delete", MessageBoxButtons.YesNo);
                     switch (result)
@@ -119,9 +103,10 @@ namespace LifeGame
                         case DialogResult.Yes:
                             if (G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic).NoteType == ENoteType.Note)
                             {
-                                G.glb.lstNote.RemoveAll(o => o.TagTime == date && o.Topic == NoteTopic);
-                                G.glb.lstNoteColor.RemoveAll(o => o.TagTime == date && o.Topic == NoteTopic);
-                                G.glb.lstNoteLog.RemoveAll(o => o.TagTime == date && o.Topic == NoteTopic);
+                                string GUID = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic).GUID;
+                                G.glb.lstNote.RemoveAll(o => o.GUID == GUID);
+                                G.glb.lstNoteColor.RemoveAll(o => o.GUID == GUID);
+                                G.glb.lstNoteLog.RemoveAll(o => o.GUID == GUID);
                                 RefreshNoteList();
                             }
                             else
@@ -142,16 +127,28 @@ namespace LifeGame
             }
         }
 
-        private void chkNote_CheckedChanged(object sender, EventArgs e)
+        private void tsmOpenLit_Click(object sender, EventArgs e)
         {
-            noteFlag = chkNote.Checked;
-            RefreshNoteList();
-        }
-
-        private void chkLit_CheckedChanged(object sender, EventArgs e)
-        {
-            literatureFlag = chkLit.Checked;
-            RefreshNoteList();
+            try
+            {
+                string selectedItemText = lsbNote.SelectedItem.ToString();
+                CLiterature lit = G.glb.lstLiterature.Find(o =>  o.Title == selectedItemText);
+                if (M.notesOpened.Exists(o => o.GUID == lit.GUID))
+                {
+                    M.notesOpened.Find(o => o.GUID == lit.GUID).Show();
+                    M.notesOpened.Find(o => o.GUID == lit.GUID).BringToFront();
+                }
+                else
+                {
+                    frmInfoNote frmInfoNote = new frmInfoNote(lit);
+                    M.notesOpened.Add(frmInfoNote);
+                    frmInfoNote.Show();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Cannot find literature.");
+            }
         }
     }
 }

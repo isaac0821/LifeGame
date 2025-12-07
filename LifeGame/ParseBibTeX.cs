@@ -18,7 +18,7 @@ namespace LifeGame
             }
             for (int i = 0; i < authors.Count; i++)
             {
-                lstAuthorFullNames[authors[i].Rank] = authors[i].Author;
+                lstAuthorFullNames[authors[i].Ordering] = authors[i].Author;
             }
             for (int i = 0; i < lstAuthorFullNames.Count; i++)
             {
@@ -34,7 +34,7 @@ namespace LifeGame
             return Authors;
         }
 
-        public string ParseBibTeXUnpublished(CBibTeX bib, DateTime DateAdded, DateTime DateModified)
+        public string ParseBibTeXUnpublished(CLiterature bib, DateTime DateAdded, DateTime DateModified)
         {
             string BibTeX = "";
             BibTeX += "@Unpublished{" + bib.BibKey + ",\r\n";
@@ -59,7 +59,7 @@ namespace LifeGame
             return BibTeX;
         }
 
-        public string ParseBibTeXArticle(CBibTeX bib, DateTime DateAdded, DateTime DateModified)
+        public string ParseBibTeXArticle(CLiterature bib, DateTime DateAdded, DateTime DateModified)
         {
             string BibTeX = "";
             BibTeX += "@Article{" + bib.BibKey + ",\r\n";
@@ -97,7 +97,7 @@ namespace LifeGame
             return BibTeX;
         }
 
-        public string ParseBibTeXPhdthesis(CBibTeX bib, DateTime DateAdded, DateTime DateModified)
+        public string ParseBibTeXPhdthesis(CLiterature bib, DateTime DateAdded, DateTime DateModified)
         {
             string BibTeX = "";
             BibTeX += "@Phdthesis{" + bib.BibKey + ",\r\n";
@@ -123,7 +123,7 @@ namespace LifeGame
             return BibTeX;
         }
 
-        public string ParseBibTeXMastersthesis(CBibTeX bib, DateTime DateAdded, DateTime DateModified)
+        public string ParseBibTeXMastersthesis(CLiterature bib, DateTime DateAdded, DateTime DateModified)
         {
             string BibTeX = "";
             BibTeX += "@Mastersthesis{" + bib.BibKey + ",\r\n";
@@ -149,7 +149,7 @@ namespace LifeGame
             return BibTeX;
         }
 
-        public string ParseBibTeXConference(CBibTeX bib, DateTime DateAdded, DateTime DateModified)
+        public string ParseBibTeXConference(CLiterature bib, DateTime DateAdded, DateTime DateModified)
         {
             string BibTeX = "";
             BibTeX += "@Conference{" + bib.BibKey + ",\r\n";
@@ -195,7 +195,7 @@ namespace LifeGame
             return BibTeX;
         }
 
-        public string ParseBibTeXUnpublished(CBibTeX bib)
+        public string ParseBibTeXUnpublished(CLiterature bib)
         {
             string BibTeX = "";
             BibTeX += "@Unpublished{" + bib.BibKey + ",\r\n";
@@ -218,7 +218,7 @@ namespace LifeGame
             return BibTeX;
         }
 
-        public string ParseBibTeXArticle(CBibTeX bib)
+        public string ParseBibTeXArticle(CLiterature bib)
         {
             string BibTeX = "";
             BibTeX += "@Article{" + bib.BibKey + ",\r\n";
@@ -254,7 +254,7 @@ namespace LifeGame
             return BibTeX;
         }
 
-        public string ParseBibTeXPhdthesis(CBibTeX bib)
+        public string ParseBibTeXPhdthesis(CLiterature bib)
         {
             string BibTeX = "";
             BibTeX += "@Phdthesis{" + bib.BibKey + ",\r\n";
@@ -278,7 +278,7 @@ namespace LifeGame
             return BibTeX;
         }
 
-        public string ParseBibTeXMastersthesis(CBibTeX bib)
+        public string ParseBibTeXMastersthesis(CLiterature bib)
         {
             string BibTeX = "";
             BibTeX += "@Mastersthesis{" + bib.BibKey + ",\r\n";
@@ -302,7 +302,7 @@ namespace LifeGame
             return BibTeX;
         }
 
-        public string ParseBibTeXConference(CBibTeX bib)
+        public string ParseBibTeXConference(CLiterature bib)
         {
             string BibTeX = "";
             BibTeX += "@Conference{" + bib.BibKey + ",\r\n";

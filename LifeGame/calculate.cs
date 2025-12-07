@@ -35,7 +35,7 @@ namespace LifeGame
                     {
                         // 索引出所有该task的subAccount，代替该元素存入tmp
                         List<RSubAccount> subs = rSubAccounts.FindAll(o => o.Account == collect[i]).ToList();
-                        subs = subs.OrderBy(o => o.index).ToList();
+                        subs = subs.OrderBy(o => o.Ordering).ToList();
                         foreach (RSubAccount subAccount in subs)
                         {
                             tmp.Add(subAccount.SubAccount);

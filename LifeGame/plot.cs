@@ -391,20 +391,13 @@ namespace LifeGame
                 {
                     lstPicEvent[i + acc].Image = icon.iconDaily;
                 }
-                else if (lstNote[i].LiteratureTitle != "")
+                else if (lstNote[i].Topic != "")
                 {
                     lstPicEvent[i + acc].Image = icon.iconLiterature;
                 }
                 else
                 {
-                    if (lstNote[i].FinishedNote)
-                    {
-                        lstPicEvent[i + acc].Image = icon.iconNote;
-                    }
-                    else
-                    {
-                        lstPicEvent[i + acc].Image = icon.iconWorkingNote;
-                    }
+                    lstPicEvent[i + acc].Image = icon.iconWorkingNote;
                 }
                 lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;
@@ -431,18 +424,14 @@ namespace LifeGame
 
         public void CallInfoNote(CNote info)
         {
-            //frmInfoNote frmInfoNote = new frmInfoNote(info);
-            //frmInfoNote.Show();
-
-
-            if (M.notesOpened.Exists(o => o.note.Topic == info.Topic && o.note.TagTime == info.TagTime.Date))
+            if (M.notesOpened.Exists(o => o.GUID == info.GUID))
             {
-                M.notesOpened.Find(o => o.note.Topic == info.Topic && o.note.TagTime == info.TagTime.Date).Show();
-                M.notesOpened.Find(o => o.note.Topic == info.Topic && o.note.TagTime == info.TagTime.Date).BringToFront();
+                M.notesOpened.Find(o => o.GUID == info.GUID).Show();
+                M.notesOpened.Find(o => o.GUID == info.GUID).BringToFront();
             }
             else
             {
-                if (info.LiteratureTitle == "" || info.LiteratureTitle == null)
+                if (info.Topic == "" || info.Topic == null)
                 {
                     frmInfoNote frmInfoNote = new frmInfoNote(info);
                     M.notesOpened.Add(frmInfoNote);
@@ -450,7 +439,7 @@ namespace LifeGame
                 }
                 else
                 {
-                    frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.Title == info.LiteratureTitle));
+                    frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.Title == info.Topic));
                     M.notesOpened.Add(frmInfoNote);
                     frmInfoNote.Show();
                 }

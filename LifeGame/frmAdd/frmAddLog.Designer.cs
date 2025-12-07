@@ -88,7 +88,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 26);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Log";
+            this.label1.Text = "FatherLog";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -319,7 +319,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddLog";
-            this.Text = "LifeGame - Add Log";
+            this.Text = "LifeGame - Add FatherLog";
             this.Load += new System.EventHandler(this.frmAddLog_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
