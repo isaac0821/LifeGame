@@ -37,19 +37,7 @@ namespace LifeGame
         {
             if (lsbSchedule.SelectedItems != null)
             {
-                DialogResult result = MessageBox.Show("Are you sure you want to convert?", "Convert", MessageBoxButtons.YesNo);
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        CLog convert = G.glb.lstSchedule.Find(o => o.StartTime.Date == curDate && o.LogName == lsbSchedule.SelectedItem.ToString());
-                        G.glb.lstLog.Add(convert);
-                        break;
-                    case DialogResult.No:
-                        break;
-                    default:
-                        break;
-                }
-                LoadSchedule();
+                
             }
         }
 

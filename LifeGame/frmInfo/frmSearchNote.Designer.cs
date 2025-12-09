@@ -38,9 +38,9 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lsbNote = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cmsLit = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.lsbNote = new System.Windows.Forms.ListBox();
             this.tsmOpenLit = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsNote.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -80,12 +80,12 @@
             // 
             // lsbLit
             // 
-            this.lsbLit.ContextMenuStrip = this.cmsNote;
+            this.lsbLit.ContextMenuStrip = this.cmsLit;
             this.lsbLit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsbLit.FormattingEnabled = true;
             this.lsbLit.Location = new System.Drawing.Point(3, 3);
             this.lsbLit.Name = "lsbLit";
-            this.lsbLit.Size = new System.Drawing.Size(535, 330);
+            this.lsbLit.Size = new System.Drawing.Size(351, 206);
             this.lsbLit.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -124,13 +124,23 @@
             this.tabPage1.Text = "Note";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // lsbNote
+            // 
+            this.lsbNote.ContextMenuStrip = this.cmsNote;
+            this.lsbNote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsbNote.FormattingEnabled = true;
+            this.lsbNote.Location = new System.Drawing.Point(3, 3);
+            this.lsbNote.Name = "lsbNote";
+            this.lsbNote.Size = new System.Drawing.Size(351, 206);
+            this.lsbNote.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.lsbLit);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(541, 336);
+            this.tabPage2.Size = new System.Drawing.Size(357, 212);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Literature";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -140,21 +150,12 @@
             this.cmsLit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmOpenLit});
             this.cmsLit.Name = "cmsLit";
-            this.cmsLit.Size = new System.Drawing.Size(181, 48);
-            // 
-            // lsbNote
-            // 
-            this.lsbNote.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsbNote.FormattingEnabled = true;
-            this.lsbNote.Location = new System.Drawing.Point(3, 3);
-            this.lsbNote.Name = "lsbNote";
-            this.lsbNote.Size = new System.Drawing.Size(351, 206);
-            this.lsbNote.TabIndex = 0;
+            this.cmsLit.Size = new System.Drawing.Size(104, 26);
             // 
             // tsmOpenLit
             // 
             this.tsmOpenLit.Name = "tsmOpenLit";
-            this.tsmOpenLit.Size = new System.Drawing.Size(180, 22);
+            this.tsmOpenLit.Size = new System.Drawing.Size(103, 22);
             this.tsmOpenLit.Text = "Open";
             this.tsmOpenLit.Click += new System.EventHandler(this.tsmOpenLit_Click);
             // 

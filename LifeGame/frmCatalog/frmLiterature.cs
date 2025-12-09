@@ -69,13 +69,14 @@ namespace LifeGame
         
         private void LoadJournalInfo()
         {
-            List<RNoteLog> jours = G.glb.lstNoteLog.FindAll(o => o.Topic == journalNoteName).ToList();
+            string JourGUID = G.glb.lstNote.Find(o => o.Topic == journalNoteName).GUID;
+            List<RNoteLog> jours = G.glb.lstNoteLog.FindAll(o => o.GUID == JourGUID).ToList();
             foreach (RNoteLog item in jours)
             {
                 CJournalConf journal = new CJournalConf();
                 journal.Name = item.SubLog;
                 // 得到具体的内容
-                List<RNoteLog> details = G.glb.lstNoteLog.FindAll(o => o.Topic == journalNoteName && o.FatherLog == journal.Name).ToList();
+                List<RNoteLog> details = G.glb.lstNoteLog.FindAll(o => o.GUID == JourGUID && o.FatherLog == journal.Name).ToList();
                 foreach (RNoteLog info in details)
                 {
                     string text = info.SubLog;
@@ -119,25 +120,18 @@ namespace LifeGame
                     litTitle.Add(item.JournalOrConferenceName);
                 }
             }
-            // string jourGUID = G.glb.lstNote.Find(o => o.Topic == journalNoteName).FatherGUID;
-            DateTime tagTime = G.glb.lstNote.Find(o => o.Topic == journalNoteName).TagTime;
+
+            string JourGUID = G.glb.lstNote.Find(o => o.Topic == journalNoteName).GUID;
             foreach (string item in litTitle)
             {
-                if (!G.glb.lstNoteLog.Exists(o => 
-                        o.Topic == journalNoteName
-                        && o.FatherLog == item) &&
-                    !G.glb.lstNoteLog.Exists(o =>
-                        o.Topic == journalNoteName
-                        && o.SubLog == item))
+                if (!G.glb.lstNoteLog.Exists(o => o.GUID == JourGUID && o.SubLog == item))
                 {
                     RNoteLog newJour = new RNoteLog();
                     newJour.SubLog = item;
                     newJour.SubGUID = Guid.NewGuid().ToString();
                     newJour.FatherLog = journalNoteName;
-                    newJour.FatherGUID = "";
-                    newJour.Topic = journalNoteName;
-                    // newJour.GUID = jourGUID;
-                    newJour.TagTime = tagTime;
+                    newJour.FatherGUID = JourGUID;
+                    newJour.GUID = JourGUID;
                     G.glb.lstNoteLog.Add(newJour);
                 }
             }
@@ -207,7 +201,7 @@ namespace LifeGame
                 newLit.GUID = Guid.NewGuid().ToString();
                 newLit.DateAdded = DateTime.Today;
                 newLit.DateModified = DateTime.Today;
-                newLit.PredatoryAlert = false;
+                //newLit.PredatoryAlert = false;
                 newLit.Star = false;
                 newLit.JournalOrConferenceName = "";
                 newLit.PublishYear = 9999;
@@ -268,27 +262,7 @@ namespace LifeGame
                         }
                         G.glb.lstLiterature.RemoveAll(o => o.Title == removedLit);
                         G.glb.lstLiteratureTag.RemoveAll(o => o.Title == removedLit);
-                        G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == removedLit);
-                        DialogResult noteResult = MessageBox.Show("Delete related note?", "Delete", MessageBoxButtons.YesNo);
-                        switch (noteResult)
-                        {
-                            case DialogResult.Yes:
-                                if (G.glb.lstNote.Exists(o => o.Topic == removedLit))
-                                {
-                                    string topicGUID = G.glb.lstNote.Find(o => o.Topic == removedLit && o.NoteType == ENoteType.Literature).GUID;
-                                    G.glb.lstNote.RemoveAll(o => o.Topic == removedLit && o.NoteType == ENoteType.Literature);
-                                    G.glb.lstNoteLog.RemoveAll(o => o.GUID == topicGUID);
-                                }
-                                break;
-                            case DialogResult.No:
-                                if (G.glb.lstNote.Exists(o => o.Topic == removedLit))
-                                {
-                                    G.glb.lstNote.Find(o => o.Topic == removedLit).Topic = "";
-                                }
-                                break;
-                            default:
-                                break;
-                        }
+                        G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == removedLit);                        
                         break;
                     case DialogResult.No:
                         break;
@@ -419,12 +393,7 @@ namespace LifeGame
                             predatoryStr = "√";
                             predatoryShowFlag = false;
                         }
-                    }
-                    if (G.glb.lstLiterature.Find(o => o.Title == title).PredatoryAlert)
-                    {
-                        predatoryStr = "√";
-                        predatoryShowFlag = false;
-                    }
+                    }                   
                     // If the journal is reliable
                     if (lstJournal.Exists(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
                     {
@@ -515,10 +484,6 @@ namespace LifeGame
                             predatoryStr, 
                             addedDate.ToString("yyyy/MM/dd"), 
                             lastModifyDate.ToString("yyyy/MM/dd"));
-                        if (chkHightlight.Checked && G.glb.lstNoteLog.FindAll(o => o.Topic == title).Count >= 4)
-                        {
-                            dgvLiterature.Rows[dgvLiterature.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightBlue;
-                        }
                     }
                     lblNumFound.Text = Convert.ToString(dgvLiterature.Rows.Count) + " result(s) found";
                 }
@@ -1577,74 +1542,11 @@ namespace LifeGame
         private void tsmCopyToNote(object sender, EventArgs e)
         {
             if (dgvLiterature.SelectedCells.Count == 1)
-            {
-                string litName = dgvLiterature.CurrentRow.Cells[1].Value.ToString();
-                
-                CNote note = G.glb.lstNote.Find(o => o.Topic == litName);
-                List<RNoteLog> litNoteLog = G.glb.lstNoteLog.FindAll(o => o.Topic == litName && o.TagTime.Date == G.glb.lstLiterature.Find(p => p.Title == litName).DateAdded.Date);
-                
-                TreeNode litNode = createLitNoteLogNode(note, litNoteLog);
-                M.mem.copiedNodes.Clear();
-                copyNode(litNode);
+            { 
+
             }
         }
 
-        private TreeNode createLitNoteLogNode(CNote note, List<RNoteLog> litNoteLog)
-        {
-            TreeNode rootNode = new TreeNode(note.Topic, 0, 0);
-            rootNode.Name = note.GUID;
-            rootNode.Text = note.Topic;
-
-            TreeNode yearNode = new TreeNode("year", 0, 0);
-            yearNode.Name = Guid.NewGuid().ToString();
-            yearNode.Text = "year: " + G.glb.lstLiterature.Find(o => o.Title == note.Topic).PublishYear.ToString();
-            rootNode.Nodes.Add(yearNode);
-
-            TreeNode jourNode = new TreeNode("", 0, 0);
-            jourNode.Name = Guid.NewGuid().ToString();
-            jourNode.Text = "jourConf: " + G.glb.lstLiterature.Find(o => o.Title == note.Topic).JournalOrConferenceName;
-            rootNode.Nodes.Add(jourNode);
-
-            List<RLiteratureAuthor> authors = new List<RLiteratureAuthor>();
-            authors = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == note.Topic).ToList();
-            foreach (RLiteratureAuthor author in authors)
-            {
-                TreeNode authorNode = new TreeNode(author.Author, 0, 0);
-                authorNode.Name = Guid.NewGuid().ToString();
-                authorNode.Text = "author: " + author.Author;
-                rootNode.Nodes.Add(authorNode);
-            }
-
-            List<RLiteratureTag> tags = new List<RLiteratureTag>();
-            tags = G.glb.lstLiteratureTag.FindAll(o => o.Title == note.Topic).ToList();
-            foreach (RLiteratureTag tag in tags)
-            {
-                TreeNode tagNode = new TreeNode(tag.Tag, 0, 0);
-                tagNode.Name = Guid.NewGuid().ToString();
-                tagNode.Text = "tag: " + tag.Tag;
-                rootNode.Nodes.Add(tagNode);
-            }
-
-            rootNode.Expand();
-
-            litNoteLog.RemoveAll(o => o.SubLog.Contains("modified: "));
-            litNoteLog.RemoveAll(o => o.SubLog.Contains("Modified: "));
-
-            litNoteLog.RemoveAll(o =>
-                    o.Topic == o.FatherLog
-                    && !litNoteLog.Exists(p => p.FatherLog == o.SubLog));
-
-            if (litNoteLog.Count > 0)
-            {
-                LoadChildNoteLog(rootNode, litNoteLog);
-            }           
-
-            rootNode.Text = "$LITR$>" + note.Topic;
-            rootNode.Name = Guid.NewGuid().ToString();
-            rootNode.ForeColor = Color.Brown;
-            rootNode.NodeFont = new Font(Font, FontStyle.Underline);
-            return rootNode;
-        }
 
         private int getLogo(string noteText)
         {

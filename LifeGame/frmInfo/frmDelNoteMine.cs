@@ -57,8 +57,10 @@ namespace LifeGame
                         switch (result)
                         {
                             case DialogResult.Yes:
-                                G.glb.lstNote.RemoveAll(o => o.TagTime == curDate && o.Topic == lsbNote.SelectedItem.ToString());
-                                G.glb.lstNoteLog.RemoveAll(o => o.TagTime == curDate && o.Topic == lsbNote.SelectedItem.ToString());
+                                string delGUID = G.glb.lstNote.Find(o => o.TagTime == curDate && o.Topic == lsbNote.SelectedItem.ToString()).GUID;
+                                G.glb.lstNote.RemoveAll(o => o.GUID == delGUID);
+                                G.glb.lstNoteLog.RemoveAll(o => o.GUID == delGUID);
+                                G.glb.lstNoteColor.RemoveAll(o => o.GUID == delGUID);
                                 break;
                             case DialogResult.No:
                                 break;

@@ -36,7 +36,7 @@ namespace LifeGame
             List<CLog> logs = new List<CLog>();
             if (LogOrSchedule)
             {
-                logs = G.glb.lstLog.FindAll(o => o.StartTime.Date == curDate).ToList();
+                
             }
             else
             {
@@ -54,7 +54,7 @@ namespace LifeGame
             {
                 if (LogOrSchedule)
                 {
-                    G.glb.lstLog.RemoveAll(o => o.StartTime.Date == curDate && o.LogName == lsbLogList.SelectedItem.ToString());
+                    
                 }
                 else
                 {

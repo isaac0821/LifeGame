@@ -137,43 +137,12 @@ namespace LifeGame
         /// <param name="picMap">画布</param>
         /// <param name="date">日期</param>
         /// <param name="logs">日志</param>
-        /// <param name="healths">健康日志</param>
-        /// <param name="IsLabelShown">是否显示标签</param>
         /// <param name="LocationMode">位置模式："all" - 全部; "left" - 左侧; "right" - 右侧</param>
-        public void DrawScheduleAndLogController(PictureBox picMap, DateTime date, List<CLog> logs, string LocationMode)
+        public void DrawLogController(PictureBox picMap, DateTime date)
         {
             int left = 0;
-            int width = picMap.Width;
-            if (LocationMode == "all")
-            {
-                left = 0;
-                width = picMap.Width;
-            }
-            else if (LocationMode == "left")
-            {
-                left = 0;
-                width = picMap.Width / 2;
-            }
-            else if (LocationMode == "right")
-            {
-                left = picMap.Width / 2;
-                width = picMap.Width / 2;
-            }
-            else if (LocationMode == "allWithSupp")
-            {
-                left = 0;
-                width = (picMap.Width = 30) > 0 ? picMap.Width - 30 : 0;
-            }
-            else if (LocationMode == "leftWithSupp")
-            {
-                left = 0;
-                width = (picMap.Width - 30) > 0 ? (picMap.Width - 30) / 2 : 0;
-            }
-            else if (LocationMode == "rightWithSupp")
-            {
-                left = (picMap.Width - 30) > 0 ? (picMap.Width - 30) / 2 : 0;
-                width = (picMap.Width - 30) > 0 ? (picMap.Width - 30) / 2 : 0;
-            }
+            int width = picMap.Width - 30;
+
             int height = picMap.Height;
             PictureBox picTimePointer = new PictureBox();
             PictureBox picToday = new PictureBox();
@@ -208,8 +177,8 @@ namespace LifeGame
                 picMap.Controls.Add(lblNow);
             }
 
-            List<CLog> todayLogs = logs.FindAll(o => o.StartTime.Date == date).ToList();
-            List<CLog> yesterdayLogs = logs.FindAll(o => o.StartTime.Date == date.AddDays(-1) && o.EndTime.Date == date).ToList();
+            List<CLog> todayLogs = G.glb.lstSchedule.FindAll(o => o.StartTime.Date == date).ToList();
+            List<CLog> yesterdayLogs = G.glb.lstSchedule.FindAll(o => o.StartTime.Date == date.AddDays(-1) && o.EndTime.Date == date).ToList();
 
             List<PictureBox> lstPicLog = new List<PictureBox>();
             List<Label> lstLblLog = new List<Label>();
@@ -225,7 +194,6 @@ namespace LifeGame
                 string LogName = yesterdayLogs[i].LogName;
                 string Location = yesterdayLogs[i].Location;
                 string WithWho = yesterdayLogs[i].WithWho;
-                // string TaskName = yesterdayLogs[i].ContributionToTask;
                 bool IsAlarm = yesterdayLogs[i].Alarm;
                 Color backColor = GetColor(yesterdayLogs[i].Color);
                 lstPicLog[i].Width = width;
@@ -263,7 +231,6 @@ namespace LifeGame
                 string LogName = todayLogs[i].LogName;
                 string Location = todayLogs[i].Location;
                 string WithWho = todayLogs[i].WithWho;
-                // string TaskName = todayLogs[i].ContributionToTask;
                 bool IsAlarm = todayLogs[i].Alarm;
                 Color backColor = GetColor(todayLogs[i].Color);
                 lstPicLog[i + yesterdayLogs.Count].Width = width;
@@ -292,19 +259,16 @@ namespace LifeGame
 
         public void DrawEventController(
             PictureBox picMap,
-            DateTime date,
-            List<CEvent> events,
-            List<CTransaction> transactions,
-            List<CTransaction> budgets,
-            List<CNote> notes)
+            DateTime date)
         {
             int left = picMap.Width - 27 > 0 ? picMap.Width - 27 : 0;
             List<PictureBox> lstPicEvent = new List<PictureBox>();
-            List<CEvent> lstEvent = events.FindAll(o => o.TagTime.Date == date).ToList();
-            List<CTransaction> lstTransaction = transactions.FindAll(o => o.TagTime.Date == date).ToList();
-            List<CTransaction> lstBudget = budgets.FindAll(o => o.TagTime.Date == date).ToList();
-            List<CNote> lstNote = notes.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CEvent> lstEvent = G.glb.lstEvent.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CNote> lstNote = G.glb.lstNote.FindAll(o => o.TagTime.Date == date).ToList();
+            List<CLiterature> lstLiterature = G.glb.lstLiterature.FindAll(o =>  o.DateAdded == date).ToList();
+
             int acc = 0;
+            // Events
             for (int i = 0; i < lstEvent.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
@@ -329,76 +293,13 @@ namespace LifeGame
                 picMap.Controls.Add(lstPicEvent[i]);
             }
             acc = acc + lstEvent.Count;
-            for (int i = 0; i < lstTransaction.Count; i++)
-            {
-                lstPicEvent.Add(new PictureBox());
-                CTransaction transaction = lstTransaction[i];
-                EMoneyFlowState MoneyFlowState = lstTransaction[i].IconType;
-                switch (MoneyFlowState)
-                {
-                    case EMoneyFlowState.WithinSystem:
-                        lstPicEvent[i + acc].Image = icon.iconMoneyWithin;
-                        break;
-                    case EMoneyFlowState.FlowIn:
-                        lstPicEvent[i + acc].Image = icon.iconMoneyIn;
-                        break;
-                    case EMoneyFlowState.FlowOut:
-                        lstPicEvent[i + acc].Image = icon.iconMoneyOut;
-                        break;
-                    default:
-                        break;
-                }
-                lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
-                lstPicEvent[i + acc].Left = left;
-                lstPicEvent[i + acc].Width = 24;
-                lstPicEvent[i + acc].Height = 24;
-                lstPicEvent[i + acc].Click += (e, a) => CallInfoTransaction(transaction);
-                picMap.Controls.Add(lstPicEvent[i + acc]);
-            }
-            acc = acc + lstTransaction.Count;
-            for (int i = 0; i < lstBudget.Count; i++)
-            {
-                lstPicEvent.Add(new PictureBox());
-                CTransaction transactionDue = lstBudget[i];
-                EMoneyFlowState MoneyFlowState = lstBudget[i].IconType;
-                switch (MoneyFlowState)
-                {
-                    case EMoneyFlowState.WithinSystem:
-                        lstPicEvent[i + acc].Image = icon.iconTransactionDueWithin;
-                        break;
-                    case EMoneyFlowState.FlowIn:
-                        lstPicEvent[i + acc].Image = icon.iconTransactionDueIn;
-                        break;
-                    case EMoneyFlowState.FlowOut:
-                        lstPicEvent[i + acc].Image = icon.iconTransactionDueOut;
-                        break;
-                    default:
-                        break;
-                }
-                lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
-                lstPicEvent[i + acc].Left = left;
-                lstPicEvent[i + acc].Width = 24;
-                lstPicEvent[i + acc].Height = 24;
-                lstPicEvent[i + acc].Click += (e, a) => CallInfoBudget(transactionDue);
-                picMap.Controls.Add(lstPicEvent[i + acc]);
-            }
-            acc = acc + lstBudget.Count;
+
+            // Notes
             for (int i = 0; i < lstNote.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
                 CNote note = lstNote[i];
-                if (lstNote[i].Topic == "Daily Report")
-                {
-                    lstPicEvent[i + acc].Image = icon.iconDaily;
-                }
-                else if (lstNote[i].Topic != "")
-                {
-                    lstPicEvent[i + acc].Image = icon.iconLiterature;
-                }
-                else
-                {
-                    lstPicEvent[i + acc].Image = icon.iconWorkingNote;
-                }
+                lstPicEvent[i + acc].Image = icon.iconNote;
                 lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;
                 lstPicEvent[i + acc].Width = 24;
@@ -407,6 +308,21 @@ namespace LifeGame
                 picMap.Controls.Add(lstPicEvent[i + acc]);
             }
             acc = acc + lstNote.Count;
+
+            // Literature
+            for (int i = 0; i < lstLiterature.Count; i++)
+            {
+                lstPicEvent.Add(new PictureBox());
+                CLiterature lit = lstLiterature[i];
+                lstPicEvent[i + acc].Image = icon.iconLiterature;
+                lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
+                lstPicEvent[i + acc].Left = left;
+                lstPicEvent[i + acc].Width = 24;
+                lstPicEvent[i + acc].Height = 24;
+                lstPicEvent[i + acc].Click += (e, a) => CallInfoLiterature(lit);
+                picMap.Controls.Add(lstPicEvent[i + acc]);
+            }
+            acc = acc + lstLiterature.Count;
         }
 
         public void CallInfoLog(string Timeperiod, string LogName, string Location, string WithWho, Color color, bool IsAlarm)
@@ -431,18 +347,24 @@ namespace LifeGame
             }
             else
             {
-                if (info.Topic == "" || info.Topic == null)
-                {
-                    frmInfoNote frmInfoNote = new frmInfoNote(info);
-                    M.notesOpened.Add(frmInfoNote);
-                    frmInfoNote.Show();
-                }
-                else
-                {
-                    frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.Title == info.Topic));
-                    M.notesOpened.Add(frmInfoNote);
-                    frmInfoNote.Show();
-                }
+                frmInfoNote frmInfoNote = new frmInfoNote(info);
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
+            }
+        }
+
+        public void CallInfoLiterature(CLiterature lit)
+        {
+            if (M.notesOpened.Exists(o => o.GUID == lit.GUID))
+            {
+                M.notesOpened.Find(o => o.GUID == lit.GUID).Show();
+                M.notesOpened.Find(o => o.GUID == lit.GUID).BringToFront();
+            }
+            else
+            {
+                frmInfoNote frmInfoNote = new frmInfoNote(lit);
+                M.notesOpened.Add(frmInfoNote);
+                frmInfoNote.Show();
             }
         }
 

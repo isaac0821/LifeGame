@@ -17,7 +17,6 @@ namespace LifeGame
         public string GUID;
         public DateTime DateAdded;
         public DateTime DateModified;
-        public bool PredatoryAlert;
         public int PublishYear;
         public string JournalOrConferenceName;
         public bool Star;
@@ -164,18 +163,15 @@ namespace LifeGame
         public string Topic;
         public DateTime TagTime;
         public string GUID;
-        public ENoteType NoteType;
     }
 
     [Serializable]
     public class RNoteLog
     {
-        public string Topic;        
-        public DateTime TagTime;
         public string GUID;        
-        public string FatherLog;  // 父节点的
+        public string FatherLog;
         public string FatherGUID;
-        public string SubLog;  // 自己的
+        public string SubLog;
         public string SubGUID;
         public bool IsExpand;
         public int Ordering;
@@ -184,8 +180,6 @@ namespace LifeGame
     [Serializable]
     public class RNoteColor
     {
-        public string Topic;
-        public DateTime TagTime;
         public string GUID;
         public string Keyword;
         public string Color;

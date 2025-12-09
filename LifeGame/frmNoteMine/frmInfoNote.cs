@@ -1,21 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics.Tracing;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Management.Instrumentation;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using Microsoft.VisualBasic;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace LifeGame
 {
@@ -29,12 +21,7 @@ namespace LifeGame
         public delegate void RefreshTabHandler();
         public event RefreshTabHandler RefreshTab;
 
-        DateTime noteDateTime = new DateTime();
         public string GUID = "";
-
-        // 先写死，之后改成系统环境变量
-        string TDLNoteName = "SysNote: To Do List";
-        string JournalNoteName = "SysNote: Journal Information";
 
         // 通用信息
         private plot C = new plot();
@@ -55,13 +42,20 @@ namespace LifeGame
         // 如果是Diary，增加这些信息
         List<RNoteLog> lstTDLNoteLog = new List<RNoteLog>();
         List<RNoteColor> lstTDLNoteColor = new List<RNoteColor>();
-        List<CLog> lstLog = new List<CLog>();
 
+        // ENoteType有四种
+        // 1. Note： 正常的Note
+        // 2. Literature: 文献
+        // 3. DailyReport: 日志
         ENoteType noteType = ENoteType.Note;
 
+        // 保留的SysNote分别可以是不同的ENoteType，唯一的区别就是，他们不能被Rename/Delete/New，但是内容可以改动，包括：
+        string TDLNoteName = "SysNote: To Do List"; // Note
+        string JournalNoteName = "SysNote: Journal Information"; // Note
+        string LitAllNoteName = "SysNote: Literature"; // LitReview
+        string FinanceAllNoteName = "SysNote: Finance"; // Finance
+
         #region 构造函数
-        // 在本界面不允许新建，新建操作在其他地方，如果没有该note/literature/diary自动生成好后打开编辑
-        // 已经有了note之后打开
         public frmInfoNote(CNote info)
         {
             note = info;
@@ -87,7 +81,6 @@ namespace LifeGame
 
             LoadNoteColor(lstNoteColor);
             LoadNoteLog();
-            noteDateTime = note.TagTime;
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
 
@@ -99,9 +92,8 @@ namespace LifeGame
             saveTimer.Interval = 1000 * 60 * 10;
             saveTimer.Start();
             curPointerTimer.Tick += SaveNote;
-            lblCreated.Text = noteDateTime.ToShortDateString();
+            lblCreated.Text = note.TagTime.ToShortDateString();
         }
-        // 已经有了literature之后打开
         public frmInfoNote(CLiterature lit)
         {
             literature = lit;
@@ -109,8 +101,7 @@ namespace LifeGame
             lstNoteLog = G.glb.lstNoteLog.FindAll(o => o.GUID == literature.GUID);
             lstNoteColor = G.glb.lstNoteColor.FindAll(o => o.GUID == literature.GUID);
             lstLiteratureTag = G.glb.lstLiteratureTag.FindAll(o => o.Title == literature.Title).ToList();
-            lstLiteratureAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == literature.Title).ToList();
-            lstLiteratureAuthor = lstLiteratureAuthor.OrderBy(o => o.Ordering).ToList();
+            lstLiteratureAuthor = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == literature.Title).OrderBy(o => o.Ordering).ToList();
             noteType = ENoteType.Literature;
 
             InitializeComponent();
@@ -128,10 +119,6 @@ namespace LifeGame
 
             chkShow.Checked = true;
 
-            if (txtTitle.Enabled)
-            {
-                this.ActiveControl = txtTitle;
-            }
             List<string> journalList = new List<string>();
             foreach (CLiterature l in G.glb.lstLiterature)
             {
@@ -149,7 +136,6 @@ namespace LifeGame
             LoadNoteColor(lstNoteColor);
             LoadNoteLog();
             LoadLiterature();
-            noteDateTime = literature.DateAdded;
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
 
@@ -161,9 +147,8 @@ namespace LifeGame
             saveTimer.Interval = 1000 * 60 * 10;
             saveTimer.Start();
             curPointerTimer.Tick += SaveNote;
-            lblCreated.Text = noteDateTime.ToShortDateString();
+            lblCreated.Text = literature.DateAdded.ToShortDateString();
         }
-        // 已经有了diary之后打开
         public frmInfoNote(CDiary dr)
         {
             diary = dr;
@@ -172,7 +157,6 @@ namespace LifeGame
             lstNoteColor = G.glb.lstNoteColor.FindAll(o => o.GUID == diary.GUID);
             lstTDLNoteLog = G.glb.lstNoteLog.FindAll(o => o.GUID == G.glb.lstNote.Find(p => p.Topic == TDLNoteName).GUID);
             lstTDLNoteColor = G.glb.lstNoteColor.FindAll(o => o.GUID == G.glb.lstNote.Find(p => p.Topic == TDLNoteName).GUID);
-            lstLog = G.glb.lstLog.FindAll(o => o.StartTime.Date == diary.Date);
             noteType = ENoteType.DailyReport;
 
             InitializeComponent();
@@ -196,7 +180,6 @@ namespace LifeGame
             LoadShareNoteLog();
             LoadNoteColor(lstNoteColor);
             LoadNoteLog();
-            noteDateTime = diary.Date;
             txtTopic.Enabled = false;
             btnSave.Enabled = false;
 
@@ -222,15 +205,15 @@ namespace LifeGame
             saveTimer.Interval = 1000 * 60 * 10;
             saveTimer.Start();
             curPointerTimer.Tick += SaveNote;
-            lblCreated.Text = noteDateTime.ToShortDateString();
+            lblCreated.Text = diary.Date.ToShortDateString();
         }
         #endregion
 
         #region 加载Note结构树
-        private void LoadNoteColor(List<RNoteColor> noteColorSource)
+        private void LoadNoteColor(List<RNoteColor> noteColors)
         {
             lsvColor.Items.Clear();
-            foreach (RNoteColor noteColor in noteColorSource)
+            foreach (RNoteColor noteColor in noteColors)
             {
                 ListViewItem item = new ListViewItem();
                 item.Text = noteColor.Keyword;
@@ -251,7 +234,7 @@ namespace LifeGame
             trvNote.Nodes.Clear();
             TreeNode rootNode = new TreeNode("", 0, 0);
             rootNode.Name = GUID;
-            if (noteType == ENoteType.Note || noteType == ENoteType.System)
+            if (noteType == ENoteType.Note)
             {
                 rootNode.Text = note.Topic;
             }
@@ -264,26 +247,26 @@ namespace LifeGame
                 rootNode.Text = "Daily Report";
             }
             rootNode.Expand();
-            LoadChildNoteLog(rootNode, rootNode.Text);
+            LoadChildNoteLog(rootNode, GUID);
             trvNote.Nodes.Add(rootNode);
         }
         private void LoadShareNoteLog()
         {
             trvShare.Nodes.Clear();
+            string TDLGUID = G.glb.lstNote.Find(o => o.Topic == TDLNoteName).GUID;
             TreeNode rootNode = new TreeNode(TDLNoteName, 0, 0);
-            rootNode.Name = G.glb.lstNote.Find(o => o.Topic == TDLNoteName).GUID;
+            rootNode.Name = TDLGUID;
             rootNode.Text = TDLNoteName;
             rootNode.Expand();
-            LoadChildNoteLog(rootNode, TDLNoteName, lstTDLNoteLog, lstTDLNoteColor);
+            LoadChildNoteLog(rootNode, TDLGUID, lstTDLNoteLog, lstTDLNoteColor);
             trvShare.Nodes.Add(rootNode);
         }
-        private void LoadChildNoteLog(TreeNode treeNode, string topic, List<RNoteLog> noteSource, List<RNoteColor> noteColorSource)
+        private void LoadChildNoteLog(TreeNode treeNode, string noteGUID, List<RNoteLog> noteSource, List<RNoteColor> noteColorSource)
         {
             // 如果本条NoteLog作为上级NoteLog存在，添加所有的SubLog
-            if (noteSource.Exists(o => o.FatherLog == treeNode.Text && o.FatherGUID == treeNode.Name && o.Topic == topic))
+            if (noteSource.Exists(o => o.FatherLog == treeNode.Text && o.FatherGUID == treeNode.Name && o.GUID == noteGUID))
             {
-                List<RNoteLog> subNoteLog = noteSource.FindAll(o => o.FatherLog == treeNode.Text && o.FatherGUID == treeNode.Name && o.Topic == topic).ToList();
-                subNoteLog = subNoteLog.OrderBy(o => o.Ordering).ToList();
+                List<RNoteLog> subNoteLog = noteSource.FindAll(o => o.FatherLog == treeNode.Text && o.FatherGUID == treeNode.Name && o.GUID == noteGUID).OrderBy(o => o.Ordering).ToList();
                 foreach (RNoteLog sub in subNoteLog)
                 {
                     TreeNode childNode = new TreeNode(sub.SubLog);
@@ -305,7 +288,7 @@ namespace LifeGame
                         treeNode.ForeColor = childNode.ForeColor;
                         treeNode.NodeFont = childNode.NodeFont;
                     }
-                    LoadChildNoteLog(childNode, topic, noteSource, noteColorSource);
+                    LoadChildNoteLog(childNode, noteGUID, noteSource, noteColorSource);
                     treeNode.Nodes.Add(childNode);
                 }
             }
@@ -357,14 +340,11 @@ namespace LifeGame
         }
         private void LoadLiterature()
         {
-            txtTitle.Enabled = false;
-            txtTitle.Text = literature.Title;
             txtTopic.Text = literature.Title;
             txtYear.Text = literature.PublishYear.ToString();
             cbxJournalConference.Text = literature.JournalOrConferenceName;
             txtBibKey.Text = literature.BibKey;
             chkStar.Checked = literature.Star;
-            chkPredatroyAlert.Checked = literature.PredatoryAlert;
             if (literature != null)
             {
                 cbxBibEntryType.Text = literature.BibEntry.ToString();
@@ -543,10 +523,10 @@ namespace LifeGame
                         string[] schStartStr = schTimeStr[0].Split(':');
                         string[] schEndStr = schTimeStr[1].Split(':');
                         DateTime StartTime = new DateTime(
-                            Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
+                            Convert.ToInt32(diary.Date.Year), Convert.ToInt32(diary.Date.Month), Convert.ToInt32(diary.Date.Day),
                             Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), 0);
                         DateTime EndTime = new DateTime(
-                            Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
+                            Convert.ToInt32(diary.Date.Year), Convert.ToInt32(diary.Date.Month), Convert.ToInt32(diary.Date.Day),
                             Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), 0);
                         if (addOneDayFlag)
                         {
@@ -586,98 +566,6 @@ namespace LifeGame
                     {
                         return 9;
                     }
-                }
-            }
-            else if (noteText.Contains("$RECO$>"))
-            {
-                string sch = noteText.Replace("$RECO$>", "");
-                string[] sp = sch.Split('@');
-                if (sp.Length < 3)
-                {
-                    return 11;
-                }
-                else
-                {
-                    try
-                    {
-                        // FatherLog Name
-                        string LogName = sp[0];
-                        // Time
-                        bool addOneDayFlag = sp[1].Contains("(+1)");
-                        if (addOneDayFlag)
-                        {
-                            sp[1] = sp[1].Replace("(+1)", "");
-                        }
-                        string[] schTimeStr = sp[1].Split('-');
-                        string[] schStartStr = schTimeStr[0].Split(':');
-                        string[] schEndStr = schTimeStr[1].Split(':');
-                        DateTime StartTime = new DateTime(
-                            Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
-                            Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), 0);
-                        DateTime EndTime = new DateTime(
-                            Convert.ToInt32(note.TagTime.Year), Convert.ToInt32(note.TagTime.Month), Convert.ToInt32(note.TagTime.Day),
-                            Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), 0);
-                        if (addOneDayFlag)
-                        {
-                            EndTime += new TimeSpan(1, 0, 0, 0);
-                        }
-                        // Color
-                        string Color = sp[2];
-                        // Location
-                        string Location = "";
-                        if (sp.Length >= 4)
-                        {
-                            Location = sp[3];
-                        }
-                        // With
-                        string WithWho = "";
-                        if (sp.Length >= 5)
-                        {
-                            WithWho = sp[4];
-                        }
-
-                        if (G.glb.lstLog.Exists(o =>
-                            o.LogName == LogName
-                            && o.StartTime == StartTime
-                            && o.EndTime == EndTime
-                            && o.Location == Location
-                            && o.WithWho == WithWho
-                            && o.Color == Color))
-                        {
-                            return 10;
-                        }
-                        else
-                        {
-                            return 11;
-                        }
-                    }
-                    catch
-                    {
-                        return 11;
-                    }
-                }
-            }
-            else if (noteText.Contains("$TRSA$>"))
-            {
-                try
-                {
-                    string transactionSeg = noteText.Replace("$TRSA$>", "");
-                    transactionSeg = transactionSeg.Replace("=>", "@");
-                    string[] transactionNote = transactionSeg.Split('@');
-                    string accountFrom = transactionNote[2];
-                    string accountTo = transactionNote[3];
-                    if (G.glb.lstTransaction.Exists(o => o.TagTime == note.TagTime && o.Summary == transactionNote[0]))
-                    {
-                        return 12;
-                    }
-                    else
-                    {
-                        return 13;
-                    }
-                }
-                catch
-                {
-                    return 13;
                 }
             }
             else
@@ -761,43 +649,6 @@ namespace LifeGame
                 ForeColor = Color.Orange;
                 TextFont = new Font(Font, FontStyle.Underline);
             }
-            else if (note.Contains("$RECO$>"))
-            {
-                ForeColor = Color.Orchid;
-                TextFont = new Font(Font, FontStyle.Underline);
-            }
-            else if (note.Contains("$TRSA$>"))
-            {
-                Color transactionColor = Color.Gray;
-                try
-                {
-                    string transactionSeg = note.Replace("$TRSA$>", "");
-                    transactionSeg = transactionSeg.Replace("=>", "@");
-                    string[] transactionNote = transactionSeg.Split('@');
-                    string accountFrom = transactionNote[2];
-                    string accountTo = transactionNote[3];
-                    if (G.glb.lstAccount.Exists(o => o.AccountName == accountFrom) && G.glb.lstAccount.Exists(o => o.AccountName == accountTo))
-                    {
-                        // 如果To账目是支出账目，表示这是支出
-                        if (G.glb.lstAccount.Find(o => o.AccountName == accountTo).AccountType == EAccountType.Expense)
-                        {
-                            transactionColor = Color.Red;
-                        }
-                        // 如果From账目是收入账目，表示这是收入
-                        else if (G.glb.lstAccount.Find(o => o.AccountName == accountFrom).AccountType == EAccountType.Income)
-                        {
-                            transactionColor = Color.Green;
-                        }
-                        else
-                        {
-                            transactionColor = Color.Navy;
-                        }
-                    }
-                }
-                catch { }
-                ForeColor = transactionColor;
-                TextFont = new Font(Font, FontStyle.Underline);
-            }
             else if (note.Split('#').Length == 3)
             {
                 ForeColor = Color.Indigo;
@@ -866,13 +717,14 @@ namespace LifeGame
         {
             M.notesOpened.RemoveAll(o => o.GUID == GUID);
 
-            if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport || noteType == ENoteType.System)
+            if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport)
             {
                 SaveNote();
             }
             else if (noteType == ENoteType.Literature)
             {
                 SaveLiterature();
+                SaveNote();
             }
             Dispose();
         }
@@ -887,9 +739,7 @@ namespace LifeGame
         private void SaveChildNoteLog(TreeNode treeNode)
         {
             RNoteLog newNoteLog = new RNoteLog();
-            newNoteLog.Topic = txtTopic.Text;
             newNoteLog.GUID = GUID;
-            newNoteLog.TagTime = noteDateTime;
             newNoteLog.FatherLog = treeNode.Parent.Text;
             newNoteLog.FatherGUID = treeNode.Parent.Name;
             newNoteLog.SubLog = treeNode.Text;
@@ -904,88 +754,61 @@ namespace LifeGame
         }
         private void SaveLiterature()
         {
-            bool CanSaveFlag = true;
-            if (G.glb.lstLiterature.Exists(o => o.BibKey != "" && o.BibKey == txtBibKey.Text && o.Title != txtTitle.Text))
+            if (G.glb.lstLiterature.Exists(o => o.BibKey != "" && o.BibKey == txtBibKey.Text && o.Title != txtTopic.Text))
             {
                 MessageBox.Show("Bibkey exists.");
-                CanSaveFlag = false;
             }
             if (txtYear.Text == "")
             {
                 MessageBox.Show("Publish year is missing");
-                CanSaveFlag = false;
             }
             if (cbxJournalConference.Text == "")
             {
                 MessageBox.Show("Journal/Conference Name is missing");
-                CanSaveFlag = false;
             }
             if (lsbAuthor.Items.Count == 0)
             {
                 MessageBox.Show("Add author");
-                CanSaveFlag = false;
             }
             if (lsbTag.Items.Count == 0)
             {
                 MessageBox.Show("Add tag");
-                CanSaveFlag = false;
             }
-            if (CanSaveFlag)
+
+            G.glb.lstLiterature.Find(o => o.Title == txtTopic.Text).PublishYear = Convert.ToInt32(txtYear.Text);
+            G.glb.lstLiterature.Find(o => o.Title == txtTopic.Text).JournalOrConferenceName = cbxJournalConference.Text;
+            G.glb.lstLiterature.Find(o => o.Title == txtTopic.Text).BibKey = txtBibKey.Text;
+            G.glb.lstLiterature.Find(o => o.Title == txtTopic.Text).DateModified = DateTime.Today;
+            G.glb.lstLiterature.Find(o => o.Title == txtTopic.Text).Star = chkStar.Checked;
+            
+            G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == txtTopic.Text);
+            G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
+            G.glb.lstLiteratureTag.RemoveAll(o => o.Title == txtTopic.Text);
+            G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);
+
+            try
             {
-                G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PublishYear = Convert.ToInt32(txtYear.Text);
-                G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).JournalOrConferenceName = cbxJournalConference.Text;
-                G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).BibKey = txtBibKey.Text;
-                G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).DateModified = DateTime.Today;
-                G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).Star = chkStar.Checked;
-                G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).PredatoryAlert = chkPredatroyAlert.Checked;
-                foreach (RLiteratureAuthor author in lstLiteratureAuthor)
-                {
-                    author.Title = txtTitle.Text;
-                }
-                foreach (RLiteratureTag tag in lstLiteratureTag)
-                {
-                    tag.Title = txtTitle.Text;
-                }
-                G.glb.lstLiteratureAuthor.RemoveAll(o => o.Title == txtTitle.Text);               
-                G.glb.lstLiteratureAuthor.AddRange(lstLiteratureAuthor);
-                G.glb.lstLiteratureTag.RemoveAll(o => o.Title == txtTitle.Text);
-                G.glb.lstLiteratureTag.AddRange(lstLiteratureTag);                
+                // 有可能literature窗口已经关掉了，没法callback
+                RefreshTab();
 
-                try
-                {
-                    // 有可能literature窗口已经关掉了，没法callback
-                    RefreshTab();
-
-                    FileStream f = new FileStream("data.dat", FileMode.Create);
-                    BinaryFormatter b = new BinaryFormatter();
-                    b.Serialize(f, G.glb);
-                    f.Close();
-                }
-                catch (Exception)
-                {
-                    // 下次打开自然会刷新，所以不用catch
-                }
-                txtTitle.Enabled = false;
-                SaveNote();
+                FileStream f = new FileStream("data.dat", FileMode.Create);
+                BinaryFormatter b = new BinaryFormatter();
+                b.Serialize(f, G.glb);
+                f.Close();
+            }
+            catch (Exception)
+            {
+                // 下次打开自然会刷新，所以不用catch
             }
         }
         private void SaveNote()
         {
             G.glb.lstNoteLog.RemoveAll(o => o.GUID == GUID);
             G.glb.lstNoteColor.RemoveAll(o => o.GUID == GUID);
+            // 放入缓冲区
             SaveNoteLog();
-            foreach (RNoteLog noteLog in lstNoteLog)
-            {
-                noteLog.GUID = GUID;
-                G.glb.lstNoteLog.Add(noteLog);
-            }
-            foreach (RNoteColor noteColor in lstNoteColor)
-            {
-                noteColor.GUID = GUID;
-                G.glb.lstNoteColor.Add(noteColor);
-            }
-            G.glb.lstNote.Find(o => o.GUID == GUID).TagTime = noteDateTime;
-            G.glb.lstNote.Find(o => o.GUID == GUID).Topic = txtTitle.Text;
+            G.glb.lstNoteLog.AddRange(lstNoteLog);
+            G.glb.lstNoteColor.AddRange(lstNoteColor);
 
             FileStream f = new FileStream("data.dat", FileMode.Create);
             BinaryFormatter b = new BinaryFormatter();
@@ -998,7 +821,7 @@ namespace LifeGame
         }
         #endregion
 
-        #region 右键菜单控件
+        #region 右键菜单初级控件
         private void tsmAdd_Click(object sender, EventArgs e)
         {
             if (trvNote.SelectedNode != null)
@@ -1022,7 +845,6 @@ namespace LifeGame
                     UpdateModifiedNodeTime(trvNote.SelectedNode);
                 }
             }
-            btnSave.Enabled = true;
         }
         private void tsmAddBatch_Click(object sender, EventArgs e)
         {
@@ -1163,7 +985,6 @@ namespace LifeGame
                             trvNote.SelectedNode.Nodes.Add(newNode);
                         }
                         UpdateModifiedNodeTime(trvNote.SelectedNode);
-                        btnSave.Enabled = true;
                     }
                 }
             }
@@ -1190,7 +1011,6 @@ namespace LifeGame
                 {
                     UpdateModifiedNodeTime(trvNote.SelectedNode.Parent);
                     trvNote.Nodes.Remove(trvNote.SelectedNode);
-                    btnSave.Enabled = true;
                 }
             }
         }
@@ -1211,7 +1031,6 @@ namespace LifeGame
                 {
                     UpdateModifiedNodeTime(trvNote.SelectedNode);
                     trvNote.SelectedNode.Nodes.Clear();
-                    btnSave.Enabled = true;
                 }
                 else
                 {
@@ -1232,7 +1051,6 @@ namespace LifeGame
                     ordering += 1;
                 }
                 trvNote.Nodes.Remove(trvNote.SelectedNode);
-                btnSave.Enabled = true;
             }
         }
         private void tsmUp_Click(object sender, EventArgs e)
@@ -1257,7 +1075,6 @@ namespace LifeGame
                     UpdateModifiedNodeTime(trvNote.SelectedNode);
                 }
             }
-            btnSave.Enabled = true;
         }
         private void tsmDown_Click(object sender, EventArgs e)
         {
@@ -1281,7 +1098,6 @@ namespace LifeGame
                     UpdateModifiedNodeTime(trvNote.SelectedNode);
                 }
             }
-            btnSave.Enabled = true;
         }
         private void tsmBelongTo_Click(object sender, EventArgs e)
         {
@@ -1298,7 +1114,6 @@ namespace LifeGame
                     UpdateModifiedNodeTime(trvNote.SelectedNode);
                 }
             }
-            btnSave.Enabled = true;
         }
         private void tsmIndependent_Click(object sender, EventArgs e)
         {
@@ -1316,7 +1131,6 @@ namespace LifeGame
                     UpdateModifiedNodeTime(trvNote.SelectedNode);
                 }
             }
-            btnSave.Enabled = true;
         }
         private void tsmFold_Click(object sender, EventArgs e)
         {
@@ -1387,17 +1201,6 @@ namespace LifeGame
                         txtTopic.Text = newLog;
                         trvNote.Nodes[0].Text = newLog;
 
-                        // 把G.glb里的信息更新了
-                        foreach (RNoteColor item in G.glb.lstNoteColor.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
-                        {
-                            item.Topic = newLog;
-                        }
-
-                        foreach (RNoteLog item in G.glb.lstNoteLog.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
-                        {
-                            item.Topic = newLog;
-                        }
-
                         foreach (CNote item in G.glb.lstNote.FindAll(o => o.Topic == oldTopic && o.TagTime == note.TagTime))
                         {
                             item.Topic = newLog;
@@ -1413,19 +1216,12 @@ namespace LifeGame
                             item.SubLog = item.SubLog.Replace(oldTopic, newLog);
                         }
 
-
                         // 把打开的Note的条目更新了
                         // 暂时不好改，先搁置着...
 
                         // 把note里的信息更新了
-                        foreach (RNoteColor item in lstNoteColor)
-                        {
-                            item.Topic = newLog;
-                        }
-
                         foreach (RNoteLog item in lstNoteLog)
                         {
-                            item.Topic = newLog;
                             if (item.FatherLog == oldTopic)
                             {
                                 item.FatherLog = newLog;
@@ -1441,6 +1237,10 @@ namespace LifeGame
                         LoadNoteLog();
                     }
                 }
+            }
+            if (noteType == ENoteType.Literature)
+            {
+                MessageBox.Show("Error: Later!");
             }
             else
             {
@@ -1466,7 +1266,6 @@ namespace LifeGame
                     prependNodeText(trvNote.SelectedNode, NewLog);
                 }
             }
-            btnSave.Enabled = true;
         }
         private void tsmAppend_Click(object sender, EventArgs e)
         {
@@ -1478,7 +1277,6 @@ namespace LifeGame
                     appendNodeText(trvNote.SelectedNode, NewLog);
                 }
             }
-            btnSave.Enabled = true;
         }
         private void replaceNodeText(TreeNode node, string oldString, string newString)
         {
@@ -1549,10 +1347,11 @@ namespace LifeGame
                     selectedPath = selectedPath.Replace("$LITR$>", "");
                     if (G.glb.lstLiterature.Exists(o => o.Title == selectedPath))
                     {
-                        if (M.notesOpened.Exists(o => o.note.Topic == selectedPath && o.note.NoteType == ENoteType.Literature))
+                        string litGUID = G.glb.lstLiterature.Find(o => o.Title == selectedPath).GUID;
+                        if (M.notesOpened.Exists(o => o.GUID == litGUID))
                         {
-                            M.notesOpened.Find(o => o.note.Topic == selectedPath && o.note.NoteType == ENoteType.Literature).Show();
-                            M.notesOpened.Find(o => o.note.Topic == selectedPath && o.note.NoteType == ENoteType.Literature).BringToFront();
+                            M.notesOpened.Find(o => o.GUID == litGUID).Show();
+                            M.notesOpened.Find(o => o.GUID == litGUID).BringToFront();
                         }
                         else
                         {
@@ -1563,15 +1362,15 @@ namespace LifeGame
                     }
                     else if (G.glb.lstLiterature.Exists(o => o.BibKey == selectedPath))
                     {
-                        string selectedLit = G.glb.lstLiterature.Find(o => o.BibKey == selectedPath).Title;
-                        if (M.notesOpened.Exists(o => o.note.Topic == selectedLit && o.note.NoteType == ENoteType.Literature))
+                        string litGUID = G.glb.lstLiterature.Find(o => o.BibKey == selectedPath).GUID;
+                        if (M.notesOpened.Exists(o => o.GUID == litGUID))
                         {
-                            M.notesOpened.Find(o => o.note.Topic == selectedLit && o.note.NoteType == ENoteType.Literature).Show();
-                            M.notesOpened.Find(o => o.note.Topic == selectedLit && o.note.NoteType == ENoteType.Literature).BringToFront();
+                            M.notesOpened.Find(o => o.GUID == litGUID).Show();
+                            M.notesOpened.Find(o => o.GUID == litGUID).BringToFront();
                         }
                         else
                         {
-                            frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.Title == selectedLit));
+                            frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.BibKey == selectedPath));
                             M.notesOpened.Add(frmInfoNote);
                             frmInfoNote.Show();
                         }
@@ -1583,55 +1382,46 @@ namespace LifeGame
                 }
                 else if (trvNote.SelectedNode.Text.Contains("$NOTE$>"))
                 {
-                    string selectedPath = trvNote.SelectedNode.Text.Replace("$NOTE$>", "");
-                    string[] checkNote = selectedPath.Split('@');
-                    DateTime noteDate = new DateTime();
-                    string noteTitle = "";
-                    bool tryOpenFlag = true;
-                    if (checkNote.Length != 2)
+                    string selectedItemText = trvNote.SelectedNode.Text.Replace("$NOTE$>", "");
+                    string[] split = selectedItemText.Split('@');
+                    if (split.Length != 2)
                     {
                         MessageBox.Show("Incorrect Note Format, correct format should be 'YYYY.MM.DD@NoteName'");
-                        tryOpenFlag = false;
                     }
                     else
                     {
-                        string[] dateNote = checkNote[0].Split('.');
-                        if (dateNote.Length != 3)
+                        string[] datelist = split[0].Split('.');
+                        if (datelist.Length != 3)
                         {
                             MessageBox.Show("Incorrect Note Format, correct format should be 'YYYY.MM.DD@NoteName'");
-                            tryOpenFlag = false;
                         }
                         else
                         {
-                            noteDate = new DateTime(Convert.ToInt32(dateNote[0]), Convert.ToInt32(dateNote[1]), Convert.ToInt32(dateNote[2]));
-                        }
-                    }
+                            int Year = Convert.ToInt16(datelist[0]);
+                            int Month = Convert.ToInt16(datelist[1]);
+                            int Day = Convert.ToInt16(datelist[2]);
+                            DateTime date = new DateTime(Year, Month, Day, 0, 0, 0);
 
-                    for (int i = 1; i < checkNote.Length; i++)
-                    {
-                        noteTitle = noteTitle + checkNote[i];
-                        if (i < checkNote.Length - 1)
-                        {
-                            noteTitle = noteTitle + " ";
+                            if (G.glb.lstNote.Exists(o => o.TagTime == date && o.Topic == split[1]))
+                            {
+                                MessageBox.Show("No record is found!");
+                            }
+                            else
+                            {
+                                CNote note = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == split[1]);
+                                if (M.notesOpened.Exists(o => o.GUID == note.GUID))
+                                {
+                                    M.notesOpened.Find(o => o.GUID == note.GUID).Show();
+                                    M.notesOpened.Find(o => o.GUID == note.GUID).BringToFront();
+                                }
+                                else
+                                {
+                                    frmInfoNote frmInfoNote = new frmInfoNote(note);
+                                    M.notesOpened.Add(frmInfoNote);
+                                    frmInfoNote.Show();
+                                }
+                            }
                         }
-                    }
-                    if (tryOpenFlag && G.glb.lstNote.Exists(o => o.TagTime == noteDate && o.Topic == noteTitle))
-                    {
-                        if (M.notesOpened.Exists(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate))
-                        {
-                            M.notesOpened.Find(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate).Show();
-                            M.notesOpened.Find(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate).BringToFront();
-                        }
-                        else
-                        {
-                            frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.TagTime == noteDate && o.Topic == noteTitle));
-                            M.notesOpened.Add(frmInfoNote);
-                            frmInfoNote.Show();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Cannot find record.");
                     }
                 }
                 else if (trvNote.SelectedNode.Text.Contains("$JUMP$>"))
@@ -1672,10 +1462,10 @@ namespace LifeGame
                         string[] schStartStr = schTimeStr[0].Split(':');
                         string[] schEndStr = schTimeStr[1].Split(':');
                         DateTime StartTime = new DateTime(
-                            Convert.ToInt32(noteDateTime.Year), Convert.ToInt32(noteDateTime.Month), Convert.ToInt32(noteDateTime.Day),
+                            Convert.ToInt32(diary.Date.Year), Convert.ToInt32(diary.Date.Month), Convert.ToInt32(diary.Date.Day),
                             Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), 0);
                         DateTime EndTime = new DateTime(
-                            Convert.ToInt32(noteDateTime.Year), Convert.ToInt32(noteDateTime.Month), Convert.ToInt32(noteDateTime.Day),
+                            Convert.ToInt32(diary.Date.Year), Convert.ToInt32(diary.Date.Month), Convert.ToInt32(diary.Date.Day),
                             Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), 0);
                         if (addOneDayFlag)
                         {
@@ -1739,149 +1529,6 @@ namespace LifeGame
                 catch
                 {
                     MessageBox.Show("Incorrect input format. Correct format is as follows: $SCHL$>YYYY.MM.DD@HH:MM:SS-HH:MM:SS(+1)@ScheduleName@Color[@TaskName@Where@With]");
-                }
-            }
-        }
-        private void tsmConvertToLog_Click(object sender, EventArgs e)
-        {
-            if (trvNote.SelectedNode != null && trvNote.SelectedNode.Text.Contains("$RECO$>"))
-            {
-                try
-                {
-                    string sch = trvNote.SelectedNode.Text.Replace("$RECO$>", "");
-                    string[] sp = sch.Split('@');
-                    if (sp.Length < 3)
-                    {
-                        MessageBox.Show("Incorrect input format. Correct format is as follows: $RECO$>ScheduleName@HH:MM-HH:MM(+1)@Color[@TaskName@Where@With]");
-                    }
-                    else
-                    {
-                        // FatherLog Name
-                        string LogName = sp[0];
-                        // Time
-                        bool addOneDayFlag = sp[1].Contains("(+1)");
-                        if (addOneDayFlag)
-                        {
-                            sp[1] = sp[1].Replace("(+1)", "");
-                        }
-                        string[] schTimeStr = sp[1].Split('-');
-                        string[] schStartStr = schTimeStr[0].Split(':');
-                        string[] schEndStr = schTimeStr[1].Split(':');
-                        DateTime StartTime = new DateTime(
-                            Convert.ToInt32(noteDateTime.Year), Convert.ToInt32(noteDateTime.Month), Convert.ToInt32(noteDateTime.Day),
-                            Convert.ToInt32(schStartStr[0]), Convert.ToInt32(schStartStr[1]), 0);
-                        DateTime EndTime = new DateTime(
-                            Convert.ToInt32(noteDateTime.Year), Convert.ToInt32(noteDateTime.Month), Convert.ToInt32(noteDateTime.Day),
-                            Convert.ToInt32(schEndStr[0]), Convert.ToInt32(schEndStr[1]), 0);
-                        if (addOneDayFlag)
-                        {
-                            EndTime += new TimeSpan(1, 0, 0, 0);
-                        }
-                        // Color
-                        string Color = sp[2];
-                        // Location
-                        string Location = "";
-                        if (sp.Length >= 4)
-                        {
-                            Location = sp[3];
-                        }
-                        // With
-                        string WithWho = "";
-                        if (sp.Length >= 5)
-                        {
-                            WithWho = sp[4];
-                        }
-
-                        // 判断是否能添加日程
-                        bool CanAddScheduleFlag = true;
-                        bool ReplaceExistFlag = false;
-                        if (CanAddScheduleFlag && G.glb.lstLog.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
-                        {
-                            DialogResult result = MessageBox.Show("Already have logs at that time, Do you replace?", "FatherLog", MessageBoxButtons.YesNo);
-                            switch (result)
-                            {
-                                case DialogResult.Yes:
-                                    ReplaceExistFlag = true;
-                                    break;
-                                case DialogResult.No:
-                                    CanAddScheduleFlag = false;
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-
-                        if (ReplaceExistFlag)
-                        {
-                            G.glb.lstLog.RemoveAll(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime));
-                        }
-
-                        if (CanAddScheduleFlag)
-                        {
-                            CLog newSchedule = new CLog();
-                            newSchedule.LogName = LogName;
-                            newSchedule.StartTime = StartTime;
-                            newSchedule.EndTime = EndTime;
-                            newSchedule.Location = Location;
-                            newSchedule.WithWho = WithWho;
-                            newSchedule.Color = Color;
-                            newSchedule.Alarm = true;
-                            newSchedule.AlarmTime = StartTime - new TimeSpan(0, Convert.ToInt16(5), 0);
-                            G.glb.lstLog.Add(newSchedule);
-                            MessageBox.Show("FatherLog added to record.");
-                        }
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("Incorrect input format. Correct format is as follows: $RECO$>YYYY.MM.DD@HH:MM:SS-HH:MM:SS(+1)@ScheduleName@Color[@TaskName@Where@With]");
-                }
-            }
-        }
-        private void tsmConvertToTransaction_Click(object sender, EventArgs e)
-        {
-            if (trvNote.SelectedNode != null && trvNote.SelectedNode.Text.Contains("$TRSA$>"))
-            {
-                try
-                {
-                    string transactionSeg = trvNote.SelectedNode.Text.Replace("$TRSA$>", "");
-                    transactionSeg = transactionSeg.Replace("=>", "@");
-                    string[] transactionNote = transactionSeg.Split('@');
-                    string accountFrom = transactionNote[2];
-                    string accountTo = transactionNote[3];
-
-                    bool CanSaveFlag = true;
-                    if (G.glb.lstTransaction.Exists(o => o.TagTime == noteDateTime && o.Summary == transactionNote[0]))
-                    {
-                        CanSaveFlag = false;
-                    }
-
-                    if (CanSaveFlag)
-                    {
-                        CTransaction newTransaction = new CTransaction();
-                        newTransaction.TagTime = noteDateTime;
-                        newTransaction.Summary = transactionNote[0];
-                        newTransaction.CreditAccount = transactionNote[2];
-                        newTransaction.CreditAmount = Convert.ToDouble(transactionNote[1]);
-                        newTransaction.CreditCurrency = G.glb.lstAccount.Find(o => o.AccountName == transactionNote[2]).Currency;
-                        newTransaction.DebitAccount = transactionNote[3];
-                        newTransaction.DebitAmount = Convert.ToDouble(transactionNote[1]);
-                        newTransaction.DebitCurrency = G.glb.lstAccount.Find(o => o.AccountName == transactionNote[3]).Currency;
-                        calculate C = new calculate();
-                        newTransaction.IconType = C.MoneyInOrOut(
-                            G.glb.lstAccount.Find(o => o.AccountName == transactionNote[3]).AccountType,
-                            G.glb.lstAccount.Find(o => o.AccountName == transactionNote[2]).AccountType);
-                        G.glb.lstTransaction.Add(newTransaction);
-                        MessageBox.Show("Transaction added to record.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Transaction already exist.");
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("Incorrect input format. Correct format is as follows: $TRSA$>Transaction Summary@Price@Credit Account=>Debit Account");
                 }
             }
         }
@@ -1995,9 +1642,8 @@ namespace LifeGame
         {
             plot Draw = new plot();
             picToday.Controls.Clear();
-            Draw.DrawEventController(picToday, note.TagTime.Date, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawScheduleAndLogController(picToday, note.TagTime.Date, G.glb.lstSchedule, "leftWithSupp");
-            Draw.DrawScheduleAndLogController(picToday, note.TagTime.Date, G.glb.lstLog, "rightWithSupp");
+            Draw.DrawEventController(picToday, diary.Date);
+            Draw.DrawLogController(picToday, diary.Date);
         }
         private void RefreshDailySchedule(object sender, EventArgs e)
         {
@@ -2018,8 +1664,6 @@ namespace LifeGame
             if (!lstNoteColor.Exists(o => o.Keyword == Keyword))
             {
                 RNoteColor newNoteColor = new RNoteColor();
-                //newNoteColor.Topic = txtTopic.Text;
-                //newNoteColor.TagTime = noteDateTime;
                 newNoteColor.GUID = GUID;
                 newNoteColor.Keyword = Keyword;
                 newNoteColor.Color = NoteColor;
@@ -2172,15 +1816,15 @@ namespace LifeGame
         #region 字数统计
         private void UpdateWordCount()
         {
-            int[] rootProperty = nodeProperties(trvNote.Nodes[0]);
+            int rootProperty = nodeProperties(trvNote.Nodes[0]);
             if (trvNote.SelectedNode != null)
             {
-                int[] selectedProperty = nodeProperties(trvNote.SelectedNode);
-                lblWordCount.Text = "Word Count: " + selectedProperty[0].ToString() + "/" + rootProperty[0].ToString();
+                int selectedProperty = nodeProperties(trvNote.SelectedNode);
+                lblWordCount.Text = "Word Count: " + selectedProperty.ToString() + "/" + rootProperty.ToString();
             }
             else
             {
-                lblWordCount.Text = "Word Count: 0/" + rootProperty[0].ToString();
+                lblWordCount.Text = "Word Count: 0/" + rootProperty.ToString();
             }
         }
         private int wordCount(string str)
@@ -2197,30 +1841,14 @@ namespace LifeGame
 
             return count;
         }
-        private int[] nodeProperties(TreeNode node)
+        private int nodeProperties(TreeNode node)
         {
-            int[] count = new int[] { 0, 0, 0, 0, 0 };
-            count[0] = wordCount(node.Text);
+            int count = 0;
+            count = wordCount(node.Text);
             foreach (TreeNode item in node.Nodes)
             {
-                count[1] += 1;
-                if (item.Text.Contains("$LINK$>"))
-                {
-                    count[2] += 1;
-                }
-                else if (item.Text.Contains("$NOTE$>"))
-                {
-                    count[3] += 1;
-                }
-                else if (item.Text.Contains("$LITR$>"))
-                {
-                    count[4] += 1;
-                }
-                int[] childCount = nodeProperties(item);
-                for (int i = 0; i < childCount.Length; i++)
-                {
-                    count[i] += childCount[i];
-                }
+                int childCount = nodeProperties(item);
+                count += childCount;
             }
             return count;
         }
@@ -2276,12 +1904,13 @@ namespace LifeGame
         #endregion
 
         #region Literature相关控件动作
-        private void GetTag(string strTag)
+        private void AddTag(string strTag)
         {
             if (!lsbTag.Items.Contains(strTag))
             {
                 RLiteratureTag newTag = new RLiteratureTag();
                 newTag.Tag = strTag;
+                newTag.Title = literature.Title;
                 lstLiteratureTag.Add(newTag);
                 lsbTag.Items.Add(strTag);
             }
@@ -2289,7 +1918,7 @@ namespace LifeGame
         private void tsmLitTagAdd_Click(object sender, EventArgs e)
         {
             frmAddTag frmAddTag = new frmAddTag();
-            frmAddTag.SendTag += new frmAddTag.GetTag(GetTag);
+            frmAddTag.SendTag += new frmAddTag.GetTag(AddTag);
             frmAddTag.Show();
         }
         private void tsmLitTagRemove_Click(object sender, EventArgs e)
@@ -2315,9 +1944,10 @@ namespace LifeGame
             }
             txtBibKey.Text = bibKey;
         }
-        private void GetAuthor(string strAuthor)
+        private void AddAuthor(string strAuthor)
         {
             RLiteratureAuthor newAuthor = new RLiteratureAuthor();
+            newAuthor.Title = literature.Title;
             newAuthor.Author = strAuthor;
             newAuthor.Ordering = lsbAuthor.Items.Count;
             lstLiteratureAuthor.Add(newAuthor);
@@ -2327,7 +1957,7 @@ namespace LifeGame
         private void tsmAuthorAdd_Click(object sender, EventArgs e)
         {
             frmAddAuthor frmAddAuthor = new frmAddAuthor();
-            frmAddAuthor.SendAuthor += new frmAddAuthor.GetAuthor(GetAuthor);
+            frmAddAuthor.SendAuthor += new frmAddAuthor.GetAuthor(AddAuthor);
             frmAddAuthor.Show();
         }
         private void tsmAuthorRemove_Click(object sender, EventArgs e)
@@ -2385,13 +2015,13 @@ namespace LifeGame
             // So that we don't need to care if the BibTeX is generated for new literature log or existing literature log
             // Anyway, BibTeX is just a set of attribution and eventually become a string
             CLiterature tmpLiterature = new CLiterature();
-            tmpLiterature.Title = txtTitle.Text;
+            tmpLiterature.Title = txtTopic.Text;
             tmpLiterature.BibKey = txtBibKey.Text;
             tmpLiterature.JournalOrConferenceName = cbxJournalConference.Text;
 
-            if (txtTitle.Enabled == false)
+            if (txtTopic.Enabled == false)
             {
-                tmpLiterature.DateAdded = G.glb.lstLiterature.Find(o => o.Title == txtTitle.Text).DateAdded;
+                tmpLiterature.DateAdded = G.glb.lstLiterature.Find(o => o.Title == txtTopic.Text).DateAdded;
             }
             else
             {
@@ -2470,14 +2100,14 @@ namespace LifeGame
         }
         private void btnGoogleScholar_Click(object sender, EventArgs e)
         {
-            string url = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C33&q=" + txtTitle.Text.Replace(" ", "+") + "&btnG=";
+            string url = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C33&q=" + txtTopic.Text.Replace(" ", "+") + "&btnG=";
             System.Diagnostics.Process.Start("chrome.exe", url);
         }
         private void btnFullText_Click(object sender, EventArgs e)
         {
             try
             {
-                string path = "Literature\\" + txtTitle.Text + ".pdf";
+                string path = "Literature\\" + txtTopic.Text + ".pdf";
                 path = path.Replace(":", "-");
                 path = "D:\\" + path;
                 System.Diagnostics.Process.Start(path);
@@ -2486,6 +2116,163 @@ namespace LifeGame
             {
                 MessageBox.Show("Cannot find full text in 'D:\\Literature\\'.");
             }
+        }
+        #endregion
+
+        #region LitReview相关（尚未开始）
+        public class CJournalConf
+        {
+            public string Name;
+            public string Abbr;
+            public string Description;
+            public string Publisher;
+        }
+        //记录Journal Information，关闭/打开窗口时更新
+        List<CJournalConf> lstJournal = new List<CJournalConf>();
+        List<string> lstShownTag = new List<string>();
+        private void FetchJournalInfo()
+        {
+            string JourNoteGUID = G.glb.lstNote.Find(o => o.Topic == JournalNoteName).GUID;
+            List<RNoteLog> jours = G.glb.lstNoteLog.FindAll(o => o.GUID == JourNoteGUID).ToList();
+            foreach (RNoteLog item in jours)
+            {
+                CJournalConf journal = new CJournalConf();
+                journal.Name = item.SubLog;
+                // 得到具体的内容
+                List<RNoteLog> details = G.glb.lstNoteLog.FindAll(o => o.GUID == JourNoteGUID && o.FatherLog == journal.Name).ToList();
+                foreach (RNoteLog info in details)
+                {
+                    string text = info.SubLog;
+                    string[] split = text.Split(':');
+                    // 如果有Abbr
+                    if (split[0] == "Abbr" && split.Length > 1)
+                    {
+                        journal.Abbr = split[1].Trim();
+                    }
+                    // 如果有Description
+                    if (split[0] == "Desc" && split.Length > 1)
+                    {
+                        journal.Description = split[1].Trim();
+                    }
+                    // 如果有Publisher
+                    if (split[0] == "Publisher" && split.Length > 1)
+                    {
+                        journal.Publisher = split[1].Trim();
+                    }
+                }
+                lstJournal.Add(journal);
+            }
+        }
+        private void LoadLiteratureList(List<string> loadedLits)
+        {
+            dgvLiterature.Rows.Clear();
+            dgvLiterature.ShowCellToolTips = true;
+            FetchJournalInfo();
+            foreach (string title in loadedLits)
+            {
+                if (G.glb.lstLiterature.Exists(o => o.Title == title))
+                {
+                    string starStr = "";
+                    if (G.glb.lstLiterature.Find(o => o.Title == title).Star)
+                    {
+                        starStr = "√";
+                    }
+                    string abbr = "";
+                    if (lstJournal.Exists(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
+                    {
+                        abbr = lstJournal.Find(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName).Abbr;
+                    }
+                    string publisher = "";
+                    if (lstJournal.Exists(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName))
+                    {
+                        publisher = lstJournal.Find(o => o.Name == G.glb.lstLiterature.Find(p => p.Title == title).JournalOrConferenceName).Publisher;
+                    }
+                    int year = G.glb.lstLiterature.Find(o => o.Title == title).PublishYear;
+                    string litType = "";
+                    switch (G.glb.lstLiterature.Find(o => o.Title == title).BibEntry)
+                    {
+                        case EBibEntry.Article:
+                            litType = "J";
+                            break;
+                        case EBibEntry.Book:
+                            litType = "M";
+                            break;
+                        case EBibEntry.Booklet:
+                            litType = "M";
+                            break;
+                        case EBibEntry.Conference:
+                            litType = "C";
+                            break;
+                        case EBibEntry.Inbook:
+                            litType = "M";
+                            break;
+                        case EBibEntry.Incollection:
+                            litType = "A";
+                            break;
+                        case EBibEntry.Manual:
+                            litType = "M";
+                            break;
+                        case EBibEntry.Mastersthesis:
+                            litType = "D";
+                            break;
+                        case EBibEntry.Misc:
+                            litType = "M";
+                            break;
+                        case EBibEntry.Phdthesis:
+                            litType = "D";
+                            break;
+                        case EBibEntry.Proceedings:
+                            litType = "C";
+                            break;
+                        case EBibEntry.Techreport:
+                            litType = "R";
+                            break;
+                        case EBibEntry.Unpublished:
+                            litType = "M";
+                            break;
+                        default:
+                            break;
+                    }
+                    DateTime addedDate = G.glb.lstLiterature.Find(o => o.Title == title).DateAdded;
+                    DateTime lastModifyDate = G.glb.lstLiterature.Find(o => o.Title == title).DateModified;
+
+                    dgvLiterature.Rows.Add(
+                        starStr,
+                        title,
+                        abbr,
+                        publisher,
+                        Convert.ToString(year),
+                        litType,
+                        addedDate.ToString("yyyy/MM/dd"),
+                        lastModifyDate.ToString("yyyy/MM/dd"));
+
+                    lblNumFound.Text = Convert.ToString(dgvLiterature.Rows.Count) + " result(s) found";
+                }
+            }
+        }
+        private void tsmViewLiterature_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void tsmRemoveLiterature_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void addTag2Multi_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void tsmRemoveTagFromMulti_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void tsmAddToLit_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void tsmRemoveFromLit_Click(object sender, EventArgs e)
+        {
+
         }
         #endregion
 
@@ -2499,16 +2286,12 @@ namespace LifeGame
         {
             if (txtTopic.Text != "Daily Report")
             {
-                tsmConvertToLog.Visible = false;
                 tsmConvertToSchedule.Visible = false;
-                tsmConvertToTransaction.Visible = false;
                 tspDaily.Visible = false;
             }
             else
             {
-                tsmConvertToLog.Visible = true;
                 tsmConvertToSchedule.Visible = true;
-                tsmConvertToTransaction.Visible = true;
                 tspDaily.Visible = true;
             }
 
@@ -2577,22 +2360,6 @@ namespace LifeGame
             else
             {
                 tsmConvertToSchedule.Enabled = false;
-            }
-            if (trvNote.SelectedNode.Text.Contains("$RECO$>"))
-            {
-                tsmConvertToLog.Enabled = true;
-            }
-            else
-            {
-                tsmConvertToLog.Enabled = false;
-            }
-            if (trvNote.SelectedNode.Text.Contains("$TRSA$>"))
-            {
-                tsmConvertToTransaction.Enabled = true;
-            }
-            else
-            {
-                tsmConvertToTransaction.Enabled = false;
             }
             if (trvNote.SelectedNode.Text.Contains("$LITR$>"))
             {
@@ -2699,8 +2466,6 @@ namespace LifeGame
             {
                 tsmGoto_Click(trvNote, e);
                 tsmConvertToSchedule_Click(trvNote, e);
-                tsmConvertToLog_Click(trvNote, e);
-                tsmConvertToTransaction_Click(trvNote, e);
             }
             // 编辑节点
             else if (e.Control && e.KeyCode == Keys.E)
@@ -2756,13 +2521,14 @@ namespace LifeGame
             // 保存
             else if (e.Control && e.KeyCode == Keys.S)
             {
-                if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport || noteType == ENoteType.System)
+                if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport)
                 {
                     SaveNote();
                 }
                 if (noteType == ENoteType.Literature)
                 {
                     SaveLiterature();
+                    SaveNote();
                 }
             }
             // 返回
@@ -2826,9 +2592,7 @@ namespace LifeGame
                 && !node.Text.Contains("$NOTE$>")
                 && !node.Text.Contains("$LINK$>")
                 && !node.Text.Contains("$JUMP$>")
-                && !node.Text.Contains("$SCHL$>")
-                && !node.Text.Contains("$RECO$>")
-                && !node.Text.Contains("$TSRA$>"))
+                && !node.Text.Contains("$SCHL$>"))
             {
                 if (place == "Front")
                 {
@@ -3048,7 +2812,7 @@ namespace LifeGame
             }
             else
             {
-                if (noteType == ENoteType.Note || noteType == ENoteType.System)
+                if (noteType == ENoteType.Note)
                 {
                     tblNote.RowStyles[1].Height = 26;
                     tblNote.RowStyles[2].Height = 0;
@@ -3069,17 +2833,6 @@ namespace LifeGame
                     tblNote.RowStyles[6].Height = 100;
                     splitContainer1.Panel1Collapsed = false;
                     splitContainer2.Panel1Collapsed = false;
-                }
-                else if (noteType == ENoteType.LitReview)
-                {
-                    tblNote.RowStyles[1].Height = 26;
-                    tblNote.RowStyles[2].Height = 0;
-                    tblNote.RowStyles[3].Height = 0;
-                    tblNote.RowStyles[4].Height = 0;
-                    tblNote.RowStyles[5].Height = 0;
-                    tblNote.RowStyles[6].Height = 100;
-                    splitContainer1.Panel1Collapsed = true;
-                    splitContainer2.Panel1Collapsed = true;
                 }
                 else if (noteType == ENoteType.Literature)
                 {
@@ -3124,18 +2877,34 @@ namespace LifeGame
                 }
                 else if (trvShare.SelectedNode.Text.Contains("$LITR$>"))
                 {
-                    string selectedPath = trvShare.SelectedNode.Text.Split('@')[0];
+                    string selectedPath = trvNote.SelectedNode.Text.Split('@')[0];
                     selectedPath = selectedPath.Replace("$LITR$>", "");
                     if (G.glb.lstLiterature.Exists(o => o.Title == selectedPath))
                     {
-                        if (M.notesOpened.Exists(o => o.note.Topic == selectedPath && o.note.NoteType == ENoteType.Literature))
+                        string litGUID = G.glb.lstLiterature.Find(o => o.Title == selectedPath).GUID;
+                        if (M.notesOpened.Exists(o => o.GUID == litGUID))
                         {
-                            M.notesOpened.Find(o => o.note.Topic == selectedPath && o.note.NoteType == ENoteType.Literature).Show();
-                            M.notesOpened.Find(o => o.note.Topic == selectedPath && o.note.NoteType == ENoteType.Literature).BringToFront();
+                            M.notesOpened.Find(o => o.GUID == litGUID).Show();
+                            M.notesOpened.Find(o => o.GUID == litGUID).BringToFront();
                         }
                         else
                         {
                             frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.Title == selectedPath));
+                            M.notesOpened.Add(frmInfoNote);
+                            frmInfoNote.Show();
+                        }
+                    }
+                    else if (G.glb.lstLiterature.Exists(o => o.BibKey == selectedPath))
+                    {
+                        string litGUID = G.glb.lstLiterature.Find(o => o.BibKey == selectedPath).GUID;
+                        if (M.notesOpened.Exists(o => o.GUID == litGUID))
+                        {
+                            M.notesOpened.Find(o => o.GUID == litGUID).Show();
+                            M.notesOpened.Find(o => o.GUID == litGUID).BringToFront();
+                        }
+                        else
+                        {
+                            frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstLiterature.Find(o => o.BibKey == selectedPath));
                             M.notesOpened.Add(frmInfoNote);
                             frmInfoNote.Show();
                         }
@@ -3147,55 +2916,46 @@ namespace LifeGame
                 }
                 else if (trvShare.SelectedNode.Text.Contains("$NOTE$>"))
                 {
-                    string selectedPath = trvShare.SelectedNode.Text.Replace("$NOTE$>", "");
-                    string[] checkNote = selectedPath.Split('@');
-                    DateTime noteDate = new DateTime();
-                    string noteTitle = "";
-                    bool tryOpenFlag = true;
-                    if (checkNote.Length != 2)
+                    string selectedItemText = trvShare.SelectedNode.Text.Replace("$NOTE$>", "");
+                    string[] split = selectedItemText.Split('@');
+                    if (split.Length != 2)
                     {
-                        MessageBox.Show("Incorrect Note Format, correct format should be 'YYYY.MM.DD@Note'");
-                        tryOpenFlag = false;
+                        MessageBox.Show("Incorrect Note Format, correct format should be 'YYYY.MM.DD@NoteName'");
                     }
                     else
                     {
-                        string[] dateNote = checkNote[0].Split('.');
-                        if (dateNote.Length != 3)
+                        string[] datelist = split[0].Split('.');
+                        if (datelist.Length != 3)
                         {
-                            MessageBox.Show("Incorrect Note Format, correct format should be 'YYYY.MM.DD@Note'");
-                            tryOpenFlag = false;
+                            MessageBox.Show("Incorrect Note Format, correct format should be 'YYYY.MM.DD@NoteName'");
                         }
                         else
                         {
-                            noteDate = new DateTime(Convert.ToInt32(dateNote[0]), Convert.ToInt32(dateNote[1]), Convert.ToInt32(dateNote[2]));
-                        }
-                    }
+                            int Year = Convert.ToInt16(datelist[0]);
+                            int Month = Convert.ToInt16(datelist[1]);
+                            int Day = Convert.ToInt16(datelist[2]);
+                            DateTime date = new DateTime(Year, Month, Day, 0, 0, 0);
 
-                    for (int i = 1; i < checkNote.Length; i++)
-                    {
-                        noteTitle = noteTitle + checkNote[i];
-                        if (i < checkNote.Length - 1)
-                        {
-                            noteTitle = noteTitle + " ";
+                            if (G.glb.lstNote.Exists(o => o.TagTime == date && o.Topic == split[1]))
+                            {
+                                MessageBox.Show("No record is found!");
+                            }
+                            else
+                            {
+                                CNote note = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == split[1]);
+                                if (M.notesOpened.Exists(o => o.GUID == note.GUID))
+                                {
+                                    M.notesOpened.Find(o => o.GUID == note.GUID).Show();
+                                    M.notesOpened.Find(o => o.GUID == note.GUID).BringToFront();
+                                }
+                                else
+                                {
+                                    frmInfoNote frmInfoNote = new frmInfoNote(note);
+                                    M.notesOpened.Add(frmInfoNote);
+                                    frmInfoNote.Show();
+                                }
+                            }
                         }
-                    }
-                    if (tryOpenFlag && G.glb.lstNote.Exists(o => o.TagTime == noteDate && o.Topic == noteTitle))
-                    {
-                        if (M.notesOpened.Exists(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate))
-                        {
-                            M.notesOpened.Find(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate).Show();
-                            M.notesOpened.Find(o => o.note.Topic == noteTitle && o.note.TagTime == noteDate).BringToFront();
-                        }
-                        else
-                        {
-                            frmInfoNote frmInfoNote = new frmInfoNote(G.glb.lstNote.Find(o => o.TagTime == noteDate && o.Topic == noteTitle));
-                            M.notesOpened.Add(frmInfoNote);
-                            frmInfoNote.Show();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Cannot find record.");
                     }
                 }
                 else if (trvShare.SelectedNode.Text.Contains("$JUMP$>"))
@@ -3232,7 +2992,7 @@ namespace LifeGame
         }
         private void btnPrevDate_Click(object sender, EventArgs e)
         {
-            DateTime prevDate = note.TagTime.Date.AddDays(-1);
+            DateTime prevDate = diary.Date.AddDays(-1);
             if (!G.glb.lstDiary.Exists(o => o.Date == prevDate))
             {
                 CDiary diary = new CDiary();
@@ -3256,12 +3016,11 @@ namespace LifeGame
                 M.notesOpened.Add(frmInfoNote);
                 frmInfoNote.Show();
             }
-
             Dispose();
         }
         private void btnNextDate_Click(object sender, EventArgs e)
         {
-            DateTime nextDate = note.TagTime.Date.AddDays(+1);
+            DateTime nextDate = diary.Date.Date.AddDays(+1);
             if (!G.glb.lstDiary.Exists(o => o.Date == nextDate))
             {
                 CDiary diary = new CDiary();
@@ -3285,7 +3044,6 @@ namespace LifeGame
                 M.notesOpened.Add(frmInfoNote);
                 frmInfoNote.Show();
             }
-
             Dispose();
         }
         #endregion
@@ -3311,7 +3069,7 @@ namespace LifeGame
             if (M.shownLits.Count > 0)
             {
                 CLiterature prevLit = new CLiterature();
-                int litIndex = M.shownLits.FindIndex(o => o == txtTitle.Text);
+                int litIndex = M.shownLits.FindIndex(o => o == txtTopic.Text);
                 if (litIndex == -1)
                 {
                     prevLit = G.glb.lstLiterature.Find(o => o.Title == M.shownLits[0]);
@@ -3329,7 +3087,7 @@ namespace LifeGame
                 M.notesOpened.Add(frmInfoNote);
                 frmInfoNote.Show();
 
-                M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
+                M.notesOpened.RemoveAll(o => o.GUID == GUID);
                 SaveLiterature();
                 Dispose();
             }
@@ -3339,7 +3097,7 @@ namespace LifeGame
             if (M.shownLits.Count > 0)
             {
                 CLiterature nextLit = new CLiterature();
-                int litIndex = M.shownLits.FindIndex(o => o == txtTitle.Text);
+                int litIndex = M.shownLits.FindIndex(o => o == txtTopic.Text);
                 if (litIndex == -1)
                 {
                     nextLit = G.glb.lstLiterature.Find(o => o.Title == M.shownLits[0]);
@@ -3357,27 +3115,25 @@ namespace LifeGame
                 M.notesOpened.Add(frmInfoNote);
                 frmInfoNote.Show();
 
-                M.notesOpened.RemoveAll(o => o.note.Topic == note.Topic && o.note.TagTime == note.TagTime);
+                M.notesOpened.RemoveAll(o => o.GUID == GUID);
                 SaveLiterature();
                 Dispose();
             }
         }
-
         #endregion
 
         #region IO，以及复制粘贴
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport || noteType == ENoteType.System || noteType == ENoteType.LitReview)
+            if (noteType == ENoteType.Note || noteType == ENoteType.DailyReport)
             {
                 SaveNote();
             }
             if (noteType == ENoteType.Literature)
             {
                 SaveLiterature();
+                SaveNote();
             }
-            txtTopic.Enabled = false;
-            btnSave.Enabled = false;
         }
         private void btnWrite_Click(object sender, EventArgs e)
         {
@@ -3391,7 +3147,6 @@ namespace LifeGame
                 {
                     file.WriteLine(log);
                 }
-
                 MessageBox.Show("Write notes to " + txtFile + ".txt");
             }
         }
@@ -3547,25 +3302,25 @@ namespace LifeGame
         }
         private TreeNode createLitNoteLogNode()
         {
-            TreeNode rootNode = new TreeNode(note.Topic, 0, 0);
-            rootNode.Name = note.GUID;
-            rootNode.Text = note.Topic;
+            TreeNode rootNode = new TreeNode(literature.Title, 0, 0);
+            rootNode.Name = literature.GUID;
+            rootNode.Text = literature.Title;
 
             TreeNode metaNode = new TreeNode("meta", 0, 0);
             metaNode.Name = Guid.NewGuid().ToString();
 
             TreeNode yearNode = new TreeNode("year", 0, 0);
             yearNode.Name = Guid.NewGuid().ToString();
-            yearNode.Text = "year: " + G.glb.lstLiterature.Find(o => o.Title == note.Topic).PublishYear.ToString();
+            yearNode.Text = "year: " + G.glb.lstLiterature.Find(o => o.Title == literature.Title).PublishYear.ToString();
             metaNode.Nodes.Add(yearNode);
 
             TreeNode jourNode = new TreeNode("", 0, 0);
             jourNode.Name = Guid.NewGuid().ToString();
-            jourNode.Text = "jourConf: " + G.glb.lstLiterature.Find(o => o.Title == note.Topic).JournalOrConferenceName;
+            jourNode.Text = "jourConf: " + G.glb.lstLiterature.Find(o => o.Title == literature.Title).JournalOrConferenceName;
             metaNode.Nodes.Add(jourNode);
 
             List<RLiteratureAuthor> authors = new List<RLiteratureAuthor>();
-            authors = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == note.Topic).ToList();
+            authors = G.glb.lstLiteratureAuthor.FindAll(o => o.Title == literature.Title).ToList();
             foreach (RLiteratureAuthor author in authors)
             {
                 TreeNode authorNode = new TreeNode(author.Author, 0, 0);
@@ -3578,7 +3333,7 @@ namespace LifeGame
             tagRootNode.Name = Guid.NewGuid().ToString();
 
             List<RLiteratureTag> tags = new List<RLiteratureTag>();
-            tags = G.glb.lstLiteratureTag.FindAll(o => o.Title == note.Topic).ToList();
+            tags = G.glb.lstLiteratureTag.FindAll(o => o.Title == literature.Title).ToList();
             foreach (RLiteratureTag tag in tags)
             {
                 TreeNode tagNode = new TreeNode(tag.Tag, 0, 0);
@@ -3598,13 +3353,13 @@ namespace LifeGame
                     TreeNode sub = new TreeNode(tr.Text, 0, 0);
                     sub.Name = tr.Name;
                     sub.Text = tr.Text;
-                    LoadChildNoteLog(sub, note.Topic);
+                    LoadChildNoteLog(sub, literature.Title);
                     sub.Name = Guid.NewGuid().ToString();
                     rootNode.Nodes.Add(sub);
                 }
             }
 
-            rootNode.Text = "$LITR$>" + note.Topic;
+            rootNode.Text = "$LITR$>" + literature.Title;
             rootNode.Name = Guid.NewGuid().ToString();
             rootNode.ForeColor = Color.Brown;
             rootNode.NodeFont = new Font(Font, FontStyle.Underline);
@@ -3612,9 +3367,12 @@ namespace LifeGame
         }
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            TreeNode litNode = createLitNoteLogNode();
-            M.mem.copiedNodes.Clear();
-            copyNode(litNode);
+            if (noteType == ENoteType.Literature)
+            {
+                TreeNode litNode = createLitNoteLogNode();
+                M.mem.copiedNodes.Clear();
+                copyNode(litNode);
+            }
         }
         private void tsmCopyFile_Click(object sender, EventArgs e)
         {
@@ -3673,6 +3431,9 @@ namespace LifeGame
                 catch { }
             }
         }
-        #endregion 
+
+        #endregion
+
+
     }
 }

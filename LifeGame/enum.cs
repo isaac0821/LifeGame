@@ -50,7 +50,5 @@ namespace LifeGame
         Note = 0,
         DailyReport = 1,
         Literature = 2,
-        LitReview = 3,
-        System = 4,
     }
 }

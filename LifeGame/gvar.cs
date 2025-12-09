@@ -15,7 +15,7 @@ namespace LifeGame
         // Logs and Events
         public List<CDiary> lstDiary = new List<CDiary>();
         public List<CLog> lstSchedule = new List<CLog>();
-        public List<CLog> lstLog = new List<CLog>();
+        //public List<CLog> lstLog = new List<CLog>();
         public List<CEvent> lstEvent = new List<CEvent>();
 
         // Finance

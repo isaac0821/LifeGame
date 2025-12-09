@@ -78,20 +78,18 @@
             this.picSun = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.chkShowSchedule = new System.Windows.Forms.CheckBox();
-            this.chkShowLog = new System.Windows.Forms.CheckBox();
-            this.chkMine = new System.Windows.Forms.CheckBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.nfiMain = new System.Windows.Forms.NotifyIcon(this.components);
             this.cmsTool = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmToday = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmToolNewNote = new System.Windows.Forms.ToolStripMenuItem();
             this.findNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmToolLiterature = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmToolNewNote = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmToolNewLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmToolLiterature = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMain.SuspendLayout();
             this.stsMain.SuspendLayout();
@@ -293,7 +291,7 @@
             // tsmAddEvent
             // 
             this.tsmAddEvent.Name = "tsmAddEvent";
-            this.tsmAddEvent.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddEvent.Size = new System.Drawing.Size(160, 22);
             this.tsmAddEvent.Text = "Add Event";
             this.tsmAddEvent.Click += new System.EventHandler(this.tsmAddEvent_Click);
             // 
@@ -303,7 +301,7 @@
             this.tsmAddNewTransaction,
             this.tsmConvertTransactionDue});
             this.tsmAddTransaction.Name = "tsmAddTransaction";
-            this.tsmAddTransaction.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddTransaction.Size = new System.Drawing.Size(160, 22);
             this.tsmAddTransaction.Text = "Add Transaction";
             // 
             // tsmAddNewTransaction
@@ -323,7 +321,7 @@
             // tsmAddBudget
             // 
             this.tsmAddBudget.Name = "tsmAddBudget";
-            this.tsmAddBudget.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddBudget.Size = new System.Drawing.Size(160, 22);
             this.tsmAddBudget.Text = "Add Budget";
             this.tsmAddBudget.Click += new System.EventHandler(this.tsmAddBudget_Click);
             // 
@@ -338,7 +336,7 @@
             // tsmAddNote
             // 
             this.tsmAddNote.Name = "tsmAddNote";
-            this.tsmAddNote.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddNote.Size = new System.Drawing.Size(125, 22);
             this.tsmAddNote.Text = "Add Note";
             this.tsmAddNote.Click += new System.EventHandler(this.tsmAddNote_Click);
             // 
@@ -576,20 +574,14 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 7;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
+            this.tableLayoutPanel3.ColumnCount = 4;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
-            this.tableLayoutPanel3.Controls.Add(this.dtpDate, 6, 0);
-            this.tableLayoutPanel3.Controls.Add(this.chkShowSchedule, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.chkShowLog, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.chkMine, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtSearch, 4, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnSearch, 5, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dtpDate, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtSearch, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnSearch, 2, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -607,46 +599,6 @@
             this.dtpDate.Size = new System.Drawing.Size(96, 20);
             this.dtpDate.TabIndex = 0;
             this.dtpDate.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
-            // 
-            // chkShowSchedule
-            // 
-            this.chkShowSchedule.AutoSize = true;
-            this.chkShowSchedule.Checked = true;
-            this.chkShowSchedule.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkShowSchedule.Location = new System.Drawing.Point(3, 3);
-            this.chkShowSchedule.Name = "chkShowSchedule";
-            this.chkShowSchedule.Size = new System.Drawing.Size(107, 24);
-            this.chkShowSchedule.TabIndex = 3;
-            this.chkShowSchedule.Text = "Show Schedule";
-            this.chkShowSchedule.UseVisualStyleBackColor = true;
-            this.chkShowSchedule.CheckedChanged += new System.EventHandler(this.chkShowSchedule_CheckedChanged);
-            // 
-            // chkShowLog
-            // 
-            this.chkShowLog.AutoSize = true;
-            this.chkShowLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkShowLog.Location = new System.Drawing.Point(116, 3);
-            this.chkShowLog.Name = "chkShowLog";
-            this.chkShowLog.Size = new System.Drawing.Size(81, 24);
-            this.chkShowLog.TabIndex = 4;
-            this.chkShowLog.Text = "Show FatherLog";
-            this.chkShowLog.UseVisualStyleBackColor = true;
-            this.chkShowLog.CheckedChanged += new System.EventHandler(this.chkShowLog_CheckedChanged);
-            // 
-            // chkMine
-            // 
-            this.chkMine.AutoSize = true;
-            this.chkMine.Checked = true;
-            this.chkMine.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkMine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkMine.Location = new System.Drawing.Point(203, 3);
-            this.chkMine.Name = "chkMine";
-            this.chkMine.Size = new System.Drawing.Size(82, 24);
-            this.chkMine.TabIndex = 5;
-            this.chkMine.Text = "Show Mine";
-            this.chkMine.UseVisualStyleBackColor = true;
-            this.chkMine.CheckedChanged += new System.EventHandler(this.chkMoney_CheckedChanged);
             // 
             // txtSearch
             // 
@@ -680,62 +632,70 @@
             this.cmsTool.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmToday,
             this.toolStripSeparator1,
-            this.tsmToolNewNote,
             this.findNoteToolStripMenuItem,
             this.toolStripSeparator6,
-            this.tsmToolLiterature,
+            this.tsmToolNewNote,
+            this.tsmToolNewLiterature,
             this.toolStripSeparator5,
+            this.tsmToolLiterature,
             this.exitToolStripMenuItem});
             this.cmsTool.Name = "cmsTool";
-            this.cmsTool.Size = new System.Drawing.Size(136, 132);
+            this.cmsTool.Size = new System.Drawing.Size(181, 176);
             // 
             // tsmToday
             // 
             this.tsmToday.Name = "tsmToday";
-            this.tsmToday.Size = new System.Drawing.Size(135, 22);
+            this.tsmToday.Size = new System.Drawing.Size(180, 22);
             this.tsmToday.Text = "Today";
             this.tsmToday.Click += new System.EventHandler(this.tsmToday_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(132, 6);
-            // 
-            // tsmToolNewNote
-            // 
-            this.tsmToolNewNote.Name = "tsmToolNewNote";
-            this.tsmToolNewNote.Size = new System.Drawing.Size(135, 22);
-            this.tsmToolNewNote.Text = "New Note";
-            this.tsmToolNewNote.Click += new System.EventHandler(this.tsmToolNewNote_Click);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // findNoteToolStripMenuItem
             // 
             this.findNoteToolStripMenuItem.Name = "findNoteToolStripMenuItem";
-            this.findNoteToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.findNoteToolStripMenuItem.Text = "Find Note...";
+            this.findNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findNoteToolStripMenuItem.Text = "Find...";
             this.findNoteToolStripMenuItem.Click += new System.EventHandler(this.findNoteToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(132, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
             // 
-            // tsmToolLiterature
+            // tsmToolNewNote
             // 
-            this.tsmToolLiterature.Name = "tsmToolLiterature";
-            this.tsmToolLiterature.Size = new System.Drawing.Size(135, 22);
-            this.tsmToolLiterature.Text = "Literature";
-            this.tsmToolLiterature.Click += new System.EventHandler(this.tsmToolLiterature_Click);
+            this.tsmToolNewNote.Name = "tsmToolNewNote";
+            this.tsmToolNewNote.Size = new System.Drawing.Size(180, 22);
+            this.tsmToolNewNote.Text = "New Note";
+            this.tsmToolNewNote.Click += new System.EventHandler(this.tsmToolNewNote_Click);
+            // 
+            // tsmToolNewLiterature
+            // 
+            this.tsmToolNewLiterature.Name = "tsmToolNewLiterature";
+            this.tsmToolNewLiterature.Size = new System.Drawing.Size(180, 22);
+            this.tsmToolNewLiterature.Text = "New Literature";
+            this.tsmToolNewLiterature.Click += new System.EventHandler(this.tsmToolNewLiterature_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(132, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            // 
+            // tsmToolLiterature
+            // 
+            this.tsmToolLiterature.Name = "tsmToolLiterature";
+            this.tsmToolLiterature.Size = new System.Drawing.Size(180, 22);
+            this.tsmToolLiterature.Text = "Literature";
+            this.tsmToolLiterature.Click += new System.EventHandler(this.tsmToolLiterature_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -800,8 +760,6 @@
         private System.Windows.Forms.Label lblFriday;
         private System.Windows.Forms.Label lblSaturday;
         private System.Windows.Forms.Label lblSunday;
-        private System.Windows.Forms.CheckBox chkShowSchedule;
-        private System.Windows.Forms.CheckBox chkShowLog;
         private System.Windows.Forms.PictureBox picMon;
         private System.Windows.Forms.PictureBox picTue;
         private System.Windows.Forms.PictureBox picWed;
@@ -814,7 +772,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmAddLog;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem tsmAddInfoMine;
-        private System.Windows.Forms.CheckBox chkMine;
         private System.Windows.Forms.ToolStripMenuItem literatureLToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem tsmDeleteSchedule;
@@ -845,6 +802,7 @@
         private System.Windows.Forms.ToolStripMenuItem findNoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmToday;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem tsmToolNewLiterature;
     }
 }
 

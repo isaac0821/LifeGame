@@ -101,18 +101,11 @@ namespace LifeGame
                     switch (result)
                     {
                         case DialogResult.Yes:
-                            if (G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic).NoteType == ENoteType.Note)
-                            {
-                                string GUID = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic).GUID;
-                                G.glb.lstNote.RemoveAll(o => o.GUID == GUID);
-                                G.glb.lstNoteColor.RemoveAll(o => o.GUID == GUID);
-                                G.glb.lstNoteLog.RemoveAll(o => o.GUID == GUID);
-                                RefreshNoteList();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Cannot remove literature note from here.");
-                            }
+                            string GUID = G.glb.lstNote.Find(o => o.TagTime == date && o.Topic == NoteTopic).GUID;
+                            G.glb.lstNote.RemoveAll(o => o.GUID == GUID);
+                            G.glb.lstNoteColor.RemoveAll(o => o.GUID == GUID);
+                            G.glb.lstNoteLog.RemoveAll(o => o.GUID == GUID);
+                            RefreshNoteList();
                             break;
                         case DialogResult.No:
                             break;
@@ -131,7 +124,7 @@ namespace LifeGame
         {
             try
             {
-                string selectedItemText = lsbNote.SelectedItem.ToString();
+                string selectedItemText = lsbLit.SelectedItem.ToString();
                 CLiterature lit = G.glb.lstLiterature.Find(o =>  o.Title == selectedItemText);
                 if (M.notesOpened.Exists(o => o.GUID == lit.GUID))
                 {

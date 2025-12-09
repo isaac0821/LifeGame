@@ -103,68 +103,17 @@ namespace LifeGame
             try
             {
                 Deserialize();
-                //G.glb.lstNote.RemoveAll(o => o.Topic == null);
-
-                //foreach (RNoteColor item in G.glb.lstNoteColor)
-                //{
-                //    if (G.glb.lstNote.Exists(o => o.Topic == item.Topic && o.TagTime == item.TagTime))
-                //    {
-                //        item.GUID = G.glb.lstNote.Find(o => o.Topic == item.Topic && o.TagTime == item.TagTime).GUID;
-                //    }
-                //}
-
-                //foreach (CLiterature item in G.glb.lstLiterature)
-                //{
-                //    item.FatherGUID = G.glb.lstNote.Find(o => o.Topic == item.Title).FatherGUID;
-                //}
-
-                //G.glb.lstDiary = new List<CDiary>();
-                //foreach (CNote note in G.glb.lstNote)
-                //{
-                //    if (note.NoteType == ENoteType.DailyReport)
-                //    {
-                //        CDiary dr = new CDiary();
-                //        dr.Date = note.TagTime;
-                //        dr.FatherGUID = note.FatherGUID;
-                //        G.glb.lstDiary.Add(dr);
-                //    }
-                //}
-
-                //foreach (CNote item in G.glb.lstNote)
-                //{
-                //    if (item.NoteType == ENoteType.LitReview)
-                //    {
-                //        if (item.Topic.Contains("SysNote"))
-                //        {
-                //            item.NoteType = ENoteType.System;
-                //        }
-                //        else
-                //        {
-                //            item.NoteType = ENoteType.Note;
-                //        }
-                //    }
-                //    //item.GUID = item.GUID;
-                //    //item.FatherGUID = item.FatherGUID;
-                //}
             }
             catch (Exception)
             {
                 MessageBox.Show("Can not find an existing data file, a new empty data file is auto-created");
-                // Event
                 G.glb.lstEvent = new List<CEvent>();
-
-                // Note
                 G.glb.lstNote = new List<CNote>();
                 G.glb.lstNoteLog = new List<RNoteLog>();
-
-                // Literature
                 G.glb.lstLiterature = new List<CLiterature>();
                 G.glb.lstLiteratureAuthor = new List<RLiteratureAuthor>();
                 G.glb.lstLiteratureTag = new List<RLiteratureTag>();
-
-                // Task and FatherLog
                 G.glb.lstSchedule = new List<CLog>();
-                G.glb.lstLog = new List<CLog>();
 
                 // Money
                 G.glb.lstTransaction = new List<CTransaction>();
@@ -891,36 +840,43 @@ namespace LifeGame
         {
             SelectedDate = SelectedMonday;
             dtpDate.Value = SelectedDate;
+            OpenDiary(SelectedDate);
         }
         private void picTue_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedTuesday;
             dtpDate.Value = SelectedDate;
+            OpenDiary(SelectedDate);
         }
         private void picWed_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedWednesday;
             dtpDate.Value = SelectedDate;
+            OpenDiary(SelectedDate);
         }
         private void picThu_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedThursday;
             dtpDate.Value = SelectedDate;
+            OpenDiary(SelectedDate);
         }
         private void picFri_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedFriday;
             dtpDate.Value = SelectedDate;
+            OpenDiary(SelectedDate);
         }
         private void picSat_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedSaturday;
             dtpDate.Value = SelectedDate;
+            OpenDiary(SelectedDate);
         }
         private void picSun_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedSunday;
             dtpDate.Value = SelectedDate;
+            OpenDiary(SelectedDate);
         }
 
         public void DrawToday()
@@ -977,43 +933,8 @@ namespace LifeGame
             }
             if (NeedRefresh)
             {
-                if (chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
-                {
-                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, "leftWithSupp");
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, "rightWithSupp");
-                }
-                else if (chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
-                {
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, "left");
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, "right");
-                }
-                else if (chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
-                {
-                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, "allWithSupp");
-                }
-                else if (chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
-                {
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstSchedule, "all");
-                }
-                else if (!chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
-                {
-                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, "allWithSupp");
-                }
-                else if (!chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
-                {
-                    Draw.DrawScheduleAndLogController(selectedPic, TodayDayOfWeek, G.glb.lstLog, "all");
-                }
-                else if (!chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
-                {
-                    Draw.DrawEventController(selectedPic, TodayDayOfWeek, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-                }
-                else if (!chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
-                {
-
-                }
+                Draw.DrawEventController(selectedPic, TodayDayOfWeek);
+                Draw.DrawLogController(selectedPic, TodayDayOfWeek);
             }
         }
 
@@ -1027,90 +948,20 @@ namespace LifeGame
             picFri.Controls.Clear();
             picSat.Controls.Clear();
             picSun.Controls.Clear();
-
-            if (chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
-            {
-                DrawEvent();
-                DrawScheduleWithMode("leftWithSupp");
-                DrawLogWithMode("rightWithSupp");
-            }
-            else if (chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
-            {
-                DrawScheduleWithMode("left");
-                DrawLogWithMode("right");
-            }
-            else if (chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
-            {
-                DrawEvent();
-                DrawScheduleWithMode("allWithSupp");
-            }
-            else if (chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
-            {
-                DrawScheduleWithMode("all");
-            }
-            else if (!chkShowSchedule.Checked && chkShowLog.Checked & chkMine.Checked)
-            {
-                DrawEvent();
-                DrawLogWithMode("allWithSupp");
-            }
-            else if (!chkShowSchedule.Checked && chkShowLog.Checked & !chkMine.Checked)
-            {
-                DrawLogWithMode("all");
-            }
-            else if (!chkShowSchedule.Checked && !chkShowLog.Checked & chkMine.Checked)
-            {
-                DrawEvent();
-            }
-            else if (!chkShowSchedule.Checked && !chkShowLog.Checked & !chkMine.Checked)
-            {
-
-            }
-        }
-        private void DrawLogWithMode(string Mode)
-        {
-            plot Draw = new plot();
-            Draw.DrawScheduleAndLogController(picMon, SelectedMonday, G.glb.lstLog, Mode);
-            Draw.DrawScheduleAndLogController(picTue, SelectedTuesday, G.glb.lstLog, Mode);
-            Draw.DrawScheduleAndLogController(picWed, SelectedWednesday, G.glb.lstLog, Mode);
-            Draw.DrawScheduleAndLogController(picThu, SelectedThursday, G.glb.lstLog, Mode);
-            Draw.DrawScheduleAndLogController(picFri, SelectedFriday, G.glb.lstLog, Mode);
-            Draw.DrawScheduleAndLogController(picSat, SelectedSaturday, G.glb.lstLog, Mode);
-            Draw.DrawScheduleAndLogController(picSun, SelectedSunday, G.glb.lstLog, Mode);
-        }
-        private void DrawScheduleWithMode(string Mode)
-        {
-            plot Draw = new plot();
-            Draw.DrawScheduleAndLogController(picMon, SelectedMonday, G.glb.lstSchedule, Mode);
-            Draw.DrawScheduleAndLogController(picTue, SelectedTuesday, G.glb.lstSchedule, Mode);
-            Draw.DrawScheduleAndLogController(picWed, SelectedWednesday, G.glb.lstSchedule, Mode);
-            Draw.DrawScheduleAndLogController(picThu, SelectedThursday, G.glb.lstSchedule, Mode);
-            Draw.DrawScheduleAndLogController(picFri, SelectedFriday, G.glb.lstSchedule, Mode);
-            Draw.DrawScheduleAndLogController(picSat, SelectedSaturday, G.glb.lstSchedule, Mode);
-            Draw.DrawScheduleAndLogController(picSun, SelectedSunday, G.glb.lstSchedule, Mode);
-        }
-        private void DrawEvent()
-        {
-            plot Draw = new plot();
-            Draw.DrawEventController(picMon, SelectedMonday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawEventController(picTue, SelectedTuesday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawEventController(picWed, SelectedWednesday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawEventController(picThu, SelectedThursday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawEventController(picFri, SelectedFriday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawEventController(picSat, SelectedSaturday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-            Draw.DrawEventController(picSun, SelectedSunday, G.glb.lstEvent, G.glb.lstTransaction, G.glb.lstBudget, G.glb.lstNote);
-        }
-
-        private void chkShowSchedule_CheckedChanged(object sender, EventArgs e)
-        {
-            DrawLog();
-        }
-        private void chkShowLog_CheckedChanged(object sender, EventArgs e)
-        {
-            DrawLog();
-        }
-        private void chkMoney_CheckedChanged(object sender, EventArgs e)
-        {
-            DrawLog();
+            Draw.DrawLogController(picMon, SelectedMonday);
+            Draw.DrawLogController(picTue, SelectedTuesday);
+            Draw.DrawLogController(picWed, SelectedWednesday);
+            Draw.DrawLogController(picThu, SelectedThursday);
+            Draw.DrawLogController(picFri, SelectedFriday);
+            Draw.DrawLogController(picSat, SelectedSaturday);
+            Draw.DrawLogController(picSun, SelectedSunday);
+            Draw.DrawEventController(picMon, SelectedMonday);
+            Draw.DrawEventController(picTue, SelectedTuesday);
+            Draw.DrawEventController(picWed, SelectedWednesday);
+            Draw.DrawEventController(picThu, SelectedThursday);
+            Draw.DrawEventController(picFri, SelectedFriday);
+            Draw.DrawEventController(picSat, SelectedSaturday);
+            Draw.DrawEventController(picSun, SelectedSunday);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -1162,223 +1013,6 @@ namespace LifeGame
             }
         }
 
-        private void tsmAddBatchLiterature_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = false;
-            openFileDialog.Title = "Please select a .txt file.";
-            openFileDialog.Filter = "Text files (*.txt)|*.txt";
-
-            string openFilePath;
-            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                openFilePath = openFileDialog.FileName;
-                string[] logList = System.IO.File.ReadAllLines(openFilePath);
-                int succeedNum = 0;
-                for (int i = 0; i < logList.Length; i++) 
-                {
-                    try
-                    {
-                        string[] sp = logList[i].Split(';');
-                        string literature = sp[0].Trim();
-                        string authors = sp[1].Trim();
-                        string journal = sp[2].Trim();
-                        int year = Convert.ToInt32(sp[3].Trim());
-                        string bibType = sp[4].Trim().Trim('[').Trim(']');
-
-                        if (!G.glb.lstLiterature.Exists(o => o.Title == literature))
-                        {
-
-                            CLiterature newLiterature = new CLiterature();
-                            newLiterature.Title = literature;
-                            newLiterature.PublishYear = year;
-                            newLiterature.JournalOrConferenceName = journal;
-                            newLiterature.DateAdded = DateTime.Today;
-                            newLiterature.DateModified = DateTime.Today;
-                            newLiterature.Star = false;
-
-                            string[] authorList = authors.Split(',');
-                            List<RLiteratureAuthor> newLiteratureAuthors = new List<RLiteratureAuthor>();
-                            for (int au = 0; au < authorList.Length; au++)
-                            {
-                                RLiteratureAuthor newAuthor = new RLiteratureAuthor();
-                                newAuthor.Title = literature;
-                                newAuthor.Author = authorList[au].Trim();
-                                newAuthor.Ordering = au;
-                                newLiteratureAuthors.Add(newAuthor);
-                            }
-                            string[] firstAuthor = authorList[0].Split(' ');
-                            string firstAuthorLastName = firstAuthor[firstAuthor.Length - 1].Trim();
-                            newLiterature.BibKey = firstAuthorLastName + year.ToString();
-
-                            if (bibType == "C")
-                            {
-                                newLiterature.BibEntry = EBibEntry.Conference;
-                                newLiterature.Booktitle = journal;
-                            }
-                            else if (bibType == "J")
-                            {
-                                newLiterature.BibEntry = EBibEntry.Article;
-                                newLiterature.Journal = journal;
-                            }
-                            else if (bibType == "D")
-                            {
-                                newLiterature.BibEntry = EBibEntry.Phdthesis;
-                                newLiterature.Booktitle = journal;
-                            }
-                            else
-                            {
-                                newLiterature.BibEntry = EBibEntry.Unpublished;
-                                newLiterature.Note = journal;
-                            }
-                            newLiterature.BibKey = firstAuthorLastName + year.ToString();
-                            newLiterature.Title = literature;
-                            
-                            newLiterature.Year = year.ToString();
-                            ParseBibTeX ParseBib = new ParseBibTeX();
-                            newLiterature.Author = ParseBib.GetAuthor(newLiteratureAuthors);
-
-                            RLiteratureTag newLiteratureTag = new RLiteratureTag();
-                            newLiteratureTag.Title = literature;
-                            newLiteratureTag.Tag = "(TBD)";
-
-                            CNote newNote = new CNote();
-                            string topicGUID = Guid.NewGuid().ToString();
-                            newNote.Topic = literature;
-                            newNote.Topic = literature;                           
-                            newNote.GUID =  topicGUID;
-                            newNote.TagTime = DateTime.Today.Date;
-
-                            RNoteLog litModify = new RNoteLog();
-                            litModify.Topic = literature;
-                            litModify.GUID = topicGUID;
-                            litModify.TagTime = DateTime.Today.Date;
-                            litModify.FatherLog = literature;
-                            litModify.FatherGUID = topicGUID;
-                            litModify.SubLog = "modified: " + DateTime.Now.ToString("F");
-                            litModify.SubGUID = Guid.NewGuid().ToString();
-                            litModify.IsExpand = true;
-                            litModify.Ordering = 0;
-                            RNoteLog litQA = new RNoteLog();
-                            litQA.Topic = literature;
-                            litQA.GUID = topicGUID;
-                            litQA.TagTime = DateTime.Today.Date;
-                            litQA.FatherLog = literature;
-                            litQA.FatherGUID = topicGUID;
-                            litQA.SubLog = "Q&A";
-                            litQA.SubGUID = Guid.NewGuid().ToString();
-                            litQA.IsExpand = true;
-                            litQA.Ordering = 1;
-                            RNoteLog litKey = new RNoteLog();
-                            litKey.Topic = literature;
-                            litKey.GUID = topicGUID;
-                            litKey.TagTime = DateTime.Today.Date;
-                            litKey.FatherLog = literature;
-                            litKey.FatherGUID = topicGUID;
-                            litKey.SubLog = "key take-away";
-                            litKey.SubGUID = Guid.NewGuid().ToString();
-                            litKey.IsExpand = true;
-                            litKey.Ordering = 2;
-
-                            G.glb.lstLiterature.Add(newLiterature);
-                            G.glb.lstLiteratureAuthor.AddRange(newLiteratureAuthors);
-                            G.glb.lstLiteratureTag.Add(newLiteratureTag);
-                            G.glb.lstNote.Add(newNote);
-                            G.glb.lstNoteLog.Add(litModify);
-                            G.glb.lstNoteLog.Add(litQA);
-                            G.glb.lstNoteLog.Add(litKey);
-                            succeedNum += 1;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed: " + logList[i] + " exists!");
-                        }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Failed: " + logList[i] + " is illegal!");
-                        MessageBox.Show("Correct Format: Bla-bla-bla literature; Author 1, Author 2; International Journal on Strange; 2050; [J]");
-                    }
-                }
-                if (succeedNum > 0)
-                {
-                    MessageBox.Show("In total " + succeedNum.ToString() + " literature added.");
-                }
-            }
-        }
-
-        private void tsmAddBatchTransactions_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = false;
-            openFileDialog.Title = "Please select a .txt file.";
-            openFileDialog.Filter = "Text files (*.txt)|*.txt";
-
-            string openFilePath;
-            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                openFilePath = openFileDialog.FileName;
-                string[] logList = System.IO.File.ReadAllLines(openFilePath);
-                int succeedNum = 0;
-                for (int i = 0; i < logList.Length; i++)
-                {
-                    try
-                    {
-                        string[] sp = logList[i].Split(';');
-                        string dateStr = sp[0].Trim();
-                        string recordStr = sp[1].Trim();
-                        double number = Convert.ToDouble(sp[2].Trim());
-                        string creditAcc = sp[3].Trim();
-                        string debitAcc = sp[4].Trim();
-
-                        CTransaction tmpTransaction = new CTransaction();
-                        tmpTransaction.CreditAccount = creditAcc;
-                        tmpTransaction.CreditCurrency = "RMB";
-                        tmpTransaction.CreditAmount = number;
-                        tmpTransaction.DebitAccount = debitAcc;
-                        tmpTransaction.DebitCurrency = "RMB";
-                        tmpTransaction.DebitAmount = number;
-                        tmpTransaction.Summary = recordStr;
-                        tmpTransaction.TagTime = DateTime.Parse(dateStr).Date;
-                        calculate C = new calculate();
-                        tmpTransaction.IconType = C.MoneyInOrOut(
-                            G.glb.lstAccount.Find(o => o.AccountName == debitAcc).AccountType,
-                            G.glb.lstAccount.Find(o => o.AccountName == creditAcc).AccountType);
-
-                        if (!G.glb.lstTransaction.Exists(o => o.TagTime == tmpTransaction.TagTime
-                            && o.CreditAccount == tmpTransaction.CreditAccount
-                            && o.CreditCurrency == tmpTransaction.CreditCurrency
-                            && o.CreditAmount == tmpTransaction.CreditAmount
-                            && o.DebitAccount == tmpTransaction.DebitAccount
-                            && o.DebitCurrency == tmpTransaction.DebitCurrency
-                            && o.DebitAmount == tmpTransaction.DebitAmount
-                            && o.Summary == tmpTransaction.Summary
-                            && o.IconType == tmpTransaction.IconType))
-                        {
-                            // 添加对应的Transaction记录
-                            G.glb.lstTransaction.Add(tmpTransaction);
-
-                            // 在Daily Report里添加记录
-
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed: " + logList[i] + " exists!");
-                        }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Failed: " + logList[i] + " is illegal!");
-                    }
-                }
-                if (succeedNum > 0)
-                {
-                    MessageBox.Show("Intotal " + succeedNum.ToString() + " transaction record added."); 
-                }
-            }
-        }
-
         private void nfiMain_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.Visible = true;
@@ -1417,6 +1051,30 @@ namespace LifeGame
 
             frmInfoNote frmInfoNote = new frmInfoNote(newNote);
             frmInfoNote.Show();
+        }
+
+        private void tsmToolNewLiterature_Click(object sender, EventArgs e)
+        {
+            string strTitle = Interaction.InputBox("Input literature title", "Add Literature", "(New Literture)", 300, 300);
+            if (G.glb.lstLiterature.Exists(o => o.Title == strTitle))
+            {
+                MessageBox.Show("Literature exists, please check!");
+            }
+            else
+            {
+                CLiterature newLit = new CLiterature();
+                newLit.Title = strTitle;
+                newLit.GUID = Guid.NewGuid().ToString();
+                newLit.DateAdded = DateTime.Today;
+                newLit.DateModified = DateTime.Today;
+                newLit.Star = false;
+                newLit.JournalOrConferenceName = "";
+                newLit.PublishYear = 9999;
+                G.glb.lstLiterature.Add(newLit);
+
+                frmInfoNote frmInfoNote = new frmInfoNote(newLit);
+                frmInfoNote.Show();
+            }
         }
 
         private void findNoteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1469,28 +1127,35 @@ namespace LifeGame
             }
         }
 
-        private void tsmToday_Click(object sender, EventArgs e)
+        private void OpenDiary(DateTime date)
         {
-            if (!G.glb.lstDiary.Exists(o => o.Date == DateTime.Today.Date))
+            if (!G.glb.lstDiary.Exists(o => o.Date == date))
             {
                 CDiary diary = new CDiary();
-                diary.Date = DateTime.Today.Date;
+                diary.Date = date;
                 diary.GUID = Guid.NewGuid().ToString();
                 G.glb.lstDiary.Add(diary);
             }
 
-            CDiary today = G.glb.lstDiary.Find(o => o.Date == DateTime.Today.Date);
-            if (M.notesOpened.Exists(o => o.GUID == today.GUID))
+            CDiary d = G.glb.lstDiary.Find(o => o.Date == date);
+            if (M.notesOpened.Exists(o => o.GUID == d.GUID))
             {
-                M.notesOpened.Find(o => o.GUID == today.GUID).Show();
-                M.notesOpened.Find(o => o.GUID == today.GUID).BringToFront();
+                M.notesOpened.Find(o => o.GUID == d.GUID).Show();
+                M.notesOpened.Find(o => o.GUID == d.GUID).BringToFront();
             }
             else
             {
-                frmInfoNote frmInfoNote = new frmInfoNote(today);
+                frmInfoNote frmInfoNote = new frmInfoNote(d);
                 M.notesOpened.Add(frmInfoNote);
                 frmInfoNote.Show();
             }
         }
+
+        private void tsmToday_Click(object sender, EventArgs e)
+        {
+            OpenDiary(DateTime.Today);
+        }
+
+        
     }
 }
