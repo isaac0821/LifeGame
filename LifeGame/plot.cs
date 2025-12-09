@@ -177,8 +177,8 @@ namespace LifeGame
                 picMap.Controls.Add(lblNow);
             }
 
-            List<CLog> todayLogs = G.glb.lstSchedule.FindAll(o => o.StartTime.Date == date).ToList();
-            List<CLog> yesterdayLogs = G.glb.lstSchedule.FindAll(o => o.StartTime.Date == date.AddDays(-1) && o.EndTime.Date == date).ToList();
+            List<CLog> todayLogs = G.glb.lstLog.FindAll(o => o.StartTime.Date == date).ToList();
+            List<CLog> yesterdayLogs = G.glb.lstLog.FindAll(o => o.StartTime.Date == date.AddDays(-1) && o.EndTime.Date == date).ToList();
 
             List<PictureBox> lstPicLog = new List<PictureBox>();
             List<Label> lstLblLog = new List<Label>();

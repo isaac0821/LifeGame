@@ -14,8 +14,7 @@ namespace LifeGame
     {
         // Logs and Events
         public List<CDiary> lstDiary = new List<CDiary>();
-        public List<CLog> lstSchedule = new List<CLog>();
-        //public List<CLog> lstLog = new List<CLog>();
+        public List<CLog> lstLog = new List<CLog>();
         public List<CEvent> lstEvent = new List<CEvent>();
 
         // Finance
@@ -62,10 +61,10 @@ namespace LifeGame
                 SQLiteCommand clc = new SQLiteCommand();
                 SQLiteCommand cmd = new SQLiteCommand();
 
-                // lstSchedule
+                // lstLog
                 //clc = new SQLiteCommand("DELETE FROM Class_Log;", con);
                 //clc.ExecuteNonQuery();
-                //foreach (CLog item in G.glb.lstSchedule)
+                //foreach (CLog item in G.glb.lstLog)
                 //{
                 //    string sql = "INSERT INTO Class_Log (" +
                 //        "LogName, " +

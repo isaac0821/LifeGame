@@ -70,7 +70,7 @@ namespace LifeGame
             splitContainer1.Panel1Collapsed = true;
             splitContainer2.Panel1Collapsed = true;
 
-            tblNote.RowStyles[1].Height = 0;
+            tblNote.RowStyles[1].Height = 26;
             tblNote.RowStyles[2].Height = 0;
             tblNote.RowStyles[3].Height = 0;
             tblNote.RowStyles[4].Height = 0;
@@ -82,6 +82,7 @@ namespace LifeGame
             LoadNoteColor(lstNoteColor);
             LoadNoteLog();
             txtTopic.Enabled = false;
+            txtTopic.Text = note.Topic;
             btnSave.Enabled = false;
 
             btnRead.Enabled = true;
@@ -110,7 +111,7 @@ namespace LifeGame
             splitContainer1.Panel1Collapsed = true;
             splitContainer2.Panel1Collapsed = true;
 
-            tblNote.RowStyles[1].Height = 0;
+            tblNote.RowStyles[1].Height = 26;
             tblNote.RowStyles[2].Height = 26;
             tblNote.RowStyles[3].Height = 26;
             tblNote.RowStyles[4].Height = 26;
@@ -137,6 +138,7 @@ namespace LifeGame
             LoadNoteLog();
             LoadLiterature();
             txtTopic.Enabled = false;
+            txtTopic.Text = lit.Title;
             btnSave.Enabled = false;
 
             btnRead.Enabled = true;
@@ -165,7 +167,7 @@ namespace LifeGame
             splitContainer1.Panel1Collapsed = false;
             splitContainer2.Panel1Collapsed = false;
 
-            tblNote.RowStyles[1].Height = 0;
+            tblNote.RowStyles[1].Height = 26;
             tblNote.RowStyles[2].Height = 0;
             tblNote.RowStyles[3].Height = 0;
             tblNote.RowStyles[4].Height = 0;
@@ -181,6 +183,7 @@ namespace LifeGame
             LoadNoteColor(lstNoteColor);
             LoadNoteLog();
             txtTopic.Enabled = false;
+            txtTopic.Text = "Daily Report";
             btnSave.Enabled = false;
 
             btnRead.Enabled = true;
@@ -547,7 +550,7 @@ namespace LifeGame
                             WithWho = sp[4];
                         }
 
-                        if (G.glb.lstSchedule.Exists(o =>
+                        if (G.glb.lstLog.Exists(o =>
                             o.LogName == LogName
                             && o.StartTime == StartTime
                             && o.EndTime == EndTime
@@ -1402,7 +1405,7 @@ namespace LifeGame
                             int Day = Convert.ToInt16(datelist[2]);
                             DateTime date = new DateTime(Year, Month, Day, 0, 0, 0);
 
-                            if (G.glb.lstNote.Exists(o => o.TagTime == date && o.Topic == split[1]))
+                            if (!G.glb.lstNote.Exists(o => o.TagTime == date && o.Topic == split[1]))
                             {
                                 MessageBox.Show("No record is found!");
                             }
@@ -1489,7 +1492,7 @@ namespace LifeGame
                         // 判断是否能添加日程
                         bool CanAddScheduleFlag = true;
                         bool ReplaceExistFlag = false;
-                        if (CanAddScheduleFlag && G.glb.lstSchedule.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
+                        if (CanAddScheduleFlag && G.glb.lstLog.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
                         {
                             DialogResult result = MessageBox.Show("Already have logs at that time, Do you replace?", "FatherLog", MessageBoxButtons.YesNo);
                             switch (result)
@@ -1507,7 +1510,7 @@ namespace LifeGame
 
                         if (ReplaceExistFlag)
                         {
-                            G.glb.lstSchedule.RemoveAll(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime));
+                            G.glb.lstLog.RemoveAll(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime));
                         }
 
                         if (CanAddScheduleFlag)
@@ -1521,7 +1524,7 @@ namespace LifeGame
                             newSchedule.Color = Color;
                             newSchedule.Alarm = true;
                             newSchedule.AlarmTime = StartTime - new TimeSpan(0, Convert.ToInt16(5), 0);
-                            G.glb.lstSchedule.Add(newSchedule);
+                            G.glb.lstLog.Add(newSchedule);
                             MessageBox.Show("Schedule added to record.");
                         }
                     }
@@ -2793,7 +2796,7 @@ namespace LifeGame
         {
             if (!chkShow.Checked)
             {
-                tblNote.RowStyles[1].Height = 0;
+                tblNote.RowStyles[1].Height = 26;
                 tblNote.RowStyles[2].Height = 0;
                 tblNote.RowStyles[3].Height = 0;
                 tblNote.RowStyles[4].Height = 0;
@@ -2836,7 +2839,7 @@ namespace LifeGame
                 }
                 else if (noteType == ENoteType.Literature)
                 {
-                    tblNote.RowStyles[1].Height = 0;
+                    tblNote.RowStyles[1].Height = 26;
                     tblNote.RowStyles[2].Height = 26;
                     tblNote.RowStyles[3].Height = 26;
                     tblNote.RowStyles[4].Height = 26;
@@ -3186,7 +3189,7 @@ namespace LifeGame
                 }
 
                 // validate - title
-                else if (logList[0] != txtTopic.Text)
+                else if (logList[0] != trvNote.Nodes[0].Text)
                 {
                     MessageBox.Show("Does not match with title");
                 }

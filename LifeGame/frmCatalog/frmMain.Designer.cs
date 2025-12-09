@@ -223,6 +223,7 @@
             this.picThu.TabIndex = 0;
             this.picThu.TabStop = false;
             this.picThu.Click += new System.EventHandler(this.picThu_Click);
+            this.picThu.DoubleClick += new System.EventHandler(this.picThu_DoubleClick);
             // 
             // cmsMain
             // 
@@ -511,6 +512,7 @@
             this.picMon.TabIndex = 0;
             this.picMon.TabStop = false;
             this.picMon.Click += new System.EventHandler(this.picMon_Click);
+            this.picMon.DoubleClick += new System.EventHandler(this.picMon_DoubleClick);
             // 
             // picTue
             // 
@@ -523,6 +525,7 @@
             this.picTue.TabIndex = 0;
             this.picTue.TabStop = false;
             this.picTue.Click += new System.EventHandler(this.picTue_Click);
+            this.picTue.DoubleClick += new System.EventHandler(this.picTue_DoubleClick);
             // 
             // picWed
             // 
@@ -535,6 +538,7 @@
             this.picWed.TabIndex = 0;
             this.picWed.TabStop = false;
             this.picWed.Click += new System.EventHandler(this.picWed_Click);
+            this.picWed.DoubleClick += new System.EventHandler(this.picWed_DoubleClick);
             // 
             // picFri
             // 
@@ -547,6 +551,7 @@
             this.picFri.TabIndex = 0;
             this.picFri.TabStop = false;
             this.picFri.Click += new System.EventHandler(this.picFri_Click);
+            this.picFri.DoubleClick += new System.EventHandler(this.picFri_DoubleClick);
             // 
             // picSat
             // 
@@ -559,6 +564,7 @@
             this.picSat.TabIndex = 0;
             this.picSat.TabStop = false;
             this.picSat.Click += new System.EventHandler(this.picSat_Click);
+            this.picSat.DoubleClick += new System.EventHandler(this.picSat_DoubleClick);
             // 
             // picSun
             // 
@@ -571,6 +577,7 @@
             this.picSun.TabIndex = 0;
             this.picSun.TabStop = false;
             this.picSun.Click += new System.EventHandler(this.picSun_Click);
+            this.picSun.DoubleClick += new System.EventHandler(this.picSun_DoubleClick);
             // 
             // tableLayoutPanel3
             // 
@@ -640,62 +647,62 @@
             this.tsmToolLiterature,
             this.exitToolStripMenuItem});
             this.cmsTool.Name = "cmsTool";
-            this.cmsTool.Size = new System.Drawing.Size(181, 176);
+            this.cmsTool.Size = new System.Drawing.Size(152, 154);
             // 
             // tsmToday
             // 
             this.tsmToday.Name = "tsmToday";
-            this.tsmToday.Size = new System.Drawing.Size(180, 22);
+            this.tsmToday.Size = new System.Drawing.Size(151, 22);
             this.tsmToday.Text = "Today";
             this.tsmToday.Click += new System.EventHandler(this.tsmToday_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(148, 6);
             // 
             // findNoteToolStripMenuItem
             // 
             this.findNoteToolStripMenuItem.Name = "findNoteToolStripMenuItem";
-            this.findNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findNoteToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.findNoteToolStripMenuItem.Text = "Find...";
             this.findNoteToolStripMenuItem.Click += new System.EventHandler(this.findNoteToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(148, 6);
             // 
             // tsmToolNewNote
             // 
             this.tsmToolNewNote.Name = "tsmToolNewNote";
-            this.tsmToolNewNote.Size = new System.Drawing.Size(180, 22);
+            this.tsmToolNewNote.Size = new System.Drawing.Size(151, 22);
             this.tsmToolNewNote.Text = "New Note";
             this.tsmToolNewNote.Click += new System.EventHandler(this.tsmToolNewNote_Click);
             // 
             // tsmToolNewLiterature
             // 
             this.tsmToolNewLiterature.Name = "tsmToolNewLiterature";
-            this.tsmToolNewLiterature.Size = new System.Drawing.Size(180, 22);
+            this.tsmToolNewLiterature.Size = new System.Drawing.Size(151, 22);
             this.tsmToolNewLiterature.Text = "New Literature";
             this.tsmToolNewLiterature.Click += new System.EventHandler(this.tsmToolNewLiterature_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(148, 6);
             // 
             // tsmToolLiterature
             // 
             this.tsmToolLiterature.Name = "tsmToolLiterature";
-            this.tsmToolLiterature.Size = new System.Drawing.Size(180, 22);
+            this.tsmToolLiterature.Size = new System.Drawing.Size(151, 22);
             this.tsmToolLiterature.Text = "Literature";
             this.tsmToolLiterature.Click += new System.EventHandler(this.tsmToolLiterature_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 

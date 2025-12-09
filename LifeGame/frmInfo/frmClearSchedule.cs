@@ -99,7 +99,7 @@ namespace LifeGame
                         {
                             EndTime = new DateTime(day.AddDays(1).Year, day.AddDays(1).Month, day.AddDays(1).Day, dtpTimeEnd.Value.Hour, dtpTimeEnd.Value.Minute, dtpTimeEnd.Value.Second);
                         }
-                        if (CanClearScheduleAtThatDay && G.glb.lstSchedule.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
+                        if (CanClearScheduleAtThatDay && G.glb.lstLog.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
                         {
                             DialogResult result = MessageBox.Show("Do you confirm to clear from " + StartTime.ToShortDateString() + " " + StartTime.ToShortTimeString() + " to " + EndTime.ToShortDateString() + " " + EndTime.ToShortTimeString() + "?", "Clear Schedule", MessageBoxButtons.YesNoCancel);
                             switch (result)
@@ -117,7 +117,7 @@ namespace LifeGame
 
                         if (CanClearScheduleAtThatDay)
                         {
-                            G.glb.lstSchedule.RemoveAll(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime));
+                            G.glb.lstLog.RemoveAll(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime));
                         }
                     }
                 }

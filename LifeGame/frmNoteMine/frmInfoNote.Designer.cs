@@ -78,7 +78,6 @@
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTopic = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.lblCreated = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -121,6 +120,7 @@
             this.tsmGoto = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmConvertToSchedule = new System.Windows.Forms.ToolStripMenuItem();
+            this.tspDaily = new System.Windows.Forms.ToolStripSeparator();
             this.tsmSort = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -169,7 +169,6 @@
             this.addTag2Multi = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemoveTagFromMulti = new System.Windows.Forms.ToolStripMenuItem();
             this.lblNumFound = new System.Windows.Forms.Label();
-            this.tspDaily = new System.Windows.Forms.ToolStripSeparator();
             this.tblNote.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -773,15 +772,13 @@
             // 
             // tableLayoutPanel10
             // 
-            this.tableLayoutPanel10.ColumnCount = 4;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.tableLayoutPanel10.ColumnCount = 3;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
             this.tableLayoutPanel10.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.txtTopic, 1, 0);
-            this.tableLayoutPanel10.Controls.Add(this.label10, 2, 0);
-            this.tableLayoutPanel10.Controls.Add(this.lblCreated, 3, 0);
+            this.tableLayoutPanel10.Controls.Add(this.lblCreated, 2, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 26);
             this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
@@ -798,7 +795,7 @@
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 26);
+            this.label1.Size = new System.Drawing.Size(40, 26);
             this.label1.TabIndex = 1;
             this.label1.Text = "Topic";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -807,29 +804,18 @@
             // 
             this.txtTopic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTopic.Enabled = false;
-            this.txtTopic.Location = new System.Drawing.Point(50, 3);
+            this.txtTopic.Location = new System.Drawing.Point(49, 3);
             this.txtTopic.Name = "txtTopic";
-            this.txtTopic.Size = new System.Drawing.Size(495, 20);
+            this.txtTopic.Size = new System.Drawing.Size(562, 20);
             this.txtTopic.TabIndex = 0;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(551, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(51, 26);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Created";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblCreated
             // 
             this.lblCreated.AutoSize = true;
             this.lblCreated.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCreated.Location = new System.Drawing.Point(608, 0);
+            this.lblCreated.Location = new System.Drawing.Point(617, 0);
             this.lblCreated.Name = "lblCreated";
-            this.lblCreated.Size = new System.Drawing.Size(76, 26);
+            this.lblCreated.Size = new System.Drawing.Size(67, 26);
             this.lblCreated.TabIndex = 3;
             this.lblCreated.Text = "1992/08/21";
             this.lblCreated.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1264,7 +1250,7 @@
             this.tsmBelongTo,
             this.tsmRenameNote});
             this.cmsTrvNote.Name = "cmsTrvNote";
-            this.cmsTrvNote.Size = new System.Drawing.Size(211, 730);
+            this.cmsTrvNote.Size = new System.Drawing.Size(211, 708);
             // 
             // tsmAdd
             // 
@@ -1322,6 +1308,11 @@
             this.tsmConvertToSchedule.Size = new System.Drawing.Size(210, 22);
             this.tsmConvertToSchedule.Text = "Convert To Schedule";
             this.tsmConvertToSchedule.Click += new System.EventHandler(this.tsmConvertToSchedule_Click);
+            // 
+            // tspDaily
+            // 
+            this.tspDaily.Name = "tspDaily";
+            this.tspDaily.Size = new System.Drawing.Size(207, 6);
             // 
             // tsmSort
             // 
@@ -1676,11 +1667,6 @@
             this.lblNumFound.Text = "xx result(s) found";
             this.lblNumFound.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tspDaily
-            // 
-            this.tspDaily.Name = "tspDaily";
-            this.tspDaily.Size = new System.Drawing.Size(207, 6);
-            // 
             // frmInfoNote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1861,7 +1847,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTopic;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblCreated;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.DataGridView dgvLiterature;

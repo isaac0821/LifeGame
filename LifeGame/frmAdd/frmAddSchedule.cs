@@ -101,7 +101,7 @@ namespace LifeGame
                             EndTime = new DateTime(day.AddDays(1).Year, day.AddDays(1).Month, day.AddDays(1).Day, dtpTimeEnd.Value.Hour, dtpTimeEnd.Value.Minute, dtpTimeEnd.Value.Second);
                         }
 
-                        if (CanAddScheduleAtThatDay && G.glb.lstSchedule.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
+                        if (CanAddScheduleAtThatDay && G.glb.lstLog.Exists(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime)))
                         {
                             DialogResult result = MessageBox.Show("Already have logs at that time, Do you replace?", "FatherLog", MessageBoxButtons.YesNo);
                             switch (result)
@@ -119,7 +119,7 @@ namespace LifeGame
 
                         if (ReplaceExistFlag)
                         {
-                            G.glb.lstSchedule.RemoveAll(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime));
+                            G.glb.lstLog.RemoveAll(o => (o.StartTime <= StartTime && o.EndTime >= StartTime) || (o.StartTime >= StartTime && o.StartTime <= EndTime));
                         }
 
                         if (CanAddScheduleAtThatDay)
@@ -133,7 +133,7 @@ namespace LifeGame
                             newSchedule.Color = cbxColor.Text;
                             newSchedule.Alarm = chkAlarm.Checked;
                             newSchedule.AlarmTime = StartTime - new TimeSpan(0, Convert.ToInt16(txtMinsAhead.Text), 0);
-                            G.glb.lstSchedule.Add(newSchedule);
+                            G.glb.lstLog.Add(newSchedule);
                         }
                     }
                 }

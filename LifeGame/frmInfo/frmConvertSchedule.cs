@@ -26,7 +26,7 @@ namespace LifeGame
         private void LoadSchedule()
         {
             lsbSchedule.Items.Clear();
-            List<CLog> schedules = G.glb.lstSchedule.FindAll(o => o.StartTime.Date == curDate).ToList();
+            List<CLog> schedules = G.glb.lstLog.FindAll(o => o.StartTime.Date == curDate).ToList();
             foreach (CLog schedule in schedules)
             {
                 lsbSchedule.Items.Add(schedule.LogName);

@@ -103,6 +103,63 @@ namespace LifeGame
             try
             {
                 Deserialize();
+
+                //G.glb.lstNoteLog.RemoveAll(o => o.FatherLog == "Daily Report");
+                //G.glb.lstNoteLog.RemoveAll(o => o.SubLog.Contains("SCHL>"));
+                //G.glb.lstLog = new List<CLog>();
+                //G.glb.lstDiary.Clear();
+
+                //foreach (CLog item in G.glb.lstLog)
+                //{
+                //    G.glb.lstLog.Add(item);
+
+                //    if (!G.glb.lstDiary.Exists(o => o.Date == item.StartTime.Date))
+                //    {
+                //        CDiary d = new CDiary();
+                //        d.Date = item.StartTime.Date;
+                //        d.GUID = Guid.NewGuid().ToString();
+                //        G.glb.lstDiary.Add(d);
+                //    }
+                //    string GUID = G.glb.lstDiary.Find(o => o.Date == item.StartTime.Date).GUID;
+                //    RNoteLog log = new RNoteLog();
+                //    log.GUID = GUID;
+                //    log.FatherGUID = GUID;
+                //    log.FatherLog = "Daily Report";
+                //    log.SubLog = "$SCHL$>" + item.LogName + "@" + item.StartTime.ToString("HH:mm") + "-" + item.EndTime.ToString("HH:mm");
+                //    if (item.EndTime.Date > item.StartTime.Date) { log.SubLog += "(+1)"; }
+                //    log.SubLog += "@" + item.Color;
+                //    log.SubGUID = Guid.NewGuid().ToString();
+                //    G.glb.lstNoteLog.Add(log);
+                //}
+                ////G.glb.lstLog.Clear();
+                //G.glb.lstNoteLog.RemoveAll(o => o.FatherLog == "Daily Report");
+                //G.glb.lstNoteLog.RemoveAll(o => o.SubLog.Contains("SCHL>"));
+                //G.glb.lstLog = new List<CLog>();
+                //G.glb.lstDiary.Clear();
+
+                //foreach (CLog item in G.glb.lstLog)
+                //{
+                //    G.glb.lstLog.Add(item);
+
+                //    if (!G.glb.lstDiary.Exists(o => o.Date == item.StartTime.Date))
+                //    {
+                //        CDiary d = new CDiary();
+                //        d.Date = item.StartTime.Date;
+                //        d.GUID = Guid.NewGuid().ToString();
+                //        G.glb.lstDiary.Add(d);
+                //    }
+                //    string GUID = G.glb.lstDiary.Find(o => o.Date == item.StartTime.Date).GUID;
+                //    RNoteLog log = new RNoteLog();
+                //    log.GUID = GUID;
+                //    log.FatherGUID = GUID;
+                //    log.FatherLog = "Daily Report";
+                //    log.SubLog = "$SCHL$>" + item.LogName + "@" + item.StartTime.ToString("HH:mm") + "-" + item.EndTime.ToString("HH:mm");
+                //    if (item.EndTime.Date > item.StartTime.Date) { log.SubLog += "(+1)"; }
+                //    log.SubLog += "@" + item.Color;
+                //    log.SubGUID = Guid.NewGuid().ToString();
+                //    G.glb.lstNoteLog.Add(log);
+                //}
+                ////G.glb.lstLog.Clear();
             }
             catch (Exception)
             {
@@ -113,7 +170,7 @@ namespace LifeGame
                 G.glb.lstLiterature = new List<CLiterature>();
                 G.glb.lstLiteratureAuthor = new List<RLiteratureAuthor>();
                 G.glb.lstLiteratureTag = new List<RLiteratureTag>();
-                G.glb.lstSchedule = new List<CLog>();
+                G.glb.lstLog = new List<CLog>();
 
                 // Money
                 G.glb.lstTransaction = new List<CTransaction>();
@@ -252,7 +309,7 @@ namespace LifeGame
 
         private void FindNextToAlarm()
         {
-            CLog nextAlarmingSchedule = G.glb.lstSchedule.FindAll(o => o.Alarm == true && o.StartTime >= DateTime.Now && (DateTime.Now - o.AlarmTime).TotalMinutes <= 1).OrderBy(o => o.AlarmTime).FirstOrDefault();
+            CLog nextAlarmingSchedule = G.glb.lstLog.FindAll(o => o.Alarm == true && o.StartTime >= DateTime.Now && (DateTime.Now - o.AlarmTime).TotalMinutes <= 1).OrderBy(o => o.AlarmTime).FirstOrDefault();
             if (nextAlarmingSchedule != null)
             {
                 TimeSpan minToNextAlarm = new TimeSpan();
@@ -840,42 +897,97 @@ namespace LifeGame
         {
             SelectedDate = SelectedMonday;
             dtpDate.Value = SelectedDate;
-            OpenDiary(SelectedDate);
+            DrawLog();
         }
         private void picTue_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedTuesday;
             dtpDate.Value = SelectedDate;
-            OpenDiary(SelectedDate);
+            DrawLog();
         }
         private void picWed_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedWednesday;
             dtpDate.Value = SelectedDate;
-            OpenDiary(SelectedDate);
+            DrawLog();
         }
         private void picThu_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedThursday;
             dtpDate.Value = SelectedDate;
-            OpenDiary(SelectedDate);
+            DrawLog();
         }
         private void picFri_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedFriday;
             dtpDate.Value = SelectedDate;
-            OpenDiary(SelectedDate);
+            DrawLog();
         }
         private void picSat_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedSaturday;
             dtpDate.Value = SelectedDate;
-            OpenDiary(SelectedDate);
+            DrawLog();
         }
         private void picSun_Click(object sender, EventArgs e)
         {
             SelectedDate = SelectedSunday;
             dtpDate.Value = SelectedDate;
+            DrawLog();
+        }
+        private void picMon_DoubleClick(object sender, EventArgs e)
+        {
+            SelectedDate = SelectedMonday;
+            dtpDate.Value = SelectedDate;
+            DrawLog();
+            OpenDiary(SelectedDate);
+        }
+
+        private void picTue_DoubleClick(object sender, EventArgs e)
+        {
+            SelectedDate = SelectedTuesday;
+            dtpDate.Value = SelectedDate;
+            DrawLog();
+            OpenDiary(SelectedDate);
+        }
+
+        private void picWed_DoubleClick(object sender, EventArgs e)
+        {
+            SelectedDate = SelectedWednesday;
+            dtpDate.Value = SelectedDate;
+            DrawLog();
+            OpenDiary(SelectedDate);
+        }
+
+        private void picThu_DoubleClick(object sender, EventArgs e)
+        {
+            SelectedDate = SelectedThursday;
+            dtpDate.Value = SelectedDate;
+            DrawLog();
+            OpenDiary(SelectedDate);
+        }
+
+        private void picFri_DoubleClick(object sender, EventArgs e)
+        {
+            SelectedDate = SelectedFriday;
+            dtpDate.Value = SelectedDate;
+            DrawLog();
+            OpenDiary(SelectedDate);
+        }
+
+        private void picSat_DoubleClick(object sender, EventArgs e)
+        {
+            SelectedDate = SelectedSaturday;
+            dtpDate.Value = SelectedDate;
+            DrawLog();
+            OpenDiary(SelectedDate);
+        }
+
+        private void picSun_DoubleClick(object sender, EventArgs e)
+        {
+            SelectedDate = SelectedSunday;
+            dtpDate.Value = SelectedDate;
+            DrawLog();
             OpenDiary(SelectedDate);
         }
 

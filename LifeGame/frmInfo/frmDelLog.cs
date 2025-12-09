@@ -40,7 +40,7 @@ namespace LifeGame
             }
             else
             {
-                logs = G.glb.lstSchedule.FindAll(o => o.StartTime.Date == curDate).ToList();
+                logs = G.glb.lstLog.FindAll(o => o.StartTime.Date == curDate).ToList();
             }
             foreach (CLog log in logs)
             {
@@ -58,7 +58,7 @@ namespace LifeGame
                 }
                 else
                 {
-                    G.glb.lstSchedule.RemoveAll(o => o.StartTime.Date == curDate && o.LogName == lsbLogList.SelectedItem.ToString());
+                    G.glb.lstLog.RemoveAll(o => o.StartTime.Date == curDate && o.LogName == lsbLogList.SelectedItem.ToString());
                 }
                 LoadLogs();
             }
