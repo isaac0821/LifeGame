@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,67 @@ namespace LifeGame
 {
     public class plot
     {
+        private class PlotSchedule
+        {
+            public string Name;
+            public DateTime StartTime;
+            public DateTime EndTime;
+            public string Color;
+            public string Location;
+            public string WithWho;
+        }
+
+        /// <summary>从日记 body 解析 $SCHL$> 行生成日程列表</summary>
+        private List<PlotSchedule> LoadSchedulesForDate(DateTime date)
+        {
+            var result = new List<PlotSchedule>();
+            string diaryPath = MarkdownNoteConverter.MakeDiaryPath(date);
+            if (!File.Exists(diaryPath)) return result;
+            try
+            {
+                string raw = File.ReadAllText(diaryPath, Encoding.UTF8);
+                var (yaml, body) = GameDocument.SplitFrontMatter(raw);
+                foreach (var line in body.Split('\n'))
+                {
+                    string t = line.TrimStart();
+                    if ((t.StartsWith("[-] ") || t.StartsWith("[+] ")) && t.Length > 4)
+                        t = t.Substring(4);
+                    if (!t.StartsWith("$SCHL$>")) continue;
+                    t = t.Substring(7);
+                    var parts = t.Split('@');
+                    if (parts.Length < 3) continue;
+                    string[] times = parts[1].Split('-');
+                    if (times.Length < 2) continue;
+                    string startStr = times[0].Trim();
+                    string endStr = times[1].Trim();
+                    int crossDays = 0;
+                    if (endStr.Contains("(+"))
+                    {
+                        int pIdx = endStr.IndexOf("(+");
+                        int cPIdx = endStr.IndexOf(")", pIdx);
+                        if (cPIdx > pIdx && int.TryParse(endStr.Substring(pIdx + 2, cPIdx - pIdx - 2), out int cd))
+                            crossDays = cd;
+                        endStr = endStr.Substring(0, pIdx).Trim();
+                    }
+                    if (DateTime.TryParse(date.ToString("yyyy-MM-dd") + " " + startStr, out DateTime st) &&
+                        DateTime.TryParse(date.AddDays(crossDays).ToString("yyyy-MM-dd") + " " + endStr, out DateTime et))
+                    {
+                        result.Add(new PlotSchedule
+                        {
+                            Name = parts[0].Trim(),
+                            StartTime = st,
+                            EndTime = et,
+                            Color = parts[2].Trim(),
+                            Location = parts.Length >= 4 ? parts[3].Trim() : "",
+                            WithWho = parts.Length >= 5 ? parts[4].Trim() : "",
+                        });
+                    }
+                }
+            }
+            catch { }
+            return result;
+        }
+
         /// <summary>
         /// 返回Color格式的颜色 Done: 01/03/2019
         /// </summary>
@@ -177,8 +239,13 @@ namespace LifeGame
                 picMap.Controls.Add(lblNow);
             }
 
-            List<CLog> todayLogs = G.glb.lstLog.FindAll(o => o.StartTime.Date == date).ToList();
-            List<CLog> yesterdayLogs = G.glb.lstLog.FindAll(o => o.StartTime.Date == date.AddDays(-1) && o.EndTime.Date == date).ToList();
+            List<PlotSchedule> todayLogs = LoadSchedulesForDate(date);
+            List<PlotSchedule> yesterdayLogs = new List<PlotSchedule>();
+            if (date > DateTime.MinValue)
+            {
+                var prevSchedules = LoadSchedulesForDate(date.AddDays(-1));
+                yesterdayLogs = prevSchedules.Where(o => o.EndTime.Date == date).ToList();
+            }
 
             List<PictureBox> lstPicLog = new List<PictureBox>();
             List<Label> lstLblLog = new List<Label>();
@@ -191,10 +258,9 @@ namespace LifeGame
                 double totalHour = (yesterdayLogs[i].EndTime - yesterdayLogs[i].StartTime).TotalHours;
                 totalHour = Math.Round(totalHour, 2);
                 string TimePeriod = yesterdayLogs[i].StartTime.ToShortTimeString() + "(-1d)" + " - " + yesterdayLogs[i].EndTime.ToShortTimeString() + " [" + totalHour.ToString() + "h]";
-                string LogName = yesterdayLogs[i].LogName;
+                string LogName = yesterdayLogs[i].Name;
                 string Location = yesterdayLogs[i].Location;
                 string WithWho = yesterdayLogs[i].WithWho;
-                bool IsAlarm = yesterdayLogs[i].Alarm;
                 Color backColor = GetColor(yesterdayLogs[i].Color);
                 lstPicLog[i].Width = width;
                 lstPicLog[i].Height = (int)(end - start);
@@ -205,7 +271,6 @@ namespace LifeGame
                 lstLblLog[i].Text = TimePeriod + "\n" + LogName + "\n" + Location + "\n" + WithWho;
                 lstLblLog[i].Dock = DockStyle.Fill;
                 lstLblLog[i].ForeColor = Color.FromArgb(255 - backColor.R, 255 - backColor.G, 255 - backColor.B);
-                lstLblLog[i].Click += (e, a) => CallInfoLog(TimePeriod, LogName, Location, WithWho, backColor, IsAlarm);
                 lstPicLog[i].Controls.Add(lstLblLog[i]);
             }
 
@@ -228,10 +293,9 @@ namespace LifeGame
                     end = height;
                     TimePeriod = todayLogs[i].StartTime.ToShortTimeString() + " - " + todayLogs[i].EndTime.ToShortTimeString() + "(+1d)" + " [" + totalHour.ToString() + "h]";
                 }
-                string LogName = todayLogs[i].LogName;
+                string LogName = todayLogs[i].Name;
                 string Location = todayLogs[i].Location;
                 string WithWho = todayLogs[i].WithWho;
-                bool IsAlarm = todayLogs[i].Alarm;
                 Color backColor = GetColor(todayLogs[i].Color);
                 lstPicLog[i + yesterdayLogs.Count].Width = width;
                 lstPicLog[i + yesterdayLogs.Count].Height = (int)(end - start);
@@ -242,7 +306,6 @@ namespace LifeGame
                 lstLblLog[i + yesterdayLogs.Count].Text = TimePeriod + "\n" + LogName + "\n" + Location + "\n" + WithWho;
                 lstLblLog[i + yesterdayLogs.Count].Dock = DockStyle.Fill;
                 lstLblLog[i + yesterdayLogs.Count].ForeColor = Color.FromArgb(255 - backColor.R, 255 - backColor.G, 255 - backColor.B);
-                lstLblLog[i + yesterdayLogs.Count].Click += (e, a) => CallInfoLog(TimePeriod, LogName, Location, WithWho, backColor, IsAlarm);
                 lstPicLog[i + yesterdayLogs.Count].Controls.Add(lstLblLog[i + yesterdayLogs.Count]);
             }
 
@@ -257,49 +320,237 @@ namespace LifeGame
             }
         }
 
+        /// <summary>绘制 Diary 竖式日程时间轴（日程色块 + 时间刻度 + 当前指针）</summary>
+        public void DrawDiaryTimeline(PictureBox picMap, DateTime date, int hourHeight = 80)
+        {
+            picMap.Controls.Clear();
+
+            int width = picMap.Width;
+            if (width < 150) width = 280;
+            int height = 24 * hourHeight;
+            int timeColWidth = 48;
+            picMap.Height = height;
+            picMap.Width = width;
+
+            // 米黄底色
+            picMap.BackColor = Color.FromArgb(255, 252, 245);
+
+            // --- 时间刻度标签 ---
+            var hourFont = new Font("Segoe UI", 7.5F, FontStyle.Regular);
+            var minuteFont = new Font("Segoe UI", 6.5F, FontStyle.Regular);
+
+            for (int h = 0; h < 24; h++)
+            {
+                int y = h * hourHeight;
+
+                // 整点标签
+                var lblHour = new Label
+                {
+                    Text = h.ToString("00") + ":00",
+                    Left = 2,
+                    Top = y - 1,
+                    Width = timeColWidth - 6,
+                    Height = 13,
+                    Font = hourFont,
+                    ForeColor = Color.FromArgb(160, 140, 110),
+                    BackColor = Color.Transparent,
+                    TextAlign = ContentAlignment.TopRight,
+                };
+                picMap.Controls.Add(lblHour);
+
+                // 半小时小刻度（仅在高度够时显示）
+                if (hourHeight >= 40)
+                {
+                    var lblHalf = new Label
+                    {
+                        Text = h.ToString("00") + ":30",
+                        Left = 2,
+                        Top = y + hourHeight / 2 - 5,
+                        Width = timeColWidth - 6,
+                        Height = 11,
+                        Font = minuteFont,
+                        ForeColor = Color.FromArgb(200, 190, 170),
+                        BackColor = Color.Transparent,
+                        TextAlign = ContentAlignment.TopRight,
+                    };
+                    picMap.Controls.Add(lblHalf);
+                }
+
+                // 网格线
+                var gridLine = new PictureBox
+                {
+                    Left = timeColWidth,
+                    Top = y,
+                    Width = width - timeColWidth,
+                    Height = 1,
+                    BackColor = Color.FromArgb(230, 220, 200),
+                };
+                picMap.Controls.Add(gridLine);
+            }
+
+            // 左侧竖线
+            var sepLine = new PictureBox
+            {
+                Left = timeColWidth - 1,
+                Top = 0,
+                Width = 1,
+                Height = height,
+                BackColor = Color.FromArgb(210, 200, 180),
+            };
+            picMap.Controls.Add(sepLine);
+
+            // --- 日程色块 ---
+            var todayLogs = LoadSchedulesForDate(date);
+            var yesterdayLogs = new List<PlotSchedule>();
+            if (date > DateTime.MinValue)
+            {
+                var prevSchedules = LoadSchedulesForDate(date.AddDays(-1));
+                yesterdayLogs = prevSchedules.Where(o => o.EndTime.Date == date).ToList();
+            }
+
+            int blockLeft = timeColWidth + 4;
+            int blockWidth = width - timeColWidth - 8;
+
+            // 跨天的日志
+            for (int i = 0; i < yesterdayLogs.Count; i++)
+            {
+                var log = yesterdayLogs[i];
+                double end = (log.EndTime.Hour + log.EndTime.Minute / 60.0) / 24.0 * height;
+                Color backColor = GetColor(log.Color);
+                AddTimelineBlock(picMap, log, backColor, 0, (int)end, blockLeft, blockWidth, date, true);
+            }
+
+            // 当天日志
+            for (int i = 0; i < todayLogs.Count; i++)
+            {
+                var log = todayLogs[i];
+                double start = (log.StartTime.Hour + log.StartTime.Minute / 60.0) / 24.0 * height;
+                double end = log.EndTime.Date > date ? height
+                    : (log.EndTime.Hour + log.EndTime.Minute / 60.0) / 24.0 * height;
+                Color backColor = GetColor(log.Color);
+                AddTimelineBlock(picMap, log, backColor, (int)start, (int)end, blockLeft, blockWidth, date, log.EndTime.Date > date);
+            }
+
+            // --- 当前时间指针（仅当天） ---
+            if (date == DateTime.Today.Date)
+            {
+                int nowY = (int)(height * DateTime.Now.TimeOfDay.TotalMinutes / (24 * 60));
+                var nowLine = new PictureBox
+                {
+                    Left = timeColWidth,
+                    Top = nowY - 1,
+                    Width = width - timeColWidth,
+                    Height = 2,
+                    BackColor = Color.FromArgb(220, 50, 50),
+                };
+                picMap.Controls.Add(nowLine);
+                picMap.Controls.SetChildIndex(nowLine, 0);
+
+                var nowDot = new PictureBox
+                {
+                    Left = timeColWidth,
+                    Top = nowY - 4,
+                    Width = 8,
+                    Height = 8,
+                    BackColor = Color.FromArgb(220, 50, 50),
+                };
+                nowDot.Paint += (s, e) =>
+                {
+                    e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    using (var b = new SolidBrush(Color.FromArgb(220, 50, 50)))
+                        e.Graphics.FillEllipse(b, 0, 0, 7, 7);
+                };
+                picMap.Controls.Add(nowDot);
+
+                var nowLabel = new Label
+                {
+                    Text = DateTime.Now.ToShortTimeString(),
+                    Left = timeColWidth + 12,
+                    Top = nowY - 13,
+                    Width = 45,
+                    Height = 13,
+                    Font = new Font("Segoe UI", 7F, FontStyle.Bold),
+                    ForeColor = Color.FromArgb(220, 50, 50),
+                    BackColor = Color.Transparent,
+                };
+                picMap.Controls.Add(nowLabel);
+            }
+        }
+
+        private void AddTimelineBlock(PictureBox picMap, PlotSchedule log, Color backColor,
+            int top, int bottom, int left, int width, DateTime date, bool isContinuation)
+        {
+            if (bottom - top < 16) bottom = top + 16; // 最小高度
+
+            double totalHour = (log.EndTime - log.StartTime).TotalHours;
+            string timeStr;
+            if (isContinuation && log.StartTime.Date < date)
+                timeStr = log.StartTime.ToShortTimeString() + "(-1d) - " + log.EndTime.ToShortTimeString();
+            else if (log.EndTime.Date > date)
+                timeStr = log.StartTime.ToShortTimeString() + " - " + log.EndTime.ToShortTimeString() + "(+1d)";
+            else
+                timeStr = log.StartTime.ToShortTimeString() + " - " + log.EndTime.ToShortTimeString();
+            timeStr += " [" + Math.Round(totalHour, 1).ToString("0.#") + "h]";
+
+            var block = new PictureBox
+            {
+                Left = left + 1,
+                Top = top + 1,
+                Width = width - 2,
+                Height = bottom - top - 2,
+                BackColor = backColor,
+                Cursor = Cursors.Hand,
+            };
+
+            // 边框
+            block.Paint += (s, e) =>
+            {
+                var pen = new Pen(Color.FromArgb(80, 0, 0, 0));
+                e.Graphics.DrawRectangle(pen, 0, 0, block.Width - 1, block.Height - 1);
+                pen.Dispose();
+            };
+
+            // 信息文本
+            string info = timeStr;
+            if (!string.IsNullOrEmpty(log.Name))
+                info += "\n" + log.Name;
+            if (!string.IsNullOrEmpty(log.Location))
+                info += "  @" + log.Location;
+            if (!string.IsNullOrEmpty(log.WithWho))
+                info += "\n " + log.WithWho;
+
+            var label = new Label
+            {
+                Text = info,
+                Left = 6,
+                Top = 4,
+                Width = block.Width - 12,
+                Height = block.Height - 8,
+                ForeColor = Color.FromArgb(255 - backColor.R, 255 - backColor.G, 255 - backColor.B),
+                BackColor = Color.Transparent,
+                Font = new Font("Segoe UI", 7.5F),
+            };
+            block.Controls.Add(label);
+
+            picMap.Controls.Add(block);
+        }
+
         public void DrawEventController(
             PictureBox picMap,
             DateTime date)
         {
             int left = picMap.Width - 27 > 0 ? picMap.Width - 27 : 0;
             List<PictureBox> lstPicEvent = new List<PictureBox>();
-            List<CEvent> lstEvent = G.glb.lstEvent.FindAll(o => o.TagTime.Date == date).ToList();
-            List<CNote> lstNote = G.glb.lstNote.FindAll(o => o.TagTime.Date == date).ToList();
-            List<CLiterature> lstLiterature = G.glb.lstLiterature.FindAll(o =>  o.DateAdded == date).ToList();
+            List<NoteDocument> lstNote = G.glb.lstNote.FindAll(o => o.Created.Date == date).ToList();
+            List<LiteratureDocument> lstLiterature = G.glb.lstLiterature.FindAll(o => o.Created == date).ToList();
 
             int acc = 0;
-            // Events
-            for (int i = 0; i < lstEvent.Count; i++)
-            {
-                lstPicEvent.Add(new PictureBox());
-                CEvent eve = lstEvent[i];
-                if (lstEvent[i].EventState == EEventState.LogEvent)
-                {
-                    lstPicEvent[i].Image = icon.iconEvent;
-                }
-                else if (lstEvent[i].EventState == EEventState.Succeed)
-                {
-                    lstPicEvent[i].Image = icon.iconSucceedEvent;
-                }
-                else
-                {
-                    lstPicEvent[i].Image = icon.iconFailedEvent;
-                }
-                lstPicEvent[i].Top = i * 30 + 3;
-                lstPicEvent[i].Left = left;
-                lstPicEvent[i].Width = 24;
-                lstPicEvent[i].Height = 24;
-                lstPicEvent[i].Click += (e, a) => CallInfoEvent(eve);
-                picMap.Controls.Add(lstPicEvent[i]);
-            }
-            acc = acc + lstEvent.Count;
 
             // Notes
             for (int i = 0; i < lstNote.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
-                CNote note = lstNote[i];
-                lstPicEvent[i + acc].Image = icon.iconNote;
+                NoteDocument note = lstNote[i];
                 lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;
                 lstPicEvent[i + acc].Width = 24;
@@ -313,8 +564,7 @@ namespace LifeGame
             for (int i = 0; i < lstLiterature.Count; i++)
             {
                 lstPicEvent.Add(new PictureBox());
-                CLiterature lit = lstLiterature[i];
-                lstPicEvent[i + acc].Image = icon.iconLiterature;
+                LiteratureDocument lit = lstLiterature[i];
                 lstPicEvent[i + acc].Top = (i + acc) * 30 + 3;
                 lstPicEvent[i + acc].Left = left;
                 lstPicEvent[i + acc].Width = 24;
@@ -325,60 +575,38 @@ namespace LifeGame
             acc = acc + lstLiterature.Count;
         }
 
-        public void CallInfoLog(string Timeperiod, string LogName, string Location, string WithWho, Color color, bool IsAlarm)
-        {
-            frmInfoLog frmInfoLog = new frmInfoLog(Timeperiod, LogName, Location, WithWho, color, IsAlarm);
-            frmInfoLog.ShowDialog();
-        }
 
-
-        public void CallInfoEvent(CEvent info)
+        public void CallInfoNote(NoteDocument info)
         {
-            frmInfoEvent frmInfoEvent = new frmInfoEvent(info);
-            frmInfoEvent.Show();
-        }
-
-        public void CallInfoNote(CNote info)
-        {
-            if (M.notesOpened.Exists(o => o.GUID == info.GUID))
+            if (M.NoteExists(info.GUID))
             {
-                M.notesOpened.Find(o => o.GUID == info.GUID).Show();
-                M.notesOpened.Find(o => o.GUID == info.GUID).BringToFront();
+                M.FindNoteForm(info.GUID).Show();
+                M.FindNoteForm(info.GUID).BringToFront();
             }
             else
             {
-                frmInfoNote frmInfoNote = new frmInfoNote(info);
-                M.notesOpened.Add(frmInfoNote);
-                frmInfoNote.Show();
+                var f = new frmInfoNoteV2(info);
+                M.notesOpened.Add(f);
+                f.Show();
             }
         }
 
-        public void CallInfoLiterature(CLiterature lit)
+        public void CallInfoLiterature(LiteratureDocument lit)
         {
-            if (M.notesOpened.Exists(o => o.GUID == lit.GUID))
+            if (M.NoteExists(lit.GUID))
             {
-                M.notesOpened.Find(o => o.GUID == lit.GUID).Show();
-                M.notesOpened.Find(o => o.GUID == lit.GUID).BringToFront();
+                M.FindNoteForm(lit.GUID).Show();
+                M.FindNoteForm(lit.GUID).BringToFront();
             }
             else
             {
-                frmInfoNote frmInfoNote = new frmInfoNote(lit);
-                M.notesOpened.Add(frmInfoNote);
-                frmInfoNote.Show();
+                var f = new frmInfoNoteV2(lit);
+                M.notesOpened.Add(f);
+                f.Show();
             }
         }
 
-        public void CallInfoTransaction(CTransaction info)
-        {
-            frmInfoTransaction frmInfoTransaction = new frmInfoTransaction(info);
-            frmInfoTransaction.Show();
-        }
 
-        public void CallInfoBudget (CTransaction info)
-        {
-            frmInfoTransaction frmInfoBudget = new frmInfoTransaction(info);
-            frmInfoBudget.Show();
-        }
 
     }
 }

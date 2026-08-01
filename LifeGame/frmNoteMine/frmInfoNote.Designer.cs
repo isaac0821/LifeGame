@@ -1106,6 +1106,7 @@
             // 
             this.trvShare.ContextMenuStrip = this.cmsTrvShare;
             this.trvShare.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvShare.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.trvShare.Location = new System.Drawing.Point(0, 0);
             this.trvShare.Name = "trvShare";
             this.trvShare.Size = new System.Drawing.Size(507, 97);
@@ -1194,6 +1195,7 @@
             this.trvNote.BackColor = System.Drawing.SystemColors.Window;
             this.trvNote.ContextMenuStrip = this.cmsTrvNote;
             this.trvNote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.trvNote.Location = new System.Drawing.Point(0, 0);
             this.trvNote.Name = "trvNote";
             this.trvNote.Size = new System.Drawing.Size(507, 290);

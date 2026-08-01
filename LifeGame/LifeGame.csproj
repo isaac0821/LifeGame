@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -49,7 +49,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>latest</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
@@ -58,16 +58,22 @@
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>latest</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateResourceUsePreserializedResources>false</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -77,327 +83,79 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>System.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>System.Numerics.Vectors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes.cs" />
+    <Compile Include="DataFileHelper.cs" />
+    <Compile Include="MarkdownNoteConverter.cs" />
+    <Compile Include="Data\GameDocument.cs" />
     <Compile Include="enum.cs" />
-    <Compile Include="frmAdd\frmAddLiterature.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddLiterature.Designer.cs">
-      <DependentUpon>frmAddLiterature.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddNoteColor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddNoteColor.Designer.cs">
-      <DependentUpon>frmAddNoteColor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddTag.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddTag.Designer.cs">
-      <DependentUpon>frmAddTag.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddAuthor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddAuthor.Designer.cs">
-      <DependentUpon>frmAddAuthor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmNoteChangeLabel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmNoteChangeLabel.Designer.cs">
-      <DependentUpon>frmNoteChangeLabel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmReplaceNote.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmReplaceNote.Designer.cs">
-      <DependentUpon>frmReplaceNote.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmInfo\frmJournalConf.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfo\frmJournalConf.Designer.cs">
-      <DependentUpon>frmJournalConf.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmInfo\frmSearchNote.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfo\frmSearchNote.Designer.cs">
-      <DependentUpon>frmSearchNote.cs</DependentUpon>
-    </Compile>
     <Compile Include="memory.cs" />
     <Compile Include="names.cs" />
     <Compile Include="plot.cs" />
-    <Compile Include="calculate.cs" />
-    <Compile Include="frmAdd\frmAddEvent.cs">
+    <Compile Include="Controls\OutlineLine.cs" />
+    <Compile Include="Controls\Theme.cs" />
+    <Compile Include="Controls\OutlineRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\OutlinePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NoteIconProvider.cs" />
+    <Compile Include="Controls\OutlineConverter.cs" />
+    <Compile Include="Controls\RichTreeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SidePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="frmNoteBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAdd\frmAddEvent.Designer.cs">
-      <DependentUpon>frmAddEvent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddBudget.cs">
+    <Compile Include="frmInfoNoteV2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAdd\frmAddBudget.Designer.cs">
-      <DependentUpon>frmAddBudget.cs</DependentUpon>
+    <Compile Include="frmInfoNoteV2.Designer.cs">
+      <DependentUpon>frmInfoNoteV2.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInfo\frmClearSchedule.cs">
+    <Compile Include="frmLauncher.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfo\frmClearSchedule.Designer.cs">
-      <DependentUpon>frmClearSchedule.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmCatalog\frmAccount.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCatalog\frmAccount.Designer.cs">
-      <DependentUpon>frmAccount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddAccount.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddAccount.Designer.cs">
-      <DependentUpon>frmAddAccount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddLog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddLog.Designer.cs">
-      <DependentUpon>frmAddLog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddSchedule.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddSchedule.Designer.cs">
-      <DependentUpon>frmAddSchedule.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAdd\frmAddTransaction.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAdd\frmAddTransaction.Designer.cs">
-      <DependentUpon>frmAddTransaction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmSettings\frmCurrencyRate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSettings\frmCurrencyRate.Designer.cs">
-      <DependentUpon>frmCurrencyRate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmInfo\frmConvertSchedule.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfo\frmConvertSchedule.Designer.cs">
-      <DependentUpon>frmConvertSchedule.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmInfo\frmConvertBudget.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfo\frmConvertBudget.Designer.cs">
-      <DependentUpon>frmConvertBudget.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmInfo\frmDelNoteMine.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfo\frmDelNoteMine.Designer.cs">
-      <DependentUpon>frmDelNoteMine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmInfoMine\frmInfoEvent.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfoMine\frmInfoEvent.Designer.cs">
-      <DependentUpon>frmInfoEvent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmInfo\frmDelInfoMine.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfo\frmDelInfoMine.Designer.cs">
-      <DependentUpon>frmDelInfoMine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmInfo\frmDelLog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfo\frmDelLog.Designer.cs">
-      <DependentUpon>frmDelLog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNoteMine\frmBibTeX\frmBibUnpublished.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmBibTeX\frmBibUnpublished.Designer.cs">
-      <DependentUpon>frmBibUnpublished.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNoteMine\frmBibTeX\frmBibConference.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmBibTeX\frmBibConference.Designer.cs">
-      <DependentUpon>frmBibConference.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNoteMine\frmBibTeX\frmBibMasterThesis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmBibTeX\frmBibMasterThesis.Designer.cs">
-      <DependentUpon>frmBibMasterThesis.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNoteMine\frmBibTeX\frmBibPhDThesis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmBibTeX\frmBibPhDThesis.Designer.cs">
-      <DependentUpon>frmBibPhDThesis.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNoteMine\frmBibTeX\frmBibArticle.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmBibTeX\frmBibArticle.Designer.cs">
-      <DependentUpon>frmBibArticle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoNote.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNoteMine\frmInfoNote.Designer.cs">
-      <DependentUpon>frmInfoNote.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmCatalog\frmLiterature.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCatalog\frmLiterature.Designer.cs">
-      <DependentUpon>frmLiterature.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmInfo\frmInfoLog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfo\frmInfoLog.Designer.cs">
-      <DependentUpon>frmInfoLog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmCatalog\frmMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCatalog\frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmInfoMine\frmInfoTransaction.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInfoMine\frmInfoTransaction.Designer.cs">
-      <DependentUpon>frmInfoTransaction.cs</DependentUpon>
     </Compile>
     <Compile Include="gvar.cs" />
-    <Compile Include="icon.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>icon.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ParseBibTeX.cs" />
+    <Compile Include="Services\TreeBuilderService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmAdd\frmAddLiterature.resx">
-      <DependentUpon>frmAddLiterature.cs</DependentUpon>
+    <EmbeddedResource Include="frmInfoNoteV2.resx">
+      <DependentUpon>frmInfoNoteV2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddNoteColor.resx">
-      <DependentUpon>frmAddNoteColor.cs</DependentUpon>
+    <EmbeddedResource Include="frmLauncher.resx">
+      <DependentUpon>frmLauncher.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddTag.resx">
-      <DependentUpon>frmAddTag.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddEvent.resx">
-      <DependentUpon>frmAddEvent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddAuthor.resx">
-      <DependentUpon>frmAddAuthor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddBudget.resx">
-      <DependentUpon>frmAddBudget.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmReplaceNote.resx">
-      <DependentUpon>frmReplaceNote.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmCatalog\frmAccount.resx">
-      <DependentUpon>frmAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddAccount.resx">
-      <DependentUpon>frmAddAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddLog.resx">
-      <DependentUpon>frmAddLog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddSchedule.resx">
-      <DependentUpon>frmAddSchedule.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmAddTransaction.resx">
-      <DependentUpon>frmAddTransaction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAdd\frmNoteChangeLabel.resx">
-      <DependentUpon>frmNoteChangeLabel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfo\frmSearchNote.resx">
-      <DependentUpon>frmSearchNote.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmSettings\frmCurrencyRate.resx">
-      <DependentUpon>frmCurrencyRate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfoMine\frmInfoEvent.resx">
-      <DependentUpon>frmInfoEvent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfo\frmClearSchedule.resx">
-      <DependentUpon>frmClearSchedule.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfo\frmConvertSchedule.resx">
-      <DependentUpon>frmConvertSchedule.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfo\frmConvertBudget.resx">
-      <DependentUpon>frmConvertBudget.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfo\frmDelInfoMine.resx">
-      <DependentUpon>frmDelInfoMine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfo\frmDelNoteMine.resx">
-      <DependentUpon>frmDelNoteMine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfoMine\frmInfoTransaction.resx">
-      <DependentUpon>frmInfoTransaction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfo\frmDelLog.resx">
-      <DependentUpon>frmDelLog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmBibTeX\frmBibUnpublished.resx">
-      <DependentUpon>frmBibUnpublished.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmBibTeX\frmBibConference.resx">
-      <DependentUpon>frmBibConference.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmBibTeX\frmBibMasterThesis.resx">
-      <DependentUpon>frmBibMasterThesis.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmBibTeX\frmBibPhDThesis.resx">
-      <DependentUpon>frmBibPhDThesis.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmBibTeX\frmBibArticle.resx">
-      <DependentUpon>frmBibArticle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNoteMine\frmInfoNote.resx">
-      <DependentUpon>frmInfoNote.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmCatalog\frmLiterature.resx">
-      <DependentUpon>frmLiterature.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInfo\frmInfoLog.resx">
-      <DependentUpon>frmInfoLog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmCatalog\frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="icon.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>icon.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmNoteBase.resx">
+      <DependentUpon>frmNoteBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Note_*.png" />
+    <EmbeddedResource Include="Resources\favicon.ico" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -436,9 +194,6 @@
     <None Include="Resources\iconOut.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\iconMoney.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\iconFitness.png" />
   </ItemGroup>
   <ItemGroup>
@@ -454,15 +209,6 @@
     <None Include="Resources\iconFailedEvent.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\iconMoneyIn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconMoneyOut.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconMoneyWithin.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\iconNote.png" />
   </ItemGroup>
   <ItemGroup>
@@ -472,7 +218,9 @@
     <None Include="Resources\iconSucceedEvent.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon.ico" />
+    <Content Include="favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\iconClock.png" />
     <None Include="Resources\iconDaily.png" />
     <Content Include="Resources\iconSurveyTagBoolean.png" />
@@ -487,19 +235,9 @@
     <None Include="Resources\iconOngoing.png" />
     <None Include="Resources\iconWorkingNote.png" />
     <None Include="Resources\iconUnStartedYet.png" />
-    <None Include="Resources\iconTransactionDueWithin.png" />
-    <None Include="Resources\iconTransactionDueOut.png" />
-    <None Include="Resources\iconTransactionDueIn.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

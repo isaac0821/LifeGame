@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace LifeGame
 {
@@ -15,6 +16,8 @@ namespace LifeGame
     {
         Timer curPointerTimer = new Timer();
         Timer saveTimer = new Timer();
+
+        int selectedExpandLevel = 0;
 
         public delegate void DrawLogHandler();
         public event DrawLogHandler DrawLog;
@@ -65,6 +68,8 @@ namespace LifeGame
             noteType = ENoteType.Note;
 
             InitializeComponent();
+            trvNote.Font = new Font("Microsoft Sans Serif", 11f, FontStyle.Regular);
+            trvShare.Font = new Font("Microsoft Sans Serif", 11f, FontStyle.Regular);
 
             this.Text = "LifeGame - Note - " + note.Topic;
             splitContainer1.Panel1Collapsed = true;
@@ -106,6 +111,8 @@ namespace LifeGame
             noteType = ENoteType.Literature;
 
             InitializeComponent();
+            trvNote.Font = new Font("Microsoft Sans Serif", 11f, FontStyle.Regular);
+            trvShare.Font = new Font("Microsoft Sans Serif", 11f, FontStyle.Regular);
 
             this.Text = "LifeGame - Literature - " + literature.Title;
             splitContainer1.Panel1Collapsed = true;
@@ -162,6 +169,8 @@ namespace LifeGame
             noteType = ENoteType.DailyReport;
 
             InitializeComponent();
+            trvNote.Font = new Font("Microsoft Sans Serif", 11f, FontStyle.Regular);
+            trvShare.Font = new Font("Microsoft Sans Serif", 11f, FontStyle.Regular);
 
             this.Text = "LifeGame - Daily Report - " + diary.Date.ToString("dd/MM/yyyy");
             splitContainer1.Panel1Collapsed = false;
@@ -277,6 +286,7 @@ namespace LifeGame
                     childNode.Text = sub.SubLog;
                     childNode.BackColor = SystemColors.Window;
                     childNode.ForeColor = Color.Black;
+                    //childNode.NodeFont = new Font("Microsoft Sans Serif", 11f, FontStyle.Regular);
                     if (sub.IsExpand)
                     {
                         childNode.Expand();
@@ -580,7 +590,7 @@ namespace LifeGame
         {
             Color BackColor = new Color();
             Color ForeColor = new Color();
-            Font TextFont = new Font(Font, FontStyle.Regular);
+            Font TextFont = TextFont = new Font("Microsoft Sans Serif", 11f, FontStyle.Regular);
 
             BackColor = Color.White;
             foreach (RNoteColor color in noteColorsource)
@@ -630,32 +640,32 @@ namespace LifeGame
             if (note.Contains("$LINK$>"))
             {
                 ForeColor = Color.Blue;
-                TextFont = new Font(Font, FontStyle.Underline);
+                TextFont = new Font("Microsoft Sans Serif", 11f, FontStyle.Underline);
             }
             else if (note.Contains("$LITR$>"))
             {
                 ForeColor = Color.Brown;
-                TextFont = new Font(Font, FontStyle.Underline);
+                TextFont = new Font("Microsoft Sans Serif", 11f, FontStyle.Underline);
             }
             else if (note.Contains("$NOTE$>"))
             {
                 ForeColor = Color.DarkGreen;
-                TextFont = new Font(Font, FontStyle.Underline);
+                TextFont = new Font("Microsoft Sans Serif", 11f, FontStyle.Underline);
             }
             else if (note.Contains("$JUMP$>"))
             {
                 ForeColor = Color.Indigo;
-                TextFont = new Font(Font, FontStyle.Bold);
+                TextFont = new Font("Microsoft Sans Serif", 11f, FontStyle.Bold);
             }
             else if (note.Contains("$SCHL$>"))
             {
                 ForeColor = Color.Orange;
-                TextFont = new Font(Font, FontStyle.Underline);
+                TextFont = new Font("Microsoft Sans Serif", 11f, FontStyle.Bold);
             }
             else if (note.Split('#').Length == 3)
             {
                 ForeColor = Color.Indigo;
-                TextFont = new Font(Font, FontStyle.Bold);
+                TextFont = new Font("Microsoft Sans Serif", 11f, FontStyle.Bold);
             }
 
             if (note.Contains("ddl: ") || note.Contains("DDL: ") || note.Contains("Date: ") || note.Contains("date: "))
@@ -705,7 +715,7 @@ namespace LifeGame
             else if (note.Contains("modified: ") || note.Contains("Modified: ") || note.Contains("MODIFIED: ") || note.Contains("modi: "))
             {
                 BackColor = Color.Pink;
-                TextFont = new Font(Font, FontStyle.Bold);
+                TextFont = new Font("Microsoft Sans Serif", 11f, FontStyle.Bold);
             }
             return (BackColor, ForeColor, TextFont);
         }
@@ -1139,20 +1149,47 @@ namespace LifeGame
         {
             if (trvNote.SelectedNode != null)
             {
-                foreach (TreeNode item in trvNote.SelectedNode.Nodes)
-                {
-                    item.Collapse(true);
-                }
+                UpdateSelectedExpandLevel();
+                ExpandNodeToLevel(trvNote.SelectedNode, selectedExpandLevel - 1);
             }
         }
         private void tsmExpand_Click(object sender, EventArgs e)
         {
             if (trvNote.SelectedNode != null)
             {
-                trvNote.SelectedNode.ExpandAll();
-                foreach (TreeNode item in trvNote.SelectedNode.Nodes)
+                UpdateSelectedExpandLevel();
+                ExpandNodeToLevel(trvNote.SelectedNode, selectedExpandLevel + 1);
+            }
+        }
+        private void UpdateSelectedExpandLevel()
+        {
+            selectedExpandLevel = trvNote.SelectedNode.Level;
+            UpdateExpandLevel(trvNote.SelectedNode);
+        }
+        private void UpdateExpandLevel(TreeNode node)
+        {
+            if (node.IsExpanded && node.Level >= selectedExpandLevel)
+            {
+                selectedExpandLevel = node.Level;
+
+            }
+            foreach (TreeNode item in node.Nodes)
+            {
+                UpdateExpandLevel(item);
+            }
+        }
+        private void ExpandNodeToLevel(TreeNode node, int level)
+        {
+            if (node.Level > level)
+            {
+                node.Collapse(true);
+            }
+            else
+            {
+                node.Expand();
+                foreach (TreeNode child in node.Nodes)
                 {
-                    item.ExpandAll();
+                    ExpandNodeToLevel(child, level);
                 }
             }
         }
@@ -2481,6 +2518,11 @@ namespace LifeGame
                 tsmCopy_Click(trvNote, e);
                 tsmCopyFile_Click(trvNote, e);
             }
+            // 复制节点
+            else if (e.Control && e.KeyCode == Keys.X)
+            {
+                copyJumpNode(trvNote, e);
+            }
             // 粘贴
             else if (e.Control && e.KeyCode == Keys.V)
             {
@@ -3275,6 +3317,23 @@ namespace LifeGame
                 copyNode(child);
             }
         }
+        string jumpNode = "";
+        private void copyJumpNode(object sender, EventArgs e)
+        {
+            if (trvNote.SelectedNode != null 
+                && !trvNote.SelectedNode.Text.Contains("$LINK$>")
+                && !trvNote.SelectedNode.Text.Contains("$LITR$>")
+                && !trvNote.SelectedNode.Text.Contains("$NOTE$>")
+                && !trvNote.SelectedNode.Text.Contains("$SCHL$>")
+                && !trvNote.SelectedNode.Text.Contains("$JUMP$>"))
+            {
+                TreeNode jumpNode = new TreeNode();
+                jumpNode.Text = "$JUMP$>" + trvNote.SelectedNode.Text;
+                jumpNode.Name = Guid.NewGuid().ToString();
+                M.mem.copiedNodes.Clear();
+                copyNode(jumpNode);
+            }
+        }
         private void tsmPaste_Click(object sender, EventArgs e)
         {
             if (trvNote.SelectedNode != null && M.mem.copiedNodes.Count > 0)
@@ -3435,8 +3494,8 @@ namespace LifeGame
             }
         }
 
-        #endregion
 
+        #endregion
 
     }
 }

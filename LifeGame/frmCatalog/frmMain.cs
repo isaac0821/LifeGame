@@ -1155,14 +1155,21 @@ namespace LifeGame
         private void tsmToolNewNote_Click(object sender, EventArgs e)
         {
             string topic = Interaction.InputBox("Add new Note", "Add Note", "(New Note)", 300, 300);
-            CNote newNote = new CNote();
-            newNote.Topic = topic;
-            newNote.TagTime = DateTime.Today;
-            newNote.GUID = Guid.NewGuid().ToString();
-            G.glb.lstNote.Add(newNote);
+            if (topic != "" && topic != null)
+            {
+                CNote newNote = new CNote();
+                newNote.Topic = topic;
+                newNote.TagTime = DateTime.Today;
+                newNote.GUID = Guid.NewGuid().ToString();
+                G.glb.lstNote.Add(newNote);
 
-            frmInfoNote frmInfoNote = new frmInfoNote(newNote);
-            frmInfoNote.Show();
+                frmInfoNote frmInfoNote = new frmInfoNote(newNote);
+                frmInfoNote.Show();
+            }
+            else
+            {
+                MessageBox.Show("ERROR: Title cannot be null.");
+            }
         }
 
         private void tsmToolNewLiterature_Click(object sender, EventArgs e)
@@ -1171,6 +1178,10 @@ namespace LifeGame
             if (G.glb.lstLiterature.Exists(o => o.Title == strTitle))
             {
                 MessageBox.Show("Literature exists, please check!");
+            }
+            else if (strTitle == "" || strTitle == null)
+            {
+                MessageBox.Show("ERROR: Title cannot be null.");
             }
             else
             {

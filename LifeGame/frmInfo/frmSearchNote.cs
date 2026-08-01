@@ -18,16 +18,14 @@ namespace LifeGame
 
         public frmSearchNote(string searchName)
         {
-            notes = G.glb.lstNote.FindAll(o => o.Topic.ToUpper().Contains(searchName.ToUpper()));
-            notes = notes.OrderBy(o => o.TagTime).ToList();
-            lits = G.glb.lstLiterature.FindAll(o => o.Title.ToUpper().Contains(searchName.ToUpper()));
-            lits = lits.OrderBy(o => o.Title).ToList();
             search = searchName;
             InitializeComponent();
         }
 
         private void RefreshNoteList()
         {
+            notes = G.glb.lstNote.FindAll(o => o.Topic.ToUpper().Contains(search.ToUpper()));
+            notes = notes.OrderBy(o => o.TagTime).ToList();
             lsbNote.Items.Clear();
             foreach (CNote note in notes)
             {
@@ -36,6 +34,8 @@ namespace LifeGame
         }
         private void RefreshLitList()
         {
+            lits = G.glb.lstLiterature.FindAll(o => o.Title.ToUpper().Contains(search.ToUpper()));
+            lits = lits.OrderBy(o => o.Title).ToList();
             lsbLit.Items.Clear();
             foreach (CLiterature lit in lits)
             {
